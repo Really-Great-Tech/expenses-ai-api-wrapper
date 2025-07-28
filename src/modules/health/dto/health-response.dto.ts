@@ -16,6 +16,18 @@ export class EnvironmentVariablesDto {
   @ApiProperty({ example: 'llx-YbTb...Ma8', description: 'Masked for security' })
   LLAMAINDEX_API_KEY: string;
 
+  @ApiProperty({ example: 'AKIA...Z', description: 'Masked for security' })
+  AWS_ACCESS_KEY_ID: string;
+
+  @ApiProperty({ example: 'wJal...key', description: 'Masked for security' })
+  AWS_SECRET_ACCESS_KEY: string;
+
+  @ApiProperty({ example: 'us-east-1' })
+  AWS_REGION: string;
+
+  @ApiProperty({ example: 'llamaparse', description: 'Document reader type: llamaparse or textract' })
+  DOCUMENT_READER: string;
+
   @ApiProperty({ example: '50MB' })
   MAX_FILE_SIZE: string;
 

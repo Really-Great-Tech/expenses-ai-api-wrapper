@@ -3,7 +3,8 @@ import { Logger } from "@nestjs/common";
 import { Job } from "bull";
 import { DocumentService } from "../../document/document.service";
 import { ExpenseProcessingService } from "../../../services/expense-processing.service";
-import { LlamaParseApiService } from "../../../utils/llamaParseReader";
+import { DocumentReaderFactory } from "../../../utils/documentReaderFactory";
+import { DocumentReader } from "../../../utils/types";
 import {
   DocumentProcessingData,
   QUEUE_NAMES,
@@ -23,15 +24,23 @@ export class ExpenseProcessor {
   @Process(JOB_TYPES.PROCESS_DOCUMENT)
   async processDocument(job: Job<DocumentProcessingData>): Promise<JobResult> {
     const startTime = Date.now();
-    const { jobId, filePath, fileName, userId, country, icp } = job.data;
+    const { jobId, filePath, fileName, userId, country, icp, documentReader } = job.data;
 
     try {
       this.logger.log(
         `Starting expense document processing for job: ${jobId}, file: ${fileName}`
       );
 
-      // Read the document content (assuming it's already converted to markdown)
-      const markdownContent = await this.readDocumentContent(filePath);
+      // Read the document content using the specified document reader with timing
+      const markdownExtractionStart = Date.now();
+      const markdownContent = await this.readDocumentContent(filePath, documentReader);
+      const markdownExtractionEnd = Date.now();
+
+      const markdownExtractionTime = markdownExtractionEnd - markdownExtractionStart;
+      this.logger.log(`Markdown extraction completed in ${markdownExtractionTime}ms using ${documentReader || 'default'} reader`);
+
+      // Save markdown content locally
+      await this.saveMarkdownContent(fileName, markdownContent, documentReader || 'default');
       
       // Load compliance data and expense schema (placeholder - should be loaded from config/database)
       const complianceData = await this.loadComplianceData(country, icp);
@@ -49,6 +58,10 @@ export class ExpenseProcessor {
         async (stage: string, progress: number) => {
           await job.progress(progress);
           this.logger.log(`${stage}: ${progress}%`);
+        },
+        {
+          markdownExtractionTime,
+          documentReader: documentReader || 'default'
         }
       );
 
@@ -74,7 +87,7 @@ export class ExpenseProcessor {
     }
   }
 
-  private async readDocumentContent(filePath: string): Promise<string> {
+  private async readDocumentContent(filePath: string, documentReader?: string): Promise<string> {
     try {
       const fs = require('fs');
       const path = require('path');
@@ -89,39 +102,39 @@ export class ExpenseProcessor {
 
       this.logger.log(`Reading document: ${fileName} (${fileExtension})`);
 
-      // Use LlamaParse for document extraction
-      const llamaParseApiKey = process.env.LLAMAINDEX_API_KEY;
-      if (!llamaParseApiKey) {
-        this.logger.warn('LLAMAINDEX_API_KEY not found, using placeholder content');
-        return this.getPlaceholderContent(fileName);
-      }
-
+      // Use document reader factory to get the appropriate reader
       try {
-        const llamaParseService = new LlamaParseApiService(llamaParseApiKey);
+        const readerType = documentReader || process.env.DOCUMENT_READER || 'llamaparse';
+        const reader = DocumentReaderFactory.getDefaultReader(readerType);
 
-        // Configure LlamaParse for expense document processing
+        this.logger.log(`Extracting content from ${fileName} using ${readerType}...`);
+
+        // Configure document reader for expense document processing
         const parseConfig = {
+          // LlamaParse specific config
           parseMode: 'parse_page_with_lvm',
           vendorMultimodalModelName: 'anthropic-sonnet-3.7',
           disableOcr: false,
           adaptiveLongTable: true,
           annotateLinks: false,
           timeout: 120000, // 2 minutes timeout
+          // Textract specific config
+          featureTypes: ['TABLES', 'FORMS'],
+          outputFormat: 'markdown' as const,
         };
 
-        this.logger.log(`Extracting content from ${fileName} using LlamaParse...`);
-        const parseResult = await llamaParseService.parseDocument(filePath, parseConfig);
+        const parseResult = await reader.parseDocument(filePath, parseConfig);
 
         if (parseResult.success && parseResult.data) {
-          this.logger.log(`Successfully extracted ${parseResult.data.length} characters from ${fileName}`);
+          this.logger.log(`Successfully extracted ${parseResult.data.length} characters from ${fileName} using ${readerType}`);
           return parseResult.data;
         } else {
           const errorMsg = 'error' in parseResult ? parseResult.error : 'Unknown error';
-          this.logger.error(`LlamaParse failed for ${fileName}: ${errorMsg}`);
+          this.logger.error(`Document reader failed for ${fileName}: ${errorMsg}`);
           return this.getPlaceholderContent(fileName);
         }
-      } catch (parseError) {
-        this.logger.error(`LlamaParse error for ${fileName}: ${parseError.message}`);
+      } catch (readerError) {
+        this.logger.error(`Document reader error for ${fileName}: ${readerError.message}`);
         return this.getPlaceholderContent(fileName);
       }
     } catch (error) {
@@ -191,6 +204,42 @@ export class ExpenseProcessor {
     } catch (error) {
       this.logger.error(`Failed to load expense schema: ${error.message}`);
       return {};
+    }
+  }
+
+  private async saveMarkdownContent(fileName: string, markdownContent: string, readerType: string): Promise<void> {
+    try {
+      const fs = require('fs');
+      const path = require('path');
+
+      // Create markdown directory if it doesn't exist
+      const markdownDir = path.join(process.cwd(), 'markdown_extractions');
+      if (!fs.existsSync(markdownDir)) {
+        fs.mkdirSync(markdownDir, { recursive: true });
+      }
+
+      // Generate markdown filename with reader type
+      const baseFilename = fileName.replace(/\.[^/.]+$/, ''); // Remove extension
+      const markdownFilename = `${baseFilename}_${readerType}.md`;
+      const markdownFilePath = path.join(markdownDir, markdownFilename);
+
+      // Add metadata header to markdown content
+      const timestamp = new Date().toISOString();
+      const markdownWithMetadata = `---
+# Markdown Extraction Results
+- **Original File**: ${fileName}
+- **Document Reader**: ${readerType}
+- **Extracted At**: ${timestamp}
+- **Content Length**: ${markdownContent.length} characters
+---
+
+${markdownContent}`;
+
+      // Write markdown content to file
+      fs.writeFileSync(markdownFilePath, markdownWithMetadata, 'utf8');
+      this.logger.log(`Markdown content saved to: ${markdownFilePath}`);
+    } catch (error) {
+      this.logger.error('Failed to save markdown content to file:', error);
     }
   }
 }

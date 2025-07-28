@@ -109,6 +109,7 @@ export const ImageQualityAssessmentSchema = z.object({
 export const ProcessingTimingSchema = z.object({
   total_processing_time_minutes: z.string(),
   phase_timings: z.object({
+    markdown_extraction_minutes: z.string().optional(),
     image_quality_assessment_minutes: z.string(),
     file_classification_minutes: z.string(),
     data_extraction_minutes: z.string(),
@@ -116,6 +117,12 @@ export const ProcessingTimingSchema = z.object({
     citation_generation_minutes: z.string(),
   }),
   agent_performance: z.object({
+    markdown_extraction: z.object({
+      start_time: z.string(),
+      end_time: z.string(),
+      duration_minutes: z.string(),
+      document_reader_used: z.string(),
+    }).optional(),
     image_quality_assessment: z.object({
       start_time: z.string(),
       end_time: z.string(),

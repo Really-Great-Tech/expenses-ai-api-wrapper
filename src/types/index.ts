@@ -5,6 +5,7 @@ export interface DocumentProcessingData {
   userId: string;
   country: string;
   icp: string;
+  documentReader?: string;
   uploadedAt: Date;
 }
 

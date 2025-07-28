@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsEnum } from 'class-validator';
+import { DocumentReaderType } from '../../../utils/types';
 
 export class ProcessDocumentDto {
   @ApiProperty({
@@ -29,6 +30,17 @@ export class ProcessDocumentDto {
   @IsString()
   @IsOptional()
   language?: string;
+
+  @ApiProperty({
+    description: 'Document reader to use for content extraction',
+    example: 'llamaparse',
+    enum: Object.values(DocumentReaderType),
+    default: 'llamaparse',
+    required: false,
+  })
+  @IsEnum(DocumentReaderType)
+  @IsOptional()
+  documentReader?: DocumentReaderType;
 }
 
 export class ProcessDocumentResponseDto {

@@ -26,8 +26,15 @@ PORT=3000
 UPLOAD_PATH=./uploads
 MAX_RETRY_ATTEMPTS=3
 
-# Optional: AWS Bedrock (if using)
+# AWS Configuration (for Textract)
+AWS_ACCESS_KEY_ID=your_aws_access_key_id_here
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key_here
 AWS_REGION=us-east-1
+
+# Document Reader Configuration
+DOCUMENT_READER=llamaparse  # Options: llamaparse, textract
+
+# Optional: AWS Bedrock (if using)
 BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
 ```
 

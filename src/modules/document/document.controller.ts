@@ -98,6 +98,13 @@ export class DocumentController {
           example: "Global People",
           default: "Global People",
         },
+        documentReader: {
+          type: "string",
+          description: "Document reader to use for content extraction (default: llamaparse)",
+          enum: ["llamaparse", "textract"],
+          example: "llamaparse",
+          default: "llamaparse",
+        },
       },
       required: ["file", "userId"],
     },
@@ -179,7 +186,7 @@ export class DocumentController {
   })
   async processDocument(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: { userId: string; country?: string; icp?: string }
+    @Body() body: { userId: string; country?: string; icp?: string; documentReader?: string }
   ) {
     if (!file) {
       throw new HttpException("No file uploaded", HttpStatus.BAD_REQUEST);
@@ -195,6 +202,7 @@ export class DocumentController {
         userId: body.userId,
         country: body.country || "Germany",
         icp: body.icp || "Global People",
+        documentReader: body.documentReader || "llamaparse",
       });
 
       return {

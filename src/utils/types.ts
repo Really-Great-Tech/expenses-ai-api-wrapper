@@ -79,3 +79,23 @@ export interface Logger {
   error(message: string, ...args: any[]): void;
   debug(message: string, ...args: any[]): void;
 }
+
+// Document Reader Types
+export interface DocumentReaderConfig {
+  timeout?: number;
+  [key: string]: any;
+}
+
+export interface DocumentReader {
+  parseDocument(filePath: string, config?: DocumentReaderConfig): Promise<ApiResponse<string>>;
+}
+
+export enum DocumentReaderType {
+  LLAMAPARSE = "llamaparse",
+  TEXTRACT = "textract",
+}
+
+export interface TextractConfig extends DocumentReaderConfig {
+  featureTypes?: string[];
+  outputFormat?: 'markdown' | 'text';
+}

@@ -46,13 +46,25 @@ export class ExpenseProcessingService {
     icp: string,
     complianceData: any,
     expenseSchema: any,
-    progressCallback?: (stage: string, progress: number) => void
+    progressCallback?: (stage: string, progress: number) => void,
+    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string }
   ): Promise<CompleteProcessingResult> {
     const startTime = Date.now();
     const timing: any = {
       phase_timings: {},
       agent_performance: {},
     };
+
+    // Add markdown extraction timing if provided
+    if (markdownExtractionInfo) {
+      timing.phase_timings.markdown_extraction_minutes = (markdownExtractionInfo.markdownExtractionTime / 60000).toFixed(2);
+      timing.agent_performance.markdown_extraction = {
+        start_time: new Date(startTime - markdownExtractionInfo.markdownExtractionTime).toISOString(),
+        end_time: new Date(startTime).toISOString(),
+        duration_minutes: (markdownExtractionInfo.markdownExtractionTime / 60000).toFixed(2),
+        document_reader_used: markdownExtractionInfo.documentReader,
+      };
+    }
 
     try {
       this.logger.log(`Starting complete expense processing for ${filename}`);
@@ -326,7 +338,9 @@ export class ExpenseProcessingService {
   }
 
   private getFastestPhase(phaseTimings: any): { phase: string; time_minutes: string } {
-    const phases = Object.entries(phaseTimings) as [string, string][];
+    const phases = Object.entries(phaseTimings).filter(([_, time]) => time !== undefined) as [string, string][];
+    if (phases.length === 0) return { phase: 'none', time_minutes: '0.00' };
+
     const fastest = phases.reduce((min, [phase, time]) =>
       parseFloat(time) < parseFloat(min.time_minutes) ? { phase, time_minutes: time } : min,
       { phase: phases[0][0], time_minutes: phases[0][1] }
@@ -335,7 +349,9 @@ export class ExpenseProcessingService {
   }
 
   private getSlowestPhase(phaseTimings: any): { phase: string; time_minutes: string } {
-    const phases = Object.entries(phaseTimings) as [string, string][];
+    const phases = Object.entries(phaseTimings).filter(([_, time]) => time !== undefined) as [string, string][];
+    if (phases.length === 0) return { phase: 'none', time_minutes: '0.00' };
+
     const slowest = phases.reduce((max, [phase, time]) =>
       parseFloat(time) > parseFloat(max.time_minutes) ? { phase, time_minutes: time } : max,
       { phase: phases[0][0], time_minutes: phases[0][1] }
@@ -344,7 +360,8 @@ export class ExpenseProcessingService {
   }
 
   private getAveragePhaseTime(phaseTimings: any): string {
-    const times = Object.values(phaseTimings) as string[];
+    const times = Object.values(phaseTimings).filter(time => time !== undefined) as string[];
+    if (times.length === 0) return "0.00";
     const average = times.reduce((sum, time) => sum + parseFloat(time), 0) / times.length;
     return average.toFixed(2);
   }

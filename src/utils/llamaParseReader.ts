@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { z } from "zod";
-import { LlamaParseApiConfig, ApiResponse } from "./types";
+import { LlamaParseApiConfig, ApiResponse, DocumentReader, DocumentReaderConfig } from "./types";
 import { robustFetch } from "./robustFetch";
 
 // Zod schemas for API responses
@@ -16,7 +16,7 @@ const markdownResultSchema = z.object({
   markdown: z.string(),
 });
 
-export class LlamaParseApiService {
+export class LlamaParseApiService implements DocumentReader {
   private apiKey: string;
   private baseUrl = "https://api.cloud.llamaindex.ai/api/parsing";
   private parseCache = new Map<string, { result: Promise<ApiResponse<string>>; timestamp: number }>();
@@ -31,7 +31,7 @@ export class LlamaParseApiService {
    */
   async parseDocument(
     filePath: string,
-    config: LlamaParseApiConfig = {}
+    config: DocumentReaderConfig = {}
   ): Promise<ApiResponse<string>> {
     // Create cache key based on file path and config
     const cacheKey = `${filePath}_${JSON.stringify(config)}`;
@@ -68,7 +68,7 @@ export class LlamaParseApiService {
    */
   private async performParsing(
     filePath: string,
-    config: LlamaParseApiConfig
+    config: DocumentReaderConfig
   ): Promise<ApiResponse<string>> {
     try {
       console.log(`Parsing document: ${filePath}`);
@@ -133,7 +133,7 @@ export class LlamaParseApiService {
    */
   private async uploadFile(
     filePath: string,
-    config: LlamaParseApiConfig
+    config: DocumentReaderConfig
   ): Promise<ApiResponse<{ id: string }>> {
     try {
       const formData = new FormData();
@@ -143,24 +143,25 @@ export class LlamaParseApiService {
       const blob = new Blob([fileBuffer], { type: "application/pdf" });
       formData.append("file", blob, filePath);
 
-      // Add configuration parameters
-      formData.append("parse_mode", config.parseMode || "parse_page_with_lvm");
-      formData.append("vendor_multimodal_model_name", config.vendorMultimodalModelName || "anthropic-sonnet-3.7");
-      formData.append("structured_output", String(config.structuredOutput || false));
-      formData.append("disable_ocr", String(config.disableOcr || false));
-      formData.append("disable_image_extraction", String(config.disableImageExtraction || false));
-      formData.append("adaptive_long_table", String(config.adaptiveLongTable || false));
-      formData.append("annotate_links", String(config.annotateLinks || false));
-      formData.append("do_not_unroll_columns", String(config.doNotUnrollColumns || false));
-      formData.append("html_make_all_elements_visible", String(config.htmlMakeAllElementsVisible || false));
-      formData.append("html_remove_navigation_elements", String(config.htmlRemoveNavigationElements || false));
-      formData.append("html_remove_fixed_elements", String(config.htmlRemoveFixedElements || false));
-      formData.append("guess_xlsx_sheet_name", String(config.guessXlsxSheetName || false));
-      formData.append("do_not_cache", String(config.doNotCache || false));
-      formData.append("invalidate_cache", String(config.invalidateCache || false));
-      formData.append("output_pdf_of_document", String(config.outputPdfOfDocument || false));
-      formData.append("take_screenshot", String(config.takeScreenshot || false));
-      formData.append("is_formatting_instruction", String(config.isFormattingInstruction || true));
+      // Add configuration parameters (cast to LlamaParseApiConfig for type safety)
+      const llamaConfig = config as LlamaParseApiConfig;
+      formData.append("parse_mode", llamaConfig.parseMode || "parse_page_with_lvm");
+      formData.append("vendor_multimodal_model_name", llamaConfig.vendorMultimodalModelName || "anthropic-sonnet-3.7");
+      formData.append("structured_output", String(llamaConfig.structuredOutput || false));
+      formData.append("disable_ocr", String(llamaConfig.disableOcr || false));
+      formData.append("disable_image_extraction", String(llamaConfig.disableImageExtraction || false));
+      formData.append("adaptive_long_table", String(llamaConfig.adaptiveLongTable || false));
+      formData.append("annotate_links", String(llamaConfig.annotateLinks || false));
+      formData.append("do_not_unroll_columns", String(llamaConfig.doNotUnrollColumns || false));
+      formData.append("html_make_all_elements_visible", String(llamaConfig.htmlMakeAllElementsVisible || false));
+      formData.append("html_remove_navigation_elements", String(llamaConfig.htmlRemoveNavigationElements || false));
+      formData.append("html_remove_fixed_elements", String(llamaConfig.htmlRemoveFixedElements || false));
+      formData.append("guess_xlsx_sheet_name", String(llamaConfig.guessXlsxSheetName || false));
+      formData.append("do_not_cache", String(llamaConfig.doNotCache || false));
+      formData.append("invalidate_cache", String(llamaConfig.invalidateCache || false));
+      formData.append("output_pdf_of_document", String(llamaConfig.outputPdfOfDocument || false));
+      formData.append("take_screenshot", String(llamaConfig.takeScreenshot || false));
+      formData.append("is_formatting_instruction", String(llamaConfig.isFormattingInstruction || true));
 
       const response = await robustFetch({
         url: `${this.baseUrl}/upload`,

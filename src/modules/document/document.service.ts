@@ -27,9 +27,10 @@ export class DocumentService {
     userId: string;
     country: string;
     icp: string;
+    documentReader?: string;
   }): Promise<{ jobId: string; status: string }> {
     try {
-      const { file, userId, country, icp } = request;
+      const { file, userId, country, icp, documentReader } = request;
       const jobId = userId;
       const uploadPath = this.configService.get("UPLOAD_PATH", "./uploads");
 
@@ -83,6 +84,7 @@ export class DocumentService {
         userId,
         country,
         icp,
+        documentReader: documentReader || "llamaparse",
         uploadedAt: new Date(),
       };
 
