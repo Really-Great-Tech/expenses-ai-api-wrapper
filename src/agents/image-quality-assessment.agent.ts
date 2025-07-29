@@ -37,8 +37,138 @@ export class ImageQualityAssessmentAgent {
       const response = await this.llm.chat({
         messages: [
           {
+            role: 'system',
+            content: `You are an expert image quality analyst specializing in receipt and invoice document assessment. Your task is to thoroughly analyze the provided receipt/invoice image and assess its quality across multiple dimensions before OCR/data extraction processing.
+
+ANALYSIS REQUIREMENTS:
+
+1. **BLUR DETECTION**: Examine text sharpness, edge definition, and overall focus quality. Look for motion blur, camera shake, or out-of-focus areas that would impair text recognition.
+   - Provide quantitative_measure: blur intensity (0.0=sharp, 1.0=extremely blurry)
+   - Assess severity_level and confidence_score
+
+2. **CONTRAST ASSESSMENT**: Evaluate the contrast between text and background. Check for adequate differentiation that enables clear text recognition.
+   - Provide quantitative_measure: contrast ratio assessment (0.0=poor, 1.0=excellent)
+   - Consider lighting conditions and background uniformity
+
+3. **GLARE IDENTIFICATION**: Detect bright spots, reflections, or glare that obscure text or important document areas. Look for overexposed regions.
+   - Provide quantitative_measure: percentage of image affected by glare (0.0-1.0)
+   - Identify specific areas where glare impacts readability
+
+4. **WATER STAIN DETECTION**: Identify water damage including discoloration, staining, warping effects, or color distortions that affect document readability.
+   - Provide quantitative_measure: percentage of document affected (0.0-1.0)
+   - Assess impact on text legibility
+
+5. **TEARS OR FOLDS DETECTION**: Look for physical damage like tears, creases, folds, or wrinkles that may cause text distortion or information loss.
+   - Provide quantitative_measure: severity of physical damage (0.0=none, 1.0=severe)
+   - Count visible fold lines or tear areas
+
+6. **CUT-OFF DETECTION**: Check if document edges are cut off or if the image frame excludes important document portions.
+   - Provide quantitative_measure: percentage of document potentially cut off (0.0-1.0)
+   - Identify which edges are affected
+
+7. **MISSING SECTIONS**: Identify if parts of the receipt/invoice are missing, incomplete, or not captured in the image.
+   - Provide quantitative_measure: estimated percentage of content missing (0.0-1.0)
+   - Consider typical receipt structure
+
+8. **OBSTRUCTIONS**: Detect any objects, fingers, shadows, or other elements that block or obscure document content.
+   - Provide quantitative_measure: percentage of document obscured (0.0-1.0)
+   - Identify types of obstructions
+
+ASSESSMENT CRITERIA:
+- For each quality issue, determine if it's detected (True/False)
+- Assign severity_level: 'low', 'medium', 'high', 'critical'
+- Provide confidence_score (0.0-1.0) for your detection confidence
+- Include quantitative_measure for measurable aspects
+- Provide a concise, factual description in one sentence
+- Give practical recommendations
+- Assign an overall quality score (1-10, where 10 is perfect quality)
+- Determine if the image is suitable for OCR/data extraction
+
+IMPORTANT GUIDELINES:
+- Focus specifically on receipt/invoice characteristics (structured text, tables, line items, totals)
+- Be thorough but practical in your assessment
+- Consider the impact on automated text extraction systems
+- Prioritize issues that would significantly impair data extraction accuracy
+- Use quantitative measures to provide objective assessments where possible
+
+Your final output MUST BE ONLY a valid JSON object with no additional text, markdown formatting, or explanations.`,
+          },
+          {
             role: 'user',
-            content: `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${this.createAssessmentPrompt()}`,
+            content: `Please analyze this receipt/invoice image for quality assessment. Image info: ${imageInfo}
+
+Analyze the provided image and return your assessment in the following JSON structure:
+
+{
+  "blur_detection": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (blur intensity 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "contrast_assessment": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (contrast quality 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "glare_identification": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (percentage affected 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "water_stains": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (percentage affected 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "tears_or_folds": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (damage severity 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "cut_off_detection": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (percentage cut off 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "missing_sections": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (percentage missing 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "obstructions": {
+    "detected": boolean,
+    "severity_level": "low|medium|high|critical",
+    "confidence_score": float (0.0-1.0),
+    "quantitative_measure": float (percentage obscured 0.0-1.0),
+    "description": "string",
+    "recommendation": "string"
+  },
+  "overall_quality_score": integer (1-10),
+  "suitable_for_extraction": boolean
+}
+
+Return only the JSON response with no additional text.`,
           },
         ],
       });
@@ -119,103 +249,10 @@ export class ImageQualityAssessmentAgent {
   private getImageInfo(imagePath: string): string {
     const stats = fs.statSync(imagePath);
     const sizeKB = Math.round(stats.size / 1024);
+    const sizeMB = Math.round((stats.size / (1024 * 1024)) * 100) / 100;
     const filename = path.basename(imagePath);
 
-    return `Filename: ${filename}, Size: ${sizeKB}KB, Format: ${path.extname(imagePath)}`;
-  }
-
-  private createAssessmentPrompt(): string {
-    return `CRITICAL: You are an expert image quality assessor for receipt/invoice documents. Analyze this image for OCR and data extraction suitability.
-
-ASSESSMENT CATEGORIES:
-Evaluate each category and provide detailed analysis:
-
-1. **Blur Detection**: Check for motion blur, focus issues, or camera shake
-2. **Contrast Assessment**: Evaluate text-to-background contrast and readability
-3. **Glare Identification**: Detect reflective glare or lighting issues
-4. **Water Stains**: Identify water damage, stains, or discoloration
-5. **Tears or Folds**: Detect physical damage like tears, creases, or folds
-6. **Cut-off Detection**: Check if document edges are cut off or missing
-7. **Missing Sections**: Identify if parts of the document are obscured or missing
-8. **Obstructions**: Detect objects blocking text (fingers, shadows, etc.)
-
-SCORING GUIDELINES:
-- Overall Quality Score: 1-10 (1=unusable, 10=perfect)
-- Confidence Score: 0.0-1.0 (how confident you are in your assessment)
-- Quantitative Measure: Relevant metric (blur intensity, damage percentage, etc.)
-- Severity Levels: low, medium, high, critical
-
-CRITICAL: You MUST return a JSON object with EXACTLY this structure:
-{
-  "blur_detection": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "contrast_assessment": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical", 
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "glare_identification": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "water_stains": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "tears_or_folds": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "cut_off_detection": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "missing_sections": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "obstructions": {
-    "detected": boolean,
-    "severity_level": "low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "overall_quality_score": number (1-10),
-  "suitable_for_extraction": boolean
-}
-
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`;
+    return `Filename: ${filename}, Size: ${sizeMB}MB (${sizeKB}KB), Format: ${path.extname(imagePath)}`;
   }
 
   private parseJsonResponse(content: string): any {
@@ -243,17 +280,25 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
       assessment_method: 'LLM',
       model_used: modelUsed,
       timestamp: new Date().toISOString(),
-      quality_score: assessment.overall_quality_score * 10, // Convert to 0-100 scale
-      quality_level: this.getQualityLevel(assessment.overall_quality_score),
-      suitable_for_extraction: assessment.suitable_for_extraction,
-      ...assessment,
+
+      // Enhanced format fields with quantitative parameters (matching Python version)
+      blur_detection: assessment.blur_detection,
+      contrast_assessment: assessment.contrast_assessment,
+      glare_identification: assessment.glare_identification,
+      water_stains: assessment.water_stains,
+      tears_or_folds: assessment.tears_or_folds,
+      cut_off_detection: assessment.cut_off_detection,
+      missing_sections: assessment.missing_sections,
+      obstructions: assessment.obstructions,
+      overall_quality_score: assessment.overall_quality_score,
+      suitable_for_extraction: assessment.suitable_for_extraction
     };
   }
 
   private getQualityLevel(score: number): string {
-    if (score >= 8) return 'excellent';
-    if (score >= 6) return 'good';
-    if (score >= 4) return 'fair';
-    return 'poor';
+    if (score >= 8) return 'Excellent';
+    if (score >= 6) return 'Good';
+    if (score >= 4) return 'Fair';
+    return 'Poor';
   }
 }

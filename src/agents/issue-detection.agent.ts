@@ -7,8 +7,6 @@ export class IssueDetectionAgent {
   private readonly logger = new Logger(IssueDetectionAgent.name);
   private llm: any;
 
-
-
   constructor(provider: 'openai' | 'anthropic' = 'anthropic') {
     if (provider === 'anthropic') {
       this.llm = new Anthropic({
@@ -57,9 +55,50 @@ ANALYSIS WORKFLOW:
 5. Provide specific recommendations based on the knowledge base
 
 ISSUE CATEGORIES:
-- Standards & Compliance | Fix Identified: Issues that require correction or additional information
-- Standards & Compliance | Gross-up Identified: Tax gross-up scenarios that need to be applied
-- Standards & Compliance | Follow-up Action Identified: Issues requiring follow-up actions or approvals
+
+CATEGORY 1: COMPLIANCE VIOLATIONS REQUIRING FIXES
+Issue type: Standards & Compliance | Fix Identified
+Flag issue type: Standards & Compliance related
+Scope: Mandatory field violations, format errors, missing required information
+Examples:
+- VAT number format violations (incorrect digit count, format)
+- Missing mandatory supplier information (name, address, VAT ID)
+- Missing invoice/receipt identifiers or serial numbers
+- Date format issues or missing transaction dates
+- Currency mismatches with local requirements
+- Missing tax information for high-value invoices
+- Poor receipt quality affecting readability
+- Missing worker details for specific invoice types
+- Incomplete supplier tax identification
+Recommendation: "It is recommended to address this issue with the supplier or provider"
+
+CATEGORY 2: TAX IMPLICATIONS AND GROSS-UP SCENARIOS
+Issue type: Standards & Compliance | Gross-up Identified
+Flag issue type: Standards & Compliance related
+Scope: Expense limits, tax exemption violations, gross-up requirements
+Examples:
+- Expenses exceeding tax-free limits (phone €20/month, home office €1,260/year, wellness €600/year)
+- Non-tax-exempt expenses (personal meals, office groceries, entertainment without third party)
+- Transportation to workplace expenses
+- Internet expenses exceeding flat rate allowances
+- Mobile phone expenses without personal phone proof
+- Fuel and vehicle expenses subject to taxation
+Recommendation: State specific gross-up guidelines from knowledge base with exact limits and tax implications
+
+CATEGORY 3: ADDITIONAL DOCUMENTATION REQUIREMENTS
+Issue type: Standards & Compliance | Follow-up Action Identified
+Flag issue type: Standards & Compliance related
+Scope: Missing supporting documentation, approval requirements, additional forms
+Examples:
+- Mileage claims requiring detailed logbooks
+- Training expenses requiring manager approval
+- Travel expenses requiring A1 certificates or travel templates
+- Car rental requiring additional mileage documentation
+- Entertainment requiring third party proof
+- IT equipment requiring property documentation
+- International travel requiring per diem calculations
+- Storage period compliance for original documents
+Recommendation: Specify exact documentation requirements and procedures from knowledge base
 
 CRITICAL REQUIREMENTS:
 - ONLY use knowledge from the provided country database and ICP-specific rules
@@ -70,49 +109,46 @@ CRITICAL REQUIREMENTS:
 - Be thorough and systematic in checking every applicable requirement
 - Dynamically filter requirements based on ICP, receipt type, and expense category
 - Calculate confidence score based on clarity of violations and knowledge base coverage
-- Ensure all fields are properly populated according to the structured output model
+- Your output MUST BE ONLY a valid JSON object matching the specified structure
 
-ISSUE TYPE FORMAT REQUIREMENTS:
-- Use EXACT format: "Standards & Compliance | Fix Identified" for issues requiring fixes
-- Use EXACT format: "Standards & Compliance | Gross-up Identified" for tax gross-up issues
-- Use EXACT format: "Standards & Compliance | Follow-up Action Identified" for follow-up actions
-- Do NOT use generic formats like "Standards & Compliance" alone
+OUTPUT FORMAT:
+Return a JSON object with the following structure:
 
-COMPLIANCE ANALYSIS PROCESS:
-1. Validate mandatory fields against country/ICP requirements
-2. Check expense type against policy rules
-3. Verify tax exemption and gross-up scenarios
-4. Validate supplier information requirements
-5. Check amount limits and approval requirements
-6. Verify documentation completeness
-
-CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
 {
   "validation_result": {
-    "is_valid": boolean,
+    "is_valid": true/false,
     "issues_count": number,
     "issues": [
       {
-        "issue_type": "Standards & Compliance | Fix Identified" | "Standards & Compliance | Gross-up Identified" | "Standards & Compliance | Follow-up Action Identified",
-        "field": "field_name_where_issue_found",
-        "description": "detailed_description_of_issue",
-        "recommendation": "specific_action_to_resolve",
-        "knowledge_base_reference": "quote_from_compliance_data"
+        "issue_type": "Standards & Compliance | Fix Identified/Gross-up Identified/Follow-up Action Identified",
+        "field": "specific_field_name",
+        "description": "Detailed description of the issue based on knowledge base",
+        "recommendation": "Specific action to resolve based on compliance requirements",
+        "knowledge_base_reference": "Quote from the compliance data that supports this finding"
       }
     ],
     "corrected_receipt": null,
-    "compliance_summary": "overall_compliance_assessment_and_key_findings"
+    "compliance_summary": "Overall compliance assessment and key findings"
   },
   "technical_details": {
-    "content_type": "expense_receipt",
-    "country": "country_name",
-    "icp": "icp_name",
-    "receipt_type": "receipt_type",
-    "issues_count": number
+    "content_type": "ReceiptValidationResult",
+    "country": "analyzed_country",
+    "icp": "analyzed_icp",
+    "receipt_type": "analyzed_receipt_type",
+    "issues_count": number_of_issues,
+    "has_reasoning": true
   }
 }
 
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`,
+VALIDATION CHECKLIST:
+□ Check all mandatory fields against FileRelatedRequirements
+□ Validate expense type against ExpenseTypes rules
+□ Check ICP-specific requirements and rules
+□ Verify tax exemption limits and gross-up scenarios
+□ Identify missing documentation requirements
+□ Cross-reference location-specific compliance rules
+□ Validate currency and amount formatting
+□ Check storage and retention requirements`,
           },
           {
             role: 'user',
@@ -169,11 +205,12 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
           compliance_summary: 'Analysis failed due to system error',
         },
         technical_details: {
-          content_type: 'expense_receipt',
+          content_type: 'ReceiptValidationResult',
           country: 'unknown',
           icp: 'unknown',
           receipt_type: 'unknown',
           issues_count: 1,
+          has_reasoning: true,
         },
       };
     }
@@ -186,7 +223,9 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
     complianceData: any,
     extractedData: any
   ): string {
-    return `COUNTRY: ${country}
+    return `COMPLIANCE ANALYSIS REQUEST:
+
+COUNTRY: ${country}
 RECEIPT TYPE: ${receiptType}
 ICP: ${icp}
 
@@ -205,14 +244,7 @@ Perform comprehensive compliance analysis by:
 5. Identifying additional documentation requirements
 6. Providing specific recommendations based on the knowledge base
 
-For each issue found:
-- Use exact issue_type format: "Standards & Compliance | Fix Identified", "Standards & Compliance | Gross-up Identified", or "Standards & Compliance | Follow-up Action Identified"
-- Specify the exact field with the issue
-- Provide clear description of the problem
-- Give specific recommendation for resolution
-- Quote the relevant knowledge base reference
-
-Return a complete JSON object following the IssueDetectionResult schema.`;
+Analyze systematically and provide detailed findings in the specified format.`;
   }
 
   private parseJsonResponse(content: string): any {

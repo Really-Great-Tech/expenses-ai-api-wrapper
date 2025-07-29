@@ -72,11 +72,13 @@ export const TechnicalDetailsSchema = z.object({
   icp: z.string(),
   receipt_type: z.string(),
   issues_count: z.number(),
+  has_reasoning: z.boolean().optional(),
 });
 
 export const IssueDetectionResultSchema = z.object({
   validation_result: ValidationResultSchema,
   technical_details: TechnicalDetailsSchema,
+  
 });
 
 // Data Extraction Schema - Flexible schema to handle any extracted data
