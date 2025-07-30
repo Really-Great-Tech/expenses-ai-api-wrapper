@@ -4,6 +4,7 @@ import { DataExtractionAgent } from '../agents/data-extraction.agent';
 import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
+import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -24,6 +25,7 @@ export class ExpenseProcessingService {
   private issueDetectionAgent: IssueDetectionAgent;
   private citationGeneratorAgent: CitationGeneratorAgent;
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
+  private optimizedService: ExpenseProcessingOptimizedService;
 
   constructor() {
     // Force all agents to use Anthropic as default (as requested by user)
@@ -36,6 +38,9 @@ export class ExpenseProcessingService {
     this.issueDetectionAgent = new IssueDetectionAgent(provider);
     this.citationGeneratorAgent = new CitationGeneratorAgent(provider);
     this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider);
+
+    // Initialize optimized service
+    this.optimizedService = new ExpenseProcessingOptimizedService();
   }
 
   async processExpenseDocument(
@@ -47,9 +52,63 @@ export class ExpenseProcessingService {
     complianceData: any,
     expenseSchema: any,
     progressCallback?: (stage: string, progress: number) => void,
+    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
+    useParallelProcessing: boolean = true
+  ): Promise<CompleteProcessingResult> {
+    // Choose between parallel and sequential processing
+    if (useParallelProcessing) {
+      this.logger.log(`🚀 Using PARALLEL processing for ${filename}`);
+      return this.optimizedService.processExpenseDocumentParallel(
+        markdownContent,
+        filename,
+        imagePath,
+        country,
+        icp,
+        complianceData,
+        expenseSchema,
+        {
+          fileClassificationAgent: this.fileClassificationAgent,
+          dataExtractionAgent: this.dataExtractionAgent,
+          issueDetectionAgent: this.issueDetectionAgent,
+          citationGeneratorAgent: this.citationGeneratorAgent,
+          imageQualityAssessmentAgent: this.imageQualityAssessmentAgent,
+        },
+        progressCallback,
+        markdownExtractionInfo
+      );
+    } else {
+      this.logger.log(`⏳ Using SEQUENTIAL processing for ${filename}`);
+      return this.processExpenseDocumentSequential(
+        markdownContent,
+        filename,
+        imagePath,
+        country,
+        icp,
+        complianceData,
+        expenseSchema,
+        progressCallback,
+        markdownExtractionInfo
+      );
+    }
+  }
+
+  private async processExpenseDocumentSequential(
+    markdownContent: string,
+    filename: string,
+    imagePath: string,
+    country: string,
+    icp: string,
+    complianceData: any,
+    expenseSchema: any,
+    progressCallback?: (stage: string, progress: number) => void,
     markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string }
   ): Promise<CompleteProcessingResult> {
-    const startTime = Date.now();
+    // Calculate the true start time including markdown extraction
+    const trueStartTime = markdownExtractionInfo
+      ? Date.now() - markdownExtractionInfo.markdownExtractionTime
+      : Date.now();
+
+    const currentTime = Date.now();
     const timing: any = {
       phase_timings: {},
       agent_performance: {},
@@ -57,11 +116,11 @@ export class ExpenseProcessingService {
 
     // Add markdown extraction timing if provided
     if (markdownExtractionInfo) {
-      timing.phase_timings.markdown_extraction_minutes = (markdownExtractionInfo.markdownExtractionTime / 60000).toFixed(2);
+      timing.phase_timings.markdown_extraction_seconds = (markdownExtractionInfo.markdownExtractionTime / 1000).toFixed(1);
       timing.agent_performance.markdown_extraction = {
-        start_time: new Date(startTime - markdownExtractionInfo.markdownExtractionTime).toISOString(),
-        end_time: new Date(startTime).toISOString(),
-        duration_minutes: (markdownExtractionInfo.markdownExtractionTime / 60000).toFixed(2),
+        start_time: new Date(trueStartTime).toISOString(),
+        end_time: new Date(currentTime).toISOString(),
+        duration_seconds: (markdownExtractionInfo.markdownExtractionTime / 1000).toFixed(1),
         document_reader_used: markdownExtractionInfo.documentReader,
       };
     }
@@ -78,11 +137,11 @@ export class ExpenseProcessingService {
       const qualityEnd = Date.now();
       const formattedQualityAssessment = this.imageQualityAssessmentAgent.formatAssessmentForWorkflow(qualityAssessment, imagePath);
 
-      timing.phase_timings.image_quality_assessment_minutes = ((qualityEnd - qualityStart) / 60000).toFixed(2);
+      timing.phase_timings.image_quality_assessment_seconds = ((qualityEnd - qualityStart) / 1000).toFixed(1);
       timing.agent_performance.image_quality_assessment = {
         start_time: new Date(qualityStart).toISOString(),
         end_time: new Date(qualityEnd).toISOString(),
-        duration_minutes: ((qualityEnd - qualityStart) / 60000).toFixed(2),
+        duration_seconds: ((qualityEnd - qualityStart) / 1000).toFixed(1),
         model_used: 'claude-3-5-sonnet-20241022',
       };
 
@@ -98,11 +157,11 @@ export class ExpenseProcessingService {
       );
       const classificationEnd = Date.now();
 
-      timing.phase_timings.file_classification_minutes = ((classificationEnd - classificationStart) / 60000).toFixed(2);
+      timing.phase_timings.file_classification_seconds = ((classificationEnd - classificationStart) / 1000).toFixed(1);
       timing.agent_performance.file_classification = {
         start_time: new Date(classificationStart).toISOString(),
         end_time: new Date(classificationEnd).toISOString(),
-        duration_minutes: ((classificationEnd - classificationStart) / 60000).toFixed(2),
+        duration_seconds: ((classificationEnd - classificationStart) / 1000).toFixed(1),
         model_used: 'claude-3-5-sonnet-20241022',
       };
 
@@ -119,11 +178,11 @@ export class ExpenseProcessingService {
       );
       const extractionEnd = Date.now();
 
-      timing.phase_timings.data_extraction_minutes = ((extractionEnd - extractionStart) / 60000).toFixed(2);
+      timing.phase_timings.data_extraction_seconds = ((extractionEnd - extractionStart) / 1000).toFixed(1);
       timing.agent_performance.data_extraction = {
         start_time: new Date(extractionStart).toISOString(),
         end_time: new Date(extractionEnd).toISOString(),
-        duration_minutes: ((extractionEnd - extractionStart) / 60000).toFixed(2),
+        duration_seconds: ((extractionEnd - extractionStart) / 1000).toFixed(1),
         model_used: 'claude-3-5-sonnet-20241022',
       };
 
@@ -143,11 +202,11 @@ export class ExpenseProcessingService {
       );
       const issueDetectionEnd = Date.now();
 
-      timing.phase_timings.issue_detection_minutes = ((issueDetectionEnd - issueDetectionStart) / 60000).toFixed(2);
+      timing.phase_timings.issue_detection_seconds = ((issueDetectionEnd - issueDetectionStart) / 1000).toFixed(1);
       timing.agent_performance.issue_detection = {
         start_time: new Date(issueDetectionStart).toISOString(),
         end_time: new Date(issueDetectionEnd).toISOString(),
-        duration_minutes: ((issueDetectionEnd - issueDetectionStart) / 60000).toFixed(2),
+        duration_seconds: ((issueDetectionEnd - issueDetectionStart) / 1000).toFixed(1),
         model_used: 'claude-3-5-sonnet-20241022',
       };
 
@@ -166,19 +225,22 @@ export class ExpenseProcessingService {
       );
       const citationEnd = Date.now();
 
-      timing.phase_timings.citation_generation_minutes = ((citationEnd - citationStart) / 60000).toFixed(2);
+      timing.phase_timings.citation_generation_seconds = ((citationEnd - citationStart) / 1000).toFixed(1);
       timing.agent_performance.citation_generation = {
         start_time: new Date(citationStart).toISOString(),
         end_time: new Date(citationEnd).toISOString(),
-        duration_minutes: ((citationEnd - citationStart) / 60000).toFixed(2),
+        duration_seconds: ((citationEnd - citationStart) / 1000).toFixed(1),
         model_used: 'claude-3-5-sonnet-20241022',
       };
 
       progressCallback?.('citationGeneration', 95);
       
       // Compile final result
-      const processingTime = Date.now() - startTime;
-      timing.total_processing_time_minutes = (processingTime / 60000).toFixed(2);
+      const processingTime = Date.now() - trueStartTime;
+      timing.total_processing_time_seconds = (processingTime / 1000).toFixed(1);
+
+      // Add timing validation
+      this.validateTimingConsistency(timing);
 
       const result: CompleteProcessingResult = {
         image_quality_assessment: formattedQualityAssessment,
@@ -199,18 +261,15 @@ export class ExpenseProcessingService {
       progressCallback?.('complete', 100);
       this.logger.log(`Complete expense processing finished for ${filename} in ${processingTime}ms`);
 
-      // Save results to file
+      // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
-
-      // Save timing results to separate file
-      await this.saveTimingToFile(filename, timing);
 
       return result;
       
     } catch (error) {
-      const processingTime = Date.now() - startTime;
+      const processingTime = Date.now() - trueStartTime;
       this.logger.error(`Expense processing failed for ${filename}:`, error);
-      
+
       // Return error result
       throw new Error(`Expense processing failed: ${error.message}`);
     }
@@ -304,38 +363,7 @@ export class ExpenseProcessingService {
     }
   }
 
-  private async saveTimingToFile(filename: string, timing: ProcessingTiming): Promise<void> {
-    try {
-      // Create timing directory if it doesn't exist
-      const timingDir = path.join(process.cwd(), 'timing_results');
-      if (!fs.existsSync(timingDir)) {
-        fs.mkdirSync(timingDir, { recursive: true });
-      }
 
-      // Generate timing filename
-      const baseFilename = filename.replace(/\.[^/.]+$/, ''); // Remove extension
-      const timingFilename = `${baseFilename}_timing.json`;
-      const timingFilePath = path.join(timingDir, timingFilename);
-
-      // Add summary information
-      const timingWithSummary = {
-        ...timing,
-        summary: {
-          total_time_minutes: timing.total_processing_time_minutes,
-          fastest_phase: this.getFastestPhase(timing.phase_timings),
-          slowest_phase: this.getSlowestPhase(timing.phase_timings),
-          average_phase_time_minutes: this.getAveragePhaseTime(timing.phase_timings),
-        },
-        generated_at: new Date().toISOString(),
-      };
-
-      // Write timing results to file
-      fs.writeFileSync(timingFilePath, JSON.stringify(timingWithSummary, null, 2));
-      this.logger.log(`Timing results saved to: ${timingFilePath}`);
-    } catch (error) {
-      this.logger.error('Failed to save timing results to file:', error);
-    }
-  }
 
   private getFastestPhase(phaseTimings: any): { phase: string; time_minutes: string } {
     const phases = Object.entries(phaseTimings).filter(([_, time]) => time !== undefined) as [string, string][];
@@ -364,5 +392,53 @@ export class ExpenseProcessingService {
     if (times.length === 0) return "0.00";
     const average = times.reduce((sum, time) => sum + parseFloat(time), 0) / times.length;
     return average.toFixed(2);
+  }
+
+  private validateTimingConsistency(timing: any): void {
+    try {
+      const totalTime: number = parseFloat(timing.total_processing_time_seconds || '0');
+      const phaseTimings = timing.phase_timings || {};
+
+      // Calculate sum of all phase times
+      const phaseSum: number = Object.values(phaseTimings)
+        .filter((time): time is string => time !== undefined && time !== null && typeof time === 'string')
+        .reduce((sum: number, time: string) => sum + parseFloat(time), 0);
+
+      // Allow for small rounding differences (up to 3 seconds)
+      const tolerance = 3.0;
+      const difference = Math.abs(totalTime - phaseSum);
+
+      if (difference > tolerance) {
+        this.logger.warn(
+          `Timing inconsistency detected: Total time (${totalTime.toFixed(1)}s) vs Phase sum (${phaseSum.toFixed(1)}s). Difference: ${difference.toFixed(1)}s`
+        );
+
+        // Add validation metadata to timing
+        timing.validation = {
+          total_time_seconds: totalTime.toFixed(1),
+          phase_sum_seconds: phaseSum.toFixed(1),
+          difference_seconds: difference.toFixed(1),
+          is_consistent: difference <= tolerance,
+          tolerance_seconds: tolerance.toFixed(1),
+          processing_mode: 'sequential'
+        };
+      } else {
+        timing.validation = {
+          total_time_seconds: totalTime.toFixed(1),
+          phase_sum_seconds: phaseSum.toFixed(1),
+          difference_seconds: difference.toFixed(1),
+          is_consistent: true,
+          tolerance_seconds: tolerance.toFixed(1),
+          processing_mode: 'sequential'
+        };
+        this.logger.log(`Timing validation passed: Total time matches phase sum within tolerance`);
+      }
+    } catch (error) {
+      this.logger.error('Error validating timing consistency:', error);
+      timing.validation = {
+        error: 'Failed to validate timing consistency',
+        is_consistent: false
+      };
+    }
   }
 }

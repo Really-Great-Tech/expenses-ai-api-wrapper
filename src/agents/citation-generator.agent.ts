@@ -51,24 +51,23 @@ Your task is to analyze structured output from data extraction and find TWO type
    - Check markdown for field labels, headers, form fields
    - Look for: "Total:", "Supplier Name:", table headers, section labels, etc.
 
-2. VALUE CITATION: Where does this specific value appear in the source?
-   - Find exact matches in the markdown text
-   - Look for formatted versions (currency symbols, date formats)
-   - Consider partial matches if exact match not found
+2. VALUE CITATION: Where does this exact value appear in the source?
+   - Find exact matches in markdown text
+   - Handle fuzzy matches for dates, numbers, currencies
+   - Consider context and formatting variations
+   - Look for values near field labels or in structured sections
 
-CITATION ANALYSIS PROCESS:
-- For each field in structured output, find both field and value citations
-- Provide confidence scores (0.0-1.0) based on match quality
-- Include source text snippets for verification
-- Classify match types: exact, partial, inferred
-- Calculate overall citation statistics
+ANALYSIS APPROACH:
+- Use semantic understanding to match field concepts even with different wording
+- Handle variations in formatting (dates, currencies, numbers)
+- Assess confidence based on match quality and context
+- Provide surrounding context for validation
 
-CONFIDENCE SCORING GUIDELINES:
-- 1.0: Exact match found in source text
-- 0.8-0.9: Clear match with minor formatting differences
-- 0.6-0.7: Partial match or inferred from context
-- 0.4-0.5: Weak match or uncertain location
-- 0.0-0.3: No clear match found
+CRITICAL REQUIREMENTS:
+- Provide accurate citations with proper confidence scores
+- Use semantic understanding to match field concepts
+- Handle formatting variations appropriately
+- Ensure all fields are properly populated according to the structured output format
 
 CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
 {
@@ -164,35 +163,7 @@ ${extractionRequirements}
 MARKDOWN TEXT:
 ${markdownContent}
 
-CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
-{
-  "citations": {
-    "field_name": {
-      "field_citation": {
-        "source_text": "exact_text_from_source",
-        "confidence": number (0.0-1.0),
-        "source_location": "requirements|markdown",
-        "context": "surrounding_text_for_validation",
-        "match_type": "exact|fuzzy|contextual"
-      },
-      "value_citation": {
-        "source_text": "exact_text_from_source",
-        "confidence": number (0.0-1.0),
-        "source_location": "requirements|markdown",
-        "context": "surrounding_text_for_validation",
-        "match_type": "exact|fuzzy|contextual"
-      }
-    }
-  },
-  "metadata": {
-    "total_fields_analyzed": number,
-    "fields_with_field_citations": number,
-    "fields_with_value_citations": number,
-    "average_confidence": number (0.0-1.0)
-  }
-}
-
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`;
+Analyze the structured output and find field and value citations in the source documents.`;
   }
 
   private parseJsonResponse(content: string): any {

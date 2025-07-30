@@ -2,10 +2,13 @@ import { OpenAI } from '@llamaindex/openai';
 import { Anthropic } from '@llamaindex/anthropic';
 import { IssueDetectionResultSchema, type IssueDetectionResult } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export class IssueDetectionAgent {
   private readonly logger = new Logger(IssueDetectionAgent.name);
   private llm: any;
+  private expenseSchema: any;
 
 
 
@@ -20,6 +23,21 @@ export class IssueDetectionAgent {
         apiKey: process.env.OPENAI_API_KEY,
         model: 'gpt-4o',
       });
+    }
+
+    // Load expense schema
+    this.loadExpenseSchema();
+  }
+
+  private loadExpenseSchema(): void {
+    try {
+      const schemaPath = path.join(process.cwd(), 'expense_file_schema.json');
+      const schemaContent = fs.readFileSync(schemaPath, 'utf8');
+      this.expenseSchema = JSON.parse(schemaContent);
+      this.logger.log('Expense schema loaded successfully');
+    } catch (error) {
+      this.logger.error('Failed to load expense schema:', error);
+      this.expenseSchema = null;
     }
   }
 
@@ -57,9 +75,76 @@ ANALYSIS WORKFLOW:
 5. Provide specific recommendations based on the knowledge base
 
 ISSUE CATEGORIES:
-- Standards & Compliance | Fix Identified: Issues that require correction or additional information
-- Standards & Compliance | Gross-up Identified: Tax gross-up scenarios that need to be applied
-- Standards & Compliance | Follow-up Action Identified: Issues requiring follow-up actions or approvals
+
+CATEGORY 1: COMPLIANCE VIOLATIONS REQUIRING FIXES
+Issue type: Standards & Compliance | Fix Identified
+Flag issue type: Standards & Compliance related
+Scope: Mandatory field violations, format errors, missing required information
+Examples:
+- "The VAT number has only 2 numbers, should have 9"
+- "Missing mandatory supplier name on the receipt"
+- "Invoice number is not clearly visible or missing"
+- "Date of issue is not present on the receipt"
+- "Required supplier address is missing or incomplete"
+- "Local employer details are not present on the invoice"
+- "Receipt currency does not match required local currency"
+- "Missing required VAT identification number"
+- "Invoice serial number missing for invoices over threshold amount"
+- "Net amount, tax rate, or VAT amount missing for high-value invoices"
+- "Worker name and address missing for required invoice types"
+- "Supplier tax ID missing for invoices above specified threshold"
+- "Receipt quality is poor, not meeting clear and readable standards"
+Recommendation: "It is recommended to address this issue with the supplier or provider"
+
+
+CATEGORY 2: TAX IMPLICATIONS AND GROSS-UP SCENARIOS
+Issue type: Standards & Compliance | Gross-up Identified
+Flag issue type: Standards & Compliance related
+Scope: Expense limits, tax exemption violations, gross-up requirements
+Examples:
+- "Phone expenses in this country is limited to €20/month"
+"Home office expenses exceed the maximum of €1,260/year"
+"Wellness benefits exceed the maximum of €600/year"
+"Meal expenses are not tax exempt and will be grossed up"
+"Fuel expenses will be taxed as per country regulations"
+"Entertainment expenses without third party involvement are not tax exempt"
+"Transportation to workplace expenses are not tax exempt"
+"Personal meal expenses during non-business travel are taxable"
+"Office groceries expenses are not tax exempt"
+"Internet expenses exceed the flat rate tax-free allowance"
+"Mobile phone expenses without separate personal phone proof are taxable"
+Recommendation: State the specific gross-up guidelines for this type of expense based on the knowledge base (e.g., "Phone expenses are tax-free up to €20/month, amounts exceeding this limit will be grossed-up" or "Home office expenses are tax exempt up to €6/day, maximum €1,260/year, excess amounts will be taxed")
+
+
+CATEGORY 3: ADDITIONAL DOCUMENTATION REQUIREMENTS
+Issue type: Standards & Compliance | Follow-up Action Identified
+Flag issue type: Standards & Compliance related
+Scope: Missing supporting documentation, approval requirements, additional forms
+Examples:
+- "Expense is car rental related - additional documentation is required"
+- "Mileage claim requires logbook with date, route, purpose, and odometer readings"
+- "Training expenses require direct manager approval"
+- "Flight expenses require A1 certificate when traveling"
+- "Mobile phone expenses require proof of separate personal phone"
+- "IT equipment expenses require company property documentation"
+- "Entertainment expenses require proof of third party involvement"
+- "Travel expenses require specific travel expense report template"
+- "International travel requires per diem calculation and additional documentation"
+- "Invoices over threshold amount require additional detailed information"
+- "Business travel expenses require route details and Google Maps documentation"
+- "Phone expenses require invoice to include company name in c/o format"
+- "Office supplies require invoice with company name and details"
+- "Internet expenses require proper documentation and company details on invoice"
+- "Original invoices must be kept for required storage period (e.g., 10 years)"
+Recommendation examples:
+- "Submission of car rental expense in this country requires, in addition the mileage breakdown from the car rental service, per day"
+- "Please provide mileage logbook with complete route details and odometer readings"
+- "Manager approval is required before processing this training expense"
+- "Please provide A1 certificate for international travel documentation"
+- "Please provide proof of separate personal phone for mobile phone reimbursement"
+- "Please use the specific travel expense report template for this country"
+- "Please provide map with route details (Google Maps sufficient) for mileage claims"
+
 
 CRITICAL REQUIREMENTS:
 - ONLY use knowledge from the provided country database and ICP-specific rules
@@ -78,13 +163,15 @@ ISSUE TYPE FORMAT REQUIREMENTS:
 - Use EXACT format: "Standards & Compliance | Follow-up Action Identified" for follow-up actions
 - Do NOT use generic formats like "Standards & Compliance" alone
 
-COMPLIANCE ANALYSIS PROCESS:
-1. Validate mandatory fields against country/ICP requirements
-2. Check expense type against policy rules
-3. Verify tax exemption and gross-up scenarios
-4. Validate supplier information requirements
-5. Check amount limits and approval requirements
-6. Verify documentation completeness
+VALIDATION CHECKLIST:
+□ Check all mandatory fields against FileRelatedRequirements
+□ Validate expense type against ExpenseTypes rules
+□ Check ICP-specific requirements and rules
+□ Verify tax exemption limits and gross-up scenarios
+□ Identify missing documentation requirements
+□ Cross-reference location-specific compliance rules
+□ Validate currency and amount formatting
+□ Check storage and retention requirements
 
 CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
 {
@@ -186,7 +273,21 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
     complianceData: any,
     extractedData: any
   ): string {
-    return `COUNTRY: ${country}
+    // Create expense taxonomy description from the loaded schema
+    let expenseTaxonomyDescription = "";
+    if (this.expenseSchema?.properties) {
+      for (const [fieldName, fieldInfo] of Object.entries(this.expenseSchema.properties)) {
+        const title = (fieldInfo as any)?.title || fieldName;
+        const description = (fieldInfo as any)?.description || "";
+        expenseTaxonomyDescription += `\n**${fieldName}** (${title}):\n${description}\n`;
+      }
+    } else {
+      expenseTaxonomyDescription = "Expense schema not available";
+    }
+
+    return `COMPLIANCE ANALYSIS REQUEST:
+
+COUNTRY: ${country}
 RECEIPT TYPE: ${receiptType}
 ICP: ${icp}
 
@@ -195,6 +296,9 @@ ${JSON.stringify(complianceData, null, 2)}
 
 EXTRACTED RECEIPT DATA:
 ${JSON.stringify(extractedData, null, 2)}
+
+EXPENSE TAXONOMY (JSON):
+${expenseTaxonomyDescription}
 
 ANALYSIS INSTRUCTIONS:
 Perform comprehensive compliance analysis by:
@@ -205,14 +309,7 @@ Perform comprehensive compliance analysis by:
 5. Identifying additional documentation requirements
 6. Providing specific recommendations based on the knowledge base
 
-For each issue found:
-- Use exact issue_type format: "Standards & Compliance | Fix Identified", "Standards & Compliance | Gross-up Identified", or "Standards & Compliance | Follow-up Action Identified"
-- Specify the exact field with the issue
-- Provide clear description of the problem
-- Give specific recommendation for resolution
-- Quote the relevant knowledge base reference
-
-Return a complete JSON object following the IssueDetectionResult schema.`;
+Analyze systematically and provide detailed findings in the specified format.`;
   }
 
   private parseJsonResponse(content: string): any {

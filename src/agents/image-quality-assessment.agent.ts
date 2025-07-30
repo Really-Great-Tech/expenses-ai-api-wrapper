@@ -125,25 +125,58 @@ export class ImageQualityAssessmentAgent {
   }
 
   private createAssessmentPrompt(): string {
-    return `CRITICAL: You are an expert image quality assessor for receipt/invoice documents. Analyze this image for OCR and data extraction suitability.
+    return `You are an expert image quality analyst specializing in receipt and invoice document assessment. Your task is to thoroughly analyze the provided receipt/invoice image and assess its quality across multiple dimensions before OCR/data extraction processing.
 
-ASSESSMENT CATEGORIES:
-Evaluate each category and provide detailed analysis:
+ANALYSIS REQUIREMENTS:
 
-1. **Blur Detection**: Check for motion blur, focus issues, or camera shake
-2. **Contrast Assessment**: Evaluate text-to-background contrast and readability
-3. **Glare Identification**: Detect reflective glare or lighting issues
-4. **Water Stains**: Identify water damage, stains, or discoloration
-5. **Tears or Folds**: Detect physical damage like tears, creases, or folds
-6. **Cut-off Detection**: Check if document edges are cut off or missing
-7. **Missing Sections**: Identify if parts of the document are obscured or missing
-8. **Obstructions**: Detect objects blocking text (fingers, shadows, etc.)
+1. **BLUR DETECTION**: Examine text sharpness, edge definition, and overall focus quality. Look for motion blur, camera shake, or out-of-focus areas that would impair text recognition.
+   - Provide quantitative_measure: blur intensity (0.0=sharp, 1.0=extremely blurry)
+   - Assess severity_level and confidence_score
 
-SCORING GUIDELINES:
-- Overall Quality Score: 1-10 (1=unusable, 10=perfect)
-- Confidence Score: 0.0-1.0 (how confident you are in your assessment)
-- Quantitative Measure: Relevant metric (blur intensity, damage percentage, etc.)
-- Severity Levels: low, medium, high, critical
+2. **CONTRAST ASSESSMENT**: Evaluate the contrast between text and background. Check for adequate differentiation that enables clear text recognition.
+   - Provide quantitative_measure: contrast ratio assessment (0.0=poor, 1.0=excellent)
+   - Consider lighting conditions and background uniformity
+
+3. **GLARE IDENTIFICATION**: Detect bright spots, reflections, or glare that obscure text or important document areas. Look for overexposed regions.
+   - Provide quantitative_measure: percentage of image affected by glare (0.0-1.0)
+   - Identify specific areas where glare impacts readability
+
+4. **WATER STAIN DETECTION**: Identify water damage including discoloration, staining, warping effects, or color distortions that affect document readability.
+   - Provide quantitative_measure: percentage of document affected (0.0-1.0)
+   - Assess impact on text legibility
+
+5. **TEARS OR FOLDS DETECTION**: Look for physical damage like tears, creases, folds, or wrinkles that may cause text distortion or information loss.
+   - Provide quantitative_measure: severity of physical damage (0.0=none, 1.0=severe)
+   - Count visible fold lines or tear areas
+
+6. **CUT-OFF DETECTION**: Check if document edges are cut off or if the image frame excludes important document portions.
+   - Provide quantitative_measure: percentage of document potentially cut off (0.0-1.0)
+   - Identify which edges are affected
+
+7. **MISSING SECTIONS**: Identify if parts of the receipt/invoice are missing, incomplete, or not captured in the image.
+   - Provide quantitative_measure: estimated percentage of content missing (0.0-1.0)
+   - Consider typical receipt structure
+
+8. **OBSTRUCTIONS**: Detect any objects, fingers, shadows, or other elements that block or obscure document content.
+   - Provide quantitative_measure: percentage of document obscured (0.0-1.0)
+   - Identify types of obstructions
+
+ASSESSMENT CRITERIA:
+- For each quality issue, determine if it's detected (True/False)
+- Assign severity_level: 'low', 'medium', 'high', 'critical'
+- Provide confidence_score (0.0-1.0) for your detection confidence
+- Include quantitative_measure for measurable aspects
+- Provide a concise, factual description in one sentence
+- Give practical recommendations
+- Assign an overall quality score (1-10, where 10 is perfect quality)
+- Determine if the image is suitable for OCR/data extraction
+
+IMPORTANT GUIDELINES:
+- Focus specifically on receipt/invoice characteristics (structured text, tables, line items, totals)
+- Be thorough but practical in your assessment
+- Consider the impact on automated text extraction systems
+- Prioritize issues that would significantly impair data extraction accuracy
+- Use quantitative measures to provide objective assessments where possible
 
 CRITICAL: You MUST return a JSON object with EXACTLY this structure:
 {

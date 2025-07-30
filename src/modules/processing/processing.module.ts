@@ -3,6 +3,7 @@ import { BullModule } from "@nestjs/bull";
 import { ExpenseProcessor } from "./processors/expense.processor";
 import { ProcessingService } from "./services/processing.service";
 import { ExpenseProcessingService } from "../../services/expense-processing.service";
+import { ExpenseProcessingOptimizedService } from "../../services/expense-processing-optimized.service";
 import { QUEUE_NAMES } from "../../types";
 import { DocumentModule } from "../document/document.module";
 

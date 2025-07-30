@@ -47,6 +47,9 @@ export class ExpenseProcessor {
       const expenseSchema = await this.loadExpenseSchema();
 
       // Process the document through all agents
+      // Check environment variable for processing mode (default to parallel)
+      const useParallelProcessing = process.env.USE_PARALLEL_PROCESSING !== 'false';
+
       const result = await this.expenseProcessingService.processExpenseDocument(
         markdownContent,
         fileName,
@@ -62,12 +65,14 @@ export class ExpenseProcessor {
         {
           markdownExtractionTime,
           documentReader: documentReader || 'default'
-        }
+        },
+        useParallelProcessing
       );
 
       const processingTime = Date.now() - startTime;
+      const totalProcessingTimeSeconds = result.timing?.total_processing_time_seconds || 'N/A';
       this.logger.log(
-        `Expense document processing finished for job: ${jobId} in ${processingTime}ms`
+        `Expense document processing finished for job: ${jobId} in ${processingTime}ms (${totalProcessingTimeSeconds}s total)`
       );
 
       return {

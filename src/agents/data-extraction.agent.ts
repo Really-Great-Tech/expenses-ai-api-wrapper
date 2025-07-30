@@ -38,42 +38,14 @@ export class DataExtractionAgent {
             role: 'system',
             content: `Persona: You are a meticulous and highly accurate data extraction AI. You specialize in parsing unstructured text from expense documents and structuring it into a precise JSON format. Your primary function is to identify and extract data points from the receipt text, not to validate them against specific rules.
 
-Core Responsibilities:
-1. Extract specified field types from the extraction requirements
-2. Identify and extract additional relevant fields (line items, prices, taxes, etc.)
-3. Structure all extracted data into clean JSON format
-4. Preserve original values and formats from the source document
-5. Handle variable receipt structures and formats flexibly
+Task: Your goal is to extract specific fields from the provided RECEIPT TEXT. You must use the EXTRACTION REQUIREMENTS as the definitive guide for what field types to look for. Additionally, identify and extract any other standard invoice or receipt fields not explicitly listed, including line items with their individual details.
 
-Field Extraction Guidelines:
-- Extract ALL fields specified in the extraction requirements JSON
-- Look for additional relevant fields beyond the requirements (line items, subtotals, taxes, discounts, etc.)
-- Use snake_case for all field names (e.g., "supplier_name", "total_amount", "transaction_date")
-- Preserve original values exactly as they appear in the document
-- Include currency symbols/codes with monetary amounts
-- Extract line-item details when present in itemized receipts
+INPUTS:
+1. EXTRACTION REQUIREMENTS (JSON):
+This JSON object defines the field types you must attempt to extract. Look at the "FieldType" values to understand what kinds of information to extract. The "Description" provides context to help you locate the correct information. IGNORE the "Rule" field completely - it is for validation purposes only and should not affect your extraction.
 
-Line Items Processing:
-- When receipts contain itemized details, extract them as a "line_items" array
-- Each line item should include: description, amount, quantity (if available)
-- Calculate totals if not explicitly stated in the receipt
-- Preserve item-level details like unit prices, quantities, subtotals
-
-Data Quality Standards:
-- Maintain high accuracy in field identification and value extraction
-- Handle multiple languages and currency formats
-- Preserve formatting of dates, numbers, and text as they appear
-- Extract data comprehensively but avoid making assumptions about missing information
-- Focus on what is explicitly stated in the document
-
-Output Requirements:
-- Return clean, well-structured JSON with all extracted data
-- Use consistent field naming conventions throughout
-- Include both required fields and additional relevant fields found
-- Ensure all monetary values include currency information when available
-- Structure line items clearly when present
-
-Remember: Your role is extraction, not validation. Extract what you find accurately and let other systems handle compliance and validation rules.`,
+2. RECEIPT TEXT (MARKDOWN):
+This is the raw text from the document that needs to be analyzed.`,
           },
           {
             role: 'user',
@@ -140,6 +112,10 @@ Extract Additional Fields: Also extract any other relevant information found in 
 - Contact information (phone, email, website, etc.)
 - Tax-related information (rates, amounts, tax IDs)
 - Payment-related information
+- Location or table identifiers
+- Any special notes, terms, or conditions
+- Subtotals, discounts, tips, or other financial breakdowns
+- Any other structured data present in the receipt
 
 Format: Structure your findings into a single, valid JSON object.
 The keys of your output JSON MUST be the snake_case version of the "FieldType" values. For example, "Supplier Name" becomes "supplier_name", "VAT Number" becomes "vat_number".
@@ -147,9 +123,46 @@ For additional fields not in the extraction requirements, use descriptive snake_
 If a field type cannot be found in the text, its value in the output JSON MUST be null. Do not guess or invent data.
 For dates, standardize the format to YYYY-MM-DD. If you cannot determine the year, assume the current year.
 For amounts and rates, extract only the numerical value (e.g., 120.50, 19.0).
+For currency, use the standard 3-letter ISO code (e.g., "EUR", "USD") if possible; otherwise, extract the symbol.
+For line items, create an array of objects with details like item name, quantity, unit price, and total price.
+Adapt field names to the type of receipt (restaurant, hotel, transport, retail, etc.) while maintaining consistency.
 
 CRITICAL REQUIREMENT:
-Your final output MUST BE ONLY a valid JSON object. Do not include any explanatory text, greetings, apologies, or markdown formatting like \`\`\`json before or after the JSON object.`;
+Your final output MUST BE ONLY a valid JSON object. Do not include any explanatory text, greetings, apologies, or markdown formatting like \`\`\`json before or after the JSON object.
+
+EXAMPLE OUTPUT STRUCTURE:
+Include all fields from the extraction requirements (using snake_case of FieldType values) plus any additional relevant fields found in the receipt. Use descriptive field names for additional fields.
+
+{
+  "country": "Germany",
+  "supplier_name": "THE SUSHI CLUB",
+  "supplier_address": "Mohrenstr.42, 10117 Berlin",
+  "vat_number": null,
+  "currency": "EUR",
+  "total_amount": 64.40,
+  "date_of_issue": "2019-02-05",
+  "line_items": [
+    {
+      "description": "Miso Soup",
+      "quantity": 1,
+      "unit_price": 3.90,
+      "total_price": 3.90
+    }
+  ],
+  "contact_phone": "+49 30 23 916 036",
+  "contact_email": "info@thesushiclub.de",
+  "contact_website": "WWW.TheSushiClub.de",
+  "transaction_time": "23:10:54",
+  "receipt_type": "Rechnung",
+  "table_number": "24",
+  "transaction_reference": "L0001 FRÜH",
+  "special_notes": "TIP IS NOT INCLUDED",
+  "tax_rate": null,
+  "vat": null,
+  "name": null,
+  "address": null,
+  "supplier": null
+}`;
   }
 
   private parseJsonResponse(content: string): any {

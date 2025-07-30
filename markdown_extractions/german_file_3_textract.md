@@ -2,7 +2,7 @@
 # Markdown Extraction Results
 - **Original File**: german_file_3.png
 - **Document Reader**: textract
-- **Extracted At**: 2025-07-28T18:47:53.275Z
+- **Extracted At**: 2025-07-30T20:01:35.966Z
 - **Content Length**: 532 characters
 ---
 

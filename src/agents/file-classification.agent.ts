@@ -52,39 +52,65 @@ First determine: Is this file an expense? (Y/N)
 
 Use the provided EXPENSE FILE SCHEMA to identify expense documents based on field presence.
 
-Look for each schema field in the document. If you find 3-4 or more fields, it's an expense document.
+Look for each schema field in the document. If you find 5 or more fields, it's an expense document.
 
 REQUIRED FOR EXPENSE CLASSIFICATION:
 - Evidence of payment completed (not just booking/reservation)
 - Actual amounts charged/paid
 - Payment confirmation or receipt of transaction
 
-EXPENSE TYPE CLUSTERS:
-- flights: Flight tickets, airline receipts, boarding passes
-- meals: Restaurant receipts, food purchases, catering services
-- accommodation: Hotel bills, lodging expenses, vacation rentals
-- telecommunications: Phone bills, internet services, communication expenses
-- travel: Ground transportation, trains, buses, taxis, car rentals
-- training: Educational courses, conferences, workshops, seminars
-- mileage: Vehicle expenses, fuel, parking, tolls
-- entertainment: Client entertainment, business meals with clients
+NOT EXPENSES (even if business-related):
+- Booking confirmations without payment proof
+- Reservation details without charges shown
+- Quotes, estimates, or pending invoices
+- Payment details on next page (incomplete documents)
+
+EXPENSE TYPE CLUSTERS (classify only if is_expense = true):
+- flights: airline tickets, boarding passes, flight bookings, airport services
+- meals: restaurants, food delivery, catering, dining, coffee shops, bars
+- accommodation: hotels, lodging, room bookings, Airbnb, hostels, resorts
+- telecommunications: phone bills, internet services, mobile plans, data charges
+- travel: transportation (taxi, rideshare, bus, train), car rental, fuel, parking, tolls
+- training: courses, workshops, educational services, conferences, seminars, certifications
+- mileage: vehicle expenses, fuel receipts, car maintenance, parking fees
+- entertainment: events, shows, client entertainment, team activities, sports events
+- office_supplies: stationery, equipment, software licenses, office furniture
+- utilities: electricity, water, gas, heating, cooling services
+- professional_services: consulting, legal, accounting, marketing, IT services
+- medical: healthcare services, medical consultations, pharmacy purchases
+- other: miscellaneous business expenses not fitting above categories
 
 LANGUAGE IDENTIFICATION:
-- Identify the primary language of the document
-- Provide confidence score (0-100) for language identification
-- Consider mixed-language documents and identify the dominant language
+Identify the primary language of the document and provide a confidence score (0-100%).
+Consider factors like:
+- Vocabulary and word patterns
+- Grammar structures
+- Currency symbols and formats
+- Address formats
+- Common phrases and expressions
+Minimum confidence threshold: 80%
 
-LOCATION VALIDATION:
-- Extract location information from the document (country, city, region)
-- Compare with the expected location provided
-- Set location_match to true if they align, false if they don't match
+LOCATION VERIFICATION:
+Extract the country/location from the document (from addresses, phone codes, currency, etc.)
+Compare with the expected location provided in the input.
 
-ERROR CATEGORIES:
-- unreadable_content: Document is corrupted, illegible, or cannot be processed
-- insufficient_content: Document lacks enough information for classification
-- classification_error: System error during classification process
-- language_detection_error: Unable to determine document language
-- location_extraction_error: Unable to extract location information
+ERROR CATEGORIES AND HANDLING:
+1. "File cannot be processed"
+   - When: Technical issues, corrupted text, unreadable content, empty files
+   - Action: Set is_expense=false, error_type="File cannot be processed"
+
+2. "File identified not as an expense"
+   - When: Text identified but doesn't fit expense definitions per location
+   - Action: Set is_expense=false, error_type="File identified not as an expense"
+
+3. "File cannot be analysed"
+   - When: Language confidence below 80% threshold
+   - Action: Set is_expense=false, error_type="File cannot be analysed"
+
+4. "File location is not same as project's location"
+   - When: Document location ≠ expected location input
+   - Action: Set error_type="File location is not same as project's location"
+   - Note: This can still be an expense, just flag the location mismatch
 
 PROCESSING WORKFLOW:
 1. First check if content is readable and processable
@@ -99,7 +125,7 @@ CRITICAL REQUIREMENTS:
 - Be conservative in classification - when in doubt, mark as not an expense
 - Follow the exact error categories specified
 - Provide clear reasoning for your decision
-- Ensure all fields are properly populated according to the structured output model
+- Ensure all fields are properly populated according to the structured output schema
 
 CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
 {
@@ -212,44 +238,8 @@ ANALYSIS INSTRUCTIONS:
 4. Count the total number of fields found
 5. Apply the expense identification logic (3-4+ fields = expense)
 6. Provide detailed reasoning citing the exact fields found/missing
-7. Identify the document language and provide confidence score
-8. Extract location information and compare with expected location
-9. Classify expense type if determined to be an expense document
-10. Set appropriate error flags if any processing issues occur
 
-EXPENSE IDENTIFICATION LOGIC:
-- Files with 3-4+ matching schema fields should be considered expenses
-- Be conservative in classification - when in doubt, mark as not an expense
-- Focus on core expense indicators: supplier info, amounts, dates, tax details
-
-SCHEMA FIELD ANALYSIS REQUIREMENTS:
-- List all fields found in the document with specific examples
-- List all fields missing from the document
-- Provide total count of fields found
-- Give detailed reasoning for expense identification decision citing exact fields
-
-CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
-{
-  "is_expense": boolean,
-  "expense_type": string | null,
-  "language": string,
-  "language_confidence": number (0-100),
-  "document_location": string,
-  "expected_location": string,
-  "location_match": boolean,
-  "error_type": string | null,
-  "error_message": string | null,
-  "classification_confidence": number (0-100),
-  "reasoning": string,
-  "schema_field_analysis": {
-    "fields_found": string[],
-    "fields_missing": string[],
-    "total_fields_found": number,
-    "expense_identification_reasoning": string
-  }
-}
-
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`;
+Analyze the above text following the schema-based workflow and provide classification results in the specified JSON format.`;
   }
 
   private parseJsonResponse(content: string): any {

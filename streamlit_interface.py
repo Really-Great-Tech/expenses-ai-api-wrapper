@@ -7,6 +7,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 import os
+import glob
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -69,6 +70,31 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+def get_available_countries():
+    """Get list of available countries from the data directory"""
+    try:
+        # Get all JSON files in the data directory
+        data_files = glob.glob("data/*.json")
+        countries = []
+
+        for file_path in data_files:
+            # Extract country name from filename (remove .json extension and capitalize)
+            country_name = os.path.basename(file_path).replace('.json', '').replace('_', ' ').title()
+            countries.append(country_name)
+
+        # Sort countries alphabetically
+        countries.sort()
+
+        # If no countries found, return a default list
+        if not countries:
+            return ["Germany", "Austria", "Italy", "Switzerland"]
+
+        return countries
+    except Exception as e:
+        st.error(f"Error loading countries from data directory: {e}")
+        # Return default countries as fallback
+        return ["Germany", "Austria", "Italy", "Switzerland"]
 
 def check_api_health():
     """Check if the API is accessible"""
@@ -248,10 +274,12 @@ def show_upload_page():
                 help="Unique identifier for the user"
             )
             
+            # Get available countries from data directory
+            available_countries = get_available_countries()
             country = st.selectbox(
                 "Country",
-                ["Germany", "United States", "United Kingdom", "France", "Canada"],
-                help="Country for compliance requirements"
+                available_countries,
+                help="Country for compliance requirements (loaded from data directory)"
             )
         
         with col2:
@@ -988,16 +1016,85 @@ def show_performance_metrics(timing_data):
             col1, col2, col3 = st.columns(3)
 
             with col1:
-                total_time = timing_data.get("total_processing_time_minutes", "0")
-                st.metric("Total Time", f"{total_time} min")
+                total_time = timing_data.get("total_processing_time_seconds", "0")
+                st.metric("Total Time", f"{total_time}s")
 
             with col2:
                 fastest_phase = min(zip(phases, times), key=lambda x: x[1])
-                st.metric("Fastest Phase", f"{fastest_phase[0]}: {fastest_phase[1]:.2f}min")
+                st.metric("Fastest Phase", f"{fastest_phase[0]}: {fastest_phase[1]:.1f}s")
 
             with col3:
                 slowest_phase = max(zip(phases, times), key=lambda x: x[1])
-                st.metric("Slowest Phase", f"{slowest_phase[0]}: {slowest_phase[1]:.2f}min")
+                st.metric("Slowest Phase", f"{slowest_phase[0]}: {slowest_phase[1]:.1f}s")
+
+            # Display timing validation if available
+            if "validation" in timing_data:
+                validation = timing_data["validation"]
+                st.markdown("---")
+                st.markdown("### ⚖️ **Timing Validation**")
+
+                col1, col2, col3, col4 = st.columns(4)
+
+                with col1:
+                    is_consistent = validation.get("is_consistent", False)
+                    status_icon = "✅" if is_consistent else "❌"
+                    status_text = "Consistent" if is_consistent else "Inconsistent"
+                    st.metric(f"{status_icon} Status", status_text)
+
+                with col2:
+                    phase_sum = validation.get("phase_sum_seconds", validation.get("sequential_sum_seconds", "0"))
+                    st.metric("📊 Phase Sum", f"{phase_sum}s")
+
+                with col3:
+                    difference = validation.get("difference_seconds", "0")
+                    st.metric("📏 Difference", f"{difference}s")
+
+                with col4:
+                    tolerance = validation.get("tolerance_seconds", "3.0")
+                    st.metric("🎯 Tolerance", f"{tolerance}s")
+
+                # Show warning if inconsistent
+                if not is_consistent:
+                    total_time = validation.get('total_time_seconds', 'N/A')
+                    expected_time = validation.get('expected_parallel_time_seconds', validation.get('phase_sum_seconds', 'N/A'))
+                    st.warning(f"⚠️ Timing inconsistency detected! Total time ({total_time}s) doesn't match expected time ({expected_time}s)")
+
+                # Show error if validation failed
+                if "error" in validation:
+                    st.error(f"❌ Timing validation error: {validation['error']}")
+
+            # Display parallel processing metrics if available
+            if "performance_metrics" in timing_data:
+                metrics = timing_data["performance_metrics"]
+                st.markdown("---")
+                st.markdown("### 🚀 **Parallel Processing Performance**")
+
+                col1, col2, col3, col4 = st.columns(4)
+
+                with col1:
+                    group1_time = metrics.get("parallel_group_1_seconds", "N/A")
+                    st.metric("⚡ Group 1 Time", f"{group1_time}s")
+
+                with col2:
+                    group2_time = metrics.get("parallel_group_2_seconds", "N/A")
+                    st.metric("⚡ Group 2 Time", f"{group2_time}s")
+
+                with col3:
+                    speedup = metrics.get("estimated_speedup_factor", "N/A")
+                    st.metric("🏃 Speedup Factor", f"{speedup}x")
+
+                with col4:
+                    sequential_time = metrics.get("estimated_sequential_time_seconds", "N/A")
+                    st.metric("🐌 Est. Sequential", f"{sequential_time}s")
+
+                # Show optimization info if available
+                if "metadata" in timing_data.get("../", {}) and "optimization" in timing_data["../"]["metadata"]:
+                    opt_info = timing_data["../"]["metadata"]["optimization"]
+                    if opt_info.get("parallel_processing"):
+                        st.success("✅ This document was processed using parallel optimization!")
+                        estimated_savings = float(opt_info.get("estimated_sequential_time_minutes", 0)) - float(opt_info.get("actual_parallel_time_minutes", 0))
+                        if estimated_savings > 0:
+                            st.info(f"⏱️ Estimated time saved: {estimated_savings:.2f} minutes ({estimated_savings*60:.1f} seconds)")
 
 def show_history_page():
     """Job history page"""

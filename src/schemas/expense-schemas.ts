@@ -107,15 +107,34 @@ export const ImageQualityAssessmentSchema = z.object({
 
 // Processing Timing Schema
 export const ProcessingTimingSchema = z.object({
-  total_processing_time_minutes: z.string(),
+  total_processing_time_seconds: z.string(),
   phase_timings: z.object({
-    markdown_extraction_minutes: z.string().optional(),
-    image_quality_assessment_minutes: z.string(),
-    file_classification_minutes: z.string(),
-    data_extraction_minutes: z.string(),
-    issue_detection_minutes: z.string(),
-    citation_generation_minutes: z.string(),
+    markdown_extraction_seconds: z.string().optional(),
+    image_quality_assessment_seconds: z.string(),
+    file_classification_seconds: z.string(),
+    data_extraction_seconds: z.string(),
+    issue_detection_seconds: z.string(),
+    citation_generation_seconds: z.string(),
   }),
+  validation: z.object({
+    total_time_seconds: z.string(),
+    phase_sum_seconds: z.string().optional(),
+    expected_parallel_time_seconds: z.string().optional(),
+    sequential_sum_seconds: z.string().optional(),
+    difference_seconds: z.string(),
+    is_consistent: z.boolean(),
+    tolerance_seconds: z.string(),
+    processing_mode: z.string().optional(),
+    time_saved_seconds: z.string().optional(),
+    error: z.string().optional(),
+  }).optional(),
+  performance_metrics: z.object({
+    parallel_group_1_seconds: z.string(),
+    parallel_group_2_seconds: z.string(),
+    total_parallel_time_seconds: z.string(),
+    estimated_sequential_time_seconds: z.string(),
+    estimated_speedup_factor: z.string(),
+  }).optional(),
   agent_performance: z.object({
     markdown_extraction: z.object({
       start_time: z.string(),
@@ -170,6 +189,13 @@ export const CompleteProcessingResultSchema = z.object({
     country: z.string(),
     icp: z.string(),
     processed_at: z.string(),
+    optimization: z.object({
+      parallel_processing: z.boolean(),
+      parallel_group_1_duration_seconds: z.string(),
+      parallel_group_2_duration_seconds: z.string(),
+      estimated_sequential_time_seconds: z.string(),
+      actual_parallel_time_seconds: z.string(),
+    }).optional(),
   }),
 });
 
