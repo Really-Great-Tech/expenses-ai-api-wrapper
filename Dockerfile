@@ -1,4 +1,4 @@
-# Multi-stage Docker build for NestJS  Processing Service
+# Multi-stage Docker build for NestJS Medical Processing Service
 # Stage 1: Build stage
 FROM node:20-alpine AS builder
 
@@ -43,10 +43,13 @@ RUN npm ci --only=production && npm cache clean --force
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/langchainjs ./langchainjs
+
+# Copy configuration files and data
+COPY --from=builder /app/expense_file_schema.json ./expense_file_schema.json
+COPY --from=builder /app/data ./data
 
 # Create necessary directories with proper permissions
-RUN mkdir -p uploads results logs && \
+RUN mkdir -p uploads results logs markdown_extractions && \
   chown -R nestjs:nodejs /app
 
 # Copy health check script
@@ -102,5 +105,4 @@ ENV PORT=3000
 ENTRYPOINT ["dumb-init", "--"]
 
 # Start the application
-CMD ["node", "dist/src/main"]
-
+CMD ["node", "dist/main.js"]
