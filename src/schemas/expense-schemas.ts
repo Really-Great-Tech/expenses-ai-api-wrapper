@@ -85,7 +85,7 @@ export const ExpenseDataSchema = z.record(z.string(), z.any());
 // Image Quality Assessment Schemas
 export const QualityIssueSchema = z.object({
   detected: z.boolean(),
-  severity_level: z.enum(['low', 'medium', 'high', 'critical']),
+  severity_level: z.enum(['none', 'low', 'medium', 'high', 'critical']),
   confidence_score: z.number().min(0).max(1),
   quantitative_measure: z.number(),
   description: z.string(),

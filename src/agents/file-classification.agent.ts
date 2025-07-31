@@ -1,24 +1,20 @@
-import { OpenAI } from '@llamaindex/openai';
 import { Anthropic } from '@llamaindex/anthropic';
 import { FileClassificationResultSchema, type FileClassificationResult } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
+import { BedrockLlmService } from '../utils/bedrockLlm';
 
 export class FileClassificationAgent {
   private readonly logger = new Logger(FileClassificationAgent.name);
   private llm: any;
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+    this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
 
-
-
-  constructor(provider: 'openai' | 'anthropic' = 'anthropic') {
-    if (provider === 'anthropic') {
+    if (provider === 'bedrock') {
+      this.llm = new BedrockLlmService();
+    } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
         model: 'claude-3-5-sonnet-20241022',
-      });
-    } else {
-      this.llm = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        model: 'gpt-4o',
       });
     }
   }
@@ -159,6 +155,8 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
 
       // Parse the JSON response manually since structured output isn't working as expected
       let rawContent: string;
+
+      // Parse the JSON response manually since structured output isn't working as expected
       if (typeof response.message.content === 'string') {
         rawContent = response.message.content;
       } else if (Array.isArray(response.message.content) && response.message.content.length > 0) {

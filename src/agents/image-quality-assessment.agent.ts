@@ -1,26 +1,24 @@
-import { OpenAI } from '@llamaindex/openai';
 import { Anthropic } from '@llamaindex/anthropic';
 import { ImageQualityAssessmentSchema, type ImageQualityAssessment } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
+import { BedrockLlmService } from '../utils/bedrockLlm';
 
 export class ImageQualityAssessmentAgent {
   private readonly logger = new Logger(ImageQualityAssessmentAgent.name);
   private llm: any;
-  private currentProvider: 'openai' | 'anthropic';
+  private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'openai' | 'anthropic' = 'anthropic') {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
     this.currentProvider = provider;
-    if (provider === 'anthropic') {
+
+    if (provider === 'bedrock') {
+      this.llm = new BedrockLlmService();
+    } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
         model: 'claude-3-5-sonnet-20241022',
-      });
-    } else {
-      this.llm = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        model: 'gpt-4o',
       });
     }
   }
@@ -45,6 +43,8 @@ export class ImageQualityAssessmentAgent {
 
       // Parse the JSON response manually - handle different response formats
       let rawContent: string;
+
+      // Parse the JSON response manually since structured output isn't working as expected
       if (typeof response.message.content === 'string') {
         rawContent = response.message.content;
       } else if (Array.isArray(response.message.content) && response.message.content.length > 0) {
@@ -163,7 +163,7 @@ ANALYSIS REQUIREMENTS:
 
 ASSESSMENT CRITERIA:
 - For each quality issue, determine if it's detected (True/False)
-- Assign severity_level: 'low', 'medium', 'high', 'critical'
+- Assign severity_level: 'none', 'low', 'medium', 'high', 'critical'
 - Provide confidence_score (0.0-1.0) for your detection confidence
 - Include quantitative_measure for measurable aspects
 - Provide a concise, factual description in one sentence
@@ -182,7 +182,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
 {
   "blur_detection": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -190,7 +190,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "contrast_assessment": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical", 
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -198,7 +198,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "glare_identification": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -206,7 +206,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "water_stains": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -214,7 +214,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "tears_or_folds": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -222,7 +222,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "cut_off_detection": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -230,7 +230,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "missing_sections": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -238,7 +238,7 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure:
   },
   "obstructions": {
     "detected": boolean,
-    "severity_level": "low|medium|high|critical",
+    "severity_level": "none|low|medium|high|critical",
     "confidence_score": number (0.0-1.0),
     "quantitative_measure": number,
     "description": "string",
@@ -258,7 +258,7 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
         .replace(/```json\s*/g, '')
         .replace(/```\s*/g, '')
         .trim();
-      
+
       return JSON.parse(cleanContent);
     } catch (error) {
       this.logger.error('Failed to parse JSON response:', error);
@@ -267,9 +267,7 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
   }
 
   formatAssessmentForWorkflow(assessment: ImageQualityAssessment, imagePath: string) {
-    this.logger.debug(`Current provider: ${this.currentProvider}`);
-    const modelUsed = this.currentProvider === 'anthropic' ? 'claude-3-5-sonnet-20241022' : 'gpt-4o';
-    this.logger.debug(`Model used: ${modelUsed}`);
+    const modelUsed = this.currentProvider === 'bedrock' ? (process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0') : 'claude-3-5-sonnet-20241022';
 
     return {
       image_path: imagePath,

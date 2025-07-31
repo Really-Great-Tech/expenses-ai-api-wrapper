@@ -7,9 +7,6 @@ export class EnvironmentVariablesDto {
   @ApiProperty({ example: '3000' })
   PORT: string;
 
-  @ApiProperty({ example: 'sk-proj-z...sBtZ', description: 'Masked for security' })
-  OPENAI_API_KEY: string;
-
   @ApiProperty({ example: 'sk-ant-a...GAAA', description: 'Masked for security' })
   ANTHROPIC_KEY: string;
 
@@ -17,13 +14,25 @@ export class EnvironmentVariablesDto {
   LLAMAINDEX_API_KEY: string;
 
   @ApiProperty({ example: 'AKIA...Z', description: 'Masked for security' })
-  AWS_ACCESS_KEY_ID: string;
+  BEDROCK_AWS_ACCESS_KEY_ID: string;
 
   @ApiProperty({ example: 'wJal...key', description: 'Masked for security' })
-  AWS_SECRET_ACCESS_KEY: string;
+  BEDROCK_AWS_SECRET_ACCESS_KEY: string;
 
   @ApiProperty({ example: 'us-east-1' })
-  AWS_REGION: string;
+  BEDROCK_AWS_REGION: string;
+
+  @ApiProperty({ example: 'eu.amazon.nova-pro-v1:0' })
+  BEDROCK_MODEL: string;
+
+  @ApiProperty({ example: 'AKIA...Z', description: 'Masked for security' })
+  TEXTRACT_AWS_ACCESS_KEY_ID: string;
+
+  @ApiProperty({ example: 'wJal...key', description: 'Masked for security' })
+  TEXTRACT_AWS_SECRET_ACCESS_KEY: string;
+
+  @ApiProperty({ example: 'us-east-1' })
+  TEXTRACT_AWS_REGION: string;
 
   @ApiProperty({ example: 'llamaparse', description: 'Document reader type: llamaparse or textract' })
   DOCUMENT_READER: string;

@@ -24,9 +24,20 @@ REDIS_PASSWORD=your-redis-password
 REDIS_DB=0
 
 # AI Service API Keys
-OPENAI_API_KEY=your_openai_api_key_here
 ANTHROPIC_KEY=your_anthropic_api_key_here
 LLAMAINDEX_API_KEY=your_llamaindex_api_key_here
+
+# AWS Bedrock Configuration (Primary AI Provider)
+BEDROCK_AWS_ACCESS_KEY_ID=your_bedrock_aws_access_key_id_here
+BEDROCK_AWS_SECRET_ACCESS_KEY=your_bedrock_aws_secret_access_key_here
+BEDROCK_AWS_SESSION_TOKEN=your_bedrock_aws_session_token_here
+BEDROCK_AWS_REGION=us-east-1
+BEDROCK_MODEL=eu.amazon.nova-pro-v1:0
+
+# AWS Textract Configuration (Document Processing)
+TEXTRACT_AWS_ACCESS_KEY_ID=your_textract_aws_access_key_id_here
+TEXTRACT_AWS_SECRET_ACCESS_KEY=your_textract_aws_secret_access_key_here
+TEXTRACT_AWS_REGION=your_textract_aws_region_here
 
 # File Upload Configuration
 MAX_FILE_SIZE=50MB
