@@ -1,0 +1,434 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\v4_040_multi_page_receipt_TS.pdf",
+    "assessment_method": "LLM",
+    "model_used": "claude-3-5-sonnet-20241022",
+    "timestamp": "2025-07-30T19:52:16.477Z",
+    "quality_score": 80,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0.12,
+      "description": "Document appears sharp with clear text definition and minimal blur.",
+      "recommendation": "No action needed for blur correction."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.85,
+      "quantitative_measure": 0.65,
+      "description": "Moderate contrast issues detected in darker regions of the document.",
+      "recommendation": "Adjust scanner contrast settings or improve lighting during capture."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.05,
+      "description": "Minimal glare detected with no significant impact on text readability.",
+      "recommendation": "Current capture conditions are acceptable."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.98,
+      "quantitative_measure": 0,
+      "description": "No water damage or staining detected on the document.",
+      "recommendation": "Continue current document storage practices."
+    },
+    "tears_or_folds": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.88,
+      "quantitative_measure": 0.15,
+      "description": "Minor creasing detected at bottom corner, not affecting text areas.",
+      "recommendation": "Consider using document flattening techniques before scanning."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All document edges are visible with complete content capture.",
+      "recommendation": "Maintain current document positioning during capture."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.92,
+      "quantitative_measure": 0,
+      "description": "All expected receipt sections are present and complete.",
+      "recommendation": "Continue current capture protocol."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "low",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows detected in the document image.",
+      "recommendation": "Maintain current capture environment setup."
+    },
+    "overall_quality_score": 8
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Germany",
+    "expected_location": "Germany",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "Document contains clear expense indicators including payment completion, actual amounts charged, and receipt confirmation. The currency (€) and content align with German location. Clear restaurant receipt format with meal items.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "Found 7 out of 8 schema fields. Supplier (Sample Restaurant), Amount (€25.50), Date (2024-07-25), Receipt# (REC-2024-001), Tax (€4.08), Payment (Credit Card), and Line Items present. Only missing consumer details. Clear evidence of completed transaction with payment confirmation."
+    }
+  },
+  "extraction": {
+    "customer_name_on_invoice": null,
+    "customer_address_on_invoice": null,
+    "customer_vat_number_on_invoice": null,
+    "currency": "EUR",
+    "amount": 25.5,
+    "receipt_type": "Receipt",
+    "receipt_quality": "Clear and readable",
+    "invoice_serial_number": "REC-2024-001",
+    "invoice_date": "2024-07-25",
+    "service_date": "2024-07-25",
+    "net_amount": 21.42,
+    "tax_rate": 19,
+    "vat_amount": 4.08,
+    "worker_name": null,
+    "worker_address": null,
+    "supplier_tax_id": null,
+    "expense_description": "Meals & Entertainment",
+    "vendor_name": "Sample Restaurant",
+    "payment_method": "Credit Card",
+    "line_items": [
+      {
+        "description": "Main Course",
+        "quantity": 1,
+        "unit_price": 18,
+        "total_price": 18
+      },
+      {
+        "description": "Beverage",
+        "quantity": 1,
+        "unit_price": 3.5,
+        "total_price": 3.5
+      },
+      {
+        "description": "Service Charge",
+        "quantity": 1,
+        "unit_price": 4,
+        "total_price": 4
+      }
+    ],
+    "subtotal": 21.42,
+    "service_charge": 4,
+    "document_type": "Receipt Document",
+    "document_reference": "v4_040_multi_page_receipt_TS.pdf"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name_on_invoice",
+          "description": "Missing mandatory Local Employer name on invoice",
+          "recommendation": "Request new receipt with 'Global People DE GmbH' as customer name",
+          "knowledge_base_reference": "Must show Global People DE GmbH as customer"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address_on_invoice",
+          "description": "Missing mandatory Local Employer address on invoice",
+          "recommendation": "Request new receipt with address: Taunusanlage 8, 60329 Frankfurt, Germany",
+          "knowledge_base_reference": "Must show Taunusanlage 8, 60329 Frankfurt, Germany"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_vat_number_on_invoice",
+          "description": "Missing mandatory Local Employer VAT number on invoice",
+          "recommendation": "Request new receipt with VAT number: DE356366640",
+          "knowledge_base_reference": "Must show DE356366640"
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "expense_description",
+          "description": "Personal meals are not tax exempt outside of business travel",
+          "recommendation": "This meal expense will be grossed up as it is not tax exempt",
+          "knowledge_base_reference": "Not tax exempt (outside business travel)"
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "Receipt fails compliance requirements due to missing mandatory Global People DE GmbH company details (name, address, VAT number). Additionally, meal expenses are subject to taxation as they are not tax exempt outside of business travel context."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Germany",
+      "icp": "Global People",
+      "receipt_type": "meals",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "currency": {
+        "field_citation": {
+          "source_text": "Currency",
+          "confidence": 1,
+          "source_location": "requirements",
+          "context": "Field_Type\":\"Currency\",\"Description\":\"Receipt currency\"",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount: €25.50",
+          "match_type": "exact"
+        }
+      },
+      "amount": {
+        "field_citation": {
+          "source_text": "Amount",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount: €25.50",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "25.50",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount: €25.50",
+          "match_type": "exact"
+        }
+      },
+      "receipt_type": {
+        "field_citation": {
+          "source_text": "Receipt Document",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "# Receipt Document: v4_040_multi_page_receipt_TS.pdf",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Receipt Document",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "# Receipt Document: v4_040_multi_page_receipt_TS.pdf",
+          "match_type": "exact"
+        }
+      },
+      "invoice_serial_number": {
+        "field_citation": {
+          "source_text": "Receipt Number",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Receipt Number: REC-2024-001",
+          "match_type": "fuzzy"
+        },
+        "value_citation": {
+          "source_text": "REC-2024-001",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Receipt Number: REC-2024-001",
+          "match_type": "exact"
+        }
+      },
+      "invoice_date": {
+        "field_citation": {
+          "source_text": "Date",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Date: 2024-07-25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2024-07-25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Date: 2024-07-25",
+          "match_type": "exact"
+        }
+      },
+      "vat_amount": {
+        "field_citation": {
+          "source_text": "Tax",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tax: €4.08",
+          "match_type": "fuzzy"
+        },
+        "value_citation": {
+          "source_text": "4.08",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Tax: €4.08",
+          "match_type": "exact"
+        }
+      },
+      "expense_description": {
+        "field_citation": {
+          "source_text": "Category",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Category: Meals & Entertainment",
+          "match_type": "fuzzy"
+        },
+        "value_citation": {
+          "source_text": "Meals & Entertainment",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Category: Meals & Entertainment",
+          "match_type": "exact"
+        }
+      },
+      "vendor_name": {
+        "field_citation": {
+          "source_text": "Vendor",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Vendor: Sample Restaurant",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Sample Restaurant",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Vendor: Sample Restaurant",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment Method",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment Method: Credit Card",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Credit Card",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment Method: Credit Card",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 9,
+      "fields_with_field_citations": 9,
+      "fields_with_value_citations": 9,
+      "average_confidence": 0.97
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "0.0",
+      "file_classification_seconds": "7.2",
+      "data_extraction_seconds": "8.2",
+      "image_quality_assessment_seconds": "10.7",
+      "issue_detection_seconds": "11.8",
+      "citation_generation_seconds": "16.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-07-30T19:52:05.725Z",
+        "end_time": "2025-07-30T19:52:05.767Z",
+        "duration_seconds": "0.0",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-07-30T19:52:05.769Z",
+        "end_time": "2025-07-30T19:52:12.948Z",
+        "duration_seconds": "7.2",
+        "model_used": "claude-3-5-sonnet-20241022",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-07-30T19:52:05.769Z",
+        "end_time": "2025-07-30T19:52:13.956Z",
+        "duration_seconds": "8.2",
+        "model_used": "claude-3-5-sonnet-20241022",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-07-30T19:52:05.768Z",
+        "end_time": "2025-07-30T19:52:16.477Z",
+        "duration_seconds": "10.7",
+        "model_used": "claude-3-5-sonnet-20241022",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-07-30T19:52:16.478Z",
+        "end_time": "2025-07-30T19:52:28.312Z",
+        "duration_seconds": "11.8",
+        "model_used": "claude-3-5-sonnet-20241022",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-07-30T19:52:16.479Z",
+        "end_time": "2025-07-30T19:52:33.170Z",
+        "duration_seconds": "16.7",
+        "model_used": "claude-3-5-sonnet-20241022",
+        "execution_mode": "parallel"
+      }
+    },
+    "total_processing_time_seconds": "27.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "10.7",
+      "parallel_group_2_seconds": "16.7",
+      "total_parallel_time_seconds": "27.4",
+      "estimated_sequential_time_seconds": "54.6",
+      "estimated_speedup_factor": "1.99"
+    },
+    "validation": {
+      "total_time_seconds": "27.4",
+      "expected_parallel_time_seconds": "27.4",
+      "sequential_sum_seconds": "54.6",
+      "difference_seconds": "0.0",
+      "is_consistent": true,
+      "tolerance_seconds": "3.0",
+      "processing_mode": "parallel",
+      "time_saved_seconds": "27.2"
+    }
+  },
+  "metadata": {
+    "filename": "multi_page_receipt_TS.pdf",
+    "processing_time": 27446,
+    "country": "Germany",
+    "icp": "Global People",
+    "processed_at": "2025-07-30T19:52:33.171Z",
+    "optimization": {
+      "parallel_processing": true,
+      "parallel_group_1_duration_seconds": "10.7",
+      "parallel_group_2_duration_seconds": "16.7",
+      "estimated_sequential_time_seconds": "54.6",
+      "actual_parallel_time_seconds": "27.4"
+    }
+  }
+}
