@@ -1,4 +1,4 @@
-# Multi-stage Docker build for NestJS Medical Processing Service
+# Multi-stage Docker build for NestJS  Processing Service
 # Stage 1: Build stage
 FROM node:20-alpine AS builder
 
