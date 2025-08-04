@@ -9,7 +9,6 @@ import { BedrockLlmService } from '../utils/bedrockLlm';
 export class FileClassificationAgent {
   private readonly logger = new Logger(FileClassificationAgent.name);
   private llm: any;
-  private readonly modelName: string;
 
   constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string;
   ) {
@@ -20,12 +19,6 @@ export class FileClassificationAgent {
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
-        model: this.modelName,
-      });
-    } else {
-      this.modelName = 'gpt-4o';
-      this.llm = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
         model: this.modelName,
       });
     }
