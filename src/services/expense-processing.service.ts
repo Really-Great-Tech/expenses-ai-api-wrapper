@@ -30,9 +30,9 @@ export class ExpenseProcessingService {
 
   constructor(private langfuseService: LangfuseService) {
     // Force all agents to use Anthropic as default (as requested by user)
-    const provider: 'openai' | 'anthropic' = 'anthropic';
+    const provider: 'bedrock' | 'anthropic' = 'anthropic';
 
-    this.logger.log(`Using provider: ${provider} (forced to anthropic)`);
+    this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
     // Initialize agents WITH Langfuse tracing
     this.fileClassificationAgent = new FileClassificationAgent(provider, this.langfuseService);
@@ -166,7 +166,7 @@ export class ExpenseProcessingService {
         start_time: new Date(qualityStart).toISOString(),
         end_time: new Date(qualityEnd).toISOString(),
         duration_seconds: ((qualityEnd - qualityStart) / 1000).toFixed(1),
-        model_used: 'claude-3-5-sonnet-20241022',
+        model_used: formattedQualityAssessment.model_used,
       };
 
       // Phase 1: File Classification
@@ -187,7 +187,7 @@ export class ExpenseProcessingService {
         start_time: new Date(classificationStart).toISOString(),
         end_time: new Date(classificationEnd).toISOString(),
         duration_seconds: ((classificationEnd - classificationStart) / 1000).toFixed(1),
-        model_used: 'claude-3-5-sonnet-20241022',
+        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       };
 
       progressCallback?.('fileClassification', 25);
@@ -208,7 +208,7 @@ export class ExpenseProcessingService {
         start_time: new Date(extractionStart).toISOString(),
         end_time: new Date(extractionEnd).toISOString(),
         duration_seconds: ((extractionEnd - extractionStart) / 1000).toFixed(1),
-        model_used: 'claude-3-5-sonnet-20241022',
+        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       };
 
       progressCallback?.('dataExtraction', 50);
@@ -232,7 +232,7 @@ export class ExpenseProcessingService {
         start_time: new Date(issueDetectionStart).toISOString(),
         end_time: new Date(issueDetectionEnd).toISOString(),
         duration_seconds: ((issueDetectionEnd - issueDetectionStart) / 1000).toFixed(1),
-        model_used: 'claude-3-5-sonnet-20241022',
+        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       };
 
       progressCallback?.('issueDetection', 75);
@@ -255,7 +255,7 @@ export class ExpenseProcessingService {
         start_time: new Date(citationStart).toISOString(),
         end_time: new Date(citationEnd).toISOString(),
         duration_seconds: ((citationEnd - citationStart) / 1000).toFixed(1),
-        model_used: 'claude-3-5-sonnet-20241022',
+        model_used: process.env.CITATION_MODEL || 'eu.amazon.nova-micro-v1:0',
       };
 
       progressCallback?.('citationGeneration', 95);

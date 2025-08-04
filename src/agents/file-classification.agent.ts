@@ -1,21 +1,23 @@
-import { OpenAI } from '@llamaindex/openai';
 import { Anthropic } from '@llamaindex/anthropic';
+import { OpenAI } from '@llamaindex/openai';
 import { FileClassificationResultSchema, type FileClassificationResult } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
 import { LangfuseService } from '../services/langfuse.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
+import { BedrockLlmService } from '../utils/bedrockLlm';
 
 export class FileClassificationAgent {
   private readonly logger = new Logger(FileClassificationAgent.name);
   private llm: any;
   private readonly modelName: string;
 
-  constructor(
-    provider: 'openai' | 'anthropic' = 'anthropic',
-    private langfuseService?: LangfuseService
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string;
   ) {
-    if (provider === 'anthropic') {
-      this.modelName = 'claude-3-5-sonnet-20241022';
+    this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
+
+    if (provider === 'bedrock') {
+      this.llm = new BedrockLlmService();
+    } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
         model: this.modelName,
@@ -222,6 +224,8 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
 
       // Parse the JSON response manually since structured output isn't working as expected
       let rawContent: string;
+
+      // Parse the JSON response manually since structured output isn't working as expected
       if (typeof response.message.content === 'string') {
         rawContent = response.message.content;
       } else if (Array.isArray(response.message.content) && response.message.content.length > 0) {

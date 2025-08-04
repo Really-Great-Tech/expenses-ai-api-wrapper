@@ -40,16 +40,16 @@ export class DocumentReaderFactory {
         return new LlamaParseApiService(llamaParseApiKey);
       
       case DocumentReaderType.TEXTRACT:
-        // For Textract, we use AWS credentials from environment variables
-        const awsAccessKeyId = process.env.AWS_ACCESS_KEY_ID;
-        const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-        const awsRegion = process.env.AWS_REGION;
-        
-        if (!awsAccessKeyId || !awsSecretAccessKey || !awsRegion) {
-          throw new Error('AWS credentials not found in environment variables');
+        // For Textract, we use service-specific AWS credentials from environment variables
+        const textractAccessKeyId = process.env.TEXTRACT_AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+        const textractSecretAccessKey = process.env.TEXTRACT_AWS_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+        const textractRegion = process.env.TEXTRACT_AWS_REGION || process.env.AWS_REGION;
+
+        if (!textractAccessKeyId || !textractSecretAccessKey || !textractRegion) {
+          throw new Error('Textract AWS credentials not found in environment variables');
         }
-        
-        return new TextractApiService(awsAccessKeyId, awsSecretAccessKey, awsRegion);
+
+        return new TextractApiService(textractAccessKeyId, textractSecretAccessKey, textractRegion);
       
       default:
         throw new Error(`Unsupported document reader type: ${readerType}`);

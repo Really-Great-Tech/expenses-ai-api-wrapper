@@ -11,10 +11,8 @@ npm install
 ### 2. Environment Variables
 Create a `.env` file in the root directory:
 ```env
-# LLM Provider Configuration
-LLM_PROVIDER=openai  # or 'anthropic'
-OPENAI_API_KEY=your_openai_api_key_here
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
+# LLM Provider Configuration (Bedrock primary, Anthropic fallback)
+ANTHROPIC_KEY=your_anthropic_api_key_here
 
 # Redis Configuration (for BullMQ)
 REDIS_HOST=localhost
@@ -26,16 +24,21 @@ PORT=3000
 UPLOAD_PATH=./uploads
 MAX_RETRY_ATTEMPTS=3
 
-# AWS Configuration (for Textract)
-AWS_ACCESS_KEY_ID=your_aws_access_key_id_here
-AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key_here
-AWS_REGION=us-east-1
+# AWS Bedrock Configuration (Primary AI Provider)
+# Supports both Amazon Nova and Claude models
+BEDROCK_AWS_ACCESS_KEY_ID=your_bedrock_aws_access_key_id_here
+BEDROCK_AWS_SECRET_ACCESS_KEY=your_bedrock_aws_secret_access_key_here
+BEDROCK_AWS_SESSION_TOKEN=your_bedrock_aws_session_token_here
+BEDROCK_AWS_REGION=us-east-1
+BEDROCK_MODEL=eu.amazon.nova-pro-v1:0  # Default: Nova Pro (can also use Claude models)
+
+# AWS Textract Configuration (Document Processing)
+TEXTRACT_AWS_ACCESS_KEY_ID=your_textract_aws_access_key_id_here
+TEXTRACT_AWS_SECRET_ACCESS_KEY=your_textract_aws_secret_access_key_here
+TEXTRACT_AWS_REGION=us-east-1
 
 # Document Reader Configuration
 DOCUMENT_READER=llamaparse  # Options: llamaparse, textract
-
-# Optional: AWS Bedrock (if using)
-BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20240620-v1:0
 ```
 
 ### 3. Start Redis (Required for BullMQ)
@@ -51,6 +54,28 @@ redis-server
 ```bash
 npm run start:dev
 ```
+
+## 🤖 AI Model Configuration
+
+The service supports multiple AI providers with automatic fallback:
+
+1. **Primary**: AWS Bedrock (Amazon Nova and Claude models)
+   - **Amazon Nova**: Uses Converse API (recommended)
+   - **Claude**: Uses Invoke API (legacy support)
+2. **Fallback**: Anthropic API (Direct Claude access)
+
+### Supported Models
+
+**Amazon Nova Models (via Bedrock):**
+- `eu.amazon.nova-pro-v1:0` (Default - advanced reasoning and accuracy)
+- `amazon.nova-lite-v1:0` (Fast with good reasoning)
+- `amazon.nova-micro-v1:0` (Ultra-fast and cost-effective)
+
+**Claude Models (via Bedrock):**
+- `eu.anthropic.claude-3-5-sonnet-20240620-v1:0`
+- `us.anthropic.claude-3-5-sonnet-20240620-v1:0`
+
+Configure your preferred model in the `BEDROCK_MODEL` environment variable.
 
 ## 🧪 Testing the API
 

@@ -18,7 +18,7 @@ export class TextractApiService implements DocumentReader {
   private cacheTimeout = 10 * 60 * 1000; // 10 minutes cache
 
   constructor(accessKeyId?: string, secretAccessKey?: string, region?: string) {
-    const awsRegion = region || process.env.AWS_REGION || 'us-east-1';
+    const awsRegion = region || process.env.TEXTRACT_AWS_REGION || process.env.AWS_REGION || 'us-east-1';
     console.log(`🌍 Initializing Textract client for region: ${awsRegion}`);
 
     const credentials = accessKeyId && secretAccessKey ? {

@@ -161,7 +161,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: 'claude-3-5-sonnet-20241022',
+      model_used: formattedResult.model_used,
       execution_mode: 'parallel'
     };
 
@@ -180,7 +180,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: 'claude-3-5-sonnet-20241022',
+      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       execution_mode: 'parallel'
     };
 
@@ -199,7 +199,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: 'claude-3-5-sonnet-20241022',
+      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       execution_mode: 'parallel'
     };
 
@@ -218,7 +218,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: 'claude-3-5-sonnet-20241022',
+      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
       execution_mode: 'parallel'
     };
 
@@ -237,7 +237,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: 'claude-3-5-sonnet-20241022',
+      model_used: process.env.CITATION_MODEL || 'eu.amazon.nova-micro-v1:0',
       execution_mode: 'parallel'
     };
 
