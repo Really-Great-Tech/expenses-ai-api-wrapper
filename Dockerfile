@@ -49,7 +49,8 @@ COPY --from=builder /app/expense_file_schema.json ./expense_file_schema.json
 COPY --from=builder /app/data ./data
 
 # Create necessary directories with proper permissions
-RUN mkdir -p uploads results logs markdown_extractions && \
+RUN mkdir -p /app/uploads /app/results /app/logs /app/markdown_extractions && \
+  chmod 755 /app/uploads /app/results /app/logs /app/markdown_extractions && \
   chown -R nestjs:nodejs /app
 
 # Copy health check script
