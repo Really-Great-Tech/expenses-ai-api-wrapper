@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuration
-API_BASE_URL = "http://localhost:3000/api/v1"
+API_BASE_URL = "http://localhost:3000/rgt-expense/api/v1"
 SUPPORTED_FILE_TYPES = ["pdf", "png", "jpg", "jpeg", "tiff"]
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB
 

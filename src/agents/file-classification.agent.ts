@@ -1,5 +1,4 @@
 import { Anthropic } from '@llamaindex/anthropic';
-import { OpenAI } from '@llamaindex/openai';
 import { FileClassificationResultSchema, type FileClassificationResult } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
 import { LangfuseService } from '../services/langfuse.service';
@@ -9,9 +8,10 @@ import { BedrockLlmService } from '../utils/bedrockLlm';
 export class FileClassificationAgent {
   private readonly logger = new Logger(FileClassificationAgent.name);
   private llm: any;
+  private langfuseService?: LangfuseService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string;
-  ) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string, langfuseService?: LangfuseService) {
+    this.langfuseService = langfuseService;
     this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {

@@ -29,13 +29,13 @@ export class ExpenseProcessingService {
   private optimizedService: ExpenseProcessingOptimizedService;
 
   constructor(private langfuseService: LangfuseService) {
-    // Force all agents to use Anthropic as default (as requested by user)
-    const provider: 'bedrock' | 'anthropic' = 'anthropic';
+    // Use Bedrock as default provider with Anthropic fallback
+    const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
     this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
     // Initialize agents WITH Langfuse tracing
-    this.fileClassificationAgent = new FileClassificationAgent(provider, this.langfuseService);
+    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService);
     this.dataExtractionAgent = new DataExtractionAgent(provider);
     this.issueDetectionAgent = new IssueDetectionAgent(provider);
     this.citationGeneratorAgent = new CitationGeneratorAgent(provider);
@@ -244,7 +244,6 @@ export class ExpenseProcessingService {
       const citationStart = Date.now();
       const citations = await this.citationGeneratorAgent.generateCitations(
         extraction,
-        JSON.stringify(complianceData),
         markdownContent,
         filename
       );
@@ -373,13 +372,11 @@ export class ExpenseProcessingService {
 
   async generateCitationsOnly(
     extractedData: any,
-    extractionRequirements: string,
     markdownContent: string,
     filename: string
   ): Promise<CitationResult> {
     return this.citationGeneratorAgent.generateCitations(
       extractedData,
-      extractionRequirements,
       markdownContent,
       filename
     );

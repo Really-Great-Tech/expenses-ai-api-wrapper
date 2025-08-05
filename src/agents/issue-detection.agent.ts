@@ -64,7 +64,7 @@ export class IssueDetectionAgent {
 Task: Perform comprehensive issue detection and analysis by cross-referencing extracted receipt data against the provided country database and ICP-specific requirements.
 
 ANALYSIS WORKFLOW:
-1. Load and understand the compliance requirements from the country database
+1. Load and understand the compliance requirements from the country database (receiptStandards, compliancePoliciesGrossUpRelated, compliancePoliciesAdditionalInfoRelated)
 2. Analyze the extracted receipt data against these requirements
 3. Identify specific compliance violations, tax implications, and documentation gaps
 4. Categorize each issue according to the specified categories
@@ -82,15 +82,8 @@ Examples:
 - "Invoice number is not clearly visible or missing"
 - "Date of issue is not present on the receipt"
 - "Required supplier address is missing or incomplete"
-- "Local employer details are not present on the invoice"
-- "Receipt currency does not match required local currency"
-- "Missing required VAT identification number"
-- "Invoice serial number missing for invoices over threshold amount"
-- "Net amount, tax rate, or VAT amount missing for high-value invoices"
-- "Worker name and address missing for required invoice types"
-- "Supplier tax ID missing for invoices above specified threshold"
-- "Receipt quality is poor, not meeting clear and readable standards"
-Recommendation: "It is recommended to address this issue with the supplier or provider"
+
+Recommendation: "It is recommended to address this issue with the supplier or provider". This should be the static recommendation for fix identified issue.
 
 
 CATEGORY 2: TAX IMPLICATIONS AND GROSS-UP SCENARIOS
@@ -103,12 +96,7 @@ Examples:
 "Wellness benefits exceed the maximum of €600/year"
 "Meal expenses are not tax exempt and will be grossed up"
 "Fuel expenses will be taxed as per country regulations"
-"Entertainment expenses without third party involvement are not tax exempt"
-"Transportation to workplace expenses are not tax exempt"
-"Personal meal expenses during non-business travel are taxable"
-"Office groceries expenses are not tax exempt"
-"Internet expenses exceed the flat rate tax-free allowance"
-"Mobile phone expenses without separate personal phone proof are taxable"
+
 Recommendation: State the specific gross-up guidelines for this type of expense based on the knowledge base (e.g., "Phone expenses are tax-free up to €20/month, amounts exceeding this limit will be grossed-up" or "Home office expenses are tax exempt up to €6/day, maximum €1,260/year, excess amounts will be taxed")
 
 
@@ -122,16 +110,7 @@ Examples:
 - "Training expenses require direct manager approval"
 - "Flight expenses require A1 certificate when traveling"
 - "Mobile phone expenses require proof of separate personal phone"
-- "IT equipment expenses require company property documentation"
-- "Entertainment expenses require proof of third party involvement"
-- "Travel expenses require specific travel expense report template"
-- "International travel requires per diem calculation and additional documentation"
-- "Invoices over threshold amount require additional detailed information"
-- "Business travel expenses require route details and Google Maps documentation"
-- "Phone expenses require invoice to include company name in c/o format"
-- "Office supplies require invoice with company name and details"
-- "Internet expenses require proper documentation and company details on invoice"
-- "Original invoices must be kept for required storage period (e.g., 10 years)"
+
 Recommendation examples:
 - "Submission of car rental expense in this country requires, in addition the mileage breakdown from the car rental service, per day"
 - "Please provide mileage logbook with complete route details and odometer readings"
@@ -145,26 +124,25 @@ Recommendation examples:
 CRITICAL REQUIREMENTS:
 - ONLY use knowledge from the provided country database and ICP-specific rules
 - DO NOT make up any information not provided in the knowledge base
-- Cross-reference ALL extracted data fields against specific country and ICP requirements
+- Cross-reference ALL extracted data fields against receiptStandards, compliancePoliciesGrossUpRelated, and compliancePoliciesAdditionalInfoRelated
 - Quote the knowledge base when providing issues and recommendations
 - Ensure all analysis is based on the provided compliance standards and policies
 - Be thorough and systematic in checking every applicable requirement
-- Dynamically filter requirements based on ICP, receipt type, and expense category
+- Dynamically filter requirements based on ICP, expense type, and travel/non-travel classification
 - Calculate confidence score based on clarity of violations and knowledge base coverage
 - Ensure all fields are properly populated according to the structured output model
 
 ISSUE TYPE FORMAT REQUIREMENTS:
-- Use EXACT format: "Standards & Compliance | Fix Identified" for issues requiring fixes
+- Use EXACT format: "Standards & Compliance | Fix Identified" for issues requiring fixes based on receipt standards
 - Use EXACT format: "Standards & Compliance | Gross-up Identified" for tax gross-up issues
 - Use EXACT format: "Standards & Compliance | Follow-up Action Identified" for follow-up actions
-- Do NOT use generic formats like "Standards & Compliance" alone
 
 VALIDATION CHECKLIST:
-□ Check all mandatory fields against FileRelatedRequirements
-□ Validate expense type against ExpenseTypes rules
+□ Check all mandatory fields against receiptStandards requirements
+□ Validate expense type against compliancePoliciesGrossUpRelated rules
 □ Check ICP-specific requirements and rules
-□ Verify tax exemption limits and gross-up scenarios
-□ Identify missing documentation requirements
+□ Verify tax exemption limits and gross-up scenarios from compliancePoliciesGrossUpRelated
+□ Identify missing documentation requirements from compliancePoliciesAdditionalInfoRelated
 □ Cross-reference location-specific compliance rules
 □ Validate currency and amount formatting
 □ Check storage and retention requirements
@@ -300,11 +278,11 @@ ${expenseTaxonomyDescription}
 
 ANALYSIS INSTRUCTIONS:
 Perform comprehensive compliance analysis by:
-1. Cross-referencing each extracted field against the FileRelatedRequirements for the specified ICP and receipt type
-2. Checking expense type against ExpenseTypes rules and limits
-3. Identifying any missing mandatory fields or incorrect formats
-4. Detecting tax implications and gross-up scenarios
-5. Identifying additional documentation requirements
+1. Cross-referencing each extracted field against the receiptStandards for the specified ICP and expense type
+2. Checking expense type against compliancePoliciesGrossUpRelated rules and limits for tax implications
+3. Identifying any missing mandatory fields or incorrect formats from receiptStandards
+4. Detecting tax implications and gross-up scenarios from compliancePoliciesGrossUpRelated
+5. Identifying additional documentation requirements from compliancePoliciesAdditionalInfoRelated
 6. Providing specific recommendations based on the knowledge base
 
 Analyze systematically and provide detailed findings in the specified format.`;
