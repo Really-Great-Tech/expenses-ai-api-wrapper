@@ -25,7 +25,6 @@ export class CitationGeneratorAgent {
 
   async generateCitations(
     extractedData: any,
-    extractionRequirements: string,
     markdownContent: string,
     filename: string
   ): Promise<CitationResult> {
@@ -51,7 +50,6 @@ export class CitationGeneratorAgent {
 
         const batchResult = await this.processCitationBatch(
           batchData,
-          extractionRequirements,
           markdownContent,
           batch.length
         );
@@ -97,13 +95,11 @@ export class CitationGeneratorAgent {
 
   private async processCitationBatch(
     batchData: any,
-    extractionRequirements: string,
     markdownContent: string,
     expectedFields: number
   ): Promise<CitationResult> {
     const prompt = this.buildCitationPrompt(
       batchData,
-      extractionRequirements,
       markdownContent
     );
 
@@ -116,9 +112,9 @@ export class CitationGeneratorAgent {
 Your task is to analyze structured output from data extraction and find TWO types of citations for each field:
 
 1. FIELD CITATION: Where does this field name/concept appear in the source?
-   - Check extraction requirements for field_type definitions
    - Check markdown for field labels, headers, form fields
    - Look for: "Total:", "Supplier Name:", table headers, section labels, etc.
+   - Use semantic understanding to match field concepts with document text
 
 2. VALUE CITATION: Where does this exact value appear in the source?
    - Find exact matches in markdown text
@@ -146,14 +142,14 @@ CRITICAL: You MUST return a JSON object with EXACTLY this structure and field na
       "field_citation": {
         "source_text": "exact_text_from_source",
         "confidence": number (0.0-1.0),
-        "source_location": "requirements|markdown",
+        "source_location": "markdown",
         "context": "surrounding_text_for_validation",
         "match_type": "exact|fuzzy|contextual"
       },
       "value_citation": {
         "source_text": "exact_text_from_source",
         "confidence": number (0.0-1.0),
-        "source_location": "requirements|markdown",
+        "source_location": "markdown",
         "context": "surrounding_text_for_validation",
         "match_type": "exact|fuzzy|contextual"
       }
@@ -201,19 +197,17 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
 
   private buildCitationPrompt(
     extractedData: any,
-    extractionRequirements: string,
     markdownContent: string
   ): string {
     return `STRUCTURED OUTPUT (JSON):
 ${JSON.stringify(extractedData, null, 2)}
 
-EXTRACTION REQUIREMENTS (JSON):
-${extractionRequirements}
-
 MARKDOWN TEXT:
 ${markdownContent}
 
-Analyze the structured output and find field and value citations in the source documents.`;
+INSTRUCTIONS:
+Analyze the structured output and find field and value citations in the source markdown document.
+For each extracted field, identify where both the field concept and the actual value appear in the markdown text.`;
   }
 
   private parseJsonResponse(content: string): any {

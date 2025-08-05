@@ -5,6 +5,7 @@ import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
+import { LangfuseService } from './langfuse.service';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -27,13 +28,14 @@ export class ExpenseProcessingService {
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
   private optimizedService: ExpenseProcessingOptimizedService;
 
-  constructor() {
-    // Use Bedrock as default with Anthropic fallback
+  constructor(private langfuseService: LangfuseService) {
+    // Use Bedrock as default provider with Anthropic fallback
     const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
     this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
-    this.fileClassificationAgent = new FileClassificationAgent(provider);
+    // Initialize agents WITH Langfuse tracing
+    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService);
     this.dataExtractionAgent = new DataExtractionAgent(provider);
     this.issueDetectionAgent = new IssueDetectionAgent(provider);
     this.citationGeneratorAgent = new CitationGeneratorAgent(provider);
@@ -125,6 +127,28 @@ export class ExpenseProcessingService {
       };
     }
 
+    // Create main trace for the entire expense processing pipeline
+    const mainTrace = this.langfuseService?.createTrace({
+      name: 'expense-processing-pipeline',
+      input: {
+        filename,
+        country,
+        icp,
+        contentLength: markdownContent.length,
+        useParallelProcessing: false,
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      metadata: {
+        filename,
+        country,
+        icp,
+        contentLength: markdownContent.length,
+        processingMode: 'sequential',
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      tags: ['expense-processing', 'sequential', country.toLowerCase()],
+    });
+
     try {
       this.logger.log(`Starting complete expense processing for ${filename}`);
 
@@ -153,7 +177,8 @@ export class ExpenseProcessingService {
       const classification = await this.fileClassificationAgent.classifyFile(
         markdownContent,
         country,
-        expenseSchema
+        expenseSchema,
+        mainTrace
       );
       const classificationEnd = Date.now();
 
@@ -219,7 +244,6 @@ export class ExpenseProcessingService {
       const citationStart = Date.now();
       const citations = await this.citationGeneratorAgent.generateCitations(
         extraction,
-        JSON.stringify(complianceData),
         markdownContent,
         filename
       );
@@ -264,11 +288,51 @@ export class ExpenseProcessingService {
       // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
 
+      // Finalize main trace with success
+      if (mainTrace) {
+        mainTrace.update({
+          output: {
+            success: true,
+            classification_result: classification?.expense_type,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+            total_phases: 5,
+            issues_detected: compliance?.validation_result?.issues?.length || 0,
+          },
+          metadata: {
+            final_processing_time_ms: processingTime,
+            success: true,
+            phases_completed: ['image_quality', 'classification', 'extraction', 'compliance', 'citations'],
+          },
+        });
+        
+        // Flush the trace
+        await this.langfuseService.flush();
+      }
+
       return result;
       
     } catch (error) {
       const processingTime = Date.now() - trueStartTime;
       this.logger.error(`Expense processing failed for ${filename}:`, error);
+
+      // Finalize main trace with error
+      if (mainTrace) {
+        mainTrace.update({
+          output: {
+            success: false,
+            error: error.message,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+          },
+          metadata: {
+            final_processing_time_ms: processingTime,
+            success: false,
+            error: error.message,
+          },
+        });
+        
+        // Flush the trace
+        await this.langfuseService.flush();
+      }
 
       // Return error result
       throw new Error(`Expense processing failed: ${error.message}`);
@@ -308,13 +372,11 @@ export class ExpenseProcessingService {
 
   async generateCitationsOnly(
     extractedData: any,
-    extractionRequirements: string,
     markdownContent: string,
     filename: string
   ): Promise<CitationResult> {
     return this.citationGeneratorAgent.generateCitations(
       extractedData,
-      extractionRequirements,
       markdownContent,
       filename
     );

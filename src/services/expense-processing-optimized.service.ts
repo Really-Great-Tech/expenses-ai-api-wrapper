@@ -93,7 +93,7 @@ export class ExpenseProcessingOptimizedService {
         this.runIssueDetection(country, classification.expense_type || 'unknown', icp, complianceData, extraction, timing, agents.issueDetectionAgent),
 
         // Phase 4: Citation Generation
-        this.runCitationGeneration(extraction, JSON.stringify(complianceData), markdownContent, filename, timing, agents.citationGeneratorAgent)
+        this.runCitationGeneration(extraction, markdownContent, filename, timing, agents.citationGeneratorAgent)
       ]);
 
       const parallelGroup2End = Date.now();
@@ -225,11 +225,11 @@ export class ExpenseProcessingOptimizedService {
     return result;
   }
 
-  private async runCitationGeneration(extractedData: any, extractionRequirements: string, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent) {
+  private async runCitationGeneration(extractedData: any, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent) {
     const start = Date.now();
     this.logger.log('📝 Phase 4: Citation Generation (parallel)');
 
-    const result = await agent.generateCitations(extractedData, extractionRequirements, markdownContent, filename);
+    const result = await agent.generateCitations(extractedData, markdownContent, filename);
 
     const end = Date.now();
     timing.phase_timings.citation_generation_seconds = ((end - start) / 1000).toFixed(1);

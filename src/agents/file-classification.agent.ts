@@ -1,12 +1,17 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { FileClassificationResultSchema, type FileClassificationResult } from '../schemas/expense-schemas';
 import { Logger } from '@nestjs/common';
+import { LangfuseService } from '../services/langfuse.service';
+import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 
 export class FileClassificationAgent {
   private readonly logger = new Logger(FileClassificationAgent.name);
   private llm: any;
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+  private langfuseService?: LangfuseService;
+
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string, langfuseService?: LangfuseService) {
+    this.langfuseService = langfuseService;
     this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
@@ -14,7 +19,7 @@ export class FileClassificationAgent {
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
-        model: 'claude-3-5-sonnet-20241022',
+        model: this.modelName,
       });
     }
   }
@@ -22,10 +27,64 @@ export class FileClassificationAgent {
   async classifyFile(
     markdownContent: string,
     expectedCountry: string,
-    expenseSchema: any
+    expenseSchema: any,
+    parentTrace?: LangfuseTraceClient
   ): Promise<FileClassificationResult> {
+    const startTime = new Date();
+    let trace: LangfuseTraceClient | null = null;
+    let generation: LangfuseGenerationClient | null = null;
+
     try {
       this.logger.log('Starting file classification');
+
+      // Create Langfuse trace
+      const traceInput = {
+        markdownContent: markdownContent.substring(0, 500) + '...', // Truncate for brevity
+        expectedCountry,
+        contentLength: markdownContent.length,
+        schemaFields: Object.keys(expenseSchema?.properties || {}),
+      };
+
+      if (parentTrace) {
+        // Create as a span within parent trace
+        generation = this.langfuseService?.createGeneration(parentTrace, {
+          name: 'file-classification',
+          input: traceInput,
+          model: this.modelName,
+          startTime,
+          metadata: {
+            agent: 'FileClassificationAgent',
+            provider: this.modelName.includes('claude') ? 'anthropic' : 'openai',
+            expectedCountry,
+            contentLength: markdownContent.length,
+          },
+        }) || null;
+      } else {
+        // Create standalone trace
+        trace = this.langfuseService?.createTrace({
+          name: 'file-classification',
+          input: traceInput,
+          metadata: {
+            agent: 'FileClassificationAgent',
+            provider: this.modelName.includes('claude') ? 'anthropic' : 'openai',
+            expectedCountry,
+            contentLength: markdownContent.length,
+          },
+          tags: ['file-classification', 'expense-processing'],
+        }) || null;
+
+        // Create generation within trace
+        generation = this.langfuseService?.createGeneration(trace, {
+          name: 'classification-llm-call',
+          input: traceInput,
+          model: this.modelName,
+          startTime,
+          metadata: {
+            agent: 'FileClassificationAgent',
+            provider: this.modelName.includes('claude') ? 'anthropic' : 'openai',
+          },
+        }) || null;
+      }
 
       const prompt = this.buildClassificationPrompt(markdownContent, expectedCountry, expenseSchema);
 
@@ -153,6 +212,9 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
         ],
       });
 
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
       // Parse the JSON response manually since structured output isn't working as expected
       let rawContent: string;
 
@@ -179,11 +241,75 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
       const parsedResult = this.parseJsonResponse(rawContent);
       const result = FileClassificationResultSchema.parse(parsedResult);
 
-      this.logger.log(`File classification completed: ${result.is_expense ? 'EXPENSE' : 'NOT_EXPENSE'} - ${result.expense_type} (${result.language})`);
+      // Update Langfuse generation with results
+      this.langfuseService?.updateGeneration(generation, {
+        output: {
+          is_expense: result.is_expense,
+          expense_type: result.expense_type,
+          language: result.language,
+          language_confidence: result.language_confidence,
+          classification_confidence: result.classification_confidence,
+          error_type: result.error_type,
+          total_fields_found: result.schema_field_analysis.total_fields_found,
+        },
+        usage: {
+          // Note: We don't have exact token counts from LlamaIndex, so we estimate
+          promptTokens: Math.floor(prompt.length / 4), // Rough estimate: 4 chars per token
+          completionTokens: Math.floor(rawContent.length / 4),
+          totalTokens: Math.floor((prompt.length + rawContent.length) / 4),
+        },
+        endTime,
+        metadata: {
+          duration_ms: duration,
+          success: true,
+          is_expense: result.is_expense,
+          expense_type: result.expense_type,
+          language: result.language,
+          classification_confidence: result.classification_confidence,
+        },
+      });
+
+      // Finalize trace if it's a standalone trace
+      if (trace && !parentTrace) {
+        this.langfuseService?.finalizeTrace(trace, {
+          classification_result: result,
+          processing_time_ms: duration,
+          success: true,
+        }, {
+          duration_ms: duration,
+          success: true,
+          is_expense: result.is_expense,
+          expense_type: result.expense_type,
+        });
+      }
+
+      this.logger.log(`File classification completed: ${result.is_expense ? 'EXPENSE' : 'NOT_EXPENSE'} - ${result.expense_type} (${result.language}) in ${duration}ms`);
 
       return result;
     } catch (error) {
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
       this.logger.error('File classification failed:', error);
+
+      // Update Langfuse with error
+      this.langfuseService?.updateGeneration(generation, {
+        output: null,
+        endTime,
+        metadata: {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+        },
+      });
+
+      if (trace && !parentTrace) {
+        this.langfuseService?.finalizeTrace(trace, null, {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+        });
+      }
       
       // Return fallback result
       return {
