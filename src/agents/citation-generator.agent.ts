@@ -1,13 +1,17 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { CitationResultSchema, type CitationResult } from '../schemas/expense-schemas';
-import { Logger } from '@nestjs/common';
+import { LangfuseService } from '../services/langfuse.service';
+import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
+import { BaseAgent } from './base.agent';
 
-export class CitationGeneratorAgent {
-  private readonly logger = new Logger(CitationGeneratorAgent.name);
+export class CitationGeneratorAgent extends BaseAgent {
   private llm: any;
-  
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+  private currentProvider: 'bedrock' | 'anthropic';
+
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+    super(langfuseService);
+    this.currentProvider = provider;
     this.logger.log(`Initializing CitationGeneratorAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
@@ -23,13 +27,88 @@ export class CitationGeneratorAgent {
     }
   }
 
+  /**
+   * Get the actual model name used, accounting for fallback scenarios
+   */
+  getActualModelUsed(): string {
+    if (this.currentProvider === 'bedrock' && this.llm.getCurrentModelName) {
+      // For BedrockLlmService, get the actual model name (handles fallback)
+      return this.llm.getCurrentModelName();
+    } else if (this.currentProvider === 'bedrock') {
+      // Fallback for older BedrockLlmService without getCurrentModelName
+      return process.env.CITATION_MODEL || 'amazon.nova-micro-v1:0';
+    } else {
+      // Direct Anthropic usage
+      return 'claude-3-5-sonnet-20241022';
+    }
+  }
+
   async generateCitations(
     extractedData: any,
     markdownContent: string,
-    filename: string
+    filename: string,
+    parentTrace?: LangfuseTraceClient
   ): Promise<CitationResult> {
+    const startTime = new Date();
+    let trace: LangfuseTraceClient | null = null;
+    let generation: LangfuseGenerationClient | null = null;
+
     try {
       this.logger.log(`Starting citation generation for ${filename}`);
+
+      // Create Langfuse trace
+      const traceInput = {
+        filename,
+        extractedFieldsCount: Object.keys(extractedData).length,
+        markdownContentLength: markdownContent.length,
+        extractedDataSummary: {
+          vendorName: extractedData.vendor_name,
+          totalAmount: extractedData.total_amount,
+          currency: extractedData.currency,
+          date: extractedData.date,
+        },
+      };
+
+      if (parentTrace) {
+        // Create as a span within parent trace
+        generation = this.langfuseService?.createGeneration(parentTrace, {
+          name: 'citation-generation',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'CitationGeneratorAgent',
+            provider: this.currentProvider,
+            filename,
+            fieldsCount: Object.keys(extractedData).length,
+          },
+        }) || null;
+      } else {
+        // Create standalone trace
+        trace = this.langfuseService?.createTrace({
+          name: 'citation-generation',
+          input: traceInput,
+          metadata: {
+            agent: 'CitationGeneratorAgent',
+            provider: this.currentProvider,
+            filename,
+            fieldsCount: Object.keys(extractedData).length,
+          },
+          tags: ['citation-generation', 'expense-processing'],
+        }) || null;
+
+        // Create generation within trace
+        generation = this.langfuseService?.createGeneration(trace, {
+          name: 'citation-generation-llm-call',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'CitationGeneratorAgent',
+            provider: this.currentProvider,
+          },
+        }) || null;
+      }
 
       // Process citations in batches to handle context window limitations
       const fieldEntries = Object.entries(extractedData);
@@ -39,6 +118,7 @@ export class CitationGeneratorAgent {
       let fieldsWithFieldCitations = 0;
       let fieldsWithValueCitations = 0;
       let totalConfidence = 0;
+      let promptVersionTags: string[] = [];
 
       this.logger.log(`Processing ${fieldEntries.length} fields in batches of ${batchSize}`);
 
@@ -60,6 +140,14 @@ export class CitationGeneratorAgent {
         fieldsWithFieldCitations += batchResult.metadata.fields_with_field_citations;
         fieldsWithValueCitations += batchResult.metadata.fields_with_value_citations;
         totalConfidence += batchResult.metadata.average_confidence * batchResult.metadata.total_fields_analyzed;
+        
+        // Collect prompt tags from first batch (they should be the same for all batches)
+        if (i === 0) {
+          // Get the prompt tags from the last prompt info after processing the batch
+          const systemPromptInfo = { name: 'citation-generation-system-prompt', version: this.lastPromptInfo?.version, config: this.lastPromptInfo?.config };
+          const userPromptInfo = { name: 'citation-generation-user-prompt', version: this.lastPromptInfo?.version, config: this.lastPromptInfo?.config };
+          promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+        }
       }
 
       const averageConfidence = totalFieldsAnalyzed > 0 ? totalConfidence / totalFieldsAnalyzed : 0;
@@ -74,12 +162,79 @@ export class CitationGeneratorAgent {
         },
       };
 
-      this.logger.log(`Citation generation completed: ${result.metadata.total_fields_analyzed} fields analyzed across ${Math.ceil(fieldEntries.length / batchSize)} batches`);
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
+      // Update Langfuse generation with results
+      this.langfuseService?.updateGeneration(generation, {
+        output: result,
+        usage: {
+          // Estimate based on batch processing
+          promptTokens: Math.floor((markdownContent.length * Math.ceil(fieldEntries.length / batchSize)) / 4),
+          completionTokens: Math.floor((JSON.stringify(allCitations).length) / 4),
+          totalTokens: Math.floor((markdownContent.length * Math.ceil(fieldEntries.length / batchSize) + JSON.stringify(allCitations).length) / 4),
+        },
+        endTime,
+        metadata: {
+          duration_seconds: (duration / 1000).toFixed(1),
+          success: true,
+          totalFieldsAnalyzed: result.metadata.total_fields_analyzed,
+          batchesProcessed: Math.ceil(fieldEntries.length / batchSize),
+          filename,
+          modelUsed: this.getActualModelUsed(),
+          provider: this.currentProvider,
+          // Include prompt metadata from last batch (representative)
+          systemPrompt: this.getPromptMetadata(),
+          userPrompt: this.getPromptMetadata(),
+        },
+      });
+
+      // Finalize trace if it's a standalone trace
+      if (trace && !parentTrace) {
+        // Add prompt version tags to the trace
+        this.langfuseService?.addTagsToTrace(trace, promptVersionTags);
+        
+        this.langfuseService?.finalizeTrace(trace, {
+          citation_result: result,
+          processing_time_ms: duration,
+          success: true,
+        }, {
+          duration_ms: duration,
+          success: true,
+          totalFieldsAnalyzed: result.metadata.total_fields_analyzed,
+          promptVersionTags: promptVersionTags,
+        });
+      }
+
+      this.logger.log(`Citation generation completed: ${result.metadata.total_fields_analyzed} fields analyzed across ${Math.ceil(fieldEntries.length / batchSize)} batches in ${duration}ms`);
 
       return result;
     } catch (error) {
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
       this.logger.error('Citation generation failed:', error);
-      
+
+      // Update Langfuse with error
+      this.langfuseService?.updateGeneration(generation, {
+        output: null,
+        endTime,
+        metadata: {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+          filename,
+        },
+      });
+
+      if (trace && !parentTrace) {
+        this.langfuseService?.finalizeTrace(trace, null, {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+        });
+      }
+
       // Return fallback result
       return {
         citations: {},
@@ -98,76 +253,27 @@ export class CitationGeneratorAgent {
     markdownContent: string,
     expectedFields: number
   ): Promise<CitationResult> {
-    const prompt = this.buildCitationPrompt(
+    const systemPrompt = await this.getPromptTemplate('citation-generation-system-prompt');
+    const systemPromptInfo = { ...this.lastPromptInfo! };
+
+    const userPrompt = await this.buildCitationPrompt(
       batchData,
       markdownContent
     );
+    const userPromptInfo = { ...this.lastPromptInfo! };
+
+    // Generate prompt version tags (will be used in main method)
+    const promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
 
     const response = await this.llm.chat({
       messages: [
         {
           role: 'system',
-          content: `You are a citation expert specializing in finding where extracted data fields and their values appear in source documents.
-
-Your task is to analyze structured output from data extraction and find TWO types of citations for each field:
-
-1. FIELD CITATION: Where does this field name/concept appear in the source?
-   - Check markdown for field labels, headers, form fields
-   - Look for: "Total:", "Supplier Name:", table headers, section labels, etc.
-   - Use semantic understanding to match field concepts with document text
-
-2. VALUE CITATION: Where does this exact value appear in the source?
-   - Find exact matches in markdown text
-   - Handle fuzzy matches for dates, numbers, currencies
-   - Consider context and formatting variations
-   - Look for values near field labels or in structured sections
-
-ANALYSIS APPROACH:
-- Use semantic understanding to match field concepts even with different wording
-- Handle variations in formatting (dates, currencies, numbers)
-- Assess confidence based on match quality and context
-- Provide surrounding context for validation
-
-CRITICAL REQUIREMENTS:
-- Analyze ALL ${expectedFields} fields provided in the structured output
-- Provide accurate citations with proper confidence scores
-- Use semantic understanding to match field concepts
-- Handle formatting variations appropriately
-- Ensure all fields are properly populated according to the structured output format
-
-CRITICAL: You MUST return a JSON object with EXACTLY this structure and field names:
-{
-  "citations": {
-    "field_name": {
-      "field_citation": {
-        "source_text": "exact_text_from_source",
-        "confidence": number (0.0-1.0),
-        "source_location": "markdown",
-        "context": "surrounding_text_for_validation",
-        "match_type": "exact|fuzzy|contextual"
-      },
-      "value_citation": {
-        "source_text": "exact_text_from_source",
-        "confidence": number (0.0-1.0),
-        "source_location": "markdown",
-        "context": "surrounding_text_for_validation",
-        "match_type": "exact|fuzzy|contextual"
-      }
-    }
-  },
-  "metadata": {
-    "total_fields_analyzed": number,
-    "fields_with_field_citations": number,
-    "fields_with_value_citations": number,
-    "average_confidence": number (0.0-1.0)
-  }
-}
-
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`,
+          content: systemPrompt,
         },
         {
           role: 'user',
-          content: prompt,
+          content: userPrompt,
         },
       ],
     });
@@ -195,19 +301,18 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
     return CitationResultSchema.parse(parsedResult);
   }
 
-  private buildCitationPrompt(
+  private async buildCitationPrompt(
     extractedData: any,
     markdownContent: string
-  ): string {
-    return `STRUCTURED OUTPUT (JSON):
-${JSON.stringify(extractedData, null, 2)}
-
-MARKDOWN TEXT:
-${markdownContent}
-
-INSTRUCTIONS:
-Analyze the structured output and find field and value citations in the source markdown document.
-For each extracted field, identify where both the field concept and the actual value appear in the markdown text.`;
+  ): Promise<string> {
+    // Get prompt from Langfuse (no fallback)
+    return await this.getPromptTemplate(
+      'citation-generation-user-prompt',
+      {
+        extractedDataJson: JSON.stringify(extractedData, null, 2),
+        markdownContent
+      }
+    );
   }
 
   private parseJsonResponse(content: string): any {

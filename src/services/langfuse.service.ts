@@ -1,10 +1,11 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Langfuse } from 'langfuse';
-import type { 
-  LangfuseGenerationClient, 
+import type {
+  LangfuseGenerationClient,
   LangfuseTraceClient
 } from 'langfuse';
+import { PromptTemplate } from '../interfaces/prompt-management.interface';
 
 export interface LangfuseTraceData {
   name: string;
@@ -64,8 +65,10 @@ export class LangfuseService implements OnModuleInit {
 
   async onModuleInit() {
     try {
-      this.isEnabled = this.configService.get<boolean>('LANGFUSE_ENABLED', false);
-      
+      // Properly parse boolean from environment variable string
+      const langfuseEnabledStr = this.configService.get<string>('LANGFUSE_ENABLED', 'false');
+      this.isEnabled = langfuseEnabledStr.toLowerCase() === 'true';
+
       if (!this.isEnabled) {
         this.logger.log('Langfuse is disabled');
         return;
@@ -167,6 +170,27 @@ export class LangfuseService implements OnModuleInit {
       });
     } catch (error) {
       this.logger.error('Failed to update generation:', error);
+    }
+  }
+
+  /**
+   * Add tags to an existing trace
+   */
+  addTagsToTrace(
+    trace: LangfuseTraceClient | null,
+    tags: string[]
+  ): void {
+    if (!this.isEnabled || !trace || !tags.length) {
+      return;
+    }
+
+    try {
+      // Update trace with additional tags
+      trace.update({
+        tags: tags,
+      });
+    } catch (error) {
+      this.logger.error('Failed to add tags to trace:', error);
     }
   }
 
@@ -342,5 +366,99 @@ export class LangfuseService implements OnModuleInit {
     } catch (error) {
       this.logger.error('Failed to log experiment result:', error);
     }
+  }
+
+  /**
+   * Get a prompt from Langfuse with fallback support
+   */
+  async getPrompt(name: string, fallbackPrompt?: string, options?: {
+    version?: number;
+    label?: string;
+    type?: 'text' | 'chat'
+  }): Promise<PromptTemplate> {
+    if (!this.isEnabled) {
+      return this.createFallbackPrompt(fallbackPrompt || '');
+    }
+
+    try {
+      // Handle text and chat prompts separately due to TypeScript overloads
+      if (options?.type === 'chat') {
+        const prompt = await this.langfuse.getPrompt(name, options?.version, {
+          label: options?.label || 'production',
+          type: 'chat'
+        });
+        this.logger.debug(`Successfully fetched chat prompt: ${name}`);
+        return prompt;
+      } else {
+        const prompt = await this.langfuse.getPrompt(name, options?.version, {
+          label: options?.label || 'production',
+          type: 'text'
+        });
+        this.logger.debug(`Successfully fetched text prompt: ${name}`);
+        return prompt;
+      }
+    } catch (error) {
+      this.logger.warn(`Failed to fetch prompt ${name}, using fallback: ${error.message}`);
+      return this.createFallbackPrompt(fallbackPrompt || '');
+    }
+  }
+
+  /**
+   * Create a prompt in Langfuse
+   */
+  async createPrompt(config: {
+    name: string;
+    type: 'text' | 'chat';
+    prompt: string | any[];
+    labels?: string[];
+    config?: any;
+  }): Promise<void> {
+    if (!this.isEnabled) {
+      this.logger.warn('Langfuse not enabled, skipping prompt creation');
+      return;
+    }
+
+    try {
+      // Handle text and chat prompts separately due to TypeScript overloads
+      if (config.type === 'chat') {
+        await this.langfuse.createPrompt({
+          name: config.name,
+          type: 'chat',
+          prompt: config.prompt as any[],
+          labels: config.labels,
+          config: config.config,
+        });
+      } else {
+        await this.langfuse.createPrompt({
+          name: config.name,
+          type: 'text',
+          prompt: config.prompt as string,
+          labels: config.labels,
+          config: config.config,
+        });
+      }
+      this.logger.log(`Successfully created/updated prompt: ${config.name}`);
+    } catch (error) {
+      this.logger.error(`Failed to create prompt ${config.name}:`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Create a fallback prompt template
+   */
+  private createFallbackPrompt(prompt: string): PromptTemplate {
+    return {
+      compile: (variables: Record<string, any>) => {
+        let compiledPrompt = prompt;
+        for (const [key, value] of Object.entries(variables)) {
+          const placeholder = `{{${key}}}`;
+          compiledPrompt = compiledPrompt.replace(new RegExp(placeholder, 'g'), String(value));
+        }
+        return compiledPrompt;
+      },
+      prompt,
+      config: {}
+    };
   }
 }

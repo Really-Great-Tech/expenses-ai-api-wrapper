@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\aug_4_test_5_Copy of german_file_4.pdf",
+    "image_path": "uploads\\AUG_5_V5_6_Copy of german_file_4.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-08-04T17:52:59.342Z",
+    "timestamp": "2025-08-05T16:23:35.710Z",
     "quality_score": 70,
     "quality_level": "good",
     "suitable_for_extraction": true,
@@ -13,7 +13,7 @@
       "confidence_score": 0.8,
       "quantitative_measure": 0.4,
       "description": "The text and edges show moderate blur, likely due to scanning quality.",
-      "recommendation": "Enhance the image sharpness or re-scan the document for better focus."
+      "recommendation": "Enhance image sharpness before OCR processing."
     },
     "contrast_assessment": {
       "detected": true,
@@ -21,14 +21,14 @@
       "confidence_score": 0.7,
       "quantitative_measure": 0.8,
       "description": "The contrast between text and background is adequate but could be improved.",
-      "recommendation": "Adjust the contrast settings to ensure better differentiation between text and background."
+      "recommendation": "Adjust contrast levels to ensure better text recognition."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or overexposed regions detected in the image.",
+      "description": "No glare detected on the document.",
       "recommendation": "No action needed regarding glare."
     },
     "water_stains": {
@@ -36,7 +36,7 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discoloration detected.",
+      "description": "No water stains detected on the document.",
       "recommendation": "No action needed regarding water stains."
     },
     "tears_or_folds": {
@@ -44,23 +44,23 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, or folds detected.",
-      "recommendation": "No action needed regarding physical damage."
+      "description": "No tears or folds detected on the document.",
+      "recommendation": "No action needed regarding tears or folds."
     },
     "cut_off_detection": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No cut-off edges or excluded document portions detected.",
-      "recommendation": "No action needed regarding cut-off sections."
+      "description": "No cut-off edges detected on the document.",
+      "recommendation": "No action needed regarding cut-off edges."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No missing sections or incomplete content detected.",
+      "description": "No missing sections detected on the document.",
       "recommendation": "No action needed regarding missing sections."
     },
     "obstructions": {
@@ -68,7 +68,7 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No obstructions, shadows, or other elements blocking content detected.",
+      "description": "No obstructions detected on the document.",
       "recommendation": "No action needed regarding obstructions."
     },
     "overall_quality_score": 7
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, and itemDescriptionLineItems. The presence of these fields, along with the detailed breakdown of payments and services, confirms that this is an expense document related to travel (Deutschland-Ticket).",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, and itemDescriptionLineItems. The presence of these fields, along with the clear indication of payment and transaction details, confirms that this is an expense document. The expense type is classified as 'travel' due to the nature of the service provided (Deutschland-Ticket).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -99,31 +99,25 @@
         "paymentMethod"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including detailed transaction amounts, dates, and descriptions, confirming it as an expense document."
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including clear evidence of payment, transaction amounts, and detailed item descriptions. This meets the criteria for an expense document."
     }
   },
   "extraction": {
-    "supplier_name": "DB Vertrieb GmbH",
+    "supplier_name": "DB Vertrieb GmbH Abo-Team",
     "supplier_address": "Postfach 800250, 21002 Hamburg",
+    "supplier_website": "www.bahn.de",
     "supplier_phone": "030 72022736",
     "supplier_email": "abo@bahn.de",
-    "supplier_website": "www.bahn.de",
     "customer_name": "Katharina Bresser",
     "customer_address": "Wasgenstr. 59A, 14129 Berlin",
     "customer_id": "DE39DBV00000002177",
     "invoice_number": "2025-4-02-30548",
     "correction_reference": "2025-4-01-11851",
     "invoice_date": "2025-02-06",
-    "invoice_period": {
-      "start_date": "2025-01-01",
-      "end_date": "2025-12-31"
-    },
+    "invoice_period": "2025-01-01 to 2025-12-31",
     "order_number": "248847787",
     "service_description": "Deutschland-Ticket",
-    "service_period": {
-      "start_date": "2024-10-01",
-      "end_date": "2025-09-30"
-    },
+    "service_period": "2024-10-01 to 2025-09-30",
     "service_area": "deutschlandweit",
     "currency": "EUR",
     "line_items": [
@@ -144,13 +138,15 @@
     ],
     "summary": {
       "net_amount": 108.42,
-      "tax_5": 0,
-      "tax_7": 7.58,
-      "tax_16": 0,
-      "tax_19": 0,
+      "tax_5_percent": 0,
+      "tax_7_percent": 7.58,
+      "tax_16_percent": 0,
+      "tax_19_percent": 0,
       "gross_total": 116
     },
-    "payment_type": "Zahlung",
+    "payment_information": {
+      "type": "Zahlung"
+    },
     "document_type": "Rechnung",
     "company_location": "Frankfurt am Main",
     "management_board": [
@@ -158,94 +154,105 @@
       "Nils Hartgen",
       "Carmen Maria Parrino"
     ],
+    "quality_management": "Dr. Michael Peterson (Vorsitz)",
     "certification": "DEKRA",
     "certification_year": 2008,
-    "commercial_register": "HRB 79 808",
+    "register_court": "Frankfurt am Main",
+    "commercial_register_number": "HRB 79808",
     "vat_number": "DE 814160246"
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 5,
+      "issues_count": 4,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_name",
-          "description": "The supplier name is 'DB Vertrieb GmbH', but it should be 'Global People DE GmbH' for compliance.",
+          "field": "customer_name",
+          "description": "The customer name on the receipt is the individual's name, but it should be the local employer's name as per the requirement for Global People.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Invoices must show \"Global People DE GmbH\" not the worker's name"
+          "knowledge_base_reference": "Invoices must show \"Global People DE GmbH\" not the worker's name."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_address",
-          "description": "The supplier address is 'Postfach 800250, 21002 Hamburg', but it should be 'Taunusanlage 8, 60329 Frankfurt, Germany' for compliance.",
+          "field": "customer_address",
+          "description": "The customer address on the receipt is the individual's address, but it should be the local employer's address as per the requirement for Global People.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
           "knowledge_base_reference": "Invoices must show \"Taunusanlage 8, 60329 Frankfurt, Germany\""
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "vat_number",
-          "description": "The VAT number is 'DE 814160246', but it should be 'DE356366640' for compliance.",
+          "description": "The VAT number on the receipt does not match the required VAT ID for Global People.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
           "knowledge_base_reference": "Invoices must show \"VAT ID: DE356366640\""
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "customer_name",
-          "description": "The customer name is 'Katharina Bresser', but for travel-related expenses, the worker's name must appear on hotel/flight invoices.",
-          "recommendation": "Please ensure that the worker's name appears on hotel/flight invoices.",
-          "knowledge_base_reference": "Hotel/flights invoices should indicate the name of the worker not the company"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "All travel-related expenses must be reported using the Travel Expense Report.xlsx template.",
-          "recommendation": "Please submit the expense using the Travel Expense Report.xlsx template.",
+          "field": "document_type",
+          "description": "The receipt is a \"Rechnung\" (invoice), but for travel expenses, additional documentation is required.",
+          "recommendation": "Please submit the travel expense using the Travel Expense Report template.",
           "knowledge_base_reference": "All travel related expenses must be reported using Travel Expense Report.xlsx template"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has multiple compliance issues related to supplier name, address, VAT number, and missing documentation requirements for travel expenses. The issues need to be addressed with the supplier and the appropriate documentation template must be used for submission."
+      "compliance_summary": "The receipt has several compliance issues related to the customer name, address, and VAT number not matching the required details for Global People. Additionally, the receipt type requires the use of a specific travel expense report template."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Germany",
       "icp": "Global People",
       "receipt_type": "travel",
-      "issues_count": 5
+      "issues_count": 4
     }
   },
   "citations": {
     "citations": {
       "supplier_name": {
         "field_citation": {
-          "source_text": "DB Vertrieb GmbH",
+          "source_text": "DB Vertrieb GmbH Abo-Team",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "DB Vertrieb GmbH Abo-Team",
+          "context": "DB Vertrieb GmbH Abo-Team is mentioned as the supplier.",
           "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "DB Vertrieb GmbH",
-          "confidence": 0.98,
+          "source_text": "DB Vertrieb GmbH Abo-Team",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "DB Vertrieb GmbH Abo-Team",
+          "context": "DB Vertrieb GmbH Abo-Team is mentioned as the supplier name.",
           "match_type": "exact"
         }
       },
       "supplier_address": {
         "field_citation": {
-          "source_text": "Postfach 800250",
+          "source_text": "Postfach 800250, 21002 Hamburg",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Postfach 800250 21002 Hamburg",
+          "context": "The address is listed under the supplier's information.",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Postfach 800250, 21002 Hamburg",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Postfach 800250 21002 Hamburg",
+          "context": "The address is listed as the supplier's address.",
+          "match_type": "exact"
+        }
+      },
+      "supplier_website": {
+        "field_citation": {
+          "source_text": "www.bahn.de",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The website is listed under the supplier's information.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "www.bahn.de",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The website is listed as the supplier's website.",
           "match_type": "exact"
         }
       },
@@ -254,94 +261,78 @@
           "source_text": "Telefon 030 72022736",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Telefon 030 72022736",
+          "context": "The phone number is listed under the supplier's information.",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "030 72022736",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Telefon 030 72022736",
+          "context": "The phone number is listed as the supplier's phone number.",
           "match_type": "exact"
         }
       },
       "supplier_email": {
         "field_citation": {
           "source_text": "abo@bahn.de",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "abo@bahn.de",
-          "match_type": "exact"
+          "context": "The email is listed under the supplier's information.",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "abo@bahn.de",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "abo@bahn.de",
-          "match_type": "exact"
-        }
-      },
-      "supplier_website": {
-        "field_citation": {
-          "source_text": "www.bahn.de",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "www.bahn.de",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "www.bahn.de",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "www.bahn.de",
+          "context": "The email is listed as the supplier's email.",
           "match_type": "exact"
         }
       },
       "customer_name": {
         "field_citation": {
           "source_text": "Katharina Bresser",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Katharina Bresser",
-          "match_type": "exact"
+          "context": "The customer's name is listed.",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Katharina Bresser",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Katharina Bresser",
+          "context": "The customer's name is listed.",
           "match_type": "exact"
         }
       },
       "customer_address": {
         "field_citation": {
-          "source_text": "Wasgenstr. 59A",
+          "source_text": "Wasgenstr. 59A, 14129 Berlin",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Wasgenstr. 59A, 14129 Berlin",
+          "context": "The address is listed under the customer's information.",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Wasgenstr. 59A, 14129 Berlin",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Wasgenstr. 59A, 14129 Berlin",
+          "context": "The address is listed as the customer's address.",
           "match_type": "exact"
         }
       },
       "customer_id": {
         "field_citation": {
           "source_text": "Gläubiger-ID: DE39DBV00000002177",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Gläubiger-ID: DE39DBV00000002177",
-          "match_type": "exact"
+          "context": "The customer ID is listed.",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "DE39DBV00000002177",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Gläubiger-ID: DE39DBV00000002177",
+          "context": "The customer ID is listed.",
           "match_type": "exact"
         }
       },
@@ -364,7 +355,7 @@
       "correction_reference": {
         "field_citation": {
           "source_text": "Korrektur zu",
-          "confidence": 0.9,
+          "confidence": 0.85,
           "source_location": "markdown",
           "context": "Korrektur zu 2025-4-01-11851",
           "match_type": "contextual"
@@ -382,14 +373,30 @@
           "source_text": "Rechnungsdatum:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Rechnungsdatum:\n06.02.2025",
+          "context": "Rechnungsdatum: 06.02.2025",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "06.02.2025",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Rechnungsdatum:\n06.02.2025",
+          "context": "Rechnungsdatum: 06.02.2025",
+          "match_type": "exact"
+        }
+      },
+      "invoice_period": {
+        "field_citation": {
+          "source_text": "Rechnungszeitraum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungszeitraum: 01.01.2025 31.12.2025",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "01.01.2025 31.12.2025",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungszeitraum: 01.01.2025 31.12.2025",
           "match_type": "exact"
         }
       },
@@ -398,14 +405,14 @@
           "source_text": "Auftragsnummer:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Auftragsnummer:\n248847787",
+          "context": "Auftragsnummer: 248847787",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "248847787",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Auftragsnummer:\n248847787",
+          "context": "Auftragsnummer: 248847787",
           "match_type": "exact"
         }
       },
@@ -414,14 +421,30 @@
           "source_text": "Leistung:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Leistung:\nDeutschland-Ticket",
+          "context": "Leistung: Deutschland-Ticket",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Deutschland-Ticket",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Leistung:\nDeutschland-Ticket",
+          "context": "Leistung: Deutschland-Ticket",
+          "match_type": "exact"
+        }
+      },
+      "service_period": {
+        "field_citation": {
+          "source_text": "Zeitraum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zeitraum: 01.10.2024 30.09.2025",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "01.10.2024 30.09.2025",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Zeitraum: 01.10.2024 30.09.2025",
           "match_type": "exact"
         }
       },
@@ -430,14 +453,14 @@
           "source_text": "Geltungsbereich:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Geltungsbereich:\ndeutschlandweit",
+          "context": "Geltungsbereich: deutschlandweit",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "deutschlandweit",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Geltungsbereich:\ndeutschlandweit",
+          "context": "Geltungsbereich: deutschlandweit",
           "match_type": "exact"
         }
       },
@@ -451,7 +474,7 @@
         },
         "value_citation": {
           "source_text": "€",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "54,21€",
           "match_type": "exact"
@@ -467,7 +490,7 @@
         },
         "value_citation": {
           "source_text": "54,21€",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto\n\n01.01.2025\nZahlung\n54,21€\n7%\n58,00 €",
           "match_type": "exact"
@@ -483,25 +506,25 @@
         },
         "value_citation": {
           "source_text": "116,00 €",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "Zusammenfassung\nNettobetrag\nArt\nUSt. 5%\nUSt. 7%\nUSt 16%\nUSt. 19%\nBrutto gesamt\n108,42 €\nZahlungs\n0,00 €\n7,58€\n0,00 €\n0,00 €\n116,00 €",
           "match_type": "exact"
         }
       },
-      "payment_type": {
+      "payment_information": {
         "field_citation": {
           "source_text": "Art",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto\n\n01.01.2025\nZahlung\n54,21€\n7%\n58,00 €",
+          "context": "Art: Zahlung",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Zahlung",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto\n\n01.01.2025\nZahlung\n54,21€\n7%\n58,00 €",
+          "context": "Art: Zahlung",
           "match_type": "exact"
         }
       },
@@ -511,11 +534,11 @@
           "confidence": 0.95,
           "source_location": "markdown",
           "context": "Rechnungstyp: Rechnung",
-          "match_type": "exact"
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Rechnung",
-          "confidence": 0.95,
+          "source_text": "Rechnungstyp: Rechnung",
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "Rechnungstyp: Rechnung",
           "match_type": "exact"
@@ -527,11 +550,11 @@
           "confidence": 0.95,
           "source_location": "markdown",
           "context": "Sitz Frankfurt am Main",
-          "match_type": "exact"
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Frankfurt am Main",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "Sitz Frankfurt am Main",
           "match_type": "exact"
@@ -542,14 +565,30 @@
           "source_text": "Geschäftsführung",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Geschäftsführung:\nCarola Gutjahr\nQualitätsmanagement\n\nAufsichtsrates:\nNils Hartgen\nCarmen Maria Parrino",
+          "context": "Geschäftsführung: Carola Gutjahr",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Carola Gutjahr",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Geschäftsführung: Carola Gutjahr",
+          "match_type": "exact"
+        }
+      },
+      "quality_management": {
+        "field_citation": {
+          "source_text": "Qualitätsmanagement",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Geschäftsführung:\nCarola Gutjahr\nQualitätsmanagement\n\nAufsichtsrates:\nNils Hartgen\nCarmen Maria Parrino",
+          "context": "Qualitätsmanagement: Dr. Michael Peterson (Vorsitz)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Dr. Michael Peterson (Vorsitz)",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Qualitätsmanagement: Dr. Michael Peterson (Vorsitz)",
           "match_type": "exact"
         }
       },
@@ -558,156 +597,172 @@
           "source_text": "Wir sind zertifiziert",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Wir sind zertifiziert\nFrankfurt am Main\nDr. Michael Peterson\n(Vorsitz)\nDEKRA\nRegelmäßige freiwillige\nÜberwachung 2008",
-          "match_type": "exact"
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "DEKRA",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Wir sind zertifiziert\nFrankfurt am Main\nDr. Michael Peterson\n(Vorsitz)\nDEKRA\nRegelmäßige freiwillige\nÜberwachung 2008",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
           "match_type": "exact"
         }
       },
       "certification_year": {
         "field_citation": {
-          "source_text": "Wir sind zertifiziert\nFrankfurt am Main\nDr. Michael Peterson\n(Vorsitz)\nDEKRA\nRegelmäßige freiwillige\nÜberwachung 2008",
-          "confidence": 0.95,
+          "source_text": "Regelmäßige freiwillige Überwachung",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "The certification year is mentioned as part of the regular voluntary surveillance conducted by DEKRA.",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "2008",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "The year 2008 is specified as the year of the regular voluntary surveillance.",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
           "match_type": "exact"
         }
       },
-      "commercial_register": {
+      "register_court": {
         "field_citation": {
-          "source_text": "HRB 79 808",
+          "source_text": "Registergericht",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "The commercial register number is listed as part of the company's identification details.",
-          "match_type": "exact"
+          "context": "Sitz Frankfurt am Main Vorsitz des Geschäftsführung: Carola Gutjahr",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "HRB 79 808",
+          "source_text": "Frankfurt am Main",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "The commercial register number HRB 79 808 is listed as part of the company's identification details.",
+          "context": "Sitz Frankfurt am Main Vorsitz des Geschäftsführung: Carola Gutjahr",
+          "match_type": "exact"
+        }
+      },
+      "commercial_register_number": {
+        "field_citation": {
+          "source_text": "HRB",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "HRB 79808",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808",
           "match_type": "exact"
         }
       },
       "vat_number": {
         "field_citation": {
-          "source_text": "DE 814160246",
-          "confidence": 0.95,
+          "source_text": "USt-IdNr",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "The VAT number is listed as part of the company's identification details.",
-          "match_type": "exact"
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808 USt-IdNr.: DE 814160246",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "DE 814160246",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "The VAT number DE 814160246 is listed as part of the company's identification details.",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808 USt-IdNr.: DE 814160246",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 27,
-      "fields_with_field_citations": 26,
-      "fields_with_value_citations": 26,
-      "average_confidence": 0.9548185185185184
+      "total_fields_analyzed": 29,
+      "fields_with_field_citations": 29,
+      "fields_with_value_citations": 29,
+      "average_confidence": 0.9563448275862069
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "4.9",
-      "file_classification_seconds": "3.2",
-      "data_extraction_seconds": "5.6",
-      "image_quality_assessment_seconds": "5.8",
-      "issue_detection_seconds": "11.1",
-      "citation_generation_seconds": "14.4"
+      "markdown_extraction_seconds": "5.8",
+      "file_classification_seconds": "3.8",
+      "data_extraction_seconds": "4.9",
+      "image_quality_assessment_seconds": "5.2",
+      "issue_detection_seconds": "9.0",
+      "citation_generation_seconds": "16.2"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-08-04T17:52:48.700Z",
-        "end_time": "2025-08-04T17:52:53.585Z",
-        "duration_seconds": "4.9",
+        "start_time": "2025-08-05T16:23:24.751Z",
+        "end_time": "2025-08-05T16:23:30.530Z",
+        "duration_seconds": "5.8",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-08-04T17:52:53.591Z",
-        "end_time": "2025-08-04T17:52:56.776Z",
-        "duration_seconds": "3.2",
+        "start_time": "2025-08-05T16:23:30.533Z",
+        "end_time": "2025-08-05T16:23:34.299Z",
+        "duration_seconds": "3.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-08-04T17:52:53.595Z",
-        "end_time": "2025-08-04T17:52:59.218Z",
-        "duration_seconds": "5.6",
+        "start_time": "2025-08-05T16:23:30.536Z",
+        "end_time": "2025-08-05T16:23:35.412Z",
+        "duration_seconds": "4.9",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-08-04T17:52:53.587Z",
-        "end_time": "2025-08-04T17:52:59.342Z",
-        "duration_seconds": "5.8",
+        "start_time": "2025-08-05T16:23:30.531Z",
+        "end_time": "2025-08-05T16:23:35.710Z",
+        "duration_seconds": "5.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-08-04T17:52:59.344Z",
-        "end_time": "2025-08-04T17:53:10.468Z",
-        "duration_seconds": "11.1",
+        "start_time": "2025-08-05T16:23:35.711Z",
+        "end_time": "2025-08-05T16:23:44.697Z",
+        "duration_seconds": "9.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-08-04T17:52:59.346Z",
-        "end_time": "2025-08-04T17:53:13.788Z",
-        "duration_seconds": "14.4",
+        "start_time": "2025-08-05T16:23:35.713Z",
+        "end_time": "2025-08-05T16:23:51.901Z",
+        "duration_seconds": "16.2",
         "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "25.1",
+    "total_processing_time_seconds": "27.2",
     "performance_metrics": {
-      "parallel_group_1_seconds": "5.8",
-      "parallel_group_2_seconds": "14.4",
-      "total_parallel_time_seconds": "20.2",
-      "estimated_sequential_time_seconds": "45.0",
-      "estimated_speedup_factor": "2.23"
+      "parallel_group_1_seconds": "5.2",
+      "parallel_group_2_seconds": "16.2",
+      "total_parallel_time_seconds": "21.4",
+      "estimated_sequential_time_seconds": "44.9",
+      "estimated_speedup_factor": "2.10"
     },
     "validation": {
-      "total_time_seconds": "25.1",
-      "expected_parallel_time_seconds": "25.1",
-      "sequential_sum_seconds": "45.0",
+      "total_time_seconds": "27.2",
+      "expected_parallel_time_seconds": "27.2",
+      "sequential_sum_seconds": "44.9",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "19.9"
+      "time_saved_seconds": "17.7"
     }
   },
   "metadata": {
     "filename": "Copy of german_file_4.pdf",
-    "processing_time": 25089,
+    "processing_time": 27151,
     "country": "Germany",
     "icp": "Global People",
-    "processed_at": "2025-08-04T17:53:13.790Z",
+    "processed_at": "2025-08-05T16:23:51.903Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "5.8",
-      "parallel_group_2_duration_seconds": "14.4",
-      "estimated_sequential_time_seconds": "45.0",
-      "actual_parallel_time_seconds": "25.1"
+      "parallel_group_1_duration_seconds": "5.2",
+      "parallel_group_2_duration_seconds": "16.2",
+      "estimated_sequential_time_seconds": "44.9",
+      "actual_parallel_time_seconds": "27.2"
     }
   }
 }
