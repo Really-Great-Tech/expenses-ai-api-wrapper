@@ -53,12 +53,11 @@ export class FileClassificationAgent extends BaseAgent {
     try {
       this.logger.log('Starting file classification');
 
-      // Create Langfuse trace
+      // Create Langfuse trace with exact prompt inputs
       const traceInput = {
-        markdownContent: markdownContent.substring(0, 500) + '...', // Truncate for brevity
-        expectedCountry,
-        contentLength: markdownContent.length,
-        schemaFields: Object.keys(expenseSchema?.properties || {}),
+        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
+        markdownContent,
+        expectedCountry: expectedCountry || "Not specified"
       };
 
       if (parentTrace) {
@@ -105,26 +104,21 @@ export class FileClassificationAgent extends BaseAgent {
         }) || null;
       }
 
-      const systemPrompt = await this.getPromptTemplate(
-        'file-classification-system-prompt'
-      );
-      const systemPromptInfo = { ...this.lastPromptInfo! };
+      const combinedPrompt = await this.getPromptTemplate('file-classification-prompt', {
+        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
+        markdownContent,
+        expectedCountry: expectedCountry || "Not specified"
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
 
-      const userPrompt = await this.buildClassificationPrompt(markdownContent, expectedCountry, expenseSchema);
-      const userPromptInfo = { ...this.lastPromptInfo! };
-
-      // Generate prompt version tags
-      const promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+      // Generate prompt version tags (now just one prompt)
+      const promptVersionTags = this.getPromptVersionTags();
 
       const response = await this.llm.chat({
         messages: [
           {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
             role: 'user',
-            content: userPrompt,
+            content: combinedPrompt,
           },
         ],
       });
@@ -163,9 +157,9 @@ export class FileClassificationAgent extends BaseAgent {
         output: result,
         usage: {
           // Note: We don't have exact token counts from LlamaIndex, so we estimate
-          promptTokens: Math.floor(userPrompt.length / 4), // Rough estimate: 4 chars per token
+          promptTokens: Math.floor(combinedPrompt.length / 4), // Rough estimate: 4 chars per token
           completionTokens: Math.floor(rawContent.length / 4),
-          totalTokens: Math.floor((userPrompt.length + rawContent.length) / 4),
+          totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
         },
         endTime,
         metadata: {
@@ -178,15 +172,10 @@ export class FileClassificationAgent extends BaseAgent {
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
           // Include prompt metadata
-          systemPrompt: {
-            promptName: systemPromptInfo.name,
-            promptVersion: systemPromptInfo.version || 'unknown',
-            promptConfig: systemPromptInfo.config || {}
-          },
-          userPrompt: {
-            promptName: userPromptInfo.name,
-            promptVersion: userPromptInfo.version || 'unknown',
-            promptConfig: userPromptInfo.config || {}
+          prompt: {
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+            promptConfig: promptInfo.config || {}
           },
         },
       });
@@ -260,29 +249,6 @@ export class FileClassificationAgent extends BaseAgent {
     }
   }
 
-  private async buildClassificationPrompt(
-    markdownContent: string,
-    expectedCountry: string,
-    expenseSchema: any
-  ): Promise<string> {
-    // Create schema field descriptions for the prompt
-    let schemaFieldsDescription = "";
-    for (const [fieldName, fieldInfo] of Object.entries(expenseSchema?.properties || {})) {
-      const title = (fieldInfo as any)?.title || fieldName;
-      const description = (fieldInfo as any)?.description || "";
-      schemaFieldsDescription += `\n**${fieldName}** (${title}):\n${description}\n`;
-    }
-
-    // Get prompt from Langfuse (no fallback)
-    return await this.getPromptTemplate(
-      'file-classification-user-prompt',
-      {
-        schemaFieldsDescription,
-        markdownContent,
-        expectedCountry: expectedCountry || "Not specified"
-      }
-    );
-  }
 
   private parseJsonResponse(content: string): any {
     try {

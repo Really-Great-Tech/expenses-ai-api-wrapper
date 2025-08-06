@@ -52,9 +52,9 @@ export class DataExtractionAgent extends BaseAgent {
     try {
       this.logger.log('Starting data extraction with standard receipt/invoice schema');
 
-      // Create Langfuse trace
+      // Create Langfuse trace with exact prompt inputs
       const traceInput = {
-        markdownContent: markdownContent.substring(0, 500) + '...', // Truncate for brevity
+        markdownContent,
         contentLength: markdownContent.length,
         extractionType: 'standard_receipt_schema',
       };
@@ -100,24 +100,19 @@ export class DataExtractionAgent extends BaseAgent {
         }) || null;
       }
 
-      const systemPrompt = await this.getPromptTemplate('data-extraction-system-prompt');
-      const systemPromptInfo = { ...this.lastPromptInfo! };
+      const combinedPrompt = await this.getPromptTemplate('data-extraction-prompt', {
+        markdownContent
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
 
-      const userPrompt = await this.buildExtractionPrompt(markdownContent);
-      const userPromptInfo = { ...this.lastPromptInfo! };
-
-      // Generate prompt version tags
-      const promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+      // Generate prompt version tags (now just one prompt)
+      const promptVersionTags = this.getPromptVersionTags();
 
       const response = await this.llm.chat({
         messages: [
           {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
             role: 'user',
-            content: userPrompt,
+            content: combinedPrompt,
           },
         ],
       });
@@ -161,9 +156,9 @@ export class DataExtractionAgent extends BaseAgent {
           },
           usage: {
             // Rough estimate: 4 chars per token
-            promptTokens: Math.floor(userPrompt.length / 4),
+            promptTokens: Math.floor(combinedPrompt.length / 4),
             completionTokens: Math.floor(rawContent.length / 4),
-            totalTokens: Math.floor((userPrompt.length + rawContent.length) / 4),
+            totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
           },
           endTime,
           metadata: {
@@ -173,15 +168,10 @@ export class DataExtractionAgent extends BaseAgent {
             modelUsed: this.getActualModelUsed(),
             provider: this.currentProvider,
             // Include prompt metadata
-            systemPrompt: {
-              promptName: systemPromptInfo.name,
-              promptVersion: systemPromptInfo.version || 'unknown',
-              promptConfig: systemPromptInfo.config || {}
-            },
-            userPrompt: {
-              promptName: userPromptInfo.name,
-              promptVersion: userPromptInfo.version || 'unknown',
-              promptConfig: userPromptInfo.config || {}
+            prompt: {
+              promptName: promptInfo.name,
+              promptVersion: promptInfo.version || 'unknown',
+              promptConfig: promptInfo.config || {}
             },
           },
         });
@@ -242,15 +232,6 @@ export class DataExtractionAgent extends BaseAgent {
     }
   }
 
-  private async buildExtractionPrompt(markdownContent: string): Promise<string> {
-    // Get prompt from Langfuse (no fallback)
-    return await this.getPromptTemplate(
-      'data-extraction-user-prompt',
-      {
-        markdownContent
-      }
-    );
-  }
 
   private parseJsonResponse(content: string): any {
     try {

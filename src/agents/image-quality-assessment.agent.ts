@@ -59,6 +59,13 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
         assessmentType: 'llm_simulation',
       };
 
+      // Get the assessment prompt from Langfuse
+      const assessmentPrompt = await this.getPromptTemplate('image-quality-assessment-prompt');
+      const promptInfo = { ...this.lastPromptInfo! };
+
+      // Create the full user prompt that will be sent to the LLM
+      const userPrompt = `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${assessmentPrompt}`;
+
       if (parentTrace) {
         // Create as a span within parent trace
         generation = this.langfuseService?.createGeneration(parentTrace, {
@@ -100,16 +107,8 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
         }) || null;
       }
 
-      // Get the assessment prompt from Langfuse
-      const assessmentPrompt = await this.getPromptTemplate('image-quality-assessment-prompt');
-      const promptInfo = { ...this.lastPromptInfo! };
-
       // Generate prompt version tags
       const promptVersionTags = this.getPromptVersionTags();
-
-      // For now, simulate quality assessment based on file properties
-      // TODO: Implement actual vision-based assessment when LlamaIndex TS vision API is stable
-      const userPrompt = `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${assessmentPrompt}`;
 
       const response = await this.llm.chat({
         messages: [

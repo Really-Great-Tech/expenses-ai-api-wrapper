@@ -33,6 +33,9 @@ export class DatasetManagerService {
   async createExpenseDatasets(): Promise<{
     classification: boolean;
     extraction: boolean;
+    issue_detection: boolean;
+    citation_generation: boolean;
+    image_quality_assessment: boolean;
     complete_pipeline: boolean;
   }> {
     try {
@@ -50,6 +53,9 @@ export class DatasetManagerService {
       const results = {
         classification: await this.createClassificationDataset(markdownFiles, processingResults),
         extraction: await this.createExtractionDataset(markdownFiles, processingResults),
+        issue_detection: await this.createIssueDetectionDataset(markdownFiles, processingResults),
+        citation_generation: await this.createCitationGenerationDataset(markdownFiles, processingResults),
+        image_quality_assessment: await this.createImageQualityAssessmentDataset(markdownFiles, processingResults),
         complete_pipeline: await this.createCompletePipelineDataset(markdownFiles, processingResults),
       };
 
@@ -61,6 +67,9 @@ export class DatasetManagerService {
       return {
         classification: false,
         extraction: false,
+        issue_detection: false,
+        citation_generation: false,
+        image_quality_assessment: false,
         complete_pipeline: false,
       };
     }
@@ -178,12 +187,14 @@ export class DatasetManagerService {
           continue;
         }
 
+        // Load expense schema (same as agent does)
+        const expenseSchema = this.loadExpenseSchema();
+
         const item: ExpenseDatasetItem = {
           input: {
+            schemaFieldsDescription: expenseSchema?.properties || {},
             markdownContent: this.extractContentFromMarkdown(markdownFile.content),
-            country: this.inferCountryFromFile(markdownFile.filename),
-            documentType: 'receipt',
-            filename: markdownFile.metadata.originalFile,
+            expectedCountry: this.inferCountryFromFile(markdownFile.filename) || "Not specified"
           },
           expectedOutput: {
             classification: matchingResult.result.classification,
@@ -241,9 +252,7 @@ export class DatasetManagerService {
 
         const item: ExpenseDatasetItem = {
           input: {
-            markdownContent: this.extractContentFromMarkdown(markdownFile.content),
-            country: this.inferCountryFromFile(markdownFile.filename),
-            filename: markdownFile.metadata.originalFile,
+            markdownContent: this.extractContentFromMarkdown(markdownFile.content)
           },
           expectedOutput: {
             extraction: matchingResult.result.extraction,
@@ -267,6 +276,193 @@ export class DatasetManagerService {
     }
 
     this.logger.log(`Added ${successCount}/${markdownFiles.length} items to extraction dataset`);
+    return successCount > 0;
+  }
+
+  /**
+   * Create issue detection dataset
+   */
+  private async createIssueDetectionDataset(
+    markdownFiles: MarkdownFile[],
+    processingResults: ProcessingResult[]
+  ): Promise<boolean> {
+    const datasetName = 'expense-issue-detection';
+    
+    const created = await this.langfuseService.createDataset(
+      datasetName,
+      'Dataset for issue detection experiments - analyzes compliance and identifies issues in expense documents'
+    );
+
+    if (!created) {
+      return false;
+    }
+
+    let successCount = 0;
+    for (const markdownFile of markdownFiles) {
+      try {
+        const matchingResult = processingResults.find(result => 
+          this.normalizeFilename(result.filename) === this.normalizeFilename(markdownFile.filename)
+        );
+
+        if (!matchingResult?.result?.compliance) {
+          continue;
+        }
+
+        // Load expense schema and compliance data (same as agent receives)
+        const expenseSchema = this.loadExpenseSchema();
+        const country = this.inferCountryFromFile(markdownFile.filename);
+        const complianceData = await this.loadComplianceData(country);
+
+        const item: ExpenseDatasetItem = {
+          input: {
+            expenseTaxonomyDescription: expenseSchema?.properties || {},
+            country,
+            receiptType: matchingResult.result.classification?.expense_type || 'unknown',
+            icp: 'Global People',
+            complianceData: complianceData,
+            extractedData: matchingResult.result.extraction || {}
+          },
+          expectedOutput: {
+            compliance: matchingResult.result.compliance,
+          },
+          metadata: {
+            filename: markdownFile.metadata.originalFile,
+            processingComplexity: this.assessComplexity(markdownFile.content),
+            language: matchingResult.result.classification?.language || 'unknown',
+            documentReader: markdownFile.metadata.documentReader,
+            processingTime: matchingResult.processingTime,
+          },
+        };
+
+        const added = await this.langfuseService.addDatasetItem(datasetName, item);
+        if (added) {
+          successCount++;
+        }
+      } catch (error) {
+        this.logger.error(`Failed to add issue detection item for ${markdownFile.filename}:`, error);
+      }
+    }
+
+    this.logger.log(`Added ${successCount}/${markdownFiles.length} items to issue detection dataset`);
+    return successCount > 0;
+  }
+
+  /**
+   * Create citation generation dataset
+   */
+  private async createCitationGenerationDataset(
+    markdownFiles: MarkdownFile[],
+    processingResults: ProcessingResult[]
+  ): Promise<boolean> {
+    const datasetName = 'expense-citation-generation';
+    
+    const created = await this.langfuseService.createDataset(
+      datasetName,
+      'Dataset for citation generation experiments - generates citations linking extracted data to source text'
+    );
+
+    if (!created) {
+      return false;
+    }
+
+    let successCount = 0;
+    for (const markdownFile of markdownFiles) {
+      try {
+        const matchingResult = processingResults.find(result => 
+          this.normalizeFilename(result.filename) === this.normalizeFilename(markdownFile.filename)
+        );
+
+        if (!matchingResult?.result?.citations) {
+          continue;
+        }
+
+        const item: ExpenseDatasetItem = {
+          input: {
+            extractedData: matchingResult.result.extraction || {},
+            markdownContent: this.extractContentFromMarkdown(markdownFile.content)
+          },
+          expectedOutput: {
+            citations: matchingResult.result.citations,
+          },
+          metadata: {
+            filename: markdownFile.metadata.originalFile,
+            processingComplexity: this.assessComplexity(markdownFile.content),
+            language: matchingResult.result.classification?.language || 'unknown',
+            documentReader: markdownFile.metadata.documentReader,
+            processingTime: matchingResult.processingTime,
+          },
+        };
+
+        const added = await this.langfuseService.addDatasetItem(datasetName, item);
+        if (added) {
+          successCount++;
+        }
+      } catch (error) {
+        this.logger.error(`Failed to add citation generation item for ${markdownFile.filename}:`, error);
+      }
+    }
+
+    this.logger.log(`Added ${successCount}/${markdownFiles.length} items to citation generation dataset`);
+    return successCount > 0;
+  }
+
+  /**
+   * Create image quality assessment dataset
+   */
+  private async createImageQualityAssessmentDataset(
+    markdownFiles: MarkdownFile[],
+    processingResults: ProcessingResult[]
+  ): Promise<boolean> {
+    const datasetName = 'expense-image-quality-assessment';
+    
+    const created = await this.langfuseService.createDataset(
+      datasetName,
+      'Dataset for image quality assessment experiments - evaluates document image quality for processing'
+    );
+
+    if (!created) {
+      return false;
+    }
+
+    let successCount = 0;
+    for (const markdownFile of markdownFiles) {
+      try {
+        const matchingResult = processingResults.find(result => 
+          this.normalizeFilename(result.filename) === this.normalizeFilename(markdownFile.filename)
+        );
+
+        if (!matchingResult?.result?.image_quality_assessment) {
+          continue;
+        }
+
+        const item: ExpenseDatasetItem = {
+          input: {
+            imagePath: markdownFile.metadata.originalFile,
+            imageInfo: `Filename: ${markdownFile.metadata.originalFile}, Size: ${Math.round(markdownFile.content.length / 1024)}KB, Format: .pdf`,
+            assessmentType: 'llm_simulation',
+          },
+          expectedOutput: {
+            image_quality_assessment: matchingResult.result.image_quality_assessment,
+          },
+          metadata: {
+            filename: markdownFile.metadata.originalFile,
+            processingComplexity: this.assessComplexity(markdownFile.content),
+            language: matchingResult.result.classification?.language || 'unknown',
+            documentReader: markdownFile.metadata.documentReader,
+            processingTime: matchingResult.processingTime,
+          },
+        };
+
+        const added = await this.langfuseService.addDatasetItem(datasetName, item);
+        if (added) {
+          successCount++;
+        }
+      } catch (error) {
+        this.logger.error(`Failed to add image quality assessment item for ${markdownFile.filename}:`, error);
+      }
+    }
+
+    this.logger.log(`Added ${successCount}/${markdownFiles.length} items to image quality assessment dataset`);
     return successCount > 0;
   }
 
@@ -299,10 +495,15 @@ export class DatasetManagerService {
           continue;
         }
 
+        // Load expense schema
+        const expenseSchema = this.loadExpenseSchema();
+        const country = this.inferCountryFromFile(markdownFile.filename);
+        const markdownContent = this.extractContentFromMarkdown(markdownFile.content);
+
         const item: ExpenseDatasetItem = {
           input: {
-            markdownContent: this.extractContentFromMarkdown(markdownFile.content),
-            country: this.inferCountryFromFile(markdownFile.filename),
+            markdownContent,
+            country,
             filename: markdownFile.metadata.originalFile,
           },
           expectedOutput: {
@@ -413,6 +614,42 @@ export class DatasetManagerService {
       .replace('_result.json', '')
       .replace('_processed.json', '')
       .toLowerCase();
+  }
+
+  /**
+   * Load expense schema (same as IssueDetectionAgent does)
+   */
+  private loadExpenseSchema(): any {
+    try {
+      const schemaPath = path.join(process.cwd(), 'expense_file_schema.json');
+      const schemaContent = fs.readFileSync(schemaPath, 'utf8');
+      return JSON.parse(schemaContent);
+    } catch (error) {
+      this.logger.error('Failed to load expense schema:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Load compliance data (same as ExpenseProcessor does)
+   */
+  private async loadComplianceData(country: string): Promise<any> {
+    try {
+      const complianceFile = path.join(process.cwd(), 'data', `${country.toLowerCase()}.json`);
+
+      if (fs.existsSync(complianceFile)) {
+        const fileContent = fs.readFileSync(complianceFile, 'utf8');
+        const complianceData = JSON.parse(fileContent);
+        this.logger.log(`Loaded compliance data for ${country} - ${Object.keys(complianceData).length} sections`);
+        return complianceData;
+      } else {
+        this.logger.warn(`No compliance data found for ${country} at ${complianceFile}`);
+        return {};
+      }
+    } catch (error) {
+      this.logger.error(`Failed to load compliance data for ${country}: ${error.message}`);
+      return {};
+    }
   }
 
   /**

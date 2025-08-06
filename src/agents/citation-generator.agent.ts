@@ -56,17 +56,11 @@ export class CitationGeneratorAgent extends BaseAgent {
     try {
       this.logger.log(`Starting citation generation for ${filename}`);
 
-      // Create Langfuse trace
-      const traceInput = {
+      // Create Langfuse trace with exact prompt inputs (will be populated from first batch)
+      let traceInput = {
         filename,
         extractedFieldsCount: Object.keys(extractedData).length,
         markdownContentLength: markdownContent.length,
-        extractedDataSummary: {
-          vendorName: extractedData.vendor_name,
-          totalAmount: extractedData.total_amount,
-          currency: extractedData.currency,
-          date: extractedData.date,
-        },
       };
 
       if (parentTrace) {
@@ -141,12 +135,27 @@ export class CitationGeneratorAgent extends BaseAgent {
         fieldsWithValueCitations += batchResult.metadata.fields_with_value_citations;
         totalConfidence += batchResult.metadata.average_confidence * batchResult.metadata.total_fields_analyzed;
         
-        // Collect prompt tags from first batch (they should be the same for all batches)
-        if (i === 0) {
-          // Get the prompt tags from the last prompt info after processing the batch
-          const systemPromptInfo = { name: 'citation-generation-system-prompt', version: this.lastPromptInfo?.version, config: this.lastPromptInfo?.config };
-          const userPromptInfo = { name: 'citation-generation-user-prompt', version: this.lastPromptInfo?.version, config: this.lastPromptInfo?.config };
-          promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+        // Collect prompt tags and update trace input from first batch
+        if (i === 0 && this.lastPromptInfo) {
+          promptVersionTags = this.getPromptVersionTags();
+          
+          // Update trace input with actual prompt data from first batch
+          const firstBatchPromptInput = {
+            extractedDataJson: JSON.stringify(batchData, null, 2),
+            markdownContent
+          };
+          
+          // Update the trace input to show exact prompt inputs
+          if (trace) {
+            trace.update({
+              input: firstBatchPromptInput
+            });
+          }
+          if (generation) {
+            generation.update({
+              input: firstBatchPromptInput
+            });
+          }
         }
       }
 
@@ -184,8 +193,7 @@ export class CitationGeneratorAgent extends BaseAgent {
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
           // Include prompt metadata from last batch (representative)
-          systemPrompt: this.getPromptMetadata(),
-          userPrompt: this.getPromptMetadata(),
+          prompt: this.getPromptMetadata(),
         },
       });
 
@@ -253,27 +261,20 @@ export class CitationGeneratorAgent extends BaseAgent {
     markdownContent: string,
     expectedFields: number
   ): Promise<CitationResult> {
-    const systemPrompt = await this.getPromptTemplate('citation-generation-system-prompt');
-    const systemPromptInfo = { ...this.lastPromptInfo! };
-
-    const userPrompt = await this.buildCitationPrompt(
-      batchData,
+    const combinedPrompt = await this.getPromptTemplate('citation-generation-prompt', {
+      extractedDataJson: JSON.stringify(batchData, null, 2),
       markdownContent
-    );
-    const userPromptInfo = { ...this.lastPromptInfo! };
+    });
+    const promptInfo = { ...this.lastPromptInfo! };
 
     // Generate prompt version tags (will be used in main method)
-    const promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+    const promptVersionTags = this.getPromptVersionTags();
 
     const response = await this.llm.chat({
       messages: [
         {
-          role: 'system',
-          content: systemPrompt,
-        },
-        {
           role: 'user',
-          content: userPrompt,
+          content: combinedPrompt,
         },
       ],
     });
@@ -301,19 +302,6 @@ export class CitationGeneratorAgent extends BaseAgent {
     return CitationResultSchema.parse(parsedResult);
   }
 
-  private async buildCitationPrompt(
-    extractedData: any,
-    markdownContent: string
-  ): Promise<string> {
-    // Get prompt from Langfuse (no fallback)
-    return await this.getPromptTemplate(
-      'citation-generation-user-prompt',
-      {
-        extractedDataJson: JSON.stringify(extractedData, null, 2),
-        markdownContent
-      }
-    );
-  }
 
   private parseJsonResponse(content: string): any {
     try {
