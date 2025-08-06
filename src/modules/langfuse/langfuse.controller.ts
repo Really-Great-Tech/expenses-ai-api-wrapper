@@ -36,7 +36,7 @@ export class LangfuseController {
       connected: healthStatus.connected,
       version: '1.0.0',
       config: healthStatus.enabled ? {
-        baseUrl: process.env.LANGFUSE_BASE_URL || 'http://localhost:3001',
+        baseUrl: process.env.LANGFUSE_BASE_URL || 'http://35.159.125.182:3000/',
         hasCredentials: !!(process.env.LANGFUSE_SECRET_KEY && process.env.LANGFUSE_PUBLIC_KEY),
       } : undefined,
     };
