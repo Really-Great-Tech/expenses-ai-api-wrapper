@@ -73,19 +73,14 @@ export class IssueDetectionAgent extends BaseAgent {
     try {
       this.logger.log(`Starting compliance analysis for ${country}/${icp}`);
 
-      // Create Langfuse trace
+      // Create Langfuse trace with exact prompt inputs
       const traceInput = {
+        expenseTaxonomyDescription: JSON.stringify(this.expenseSchema?.properties || {}, null, 2),
         country,
         receiptType,
         icp,
-        extractedDataSummary: {
-          vendorName: extractedData.vendor_name,
-          totalAmount: extractedData.total_amount,
-          currency: extractedData.currency,
-          date: extractedData.date,
-          fieldsCount: Object.keys(extractedData).length,
-        },
-        complianceRulesCount: Object.keys(complianceData || {}).length,
+        complianceDataJson: JSON.stringify(complianceData, null, 2),
+        extractedDataJson: JSON.stringify(extractedData, null, 2)
       };
 
       if (parentTrace) {
@@ -131,30 +126,24 @@ export class IssueDetectionAgent extends BaseAgent {
         }) || null;
       }
 
-      const systemPrompt = await this.getPromptTemplate('issue-detection-system-prompt');
-      const systemPromptInfo = { ...this.lastPromptInfo! };
-
-      const userPrompt = await this.buildCompliancePrompt(
+      const combinedPrompt = await this.getPromptTemplate('issue-detection-prompt', {
+        expenseTaxonomyDescription: JSON.stringify(this.expenseSchema?.properties || {}, null, 2),
         country,
         receiptType,
         icp,
-        complianceData,
-        extractedData
-      );
-      const userPromptInfo = { ...this.lastPromptInfo! };
+        complianceDataJson: JSON.stringify(complianceData, null, 2),
+        extractedDataJson: JSON.stringify(extractedData, null, 2)
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
 
-      // Generate prompt version tags
-      const promptVersionTags = this.getAllPromptVersionTags([systemPromptInfo, userPromptInfo]);
+      // Generate prompt version tags (now just one prompt)
+      const promptVersionTags = this.getPromptVersionTags();
 
       const response = await this.llm.chat({
         messages: [
           {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
             role: 'user',
-            content: userPrompt,
+            content: combinedPrompt,
           },
         ],
       });
@@ -193,9 +182,9 @@ export class IssueDetectionAgent extends BaseAgent {
         output: result,
         usage: {
           // Rough estimate: 4 chars per token
-          promptTokens: Math.floor(userPrompt.length / 4),
+          promptTokens: Math.floor(combinedPrompt.length / 4),
           completionTokens: Math.floor(rawContent.length / 4),
-          totalTokens: Math.floor((userPrompt.length + rawContent.length) / 4),
+          totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
         },
         endTime,
         metadata: {
@@ -208,15 +197,10 @@ export class IssueDetectionAgent extends BaseAgent {
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
           // Include prompt metadata
-          systemPrompt: {
-            promptName: systemPromptInfo.name,
-            promptVersion: systemPromptInfo.version || 'unknown',
-            promptConfig: systemPromptInfo.config || {}
-          },
-          userPrompt: {
-            promptName: userPromptInfo.name,
-            promptVersion: userPromptInfo.version || 'unknown',
-            promptConfig: userPromptInfo.config || {}
+          prompt: {
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+            promptConfig: promptInfo.config || {}
           },
         },
       });
@@ -297,38 +281,6 @@ export class IssueDetectionAgent extends BaseAgent {
     }
   }
 
-  private async buildCompliancePrompt(
-    country: string,
-    receiptType: string,
-    icp: string,
-    complianceData: any,
-    extractedData: any
-  ): Promise<string> {
-    // Create expense taxonomy description from the loaded schema
-    let expenseTaxonomyDescription = "";
-    if (this.expenseSchema?.properties) {
-      for (const [fieldName, fieldInfo] of Object.entries(this.expenseSchema.properties)) {
-        const title = (fieldInfo as any)?.title || fieldName;
-        const description = (fieldInfo as any)?.description || "";
-        expenseTaxonomyDescription += `\n**${fieldName}** (${title}):\n${description}\n`;
-      }
-    } else {
-      expenseTaxonomyDescription = "Expense schema not available";
-    }
-
-    // Get prompt from Langfuse (no fallback)
-    return await this.getPromptTemplate(
-      'issue-detection-user-prompt',
-      {
-        expenseTaxonomyDescription,
-        country,
-        receiptType,
-        icp,
-        complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2)
-      }
-    );
-  }
 
   private parseJsonResponse(content: string): any {
     try {

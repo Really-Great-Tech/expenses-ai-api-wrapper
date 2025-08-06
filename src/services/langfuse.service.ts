@@ -35,16 +35,39 @@ export interface LangfuseGenerationData {
 
 export interface ExpenseDatasetItem {
   input: {
-    markdownContent: string;
-    country: string;
+    // FileClassificationAgent inputs
+    schemaFieldsDescription?: string;
+    markdownContent?: string;
+    expectedCountry?: string;
+    
+    // DataExtractionAgent inputs  
+    country?: string;
+    
+    // IssueDetectionAgent inputs
+    expenseTaxonomyDescription?: string | any;
+    receiptType?: string;
+    icp?: string;
+    complianceDataJson?: string;
+    complianceData?: any;
+    extractedDataJson?: string;
+    extractedData?: any;
+    
+    // ImageQualityAssessmentAgent inputs
+    userPrompt?: string;
+    imagePath?: string;
+    imageInfo?: string;
+    assessmentType?: string;
+    
+    // Legacy fields
     documentType?: string;
-    filename: string;
+    filename?: string;
   };
   expectedOutput: {
     classification?: any;
     extraction?: any;
     compliance?: any;
     citations?: any;
+    image_quality_assessment?: any;
   };
   metadata: {
     filename: string;
