@@ -1,6 +1,7 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { IssueDetectionResultSchema, type IssueDetectionResult } from '../schemas/expense-schemas';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -12,8 +13,8 @@ export class IssueDetectionAgent extends BaseAgent {
   private expenseSchema: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
-    super(langfuseService);
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, langsmithService?: LangSmithService) {
+    super(langfuseService, langsmithService);
     this.currentProvider = provider;
     this.logger.log(`Initializing IssueDetectionAgent with provider: ${provider}`);
 
@@ -64,7 +65,8 @@ export class IssueDetectionAgent extends BaseAgent {
     icp: string,
     complianceData: any,
     extractedData: any,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    langsmithParentTrace?: any
   ): Promise<IssueDetectionResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;

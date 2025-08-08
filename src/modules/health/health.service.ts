@@ -45,6 +45,11 @@ export class HealthService {
       ENABLE_THROTTLING: this.configService.get('ENABLE_THROTTLING', 'not set'),
       THROTTLE_TTL: this.configService.get('THROTTLE_TTL', 'not set'),
       THROTTLE_LIMIT: this.configService.get('THROTTLE_LIMIT', 'not set'),
+      // LangSmith Configuration
+      LANGSMITH_API_KEY: this.maskApiKey(this.configService.get('LANGSMITH_API_KEY')),
+      LANGSMITH_ENABLED: this.configService.get('LANGSMITH_ENABLED', 'not set'),
+      LANGSMITH_PROJECT: this.configService.get('LANGSMITH_PROJECT', 'not set'),
+      LANGSMITH_ENDPOINT: this.configService.get('LANGSMITH_ENDPOINT', 'not set'),
     };
   }
 

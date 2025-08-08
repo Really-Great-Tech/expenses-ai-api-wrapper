@@ -6,6 +6,7 @@ import { DocumentModule } from "./modules/document/document.module";
 import { ProcessingModule } from "./modules/processing/processing.module";
 import { HealthModule } from "./modules/health/health.module";
 import { LangfuseModule } from "./modules/langfuse/langfuse.module";
+import { LangSmithModule } from "./modules/langsmith/langsmith.module";
 import { InvoiceSplitterModule } from "./modules/invoice-splitter/invoice-splitter.module";
 import { RedisConfigService } from "./config/redis.config";
 
@@ -39,6 +40,7 @@ import { RedisConfigService } from "./config/redis.config";
     ProcessingModule,
     HealthModule,
     LangfuseModule,
+    LangSmithModule,
     InvoiceSplitterModule,
   ],
   providers: [RedisConfigService],

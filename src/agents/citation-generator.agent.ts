@@ -1,6 +1,7 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { CitationResultSchema, type CitationResult } from '../schemas/expense-schemas';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
@@ -9,8 +10,8 @@ export class CitationGeneratorAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
-    super(langfuseService);
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, langsmithService?: LangSmithService) {
+    super(langfuseService, langsmithService);
     this.currentProvider = provider;
     this.logger.log(`Initializing CitationGeneratorAgent with provider: ${provider}`);
 
@@ -47,7 +48,8 @@ export class CitationGeneratorAgent extends BaseAgent {
     extractedData: any,
     markdownContent: string,
     filename: string,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    langsmithParentTrace?: any
   ): Promise<CitationResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;

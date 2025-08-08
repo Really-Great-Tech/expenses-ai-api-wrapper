@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import { PromptTemplate } from '../interfaces/prompt-management.interface';
 
 /**
@@ -19,7 +20,8 @@ export abstract class BaseAgent {
   protected lastPromptInfo?: PromptInfo;
 
   constructor(
-    protected readonly langfuseService?: LangfuseService
+    protected readonly langfuseService?: LangfuseService,
+    protected readonly langsmithService?: LangSmithService
   ) {}
 
   /**

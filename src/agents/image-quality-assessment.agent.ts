@@ -1,6 +1,7 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { ImageQualityAssessmentSchema, type ImageQualityAssessment } from '../schemas/expense-schemas';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -11,8 +12,8 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
-    super(langfuseService);
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, langsmithService?: LangSmithService) {
+    super(langfuseService, langsmithService);
     this.currentProvider = provider;
 
     if (provider === 'bedrock') {
@@ -41,7 +42,7 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
     }
   }
 
-  async assessImageQuality(imagePath: string, parentTrace?: LangfuseTraceClient): Promise<ImageQualityAssessment> {
+  async assessImageQuality(imagePath: string, parentTrace?: LangfuseTraceClient, langsmithParentTrace?: any): Promise<ImageQualityAssessment> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
     let generation: LangfuseGenerationClient | null = null;

@@ -5,6 +5,7 @@ import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { LangfuseService } from './langfuse.service';
+import { LangSmithService } from './langsmith.service';
 import {
   type CompleteProcessingResult,
 } from '../schemas/expense-schemas';
@@ -16,7 +17,10 @@ import * as path from 'path';
 export class ExpenseProcessingOptimizedService {
   private readonly logger = new Logger(ExpenseProcessingOptimizedService.name);
 
-  constructor(private readonly langfuseService?: LangfuseService) {}
+  constructor(
+    private readonly langfuseService?: LangfuseService,
+    private readonly langsmithService?: LangSmithService
+  ) {}
 
   async processExpenseDocumentParallel(
     markdownContent: string,
@@ -240,7 +244,7 @@ export class ExpenseProcessingOptimizedService {
     const start = Date.now();
     this.logger.log('📸 Phase 0: Image Quality Assessment (parallel)');
 
-    const result = await agent.assessImageQuality(imagePath, parentTrace);
+    const result = await agent.assessImageQuality(imagePath, parentTrace, null);
     const formattedResult = agent.formatAssessmentForWorkflow(result, imagePath);
 
     const end = Date.now();
@@ -260,7 +264,7 @@ export class ExpenseProcessingOptimizedService {
     const start = Date.now();
     this.logger.log('📋 Phase 1: File Classification (parallel)');
 
-    const result = await agent.classifyFile(markdownContent, country, expenseSchema, parentTrace);
+    const result = await agent.classifyFile(markdownContent, country, expenseSchema, parentTrace, null);
 
     const end = Date.now();
     timing.phase_timings.file_classification_seconds = ((end - start) / 1000).toFixed(1);
@@ -279,7 +283,7 @@ export class ExpenseProcessingOptimizedService {
     const start = Date.now();
     this.logger.log('🔍 Phase 2: Data Extraction (parallel)');
 
-    const result = await agent.extractData(markdownContent, complianceData, parentTrace);
+    const result = await agent.extractData(markdownContent, complianceData, parentTrace, null);
 
     const end = Date.now();
     timing.phase_timings.data_extraction_seconds = ((end - start) / 1000).toFixed(1);
@@ -298,7 +302,7 @@ export class ExpenseProcessingOptimizedService {
     const start = Date.now();
     this.logger.log('⚠️ Phase 3: Issue Detection (parallel)');
 
-    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData, parentTrace);
+    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData, parentTrace, null);
 
     const end = Date.now();
     timing.phase_timings.issue_detection_seconds = ((end - start) / 1000).toFixed(1);
@@ -317,7 +321,7 @@ export class ExpenseProcessingOptimizedService {
     const start = Date.now();
     this.logger.log('📝 Phase 4: Citation Generation (parallel)');
 
-    const result = await agent.generateCitations(extractedData, markdownContent, filename, parentTrace);
+    const result = await agent.generateCitations(extractedData, markdownContent, filename, parentTrace, null);
 
     const end = Date.now();
     timing.phase_timings.citation_generation_seconds = ((end - start) / 1000).toFixed(1);

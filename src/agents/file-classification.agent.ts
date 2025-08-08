@@ -1,6 +1,7 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { FileClassificationResultSchema, type FileClassificationResult } from '../schemas/expense-schemas';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
@@ -9,8 +10,8 @@ export class FileClassificationAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string, langfuseService?: LangfuseService) {
-    super(langfuseService);
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string, langfuseService?: LangfuseService, langsmithService?: LangSmithService) {
+    super(langfuseService, langsmithService);
     this.currentProvider = provider;
     this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
 
@@ -44,7 +45,8 @@ export class FileClassificationAgent extends BaseAgent {
     markdownContent: string,
     expectedCountry: string,
     expenseSchema: any,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    langsmithParentTrace?: any
   ): Promise<FileClassificationResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -60,8 +62,11 @@ export class FileClassificationAgent extends BaseAgent {
         expectedCountry: expectedCountry || "Not specified"
       };
 
+      // Parallel LangSmith generation creation
+      let langsmithGeneration: any = null;
+
       if (parentTrace) {
-        // Create as a span within parent trace
+        // Create as a span within parent trace (Langfuse)
         generation = this.langfuseService?.createGeneration(parentTrace, {
           name: 'file-classification',
           input: traceInput,
@@ -75,6 +80,23 @@ export class FileClassificationAgent extends BaseAgent {
             modelUsed: this.getActualModelUsed(),
           },
         }) || null;
+
+        // Create parallel LangSmith generation
+        if (langsmithParentTrace) {
+          langsmithGeneration = this.langsmithService?.createGeneration(langsmithParentTrace, {
+            name: 'file-classification',
+            input: traceInput,
+            model: this.modelName,
+            startTime,
+            metadata: {
+              agent: 'FileClassificationAgent',
+              provider: this.currentProvider,
+              expectedCountry,
+              contentLength: markdownContent.length,
+              modelUsed: this.getActualModelUsed(),
+            },
+          }) || null;
+        }
       } else {
         // Create standalone trace (will add prompt tags after prompts are loaded)
         trace = this.langfuseService?.createTrace({
@@ -158,6 +180,33 @@ export class FileClassificationAgent extends BaseAgent {
         usage: {
           // Note: We don't have exact token counts from LlamaIndex, so we estimate
           promptTokens: Math.floor(combinedPrompt.length / 4), // Rough estimate: 4 chars per token
+          completionTokens: Math.floor(rawContent.length / 4),
+          totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
+        },
+        endTime,
+        metadata: {
+          duration_seconds: (duration / 1000).toFixed(1),
+          success: true,
+          is_expense: result.is_expense,
+          expense_type: result.expense_type,
+          language: result.language,
+          classification_confidence: result.classification_confidence,
+          modelUsed: this.getActualModelUsed(),
+          provider: this.currentProvider,
+          // Include prompt metadata
+          prompt: {
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+            promptConfig: promptInfo.config || {}
+          },
+        },
+      });
+
+      // Update parallel LangSmith generation with results
+      this.langsmithService?.updateGeneration(langsmithGeneration, {
+        output: result,
+        usage: {
+          promptTokens: Math.floor(combinedPrompt.length / 4),
           completionTokens: Math.floor(rawContent.length / 4),
           totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
         },

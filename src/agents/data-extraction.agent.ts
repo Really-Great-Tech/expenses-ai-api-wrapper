@@ -1,6 +1,7 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { ExpenseDataSchema, type ExpenseData } from '../schemas/expense-schemas';
 import { LangfuseService } from '../services/langfuse.service';
+import { LangSmithService } from '../services/langsmith.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
@@ -9,8 +10,8 @@ export class DataExtractionAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
-    super(langfuseService);
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, langsmithService?: LangSmithService) {
+    super(langfuseService, langsmithService);
     this.currentProvider = provider;
     this.logger.log(`Initializing DataExtractionAgent with provider: ${provider}`);
 
@@ -43,7 +44,8 @@ export class DataExtractionAgent extends BaseAgent {
   async extractData(
     markdownContent: string,
     complianceRequirements: any, // Note: No longer used for schema definition, kept for API compatibility
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    langsmithParentTrace?: any
   ): Promise<ExpenseData> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -59,8 +61,11 @@ export class DataExtractionAgent extends BaseAgent {
         extractionType: 'standard_receipt_schema',
       };
 
+      // Parallel LangSmith generation creation
+      let langsmithGeneration: any = null;
+
       if (parentTrace) {
-        // Create as a span within parent trace
+        // Create as a span within parent trace (Langfuse)
         generation = this.langfuseService?.createGeneration(parentTrace, {
           name: 'data-extraction',
           input: traceInput,
@@ -73,6 +78,22 @@ export class DataExtractionAgent extends BaseAgent {
             extractionType: 'standard_receipt_schema',
           },
         }) || null;
+
+        // Create parallel LangSmith generation
+        if (langsmithParentTrace) {
+          langsmithGeneration = this.langsmithService?.createGeneration(langsmithParentTrace, {
+            name: 'data-extraction',
+            input: traceInput,
+            model: this.getActualModelUsed(),
+            startTime,
+            metadata: {
+              agent: 'DataExtractionAgent',
+              provider: this.currentProvider,
+              contentLength: markdownContent.length,
+              extractionType: 'standard_receipt_schema',
+            },
+          }) || null;
+        }
       } else {
         // Create standalone trace
         trace = this.langfuseService?.createTrace({
@@ -156,6 +177,32 @@ export class DataExtractionAgent extends BaseAgent {
           },
           usage: {
             // Rough estimate: 4 chars per token
+            promptTokens: Math.floor(combinedPrompt.length / 4),
+            completionTokens: Math.floor(rawContent.length / 4),
+            totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
+          },
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: true,
+            fieldsExtracted: Object.keys(result).length,
+            modelUsed: this.getActualModelUsed(),
+            provider: this.currentProvider,
+            // Include prompt metadata
+            prompt: {
+              promptName: promptInfo.name,
+              promptVersion: promptInfo.version || 'unknown',
+              promptConfig: promptInfo.config || {}
+            },
+          },
+        });
+
+        // Update parallel LangSmith generation with results
+        this.langsmithService?.updateGeneration(langsmithGeneration, {
+          output: {
+            extraction_result: result
+          },
+          usage: {
             promptTokens: Math.floor(combinedPrompt.length / 4),
             completionTokens: Math.floor(rawContent.length / 4),
             totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),

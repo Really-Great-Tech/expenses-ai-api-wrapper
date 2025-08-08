@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileClassificationAgent } from '../agents/file-classification.agent';
 import { DataExtractionAgent } from '../agents/data-extraction.agent';
 import { IssueDetectionAgent } from '../agents/issue-detection.agent';
@@ -6,6 +7,7 @@ import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import { LangfuseService } from './langfuse.service';
+import { LangSmithService } from './langsmith.service';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -29,21 +31,30 @@ export class ExpenseProcessingService {
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
   private optimizedService: ExpenseProcessingOptimizedService;
 
-  constructor(private langfuseService: LangfuseService) {
+  constructor(
+    private langfuseService: LangfuseService,
+    private langsmithService: LangSmithService,
+    private configService: ConfigService
+  ) {
+    // Debug: Log service injection status
+    this.logger.log('🔍 ExpenseProcessingService constructor - Service injection status:');
+    this.logger.log(`   Langfuse Service: ${!!this.langfuseService ? '✅ Injected' : '❌ Not injected'}`);
+    this.logger.log(`   LangSmith Service: ${!!this.langsmithService ? '✅ Injected' : '❌ Not injected'}`);
+
     // Use Bedrock as default provider with Anthropic fallback
     const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
     this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
-    // Initialize agents WITH Langfuse tracing
-    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService);
-    this.dataExtractionAgent = new DataExtractionAgent(provider, this.langfuseService);
-    this.issueDetectionAgent = new IssueDetectionAgent(provider, this.langfuseService);
-    this.citationGeneratorAgent = new CitationGeneratorAgent(provider, this.langfuseService);
-    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService);
+    // Initialize agents WITH dual observability (Langfuse + LangSmith)
+    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService, this.langsmithService);
+    this.dataExtractionAgent = new DataExtractionAgent(provider, this.langfuseService, this.langsmithService);
+    this.issueDetectionAgent = new IssueDetectionAgent(provider, this.langfuseService, this.langsmithService);
+    this.citationGeneratorAgent = new CitationGeneratorAgent(provider, this.langfuseService, this.langsmithService);
+    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService, this.langsmithService);
 
-    // Initialize optimized service with Langfuse
-    this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService);
+    // Initialize optimized service with dual observability
+    this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService, this.langsmithService);
   }
 
   async processExpenseDocument(
@@ -121,7 +132,7 @@ export class ExpenseProcessingService {
 
     this.logger.log(`👤 User: ${effectiveUserId}, Session: ${sessionId}`);
 
-    // Create main processing trace with user and session
+    // Create main processing trace with user and session (Langfuse)
     const mainTrace = this.langfuseService?.createTrace({
       name: 'expense-processing-sequential',
       input: {
@@ -145,6 +156,43 @@ export class ExpenseProcessingService {
       userId: effectiveUserId,
       sessionId: sessionId,
     });
+
+    // Create parallel LangSmith trace with same data
+    this.logger.log('🔍 Creating parallel LangSmith trace...');
+    this.logger.log(`   📁 Project: ${this.configService?.get('LANGSMITH_PROJECT', 'expense-processing-default')}`);
+    this.logger.log(`   👤 User: ${effectiveUserId}, Session: ${sessionId}`);
+
+    const langsmithTrace = this.langsmithService?.createTrace({
+      name: 'expense-processing-sequential',
+      input: {
+        filename,
+        country,
+        icp,
+        imagePath: path.basename(imagePath),
+        markdownContentLength: markdownContent.length,
+        processingMode: 'sequential',
+      },
+      metadata: {
+        service: 'ExpenseProcessingService',
+        filename,
+        country,
+        icp,
+        processingMode: 'sequential',
+        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      tags: ['expense-processing', 'sequential', country, icp],
+      userId: effectiveUserId,
+      sessionId: sessionId,
+    });
+
+    if (langsmithTrace) {
+      this.logger.log(`✅ LangSmith trace created successfully: ${langsmithTrace.id}`);
+      this.logger.log(`   🔗 Trace URL: https://smith.langchain.com/o/default/projects/p/${this.configService?.get('LANGSMITH_PROJECT', 'expense-processing-default')}/r/${langsmithTrace.id}`);
+    } else {
+      this.logger.error('❌ LangSmith trace creation returned null - check LangSmith service status');
+      this.logger.error('   🔧 Troubleshooting: Check LANGSMITH_ENABLED and LANGSMITH_API_KEY');
+    }
 
     const currentTime = Date.now();
     const timing: any = {
@@ -173,7 +221,7 @@ export class ExpenseProcessingService {
       this.logger.log('Phase 0: Image Quality Assessment');
 
       const qualityStart = Date.now();
-      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath, mainTrace);
+      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath, mainTrace, langsmithTrace);
       const qualityEnd = Date.now();
       const formattedQualityAssessment = this.imageQualityAssessmentAgent.formatAssessmentForWorkflow(qualityAssessment, imagePath);
 
@@ -194,7 +242,8 @@ export class ExpenseProcessingService {
         markdownContent,
         country,
         expenseSchema,
-        mainTrace
+        mainTrace,
+        langsmithTrace
       );
       const classificationEnd = Date.now();
 
@@ -216,7 +265,8 @@ export class ExpenseProcessingService {
       const extraction = await this.dataExtractionAgent.extractData(
         markdownContent,
         complianceData,
-        mainTrace
+        mainTrace,
+        langsmithTrace
       );
       const extractionEnd = Date.now();
 
@@ -241,7 +291,8 @@ export class ExpenseProcessingService {
         icp,
         complianceData,
         extraction,
-        mainTrace
+        mainTrace,
+        langsmithTrace
       );
       const issueDetectionEnd = Date.now();
 
@@ -264,7 +315,8 @@ export class ExpenseProcessingService {
         extraction,
         markdownContent,
         filename,
-        mainTrace
+        mainTrace,
+        langsmithTrace
       );
       const citationEnd = Date.now();
 
@@ -307,7 +359,7 @@ export class ExpenseProcessingService {
       // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
 
-      // Finalize main trace with success
+      // Finalize main trace with success (Langfuse)
       if (mainTrace) {
         mainTrace.update({
           output: {
@@ -332,9 +384,40 @@ export class ExpenseProcessingService {
             },
           },
         });
-        
+
         // Flush the trace
         await this.langfuseService.flush();
+      }
+
+      // Finalize parallel LangSmith trace with success
+      if (langsmithTrace) {
+        this.langsmithService?.finalizeTrace(
+          langsmithTrace,
+          {
+            success: true,
+            classification_result: classification?.expense_type,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+            total_phases: 5,
+            issues_detected: compliance?.validation_result?.issues?.length || 0,
+          },
+          {
+            final_processing_time_seconds: (processingTime / 1000).toFixed(1),
+            success: true,
+            phases_completed: ['image_quality', 'classification', 'extraction', 'compliance', 'citations'],
+            processing_mode: 'sequential',
+            // Individual agent processing times
+            agent_timings: {
+              image_quality_seconds: timing.phase_timings.image_quality_assessment_seconds,
+              classification_seconds: timing.phase_timings.file_classification_seconds,
+              extraction_seconds: timing.phase_timings.data_extraction_seconds,
+              compliance_seconds: timing.phase_timings.issue_detection_seconds,
+              citations_seconds: timing.phase_timings.citation_generation_seconds,
+            },
+          }
+        );
+
+        // Flush LangSmith trace
+        await this.langsmithService.flush();
       }
 
       return result;
@@ -343,7 +426,7 @@ export class ExpenseProcessingService {
       const processingTime = Date.now() - trueStartTime;
       this.logger.error(`Expense processing failed for ${filename}:`, error);
 
-      // Finalize main trace with error
+      // Finalize main trace with error (Langfuse)
       if (mainTrace) {
         mainTrace.update({
           output: {
@@ -357,9 +440,29 @@ export class ExpenseProcessingService {
             error: error.message,
           },
         });
-        
+
         // Flush the trace
         await this.langfuseService.flush();
+      }
+
+      // Finalize parallel LangSmith trace with error
+      if (langsmithTrace) {
+        this.langsmithService?.finalizeTrace(
+          langsmithTrace,
+          {
+            success: false,
+            error: error.message,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+          },
+          {
+            final_processing_time_ms: processingTime,
+            success: false,
+            error: error.message,
+          }
+        );
+
+        // Flush LangSmith trace
+        await this.langsmithService.flush();
       }
 
       // Return error result
@@ -372,14 +475,14 @@ export class ExpenseProcessingService {
     country: string,
     expenseSchema: any
   ): Promise<FileClassificationResult> {
-    return this.fileClassificationAgent.classifyFile(markdownContent, country, expenseSchema);
+    return this.fileClassificationAgent.classifyFile(markdownContent, country, expenseSchema, null, null);
   }
 
   async extractDataOnly(
     markdownContent: string,
     complianceData: any
   ): Promise<ExpenseData> {
-    return this.dataExtractionAgent.extractData(markdownContent, complianceData);
+    return this.dataExtractionAgent.extractData(markdownContent, complianceData, null, null);
   }
 
   async analyzeComplianceOnly(
@@ -394,7 +497,9 @@ export class ExpenseProcessingService {
       receiptType,
       icp,
       complianceData,
-      extractedData
+      extractedData,
+      null,
+      null
     );
   }
 
@@ -406,7 +511,9 @@ export class ExpenseProcessingService {
     return this.citationGeneratorAgent.generateCitations(
       extractedData,
       markdownContent,
-      filename
+      filename,
+      null,
+      null
     );
   }
 
