@@ -83,9 +83,21 @@ export class IssueDetectionAgent extends BaseAgent {
         extractedDataJson: JSON.stringify(extractedData, null, 2)
       };
 
+      // Get the prompt first to have it available for linking
+      const combinedPrompt = await this.getPromptTemplate('issue-detection-prompt', {
+        expenseTaxonomyDescription: JSON.stringify(this.expenseSchema?.properties || {}, null, 2),
+        country,
+        receiptType,
+        icp,
+        complianceDataJson: JSON.stringify(complianceData, null, 2),
+        extractedDataJson: JSON.stringify(extractedData, null, 2)
+      });
+      const promptObject = this.getLastPromptObject();
+      const promptInfo = { ...this.lastPromptInfo! };
+
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
           name: 'issue-detection',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -96,8 +108,10 @@ export class IssueDetectionAgent extends BaseAgent {
             country,
             icp,
             receiptType,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       } else {
         // Create standalone trace
         trace = this.langfuseService?.createTrace({
@@ -113,8 +127,8 @@ export class IssueDetectionAgent extends BaseAgent {
           tags: ['issue-detection', 'compliance-analysis', 'expense-processing'],
         }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
           name: 'compliance-analysis-llm-call',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -122,19 +136,11 @@ export class IssueDetectionAgent extends BaseAgent {
           metadata: {
             agent: 'IssueDetectionAgent',
             provider: this.currentProvider,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       }
-
-      const combinedPrompt = await this.getPromptTemplate('issue-detection-prompt', {
-        expenseTaxonomyDescription: JSON.stringify(this.expenseSchema?.properties || {}, null, 2),
-        country,
-        receiptType,
-        icp,
-        complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2)
-      });
-      const promptInfo = { ...this.lastPromptInfo! };
 
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
@@ -196,12 +202,10 @@ export class IssueDetectionAgent extends BaseAgent {
           icp,
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
-          // Include prompt metadata
-          prompt: {
-            promptName: promptInfo.name,
-            promptVersion: promptInfo.version || 'unknown',
-            promptConfig: promptInfo.config || {}
-          },
+          // Prompt is now linked directly to the generation
+          promptLinked: true,
+          promptName: promptInfo.name,
+          promptVersion: promptInfo.version || 'unknown',
         },
       });
 

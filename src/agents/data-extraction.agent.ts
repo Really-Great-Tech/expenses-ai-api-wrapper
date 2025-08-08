@@ -59,9 +59,16 @@ export class DataExtractionAgent extends BaseAgent {
         extractionType: 'standard_receipt_schema',
       };
 
+      // Get the prompt first to have it available for linking
+      const combinedPrompt = await this.getPromptTemplate('data-extraction-prompt', {
+        markdownContent
+      });
+      const promptObject = this.getLastPromptObject();
+      const promptInfo = { ...this.lastPromptInfo! };
+
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
           name: 'data-extraction',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -71,8 +78,10 @@ export class DataExtractionAgent extends BaseAgent {
             provider: this.currentProvider,
             contentLength: markdownContent.length,
             extractionType: 'standard_receipt_schema',
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       } else {
         // Create standalone trace
         trace = this.langfuseService?.createTrace({
@@ -87,8 +96,8 @@ export class DataExtractionAgent extends BaseAgent {
           tags: ['data-extraction', 'expense-processing'],
         }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
           name: 'extraction-llm-call',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -96,14 +105,11 @@ export class DataExtractionAgent extends BaseAgent {
           metadata: {
             agent: 'DataExtractionAgent',
             provider: this.currentProvider,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       }
-
-      const combinedPrompt = await this.getPromptTemplate('data-extraction-prompt', {
-        markdownContent
-      });
-      const promptInfo = { ...this.lastPromptInfo! };
 
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
@@ -167,12 +173,10 @@ export class DataExtractionAgent extends BaseAgent {
             fieldsExtracted: Object.keys(result).length,
             modelUsed: this.getActualModelUsed(),
             provider: this.currentProvider,
-            // Include prompt metadata
-            prompt: {
-              promptName: promptInfo.name,
-              promptVersion: promptInfo.version || 'unknown',
-              promptConfig: promptInfo.config || {}
-            },
+            // Prompt is now linked directly to the generation
+            promptLinked: true,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
         });
       }

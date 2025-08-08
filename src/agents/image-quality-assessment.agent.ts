@@ -61,14 +61,15 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
 
       // Get the assessment prompt from Langfuse
       const assessmentPrompt = await this.getPromptTemplate('image-quality-assessment-prompt');
+      const promptObject = this.getLastPromptObject();
       const promptInfo = { ...this.lastPromptInfo! };
 
       // Create the full user prompt that will be sent to the LLM
       const userPrompt = `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${assessmentPrompt}`;
 
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
           name: 'image-quality-assessment',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -78,8 +79,10 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
             provider: this.currentProvider,
             imagePath: path.basename(imagePath),
             assessmentType: 'llm_simulation',
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       } else {
         // Create standalone trace
         trace = this.langfuseService?.createTrace({
@@ -94,8 +97,8 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
           tags: ['image-quality-assessment', 'expense-processing'],
         }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
           name: 'quality-assessment-llm-call',
           input: traceInput,
           model: this.getActualModelUsed(),
@@ -103,8 +106,10 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
           metadata: {
             agent: 'ImageQualityAssessmentAgent',
             provider: this.currentProvider,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       }
 
       // Generate prompt version tags
@@ -166,12 +171,10 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
           imagePath: path.basename(imagePath),
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
-          // Include prompt metadata
-          prompt: {
-            promptName: promptInfo.name,
-            promptVersion: promptInfo.version || 'unknown',
-            promptConfig: promptInfo.config || {}
-          },
+          // Prompt is now linked directly to the generation
+          promptLinked: true,
+          promptName: promptInfo.name,
+          promptVersion: promptInfo.version || 'unknown',
         },
       });
 

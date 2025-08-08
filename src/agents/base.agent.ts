@@ -9,6 +9,7 @@ interface PromptInfo {
   name: string;
   version?: number;
   config?: any;
+  promptObject?: any; // Store the actual prompt object for linking
 }
 
 /**
@@ -47,11 +48,12 @@ export abstract class BaseAgent {
       this.logger.debug(`📋 Prompt version: ${promptTemplate.version || 'unknown'}`);
       this.logger.debug(`📋 Prompt config: ${JSON.stringify(promptTemplate.config || {})}`);
       
-      // Store prompt info for trace association
+      // Store prompt info for trace association including the prompt object
       this.lastPromptInfo = {
         name: promptName,
         version: promptTemplate.version,
-        config: promptTemplate.config
+        config: promptTemplate.config,
+        promptObject: promptTemplate // Store the actual prompt object for linking
       };
 
       // Compile prompt with variables
@@ -64,24 +66,34 @@ export abstract class BaseAgent {
   }
 
   /**
-   * Link a prompt to a Langfuse generation for metrics tracking
+   * Get the last used prompt object for linking to generations
    */
-  protected async linkPromptToGeneration(
-    promptName: string,
-    generation: any,
-    variables?: Record<string, any>
-  ): Promise<void> {
-    try {
-      if (!this.langfuseService || !generation) return;
+  protected getLastPromptObject(): any | undefined {
+    return this.lastPromptInfo?.promptObject;
+  }
 
-      // Get the prompt template for linking
-      const promptTemplate = await this.langfuseService.getPrompt(promptName);
-      
-      // Note: Prompt linking will be handled during generation creation
-      // The Langfuse SDK handles prompt linking automatically when prompt is passed during generation creation
-    } catch (error) {
-      this.logger.warn(`Failed to link prompt ${promptName} to generation: ${error.message}`);
+  /**
+   * Create a generation with prompt linking
+   */
+  protected createGenerationWithPrompt(
+    trace: any,
+    data: any,
+    promptObject?: any
+  ): any {
+    if (!this.langfuseService) {
+      return null;
     }
+
+    // Use provided prompt object or the last used one
+    const prompt = promptObject || this.getLastPromptObject();
+    
+    // Add prompt to generation data for linking
+    const generationData = {
+      ...data,
+      prompt: prompt
+    };
+
+    return this.langfuseService.createGeneration(trace, generationData);
   }
 
   /**
