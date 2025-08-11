@@ -63,8 +63,12 @@ export class CitationGeneratorAgent extends BaseAgent {
         markdownContentLength: markdownContent.length,
       };
 
+      // We'll get the prompt object from the first batch processing
+      let promptObject: any = null;
+      let promptInfo: any = null;
+
       if (parentTrace) {
-        // Create as a span within parent trace
+        // Create as a span within parent trace (will update with prompt later)
         generation = this.langfuseService?.createGeneration(parentTrace, {
           name: 'citation-generation',
           input: traceInput,
@@ -91,7 +95,7 @@ export class CitationGeneratorAgent extends BaseAgent {
           tags: ['citation-generation', 'expense-processing'],
         }) || null;
 
-        // Create generation within trace
+        // Create generation within trace (will update with prompt later)
         generation = this.langfuseService?.createGeneration(trace, {
           name: 'citation-generation-llm-call',
           input: traceInput,
@@ -137,6 +141,8 @@ export class CitationGeneratorAgent extends BaseAgent {
         
         // Collect prompt tags and update trace input from first batch
         if (i === 0 && this.lastPromptInfo) {
+          promptObject = this.getLastPromptObject();
+          promptInfo = { ...this.lastPromptInfo };
           promptVersionTags = this.getPromptVersionTags();
           
           // Update trace input with actual prompt data from first batch
@@ -145,16 +151,38 @@ export class CitationGeneratorAgent extends BaseAgent {
             markdownContent
           };
           
-          // Update the trace input to show exact prompt inputs
-          if (trace) {
-            trace.update({
-              input: firstBatchPromptInput
-            });
-          }
+          // Update the generation with prompt linking
           if (generation) {
-            generation.update({
-              input: firstBatchPromptInput
-            });
+            // Re-create generation with prompt linking
+            if (parentTrace) {
+              generation = this.createGenerationWithPrompt(parentTrace, {
+                name: 'citation-generation',
+                input: firstBatchPromptInput,
+                model: this.getActualModelUsed(),
+                startTime,
+                metadata: {
+                  agent: 'CitationGeneratorAgent',
+                  provider: this.currentProvider,
+                  filename,
+                  fieldsCount: Object.keys(extractedData).length,
+                  promptName: promptInfo.name,
+                  promptVersion: promptInfo.version || 'unknown',
+                },
+              }, promptObject) || generation;
+            } else if (trace) {
+              generation = this.createGenerationWithPrompt(trace, {
+                name: 'citation-generation-llm-call',
+                input: firstBatchPromptInput,
+                model: this.getActualModelUsed(),
+                startTime,
+                metadata: {
+                  agent: 'CitationGeneratorAgent',
+                  provider: this.currentProvider,
+                  promptName: promptInfo.name,
+                  promptVersion: promptInfo.version || 'unknown',
+                },
+              }, promptObject) || generation;
+            }
           }
         }
       }
@@ -192,8 +220,10 @@ export class CitationGeneratorAgent extends BaseAgent {
           filename,
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
-          // Include prompt metadata from last batch (representative)
-          prompt: this.getPromptMetadata(),
+          // Prompt is now linked directly to the generation
+          promptLinked: true,
+          promptName: promptInfo?.name || 'citation-generation-prompt',
+          promptVersion: promptInfo?.version || 'unknown',
         },
       });
 

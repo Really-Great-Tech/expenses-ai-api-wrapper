@@ -60,9 +60,18 @@ export class FileClassificationAgent extends BaseAgent {
         expectedCountry: expectedCountry || "Not specified"
       };
 
+      // Get the prompt first to have it available for linking
+      const combinedPrompt = await this.getPromptTemplate('file-classification-prompt', {
+        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
+        markdownContent,
+        expectedCountry: expectedCountry || "Not specified"
+      });
+      const promptObject = this.getLastPromptObject();
+      const promptInfo = { ...this.lastPromptInfo! };
+
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
           name: 'file-classification',
           input: traceInput,
           model: this.modelName,
@@ -73,8 +82,10 @@ export class FileClassificationAgent extends BaseAgent {
             expectedCountry,
             contentLength: markdownContent.length,
             modelUsed: this.getActualModelUsed(),
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       } else {
         // Create standalone trace (will add prompt tags after prompts are loaded)
         trace = this.langfuseService?.createTrace({
@@ -90,8 +101,8 @@ export class FileClassificationAgent extends BaseAgent {
           tags: ['file-classification', 'expense-processing'],
         }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
           name: 'classification-llm-call',
           input: traceInput,
           model: this.modelName,
@@ -100,16 +111,11 @@ export class FileClassificationAgent extends BaseAgent {
             agent: 'FileClassificationAgent',
             provider: this.currentProvider,
             modelUsed: this.getActualModelUsed(),
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
           },
-        }) || null;
+        }, promptObject) || null;
       }
-
-      const combinedPrompt = await this.getPromptTemplate('file-classification-prompt', {
-        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
-        markdownContent,
-        expectedCountry: expectedCountry || "Not specified"
-      });
-      const promptInfo = { ...this.lastPromptInfo! };
 
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
@@ -171,12 +177,10 @@ export class FileClassificationAgent extends BaseAgent {
           classification_confidence: result.classification_confidence,
           modelUsed: this.getActualModelUsed(),
           provider: this.currentProvider,
-          // Include prompt metadata
-          prompt: {
-            promptName: promptInfo.name,
-            promptVersion: promptInfo.version || 'unknown',
-            promptConfig: promptInfo.config || {}
-          },
+          // Prompt is now linked directly to the generation
+          promptLinked: true,
+          promptName: promptInfo.name,
+          promptVersion: promptInfo.version || 'unknown',
         },
       });
 

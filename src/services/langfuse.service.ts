@@ -31,6 +31,7 @@ export interface LangfuseGenerationData {
   metadata?: Record<string, any>;
   startTime?: Date;
   endTime?: Date;
+  prompt?: any; // Add prompt object for linking
 }
 
 export interface ExpenseDatasetItem {
@@ -166,6 +167,7 @@ export class LangfuseService implements OnModuleInit {
         metadata: data.metadata,
         startTime: data.startTime,
         endTime: data.endTime,
+        prompt: data.prompt, // Pass prompt object for linking
       });
     } catch (error) {
       this.logger.error('Failed to create generation:', error);
