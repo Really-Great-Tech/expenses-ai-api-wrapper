@@ -1,13 +1,11 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Langfuse } from 'langfuse';
-import type { 
-  LangfuseGenerationClient, 
-  LangfuseTraceClient
-} from 'langfuse';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as mime from 'mime-types';
+import { Injectable, Logger, OnModuleInit } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { Langfuse } from "langfuse";
+import type { LangfuseGenerationClient, LangfuseTraceClient } from "langfuse";
+import * as fs from "fs";
+import * as path from "path";
+import * as mime from "mime-types";
+import { PromptTemplate } from "../interfaces/prompt-management.interface";
 
 export interface LangfuseTraceData {
   name: string;
@@ -33,24 +31,48 @@ export interface LangfuseGenerationData {
   metadata?: Record<string, any>;
   startTime?: Date;
   endTime?: Date;
+  prompt?: any; // Add prompt object for linking
 }
 
 export interface ExpenseDatasetItem {
   input: {
-    markdownContent: string;
-    country: string;
+    // FileClassificationAgent inputs
+    schemaFieldsDescription?: string;
+    markdownContent?: string;
+    expectedCountry?: string;
+
+    // DataExtractionAgent inputs
+    country?: string;
+
+    // IssueDetectionAgent inputs
+    expenseTaxonomyDescription?: string | any;
+    receiptType?: string;
+    icp?: string;
+    complianceDataJson?: string;
+    complianceData?: any;
+    extractedDataJson?: string;
+    extractedData?: any;
+
+    // ImageQualityAssessmentAgent inputs
+    userPrompt?: string;
+    imagePath?: string;
+    imageInfo?: string;
+    assessmentType?: string;
+
+    // Legacy fields
     documentType?: string;
-    filename: string;
+    filename?: string;
   };
   expectedOutput: {
     classification?: any;
     extraction?: any;
     compliance?: any;
     citations?: any;
+    image_quality_assessment?: any;
   };
   metadata: {
     filename: string;
-    processingComplexity: 'simple' | 'medium' | 'complex';
+    processingComplexity: "simple" | "medium" | "complex";
     language: string;
     documentReader: string;
     processingTime?: number;
@@ -67,19 +89,29 @@ export class LangfuseService implements OnModuleInit {
 
   async onModuleInit() {
     try {
-      this.isEnabled = this.configService.get<boolean>('LANGFUSE_ENABLED', false);
-      
+      // Properly parse boolean from environment variable string
+      const langfuseEnabledStr = this.configService.get<string>(
+        "LANGFUSE_ENABLED",
+        "false"
+      );
+      this.isEnabled = langfuseEnabledStr.toLowerCase() === "true";
+
       if (!this.isEnabled) {
-        this.logger.log('Langfuse is disabled');
+        this.logger.log("Langfuse is disabled");
         return;
       }
 
-      const secretKey = this.configService.get<string>('LANGFUSE_SECRET_KEY');
-      const publicKey = this.configService.get<string>('LANGFUSE_PUBLIC_KEY');
-      const baseUrl = this.configService.get<string>('LANGFUSE_BASE_URL', 'http://localhost:3001');
+      const secretKey = this.configService.get<string>("LANGFUSE_SECRET_KEY");
+      const publicKey = this.configService.get<string>("LANGFUSE_PUBLIC_KEY");
+      const baseUrl = this.configService.get<string>(
+        "LANGFUSE_BASE_URL",
+        "http://localhost:3001"
+      );
 
       if (!secretKey || !publicKey) {
-        this.logger.warn('Langfuse credentials not provided, disabling Langfuse integration');
+        this.logger.warn(
+          "Langfuse credentials not provided, disabling Langfuse integration"
+        );
         this.isEnabled = false;
         return;
       }
@@ -90,9 +122,11 @@ export class LangfuseService implements OnModuleInit {
         baseUrl,
       });
 
-      this.logger.log(`Langfuse initialized successfully with baseUrl: ${baseUrl}`);
+      this.logger.log(
+        `Langfuse initialized successfully with baseUrl: ${baseUrl}`
+      );
     } catch (error) {
-      this.logger.error('Failed to initialize Langfuse:', error);
+      this.logger.error("Failed to initialize Langfuse:", error);
       this.isEnabled = false;
     }
   }
@@ -116,7 +150,7 @@ export class LangfuseService implements OnModuleInit {
         sessionId: data.sessionId,
       });
     } catch (error) {
-      this.logger.error('Failed to create trace:', error);
+      this.logger.error("Failed to create trace:", error);
       return null;
     }
   }
@@ -143,9 +177,10 @@ export class LangfuseService implements OnModuleInit {
         metadata: data.metadata,
         startTime: data.startTime,
         endTime: data.endTime,
+        prompt: data.prompt, // Pass prompt object for linking
       });
     } catch (error) {
-      this.logger.error('Failed to create generation:', error);
+      this.logger.error("Failed to create generation:", error);
       return null;
     }
   }
@@ -169,7 +204,25 @@ export class LangfuseService implements OnModuleInit {
         metadata: data.metadata,
       });
     } catch (error) {
-      this.logger.error('Failed to update generation:', error);
+      this.logger.error("Failed to update generation:", error);
+    }
+  }
+
+  /**
+   * Add tags to an existing trace
+   */
+  addTagsToTrace(trace: LangfuseTraceClient | null, tags: string[]): void {
+    if (!this.isEnabled || !trace || !tags.length) {
+      return;
+    }
+
+    try {
+      // Update trace with additional tags
+      trace.update({
+        tags: tags,
+      });
+    } catch (error) {
+      this.logger.error("Failed to add tags to trace:", error);
     }
   }
 
@@ -191,7 +244,7 @@ export class LangfuseService implements OnModuleInit {
         metadata,
       });
     } catch (error) {
-      this.logger.error('Failed to finalize trace:', error);
+      this.logger.error("Failed to finalize trace:", error);
     }
   }
 
@@ -214,7 +267,7 @@ export class LangfuseService implements OnModuleInit {
       return true;
     } catch (error) {
       // Dataset might already exist, which is fine
-      if (error.message?.includes('already exists')) {
+      if (error.message?.includes("already exists")) {
         this.logger.log(`Dataset '${name}' already exists`);
         return true;
       }
@@ -243,10 +296,15 @@ export class LangfuseService implements OnModuleInit {
       };
 
       await this.langfuse.createDatasetItem(datasetItem);
-      this.logger.log(`Added item to dataset '${datasetName}': ${item.metadata.filename}`);
+      this.logger.log(
+        `Added item to dataset '${datasetName}': ${item.metadata.filename}`
+      );
       return true;
     } catch (error) {
-      this.logger.error(`Failed to add item to dataset '${datasetName}':`, error);
+      this.logger.error(
+        `Failed to add item to dataset '${datasetName}':`,
+        error
+      );
       return false;
     }
   }
@@ -262,7 +320,7 @@ export class LangfuseService implements OnModuleInit {
     try {
       await this.langfuse.flushAsync();
     } catch (error) {
-      this.logger.error('Failed to flush Langfuse data:', error);
+      this.logger.error("Failed to flush Langfuse data:", error);
     }
   }
 
@@ -287,7 +345,7 @@ export class LangfuseService implements OnModuleInit {
         comment,
       });
     } catch (error) {
-      this.logger.error('Failed to score generation:', error);
+      this.logger.error("Failed to score generation:", error);
     }
   }
 
@@ -321,7 +379,7 @@ export class LangfuseService implements OnModuleInit {
       this.logger.log(`Created experiment run: ${runId}`);
       return runId;
     } catch (error) {
-      this.logger.error('Failed to create experiment run:', error);
+      this.logger.error("Failed to create experiment run:", error);
       return null;
     }
   }
@@ -341,9 +399,11 @@ export class LangfuseService implements OnModuleInit {
 
     try {
       // This would typically be handled by Langfuse's experiment API
-      this.logger.log(`Experiment result logged for run ${runId}: ${datasetItemId}`);
+      this.logger.log(
+        `Experiment result logged for run ${runId}: ${datasetItemId}`
+      );
     } catch (error) {
-      this.logger.error('Failed to log experiment result:', error);
+      this.logger.error("Failed to log experiment result:", error);
     }
   }
 
@@ -377,17 +437,19 @@ export class LangfuseService implements OnModuleInit {
 
       // Check file size
       if (fileSizeMB > maxSizeMB) {
-        this.logger.warn(`File too large for attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`);
+        this.logger.warn(
+          `File too large for attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`
+        );
         return false;
       }
 
       // Read and encode file
       const fileBuffer = fs.readFileSync(filePath);
-      const base64Content = fileBuffer.toString('base64');
-      
+      const base64Content = fileBuffer.toString("base64");
+
       // Get file info
       const fileName = options.name || path.basename(filePath);
-      const mimeType = mime.lookup(filePath) || 'application/octet-stream';
+      const mimeType = mime.lookup(filePath) || "application/octet-stream";
       const fileExtension = path.extname(filePath);
 
       // Create attachment data
@@ -411,19 +473,58 @@ export class LangfuseService implements OnModuleInit {
       (trace as any).update({
         metadata: {
           ...currentMetadata,
-          attachments: [
-            ...(currentMetadata.attachments || []),
-            attachmentData,
-          ],
+          attachments: [...(currentMetadata.attachments || []), attachmentData],
         },
       });
 
-      this.logger.log(`File attached to trace: ${fileName} (${fileSizeMB.toFixed(2)}MB)`);
+      this.logger.log(
+        `File attached to trace: ${fileName} (${fileSizeMB.toFixed(2)}MB)`
+      );
       return true;
-
     } catch (error) {
-      this.logger.error(`Failed to attach file to trace: ${error.message}`, error);
+      this.logger.error(
+        `Failed to attach file to trace: ${error.message}`,
+        error
+      );
       return false;
+    }
+  }
+
+  async getPrompt(
+    name: string,
+    fallbackPrompt?: string,
+    options?: {
+      version?: number;
+      label?: string;
+      type?: "text" | "chat";
+    }
+  ): Promise<PromptTemplate> {
+    if (!this.isEnabled) {
+      return this.createFallbackPrompt(fallbackPrompt || "");
+    }
+
+    try {
+      // Handle text and chat prompts separately due to TypeScript overloads
+      if (options?.type === "chat") {
+        const prompt = await this.langfuse.getPrompt(name, options?.version, {
+          label: options?.label || "production",
+          type: "chat",
+        });
+        this.logger.debug(`Successfully fetched chat prompt: ${name}`);
+        return prompt;
+      } else {
+        const prompt = await this.langfuse.getPrompt(name, options?.version, {
+          label: options?.label || "production",
+          type: "text",
+        });
+        this.logger.debug(`Successfully fetched text prompt: ${name}`);
+        return prompt;
+      }
+    } catch (error) {
+      this.logger.warn(
+        `Failed to fetch prompt ${name}, using fallback: ${error.message}`
+      );
+      return this.createFallbackPrompt(fallbackPrompt || "");
     }
   }
 
@@ -457,17 +558,19 @@ export class LangfuseService implements OnModuleInit {
 
       // Check file size
       if (fileSizeMB > maxSizeMB) {
-        this.logger.warn(`File too large for generation attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`);
+        this.logger.warn(
+          `File too large for generation attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`
+        );
         return false;
       }
 
       // Read and encode file
       const fileBuffer = fs.readFileSync(filePath);
-      const base64Content = fileBuffer.toString('base64');
-      
+      const base64Content = fileBuffer.toString("base64");
+
       // Get file info
       const fileName = options.name || path.basename(filePath);
-      const mimeType = mime.lookup(filePath) || 'application/octet-stream';
+      const mimeType = mime.lookup(filePath) || "application/octet-stream";
       const fileExtension = path.extname(filePath);
 
       // Create attachment data
@@ -490,19 +593,58 @@ export class LangfuseService implements OnModuleInit {
       (generation as any).update({
         metadata: {
           ...currentMetadata,
-          attachments: [
-            ...(currentMetadata.attachments || []),
-            attachmentData,
-          ],
+          attachments: [...(currentMetadata.attachments || []), attachmentData],
         },
       });
 
-      this.logger.log(`File attached to generation: ${fileName} (${fileSizeMB.toFixed(2)}MB)`);
+      this.logger.log(
+        `File attached to generation: ${fileName} (${fileSizeMB.toFixed(2)}MB)`
+      );
       return true;
-
     } catch (error) {
-      this.logger.error(`Failed to attach file to generation: ${error.message}`, error);
+      this.logger.error(
+        `Failed to attach file to generation: ${error.message}`,
+        error
+      );
       return false;
+    }
+  }
+
+  async createPrompt(config: {
+    name: string;
+    type: "text" | "chat";
+    prompt: string | any[];
+    labels?: string[];
+    config?: any;
+  }): Promise<void> {
+    if (!this.isEnabled) {
+      this.logger.warn("Langfuse not enabled, skipping prompt creation");
+      return;
+    }
+
+    try {
+      // Handle text and chat prompts separately due to TypeScript overloads
+      if (config.type === "chat") {
+        await this.langfuse.createPrompt({
+          name: config.name,
+          type: "chat",
+          prompt: config.prompt as any[],
+          labels: config.labels,
+          config: config.config,
+        });
+      } else {
+        await this.langfuse.createPrompt({
+          name: config.name,
+          type: "text",
+          prompt: config.prompt as string,
+          labels: config.labels,
+          config: config.config,
+        });
+      }
+      this.logger.log(`Successfully created/updated prompt: ${config.name}`);
+    } catch (error) {
+      this.logger.error(`Failed to create prompt ${config.name}:`, error);
+      throw error;
     }
   }
 
@@ -524,12 +666,12 @@ export class LangfuseService implements OnModuleInit {
 
       const stats = fs.statSync(filePath);
       const sizeMB = stats.size / (1024 * 1024);
-      
+
       return {
         exists: true,
         size: stats.size,
         sizeMB: parseFloat(sizeMB.toFixed(2)),
-        mimeType: mime.lookup(filePath) || 'application/octet-stream',
+        mimeType: mime.lookup(filePath) || "application/octet-stream",
         extension: path.extname(filePath),
         name: path.basename(filePath),
       };
@@ -553,12 +695,30 @@ export class LangfuseService implements OnModuleInit {
   ): Promise<LangfuseTraceClient | null> {
     // Create the trace first
     const trace = this.createTrace(data);
-    
+
     if (trace && filePath) {
       // Add the attachment
       await this.addTraceAttachment(trace, filePath, attachmentOptions);
     }
-    
+
     return trace;
+  }
+
+  private createFallbackPrompt(prompt: string): PromptTemplate {
+    return {
+      compile: (variables: Record<string, any>) => {
+        let compiledPrompt = prompt;
+        for (const [key, value] of Object.entries(variables)) {
+          const placeholder = `{{${key}}}`;
+          compiledPrompt = compiledPrompt.replace(
+            new RegExp(placeholder, "g"),
+            String(value)
+          );
+        }
+        return compiledPrompt;
+      },
+      prompt,
+      config: {},
+    };
   }
 }

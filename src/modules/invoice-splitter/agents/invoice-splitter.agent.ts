@@ -1,30 +1,23 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { OpenAI } from '@llamaindex/openai';
+import { Logger } from '@nestjs/common';
 import { Anthropic } from '@llamaindex/anthropic';
+import { BedrockLlmService } from '../../../utils/bedrockLlm';
 import { PageMarkdown, PageAnalysisResult } from '../types/invoice-splitter.types';
 
-@Injectable()
 export class InvoiceSplitterAgent {
   private readonly logger = new Logger(InvoiceSplitterAgent.name);
   private llm: any;
 
-  constructor() {
-    // Get provider from environment variable
-    const provider = process.env.SPLITTER_LLM_PROVIDER || process.env.LLM_PROVIDER || 'anthropic';
-    
-    if (provider === 'anthropic') {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+    this.logger.log(`Initializing InvoiceSplitterAgent with provider: ${provider}`);
+
+    if (provider === 'bedrock') {
+      this.llm = new BedrockLlmService();
+    } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
         model: 'claude-3-5-sonnet-20241022',
       });
-    } else {
-      this.llm = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        model: 'gpt-4o',
-      });
     }
-    
-    this.logger.log(`Initialized InvoiceSplitterAgent with ${provider} LLM provider`);
   }
 
   async analyzePages(pageMarkdowns: PageMarkdown[]): Promise<PageAnalysisResult> {
@@ -37,14 +30,25 @@ export class InvoiceSplitterAgent {
         messages: [
           {
             role: 'system',
-            content: `You are an expert document analyst specializing in invoice detection and page boundary identification. Your task is to analyze document pages and determine which pages belong to which invoice. You have deep expertise in understanding invoice structures, document formatting, and multi-page invoice patterns.
+            content: `You are an expert document analyst specializing in individual receipt/invoice identification. Your primary expertise is detecting separate transactions within document containers and avoiding incorrect grouping.
+
+CORE PRINCIPLE: Distinguish between DOCUMENT CONTAINERS and INDIVIDUAL TRANSACTIONS.
+
+CRITICAL UNDERSTANDING:
+- Document containers (expense reports, compilations) hold multiple separate transactions
+- Container headers like "Nota spese n° 107" or "Expense Report #123" are NOT transaction identifiers
+- Look for TRANSACTION-LEVEL identifiers within each page (receipt numbers, transaction times, totals)
+- Each complete transaction should be treated as a separate receipt, regardless of container
 
 Your analysis should be precise and methodical:
-1. Look for clear invoice boundaries like new invoice numbers, different vendors, separate totals
-2. Understand that invoices can span multiple pages
-3. Identify continuation pages that belong to previous invoices
-4. Consider document flow and logical groupings
-5. Provide high confidence scores for clear separations and lower for ambiguous cases
+1. IGNORE document-level headers and focus on transaction-level details
+2. Look for complete transaction cycles on individual pages
+3. Identify unique transaction markers (receipt numbers, transaction times, totals, payment methods)
+4. Separate receipts even if they share the same expense report number or vendor
+5. Only group pages when there's clear evidence of multi-page continuation of the SAME transaction
+6. When in doubt, separate rather than group - it's better to over-split than under-split
+
+CRITICAL: Container headers are NOT reasons to group transactions together.
 
 Always respond with valid JSON only - no explanations or markdown formatting.`,
           },
@@ -108,46 +112,142 @@ Always respond with valid JSON only - no explanations or markdown formatting.`,
       `=== PAGE ${page.pageNumber} ===\n${page.content.substring(0, 2000)}${page.content.length > 2000 ? '...' : ''}\n`
     ).join('\n');
 
-    return `Analyze these PDF pages to determine which pages belong to which invoice.
+    return `Analyze these PDF pages to identify individual receipts/invoices. Each page could potentially be a separate receipt unless proven otherwise.
 
 DOCUMENT PAGES:
 ${pagesContent}
 
-INSTRUCTIONS:
-1. Identify separate invoices across these pages
-2. Group consecutive pages that belong to the same invoice
-3. Look for clear invoice boundaries: new invoice numbers, different vendors, separate totals
-4. Handle continuation pages (pages without headers that continue previous invoice)
+ANALYSIS APPROACH:
+1. ASSUME each page is a separate receipt/invoice by default
+2. DISTINGUISH between document containers and individual transactions
+3. Focus on TRANSACTION-LEVEL identifiers, not document-level headers
+4. Look for COMPLETE TRANSACTION CYCLES on individual pages
+5. Ignore container headers that appear across multiple transactions
 
-GROUPING RULES:
-- Pages with same invoice number belong together
-- Pages with same vendor/company belong together  
-- Continuation pages (just line items, no header) belong to previous invoice
-- New invoice headers always start a new group
-- Consider date continuity and amount consistency
-- Look for formatting breaks, different layouts, or clear document separators
+CRITICAL: CONTAINER vs TRANSACTION DISTINCTION
+- CONTAINER HEADERS: Expense report numbers, document titles, employee names, report dates
+  Examples: "Nota spese n° 107", "Expense Report #2024-001", "John Smith Expenses"
+  → These are DOCUMENT CONTAINERS, not transaction identifiers
+  → IGNORE these for grouping decisions
+
+- TRANSACTION IDENTIFIERS: Individual receipt numbers, store transaction IDs, timestamps
+  Examples: "Receipt #12345", "Trans ID: 789", "Order #ABC123", specific transaction times
+  → These identify INDIVIDUAL TRANSACTIONS within containers
+  → USE these for grouping decisions
+
+INDIVIDUAL RECEIPT INDICATORS (Each suggests a separate receipt):
+- Complete transaction with total amount
+- Separate date/time stamps (different transaction times)
+- Different receipt/invoice numbers (transaction-level, not container-level)
+- Different order/confirmation numbers
+- Separate payment method information
+- Different transaction IDs or reference numbers
+- Complete item lists with subtotals and taxes
+- Different store locations or addresses (even same brand)
+- Separate "Thank you" or transaction completion messages
+- Different customer information
+- Standalone QR codes or barcodes
+- Individual merchant signatures or stamps
+
+GROUPING RULES FOR MULTI-PAGE RECEIPTS (Group when MOST criteria match):
+
+STRONG INDICATORS (Any 2+ suggest same transaction):
+- SAME exact TRANSACTION-LEVEL receipt/invoice number (not container number)
+- SAME exact transaction date/time
+- Clear continuation indicators: "Page 2 of 3", "Continued...", "See next page"
+- Sequential page numbering within same document
+- Incomplete transaction flow (no final total on early pages)
+- Consistent customer/billing information
+- Progressive totals (subtotal → tax → final total across pages)
+
+MULTI-PAGE PATTERNS TO RECOGNIZE:
+- "Page X of Y" or "Page X/Y"
+- "Continued on next page" or "Continued..."
+- Same invoice number with different page indicators
+- Building totals: Page 1 shows subtotal, Page 2 shows taxes, Page 3 shows final total
+- Consistent transaction context (same customer, same date, same vendor details)
+- Sequential item listings that continue across pages
+
+SEPARATION RULES (Always separate when ANY of these exist):
+- Different TRANSACTION-LEVEL receipt/invoice numbers
+- Different transaction dates or times (even same day)
+- Complete transaction cycle on EACH page (full start-to-finish flow)
+- Different payment methods or card numbers
+- Different store numbers or locations
+- Different customer names or details
+- Individual transaction completion indicators ("Thank you", "Transaction complete")
+- Separate merchant signatures or stamps
+- Each page has its own final total (not building totals)
+- Different billing/shipping addresses
+- Standalone QR codes or barcodes on each page
+
+TOTAL AMOUNT CONSIDERATIONS:
+- If pages show BUILDING totals (subtotal → tax → final), likely same transaction
+- If pages show DIFFERENT final totals, definitely separate transactions
+- If only last page shows total, check other indicators for grouping
+- Progressive calculations across pages suggest continuation
+
+EXPENSE REPORT SPECIFIC RULES:
+- If pages have expense report headers (like "Nota spese", "Expense Report") but different:
+  → Transaction times/dates → SEPARATE
+  → Receipt numbers → SEPARATE
+  → Total amounts → SEPARATE
+  → Store locations → SEPARATE
+- Expense report numbers are CONTAINERS, not transaction identifiers
+- Look WITHIN each page for individual transaction details
+- Each receipt in an expense report should be treated separately
+
+SPECIAL CASES TO WATCH FOR:
+- Digital receipt compilations (multiple complete receipts from same vendor)
+- Expense report collections (employee submitting multiple receipts under one report number)
+- Receipt scanning app outputs (various receipts with app branding)
+- Multi-location same brand receipts (different store numbers/addresses)
+- Subscription billing (multiple months from same provider)
+- E-commerce platform receipts (same platform, different sellers)
+
+COMMON CONTAINER PATTERNS TO IGNORE FOR GROUPING:
+- "Nota spese n° [number]" (Italian expense reports)
+- "Expense Report #[number]"
+- "Travel Expenses - [name/date]"
+- "[Employee Name] Reimbursement"
+- "Monthly Expenses [month/year]"
+- Document compilation headers
+- Scanning app watermarks or headers
 
 CONFIDENCE SCORING:
-- 0.9-1.0: Clear separate invoices with distinct headers/totals
-- 0.7-0.8: Likely separate invoices with some shared elements
-- 0.5-0.6: Possible separate invoices, unclear boundaries
-- 0.0-0.4: Probably single invoice or very unclear structure
+- 0.9-1.0: Clear individual receipts with complete transaction cycles
+- 0.7-0.8: Likely separate receipts with minor ambiguities
+- 0.5-0.6: Possible separate receipts, some shared elements
+- 0.3-0.4: Unclear boundaries, lean toward separation
+- 0.0-0.2: Strong evidence for grouping (true multi-page invoice)
 
 RESPONSE FORMAT (valid JSON only):
 {
-  "totalInvoices": 2,
+  "totalInvoices": 4,
   "pageGroups": [
     {
       "invoiceNumber": 1,
-      "pages": [1, 2],
+      "pages": [1],
       "confidence": 0.95,
-      "reasoning": "Pages 1-2: Invoice #INV-001 from Company A, includes header and items"
+      "reasoning": "Page 1: Individual receipt within expense report - Receipt #12345, total €15.50, 2024-01-15 09:30, Restaurant ABC"
     },
     {
       "invoiceNumber": 2,
-      "pages": [3, 4, 5], 
+      "pages": [2],
+      "confidence": 0.92,
+      "reasoning": "Page 2: Individual receipt within expense report - Receipt #67890, total €8.75, 2024-01-15 14:20, Cafe XYZ - different transaction"
+    },
+    {
+      "invoiceNumber": 3,
+      "pages": [3],
+      "confidence": 0.90,
+      "reasoning": "Page 3: Individual receipt within expense report - Receipt #11111, total €25.00, 2024-01-16 12:00, Hotel DEF - different date/amount"
+    },
+    {
+      "invoiceNumber": 4,
+      "pages": [4, 5],
       "confidence": 0.88,
-      "reasoning": "Pages 3-5: Invoice #INV-002 from Company B, multi-page with continuation"
+      "reasoning": "Pages 4-5: Multi-page invoice #INV-2024-001, same invoice number, 'Page 1 of 2' indicator, building totals (subtotal on page 4, final total on page 5)"
     }
   ]
 }
