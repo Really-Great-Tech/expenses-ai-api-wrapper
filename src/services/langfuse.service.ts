@@ -5,6 +5,9 @@ import type {
   LangfuseGenerationClient, 
   LangfuseTraceClient
 } from 'langfuse';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as mime from 'mime-types';
 
 export interface LangfuseTraceData {
   name: string;
@@ -342,5 +345,220 @@ export class LangfuseService implements OnModuleInit {
     } catch (error) {
       this.logger.error('Failed to log experiment result:', error);
     }
+  }
+
+  /**
+   * Add file attachment to a trace
+   */
+  async addTraceAttachment(
+    trace: LangfuseTraceClient | null,
+    filePath: string,
+    options: {
+      name?: string;
+      description?: string;
+      maxSizeMB?: number;
+    } = {}
+  ): Promise<boolean> {
+    if (!this.isEnabled || !this.langfuse || !trace || !filePath) {
+      return false;
+    }
+
+    try {
+      // Check if file exists
+      if (!fs.existsSync(filePath)) {
+        this.logger.warn(`File not found for attachment: ${filePath}`);
+        return false;
+      }
+
+      // Get file stats
+      const stats = fs.statSync(filePath);
+      const fileSizeMB = stats.size / (1024 * 1024);
+      const maxSizeMB = options.maxSizeMB || 10; // Default 10MB limit
+
+      // Check file size
+      if (fileSizeMB > maxSizeMB) {
+        this.logger.warn(`File too large for attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`);
+        return false;
+      }
+
+      // Read and encode file
+      const fileBuffer = fs.readFileSync(filePath);
+      const base64Content = fileBuffer.toString('base64');
+      
+      // Get file info
+      const fileName = options.name || path.basename(filePath);
+      const mimeType = mime.lookup(filePath) || 'application/octet-stream';
+      const fileExtension = path.extname(filePath);
+
+      // Create attachment data
+      const attachmentData = {
+        name: fileName,
+        contentType: mimeType,
+        data: base64Content,
+        metadata: {
+          originalPath: filePath,
+          fileSize: stats.size,
+          fileSizeMB: parseFloat(fileSizeMB.toFixed(2)),
+          extension: fileExtension,
+          description: options.description || `Attached file: ${fileName}`,
+          uploadedAt: new Date().toISOString(),
+        },
+      };
+
+      // Add attachment to trace
+      // Note: Langfuse attachment API might vary, this is a generic approach
+      const currentMetadata = (trace as any).metadata || {};
+      (trace as any).update({
+        metadata: {
+          ...currentMetadata,
+          attachments: [
+            ...(currentMetadata.attachments || []),
+            attachmentData,
+          ],
+        },
+      });
+
+      this.logger.log(`File attached to trace: ${fileName} (${fileSizeMB.toFixed(2)}MB)`);
+      return true;
+
+    } catch (error) {
+      this.logger.error(`Failed to attach file to trace: ${error.message}`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Add file attachment to a generation
+   */
+  async addGenerationAttachment(
+    generation: LangfuseGenerationClient | null,
+    filePath: string,
+    options: {
+      name?: string;
+      description?: string;
+      maxSizeMB?: number;
+    } = {}
+  ): Promise<boolean> {
+    if (!this.isEnabled || !this.langfuse || !generation || !filePath) {
+      return false;
+    }
+
+    try {
+      // Check if file exists
+      if (!fs.existsSync(filePath)) {
+        this.logger.warn(`File not found for attachment: ${filePath}`);
+        return false;
+      }
+
+      // Get file stats
+      const stats = fs.statSync(filePath);
+      const fileSizeMB = stats.size / (1024 * 1024);
+      const maxSizeMB = options.maxSizeMB || 5; // Default 5MB limit for generations
+
+      // Check file size
+      if (fileSizeMB > maxSizeMB) {
+        this.logger.warn(`File too large for generation attachment: ${fileSizeMB.toFixed(2)}MB > ${maxSizeMB}MB`);
+        return false;
+      }
+
+      // Read and encode file
+      const fileBuffer = fs.readFileSync(filePath);
+      const base64Content = fileBuffer.toString('base64');
+      
+      // Get file info
+      const fileName = options.name || path.basename(filePath);
+      const mimeType = mime.lookup(filePath) || 'application/octet-stream';
+      const fileExtension = path.extname(filePath);
+
+      // Create attachment data
+      const attachmentData = {
+        name: fileName,
+        contentType: mimeType,
+        data: base64Content,
+        metadata: {
+          originalPath: filePath,
+          fileSize: stats.size,
+          fileSizeMB: parseFloat(fileSizeMB.toFixed(2)),
+          extension: fileExtension,
+          description: options.description || `Attached file: ${fileName}`,
+          uploadedAt: new Date().toISOString(),
+        },
+      };
+
+      // Add attachment to generation metadata
+      const currentMetadata = (generation as any).metadata || {};
+      (generation as any).update({
+        metadata: {
+          ...currentMetadata,
+          attachments: [
+            ...(currentMetadata.attachments || []),
+            attachmentData,
+          ],
+        },
+      });
+
+      this.logger.log(`File attached to generation: ${fileName} (${fileSizeMB.toFixed(2)}MB)`);
+      return true;
+
+    } catch (error) {
+      this.logger.error(`Failed to attach file to generation: ${error.message}`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Get file info without attaching (for validation)
+   */
+  getFileInfo(filePath: string): {
+    exists: boolean;
+    size?: number;
+    sizeMB?: number;
+    mimeType?: string;
+    extension?: string;
+    name?: string;
+  } {
+    try {
+      if (!fs.existsSync(filePath)) {
+        return { exists: false };
+      }
+
+      const stats = fs.statSync(filePath);
+      const sizeMB = stats.size / (1024 * 1024);
+      
+      return {
+        exists: true,
+        size: stats.size,
+        sizeMB: parseFloat(sizeMB.toFixed(2)),
+        mimeType: mime.lookup(filePath) || 'application/octet-stream',
+        extension: path.extname(filePath),
+        name: path.basename(filePath),
+      };
+    } catch (error) {
+      this.logger.error(`Failed to get file info: ${error.message}`);
+      return { exists: false };
+    }
+  }
+
+  /**
+   * Create trace with file attachment
+   */
+  async createTraceWithAttachment(
+    data: LangfuseTraceData,
+    filePath: string,
+    attachmentOptions: {
+      name?: string;
+      description?: string;
+      maxSizeMB?: number;
+    } = {}
+  ): Promise<LangfuseTraceClient | null> {
+    // Create the trace first
+    const trace = this.createTrace(data);
+    
+    if (trace && filePath) {
+      // Add the attachment
+      await this.addTraceAttachment(trace, filePath, attachmentOptions);
+    }
+    
+    return trace;
   }
 }
