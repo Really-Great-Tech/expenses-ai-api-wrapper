@@ -192,8 +192,8 @@ export class IssueDetectionAgent extends BaseAgent {
         country,
         receiptType,
         icp,
-        complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2),
+        complianceData: JSON.stringify(complianceData, null, 2),
+        extractedData: JSON.stringify(extractedData, null, 2),
         jsonSchema: JSON.stringify(ISSUE_DETECTION_SCHEMA, null, 2)
       });
       const promptInfo = { ...this.lastPromptInfo! };

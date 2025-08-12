@@ -354,8 +354,34 @@ export class LangSmithService implements OnModuleInit {
       }
 
       this.logger.log(`🔍 Pulling prompt from LangSmith: "${fullPromptName}"`);
+      this.logger.debug(`🔍 Debug info:`);
+      this.logger.debug(`   - Original prompt name: "${promptName}"`);
+      this.logger.debug(`   - Owner parameter: "${owner}"`);
+      this.logger.debug(`   - LANGSMITH_OWNER env: "${process.env.LANGSMITH_OWNER}"`);
+      this.logger.debug(`   - LANGSMITH_USER env: "${process.env.LANGSMITH_USER}"`);
+      this.logger.debug(`   - Final full prompt name: "${fullPromptName}"`);
 
-      const prompt = await this.langsmith._pullPrompt(fullPromptName);
+      let prompt;
+      try {
+        prompt = await this.langsmith._pullPrompt(fullPromptName);
+      } catch (error) {
+        this.logger.warn(`❌ Failed to pull prompt with owner prefix: ${error.message}`);
+
+        // Try without owner prefix as fallback
+        if (fullPromptName.includes('/')) {
+          const promptNameOnly = promptName; // Use original prompt name without owner
+          this.logger.log(`🔄 Retrying without owner prefix: "${promptNameOnly}"`);
+          try {
+            prompt = await this.langsmith._pullPrompt(promptNameOnly);
+            this.logger.log(`✅ Successfully pulled prompt without owner prefix`);
+          } catch (fallbackError) {
+            this.logger.error(`❌ Fallback also failed: ${fallbackError.message}`);
+            throw error; // Throw original error
+          }
+        } else {
+          throw error;
+        }
+      }
 
       if (prompt) {
         // Extract commit hash if available
