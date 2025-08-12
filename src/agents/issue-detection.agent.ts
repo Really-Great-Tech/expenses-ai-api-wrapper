@@ -8,6 +8,39 @@ import * as path from 'path';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
 
+// Issue Detection JSON Schema for LangSmith prompt template
+const ISSUE_DETECTION_SCHEMA = {
+  "validation_result": {
+    "is_valid": true,
+    "issues_count": 2,
+    "issues": [
+      {
+        "issue_type": "Standards & Compliance | Fix Identified",
+        "field": "tax_amount",
+        "description": "Tax amount appears to be calculated incorrectly based on the total and tax rate",
+        "recommendation": "Verify tax calculation and update if necessary",
+        "knowledge_base_reference": "Tax calculations must comply with local tax regulations"
+      },
+      {
+        "issue_type": "Standards & Compliance | Follow-up Action Identified",
+        "field": "receipt_date",
+        "description": "Receipt date is more than 30 days old",
+        "recommendation": "Submit expense report within company policy timeframe",
+        "knowledge_base_reference": "Expenses must be submitted within 30 days of incurrence"
+      }
+    ],
+    "corrected_receipt": null,
+    "compliance_summary": "Receipt contains minor compliance issues that require attention but does not prevent processing"
+  },
+  "technical_details": {
+    "content_type": "expense_receipt",
+    "country": "United States",
+    "icp": "North America",
+    "receipt_type": "retail_purchase",
+    "issues_count": 2
+  }
+};
+
 export class IssueDetectionAgent extends BaseAgent {
   private llm: any;
   private expenseSchema: any;
@@ -71,9 +104,12 @@ export class IssueDetectionAgent extends BaseAgent {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
     let generation: LangfuseGenerationClient | null = null;
+    let langsmithGeneration: any = null;
 
     try {
       this.logger.log(`Starting compliance analysis for ${country}/${icp}`);
+
+
 
       // Create Langfuse trace with exact prompt inputs
       const traceInput = {
@@ -86,55 +122,79 @@ export class IssueDetectionAgent extends BaseAgent {
       };
 
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
-          name: 'issue-detection',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'IssueDetectionAgent',
-            provider: this.currentProvider,
-            country,
-            icp,
-            receiptType,
-          },
-        }) || null;
-      } else {
-        // Create standalone trace
-        trace = this.langfuseService?.createTrace({
-          name: 'issue-detection',
-          input: traceInput,
-          metadata: {
-            agent: 'IssueDetectionAgent',
-            provider: this.currentProvider,
-            country,
-            icp,
-            receiptType,
-          },
-          tags: ['issue-detection', 'compliance-analysis', 'expense-processing'],
-        }) || null;
+        // Create as a span within parent trace (DISABLED - hard switch to LangSmith)
+        generation = null; // Disabled Langfuse generation creation
+        // generation = this.langfuseService?.createGeneration(parentTrace, {
+        //   name: 'issue-detection',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'IssueDetectionAgent',
+        //     provider: this.currentProvider,
+        //     country,
+        //     icp,
+        //     receiptType,
+        //   },
+        // }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
-          name: 'compliance-analysis-llm-call',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'IssueDetectionAgent',
-            provider: this.currentProvider,
-          },
-        }) || null;
+        // Create parallel LangSmith generation with prompt metadata
+        if (langsmithParentTrace) {
+          langsmithGeneration = await this.langsmithService?.createGeneration(langsmithParentTrace, {
+            name: 'issue-detection',
+            input: traceInput,
+            model: this.getActualModelUsed(),
+            startTime,
+            promptName: 'issue-detection-prompt',
+            promptCommitHash: this.lastPromptInfo?.config?.commitHash,
+            metadata: {
+              agent: 'IssueDetectionAgent',
+              provider: this.currentProvider,
+              country,
+              icp,
+              receiptType,
+            },
+          }) || null;
+        }
+      } else {
+        // Create standalone trace (DISABLED - hard switch to LangSmith)
+        trace = null; // Disabled Langfuse trace creation
+        generation = null; // Disabled Langfuse generation creation
+        // trace = this.langfuseService?.createTrace({
+        //   name: 'issue-detection',
+        //   input: traceInput,
+        //   metadata: {
+        //     agent: 'IssueDetectionAgent',
+        //     provider: this.currentProvider,
+        //     country,
+        //     icp,
+        //     receiptType,
+        //   },
+        //   tags: ['issue-detection', 'compliance-analysis', 'expense-processing'],
+        // }) || null;
+
+        // // Create generation within trace
+        // generation = this.langfuseService?.createGeneration(trace, {
+        //   name: 'compliance-analysis-llm-call',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'IssueDetectionAgent',
+        //     provider: this.currentProvider,
+        //   },
+        // }) || null;
       }
 
+      // Get prompt first to have version info
       const combinedPrompt = await this.getPromptTemplate('issue-detection-prompt', {
         expenseTaxonomyDescription: JSON.stringify(this.expenseSchema?.properties || {}, null, 2),
         country,
         receiptType,
         icp,
         complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2)
+        extractedDataJson: JSON.stringify(extractedData, null, 2),
+        jsonSchema: JSON.stringify(ISSUE_DETECTION_SCHEMA, null, 2)
       });
       const promptInfo = { ...this.lastPromptInfo! };
 
@@ -206,6 +266,29 @@ export class IssueDetectionAgent extends BaseAgent {
           },
         },
       });
+
+      // Update parallel LangSmith generation with results
+      if (langsmithGeneration) {
+        await this.langsmithService?.updateGeneration(langsmithGeneration, {
+          output: result,
+          usage: {
+            promptTokens: Math.floor(combinedPrompt.length / 4),
+            completionTokens: Math.floor(rawContent.length / 4),
+            totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
+          },
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: true,
+            issuesCount: result.validation_result.issues_count,
+            isValid: result.validation_result.is_valid,
+            country,
+            icp,
+            modelUsed: this.getActualModelUsed(),
+            provider: this.currentProvider,
+          },
+        });
+      }
 
       // Finalize trace if it's a standalone trace
       if (trace && !parentTrace) {
@@ -286,15 +369,37 @@ export class IssueDetectionAgent extends BaseAgent {
 
   private parseJsonResponse(content: string): any {
     try {
-      // Remove markdown code blocks if present
-      const cleanContent = content
-        .replace(/```json\s*/g, '')
-        .replace(/```\s*/g, '')
-        .trim();
+      // Log the raw response for debugging
+      this.logger.debug('🔍 Raw LLM response:', content.substring(0, 500) + (content.length > 500 ? '...' : ''));
+
+      // More aggressive JSON extraction
+      let cleanContent = content;
+
+      // Remove markdown code blocks
+      cleanContent = cleanContent.replace(/```json\s*/g, '').replace(/```\s*/g, '');
+
+      // Try to find JSON object in the response
+      const jsonMatch = cleanContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        cleanContent = jsonMatch[0];
+        this.logger.debug('🎯 Extracted JSON from mixed response');
+      } else {
+        // Fallback: look for the first { and last }
+        const firstBrace = cleanContent.indexOf('{');
+        const lastBrace = cleanContent.lastIndexOf('}');
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+          cleanContent = cleanContent.substring(firstBrace, lastBrace + 1);
+          this.logger.debug('🎯 Extracted JSON using brace matching');
+        }
+      }
+
+      cleanContent = cleanContent.trim();
+      this.logger.debug('🧹 Cleaned response:', cleanContent.substring(0, 500) + (cleanContent.length > 500 ? '...' : ''));
 
       return JSON.parse(cleanContent);
     } catch (error) {
-      this.logger.error('Failed to parse JSON response:', error);
+      this.logger.error('❌ Failed to parse JSON response:', error);
+      this.logger.error('📄 Full raw content that failed to parse:', content);
       throw new Error(`Invalid JSON response: ${error.message}`);
     }
   }

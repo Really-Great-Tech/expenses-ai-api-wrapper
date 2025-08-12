@@ -46,6 +46,7 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
     let generation: LangfuseGenerationClient | null = null;
+    let langsmithGeneration: any = null;
 
     this.logger.log(`🤖 Starting LLM-based quality assessment for: ${path.basename(imagePath)}`);
 
@@ -68,44 +69,65 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
       const userPrompt = `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${assessmentPrompt}`;
 
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
-          name: 'image-quality-assessment',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'ImageQualityAssessmentAgent',
-            provider: this.currentProvider,
-            imagePath: path.basename(imagePath),
-            assessmentType: 'llm_simulation',
-          },
-        }) || null;
-      } else {
-        // Create standalone trace
-        trace = this.langfuseService?.createTrace({
-          name: 'image-quality-assessment',
-          input: traceInput,
-          metadata: {
-            agent: 'ImageQualityAssessmentAgent',
-            provider: this.currentProvider,
-            imagePath: path.basename(imagePath),
-            assessmentType: 'llm_simulation',
-          },
-          tags: ['image-quality-assessment', 'expense-processing'],
-        }) || null;
+        // Create as a span within parent trace (DISABLED - hard switch to LangSmith)
+        generation = null; // Disabled Langfuse generation creation
+        // generation = this.langfuseService?.createGeneration(parentTrace, {
+        //   name: 'image-quality-assessment',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'ImageQualityAssessmentAgent',
+        //     provider: this.currentProvider,
+        //     imagePath: path.basename(imagePath),
+        //     assessmentType: 'llm_simulation',
+        //   },
+        // }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
-          name: 'quality-assessment-llm-call',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'ImageQualityAssessmentAgent',
-            provider: this.currentProvider,
-          },
-        }) || null;
+        // Create parallel LangSmith generation with prompt metadata
+        if (langsmithParentTrace) {
+          langsmithGeneration = await this.langsmithService?.createGeneration(langsmithParentTrace, {
+            name: 'image-quality-assessment',
+            input: traceInput,
+            model: this.getActualModelUsed(),
+            startTime,
+            promptName: 'image-quality-assessment-prompt',
+            promptCommitHash: this.lastPromptInfo?.config?.commitHash,
+            metadata: {
+              agent: 'ImageQualityAssessmentAgent',
+              provider: this.currentProvider,
+              imagePath: path.basename(imagePath),
+              assessmentType: 'llm_simulation',
+            },
+          }) || null;
+        }
+      } else {
+        // Create standalone trace (DISABLED - hard switch to LangSmith)
+        trace = null; // Disabled Langfuse trace creation
+        generation = null; // Disabled Langfuse generation creation
+        // trace = this.langfuseService?.createTrace({
+        //   name: 'image-quality-assessment',
+        //   input: traceInput,
+        //   metadata: {
+        //     agent: 'ImageQualityAssessmentAgent',
+        //     provider: this.currentProvider,
+        //     imagePath: path.basename(imagePath),
+        //     assessmentType: 'llm_simulation',
+        //   },
+        //   tags: ['image-quality-assessment', 'expense-processing'],
+        // }) || null;
+
+        // // Create generation within trace
+        // generation = this.langfuseService?.createGeneration(trace, {
+        //   name: 'quality-assessment-llm-call',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'ImageQualityAssessmentAgent',
+        //     provider: this.currentProvider,
+        //   },
+        // }) || null;
       }
 
       // Generate prompt version tags
@@ -175,6 +197,28 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
           },
         },
       });
+
+      // Update parallel LangSmith generation with results
+      if (langsmithGeneration) {
+        await this.langsmithService?.updateGeneration(langsmithGeneration, {
+          output: result,
+          usage: {
+            promptTokens: Math.floor(userPrompt.length / 4),
+            completionTokens: Math.floor(rawContent.length / 4),
+            totalTokens: Math.floor((userPrompt.length + rawContent.length) / 4),
+          },
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: true,
+            overallQualityScore: result.overall_quality_score,
+            suitableForExtraction: result.suitable_for_extraction,
+            imagePath: path.basename(imagePath),
+            modelUsed: this.getActualModelUsed(),
+            provider: this.currentProvider,
+          },
+        });
+      }
 
       // Finalize trace if it's a standalone trace
       if (trace && !parentTrace) {

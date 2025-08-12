@@ -54,7 +54,7 @@ export class ExpenseProcessingService {
     this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService, this.langsmithService);
 
     // Initialize optimized service with dual observability
-    this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService, this.langsmithService);
+    this.optimizedService = new ExpenseProcessingOptimizedService(this.configService, this.langfuseService, this.langsmithService);
   }
 
   async processExpenseDocument(
@@ -132,37 +132,38 @@ export class ExpenseProcessingService {
 
     this.logger.log(`👤 User: ${effectiveUserId}, Session: ${sessionId}`);
 
-    // Create main processing trace with user and session (Langfuse)
-    const mainTrace = this.langfuseService?.createTrace({
-      name: 'expense-processing-sequential',
-      input: {
-        filename,
-        country,
-        icp,
-        imagePath: path.basename(imagePath),
-        markdownContentLength: markdownContent.length,
-        processingMode: 'sequential',
-      },
-      metadata: {
-        service: 'ExpenseProcessingService',
-        filename,
-        country,
-        icp,
-        processingMode: 'sequential',
-        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
-        documentReader: markdownExtractionInfo?.documentReader,
-      },
-      tags: ['expense-processing', 'sequential', country, icp],
-      userId: effectiveUserId,
-      sessionId: sessionId,
-    });
+    // Create main processing trace with user and session (DISABLED - hard switch to LangSmith)
+    const mainTrace = null; // Disabled Langfuse trace creation
+    // const mainTrace = this.langfuseService?.createTrace({
+    //   name: 'expense-processing-sequential',
+    //   input: {
+    //     filename,
+    //     country,
+    //     icp,
+    //     imagePath: path.basename(imagePath),
+    //     markdownContentLength: markdownContent.length,
+    //     processingMode: 'sequential',
+    //   },
+    //   metadata: {
+    //     service: 'ExpenseProcessingService',
+    //     filename,
+    //     country,
+    //     icp,
+    //     processingMode: 'sequential',
+    //     markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+    //     documentReader: markdownExtractionInfo?.documentReader,
+    //   },
+    //   tags: ['expense-processing', 'sequential', country, icp],
+    //   userId: effectiveUserId,
+    //   sessionId: sessionId,
+    // });
 
     // Create parallel LangSmith trace with same data
     this.logger.log('🔍 Creating parallel LangSmith trace...');
     this.logger.log(`   📁 Project: ${this.configService?.get('LANGSMITH_PROJECT', 'expense-processing-default')}`);
     this.logger.log(`   👤 User: ${effectiveUserId}, Session: ${sessionId}`);
 
-    const langsmithTrace = this.langsmithService?.createTrace({
+    const langsmithTrace = await this.langsmithService?.createTrace({
       name: 'expense-processing-sequential',
       input: {
         filename,
@@ -329,7 +330,10 @@ export class ExpenseProcessingService {
       };
 
       progressCallback?.('citationGeneration', 95);
-      
+
+      // Note: LangSmith handles prompt versioning and linking automatically
+      // No need to manually collect prompt versions since prompts are retrieved from LangSmith
+
       // Compile final result
       const processingTime = Date.now() - trueStartTime;
       timing.total_processing_time_seconds = (processingTime / 1000).toFixed(1);
@@ -391,7 +395,7 @@ export class ExpenseProcessingService {
 
       // Finalize parallel LangSmith trace with success
       if (langsmithTrace) {
-        this.langsmithService?.finalizeTrace(
+        await this.langsmithService?.finalizeTrace(
           langsmithTrace,
           {
             success: true,

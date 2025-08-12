@@ -6,6 +6,34 @@ import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
 
+// Citation JSON Schema for LangSmith prompt template
+const CITATION_SCHEMA = {
+  "citations": {
+    "field_name": {
+      "field_citation": {
+        "source_text": "exact_text_from_source",
+        "confidence": 0.95,
+        "source_location": "markdown",
+        "context": "surrounding_text_for_validation",
+        "match_type": "exact|fuzzy|contextual"
+      },
+      "value_citation": {
+        "source_text": "exact_text_from_source",
+        "confidence": 0.95,
+        "source_location": "markdown",
+        "context": "surrounding_text_for_validation",
+        "match_type": "exact|fuzzy|contextual"
+      }
+    }
+  },
+  "metadata": {
+    "total_fields_analyzed": 10,
+    "fields_with_field_citations": 8,
+    "fields_with_value_citations": 9,
+    "average_confidence": 0.87
+  }
+};
+
 export class CitationGeneratorAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
@@ -54,9 +82,18 @@ export class CitationGeneratorAgent extends BaseAgent {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
     let generation: LangfuseGenerationClient | null = null;
+    let langsmithGeneration: any = null;
 
     try {
       this.logger.log(`Starting citation generation for ${filename}`);
+
+      // Get prompt first to have version info
+      const samplePrompt = await this.getPromptTemplate('citation-generation-prompt', {
+        extractedDataJson: JSON.stringify(extractedData, null, 2),
+        markdownContent,
+        jsonSchema: JSON.stringify(CITATION_SCHEMA, null, 2)
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
 
       // Create Langfuse trace with exact prompt inputs (will be populated from first batch)
       let traceInput = {
@@ -66,44 +103,65 @@ export class CitationGeneratorAgent extends BaseAgent {
       };
 
       if (parentTrace) {
-        // Create as a span within parent trace
-        generation = this.langfuseService?.createGeneration(parentTrace, {
-          name: 'citation-generation',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'CitationGeneratorAgent',
-            provider: this.currentProvider,
-            filename,
-            fieldsCount: Object.keys(extractedData).length,
-          },
-        }) || null;
-      } else {
-        // Create standalone trace
-        trace = this.langfuseService?.createTrace({
-          name: 'citation-generation',
-          input: traceInput,
-          metadata: {
-            agent: 'CitationGeneratorAgent',
-            provider: this.currentProvider,
-            filename,
-            fieldsCount: Object.keys(extractedData).length,
-          },
-          tags: ['citation-generation', 'expense-processing'],
-        }) || null;
+        // Create as a span within parent trace (DISABLED - hard switch to LangSmith)
+        generation = null; // Disabled Langfuse generation creation
+        // generation = this.langfuseService?.createGeneration(parentTrace, {
+        //   name: 'citation-generation',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'CitationGeneratorAgent',
+        //     provider: this.currentProvider,
+        //     filename,
+        //     fieldsCount: Object.keys(extractedData).length,
+        //   },
+        // }) || null;
 
-        // Create generation within trace
-        generation = this.langfuseService?.createGeneration(trace, {
-          name: 'citation-generation-llm-call',
-          input: traceInput,
-          model: this.getActualModelUsed(),
-          startTime,
-          metadata: {
-            agent: 'CitationGeneratorAgent',
-            provider: this.currentProvider,
-          },
-        }) || null;
+        // Create parallel LangSmith generation with prompt metadata
+        if (langsmithParentTrace) {
+          langsmithGeneration = await this.langsmithService?.createGeneration(langsmithParentTrace, {
+            name: 'citation-generation',
+            input: traceInput,
+            model: this.getActualModelUsed(),
+            startTime,
+            promptName: 'citation-generation-prompt',
+            promptCommitHash: this.lastPromptInfo?.config?.commitHash,
+            metadata: {
+              agent: 'CitationGeneratorAgent',
+              provider: this.currentProvider,
+              filename,
+              fieldsCount: Object.keys(extractedData).length,
+            },
+          }) || null;
+        }
+      } else {
+        // Create standalone trace (DISABLED - hard switch to LangSmith)
+        trace = null; // Disabled Langfuse trace creation
+        generation = null; // Disabled Langfuse generation creation
+        // trace = this.langfuseService?.createTrace({
+        //   name: 'citation-generation',
+        //   input: traceInput,
+        //   metadata: {
+        //     agent: 'CitationGeneratorAgent',
+        //     provider: this.currentProvider,
+        //     filename,
+        //     fieldsCount: Object.keys(extractedData).length,
+        //   },
+        //   tags: ['citation-generation', 'expense-processing'],
+        // }) || null;
+
+        // // Create generation within trace
+        // generation = this.langfuseService?.createGeneration(trace, {
+        //   name: 'citation-generation-llm-call',
+        //   input: traceInput,
+        //   model: this.getActualModelUsed(),
+        //   startTime,
+        //   metadata: {
+        //     agent: 'CitationGeneratorAgent',
+        //     provider: this.currentProvider,
+        //   },
+        // }) || null;
       }
 
       // Process citations in batches to handle context window limitations
@@ -199,6 +257,28 @@ export class CitationGeneratorAgent extends BaseAgent {
         },
       });
 
+      // Update parallel LangSmith generation with results
+      if (langsmithGeneration) {
+        await this.langsmithService?.updateGeneration(langsmithGeneration, {
+          output: result,
+          usage: {
+            promptTokens: Math.floor((markdownContent.length * Math.ceil(fieldEntries.length / batchSize)) / 4),
+            completionTokens: Math.floor((JSON.stringify(allCitations).length) / 4),
+            totalTokens: Math.floor((markdownContent.length * Math.ceil(fieldEntries.length / batchSize) + JSON.stringify(allCitations).length) / 4),
+          },
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: true,
+            totalFieldsAnalyzed: result.metadata.total_fields_analyzed,
+            batchesProcessed: Math.ceil(fieldEntries.length / batchSize),
+            filename,
+            modelUsed: this.getActualModelUsed(),
+            provider: this.currentProvider,
+          },
+        });
+      }
+
       // Finalize trace if it's a standalone trace
       if (trace && !parentTrace) {
         // Add prompt version tags to the trace
@@ -265,7 +345,8 @@ export class CitationGeneratorAgent extends BaseAgent {
   ): Promise<CitationResult> {
     const combinedPrompt = await this.getPromptTemplate('citation-generation-prompt', {
       extractedDataJson: JSON.stringify(batchData, null, 2),
-      markdownContent
+      markdownContent,
+      jsonSchema: JSON.stringify(CITATION_SCHEMA, null, 2)
     });
     const promptInfo = { ...this.lastPromptInfo! };
 

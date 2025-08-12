@@ -28,6 +28,8 @@ export interface LangSmithGenerationData {
   metadata?: Record<string, any>;
   startTime?: Date;
   endTime?: Date;
+  promptName?: string;
+  promptCommitHash?: string;
 }
 
 export interface ExpenseDatasetItem {
@@ -149,7 +151,7 @@ export class LangSmithService implements OnModuleInit {
   /**
    * Create a new trace for expense processing
    */
-  createTrace(data: LangSmithTraceData): RunTree | null {
+  async createTrace(data: LangSmithTraceData): Promise<RunTree | null> {
     this.logger.debug(`🔍 LangSmith createTrace called - Enabled: ${this.isEnabled}, Client: ${!!this.langsmith}`);
 
     if (!this.isEnabled || !this.langsmith) {
@@ -183,15 +185,17 @@ export class LangSmithService implements OnModuleInit {
 
       this.logger.debug(`✅ RunTree created with ID: ${runTree.id}`);
 
-      // Post the run to start it
-      runTree.postRun()
-        .then(() => {
-          this.logger.log(`✅ LangSmith trace posted successfully: ${data.name} (ID: ${runTree.id})`);
-        })
-        .catch(error => {
-          this.logger.error(`❌ Failed to post LangSmith trace "${data.name}":`, error);
-          this.logger.error('   Error details:', error.message);
-        });
+      // Post the run to start it and wait for completion
+      try {
+        await runTree.postRun();
+        this.logger.log(`✅ LangSmith trace posted successfully: ${data.name} (ID: ${runTree.id})`);
+        this.logger.log(`   🔗 Trace URL: https://smith.langchain.com/o/default/projects/p/${projectName}/r/${runTree.id}`);
+      } catch (postError) {
+        this.logger.error(`❌ Failed to post LangSmith trace "${data.name}":`, postError);
+        this.logger.error('   Error details:', postError.message);
+        // Return null if posting fails, as the trace won't be visible in LangSmith
+        return null;
+      }
 
       return runTree;
     } catch (error) {
@@ -204,10 +208,10 @@ export class LangSmithService implements OnModuleInit {
   /**
    * Create a generation within a trace
    */
-  createGeneration(
+  async createGeneration(
     trace: RunTree | null,
     data: LangSmithGenerationData
-  ): RunTree | null {
+  ): Promise<RunTree | null> {
     this.logger.debug(`🔍 LangSmith createGeneration called - Enabled: ${this.isEnabled}, Client: ${!!this.langsmith}, Trace: ${!!trace}`);
 
     if (!this.isEnabled || !this.langsmith || !trace) {
@@ -229,21 +233,28 @@ export class LangSmithService implements OnModuleInit {
             ...data.metadata,
             model: data.model,
             modelParameters: data.modelParameters,
+            // Enhanced prompt linking metadata
+            prompt_name: data.promptName,
+            prompt_commit_hash: data.promptCommitHash,
+            prompt_source: 'langsmith',
+            prompt_linked: true,
           }
-        }
+        },
+        tags: data.promptName ? [`prompt:${data.promptName}`] : undefined
       });
 
       this.logger.debug(`✅ Generation created with ID: ${generation.id}`);
 
-      // Post the generation to start it
-      generation.postRun()
-        .then(() => {
-          this.logger.log(`✅ LangSmith generation posted successfully: ${data.name} (ID: ${generation.id})`);
-        })
-        .catch(error => {
-          this.logger.error(`❌ Failed to post LangSmith generation "${data.name}":`, error);
-          this.logger.error('   Error details:', error.message);
-        });
+      // Post the generation to start it and wait for completion
+      try {
+        await generation.postRun();
+        this.logger.log(`✅ LangSmith generation posted successfully: ${data.name} (ID: ${generation.id})`);
+      } catch (postError) {
+        this.logger.error(`❌ Failed to post LangSmith generation "${data.name}":`, postError);
+        this.logger.error('   Error details:', postError.message);
+        // Return null if posting fails, as the generation won't be visible in LangSmith
+        return null;
+      }
 
       return generation;
     } catch (error) {
@@ -256,15 +267,17 @@ export class LangSmithService implements OnModuleInit {
   /**
    * Update generation with completion data
    */
-  updateGeneration(
+  async updateGeneration(
     generation: RunTree | null,
     data: Partial<LangSmithGenerationData>
-  ): void {
+  ): Promise<void> {
     if (!this.isEnabled || !generation) {
       return;
     }
 
     try {
+      this.logger.debug(`🔄 Updating LangSmith generation: ${generation.id}`);
+
       // End the generation with outputs and usage data
       generation.end({
         outputs: data.output,
@@ -275,23 +288,121 @@ export class LangSmithService implements OnModuleInit {
         } : undefined,
       });
 
-      // Patch the run to update it
-      generation.patchRun().catch(error => {
-        this.logger.error('Failed to update LangSmith generation:', error);
-      });
+      // Patch the run to update it and wait for completion
+      try {
+        await generation.patchRun();
+        this.logger.log(`✅ LangSmith generation updated successfully: ${generation.id}`);
+      } catch (patchError) {
+        this.logger.error(`❌ Failed to update LangSmith generation ${generation.id}:`, patchError);
+        this.logger.error('   Error details:', patchError.message);
+      }
     } catch (error) {
-      this.logger.error('Failed to update LangSmith generation:', error);
+      this.logger.error('❌ Failed to update LangSmith generation:', error);
+      this.logger.error('   Error details:', error.message);
+    }
+  }
+
+  /**
+   * Update trace tags (e.g., to add prompt versions after agents run)
+   */
+  async updateTraceTags(trace: RunTree | null, additionalTags: string[]): Promise<void> {
+    if (!this.isEnabled || !trace) {
+      return;
+    }
+
+    try {
+      // Add new tags to existing tags
+      const currentTags = trace.tags || [];
+      const newTags = [...currentTags, ...additionalTags];
+      trace.tags = newTags;
+
+      this.logger.debug(`🏷️ Updated trace tags: ${JSON.stringify(newTags)}`);
+    } catch (error) {
+      this.logger.error('❌ Failed to update trace tags:', error);
+    }
+  }
+
+  /**
+   * Pull a prompt from LangSmith with enhanced metadata tracking
+   */
+  async pullPrompt(promptName: string, tag?: string, owner?: string): Promise<{ prompt: any; metadata: { name: string; commitHash?: string } } | null> {
+    if (!this.isEnabled || !this.langsmith) {
+      this.logger.warn('❌ LangSmith prompt retrieval skipped - service not enabled or client not initialized');
+      return null;
+    }
+
+    try {
+      // Handle owner/prompt-name format for LangSmith
+      let fullPromptName: string;
+
+      if (owner) {
+        // Explicit owner provided
+        fullPromptName = tag ? `${owner}/${promptName}:${tag}` : `${owner}/${promptName}`;
+      } else if (promptName.includes('/')) {
+        // Owner already included in prompt name
+        fullPromptName = tag ? `${promptName}:${tag}` : promptName;
+      } else {
+        // Try to get owner from environment or use prompt name as-is
+        const defaultOwner = process.env.LANGSMITH_OWNER || process.env.LANGSMITH_USER;
+        if (defaultOwner) {
+          fullPromptName = tag ? `${defaultOwner}/${promptName}:${tag}` : `${defaultOwner}/${promptName}`;
+        } else {
+          // Fallback to prompt name without owner (will likely fail)
+          fullPromptName = tag ? `${promptName}:${tag}` : promptName;
+          this.logger.warn(`⚠️ No LangSmith owner specified. Set LANGSMITH_OWNER env var or include owner in prompt name (owner/prompt-name)`);
+        }
+      }
+
+      this.logger.log(`🔍 Pulling prompt from LangSmith: "${fullPromptName}"`);
+
+      const prompt = await this.langsmith._pullPrompt(fullPromptName);
+
+      if (prompt) {
+        // Extract commit hash if available
+        let commitHash: string | undefined;
+        try {
+          // Try to get commit info from the prompt object
+          if (prompt.metadata?.commit_hash) {
+            commitHash = prompt.metadata.commit_hash;
+          } else if (prompt.commit_hash) {
+            commitHash = prompt.commit_hash;
+          }
+        } catch (e) {
+          // Commit hash extraction failed, continue without it
+        }
+
+        this.logger.log(`✅ Successfully pulled prompt: ${fullPromptName}`);
+        this.logger.debug(`📋 Prompt type: ${prompt.constructor?.name || 'unknown'}`);
+        if (commitHash) {
+          this.logger.debug(`🔗 Commit hash: ${commitHash}`);
+        }
+
+        return {
+          prompt,
+          metadata: {
+            name: promptName,
+            commitHash
+          }
+        };
+      } else {
+        this.logger.warn(`⚠️ Prompt not found: ${fullPromptName}`);
+        return null;
+      }
+    } catch (error) {
+      this.logger.error(`❌ Failed to pull prompt "${promptName}":`, error);
+      this.logger.error('   Error details:', error.message);
+      return null;
     }
   }
 
   /**
    * Finalize trace with completion data
    */
-  finalizeTrace(
+  async finalizeTrace(
     trace: RunTree | null,
     output?: any,
     metadata?: Record<string, any>
-  ): void {
+  ): Promise<void> {
     this.logger.debug(`🔍 LangSmith finalizeTrace called - Enabled: ${this.isEnabled}, Trace: ${!!trace}`);
 
     if (!this.isEnabled || !trace) {
@@ -309,15 +420,18 @@ export class LangSmithService implements OnModuleInit {
         extra: metadata ? { metadata } : undefined,
       });
 
-      // Patch the run to update it
-      trace.patchRun()
-        .then(() => {
-          this.logger.log(`✅ LangSmith trace finalized successfully: ${trace.id}`);
-        })
-        .catch(error => {
-          this.logger.error(`❌ Failed to finalize LangSmith trace ${trace.id}:`, error);
-          this.logger.error('   Error details:', error.message);
-        });
+      // Patch the run to update it and wait for completion
+      try {
+        await trace.patchRun();
+        this.logger.log(`✅ LangSmith trace finalized successfully: ${trace.id}`);
+
+        // Get the project name for the URL
+        const projectName = this.configService.get<string>('LANGSMITH_PROJECT', 'expense-processing-default');
+        this.logger.log(`   🔗 Final Trace URL: https://smith.langchain.com/o/default/projects/p/${projectName}/r/${trace.id}`);
+      } catch (patchError) {
+        this.logger.error(`❌ Failed to finalize LangSmith trace ${trace.id}:`, patchError);
+        this.logger.error('   Error details:', patchError.message);
+      }
     } catch (error) {
       this.logger.error(`❌ Failed to finalize LangSmith trace:`, error);
       this.logger.error('   Error details:', error.message);

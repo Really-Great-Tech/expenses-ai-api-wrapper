@@ -6,6 +6,27 @@ import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
 
+// File Classification JSON Schema for LangSmith prompt template
+const FILE_CLASSIFICATION_SCHEMA = {
+  "is_expense": true,
+  "expense_type": "receipt",
+  "language": "English",
+  "language_confidence": 95,
+  "document_location": "United States",
+  "expected_location": "United States",
+  "location_match": true,
+  "error_type": null,
+  "error_message": null,
+  "classification_confidence": 90,
+  "reasoning": "Document contains expense-related information with clear monetary amounts and vendor details.",
+  "schema_field_analysis": {
+    "fields_found": ["total", "vendor", "date"],
+    "fields_missing": ["tax_amount"],
+    "total_fields_found": 3,
+    "expense_identification_reasoning": "Document shows clear expense transaction with vendor and amount information."
+  }
+};
+
 export class FileClassificationAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
@@ -62,32 +83,44 @@ export class FileClassificationAgent extends BaseAgent {
         expectedCountry: expectedCountry || "Not specified"
       };
 
+      // Get prompt first to have version info
+      const combinedPrompt = await this.getPromptTemplate('file-classification-prompt', {
+        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
+        markdownContent,
+        expectedCountry: expectedCountry || "Not specified",
+        jsonSchema: JSON.stringify(FILE_CLASSIFICATION_SCHEMA, null, 2)
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
+
       // Parallel LangSmith generation creation
       let langsmithGeneration: any = null;
 
       if (parentTrace) {
-        // Create as a span within parent trace (Langfuse)
-        generation = this.langfuseService?.createGeneration(parentTrace, {
-          name: 'file-classification',
-          input: traceInput,
-          model: this.modelName,
-          startTime,
-          metadata: {
-            agent: 'FileClassificationAgent',
-            provider: this.currentProvider,
-            expectedCountry,
-            contentLength: markdownContent.length,
-            modelUsed: this.getActualModelUsed(),
-          },
-        }) || null;
+        // Create as a span within parent trace (DISABLED - hard switch to LangSmith)
+        generation = null; // Disabled Langfuse generation creation
+        // generation = this.langfuseService?.createGeneration(parentTrace, {
+        //   name: 'file-classification',
+        //   input: traceInput,
+        //   model: this.modelName,
+        //   startTime,
+        //   metadata: {
+        //     agent: 'FileClassificationAgent',
+        //     provider: this.currentProvider,
+        //     expectedCountry,
+        //     contentLength: markdownContent.length,
+        //     modelUsed: this.getActualModelUsed(),
+        //   },
+        // }) || null;
 
-        // Create parallel LangSmith generation
+        // Create parallel LangSmith generation with prompt metadata
         if (langsmithParentTrace) {
-          langsmithGeneration = this.langsmithService?.createGeneration(langsmithParentTrace, {
+          langsmithGeneration = await this.langsmithService?.createGeneration(langsmithParentTrace, {
             name: 'file-classification',
             input: traceInput,
             model: this.modelName,
             startTime,
+            promptName: 'file-classification-prompt',
+            promptCommitHash: this.lastPromptInfo?.config?.commitHash,
             metadata: {
               agent: 'FileClassificationAgent',
               provider: this.currentProvider,
@@ -126,12 +159,7 @@ export class FileClassificationAgent extends BaseAgent {
         }) || null;
       }
 
-      const combinedPrompt = await this.getPromptTemplate('file-classification-prompt', {
-        schemaFieldsDescription: JSON.stringify(expenseSchema?.properties || {}, null, 2),
-        markdownContent,
-        expectedCountry: expectedCountry || "Not specified"
-      });
-      const promptInfo = { ...this.lastPromptInfo! };
+
 
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
@@ -203,7 +231,7 @@ export class FileClassificationAgent extends BaseAgent {
       });
 
       // Update parallel LangSmith generation with results
-      this.langsmithService?.updateGeneration(langsmithGeneration, {
+      await this.langsmithService?.updateGeneration(langsmithGeneration, {
         output: result,
         usage: {
           promptTokens: Math.floor(combinedPrompt.length / 4),
@@ -301,15 +329,37 @@ export class FileClassificationAgent extends BaseAgent {
 
   private parseJsonResponse(content: string): any {
     try {
-      // Remove markdown code blocks if present
-      const cleanContent = content
-        .replace(/```json\s*/g, '')
-        .replace(/```\s*/g, '')
-        .trim();
+      // Log the raw response for debugging
+      this.logger.debug('🔍 Raw LLM response:', content.substring(0, 500) + (content.length > 500 ? '...' : ''));
+
+      // More aggressive JSON extraction
+      let cleanContent = content;
+
+      // Remove markdown code blocks
+      cleanContent = cleanContent.replace(/```json\s*/g, '').replace(/```\s*/g, '');
+
+      // Try to find JSON object in the response
+      const jsonMatch = cleanContent.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        cleanContent = jsonMatch[0];
+        this.logger.debug('🎯 Extracted JSON from mixed response');
+      } else {
+        // Fallback: look for the first { and last }
+        const firstBrace = cleanContent.indexOf('{');
+        const lastBrace = cleanContent.lastIndexOf('}');
+        if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+          cleanContent = cleanContent.substring(firstBrace, lastBrace + 1);
+          this.logger.debug('🎯 Extracted JSON using brace matching');
+        }
+      }
+
+      cleanContent = cleanContent.trim();
+      this.logger.debug('🧹 Cleaned response:', cleanContent.substring(0, 500) + (cleanContent.length > 500 ? '...' : ''));
 
       return JSON.parse(cleanContent);
     } catch (error) {
-      this.logger.error('Failed to parse JSON response:', error);
+      this.logger.error('❌ Failed to parse JSON response:', error);
+      this.logger.error('📄 Raw content that failed to parse:', content);
       throw new Error(`Invalid JSON response: ${error.message}`);
     }
   }

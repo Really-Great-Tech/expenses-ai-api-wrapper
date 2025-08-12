@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileClassificationAgent } from '../agents/file-classification.agent';
 import { DataExtractionAgent } from '../agents/data-extraction.agent';
 import { IssueDetectionAgent } from '../agents/issue-detection.agent';
@@ -18,6 +19,7 @@ export class ExpenseProcessingOptimizedService {
   private readonly logger = new Logger(ExpenseProcessingOptimizedService.name);
 
   constructor(
+    private readonly configService: ConfigService,
     private readonly langfuseService?: LangfuseService,
     private readonly langsmithService?: LangSmithService
   ) {}
@@ -79,6 +81,39 @@ export class ExpenseProcessingOptimizedService {
       sessionId: sessionId,
     });
 
+    // Create parallel LangSmith trace
+    const langsmithTrace = await this.langsmithService?.createTrace({
+      name: 'expense-processing-parallel',
+      input: {
+        filename,
+        country,
+        icp,
+        imagePath: path.basename(imagePath),
+        markdownContentLength: markdownContent.length,
+        processingMode: 'parallel',
+      },
+      metadata: {
+        service: 'ExpenseProcessingOptimizedService',
+        filename,
+        country,
+        icp,
+        processingMode: 'parallel',
+        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      tags: ['expense-processing', 'parallel', country, icp],
+      userId: effectiveUserId,
+      sessionId: sessionId,
+    });
+
+    if (langsmithTrace) {
+      this.logger.log(`✅ LangSmith trace created successfully: ${langsmithTrace.id}`);
+      this.logger.log(`   🔗 Trace URL: https://smith.langchain.com/o/default/projects/p/${this.configService?.get('LANGSMITH_PROJECT', 'expense-processing-default')}/r/${langsmithTrace.id}`);
+    } else {
+      this.logger.error('❌ LangSmith trace creation returned null - check LangSmith service status');
+      this.logger.error('   🔧 Troubleshooting: Check LANGSMITH_ENABLED and LANGSMITH_API_KEY');
+    }
+
     const currentTime = Date.now();
     const timing: any = {
       phase_timings: {},
@@ -107,13 +142,13 @@ export class ExpenseProcessingOptimizedService {
       
       const [formattedQualityAssessment, classification, extraction] = await Promise.all([
         // Phase 0: Image Quality Assessment
-        this.runImageQualityAssessment(imagePath, timing, agents.imageQualityAssessmentAgent, mainTrace),
+        this.runImageQualityAssessment(imagePath, timing, agents.imageQualityAssessmentAgent, mainTrace, langsmithTrace),
 
         // Phase 1: File Classification
-        this.runFileClassification(markdownContent, country, expenseSchema, timing, agents.fileClassificationAgent, mainTrace),
+        this.runFileClassification(markdownContent, country, expenseSchema, timing, agents.fileClassificationAgent, mainTrace, langsmithTrace),
 
         // Phase 2: Data Extraction
-        this.runDataExtraction(markdownContent, complianceData, timing, agents.dataExtractionAgent, mainTrace)
+        this.runDataExtraction(markdownContent, complianceData, timing, agents.dataExtractionAgent, mainTrace, langsmithTrace)
       ]);
 
       const parallelGroup1End = Date.now();
@@ -130,10 +165,10 @@ export class ExpenseProcessingOptimizedService {
       
       const [compliance, citations] = await Promise.all([
         // Phase 3: Issue Detection
-        this.runIssueDetection(country, classification.expense_type || 'unknown', icp, complianceData, extraction, timing, agents.issueDetectionAgent, mainTrace),
+        this.runIssueDetection(country, classification.expense_type || 'unknown', icp, complianceData, extraction, timing, agents.issueDetectionAgent, mainTrace, langsmithTrace),
 
         // Phase 4: Citation Generation
-        this.runCitationGeneration(extraction, markdownContent, filename, timing, agents.citationGeneratorAgent, mainTrace)
+        this.runCitationGeneration(extraction, markdownContent, filename, timing, agents.citationGeneratorAgent, mainTrace, langsmithTrace)
       ]);
 
       const parallelGroup2End = Date.now();
@@ -214,6 +249,48 @@ export class ExpenseProcessingOptimizedService {
         });
       }
 
+      // Finalize parallel LangSmith trace with success
+      if (langsmithTrace) {
+        await this.langsmithService?.finalizeTrace(
+          langsmithTrace,
+          {
+            success: true,
+            classification_result: classification?.expense_type,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+            total_phases: 5,
+            issues_detected: compliance?.validation_result?.issues?.length || 0,
+            processing_mode: 'parallel',
+            parallel_group_1_duration: parallelGroup1Duration.toFixed(1),
+            parallel_group_2_duration: parallelGroup2Duration.toFixed(1),
+          },
+          {
+            final_processing_time_seconds: (processingTime / 1000).toFixed(1),
+            success: true,
+            phases_completed: ['image_quality', 'classification', 'extraction', 'compliance', 'citations'],
+            processing_mode: 'parallel',
+            time_saved_seconds: timing.performance_metrics?.time_saved_seconds,
+            // Individual agent processing times
+            agent_timings: {
+              image_quality_seconds: timing.phase_timings.image_quality_assessment_seconds,
+              classification_seconds: timing.phase_timings.file_classification_seconds,
+              extraction_seconds: timing.phase_timings.data_extraction_seconds,
+              compliance_seconds: timing.phase_timings.issue_detection_seconds,
+              citations_seconds: timing.phase_timings.citation_generation_seconds,
+            },
+            // Parallel processing specific metrics
+            parallel_metrics: {
+              group_1_duration_seconds: parallelGroup1Duration.toFixed(1),
+              group_2_duration_seconds: parallelGroup2Duration.toFixed(1),
+              estimated_sequential_time_seconds: timing.performance_metrics?.estimated_sequential_time_seconds,
+              speedup_factor: timing.performance_metrics?.estimated_speedup_factor,
+            },
+          }
+        );
+
+        // Flush LangSmith trace
+        await this.langsmithService.flush();
+      }
+
       // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
 
@@ -240,11 +317,11 @@ export class ExpenseProcessingOptimizedService {
     }
   }
 
-  private async runImageQualityAssessment(imagePath: string, timing: any, agent: ImageQualityAssessmentAgent, parentTrace?: any) {
+  private async runImageQualityAssessment(imagePath: string, timing: any, agent: ImageQualityAssessmentAgent, parentTrace?: any, langsmithParentTrace?: any) {
     const start = Date.now();
     this.logger.log('📸 Phase 0: Image Quality Assessment (parallel)');
 
-    const result = await agent.assessImageQuality(imagePath, parentTrace, null);
+    const result = await agent.assessImageQuality(imagePath, parentTrace, langsmithParentTrace);
     const formattedResult = agent.formatAssessmentForWorkflow(result, imagePath);
 
     const end = Date.now();
@@ -260,11 +337,11 @@ export class ExpenseProcessingOptimizedService {
     return formattedResult;
   }
 
-  private async runFileClassification(markdownContent: string, country: string, expenseSchema: any, timing: any, agent: FileClassificationAgent, parentTrace?: any) {
+  private async runFileClassification(markdownContent: string, country: string, expenseSchema: any, timing: any, agent: FileClassificationAgent, parentTrace?: any, langsmithParentTrace?: any) {
     const start = Date.now();
     this.logger.log('📋 Phase 1: File Classification (parallel)');
 
-    const result = await agent.classifyFile(markdownContent, country, expenseSchema, parentTrace, null);
+    const result = await agent.classifyFile(markdownContent, country, expenseSchema, parentTrace, langsmithParentTrace);
 
     const end = Date.now();
     timing.phase_timings.file_classification_seconds = ((end - start) / 1000).toFixed(1);
@@ -279,11 +356,11 @@ export class ExpenseProcessingOptimizedService {
     return result;
   }
 
-  private async runDataExtraction(markdownContent: string, complianceData: any, timing: any, agent: DataExtractionAgent, parentTrace?: any) {
+  private async runDataExtraction(markdownContent: string, complianceData: any, timing: any, agent: DataExtractionAgent, parentTrace?: any, langsmithParentTrace?: any) {
     const start = Date.now();
     this.logger.log('🔍 Phase 2: Data Extraction (parallel)');
 
-    const result = await agent.extractData(markdownContent, complianceData, parentTrace, null);
+    const result = await agent.extractData(markdownContent, complianceData, parentTrace, langsmithParentTrace);
 
     const end = Date.now();
     timing.phase_timings.data_extraction_seconds = ((end - start) / 1000).toFixed(1);
@@ -298,11 +375,11 @@ export class ExpenseProcessingOptimizedService {
     return result;
   }
 
-  private async runIssueDetection(country: string, receiptType: string, icp: string, complianceData: any, extractedData: any, timing: any, agent: IssueDetectionAgent, parentTrace?: any) {
+  private async runIssueDetection(country: string, receiptType: string, icp: string, complianceData: any, extractedData: any, timing: any, agent: IssueDetectionAgent, parentTrace?: any, langsmithParentTrace?: any) {
     const start = Date.now();
     this.logger.log('⚠️ Phase 3: Issue Detection (parallel)');
 
-    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData, parentTrace, null);
+    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData, parentTrace, langsmithParentTrace);
 
     const end = Date.now();
     timing.phase_timings.issue_detection_seconds = ((end - start) / 1000).toFixed(1);
@@ -317,11 +394,11 @@ export class ExpenseProcessingOptimizedService {
     return result;
   }
 
-  private async runCitationGeneration(extractedData: any, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent, parentTrace?: any) {
+  private async runCitationGeneration(extractedData: any, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent, parentTrace?: any, langsmithParentTrace?: any) {
     const start = Date.now();
     this.logger.log('📝 Phase 4: Citation Generation (parallel)');
 
-    const result = await agent.generateCitations(extractedData, markdownContent, filename, parentTrace, null);
+    const result = await agent.generateCitations(extractedData, markdownContent, filename, parentTrace, langsmithParentTrace);
 
     const end = Date.now();
     timing.phase_timings.citation_generation_seconds = ((end - start) / 1000).toFixed(1);
