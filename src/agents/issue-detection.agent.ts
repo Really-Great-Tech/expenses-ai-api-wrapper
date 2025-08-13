@@ -79,8 +79,8 @@ export class IssueDetectionAgent extends BaseAgent {
         country,
         receiptType,
         icp,
-        complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2)
+        complianceData: JSON.stringify(complianceData, null, 2),
+        extractedData: JSON.stringify(extractedData, null, 2)
       };
 
       // Get the prompt first to have it available for linking
@@ -89,8 +89,8 @@ export class IssueDetectionAgent extends BaseAgent {
         country,
         receiptType,
         icp,
-        complianceDataJson: JSON.stringify(complianceData, null, 2),
-        extractedDataJson: JSON.stringify(extractedData, null, 2)
+        complianceData: JSON.stringify(complianceData, null, 2),
+        extractedData: JSON.stringify(extractedData, null, 2)
       });
       const promptObject = this.getLastPromptObject();
       const promptInfo = { ...this.lastPromptInfo! };

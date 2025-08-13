@@ -56,6 +56,7 @@ export const ComplianceIssueSchema = z.object({
   description: z.string(),
   recommendation: z.string(),
   knowledge_base_reference: z.string(), // Reverted back to correct name
+  confidence_score: z.number().min(0).max(1),
 });
 
 export const ValidationResultSchema = z.object({
