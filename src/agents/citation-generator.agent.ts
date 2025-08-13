@@ -151,38 +151,21 @@ export class CitationGeneratorAgent extends BaseAgent {
             markdownContent
           };
           
-          // Update the generation with prompt linking
+          // Update the existing generation with prompt linking instead of re-creating
           if (generation) {
-            // Re-create generation with prompt linking
-            if (parentTrace) {
-              generation = this.createGenerationWithPrompt(parentTrace, {
-                name: 'citation-generation',
-                input: firstBatchPromptInput,
-                model: this.getActualModelUsed(),
-                startTime,
-                metadata: {
-                  agent: 'CitationGeneratorAgent',
-                  provider: this.currentProvider,
-                  filename,
-                  fieldsCount: Object.keys(extractedData).length,
-                  promptName: promptInfo.name,
-                  promptVersion: promptInfo.version || 'unknown',
-                },
-              }, promptObject) || generation;
-            } else if (trace) {
-              generation = this.createGenerationWithPrompt(trace, {
-                name: 'citation-generation-llm-call',
-                input: firstBatchPromptInput,
-                model: this.getActualModelUsed(),
-                startTime,
-                metadata: {
-                  agent: 'CitationGeneratorAgent',
-                  provider: this.currentProvider,
-                  promptName: promptInfo.name,
-                  promptVersion: promptInfo.version || 'unknown',
-                },
-              }, promptObject) || generation;
-            }
+            // Update the existing generation with prompt information
+            this.langfuseService?.updateGeneration(generation, {
+              input: firstBatchPromptInput,
+              metadata: {
+                agent: 'CitationGeneratorAgent',
+                provider: this.currentProvider,
+                filename,
+                fieldsCount: Object.keys(extractedData).length,
+                promptName: promptInfo.name,
+                promptVersion: promptInfo.version || 'unknown',
+                promptLinked: true,
+              },
+            });
           }
         }
       }

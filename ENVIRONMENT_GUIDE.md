@@ -86,6 +86,85 @@ The service supports multiple AI providers for document processing.
 - **How to get**: Sign up at [LlamaIndex Cloud](https://cloud.llamaindex.ai/)
 - **Example**: `LLAMAINDEX_API_KEY=llx-...`
 - **Required**: Yes (if using LlamaIndex document reader)
+### 🏛️ AWS Bedrock Configuration
+
+AWS Bedrock is used for advanced AI model access and LLM-as-Judge validation.
+
+#### `BEDROCK_AWS_ACCESS_KEY_ID`
+- **Description**: AWS access key ID for Bedrock service access
+- **How to get**: Create IAM user with Bedrock permissions in [AWS Console](https://aws.amazon.com/console/)
+- **Example**: `BEDROCK_AWS_ACCESS_KEY_ID=AKIA...`
+- **Required**: Yes (if using Bedrock models)
+
+#### `BEDROCK_AWS_SECRET_ACCESS_KEY`
+- **Description**: AWS secret access key for Bedrock service
+- **How to get**: Generated when creating IAM user
+- **Example**: `BEDROCK_AWS_SECRET_ACCESS_KEY=abc123...`
+- **Required**: Yes (if using Bedrock models)
+
+#### `BEDROCK_AWS_SESSION_TOKEN`
+- **Description**: AWS session token for temporary credentials
+- **Example**: `BEDROCK_AWS_SESSION_TOKEN=IQoJb3JpZ2luX2VjE...`
+- **Required**: No (only for temporary credentials)
+
+#### `BEDROCK_AWS_REGION`
+- **Description**: AWS region for Bedrock service
+- **Recommended**: `us-east-1`, `eu-west-1`
+- **Example**: `BEDROCK_AWS_REGION=us-east-1`
+- **Required**: Yes (if using Bedrock models)
+
+#### `BEDROCK_MODEL`
+- **Description**: Primary Bedrock model for document processing
+- **Options**: `eu.amazon.nova-pro-v1:0`, `anthropic.claude-3-5-sonnet-20241022-v2:0`
+- **Example**: `BEDROCK_MODEL=eu.amazon.nova-pro-v1:0`
+- **Required**: Yes (if using Bedrock as primary provider)
+
+#### `CITATION_MODEL`
+- **Description**: Bedrock model optimized for structured output and citations
+- **Recommended**: `amazon.nova-micro-v1:0`, `eu.amazon.nova-micro-v1:0`
+- **Example**: `CITATION_MODEL=amazon.nova-micro-v1:0`
+- **Required**: Yes (if using citation generation)
+
+### ⚖️ LLM-as-Judge Validation Configuration
+
+The ExpenseComplianceUQLMValidator uses multiple LLM models as judges to validate AI responses across different dimensions for improved reliability and consensus.
+
+#### `BEDROCK_JUDGE_MODEL_1`
+- **Description**: First judge model in the validation panel
+- **Default**: `eu.amazon.nova-pro-v1:0`
+- **Recommended**: High-performance model for primary validation
+- **Example**: `BEDROCK_JUDGE_MODEL_1=eu.amazon.nova-pro-v1:0`
+- **Required**: No (uses default if not specified)
+
+#### `BEDROCK_JUDGE_MODEL_2`
+- **Description**: Second judge model in the validation panel
+- **Default**: `eu.amazon.nova-lite-v1:0`
+- **Recommended**: Efficient model for secondary validation
+- **Example**: `BEDROCK_JUDGE_MODEL_2=eu.amazon.nova-lite-v1:0`
+- **Required**: No (uses default if not specified)
+
+#### `BEDROCK_JUDGE_MODEL_3`
+- **Description**: Third judge model in the validation panel
+- **Default**: `anthropic.claude-3-5-sonnet-20241022-v2:0`
+- **Recommended**: Different provider model for diverse perspectives
+- **Example**: `BEDROCK_JUDGE_MODEL_3=anthropic.claude-3-5-sonnet-20241022-v2:0`
+- **Required**: No (uses default if not specified)
+
+**Judge Model Selection Best Practices:**
+- Use **diverse models** from different providers for better consensus
+- Include at least one **high-performance model** (Nova Pro, Claude Sonnet)
+- Include at least one **efficient model** (Nova Lite, Nova Micro) for cost optimization
+- Consider **regional availability** when selecting models
+- Test different combinations to find optimal balance of accuracy and cost
+
+**Validation Dimensions:**
+The judge panel validates responses across these dimensions:
+- **Factual Grounding**: Ensures responses are based on provided data
+- **Knowledge Base Adherence**: Validates compliance with rules and regulations
+- **Compliance Accuracy**: Checks correctness of compliance determinations
+- **Issue Categorization**: Validates proper classification of identified issues
+- **Recommendation Validity**: Ensures recommendations are actionable and helpful
+- **Hallucination Detection**: Identifies fabricated or assumed information
 
 ### ☁️ AWS Configuration
 

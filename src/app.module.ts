@@ -7,6 +7,7 @@ import { ProcessingModule } from "./modules/processing/processing.module";
 import { HealthModule } from "./modules/health/health.module";
 import { LangfuseModule } from "./modules/langfuse/langfuse.module";
 import { InvoiceSplitterModule } from "./modules/invoice-splitter/invoice-splitter.module";
+import { ValidationModule } from "./modules/validation/validation.module";
 import { RedisConfigService } from "./config/redis.config";
 
 @Module({
@@ -40,6 +41,7 @@ import { RedisConfigService } from "./config/redis.config";
     HealthModule,
     LangfuseModule,
     InvoiceSplitterModule,
+    ValidationModule,
   ],
   providers: [RedisConfigService],
 })

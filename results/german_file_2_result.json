@@ -1,0 +1,474 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\test_validation_15_german_file_2.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-13T11:13:31.531Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.98,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image frame.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Berlin, Germany",
+    "expected_location": "Germany",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, item description, and payment method. It is classified as a meal expense due to the nature of the items purchased (Cola Light, Currywurst Pommes).",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "country": "Germany",
+    "supplier_name": "Pizzeria pisa",
+    "supplier_address": "Cora-Berliner Str. 2, 10117 Berlin",
+    "supplier_vat_number": "St. ir.34/476/00588",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 9.5,
+    "subtotal": 7.98,
+    "tax_amount": 1.52,
+    "tax_rate": 19,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2014-10-20",
+    "transaction_time": "13:45",
+    "payment_method": "Bar",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Cola Light",
+        "quantity": 0.4,
+        "unit_price": 3.6,
+        "total_price": 1.44,
+        "category": "Beverage"
+      },
+      {
+        "description": "Currywurst Pommes",
+        "quantity": 1,
+        "unit_price": 5.9,
+        "total_price": 5.9,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Rechnung",
+    "table_number": "120",
+    "server_name": "Bediener 3",
+    "location_city": "Berlin",
+    "location_country": "Germany",
+    "special_notes": "Tip is not included",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory Local Employer company name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show \"Global People DE GmbH\" not the worker's name",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory Local Employer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show \"Taunusanlage 8, 60329 Frankfurt, Germany\"",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "Supplier VAT number does not match the required format",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show \"VAT ID: DE356366640\"",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "Meals (outside of the business travel report) are not tax exempt and will be grossed up",
+          "knowledge_base_reference": "Meals (outside of the business travel report) are not tax exempt and will be grossed up",
+          "confidence_score": 0.95
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is not fully compliant with the specified standards. It is missing the mandatory Local Employer company name and address, and the supplier VAT number does not match the required format. Additionally, the meal expense will be grossed up as it is not tax exempt."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Germany",
+      "icp": "Global People",
+      "receipt_type": "meals",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "Cola Light": {
+        "field_citation": {
+          "source_text": "Cola Light",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "0,4 Cola Light",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,4",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "0,4 Cola Light",
+          "match_type": "exact"
+        }
+      },
+      "Currywurst Pommes": {
+        "field_citation": {
+          "source_text": "Currywurst Pommes",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Currywurst Pommes",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "5,90 EUR",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Currywurst Pommes",
+          "match_type": "exact"
+        }
+      },
+      "Saldo": {
+        "field_citation": {
+          "source_text": "Saldo",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Saldo",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,50 EUR",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Saldo",
+          "match_type": "exact"
+        }
+      },
+      "Nettoumsatz": {
+        "field_citation": {
+          "source_text": "Nettoumsatz",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Nettoumsatz",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "7,98 EUR",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Nettoumsatz",
+          "match_type": "exact"
+        }
+      },
+      "MWST 19%": {
+        "field_citation": {
+          "source_text": "MWST 19%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "MWST 19%",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1,52 EUR",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "MWST 19%",
+          "match_type": "exact"
+        }
+      },
+      "Bar": {
+        "field_citation": {
+          "source_text": "Bar",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bar",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,50 EUR",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Bar",
+          "match_type": "exact"
+        }
+      },
+      "Date": {
+        "field_citation": {
+          "source_text": "20.10.2014",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "13:45 20.10.2014 Bediener 3",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20.10.2014",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "13:45 20.10.2014 Bediener 3",
+          "match_type": "exact"
+        }
+      },
+      "Tisch #120": {
+        "field_citation": {
+          "source_text": "Tisch #120",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tisch #120",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Tisch #120",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Tisch #120",
+          "match_type": "exact"
+        }
+      },
+      "Time": {
+        "field_citation": {
+          "source_text": "13:45",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "13:45 20.10.2014 Bediener 3",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13:45",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "13:45 20.10.2014 Bediener 3",
+          "match_type": "exact"
+        }
+      },
+      "Bediener": {
+        "field_citation": {
+          "source_text": "Bediener",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "20.10.2014 Bediener 3",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Bediener 3",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "20.10.2014 Bediener 3",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 30,
+      "fields_with_field_citations": 30,
+      "fields_with_value_citations": 30,
+      "average_confidence": 0.9632
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "13.6",
+      "data_extraction_seconds": "4.1",
+      "file_classification_seconds": "4.3",
+      "image_quality_assessment_seconds": "5.4",
+      "issue_detection_seconds": "10.6",
+      "citation_generation_seconds": "14.7",
+      "llm_validation_seconds": "158.3"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-13T11:13:12.521Z",
+        "end_time": "2025-08-13T11:13:26.113Z",
+        "duration_seconds": "13.6",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-13T11:13:26.391Z",
+        "end_time": "2025-08-13T11:13:30.485Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-13T11:13:26.388Z",
+        "end_time": "2025-08-13T11:13:30.679Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-13T11:13:26.114Z",
+        "end_time": "2025-08-13T11:13:31.531Z",
+        "duration_seconds": "5.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-13T11:13:31.533Z",
+        "end_time": "2025-08-13T11:13:42.146Z",
+        "duration_seconds": "10.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-13T11:13:31.536Z",
+        "end_time": "2025-08-13T11:13:46.192Z",
+        "duration_seconds": "14.7",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-13T11:13:46.193Z",
+        "end_time": "2025-08-13T11:16:24.486Z",
+        "duration_seconds": "158.3",
+        "judge_models_used": [
+          "eu.amazon.nova-pro-v1:0",
+          "eu.amazon.nova-lite-v1:0",
+          "anthropic.claude-3-5-sonnet-20241022-v2:0"
+        ],
+        "execution_mode": "parallel"
+      }
+    },
+    "total_processing_time_seconds": "192.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.4",
+      "parallel_group_2_seconds": "14.7",
+      "total_parallel_time_seconds": "20.1",
+      "estimated_sequential_time_seconds": "211.0",
+      "estimated_speedup_factor": "10.51"
+    },
+    "validation": {
+      "total_time_seconds": "192.0",
+      "expected_parallel_time_seconds": "33.7",
+      "sequential_sum_seconds": "211.0",
+      "difference_seconds": "158.3",
+      "is_consistent": false,
+      "tolerance_seconds": "3.0",
+      "processing_mode": "parallel",
+      "time_saved_seconds": "19.0"
+    }
+  },
+  "metadata": {
+    "filename": "german_file_2.png",
+    "processing_time": 191968,
+    "country": "Germany",
+    "icp": "Global People",
+    "processed_at": "2025-08-13T11:16:24.491Z",
+    "llm_validation": {
+      "enabled": true,
+      "processing_time_ms": 158293,
+      "results_saved_separately": true
+    },
+    "optimization": {
+      "parallel_processing": true,
+      "parallel_group_1_duration_seconds": "5.4",
+      "parallel_group_2_duration_seconds": "14.7",
+      "estimated_sequential_time_seconds": "211.0",
+      "actual_parallel_time_seconds": "192.0"
+    }
+  }
+}

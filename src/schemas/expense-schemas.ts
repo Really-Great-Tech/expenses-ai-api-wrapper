@@ -106,6 +106,15 @@ export const ImageQualityAssessmentSchema = z.object({
   suitable_for_extraction: z.boolean(),
 });
 
+// LLM Validation Schemas
+export const LLMValidationResultSchema = z.object({
+  overall_score: z.number().min(0).max(1),
+  overall_reliability: z.enum(['high', 'medium', 'low', 'error', 'unknown']),
+  dimensional_results: z.record(z.string(), z.any()),
+  summary: z.string().optional(),
+  error: z.string().optional(),
+});
+
 // Processing Timing Schema
 export const ProcessingTimingSchema = z.object({
   total_processing_time_seconds: z.string(),
@@ -116,6 +125,7 @@ export const ProcessingTimingSchema = z.object({
     data_extraction_seconds: z.string(),
     issue_detection_seconds: z.string(),
     citation_generation_seconds: z.string(),
+    llm_validation_seconds: z.string().optional(),
   }),
   validation: z.object({
     total_time_seconds: z.string(),
@@ -173,6 +183,14 @@ export const ProcessingTimingSchema = z.object({
       duration_minutes: z.string(),
       model_used: z.string(),
     }),
+    llm_validation: z.object({
+      start_time: z.string(),
+      end_time: z.string(),
+      duration_seconds: z.string(),
+      overall_confidence: z.number().optional(),
+      reliability_level: z.string().optional(),
+      error: z.string().optional(),
+    }).optional(),
   }),
 });
 
@@ -183,6 +201,7 @@ export const CompleteProcessingResultSchema = z.object({
   extraction: ExpenseDataSchema,
   compliance: IssueDetectionResultSchema,
   citations: CitationResultSchema,
+  llm_validation: LLMValidationResultSchema.nullable().optional(), // NEW: LLM validation results
   timing: ProcessingTimingSchema,
   metadata: z.object({
     filename: z.string(),
@@ -190,6 +209,12 @@ export const CompleteProcessingResultSchema = z.object({
     country: z.string(),
     icp: z.string(),
     processed_at: z.string(),
+    llm_validation_enabled: z.boolean().optional(), // NEW: LLM validation flag
+    llm_validation: z.object({
+      enabled: z.boolean(),
+      processing_time_ms: z.number(),
+      results_saved_separately: z.boolean(),
+    }).optional(),
     optimization: z.object({
       parallel_processing: z.boolean(),
       parallel_group_1_duration_seconds: z.string(),
@@ -216,3 +241,4 @@ export type CompleteProcessingResult = z.infer<typeof CompleteProcessingResultSc
 export type ProcessingTiming = z.infer<typeof ProcessingTimingSchema>;
 export type QualityIssue = z.infer<typeof QualityIssueSchema>;
 export type ImageQualityAssessment = z.infer<typeof ImageQualityAssessmentSchema>;
+export type LLMValidationResult = z.infer<typeof LLMValidationResultSchema>;

@@ -2,6 +2,7 @@ import { Injectable, Logger } from "@nestjs/common";
 import { InjectQueue } from "@nestjs/bull";
 import { Queue, Job } from "bull";
 import { ConfigService } from "@nestjs/config";
+import { ExpenseProcessingService } from "../../services/expense-processing.service";
 import * as fs from "fs";
 import * as path from "path";
 import {
@@ -20,6 +21,7 @@ export class DocumentService {
     @InjectQueue(QUEUE_NAMES.EXPENSE_PROCESSING)
     private expenseQueue: Queue,
     private configService: ConfigService,
+    private expenseProcessingService: ExpenseProcessingService,
   ) {}
 
   async queueDocumentProcessing(request: {
@@ -305,6 +307,199 @@ export class DocumentService {
         error
       );
       throw error;
+    }
+  }
+
+  /**
+   * NEW: Run LLM-as-judge validation on completed job results
+   */
+  async validateJobResults(jobId: string): Promise<any> {
+    try {
+      // Get the completed job results
+      const results = await this.getProcessingResults(jobId);
+      
+      if (!results) {
+        throw new Error("Job not found or not completed");
+      }
+
+      // Check if we have the required data for validation
+      if (!results.compliance || !results.extraction || !results.classification) {
+        throw new Error("Job results incomplete - missing compliance, extraction, or classification data");
+      }
+
+      // Extract metadata
+      const country = results.metadata?.country || "Unknown";
+      const icp = results.metadata?.icp || "Unknown";
+      const receiptType = results.classification?.expense_type || "All";
+      const filename = results.metadata?.filename || `job_${jobId}`;
+
+      this.logger.log(`🔍 Starting LLM-as-judge validation for job ${jobId} (${filename})`);
+
+      // Get compliance data - we need to reconstruct this from the results
+      // In a real scenario, this would be stored or retrieved from the original processing
+      const complianceData = {}; // This would need to be the original compliance rules used
+
+      // Run LLM-as-judge validation
+      const validationResult = await this.expenseProcessingService.validateComplianceResults(
+        results.compliance,
+        country,
+        receiptType,
+        icp,
+        complianceData,
+        results.extraction,
+        filename
+      );
+
+      this.logger.log(`✅ LLM-as-judge validation completed for job ${jobId} with confidence: ${validationResult?.overall_score || 0}`);
+
+      return {
+        jobId,
+        validation_result: validationResult,
+        metadata: {
+          country,
+          icp,
+          receiptType,
+          filename,
+          validated_at: new Date().toISOString(),
+          original_issues_count: results.compliance?.validation_result?.issues?.length || 0,
+        }
+      };
+
+    } catch (error) {
+      this.logger.error(`❌ LLM validation failed for job ${jobId}:`, error);
+      throw new Error(`LLM validation failed: ${error.message}`);
+    }
+  }
+
+  /**
+   * NEW: Run LLM-as-judge validation on all completed jobs (batch validation)
+   */
+  async validateAllCompletedJobs(): Promise<any> {
+    try {
+      this.logger.log('🚀 Starting batch LLM-as-judge validation for all completed jobs');
+
+      // Get all completed jobs
+      const allJobs = await this.listJobs({
+        status: 'completed',
+        limit: 1000,
+        offset: 0
+      });
+
+      if (!allJobs.jobs || allJobs.jobs.length === 0) {
+        throw new Error('No completed jobs found for validation');
+      }
+
+      this.logger.log(`📊 Found ${allJobs.jobs.length} completed jobs for batch validation`);
+
+      const batchStartTime = Date.now();
+      const validationResults = [];
+      let successfulValidations = 0;
+      let failedValidations = 0;
+      let totalConfidenceScore = 0;
+      const reliabilityDistribution = { high: 0, medium: 0, low: 0 };
+
+      // Process each completed job
+      for (const job of allJobs.jobs) {
+        try {
+          this.logger.log(`🔍 Validating job: ${job.jobId}`);
+          
+          const validationStart = Date.now();
+          const validationResult = await this.validateJobResults(job.jobId);
+          const validationTime = (Date.now() - validationStart) / 1000;
+
+          // Extract key metrics
+          const overallScore = validationResult.validation_result?.overall_score || 0;
+          const reliability = validationResult.validation_result?.overall_reliability || 'unknown';
+          
+          // Update statistics
+          successfulValidations++;
+          totalConfidenceScore += overallScore;
+          
+          if (reliability === 'high') reliabilityDistribution.high++;
+          else if (reliability === 'medium') reliabilityDistribution.medium++;
+          else if (reliability === 'low') reliabilityDistribution.low++;
+
+          validationResults.push({
+            jobId: job.jobId,
+            filename: validationResult.metadata?.filename || job.jobId,
+            overall_score: overallScore,
+            overall_reliability: reliability,
+            validation_time_seconds: parseFloat(validationTime.toFixed(1)),
+            status: 'completed'
+          });
+
+          this.logger.log(`✅ Validation completed for ${job.jobId} - Score: ${overallScore}, Reliability: ${reliability}`);
+
+        } catch (error) {
+          failedValidations++;
+          this.logger.error(`❌ Validation failed for job ${job.jobId}:`, error);
+          
+          validationResults.push({
+            jobId: job.jobId,
+            filename: job.jobId,
+            overall_score: 0,
+            overall_reliability: 'error',
+            validation_time_seconds: 0,
+            status: 'failed',
+            error: error.message
+          });
+        }
+      }
+
+      const totalValidationTime = (Date.now() - batchStartTime) / 1000;
+      const averageConfidenceScore = successfulValidations > 0 ? totalConfidenceScore / successfulValidations : 0;
+
+      // Create batch validation summary
+      const batchSummary = {
+        validation_summary: {
+          total_files_processed: allJobs.jobs.length,
+          successful_validations: successfulValidations,
+          failed_validations: failedValidations,
+          total_validation_time_seconds: parseFloat(totalValidationTime.toFixed(1)),
+          average_confidence_score: parseFloat(averageConfidenceScore.toFixed(3)),
+          reliability_distribution: reliabilityDistribution,
+          batch_completed_at: new Date().toISOString()
+        },
+        individual_results: validationResults,
+        output_directory: './validation_results',
+        summary_file: './validation_results/batch_validation_summary.json'
+      };
+
+      // Save batch summary to file
+      await this.saveBatchValidationSummary(batchSummary);
+
+      this.logger.log(`🎯 Batch validation completed: ${successfulValidations}/${allJobs.jobs.length} successful in ${totalValidationTime.toFixed(1)}s`);
+      
+      return batchSummary;
+
+    } catch (error) {
+      this.logger.error('❌ Batch validation failed:', error);
+      throw new Error(`Batch validation failed: ${error.message}`);
+    }
+  }
+
+  /**
+   * Save batch validation summary to file
+   */
+  private async saveBatchValidationSummary(summary: any): Promise<void> {
+    try {
+      const fs = await import('fs');
+      const path = await import('path');
+      
+      // Create validation_results directory if it doesn't exist
+      const validationDir = path.join(process.cwd(), 'validation_results');
+      if (!fs.existsSync(validationDir)) {
+        fs.mkdirSync(validationDir, { recursive: true });
+      }
+
+      // Save batch summary
+      const summaryPath = path.join(validationDir, 'batch_validation_summary.json');
+      fs.writeFileSync(summaryPath, JSON.stringify(summary, null, 2), 'utf8');
+
+      this.logger.log(`📄 Batch validation summary saved to: ${summaryPath}`);
+    } catch (error) {
+      this.logger.error('Failed to save batch validation summary:', error);
+      // Don't throw error - saving is optional
     }
   }
 

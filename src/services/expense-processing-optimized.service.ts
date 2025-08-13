@@ -4,6 +4,7 @@ import { DataExtractionAgent } from '../agents/data-extraction.agent';
 import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
+import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
 import { LangfuseService } from './langfuse.service';
 import {
   type CompleteProcessingResult,
@@ -33,6 +34,7 @@ export class ExpenseProcessingOptimizedService {
       citationGeneratorAgent: CitationGeneratorAgent;
       imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
     },
+    complianceValidator?: ExpenseComplianceUQLMValidator,
     progressCallback?: (stage: string, progress: number) => void,
     markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
     userId?: string
@@ -137,6 +139,99 @@ export class ExpenseProcessingOptimizedService {
       
       this.logger.log(`✅ Parallel Group 2 completed in ${parallelGroup2Duration.toFixed(2)}s (was ~${(0.29 + 0.26).toFixed(2)}min sequential)`);
       progressCallback?.('parallelPhase2Complete', 95);
+
+      // Phase 5: LLM-as-Judge Validation (NEW)
+      progressCallback?.('llmValidation', 96);
+      this.logger.log('Phase 5: LLM-as-Judge Validation (parallel)');
+
+      let llmValidationTime = 0;
+      if (complianceValidator) {
+        try {
+          const validationStart = Date.now();
+          
+          // Create Langfuse span for LLM validation
+          const validationSpan = mainTrace?.span({
+            name: 'llm-validation',
+            input: {
+              country,
+              receiptType: classification.expense_type || 'unknown',
+              icp,
+              complianceDataSize: JSON.stringify(complianceData).length,
+              extractedDataSize: JSON.stringify(extraction).length,
+            },
+            metadata: {
+              phase: 'llm_validation',
+              execution_mode: 'sequential',
+              validation_dimensions: 6,
+              processing_mode: 'parallel'
+            }
+          });
+
+          const validationResult = await complianceValidator.validateComplianceResponse(
+            JSON.stringify(compliance),
+            country,
+            classification.expense_type || 'unknown',
+            icp,
+            complianceData,
+            extraction
+          );
+          const validationEnd = Date.now();
+          llmValidationTime = validationEnd - validationStart;
+
+          timing.phase_timings.llm_validation_seconds = (llmValidationTime / 1000).toFixed(1);
+          timing.agent_performance.llm_validation = {
+            start_time: new Date(validationStart).toISOString(),
+            end_time: new Date(validationEnd).toISOString(),
+            duration_seconds: (llmValidationTime / 1000).toFixed(1),
+            judge_models_used: validationResult.metadata?.judge_models || [],
+            execution_mode: 'sequential'
+          };
+
+          // Update validation span with results
+          if (validationSpan) {
+            validationSpan.update({
+              output: {
+                overall_score: validationResult.overall_score,
+                dimensions_validated: validationResult.dimensions_count,
+                overall_reliability: validationResult.overall_reliability,
+                critical_issues_count: validationResult.critical_issues?.length || 0,
+                processing_time_ms: llmValidationTime
+              },
+              metadata: {
+                validation_completed: true,
+                judge_panel_size: 3,
+                dimensions_results: validationResult.dimension_results?.map(d => ({
+                  dimension: d.dimension,
+                  confidence_score: d.confidence_score,
+                  reliability: d.reliability_level,
+                  issues_count: d.issues?.length || 0
+                }))
+              }
+            });
+            validationSpan.end();
+          }
+
+          // Save validation results to separate file
+          await this.saveLLMValidationResults(filename, validationResult);
+
+          this.logger.log(`✅ LLM-as-judge validation completed in ${llmValidationTime}ms`);
+        } catch (error) {
+          this.logger.warn(`⚠️ LLM-as-judge validation failed: ${error.message}`);
+          timing.phase_timings.llm_validation_seconds = '0.0';
+          timing.agent_performance.llm_validation = {
+            start_time: new Date().toISOString(),
+            end_time: new Date().toISOString(),
+            duration_seconds: '0.0',
+            error: error.message,
+            execution_mode: 'sequential'
+          };
+        }
+      } else {
+        this.logger.log('⚠️ LLM-as-judge validation skipped (validator not available)');
+        timing.phase_timings.llm_validation_seconds = '0.0';
+      }
+
+      progressCallback?.('llmValidation', 98);
       
       // Compile final result
       const processingTime = Date.now() - trueStartTime;
@@ -159,6 +254,11 @@ export class ExpenseProcessingOptimizedService {
           country,
           icp,
           processed_at: new Date().toISOString(),
+          llm_validation: {
+            enabled: complianceValidator !== null && complianceValidator !== undefined,
+            processing_time_ms: llmValidationTime,
+            results_saved_separately: true
+          },
           optimization: {
             parallel_processing: true,
             parallel_group_1_duration_seconds: parallelGroup1Duration.toFixed(1),
@@ -434,6 +534,31 @@ export class ExpenseProcessingOptimizedService {
       this.logger.log(`Results saved to: ${resultFilePath}`);
     } catch (error) {
       this.logger.error('Failed to save results to file:', error);
+    }
+  }
+
+  /**
+   * Save LLM validation results to separate file
+   */
+  private async saveLLMValidationResults(filename: string, validationResult: any): Promise<void> {
+    try {
+      // Create validation results directory if it doesn't exist
+      const validationResultsDir = path.join(process.cwd(), 'validation_results');
+      if (!fs.existsSync(validationResultsDir)) {
+        fs.mkdirSync(validationResultsDir, { recursive: true });
+      }
+
+      // Generate validation result filename
+      const baseFilename = filename.replace(/\.[^/.]+$/, ''); // Remove extension
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const validationFilename = `${baseFilename}_validation_${timestamp}.json`;
+      const validationFilePath = path.join(validationResultsDir, validationFilename);
+
+      // Write validation results to file
+      fs.writeFileSync(validationFilePath, JSON.stringify(validationResult, null, 2));
+      this.logger.log(`LLM validation results saved to: ${validationFilePath}`);
+    } catch (error) {
+      this.logger.error('Failed to save LLM validation results to file:', error);
     }
   }
 

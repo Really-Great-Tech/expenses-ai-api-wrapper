@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { DocumentController } from './document.controller';
 import { DocumentService } from './document.service';
+import { ExpenseProcessingService } from '../../services/expense-processing.service';
+import { LangfuseModule } from '../langfuse/langfuse.module';
 
 import { QUEUE_NAMES } from '../../types';
 import * as multer from 'multer';
@@ -12,7 +14,8 @@ import * as path from 'path';
 
 @Module({
   imports: [
-
+    // Import Langfuse for tracing
+    LangfuseModule,
 
     // Register the single  processing queue
     BullModule.registerQueue({
@@ -67,7 +70,7 @@ import * as path from 'path';
     }]),
   ],
   controllers: [DocumentController],
-  providers: [DocumentService],
+  providers: [DocumentService, ExpenseProcessingService],
   exports: [DocumentService],
 })
 export class DocumentModule {}

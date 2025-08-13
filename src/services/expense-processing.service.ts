@@ -6,6 +6,7 @@ import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import { LangfuseService } from './langfuse.service';
+import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -28,6 +29,7 @@ export class ExpenseProcessingService {
   private citationGeneratorAgent: CitationGeneratorAgent;
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
   private optimizedService: ExpenseProcessingOptimizedService;
+  private complianceValidator: ExpenseComplianceUQLMValidator;
 
   constructor(private langfuseService: LangfuseService) {
     // Use Bedrock as default provider with Anthropic fallback
@@ -44,6 +46,15 @@ export class ExpenseProcessingService {
 
     // Initialize optimized service with Langfuse
     this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService);
+
+    // Initialize LLM-as-judge compliance validator
+    try {
+      this.complianceValidator = new ExpenseComplianceUQLMValidator(this.logger);
+      this.logger.log('✅ LLM-as-judge compliance validator initialized successfully');
+    } catch (error) {
+      this.logger.error('❌ Failed to initialize LLM-as-judge compliance validator:', error);
+      this.complianceValidator = null;
+    }
   }
 
   async processExpenseDocument(
@@ -77,6 +88,7 @@ export class ExpenseProcessingService {
           citationGeneratorAgent: this.citationGeneratorAgent,
           imageQualityAssessmentAgent: this.imageQualityAssessmentAgent,
         },
+        this.complianceValidator,
         progressCallback,
         markdownExtractionInfo,
         userId
@@ -277,6 +289,98 @@ export class ExpenseProcessingService {
       };
 
       progressCallback?.('citationGeneration', 95);
+
+      // Phase 5: LLM-as-Judge Validation (NEW)
+      progressCallback?.('llmValidation', 96);
+      this.logger.log('Phase 5: LLM-as-Judge Validation');
+
+      let llmValidationTime = 0;
+      if (this.complianceValidator) {
+        try {
+          const validationStart = Date.now();
+          
+          // Create Langfuse span for LLM validation
+          const validationSpan = mainTrace?.span({
+            name: 'llm-validation',
+            input: {
+              country,
+              receiptType: classification.expense_type || 'unknown',
+              icp,
+              complianceDataSize: JSON.stringify(complianceData).length,
+              extractedDataSize: JSON.stringify(extraction).length,
+            },
+            metadata: {
+              phase: 'llm_validation',
+              execution_mode: 'sequential',
+              validation_dimensions: 6
+            }
+          });
+
+          const validationResult = await this.complianceValidator.validateComplianceResponse(
+            JSON.stringify(compliance),
+            country,
+            classification.expense_type || 'unknown',
+            icp,
+            complianceData,
+            extraction
+          );
+          const validationEnd = Date.now();
+          llmValidationTime = validationEnd - validationStart;
+
+          timing.phase_timings.llm_validation_seconds = (llmValidationTime / 1000).toFixed(1);
+          timing.agent_performance.llm_validation = {
+            start_time: new Date(validationStart).toISOString(),
+            end_time: new Date(validationEnd).toISOString(),
+            duration_seconds: (llmValidationTime / 1000).toFixed(1),
+            judge_models_used: validationResult.metadata?.judge_models || [],
+            execution_mode: 'sequential'
+          };
+
+          // Update validation span with results
+          if (validationSpan) {
+            validationSpan.update({
+              output: {
+                overall_score: validationResult.overall_score,
+                dimensions_validated: validationResult.dimensions_count,
+                overall_reliability: validationResult.overall_reliability,
+                critical_issues_count: validationResult.critical_issues?.length || 0,
+                processing_time_ms: llmValidationTime
+              },
+              metadata: {
+                validation_completed: true,
+                judge_panel_size: 3,
+                dimensions_results: validationResult.dimension_results?.map(d => ({
+                  dimension: d.dimension,
+                  confidence_score: d.confidence_score,
+                  reliability: d.reliability_level,
+                  issues_count: d.issues?.length || 0
+                }))
+              }
+            });
+            validationSpan.end();
+          }
+
+          // Save validation results to separate file
+          await this.saveLLMValidationResults(filename, validationResult);
+
+          this.logger.log(`✅ LLM-as-judge validation completed in ${llmValidationTime}ms`);
+        } catch (error) {
+          this.logger.warn(`⚠️ LLM-as-judge validation failed: ${error.message}`);
+          timing.phase_timings.llm_validation_seconds = '0.0';
+          timing.agent_performance.llm_validation = {
+            start_time: new Date().toISOString(),
+            end_time: new Date().toISOString(),
+            duration_seconds: '0.0',
+            error: error.message,
+            execution_mode: 'sequential'
+          };
+        }
+      } else {
+        this.logger.log('⚠️ LLM-as-judge validation skipped (validator not available)');
+        timing.phase_timings.llm_validation_seconds = '0.0';
+      }
+
+      progressCallback?.('llmValidation', 98);
       
       // Compile final result
       const processingTime = Date.now() - trueStartTime;
@@ -298,6 +402,11 @@ export class ExpenseProcessingService {
           country,
           icp,
           processed_at: new Date().toISOString(),
+          llm_validation: {
+            enabled: this.complianceValidator !== null,
+            processing_time_ms: llmValidationTime,
+            results_saved_separately: true
+          }
         },
       };
       
@@ -367,6 +476,48 @@ export class ExpenseProcessingService {
     }
   }
 
+  /**
+   * NEW: Run LLM-as-judge validation on existing compliance results
+   */
+  async validateComplianceResults(
+    complianceResult: any,
+    country: string,
+    receiptType: string,
+    icp: string,
+    complianceData: any,
+    extractedData: any,
+    filename?: string
+  ): Promise<any> {
+    if (!this.complianceValidator) {
+      throw new Error('LLM-as-judge compliance validator not available');
+    }
+
+    this.logger.log(`🔍 Running LLM-as-judge validation for ${filename || 'unknown file'}`);
+
+    try {
+      const validationResult = await this.complianceValidator.validateComplianceResponse(
+        JSON.stringify(complianceResult),
+        country,
+        receiptType,
+        icp,
+        complianceData,
+        extractedData
+      );
+
+      // Save validation results if filename provided
+      if (filename) {
+        await this.saveLLMValidationResults(filename, validationResult);
+      }
+
+      this.logger.log(`✅ LLM-as-judge validation completed with confidence: ${validationResult?.overall_score || 0}`);
+      return validationResult;
+
+    } catch (error) {
+      this.logger.error('❌ LLM-as-judge validation failed:', error);
+      throw new Error(`LLM validation failed: ${error.message}`);
+    }
+  }
+
   async classifyFileOnly(
     markdownContent: string,
     country: string,
@@ -417,6 +568,7 @@ export class ExpenseProcessingService {
       dataExtraction: true,
       issueDetection: true,
       citationGeneration: true,
+      llmValidation: this.complianceValidator !== null,
     };
 
     // Could add actual health checks for each agent here
@@ -440,7 +592,7 @@ export class ExpenseProcessingService {
 
       // Generate output filename based on input filename
       const baseName = path.parse(filename).name;
-      const outputFilename = `${baseName}_processed.json`;
+      const outputFilename = `${baseName}_result.json`;
       const outputPath = path.join(resultsDir, outputFilename);
 
       // Save the complete result as JSON
@@ -449,6 +601,32 @@ export class ExpenseProcessingService {
       this.logger.log(`Results saved to: ${outputPath}`);
     } catch (error) {
       this.logger.error(`Failed to save results for ${filename}:`, error);
+      // Don't throw error - saving is optional, don't fail the main process
+    }
+  }
+
+  /**
+   * NEW: Save LLM validation results separately
+   */
+  private async saveLLMValidationResults(filename: string, validationResult: any): Promise<void> {
+    try {
+      // Create validation_results directory if it doesn't exist
+      const validationDir = path.join(process.cwd(), 'validation_results');
+      if (!fs.existsSync(validationDir)) {
+        fs.mkdirSync(validationDir, { recursive: true });
+      }
+
+      // Generate output filename based on input filename
+      const baseName = path.parse(filename).name;
+      const outputFilename = `${baseName}_llm_validation.json`;
+      const outputPath = path.join(validationDir, outputFilename);
+
+      // Save the validation result as JSON
+      fs.writeFileSync(outputPath, JSON.stringify(validationResult, null, 2), 'utf8');
+
+      this.logger.log(`LLM validation results saved to: ${outputPath}`);
+    } catch (error) {
+      this.logger.error(`Failed to save LLM validation results for ${filename}:`, error);
       // Don't throw error - saving is optional, don't fail the main process
     }
   }

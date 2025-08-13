@@ -23,7 +23,9 @@
     "test-timing-fix": "node scripts/test-timing-fix.js",
     "fix-timing": "node scripts/fix-existing-timing.js",
     "validate-pdf": "node scripts/validate-pdf.js",
-    "migrate-prompts": "node package-scripts/migrate-prompts.js"
+    "migrate-prompts": "node package-scripts/migrate-prompts.js",
+    "validate-standalone": "ts-node scripts/standalone-validation-runner.ts",
+    "validate-standalone:build": "tsc scripts/standalone-validation-runner.ts --outDir dist/scripts && node dist/scripts/standalone-validation-runner.js"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.857.0",
@@ -89,7 +91,7 @@
       "ts"
     ],
     "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": ".*\\.(spec|test)\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
