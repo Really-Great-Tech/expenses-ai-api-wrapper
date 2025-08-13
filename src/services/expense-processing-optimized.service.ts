@@ -187,25 +187,15 @@ export class ExpenseProcessingOptimizedService {
             execution_mode: 'sequential'
           };
 
-          // Update validation span with results
+          // Update validation span with complete validation result (same as saved to file)
           if (validationSpan) {
             validationSpan.update({
-              output: {
-                overall_score: validationResult.overall_score,
-                dimensions_validated: validationResult.dimensions_count,
-                overall_reliability: validationResult.overall_reliability,
-                critical_issues_count: validationResult.critical_issues?.length || 0,
-                processing_time_ms: llmValidationTime
-              },
+              output: validationResult,
               metadata: {
                 validation_completed: true,
-                judge_panel_size: 3,
-                dimensions_results: validationResult.dimension_results?.map(d => ({
-                  dimension: d.dimension,
-                  confidence_score: d.confidence_score,
-                  reliability: d.reliability_level,
-                  issues_count: d.issues?.length || 0
-                }))
+                judge_models_used: validationResult.metadata?.judge_models || [],
+                judge_panel_size: validationResult.metadata?.judge_models?.length || 0,
+                processing_time_ms: llmValidationTime
               }
             });
             validationSpan.end();
