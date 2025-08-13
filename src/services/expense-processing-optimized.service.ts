@@ -161,9 +161,7 @@ export class ExpenseProcessingOptimizedService {
             },
             metadata: {
               phase: 'llm_validation',
-              execution_mode: 'sequential',
-              validation_dimensions: 6,
-              processing_mode: 'parallel'
+              validation_dimensions: 6
             }
           });
 

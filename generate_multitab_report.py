@@ -666,6 +666,127 @@ def create_llm_quality_detailed_section(llm_quality_data, filename):
     
     return pd.DataFrame(rows)
 
+def create_llm_validation_overall_section(llm_validation_data, filename):
+    """Create LLM validation overall assessment section"""
+    if not llm_validation_data:
+        return pd.DataFrame()
+    
+    data = {
+        'file_name': filename,
+        'overall_score': round(llm_validation_data.get('overall_score', 0) * 100, 1),  # Convert to percentage
+        'dimensions_count': llm_validation_data.get('dimensions_count', 0),
+        'overall_reliability': llm_validation_data.get('overall_reliability', ''),
+        'critical_issues_count': len(llm_validation_data.get('critical_issues', [])),
+        'judge_models': ', '.join(llm_validation_data.get('metadata', {}).get('judge_models', [])),
+        'total_processing_time_seconds': llm_validation_data.get('metadata', {}).get('timing', {}).get('total_validation_time_seconds', ''),
+        'validation_timestamp': llm_validation_data.get('timestamp', ''),
+        'QA': '',
+        'note': ''
+    }
+    
+    return pd.DataFrame([data])
+
+def create_llm_validation_dimensions_section(llm_validation_data, filename):
+    """Create LLM validation dimension results section"""
+    if not llm_validation_data or 'dimension_results' not in llm_validation_data:
+        return pd.DataFrame()
+    
+    dimension_results = llm_validation_data['dimension_results']
+    rows = []
+    
+    for result in dimension_results:
+        # Convert issues list to string for display
+        issues_text = '; '.join(result.get('issues', []))
+        
+        row = {
+            'file_name': filename,
+            'dimension': result.get('dimension', '').replace('_', ' ').title(),
+            'confidence_score': round(result.get('confidence_score', 0) * 100, 1),  # Convert to percentage
+            'reliability_level': result.get('reliability_level', ''),
+            'issues_count': len(result.get('issues', [])),
+            'issues': issues_text,
+            'summary': result.get('summary', ''),
+            'judge_models': ', '.join(result.get('judge_models', [])),
+            'QA': '',
+            'note': ''
+        }
+        
+        rows.append(row)
+    
+    return pd.DataFrame(rows)
+
+def create_llm_validation_judge_details_section(llm_validation_data, filename):
+    """Create LLM validation judge details section"""
+    if not llm_validation_data or 'dimension_results' not in llm_validation_data:
+        return pd.DataFrame()
+    
+    dimension_results = llm_validation_data['dimension_results']
+    rows = []
+    
+    for result in dimension_results:
+        dimension = result.get('dimension', '').replace('_', ' ').title()
+        judge_details = result.get('judge_details', [])
+        
+        for judge in judge_details:
+            row = {
+                'file_name': filename,
+                'dimension': dimension,
+                'judge_model': judge.get('model_name', ''),
+                'confidence_score': round(judge.get('confidence_score', 0) * 100, 1),  # Convert to percentage
+                'response_summary': judge.get('response', '')[:200] + '...' if len(judge.get('response', '')) > 200 else judge.get('response', ''),
+                'QA': '',
+                'note': ''
+            }
+            
+            rows.append(row)
+    
+    return pd.DataFrame(rows)
+
+def create_llm_validation_recommendations_section(llm_validation_data, filename):
+    """Create LLM validation recommendations section"""
+    if not llm_validation_data or 'recommendations' not in llm_validation_data:
+        return pd.DataFrame()
+    
+    recommendations = llm_validation_data['recommendations']
+    rows = []
+    
+    for i, recommendation in enumerate(recommendations, 1):
+        row = {
+            'file_name': filename,
+            'recommendation_index': i,
+            'recommendation': recommendation,
+            'QA': '',
+            'note': ''
+        }
+        
+        rows.append(row)
+    
+    return pd.DataFrame(rows)
+
+def create_llm_validation_critical_issues_section(llm_validation_data, filename):
+    """Create LLM validation critical issues section"""
+    if not llm_validation_data or 'critical_issues' not in llm_validation_data:
+        return pd.DataFrame()
+    
+    critical_issues = llm_validation_data['critical_issues']
+    if not critical_issues:  # Return empty DataFrame if no critical issues
+        return pd.DataFrame()
+    
+    rows = []
+    
+    for i, issue in enumerate(critical_issues, 1):
+        row = {
+            'file_name': filename,
+            'critical_issue_index': i,
+            'critical_issue': issue,
+            'QA': '',
+            'note': ''
+        }
+        
+        rows.append(row)
+    
+    return pd.DataFrame(rows)
+
 def auto_adjust_column_widths(ws):
     """Auto-adjust column widths for a worksheet"""
     for col_num in range(1, ws.max_column + 1):
@@ -693,6 +814,26 @@ def create_worksheet_for_file(wb, filename):
     # Try different validation file patterns (keeping fallback for compatibility)
     validation_data = (load_json_file(f'validation_results/{filename}_compliance_validation.json') or
                       load_json_file(f'validation_results/{filename}_validation.json'))
+
+    # Try different LLM validation file patterns
+    llm_validation_data = None
+    validation_files = [
+        f'validation_results/{filename}_llm_validation.json',
+        f'validation_results/{filename}_validation_*.json'
+    ]
+    for pattern in validation_files:
+        if '*' in pattern:
+            # Handle wildcard pattern for timestamped files
+            import glob
+            matching_files = glob.glob(pattern.replace('*', '*'))
+            if matching_files:
+                # Use the most recent file
+                llm_validation_data = load_json_file(sorted(matching_files)[-1])
+                break
+        else:
+            llm_validation_data = load_json_file(pattern)
+            if llm_validation_data:
+                break
 
     # Try different quality file patterns (keeping fallback for compatibility)
     quality_data = (load_json_file(f'quality_reports/{filename}_page1_quality.json') or
@@ -797,6 +938,31 @@ def create_worksheet_for_file(wb, filename):
     llm_quality_detailed_df = create_llm_quality_detailed_section(llm_quality_data, filename)
     if not llm_quality_detailed_df.empty:
         current_row = add_dataframe_to_worksheet(ws, llm_quality_detailed_df, current_row, "LLM QUALITY - DETAILED ASSESSMENT")
+    
+    # 16. LLM Validation - Overall Assessment
+    llm_validation_overall_df = create_llm_validation_overall_section(llm_validation_data, filename)
+    if not llm_validation_overall_df.empty:
+        current_row = add_dataframe_to_worksheet(ws, llm_validation_overall_df, current_row, "LLM VALIDATION - OVERALL ASSESSMENT")
+    
+    # 17. LLM Validation - Dimension Results
+    llm_validation_dimensions_df = create_llm_validation_dimensions_section(llm_validation_data, filename)
+    if not llm_validation_dimensions_df.empty:
+        current_row = add_dataframe_to_worksheet(ws, llm_validation_dimensions_df, current_row, "LLM VALIDATION - DIMENSION RESULTS")
+    
+    # 18. LLM Validation - Judge Details
+    llm_validation_judge_details_df = create_llm_validation_judge_details_section(llm_validation_data, filename)
+    if not llm_validation_judge_details_df.empty:
+        current_row = add_dataframe_to_worksheet(ws, llm_validation_judge_details_df, current_row, "LLM VALIDATION - JUDGE DETAILS")
+    
+    # 19. LLM Validation - Recommendations
+    llm_validation_recommendations_df = create_llm_validation_recommendations_section(llm_validation_data, filename)
+    if not llm_validation_recommendations_df.empty:
+        current_row = add_dataframe_to_worksheet(ws, llm_validation_recommendations_df, current_row, "LLM VALIDATION - RECOMMENDATIONS")
+    
+    # 20. LLM Validation - Critical Issues (if any)
+    llm_validation_critical_df = create_llm_validation_critical_issues_section(llm_validation_data, filename)
+    if not llm_validation_critical_df.empty:
+        current_row = add_dataframe_to_worksheet(ws, llm_validation_critical_df, current_row, "LLM VALIDATION - CRITICAL ISSUES")
     
     # Auto-adjust column widths
     auto_adjust_column_widths(ws)
@@ -1040,6 +1206,26 @@ def create_timing_summary_worksheet(wb, files):
         results_data = (load_json_file(f'results/{filename}_result.json') or
                        load_json_file(f'results/{filename}.json'))
 
+        # Load LLM validation data
+        llm_validation_data = None
+        validation_files = [
+            f'validation_results/{filename}_llm_validation.json',
+            f'validation_results/{filename}_validation_*.json'
+        ]
+        for pattern in validation_files:
+            if '*' in pattern:
+                # Handle wildcard pattern for timestamped files
+                import glob
+                matching_files = glob.glob(pattern.replace('*', '*'))
+                if matching_files:
+                    # Use the most recent file
+                    llm_validation_data = load_json_file(sorted(matching_files)[-1])
+                    break
+            else:
+                llm_validation_data = load_json_file(pattern)
+                if llm_validation_data:
+                    break
+
         if results_data and 'timing' in results_data:
             timing = results_data['timing']
 
@@ -1057,8 +1243,6 @@ def create_timing_summary_worksheet(wb, files):
                 'details': 'Complete end-to-end processing time'
             })
 
-
-
             # Add agent performance details
             if 'agent_performance' in timing:
                 agent_performance = timing['agent_performance']
@@ -1075,6 +1259,40 @@ def create_timing_summary_worksheet(wb, files):
                             'end_time': details.get('end_time', ''),
                             'details': ''
                         })
+
+        # Add LLM validation timing data
+        if llm_validation_data and 'metadata' in llm_validation_data and 'timing' in llm_validation_data['metadata']:
+            validation_timing = llm_validation_data['metadata']['timing']
+            
+            # Add total LLM validation time
+            total_validation_time = validation_timing.get('total_validation_time_seconds', 'N/A')
+            all_timing_data.append({
+                'file_name': filename,
+                'timing_category': 'LLM Validation',
+                'phase_or_metric': 'Total LLM Validation Time',
+                'duration_seconds': total_validation_time,
+                'model_used': ', '.join(llm_validation_data.get('metadata', {}).get('judge_models', [])),
+                'execution_mode': 'Sequential',
+                'start_time': validation_timing.get('validation_start_time', ''),
+                'end_time': validation_timing.get('validation_end_time', ''),
+                'details': f"3-judge panel validation across {llm_validation_data.get('dimensions_count', 6)} dimensions"
+            })
+            
+            # Add dimension-specific timing
+            if 'dimension_timings' in validation_timing:
+                dimension_timings = validation_timing['dimension_timings']
+                for dimension, timing_details in dimension_timings.items():
+                    all_timing_data.append({
+                        'file_name': filename,
+                        'timing_category': 'LLM Validation',
+                        'phase_or_metric': f"Validation - {dimension.replace('_', ' ').title()}",
+                        'duration_seconds': timing_details.get('duration_seconds', 'N/A'),
+                        'model_used': ', '.join(timing_details.get('judge_models_used', [])),
+                        'execution_mode': 'Sequential',
+                        'start_time': timing_details.get('start_time', ''),
+                        'end_time': timing_details.get('end_time', ''),
+                        'details': f"3-judge validation for {dimension.replace('_', ' ')} dimension"
+                    })
 
     # Create DataFrame and add to worksheet
     if all_timing_data:

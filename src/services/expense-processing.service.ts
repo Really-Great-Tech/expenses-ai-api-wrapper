@@ -311,7 +311,6 @@ export class ExpenseProcessingService {
             },
             metadata: {
               phase: 'llm_validation',
-              execution_mode: 'sequential',
               validation_dimensions: 6
             }
           });
