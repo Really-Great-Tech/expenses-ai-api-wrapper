@@ -6,6 +6,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { DocumentController } from './document.controller';
 import { DocumentService } from './document.service';
 import { ExpenseProcessingService } from '../../services/expense-processing.service';
+import { UserSessionService } from '../../services/user-session.service';
 import { ExpenseProcessor } from '../processing/processors/expense.processor';
 import { ProcessingService } from '../processing/services/processing.service';
 import { LangfuseModule } from '../langfuse/langfuse.module';
@@ -83,7 +84,7 @@ import * as path from 'path';
     }]),
   ],
   controllers: [DocumentController],
-  providers: [DocumentService, ExpenseProcessingService, ExpenseProcessor, ProcessingService],
-  exports: [DocumentService, ProcessingService],
+  providers: [DocumentService, ExpenseProcessingService, UserSessionService, ExpenseProcessor, ProcessingService],
+  exports: [DocumentService, UserSessionService, ProcessingService],
 })
 export class DocumentModule {}

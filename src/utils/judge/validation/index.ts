@@ -257,8 +257,9 @@ export function mergeValidationConfigs(
 }
 
 // Export testing and demonstration utilities
-export { ComprehensiveParallelValidationTest, runComprehensiveValidationDemo } from './comprehensive-parallel-validation-test';
-export { ParallelValidationDemo } from './parallel-validation-demo';
+// Note: These files are not currently available, commenting out to fix compilation errors
+// export { ComprehensiveParallelValidationTest, runComprehensiveValidationDemo } from './comprehensive-parallel-validation-test';
+// export { ParallelValidationDemo } from './parallel-validation-demo';
 
 /**
  * Quick validation system health check

@@ -3,6 +3,7 @@ import { InjectQueue } from "@nestjs/bull";
 import { Queue, Job } from "bull";
 import { ConfigService } from "@nestjs/config";
 import { ExpenseProcessingService } from "../../services/expense-processing.service";
+import { UserSessionService } from "../../services/user-session.service";
 import * as fs from "fs";
 import * as path from "path";
 import {
@@ -22,6 +23,7 @@ export class DocumentService {
     private expenseQueue: Queue,
     private configService: ConfigService,
     private expenseProcessingService: ExpenseProcessingService,
+    private userSessionService: UserSessionService,
   ) {}
 
   async queueDocumentProcessing(request: {
@@ -30,10 +32,29 @@ export class DocumentService {
     country: string;
     icp: string;
     documentReader?: string;
-  }): Promise<{ jobId: string; status: string }> {
+    actualUserId?: string; // For backward compatibility, but now same as userId
+    metadata?: {
+      userAgent?: string;
+      ipAddress?: string;
+      clientId?: string;
+    };
+  }): Promise<{ jobId: string; status: string; userId: string; sessionId: string }> {
     try {
-      const { file, userId, country, icp, documentReader } = request;
-      const jobId = userId;
+      const { file, userId, country, icp, documentReader, metadata } = request;
+      
+      // NEW: Always use hierarchical user system (no more legacy mode)
+      const jobInfo = await this.userSessionService.createJobForUser(
+        userId, // userId is now the actual user ID
+        file.originalname,
+        country,
+        icp,
+        metadata
+      );
+      
+      const jobId = jobInfo.jobId;
+      const sessionId = jobInfo.sessionId;
+      
+      this.logger.log(`Created filename-based job ${jobId} for user ${userId} in session ${sessionId}`);
       const uploadPath = this.configService.get("UPLOAD_PATH", "./uploads");
 
       // Ensure upload directory exists
@@ -83,11 +104,15 @@ export class DocumentService {
         jobId,
         filePath,
         fileName: file.originalname,
-        userId,
+        userId: userId, // Now always the actual user ID
         country,
         icp,
         documentReader: documentReader || "llamaparse",
         uploadedAt: new Date(),
+        // Hierarchical user information
+        actualUserId: userId, // Same as userId now
+        sessionId,
+        legacyUserId: undefined, // No longer needed
       };
 
       // Add job to expense processing queue
@@ -112,6 +137,8 @@ export class DocumentService {
       return {
         jobId,
         status: "queued",
+        userId: userId, // Return the user ID
+        sessionId,
       };
     } catch (error) {
       this.logger.error("Failed to queue document processing:", error);

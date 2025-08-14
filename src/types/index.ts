@@ -7,6 +7,10 @@ export interface DocumentProcessingData {
   icp: string;
   documentReader?: string;
   uploadedAt: Date;
+  // NEW: Hierarchical user system fields
+  actualUserId?: string;
+  sessionId?: string;
+  legacyUserId?: string; // Keep original userId for backward compatibility
 }
 
 export interface ExpenseLineItem {

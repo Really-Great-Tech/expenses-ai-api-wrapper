@@ -84,8 +84,8 @@ export class DocumentController {
         },
         userId: {
           type: "string",
-          description: "User ID for processing context",
-          example: "user123",
+          description: "User ID for hierarchical trace grouping (enables filename-based Job IDs)",
+          example: "user_john_doe_123",
         },
         country: {
           type: "string",
@@ -106,6 +106,15 @@ export class DocumentController {
           example: "llamaparse",
           default: "llamaparse",
         },
+        metadata: {
+          type: "object",
+          description: "Optional metadata for user session tracking",
+          properties: {
+            userAgent: { type: "string", example: "MyApp/1.0" },
+            ipAddress: { type: "string", example: "192.168.1.100" },
+            clientId: { type: "string", example: "client-abc-123" }
+          }
+        },
       },
       required: ["file", "userId"],
     },
@@ -119,9 +128,10 @@ export class DocumentController {
         success: true,
         message: "Document processing job created successfully",
         data: {
-          jobId: "job_123456789",
-          status: "waiting",
-          createdAt: "2025-01-15T10:30:00Z",
+          jobId: "restaurant_receipt.pdf_user_john_doe_123",
+          status: "queued",
+          userId: "user_john_doe_123",
+          sessionId: "session_user_john_doe_123_2025-08-14T15-21-00-000Z_abc12345"
         },
       },
     },
@@ -187,7 +197,17 @@ export class DocumentController {
   })
   async processDocument(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: { userId: string; country?: string; icp?: string; documentReader?: string }
+    @Body() body: {
+      userId: string; // Now this is the actual user ID (simplified)
+      country?: string;
+      icp?: string;
+      documentReader?: string;
+      metadata?: {
+        userAgent?: string;
+        ipAddress?: string;
+        clientId?: string;
+      };
+    }
   ) {
     if (!file) {
       throw new HttpException("No file uploaded", HttpStatus.BAD_REQUEST);
@@ -200,10 +220,12 @@ export class DocumentController {
     try {
       const result = await this.documentService.queueDocumentProcessing({
         file,
-        userId: body.userId,
+        userId: body.userId, // This is now the actual user ID
         country: body.country || "Germany",
         icp: body.icp || "Global People",
         documentReader: body.documentReader || "llamaparse",
+        actualUserId: body.userId, // Same as userId (simplified)
+        metadata: body.metadata,
       });
 
       return {

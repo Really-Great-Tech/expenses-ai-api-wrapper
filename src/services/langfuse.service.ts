@@ -15,6 +15,9 @@ export interface LangfuseTraceData {
   tags?: string[];
   userId?: string;
   sessionId?: string;
+  // New fields for hierarchical user system
+  actualUserId?: string;
+  jobId?: string;
 }
 
 export interface LangfuseGenerationData {
@@ -132,7 +135,7 @@ export class LangfuseService implements OnModuleInit {
   }
 
   /**
-   * Create a new trace for expense processing
+   * Create a new trace for expense processing with hierarchical user support
    */
   createTrace(data: LangfuseTraceData): LangfuseTraceClient | null {
     if (!this.isEnabled || !this.langfuse) {
@@ -140,18 +143,91 @@ export class LangfuseService implements OnModuleInit {
     }
 
     try {
+      // Use actualUserId as the primary userId for Langfuse grouping
+      // This allows multiple jobs to be grouped under one actual user
+      const effectiveUserId = data.actualUserId || data.userId;
+      const effectiveSessionId = data.sessionId;
+
+      // Enhanced metadata to include job-level information
+      const enhancedMetadata = {
+        ...data.metadata,
+        // Hierarchical user information
+        actual_user_id: data.actualUserId,
+        job_id: data.jobId,
+        legacy_user_id: data.userId, // Keep for backward compatibility
+        // Trace grouping information
+        trace_type: data.actualUserId ? 'hierarchical' : 'legacy',
+        user_system_version: '2.0',
+      };
+
+      // Enhanced tags for better filtering and organization
+      const enhancedTags = [
+        ...(data.tags || []),
+        // Add system tags
+        data.actualUserId ? 'hierarchical-user' : 'legacy-user',
+        data.jobId ? `job:${data.jobId}` : undefined,
+        data.actualUserId ? `user:${data.actualUserId}` : undefined,
+      ].filter(Boolean) as string[];
+
       return this.langfuse.trace({
         name: data.name,
         input: data.input,
         output: data.output,
-        metadata: data.metadata,
-        tags: data.tags,
-        userId: data.userId,
-        sessionId: data.sessionId,
+        metadata: enhancedMetadata,
+        tags: enhancedTags,
+        userId: effectiveUserId, // This is what Langfuse uses for grouping
+        sessionId: effectiveSessionId,
       });
     } catch (error) {
       this.logger.error("Failed to create trace:", error);
       return null;
+    }
+  }
+
+  /**
+   * Create a trace with automatic user session resolution
+   */
+  createTraceWithUserSession(
+    data: Omit<LangfuseTraceData, 'actualUserId' | 'sessionId'>,
+    jobId: string,
+    userSessionService?: any // Import will be added later
+  ): LangfuseTraceClient | null {
+    if (!userSessionService) {
+      // Fallback to regular trace creation
+      return this.createTrace(data);
+    }
+
+    try {
+      // Get user information from job ID
+      const jobMapping = userSessionService.getJobMapping(jobId);
+      
+      if (jobMapping) {
+        // Create trace with hierarchical user information
+        return this.createTrace({
+          ...data,
+          actualUserId: jobMapping.actualUserId,
+          sessionId: jobMapping.sessionId,
+          jobId: jobId,
+          metadata: {
+            ...data.metadata,
+            job_filename: jobMapping.filename,
+            job_country: jobMapping.country,
+            job_icp: jobMapping.icp,
+            job_created_at: jobMapping.createdAt.toISOString(),
+          },
+        });
+      } else {
+        // Fallback to legacy mode
+        this.logger.warn(`No job mapping found for jobId: ${jobId}, using legacy trace creation`);
+        return this.createTrace({
+          ...data,
+          userId: jobId, // Legacy behavior
+        });
+      }
+    } catch (error) {
+      this.logger.error("Failed to create trace with user session:", error);
+      // Fallback to regular trace creation
+      return this.createTrace(data);
     }
   }
 

@@ -6,6 +6,7 @@ import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import { LangfuseService } from './langfuse.service';
+import { UserSessionService } from './user-session.service';
 import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
 import { ParallelExpenseComplianceUQLMValidator } from '../utils/judge/validation/ParallelExpenseComplianceUQLMValidator';
 import {
@@ -32,7 +33,10 @@ export class ExpenseProcessingService {
   private optimizedService: ExpenseProcessingOptimizedService;
   private complianceValidator: ExpenseComplianceUQLMValidator | ParallelExpenseComplianceUQLMValidator;
 
-  constructor(private langfuseService: LangfuseService) {
+  constructor(
+    private langfuseService: LangfuseService,
+    private userSessionService?: UserSessionService
+  ) {
     // Use Bedrock as default provider with Anthropic fallback
     const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
@@ -142,36 +146,76 @@ export class ExpenseProcessingService {
       ? Date.now() - markdownExtractionInfo.markdownExtractionTime
       : Date.now();
 
-    // Generate session ID for this processing run
-    const sessionId = this.generateSessionId(filename);
-    const effectiveUserId = userId || this.generateDefaultUserId();
+    // NEW: Always use hierarchical user system (no more legacy mode)
+    let mainTrace;
+    if (this.userSessionService && userId && this.isHierarchicalJobId(userId)) {
+      // This is a hierarchical filename-based job ID
+      this.logger.log(`🔗 Using hierarchical user system for filename-based job: ${userId}`);
+      
+      // Extract filename from job ID for better trace naming
+      const jobMapping = this.userSessionService.getJobMapping(userId);
+      const traceFilename = jobMapping?.filename || filename;
+      
+      mainTrace = this.langfuseService?.createTraceWithUserSession(
+        {
+          name: `expense-processing-${traceFilename}`,
+          input: {
+            filename: traceFilename,
+            jobId: userId,
+            country,
+            icp,
+            imagePath: path.basename(imagePath),
+            markdownContentLength: markdownContent.length,
+            processingMode: 'sequential',
+          },
+          metadata: {
+            service: 'ExpenseProcessingService',
+            filename: traceFilename,
+            jobId: userId,
+            country,
+            icp,
+            processingMode: 'sequential',
+            markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+            documentReader: markdownExtractionInfo?.documentReader,
+            jobType: 'filename-based',
+          },
+          tags: ['expense-processing', 'sequential', 'filename-based', country, icp, `file:${traceFilename}`],
+        },
+        userId, // This is the filename-based jobId
+        this.userSessionService
+      );
+    } else {
+      // Fallback: if job ID doesn't match hierarchical format, create basic trace
+      const effectiveUserId = userId || this.generateDefaultUserId();
+      const sessionId = this.generateSessionId(filename);
 
-    this.logger.log(`👤 User: ${effectiveUserId}, Session: ${sessionId}`);
+      this.logger.log(`⚠️  Job ID doesn't match hierarchical format, using basic trace: ${userId}`);
 
-    // Create main processing trace with user and session
-    const mainTrace = this.langfuseService?.createTrace({
-      name: 'expense-processing-sequential',
-      input: {
-        filename,
-        country,
-        icp,
-        imagePath: path.basename(imagePath),
-        markdownContentLength: markdownContent.length,
-        processingMode: 'sequential',
-      },
-      metadata: {
-        service: 'ExpenseProcessingService',
-        filename,
-        country,
-        icp,
-        processingMode: 'sequential',
-        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
-        documentReader: markdownExtractionInfo?.documentReader,
-      },
-      tags: ['expense-processing', 'sequential', country, icp],
-      userId: effectiveUserId,
-      sessionId: sessionId,
-    });
+      mainTrace = this.langfuseService?.createTrace({
+        name: 'expense-processing-sequential',
+        input: {
+          filename,
+          country,
+          icp,
+          imagePath: path.basename(imagePath),
+          markdownContentLength: markdownContent.length,
+          processingMode: 'sequential',
+        },
+        metadata: {
+          service: 'ExpenseProcessingService',
+          filename,
+          country,
+          icp,
+          processingMode: 'sequential',
+          markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+          documentReader: markdownExtractionInfo?.documentReader,
+          jobType: 'fallback',
+        },
+        tags: ['expense-processing', 'sequential', 'fallback', country, icp],
+        userId: effectiveUserId,
+        sessionId: sessionId,
+      });
+    }
 
     const currentTime = Date.now();
     const timing: any = {
@@ -723,6 +767,22 @@ export class ExpenseProcessingService {
     if (times.length === 0) return "0.00";
     const average = times.reduce((sum, time) => sum + parseFloat(time), 0) / times.length;
     return average.toFixed(2);
+  }
+
+  /**
+   * Check if a userId is a hierarchical job ID
+   * NEW FORMAT: filename.extension_user_id (no "job_" prefix)
+   */
+  private isHierarchicalJobId(userId: string): boolean {
+    // Check if this looks like a filename-based job ID
+    // Should contain a file extension and end with a user ID pattern
+    const hasFileExtension = /\.[a-z0-9]+_/.test(userId);
+    const endsWithUserId = /_[a-z0-9_]+$/i.test(userId);
+    
+    // Additional check: should not be a simple legacy user ID
+    const isNotSimpleLegacy = userId.includes('.');
+    
+    return hasFileExtension && endsWithUserId && isNotSimpleLegacy;
   }
 
   private validateTimingConsistency(timing: any): void {
