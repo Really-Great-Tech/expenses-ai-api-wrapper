@@ -7,6 +7,7 @@ import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import { LangfuseService } from './langfuse.service';
 import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
+import { ParallelExpenseComplianceUQLMValidator } from '../utils/judge/validation/ParallelExpenseComplianceUQLMValidator';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -29,7 +30,7 @@ export class ExpenseProcessingService {
   private citationGeneratorAgent: CitationGeneratorAgent;
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
   private optimizedService: ExpenseProcessingOptimizedService;
-  private complianceValidator: ExpenseComplianceUQLMValidator;
+  private complianceValidator: ExpenseComplianceUQLMValidator | ParallelExpenseComplianceUQLMValidator;
 
   constructor(private langfuseService: LangfuseService) {
     // Use Bedrock as default provider with Anthropic fallback
@@ -47,12 +48,26 @@ export class ExpenseProcessingService {
     // Initialize optimized service with Langfuse
     this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService);
 
-    // Initialize LLM-as-judge compliance validator
+    // Initialize LLM-as-judge compliance validator with parallel processing support
     try {
-      this.complianceValidator = new ExpenseComplianceUQLMValidator(this.logger);
-      this.logger.log('✅ LLM-as-judge compliance validator initialized successfully');
+      const useParallelValidation = process.env.PARALLEL_VALIDATION_ENABLED !== 'false';
+      
+      if (useParallelValidation) {
+        this.logger.log('🚀 Initializing PARALLEL LLM-as-judge compliance validator...');
+        this.complianceValidator = new ParallelExpenseComplianceUQLMValidator();
+        this.logger.log('✅ PARALLEL LLM-as-judge compliance validator initialized successfully');
+        this.logger.log(`📊 Parallel Configuration:`);
+        this.logger.log(`   - Dimension Concurrency: ${process.env.VALIDATION_DIMENSION_CONCURRENCY || 6}`);
+        this.logger.log(`   - Judge Concurrency: ${process.env.VALIDATION_JUDGE_CONCURRENCY || 3}`);
+        this.logger.log(`   - Rate Limit: ${process.env.BEDROCK_RATE_LIMIT_PER_SECOND || 10} req/sec`);
+      } else {
+        this.logger.log('🔄 Initializing SEQUENTIAL LLM-as-judge compliance validator...');
+        this.complianceValidator = new ExpenseComplianceUQLMValidator(this.logger);
+        this.logger.log('✅ Sequential LLM-as-judge compliance validator initialized successfully');
+      }
     } catch (error) {
       this.logger.error('❌ Failed to initialize LLM-as-judge compliance validator:', error);
+      this.logger.error('Stack trace:', error.stack);
       this.complianceValidator = null;
     }
   }
@@ -290,14 +305,36 @@ export class ExpenseProcessingService {
 
       progressCallback?.('citationGeneration', 95);
 
-      // Phase 5: LLM-as-Judge Validation (NEW)
+      // Phase 5: LLM-as-Judge Validation with Debug Logging
       progressCallback?.('llmValidation', 96);
-      this.logger.log('Phase 5: LLM-as-Judge Validation');
-
+      
       let llmValidationTime = 0;
+      let executionMode = 'sequential';
+      let parallelMetrics = {};
+      
       if (this.complianceValidator) {
         try {
           const validationStart = Date.now();
+          
+          // Determine if we're using parallel validation
+          const isParallelValidator = this.complianceValidator instanceof ParallelExpenseComplianceUQLMValidator;
+          const parallelEnabled = process.env.PARALLEL_VALIDATION_ENABLED !== 'false';
+          
+          this.logger.log(`🔍 Phase 5: LLM-as-Judge Validation (Sequential Processing)`);
+          this.logger.log(`📊 Validator Type: ${isParallelValidator ? 'ParallelExpenseComplianceUQLMValidator' : 'ExpenseComplianceUQLMValidator'}`);
+          this.logger.log(`⚡ Parallel Processing: ${parallelEnabled ? 'ENABLED' : 'DISABLED'}`);
+          
+          if (isParallelValidator && parallelEnabled) {
+            this.logger.log(`🚀 STARTING PARALLEL LLM VALIDATION (in sequential pipeline)`);
+            this.logger.log(`📈 Configuration:`);
+            this.logger.log(`   - Dimension Concurrency: ${process.env.VALIDATION_DIMENSION_CONCURRENCY || 6}`);
+            this.logger.log(`   - Judge Concurrency: ${process.env.VALIDATION_JUDGE_CONCURRENCY || 3}`);
+            this.logger.log(`   - Rate Limit: ${process.env.BEDROCK_RATE_LIMIT_PER_SECOND || 10} req/sec`);
+            executionMode = 'parallel';
+          } else {
+            this.logger.log(`🔄 Using sequential validation`);
+            executionMode = 'sequential';
+          }
           
           // Create Langfuse span for LLM validation
           const validationSpan = mainTrace?.span({
@@ -308,13 +345,18 @@ export class ExpenseProcessingService {
               icp,
               complianceDataSize: JSON.stringify(complianceData).length,
               extractedDataSize: JSON.stringify(extraction).length,
+              executionMode,
+              parallelEnabled: isParallelValidator && parallelEnabled
             },
             metadata: {
               phase: 'llm_validation',
-              validation_dimensions: 6
+              validation_dimensions: 6,
+              execution_mode: executionMode,
+              validator_type: isParallelValidator ? 'parallel' : 'sequential'
             }
           });
 
+          this.logger.log(`⏱️ Starting validation execution...`);
           const validationResult = await this.complianceValidator.validateComplianceResponse(
             JSON.stringify(compliance),
             country,
@@ -326,16 +368,32 @@ export class ExpenseProcessingService {
           const validationEnd = Date.now();
           llmValidationTime = validationEnd - validationStart;
 
+          // Extract parallel metrics if available
+          const parallelResult = validationResult as any;
+          if (parallelResult.performance_metrics) {
+            parallelMetrics = parallelResult.performance_metrics;
+            executionMode = parallelResult.performance_metrics.execution_mode || executionMode;
+            
+            this.logger.log(`📊 Validation completed in ${(llmValidationTime / 1000).toFixed(2)}s (${executionMode} mode)`);
+            
+            if (parallelResult.performance_metrics.speedup_factor) {
+              this.logger.log(`⚡ Speedup: ${parallelResult.performance_metrics.speedup_factor}x faster`);
+            }
+          }
+
           timing.phase_timings.llm_validation_seconds = (llmValidationTime / 1000).toFixed(1);
           timing.agent_performance.llm_validation = {
             start_time: new Date(validationStart).toISOString(),
             end_time: new Date(validationEnd).toISOString(),
             duration_seconds: (llmValidationTime / 1000).toFixed(1),
             judge_models_used: validationResult.metadata?.judge_models || [],
-            execution_mode: 'sequential'
+            execution_mode: executionMode,
+            parallel_metrics: parallelMetrics,
+            validator_type: isParallelValidator ? 'parallel' : 'sequential',
+            parallel_enabled: isParallelValidator && parallelEnabled
           };
 
-          // Update validation span with complete validation result (same as saved to file)
+          // Update validation span with complete validation result
           if (validationSpan) {
             validationSpan.update({
               output: validationResult,
@@ -343,7 +401,9 @@ export class ExpenseProcessingService {
                 validation_completed: true,
                 judge_models_used: validationResult.metadata?.judge_models || [],
                 judge_panel_size: validationResult.metadata?.judge_models?.length || 0,
-                processing_time_ms: llmValidationTime
+                processing_time_ms: llmValidationTime,
+                execution_mode: executionMode,
+                parallel_metrics: parallelMetrics
               }
             });
             validationSpan.end();
@@ -352,20 +412,23 @@ export class ExpenseProcessingService {
           // Save validation results to separate file
           await this.saveLLMValidationResults(filename, validationResult);
 
-          this.logger.log(`✅ LLM-as-judge validation completed in ${llmValidationTime}ms`);
+          this.logger.log(`✅ LLM-as-judge validation completed in ${(llmValidationTime / 1000).toFixed(2)}s (${executionMode} mode)`);
+          
         } catch (error) {
-          this.logger.warn(`⚠️ LLM-as-judge validation failed: ${error.message}`);
+          this.logger.error(`❌ LLM-as-judge validation failed: ${error.message}`);
+          this.logger.error(`Stack trace:`, error.stack);
           timing.phase_timings.llm_validation_seconds = '0.0';
           timing.agent_performance.llm_validation = {
             start_time: new Date().toISOString(),
             end_time: new Date().toISOString(),
             duration_seconds: '0.0',
             error: error.message,
-            execution_mode: 'sequential'
+            execution_mode: 'error',
+            validator_type: this.complianceValidator instanceof ParallelExpenseComplianceUQLMValidator ? 'parallel' : 'sequential'
           };
         }
       } else {
-        this.logger.log('⚠️ LLM-as-judge validation skipped (validator not available)');
+        this.logger.warn('⚠️ LLM-as-judge validation skipped (validator not available)');
         timing.phase_timings.llm_validation_seconds = '0.0';
       }
 
@@ -391,11 +454,7 @@ export class ExpenseProcessingService {
           country,
           icp,
           processed_at: new Date().toISOString(),
-          llm_validation: {
-            enabled: this.complianceValidator !== null,
-            processing_time_ms: llmValidationTime,
-            results_saved_separately: true
-          }
+          // Removed excessive timing metrics per user request
         },
       };
       
@@ -685,32 +744,15 @@ export class ExpenseProcessingService {
           `Timing inconsistency detected: Total time (${totalTime.toFixed(1)}s) vs Phase sum (${phaseSum.toFixed(1)}s). Difference: ${difference.toFixed(1)}s`
         );
 
-        // Add validation metadata to timing
-        timing.validation = {
-          total_time_seconds: totalTime.toFixed(1),
-          phase_sum_seconds: phaseSum.toFixed(1),
-          difference_seconds: difference.toFixed(1),
-          is_consistent: difference <= tolerance,
-          tolerance_seconds: tolerance.toFixed(1),
-          processing_mode: 'sequential'
-        };
+        // Just log timing info without adding validation metadata to results
+        this.logger.warn(
+          `Timing inconsistency detected: Total time (${totalTime.toFixed(1)}s) vs Phase sum (${phaseSum.toFixed(1)}s). Difference: ${difference.toFixed(1)}s`
+        );
       } else {
-        timing.validation = {
-          total_time_seconds: totalTime.toFixed(1),
-          phase_sum_seconds: phaseSum.toFixed(1),
-          difference_seconds: difference.toFixed(1),
-          is_consistent: true,
-          tolerance_seconds: tolerance.toFixed(1),
-          processing_mode: 'sequential'
-        };
         this.logger.log(`Timing validation passed: Total time matches phase sum within tolerance`);
       }
     } catch (error) {
       this.logger.error('Error validating timing consistency:', error);
-      timing.validation = {
-        error: 'Failed to validate timing consistency',
-        is_consistent: false
-      };
     }
   }
 }

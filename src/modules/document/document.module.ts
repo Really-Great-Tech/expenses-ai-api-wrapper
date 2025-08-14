@@ -6,6 +6,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { DocumentController } from './document.controller';
 import { DocumentService } from './document.service';
 import { ExpenseProcessingService } from '../../services/expense-processing.service';
+import { ExpenseProcessor } from '../processing/processors/expense.processor';
+import { ProcessingService } from '../processing/services/processing.service';
 import { LangfuseModule } from '../langfuse/langfuse.module';
 
 import { QUEUE_NAMES } from '../../types';
@@ -17,9 +19,20 @@ import * as path from 'path';
     // Import Langfuse for tracing
     LangfuseModule,
 
-    // Register the single  processing queue
+    // Register the queue with proper configuration and processor
     BullModule.registerQueue({
       name: QUEUE_NAMES.EXPENSE_PROCESSING,
+      defaultJobOptions: {
+        removeOnComplete: 10,
+        removeOnFail: 5,
+        attempts: 3,
+        backoff: {
+          type: "exponential",
+          delay: 2000,
+        },
+        // 10 minute timeout for all processing jobs
+        timeout: 10 * 60 * 1000, // 600,000ms = 10 minutes
+      },
     }),
 
     // Configure file upload
@@ -70,7 +83,7 @@ import * as path from 'path';
     }]),
   ],
   controllers: [DocumentController],
-  providers: [DocumentService, ExpenseProcessingService],
-  exports: [DocumentService],
+  providers: [DocumentService, ExpenseProcessingService, ExpenseProcessor, ProcessingService],
+  exports: [DocumentService, ProcessingService],
 })
 export class DocumentModule {}

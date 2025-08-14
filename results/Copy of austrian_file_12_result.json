@@ -1,0 +1,588 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\Test_Version6_3_Copy of austrian_file_12.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-13T20:15:03.291Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No parts of the receipt/invoice are missing or incomplete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "professional_services",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Austria",
+    "expected_location": "Austria",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains all necessary fields to be classified as an expense document. It includes supplier details, consumer details, transaction amount, transaction date, invoice number, tax information, payment method, and item description. The document is a tax invoice for a subscription service, which fits into the professional services category.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All 8 required fields are present, confirming this is an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "LinkedIn Ireland Unlimited Company",
+    "supplier_address": "5 Wilton Park, Dublin 2, Ireland",
+    "supplier_vat_number": "IE9740425P",
+    "customer_name": "Sarah Morriss",
+    "customer_email": "sarah.morriss@forliance.com",
+    "customer_address": "6063, Austria",
+    "customer_tax_id": "N/A",
+    "invoice_number": "78149353779",
+    "transaction_id": "P169260813",
+    "transaction_date": "2024-11-24",
+    "billing_frequency": "Monthly",
+    "payment_method": "MASTERCARD",
+    "card_last_four": "3012",
+    "currency": "EUR",
+    "total_amount": 99.17,
+    "subtotal": 82.64,
+    "tax_amount": 16.53,
+    "tax_rate": 20,
+    "discount_amount": null,
+    "tip_amount": null,
+    "balance": 0,
+    "line_items": [
+      {
+        "description": "Sales Navigator Core",
+        "quantity": 1,
+        "unit_price": 82.64,
+        "total_price": 82.64
+      }
+    ],
+    "receipt_type": "Tax Invoice",
+    "document_type": "Invoice",
+    "special_notes": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel. Cancel anytime by clicking the \"me\" icon on the homepage -> click Settings & Privacy -> select Manage Premium Account go to Admin Center -> select your subscription Cancel. See here for detailed instructions on how to cancel. Prices are subject to change. Have questions or need help? Please visit our Help Center.",
+    "terms_conditions": "For detailed terms and conditions, please visit the Help Center."
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "ICP company details",
+          "description": "The receipt does not show the ICP company details as required. It should show 'Global People IT-Services GmbH, Kärntner Ring 12, A-1010 Vienna, Austria VAT ID: ATU77112189'.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice must show Global People IT-Services GmbH, Kärntner Ring 12, A-1010 Vienna, Austria VAT ID: ATU77112189 - The Local Employers name and details should appear on invoices, not the workers",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info_required",
+          "description": "Training expenses require the approval of the direct manager.",
+          "recommendation": "Manager approval is required before processing this training expense",
+          "knowledge_base_reference": "Training expenses require the approval of the direct manager",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_information",
+          "description": "The expense is for training, which is subject to gross-up if not tax-free.",
+          "recommendation": "All expenses that have been approved by the client as a business expense will be NET to the employee (grossed up if not tax free)",
+          "knowledge_base_reference": "All expenses that has been approved by the client as a business expense will be NET to the employee (grossed up if not tax free)",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info_required",
+          "description": "Travel expenses must be submitted using the travel report template.",
+          "recommendation": "Travel expenses must be submitted using the travel report template",
+          "knowledge_base_reference": "Travel expenses must be submitted using the travel report template",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the required ICP company details and does not show that the training expense has been approved by the direct manager. Additionally, the training expense is subject to gross-up if not tax-free. Finally, travel expenses must be submitted using the travel report template."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Austria",
+      "icp": "Global People",
+      "receipt_type": "professional_services",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "Effective Date": {
+        "field_citation": {
+          "source_text": "Effective Date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The invoice is effective from the specified date.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11/24/2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The invoice is effective from 11/24/2024.",
+          "match_type": "exact"
+        }
+      },
+      "Transaction ID": {
+        "field_citation": {
+          "source_text": "Transaction ID",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The unique identifier for this transaction.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "P169260813",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The transaction ID for this invoice is P169260813.",
+          "match_type": "exact"
+        }
+      },
+      "Invoice Number": {
+        "field_citation": {
+          "source_text": "Invoice Number",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The unique invoice number for this billing cycle.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "78149353779",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The invoice number for this transaction is 78149353779.",
+          "match_type": "exact"
+        }
+      },
+      "Purchaser Email": {
+        "field_citation": {
+          "source_text": "Purchaser Email",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The email address of the purchaser.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "sarah.morriss@forliance.com",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The purchaser email for this invoice is sarah.morriss@forliance.com.",
+          "match_type": "exact"
+        }
+      },
+      "Amount": {
+        "field_citation": {
+          "source_text": "Amount",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total amount due for this invoice.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€99.17",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total amount due for this invoice is €99.17.",
+          "match_type": "exact"
+        }
+      },
+      "Transaction Date": {
+        "field_citation": {
+          "source_text": "Transaction Date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The date when the transaction was processed.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11/24/2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The transaction date is 11/24/2024.",
+          "match_type": "exact"
+        }
+      },
+      "Billing Frequency": {
+        "field_citation": {
+          "source_text": "Billing Frequency",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The frequency at which billing occurs.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Monthly",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The billing frequency is monthly.",
+          "match_type": "exact"
+        }
+      },
+      "Payment Method": {
+        "field_citation": {
+          "source_text": "Payment Method",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The method used for payment.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MASTERCARD ****3012",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The payment method used is MASTERCARD ****3012.",
+          "match_type": "exact"
+        }
+      },
+      "Customer Tax ID": {
+        "field_citation": {
+          "source_text": "Customer Tax ID",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The tax identification number for the customer.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "N/A",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No customer tax ID is provided.",
+          "match_type": "exact"
+        }
+      },
+      "Total": {
+        "field_citation": {
+          "source_text": "Total :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The final total amount due.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€99.17",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total amount due is €99.17.",
+          "match_type": "exact"
+        }
+      },
+      "Sales Navigator Core": {
+        "field_citation": {
+          "source_text": "Sales Navigator Core",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The service being billed for.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Sales Navigator Core",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The item being billed for is Sales Navigator Core.",
+          "match_type": "exact"
+        }
+      },
+      "Rate": {
+        "field_citation": {
+          "source_text": "Rate",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The rate per unit of the item.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€82.64",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The rate per unit is €82.64.",
+          "match_type": "exact"
+        }
+      },
+      "Quantity": {
+        "field_citation": {
+          "source_text": "Quantity",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The number of units of the item.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The quantity of the item is 1.",
+          "match_type": "exact"
+        }
+      },
+      "Price": {
+        "field_citation": {
+          "source_text": "Price",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total price for the item.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€82.64",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total price for the item is €82.64.",
+          "match_type": "exact"
+        }
+      },
+      "Subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The subtotal amount before taxes.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€82.64",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The subtotal amount is €82.64.",
+          "match_type": "exact"
+        }
+      },
+      "VAT": {
+        "field_citation": {
+          "source_text": "VAT",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The value-added tax.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€16.53",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The VAT amount is €16.53.",
+          "match_type": "exact"
+        }
+      },
+      "Payment": {
+        "field_citation": {
+          "source_text": "Payment",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The amount paid.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€99.17",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The payment amount is €99.17.",
+          "match_type": "exact"
+        }
+      },
+      "Balance": {
+        "field_citation": {
+          "source_text": "Balance",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The remaining balance.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€0.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The remaining balance is €0.00.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 61,
+      "fields_with_field_citations": 61,
+      "fields_with_value_citations": 61,
+      "average_confidence": 0.95
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.6",
+      "image_quality_assessment_seconds": "3.8",
+      "file_classification_seconds": "4.1",
+      "data_extraction_seconds": "4.4",
+      "issue_detection_seconds": "9.7",
+      "citation_generation_seconds": "21.1",
+      "llm_validation_seconds": "128.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-13T20:14:52.874Z",
+        "end_time": "2025-08-13T20:14:59.496Z",
+        "duration_seconds": "6.6",
+        "document_reader_used": "textract"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-13T20:14:59.497Z",
+        "end_time": "2025-08-13T20:15:03.291Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-13T20:14:59.499Z",
+        "end_time": "2025-08-13T20:15:03.594Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-13T20:14:59.500Z",
+        "end_time": "2025-08-13T20:15:03.851Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-13T20:15:03.853Z",
+        "end_time": "2025-08-13T20:15:13.505Z",
+        "duration_seconds": "9.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-13T20:15:03.855Z",
+        "end_time": "2025-08-13T20:15:24.934Z",
+        "duration_seconds": "21.1",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-13T20:15:24.935Z",
+        "end_time": "2025-08-13T20:17:33.668Z",
+        "duration_seconds": "128.7",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "sequential"
+      }
+    },
+    "total_processing_time_seconds": "160.8",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.4",
+      "parallel_group_2_seconds": "21.1",
+      "total_parallel_time_seconds": "25.4",
+      "estimated_sequential_time_seconds": "178.4",
+      "estimated_speedup_factor": "7.01"
+    },
+    "validation": {
+      "total_time_seconds": "160.8",
+      "expected_parallel_time_seconds": "32.1",
+      "sequential_sum_seconds": "178.4",
+      "difference_seconds": "128.7",
+      "is_consistent": false,
+      "tolerance_seconds": "3.0",
+      "processing_mode": "parallel",
+      "time_saved_seconds": "17.6"
+    }
+  },
+  "metadata": {
+    "filename": "Copy of austrian_file_12.pdf",
+    "processing_time": 160798,
+    "country": "Austria",
+    "icp": "Global People",
+    "processed_at": "2025-08-13T20:17:33.673Z",
+    "llm_validation": {
+      "enabled": true,
+      "processing_time_ms": 128733,
+      "results_saved_separately": true
+    },
+    "optimization": {
+      "parallel_processing": true,
+      "parallel_group_1_duration_seconds": "4.4",
+      "parallel_group_2_duration_seconds": "21.1",
+      "estimated_sequential_time_seconds": "178.4",
+      "actual_parallel_time_seconds": "160.8"
+    }
+  }
+}

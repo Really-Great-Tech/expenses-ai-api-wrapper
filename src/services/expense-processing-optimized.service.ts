@@ -5,6 +5,7 @@ import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
+import { ParallelExpenseComplianceUQLMValidator } from '../utils/judge/validation/ParallelExpenseComplianceUQLMValidator';
 import { LangfuseService } from './langfuse.service';
 import {
   type CompleteProcessingResult,
@@ -34,7 +35,7 @@ export class ExpenseProcessingOptimizedService {
       citationGeneratorAgent: CitationGeneratorAgent;
       imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
     },
-    complianceValidator?: ExpenseComplianceUQLMValidator,
+    complianceValidator?: ExpenseComplianceUQLMValidator | ParallelExpenseComplianceUQLMValidator,
     progressCallback?: (stage: string, progress: number) => void,
     markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
     userId?: string
@@ -140,14 +141,36 @@ export class ExpenseProcessingOptimizedService {
       this.logger.log(`✅ Parallel Group 2 completed in ${parallelGroup2Duration.toFixed(2)}s (was ~${(0.29 + 0.26).toFixed(2)}min sequential)`);
       progressCallback?.('parallelPhase2Complete', 95);
 
-      // Phase 5: LLM-as-Judge Validation (NEW)
+      // Phase 5: LLM-as-Judge Validation with Parallel Processing
       progressCallback?.('llmValidation', 96);
-      this.logger.log('Phase 5: LLM-as-Judge Validation (parallel)');
-
+      
       let llmValidationTime = 0;
+      let executionMode = 'sequential';
+      let parallelMetrics = {};
+      
       if (complianceValidator) {
         try {
           const validationStart = Date.now();
+          
+          // Determine if we're using parallel validation
+          const isParallelValidator = complianceValidator instanceof ParallelExpenseComplianceUQLMValidator;
+          const parallelEnabled = process.env.PARALLEL_VALIDATION_ENABLED !== 'false';
+          
+          this.logger.log(`🔍 Phase 5: LLM-as-Judge Validation`);
+          this.logger.log(`📊 Validator Type: ${isParallelValidator ? 'ParallelExpenseComplianceUQLMValidator' : 'ExpenseComplianceUQLMValidator'}`);
+          this.logger.log(`⚡ Parallel Processing: ${parallelEnabled ? 'ENABLED' : 'DISABLED'}`);
+          
+          if (isParallelValidator && parallelEnabled) {
+            this.logger.log(`🚀 STARTING PARALLEL LLM VALIDATION`);
+            this.logger.log(`📈 Configuration:`);
+            this.logger.log(`   - Dimension Concurrency: ${process.env.VALIDATION_DIMENSION_CONCURRENCY || 6}`);
+            this.logger.log(`   - Judge Concurrency: ${process.env.VALIDATION_JUDGE_CONCURRENCY || 3}`);
+            this.logger.log(`   - Rate Limit: ${process.env.BEDROCK_RATE_LIMIT_PER_SECOND || 10} req/sec`);
+            executionMode = 'parallel';
+          } else {
+            this.logger.log(`🔄 Using sequential validation (parallel disabled or not available)`);
+            executionMode = 'sequential';
+          }
           
           // Create Langfuse span for LLM validation
           const validationSpan = mainTrace?.span({
@@ -158,13 +181,18 @@ export class ExpenseProcessingOptimizedService {
               icp,
               complianceDataSize: JSON.stringify(complianceData).length,
               extractedDataSize: JSON.stringify(extraction).length,
+              executionMode,
+              parallelEnabled: isParallelValidator && parallelEnabled
             },
             metadata: {
               phase: 'llm_validation',
-              validation_dimensions: 6
+              validation_dimensions: 6,
+              execution_mode: executionMode,
+              validator_type: isParallelValidator ? 'parallel' : 'sequential'
             }
           });
 
+          this.logger.log(`⏱️ Starting validation execution...`);
           const validationResult = await complianceValidator.validateComplianceResponse(
             JSON.stringify(compliance),
             country,
@@ -176,16 +204,32 @@ export class ExpenseProcessingOptimizedService {
           const validationEnd = Date.now();
           llmValidationTime = validationEnd - validationStart;
 
+          // Extract parallel metrics if available (cast to any to access parallel-specific properties)
+          const parallelResult = validationResult as any;
+          if (parallelResult.performance_metrics) {
+            parallelMetrics = parallelResult.performance_metrics;
+            executionMode = parallelResult.performance_metrics.execution_mode || executionMode;
+            
+            this.logger.log(`📊 Validation completed in ${(llmValidationTime / 1000).toFixed(2)}s (${executionMode} mode)`);
+            
+            if (parallelResult.performance_metrics.speedup_factor) {
+              this.logger.log(`⚡ Speedup: ${parallelResult.performance_metrics.speedup_factor}x faster`);
+            }
+          }
+
           timing.phase_timings.llm_validation_seconds = (llmValidationTime / 1000).toFixed(1);
           timing.agent_performance.llm_validation = {
             start_time: new Date(validationStart).toISOString(),
             end_time: new Date(validationEnd).toISOString(),
             duration_seconds: (llmValidationTime / 1000).toFixed(1),
             judge_models_used: validationResult.metadata?.judge_models || [],
-            execution_mode: 'sequential'
+            execution_mode: executionMode,
+            parallel_metrics: parallelMetrics,
+            validator_type: isParallelValidator ? 'parallel' : 'sequential',
+            parallel_enabled: isParallelValidator && parallelEnabled
           };
 
-          // Update validation span with complete validation result (same as saved to file)
+          // Update validation span with complete validation result
           if (validationSpan) {
             validationSpan.update({
               output: validationResult,
@@ -193,7 +237,9 @@ export class ExpenseProcessingOptimizedService {
                 validation_completed: true,
                 judge_models_used: validationResult.metadata?.judge_models || [],
                 judge_panel_size: validationResult.metadata?.judge_models?.length || 0,
-                processing_time_ms: llmValidationTime
+                processing_time_ms: llmValidationTime,
+                execution_mode: executionMode,
+                parallel_metrics: parallelMetrics
               }
             });
             validationSpan.end();
@@ -202,20 +248,23 @@ export class ExpenseProcessingOptimizedService {
           // Save validation results to separate file
           await this.saveLLMValidationResults(filename, validationResult);
 
-          this.logger.log(`✅ LLM-as-judge validation completed in ${llmValidationTime}ms`);
+          this.logger.log(`✅ LLM-as-judge validation completed in ${(llmValidationTime / 1000).toFixed(2)}s (${executionMode} mode)`);
+          
         } catch (error) {
-          this.logger.warn(`⚠️ LLM-as-judge validation failed: ${error.message}`);
+          this.logger.error(`❌ LLM-as-judge validation failed: ${error.message}`);
+          this.logger.error(`Stack trace:`, error.stack);
           timing.phase_timings.llm_validation_seconds = '0.0';
           timing.agent_performance.llm_validation = {
             start_time: new Date().toISOString(),
             end_time: new Date().toISOString(),
             duration_seconds: '0.0',
             error: error.message,
-            execution_mode: 'sequential'
+            execution_mode: 'error',
+            validator_type: complianceValidator instanceof ParallelExpenseComplianceUQLMValidator ? 'parallel' : 'sequential'
           };
         }
       } else {
-        this.logger.log('⚠️ LLM-as-judge validation skipped (validator not available)');
+        this.logger.warn('⚠️ LLM-as-judge validation skipped (validator not available)');
         timing.phase_timings.llm_validation_seconds = '0.0';
       }
 
@@ -242,18 +291,7 @@ export class ExpenseProcessingOptimizedService {
           country,
           icp,
           processed_at: new Date().toISOString(),
-          llm_validation: {
-            enabled: complianceValidator !== null && complianceValidator !== undefined,
-            processing_time_ms: llmValidationTime,
-            results_saved_separately: true
-          },
-          optimization: {
-            parallel_processing: true,
-            parallel_group_1_duration_seconds: parallelGroup1Duration.toFixed(1),
-            parallel_group_2_duration_seconds: parallelGroup2Duration.toFixed(1),
-            estimated_sequential_time_seconds: timing.performance_metrics?.estimated_sequential_time_seconds || '0.0',
-            actual_parallel_time_seconds: (processingTime / 1000).toFixed(1)
-          }
+          // Removed excessive timing metrics per user request
         },
       };
       
@@ -421,87 +459,19 @@ export class ExpenseProcessingOptimizedService {
   }
 
   private addPerformanceMetrics(timing: any, group1Duration: number, group2Duration: number) {
-    // Calculate estimated sequential time from actual phase timings
-    const phaseTimings = timing.phase_timings || {};
-    const estimatedSequentialTime = Object.values(phaseTimings)
-      .filter((time): time is string => time !== undefined && time !== null && typeof time === 'string')
-      .reduce((sum: number, time: string) => sum + parseFloat(time), 0);
-
+    // Simplified performance metrics - removed excessive timing details per user request
     timing.performance_metrics = {
       parallel_group_1_seconds: group1Duration.toFixed(1),
       parallel_group_2_seconds: group2Duration.toFixed(1),
-      total_parallel_time_seconds: (group1Duration + group2Duration).toFixed(1),
-      estimated_sequential_time_seconds: estimatedSequentialTime.toFixed(1),
-      estimated_speedup_factor: (estimatedSequentialTime / (group1Duration + group2Duration)).toFixed(2)
+      total_parallel_time_seconds: (group1Duration + group2Duration).toFixed(1)
     };
   }
 
-  // Include validation and file saving methods from original service
+  // Simplified timing validation - removed excessive metrics per user request
   private validateParallelTimingConsistency(timing: any, group1Duration: number, group2Duration: number): void {
-    try {
-      const totalTime: number = parseFloat(timing.total_processing_time_seconds || '0');
-      const phaseTimings = timing.phase_timings || {};
-
-      // For parallel processing, calculate expected time based on parallel groups
-      const markdownTime = parseFloat(phaseTimings.markdown_extraction_seconds || '0');
-      const group1MaxTime = Math.max(
-        parseFloat(phaseTimings.image_quality_assessment_seconds || '0'),
-        parseFloat(phaseTimings.file_classification_seconds || '0'),
-        parseFloat(phaseTimings.data_extraction_seconds || '0')
-      );
-      const group2MaxTime = Math.max(
-        parseFloat(phaseTimings.issue_detection_seconds || '0'),
-        parseFloat(phaseTimings.citation_generation_seconds || '0')
-      );
-
-      const expectedParallelTime = markdownTime + group1MaxTime + group2MaxTime;
-
-      // Calculate sum of all phases (for comparison)
-      const sequentialSum: number = Object.values(phaseTimings)
-        .filter((time): time is string => time !== undefined && time !== null && typeof time === 'string')
-        .reduce((sum: number, time: string) => sum + parseFloat(time), 0);
-
-      // Allow for small rounding differences (up to 3 seconds)
-      const tolerance = 3.0;
-      const difference = Math.abs(totalTime - expectedParallelTime);
-
-      if (difference > tolerance) {
-        this.logger.warn(
-          `Parallel timing inconsistency detected: Total time (${totalTime.toFixed(1)}s) vs Expected parallel time (${expectedParallelTime.toFixed(1)}s). Difference: ${difference.toFixed(1)}s`
-        );
-
-        // Add validation metadata to timing
-        timing.validation = {
-          total_time_seconds: totalTime.toFixed(1),
-          expected_parallel_time_seconds: expectedParallelTime.toFixed(1),
-          sequential_sum_seconds: sequentialSum.toFixed(1),
-          difference_seconds: difference.toFixed(1),
-          is_consistent: difference <= tolerance,
-          tolerance_seconds: tolerance.toFixed(1),
-          processing_mode: 'parallel',
-          time_saved_seconds: (sequentialSum - totalTime).toFixed(1)
-        };
-      } else {
-        timing.validation = {
-          total_time_seconds: totalTime.toFixed(1),
-          expected_parallel_time_seconds: expectedParallelTime.toFixed(1),
-          sequential_sum_seconds: sequentialSum.toFixed(1),
-          difference_seconds: difference.toFixed(1),
-          is_consistent: true,
-          tolerance_seconds: tolerance.toFixed(1),
-          processing_mode: 'parallel',
-          time_saved_seconds: (sequentialSum - totalTime).toFixed(1)
-        };
-        this.logger.log(`Parallel timing validation passed: Total time (${totalTime.toFixed(1)}s) matches expected parallel time (${expectedParallelTime.toFixed(1)}s). Time saved: ${(sequentialSum - totalTime).toFixed(1)}s`);
-      }
-    } catch (error) {
-      this.logger.error('Error validating parallel timing consistency:', error);
-      timing.validation = {
-        error: 'Failed to validate parallel timing consistency',
-        is_consistent: false,
-        processing_mode: 'parallel'
-      };
-    }
+    // Just log basic timing info without adding validation metadata to results
+    const totalTime: number = parseFloat(timing.total_processing_time_seconds || '0');
+    this.logger.log(`Parallel processing completed in ${totalTime.toFixed(1)}s`);
   }
 
   private async saveResultsToFile(filename: string, result: CompleteProcessingResult): Promise<void> {

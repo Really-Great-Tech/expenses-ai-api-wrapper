@@ -24,8 +24,14 @@ import {
   ValidationUtils
 } from './types';
 
-// Import the main validator class
+// Import the main validator classes
 import { ExpenseComplianceUQLMValidator } from './ExpenseComplianceUQLMValidator';
+import {
+  ParallelExpenseComplianceUQLMValidator,
+  ParallelValidationConfig,
+  ParallelValidationMetrics,
+  ValidationJob
+} from './ParallelExpenseComplianceUQLMValidator';
 
 // Export all validation types and enums
 export {
@@ -44,8 +50,14 @@ export {
   ValidationUtils
 } from './types';
 
-// Export the main validator class
+// Export the main validator classes
 export { ExpenseComplianceUQLMValidator };
+export {
+  ParallelExpenseComplianceUQLMValidator,
+  ParallelValidationConfig,
+  ParallelValidationMetrics,
+  ValidationJob
+};
 
 // Re-export relevant types from the main judge types for convenience
 export type {
@@ -241,5 +253,92 @@ export function mergeValidationConfigs(
       ...base.custom_prompts,
       ...override.custom_prompts
     }
+  };
+}
+
+// Export testing and demonstration utilities
+export { ComprehensiveParallelValidationTest, runComprehensiveValidationDemo } from './comprehensive-parallel-validation-test';
+export { ParallelValidationDemo } from './parallel-validation-demo';
+
+/**
+ * Quick validation system health check
+ */
+export function validateSystemHealth(): {
+  parallelValidationAvailable: boolean;
+  sequentialValidationAvailable: boolean;
+  judgeModelsConfigured: boolean;
+  recommendedConfiguration: any;
+} {
+  try {
+    const parallelValidator = new ParallelExpenseComplianceUQLMValidator();
+    const sequentialValidator = new ExpenseComplianceUQLMValidator();
+    
+    const parallelReady = parallelValidator.isParallelValidationReady();
+    const stats = parallelValidator.getPerformanceStats();
+    
+    return {
+      parallelValidationAvailable: parallelReady,
+      sequentialValidationAvailable: true,
+      judgeModelsConfigured: stats.judgeModelsCount >= 2,
+      recommendedConfiguration: {
+        parallelValidationEnabled: true,
+        dimensionConcurrency: 6,
+        judgeConcurrency: 3,
+        jobConcurrency: 5,
+        bedrockRateLimitPerSecond: 10,
+        fallbackToSequential: true
+      }
+    };
+  } catch (error) {
+    return {
+      parallelValidationAvailable: false,
+      sequentialValidationAvailable: true,
+      judgeModelsConfigured: false,
+      recommendedConfiguration: null
+    };
+  }
+}
+
+/**
+ * Get optimal configuration based on system resources and requirements
+ */
+export function getOptimalConfiguration(requirements: {
+  prioritizeSpeed?: boolean;
+  prioritizeAccuracy?: boolean;
+  maxConcurrency?: number;
+  rateLimitPerSecond?: number;
+}): Partial<ParallelValidationConfig> {
+  const baseConfig = {
+    parallelValidationEnabled: true,
+    fallbackToSequential: true
+  };
+
+  if (requirements.prioritizeSpeed) {
+    return {
+      ...baseConfig,
+      dimensionConcurrency: Math.min(requirements.maxConcurrency || 8, 8),
+      judgeConcurrency: Math.min(requirements.maxConcurrency || 4, 4),
+      jobConcurrency: Math.min(requirements.maxConcurrency || 6, 6),
+      bedrockRateLimitPerSecond: requirements.rateLimitPerSecond || 15
+    };
+  }
+
+  if (requirements.prioritizeAccuracy) {
+    return {
+      ...baseConfig,
+      dimensionConcurrency: 6,
+      judgeConcurrency: 3,
+      jobConcurrency: 3,
+      bedrockRateLimitPerSecond: requirements.rateLimitPerSecond || 8
+    };
+  }
+
+  // Balanced configuration
+  return {
+    ...baseConfig,
+    dimensionConcurrency: 6,
+    judgeConcurrency: 3,
+    jobConcurrency: 5,
+    bedrockRateLimitPerSecond: requirements.rateLimitPerSecond || 10
   };
 }

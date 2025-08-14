@@ -1,0 +1,382 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\Test_Version6_7_Copy of italia_file_4.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-13T20:33:00.845Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are present that obscure the text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are present on the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, folds, or wrinkles are visible on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No edges of the document are cut off, and the entire document is captured.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No sections of the receipt/invoice are missing or incomplete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements are obstructing the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Italian",
+    "language_confidence": 95,
+    "document_location": "Italy",
+    "expected_location": "Italy",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, and item description. It represents a bus ticket purchase, which is classified under travel expenses.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of the 8 required fields, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Prontobus srl",
+    "supplier_address": "Strada Prati 4, Pescara",
+    "supplier_website": "www.prontobusitalia.it",
+    "supplier_vat_number": "02114590686",
+    "supplier_email": "info@prontobusitalia.it",
+    "supplier_phone": "+39 329 8631455",
+    "customer_name": "Fabio Papadia",
+    "invoice_number": null,
+    "receipt_number": "2962036-7",
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 30.4,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-01-07",
+    "transaction_time": "11:35",
+    "payment_method": "Credit Card",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Express Promo",
+        "quantity": 1,
+        "unit_price": 30.4,
+        "total_price": 30.4,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Biglietto",
+    "departure_location": "FS Piazz.le G. Marconi, Chieti Scalo (CH)",
+    "arrival_location": "Aeroporto di Fiumicino (RM)",
+    "departure_date": "2025-02-09",
+    "departure_time": "01:30",
+    "arrival_date": "2025-02-09",
+    "arrival_time": "04:15",
+    "special_notes": "NON TRANSITA per ROMA TIBURTINA",
+    "terms_conditions": "Il pagamento del biglietto con la relativa emissione comporta l'accettazione delle condizioni generali di viaggio riportate sul sito prontobusitalia.it.",
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Clear and readable receipts and invoices must be submitted with expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The transport expense is subject to tax implications as per country regulations",
+          "recommendation": "Transportation expenses are 100% tax exempt if worker provides evidence of transportation documents (not applicable for company cars)",
+          "knowledge_base_reference": "Expenses linked to vehicles i.e. fuel, parking, toll charges, are tax exempt up to 20% of their costs as long as the car is not assigned to a specific employee. Fuel expenses are taxed. Transportation expenses are 100% tax exempt if worker provides evidence of transportation documents (not applicable for company cars)",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required to support the mileage expense",
+          "recommendation": "Please provide a scan of the card passport (libretto di circolazione) and any screenshot from any app that can track start point, arrival point and KM (like google maps) to keep track of the travelled KM",
+          "knowledge_base_reference": "Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided. Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the invoice number, which is a mandatory field. Additionally, the transport expense is subject to tax implications and requires further documentation to support the mileage claim."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Italy",
+      "icp": "Global People",
+      "receipt_type": "travel",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "Totale": {
+        "field_citation": {
+          "source_text": "Totale",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BIGLIETTO 2962036-7\nTariffa\nSconto\nTotale\nExpress\nPromo",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€ 30,40",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Totale\n€ 30,40",
+          "match_type": "exact"
+        }
+      },
+      "Tariffa": {
+        "field_citation": {
+          "source_text": "Tariffa",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BIGLIETTO 2962036-7\nTariffa\nSconto\nTotale\nExpress\nPromo",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€ 30,40",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Totale\n€ 30,40",
+          "match_type": "exact"
+        }
+      },
+      "Sconto": {
+        "field_citation": {
+          "source_text": "Sconto",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BIGLIETTO 2962036-7\nTariffa\nSconto\nTotale\nExpress\nPromo",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "r: Express",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "PROMO AEROPORTI\nTotale\n€ 30,40\nFiumicino aeroporto Chieti scalo",
+          "match_type": "contextual"
+        }
+      },
+      "Promo": {
+        "field_citation": {
+          "source_text": "Promo",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BIGLIETTO 2962036-7\nTariffa\nSconto\nTotale\nExpress\nPromo",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "PROMO AEROPORTI",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "PROMO AEROPORTI\nTotale\n€ 30,40\nFiumicino aeroporto Chieti scalo",
+          "match_type": "exact"
+        }
+      },
+      "Express": {
+        "field_citation": {
+          "source_text": "Express",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BIGLIETTO 2962036-7\nTariffa\nSconto\nTotale\nExpress\nPromo",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "r: Express",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "PROMO AEROPORTI\nTotale\n€ 30,40\nFiumicino aeroporto Chieti scalo",
+          "match_type": "contextual"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 15,
+      "fields_with_field_citations": 15,
+      "fields_with_value_citations": 13,
+      "average_confidence": 0.9440000000000001
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "9.2",
+      "file_classification_seconds": "3.3",
+      "data_extraction_seconds": "3.4",
+      "image_quality_assessment_seconds": "3.8",
+      "issue_detection_seconds": "9.8",
+      "citation_generation_seconds": "12.0",
+      "llm_validation_seconds": "133.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-13T20:32:47.827Z",
+        "end_time": "2025-08-13T20:32:57.014Z",
+        "duration_seconds": "9.2",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-08-13T20:32:57.017Z",
+        "end_time": "2025-08-13T20:33:00.306Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-13T20:32:57.020Z",
+        "end_time": "2025-08-13T20:33:00.428Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-13T20:32:57.015Z",
+        "end_time": "2025-08-13T20:33:00.845Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-13T20:33:00.846Z",
+        "end_time": "2025-08-13T20:33:10.613Z",
+        "duration_seconds": "9.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-13T20:33:00.848Z",
+        "end_time": "2025-08-13T20:33:12.870Z",
+        "duration_seconds": "12.0",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-13T20:33:12.871Z",
+        "end_time": "2025-08-13T20:35:26.595Z",
+        "duration_seconds": "133.7",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "sequential"
+      }
+    },
+    "total_processing_time_seconds": "158.8",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "3.8",
+      "parallel_group_2_seconds": "12.0",
+      "total_parallel_time_seconds": "15.9",
+      "estimated_sequential_time_seconds": "175.2",
+      "estimated_speedup_factor": "11.05"
+    },
+    "validation": {
+      "total_time_seconds": "158.8",
+      "expected_parallel_time_seconds": "25.0",
+      "sequential_sum_seconds": "175.2",
+      "difference_seconds": "133.8",
+      "is_consistent": false,
+      "tolerance_seconds": "3.0",
+      "processing_mode": "parallel",
+      "time_saved_seconds": "16.4"
+    }
+  },
+  "metadata": {
+    "filename": "Copy of italia_file_4.pdf",
+    "processing_time": 158773,
+    "country": "Italy",
+    "icp": "Global People",
+    "processed_at": "2025-08-13T20:35:26.601Z",
+    "llm_validation": {
+      "enabled": true,
+      "processing_time_ms": 133724,
+      "results_saved_separately": true
+    },
+    "optimization": {
+      "parallel_processing": true,
+      "parallel_group_1_duration_seconds": "3.8",
+      "parallel_group_2_duration_seconds": "12.0",
+      "estimated_sequential_time_seconds": "175.2",
+      "actual_parallel_time_seconds": "158.8"
+    }
+  }
+}
