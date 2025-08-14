@@ -70,6 +70,48 @@ def add_dataframe_to_worksheet(ws, df, start_row, title=""):
         for col_idx, value in enumerate(row_data, 1):
             cell = ws.cell(row=row_idx, column=col_idx, value=value)
 
+            # Special formatting for LLM VALIDATION - DIMENSION RESULTS issues column
+            if title == "LLM VALIDATION - DIMENSION RESULTS":
+                # Find the issues column by checking the column name directly
+                if 'issues' in df.columns[col_idx-1].lower():
+                    # Get the dimension value from the same row (column 2, which is index 1)
+                    dimension_value = str(row_data[1]) if len(row_data) > 1 else ""
+                    
+                    # Apply unique color coding for each dimension
+                    if 'factual grounding' in dimension_value.lower():
+                        # Light Red for factual grounding
+                        cell.fill = PatternFill(start_color="FFE6E6", end_color="FFE6E6", fill_type="solid")
+                    elif 'knowledge base adherence' in dimension_value.lower():
+                        # Light Orange for knowledge base adherence
+                        cell.fill = PatternFill(start_color="FFE6CC", end_color="FFE6CC", fill_type="solid")
+                    elif 'compliance accuracy' in dimension_value.lower():
+                        # Light Yellow for compliance accuracy
+                        cell.fill = PatternFill(start_color="FFFFCC", end_color="FFFFCC", fill_type="solid")
+                    elif 'issue categorization' in dimension_value.lower():
+                        # Light Blue for issue categorization
+                        cell.fill = PatternFill(start_color="E6F3FF", end_color="E6F3FF", fill_type="solid")
+                    elif 'recommendation validity' in dimension_value.lower():
+                        # Light Purple for recommendation validity
+                        cell.fill = PatternFill(start_color="F0E6FF", end_color="F0E6FF", fill_type="solid")
+                    elif 'hallucination detection' in dimension_value.lower():
+                        # Light Pink for hallucination detection
+                        cell.fill = PatternFill(start_color="FFE6F3", end_color="FFE6F3", fill_type="solid")
+                    elif not value or str(value).strip() == "":
+                        # Light Green for no issues
+                        cell.fill = PatternFill(start_color="E6FFE6", end_color="E6FFE6", fill_type="solid")
+                    else:
+                        # Light Gray for any other dimensions
+                        cell.fill = PatternFill(start_color="F5F5F5", end_color="F5F5F5", fill_type="solid")
+                    
+                    # Set text wrapping for better readability
+                    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+
+            # Special formatting for ISSUES SECTION - add text wrapping to description and recommendation columns
+            if title == "ISSUES SECTION":
+                # Apply text wrapping to description (column 3), recommendation (column 4), and knowledge_base_reference (column 5) columns
+                if col_idx in [3, 4, 5]:  # description, recommendation, knowledge_base_reference columns
+                    cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+
             # Special formatting for markdown content
             if title == "MARKDOWN SECTION":
                 if col_idx == 3:  # markdown_content column (now column 3 due to content_part column)
