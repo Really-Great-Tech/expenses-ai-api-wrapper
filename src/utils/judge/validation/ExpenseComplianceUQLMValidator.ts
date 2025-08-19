@@ -9,7 +9,8 @@ import {
   ValidationUtils,
   ReliabilityLevel,
   ValidationError,
-  ValidationErrorType
+  ValidationErrorType,
+  IssueValidationScore
 } from './types';
 
 /**
@@ -24,18 +25,33 @@ export class ExpenseComplianceUQLMValidator {
   constructor(logger?: Logger) {
     this.logger = logger || new Logger(ExpenseComplianceUQLMValidator.name);
     
-    // Initialize multiple Bedrock services for judge panel
-    const judgeModels = [
-      process.env.BEDROCK_JUDGE_MODEL_1 || 'eu.amazon.nova-pro-v1:0',
-      process.env.BEDROCK_JUDGE_MODEL_2 || 'eu.amazon.nova-lite-v1:0',
-      process.env.BEDROCK_JUDGE_MODEL_3 || 'anthropic.claude-3-5-sonnet-20241022-v2:0'
+    // Initialize multiple Bedrock services for judge panel with different temperatures
+    const judgeConfigs = [
+      {
+        modelId: process.env.BEDROCK_JUDGE_MODEL_1 || 'eu.anthropic.claude-3-7-sonnet-20250219-v1:0',
+        temperature: parseFloat(process.env.BEDROCK_JUDGE_MODEL_1_TEMPERATURE || '0.3')
+      },
+      {
+        modelId: process.env.BEDROCK_JUDGE_MODEL_2 || 'eu.anthropic.claude-3-haiku-20240307-v1:0',
+        temperature: parseFloat(process.env.BEDROCK_JUDGE_MODEL_2_TEMPERATURE || '0.7')
+      },
+      {
+        modelId: process.env.BEDROCK_JUDGE_MODEL_3 || 'eu.anthropic.claude-3-5-sonnet-20240620-v1:0',
+        temperature: parseFloat(process.env.BEDROCK_JUDGE_MODEL_3_TEMPERATURE || '0.5')
+      }
     ];
 
-    this.bedrockServices = judgeModels.map(modelId =>
-      new BedrockLlmService({ modelId })
+    this.bedrockServices = judgeConfigs.map(config =>
+      new BedrockLlmService({
+        modelId: config.modelId,
+        temperature: config.temperature
+      })
     );
     
-    this.logger.log('✅ ExpenseComplianceUQLMValidator initialized with 3 judge models');
+    this.logger.log('✅ ExpenseComplianceUQLMValidator initialized with 3 judge models and custom temperatures');
+    judgeConfigs.forEach((config, index) => {
+      this.logger.log(`   Judge ${index + 1}: ${config.modelId} (temp: ${config.temperature})`);
+    });
   }
 
   /**
@@ -62,6 +78,9 @@ export class ExpenseComplianceUQLMValidator {
         parsedResponse = { raw_response: aiResponse };
       }
 
+      // Extract issues from AI response for issue-level evaluation
+      const extractedIssues = this._extractIssuesFromAIResponse(parsedResponse);
+
       // Validate all dimensions
       const dimensions = Object.values(ValidationDimension);
       const validationResults: ComplianceValidationResult[] = [];
@@ -85,7 +104,7 @@ export class ExpenseComplianceUQLMValidator {
             dimension
           );
 
-          const result = await this._validateDimensionWithPanel(validationPrompt, dimension);
+          const result = await this._validateDimensionWithPanel(validationPrompt, dimension, extractedIssues);
           validationResults.push(result);
           
           const dimensionEndTime = Date.now();
@@ -160,6 +179,9 @@ export class ExpenseComplianceUQLMValidator {
     extractedJson: any,
     dimension: ValidationDimension
   ): string {
+    // Extract issues from the AI response for issue-level evaluation
+    const extractedIssues = this._extractIssuesFromAIResponse(parsedResponse);
+    
     const baseContext = `
 Country: ${country}
 Receipt Type: ${receiptType}
@@ -168,6 +190,9 @@ AI Response: ${aiResponse}
 Extracted Data: ${JSON.stringify(extractedJson, null, 2)}
 Compliance Rules: ${JSON.stringify(complianceJson, null, 2)}
 ICP Context: ${JSON.stringify(icp, null, 2)}
+
+ISSUES IDENTIFIED IN AI RESPONSE:
+${extractedIssues.map((issue, index) => `${index + 1}. [${issue.issue_type}] ${issue.description}`).join('\n')}
 `;
 
     switch (dimension) {
@@ -182,9 +207,13 @@ Assess whether the AI response is factually grounded in the provided extracted d
 3. Numerical values, dates, and amounts match the extracted data
 4. Entity names and details are accurately represented
 
-Rate your confidence (0-100) that the response is factually grounded and list any issues found.
+For each issue identified above, evaluate its factual grounding validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of how this issue affects factual grounding validation]`).join('\n')}
+
+Overall confidence (0-100) that the response is factually grounded: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any factual grounding issues]
 SUMMARY: [Brief assessment]`;
@@ -200,9 +229,13 @@ Assess whether the AI response correctly applies the compliance rules and knowle
 3. Receipt type requirements are accurately addressed
 4. No contradictions with established compliance guidelines
 
-Rate your confidence (0-100) that the response adheres to the knowledge base and list any issues.
+For each issue identified above, evaluate its knowledge base adherence validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of how this issue affects knowledge base adherence validation]`).join('\n')}
+
+Overall confidence (0-100) that the response adheres to the knowledge base: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any knowledge base adherence issues]
 SUMMARY: [Brief assessment]`;
@@ -218,9 +251,13 @@ Assess whether the compliance determination is accurate. Check if:
 3. Business rules are correctly applied
 4. Edge cases are handled appropriately
 
-Rate your confidence (0-100) that the compliance assessment is accurate and list any issues.
+For each issue identified above, evaluate its compliance accuracy validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of how accurately this issue was identified and categorized]`).join('\n')}
+
+Overall confidence (0-100) that the compliance assessment is accurate: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any compliance accuracy issues]
 SUMMARY: [Brief assessment]`;
@@ -236,9 +273,13 @@ Assess whether identified issues are correctly categorized. Check if:
 3. Categorization follows established taxonomy
 4. No issues are missed or incorrectly classified
 
-Rate your confidence (0-100) that issues are correctly categorized and list any problems.
+For each issue identified above, evaluate its categorization accuracy validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of how well this issue is categorized and described]`).join('\n')}
+
+Overall confidence (0-100) that issues are correctly categorized: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any issue categorization problems]
 SUMMARY: [Brief assessment]`;
@@ -254,9 +295,13 @@ Assess whether provided recommendations are valid and helpful. Check if:
 3. Recommendations are feasible and practical
 4. No contradictory or harmful advice is given
 
-Rate your confidence (0-100) that recommendations are valid and list any issues.
+For each issue identified above, evaluate its recommendation validity validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of how valid and helpful the recommendations are for this issue]`).join('\n')}
+
+Overall confidence (0-100) that recommendations are valid: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any recommendation validity issues]
 SUMMARY: [Brief assessment]`;
@@ -272,9 +317,13 @@ Assess whether the AI response contains hallucinated or fabricated information. 
 3. Made-up entity names, amounts, or dates
 4. Assumptions presented as facts
 
-Rate your confidence (0-100) that the response is free from hallucinations and list any detected fabrications.
+For each issue identified above, evaluate its hallucination detection validation score (0-100):
+${extractedIssues.map((issue, index) => `Issue ${index + 1} validation_score: [0-100] - [explanation of whether this issue contains hallucinated information]`).join('\n')}
+
+Overall confidence (0-100) that the response is free from hallucinations: [0-100]
 
 Response format:
+${extractedIssues.map((_, index) => `ISSUE_${index + 1}_VALIDATION_SCORE: [0-100] - [explanation]`).join('\n')}
 CONFIDENCE: [0-100]
 ISSUES: [List any detected hallucinations]
 SUMMARY: [Brief assessment]`;
@@ -288,11 +337,96 @@ SUMMARY: [Brief assessment]`;
   }
 
   /**
+   * Extract issues from AI response for issue-level evaluation
+   */
+  private _extractIssuesFromAIResponse(parsedResponse: any): Array<{issue_type: string, description: string}> {
+    try {
+      // Try to extract issues from the parsed response
+      if (parsedResponse?.validation_result?.issues && Array.isArray(parsedResponse.validation_result.issues)) {
+        return parsedResponse.validation_result.issues.map((issue: any, index: number) => ({
+          issue_type: issue.issue_type || `Issue ${index + 1}`,
+          description: issue.description || issue.toString()
+        }));
+      }
+      
+      // Fallback: if no structured issues found, return a generic placeholder
+      return [{
+        issue_type: 'General Validation',
+        description: 'Overall AI response validation'
+      }];
+    } catch (error) {
+      // Fallback for any parsing errors
+      return [{
+        issue_type: 'General Validation',
+        description: 'Overall AI response validation'
+      }];
+    }
+  }
+
+  /**
+   * Extract issue validation scores from judge response text
+   */
+  private _extractIssueValidationScores(text: string, dimension: ValidationDimension, extractedIssues: Array<{issue_type: string, description: string}>): IssueValidationScore[] {
+    const validationScores: IssueValidationScore[] = [];
+    
+    try {
+      // Look for ISSUE_X_VALIDATION_SCORE patterns
+      extractedIssues.forEach((issue, index) => {
+        const issuePattern = new RegExp(`ISSUE_${index + 1}_VALIDATION_SCORE:\\s*(\\d+)\\s*-\\s*(.+?)(?=\\n|ISSUE_|CONFIDENCE:|$)`, 'is');
+        const match = text.match(issuePattern);
+        
+        if (match) {
+          const score = parseInt(match[1]);
+          const explanation = match[2].trim();
+          
+          if (score >= 0 && score <= 100) {
+            validationScores.push({
+              issue_index: index,
+              issue_description: issue.description,
+              issue_type: issue.issue_type,
+              validation_score: score,
+              judge_explanation: explanation,
+              dimension: dimension
+            });
+          }
+        } else {
+          // Fallback: assign a neutral score if no specific validation score found
+          validationScores.push({
+            issue_index: index,
+            issue_description: issue.description,
+            issue_type: issue.issue_type,
+            validation_score: 50, // Neutral score
+            judge_explanation: 'No specific validation score assessment provided',
+            dimension: dimension
+          });
+        }
+      });
+    } catch (error) {
+      this.logger.warn(`Failed to extract issue validation scores for ${dimension}: ${error.message}`);
+      
+      // Fallback: create neutral validation scores for all issues
+      extractedIssues.forEach((issue, index) => {
+        validationScores.push({
+          issue_index: index,
+          issue_description: issue.description,
+          issue_type: issue.issue_type,
+          validation_score: 50,
+          judge_explanation: 'Validation score parsing failed',
+          dimension: dimension
+        });
+      });
+    }
+    
+    return validationScores;
+  }
+
+  /**
    * Validate dimension using multiple Bedrock models as judges
    */
   private async _validateDimensionWithPanel(
     validationPrompt: string,
-    dimension: ValidationDimension
+    dimension: ValidationDimension,
+    extractedIssues?: Array<{issue_type: string, description: string}>
   ): Promise<ComplianceValidationResult> {
     try {
       const judgeResponses: string[] = [];
@@ -344,6 +478,12 @@ SUMMARY: [Brief assessment]`;
       const issues = this._extractIssuesFromText(primaryResponse);
       const summary = this._extractSummaryFromText(primaryResponse);
       
+      // Extract issue validation scores if extractedIssues provided
+      let issueValidationScores: IssueValidationScore[] | undefined;
+      if (extractedIssues && extractedIssues.length > 0) {
+        issueValidationScores = this._extractIssueValidationScores(primaryResponse, dimension, extractedIssues);
+      }
+      
       // Determine reliability based on consensus
       const reliability = this._determineReliabilityFromScores(confidenceScores);
 
@@ -358,7 +498,8 @@ SUMMARY: [Brief assessment]`;
         primaryResponse,
         reliability,
         judgeModels,
-        judgeDetails
+        judgeDetails,
+        issueValidationScores
       );
 
     } catch (error) {
@@ -479,6 +620,9 @@ SUMMARY: [Brief assessment]`;
     // Generate recommendations based on results
     const recommendations = this._generateRecommendations(validationResults);
 
+    // Generate aggregated issue scores
+    const issueValidationScores = ValidationUtils.aggregateIssueScores(validationResults, 'weighted');
+
     // Get all judge model names
     const judgeModels = this.bedrockServices.map(service => service.getCurrentModelName());
 
@@ -495,7 +639,9 @@ SUMMARY: [Brief assessment]`;
       },
       context: {
         dimensions_validated: validationResults.length,
-        judge_panel_size: this.bedrockServices.length
+        judge_panel_size: this.bedrockServices.length,
+        issue_level_scoring_enabled: issueValidationScores.length > 0,
+        aggregated_issues_count: issueValidationScores.length
       }
     };
 
@@ -507,7 +653,8 @@ SUMMARY: [Brief assessment]`;
       critical_issues: criticalIssues,
       recommendations,
       timestamp: new Date(),
-      metadata
+      metadata,
+      issue_validation_scores: issueValidationScores.length > 0 ? issueValidationScores : undefined
     };
   }
 

@@ -2,7 +2,7 @@
 # Markdown Extraction Results
 - **Original File**: Copy of italia_file_6.pdf
 - **Document Reader**: textract
-- **Extracted At**: 2025-08-19T16:16:57.273Z
+- **Extracted At**: 2025-08-13T20:36:13.472Z
 - **Content Length**: 3771 characters
 ---
 

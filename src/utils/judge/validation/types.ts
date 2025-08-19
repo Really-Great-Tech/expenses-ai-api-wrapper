@@ -19,6 +19,32 @@ export enum ValidationDimension {
 export type ReliabilityLevel = 'high' | 'medium' | 'low';
 
 /**
+ * Individual issue validation score for a specific dimension
+ */
+export interface IssueValidationScore {
+  issue_index: number;
+  issue_description: string;
+  issue_type: string;
+  validation_score: number; // 0-100
+  judge_explanation: string;
+  dimension: ValidationDimension;
+}
+
+/**
+ * Aggregated validation score for a single issue across all dimensions
+ */
+export interface AggregatedIssueValidation {
+  issue_index: number;
+  issue_description: string;
+  issue_type: string;
+  overall_validation_score: number; // Single aggregated score (0-100)
+  reliability_level: ReliabilityLevel;
+  
+  // Optional: Keep dimension breakdown for debugging
+  dimension_breakdown?: Record<ValidationDimension, number>;
+}
+
+/**
  * Individual compliance validation result for a specific dimension
  */
 export interface ComplianceValidationResult {
@@ -50,6 +76,9 @@ export interface ComplianceValidationResult {
     response: string;
   }[];
   
+  /** Issue-level validation scores for this dimension */
+  issue_validation_scores?: IssueValidationScore[];
+  
   /**
    * Convert the validation result to a dictionary/object format
    * for JSON serialization
@@ -74,6 +103,7 @@ export interface ComplianceValidationResultDict {
     confidence_score: number;
     response: string;
   }[];
+  issue_validation_scores?: IssueValidationScore[];
 }
 
 /**
@@ -92,7 +122,8 @@ export class ComplianceValidationResultImpl implements ComplianceValidationResul
       model_name: string;
       confidence_score: number;
       response: string;
-    }[]
+    }[],
+    public issue_validation_scores?: IssueValidationScore[]
   ) {
     // Validate confidence score is between 0.0 and 1.0
     if (confidence_score < 0.0 || confidence_score > 1.0) {
@@ -109,7 +140,8 @@ export class ComplianceValidationResultImpl implements ComplianceValidationResul
       raw_response: this.raw_response,
       reliability_level: this.reliability_level,
       judge_models: this.judge_models ? [...this.judge_models] : undefined,
-      judge_details: this.judge_details ? [...this.judge_details] : undefined
+      judge_details: this.judge_details ? [...this.judge_details] : undefined,
+      issue_validation_scores: this.issue_validation_scores ? [...this.issue_validation_scores] : undefined
     };
   }
 }
@@ -141,6 +173,9 @@ export interface ValidationSummary {
   
   /** Metadata about the validation process */
   metadata: ValidationMetadata;
+  
+  /** Issue-level validation scores (aggregated across dimensions) */
+  issue_validation_scores?: AggregatedIssueValidation[];
 }
 
 /**
@@ -335,4 +370,120 @@ export class ValidationUtils {
     
     return dimensionNames[dimension] || dimension;
   }
+
+  /**
+   * Aggregate issue validation scores across all dimensions to get per-issue scores
+   */
+  static aggregateIssueScores(
+    dimensionResults: ComplianceValidationResult[],
+    aggregationMethod: 'weighted' | 'average' | 'minimum' = 'weighted'
+  ): AggregatedIssueValidation[] {
+    // Collect all issue validation scores from all dimensions
+    const allValidationScores: IssueValidationScore[] = [];
+    dimensionResults.forEach(result => {
+      if (result.issue_validation_scores) {
+        allValidationScores.push(...result.issue_validation_scores);
+      }
+    });
+
+    if (allValidationScores.length === 0) {
+      return [];
+    }
+
+    // Group validation scores by issue index
+    const scoresByIssue = new Map<number, IssueValidationScore[]>();
+    allValidationScores.forEach(score => {
+      if (!scoresByIssue.has(score.issue_index)) {
+        scoresByIssue.set(score.issue_index, []);
+      }
+      scoresByIssue.get(score.issue_index)!.push(score);
+    });
+
+    // Dimension weights for weighted aggregation
+    const dimensionWeights: Record<ValidationDimension, number> = {
+      [ValidationDimension.COMPLIANCE_ACCURACY]: 10,
+      [ValidationDimension.FACTUAL_GROUNDING]: 9,
+      [ValidationDimension.HALLUCINATION_DETECTION]: 8,
+      [ValidationDimension.KNOWLEDGE_BASE_ADHERENCE]: 7,
+      [ValidationDimension.ISSUE_CATEGORIZATION]: 6,
+      [ValidationDimension.RECOMMENDATION_VALIDITY]: 5
+    };
+
+    const totalWeight = Object.values(dimensionWeights).reduce((sum, weight) => sum + weight, 0);
+
+    // Aggregate scores for each issue
+    const aggregatedIssues: AggregatedIssueValidation[] = [];
+    
+    scoresByIssue.forEach((validationScores, issueIndex) => {
+      if (validationScores.length === 0) return;
+
+      const firstScore = validationScores[0];
+      let aggregatedScore: number;
+      const dimensionBreakdown: Record<ValidationDimension, number> = {} as any;
+
+      // Calculate dimension breakdown
+      validationScores.forEach(score => {
+        dimensionBreakdown[score.dimension] = score.validation_score;
+      });
+
+      // Apply aggregation method
+      switch (aggregationMethod) {
+        case 'weighted':
+          let weightedSum = 0;
+          let usedWeight = 0;
+          validationScores.forEach(score => {
+            const weight = dimensionWeights[score.dimension] || 1;
+            weightedSum += score.validation_score * weight;
+            usedWeight += weight;
+          });
+          aggregatedScore = usedWeight > 0 ? weightedSum / usedWeight : 0;
+          break;
+
+        case 'average':
+          const sum = validationScores.reduce((total, score) => total + score.validation_score, 0);
+          aggregatedScore = sum / validationScores.length;
+          break;
+
+        case 'minimum':
+          aggregatedScore = Math.min(...validationScores.map(s => s.validation_score));
+          break;
+
+        default:
+          aggregatedScore = 0;
+      }
+
+      // Determine reliability based on score and variance
+      const scores = validationScores.map(s => s.validation_score);
+      const variance = this.calculateScoreVariance(scores);
+      let reliabilityLevel: ReliabilityLevel;
+      
+      if (aggregatedScore >= 80 && variance <= 100) reliabilityLevel = 'high';
+      else if (aggregatedScore >= 50 && variance <= 400) reliabilityLevel = 'medium';
+      else reliabilityLevel = 'low';
+
+      aggregatedIssues.push({
+        issue_index: issueIndex,
+        issue_description: firstScore.issue_description,
+        issue_type: firstScore.issue_type,
+        overall_validation_score: Math.round(aggregatedScore * 100) / 100, // Round to 2 decimal places
+        reliability_level: reliabilityLevel,
+        dimension_breakdown: dimensionBreakdown
+      });
+    });
+
+    // Sort by issue index
+    return aggregatedIssues.sort((a, b) => a.issue_index - b.issue_index);
+  }
+
+  /**
+   * Calculate variance of scores for reliability assessment
+   */
+  private static calculateScoreVariance(scores: number[]): number {
+    if (scores.length <= 1) return 0;
+    
+    const mean = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+    const squaredDiffs = scores.map(score => Math.pow(score - mean, 2));
+    return squaredDiffs.reduce((sum, diff) => sum + diff, 0) / scores.length;
+  }
+
 }

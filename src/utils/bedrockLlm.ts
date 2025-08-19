@@ -8,6 +8,7 @@ export interface BedrockConfig {
   sessionToken?: string;
   region?: string;
   modelId?: string;
+  temperature?: number;
 }
 
 export interface ChatMessage {
@@ -37,6 +38,7 @@ export class BedrockLlmService {
   private bedrockClient: BedrockRuntimeClient | null = null;
   private anthropicClient: Anthropic | null = null;
   private modelId: string;
+  private temperature: number;
   private fallbackEnabled: boolean = true;
   private lastUsedProvider: 'bedrock' | 'anthropic' | null = null;
 
@@ -58,7 +60,8 @@ export class BedrockLlmService {
 
       this.bedrockClient = new BedrockRuntimeClient(bedrockConfig);
       this.modelId = config?.modelId || process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0';
-      this.logger.log(`✅ Bedrock client initialized with model: ${this.modelId}`);
+      this.temperature = config?.temperature ?? 0.7; // Default temperature
+      this.logger.log(`✅ Bedrock client initialized with model: ${this.modelId}, temperature: ${this.temperature}`);
     } catch (error) {
       this.logger.warn(`⚠️ Failed to initialize Bedrock client: ${error.message}`);
       this.bedrockClient = null;
@@ -151,7 +154,7 @@ export class BedrockLlmService {
       inferenceConfig: {
         maxTokens: 4000,
         topP: 0.9,
-        temperature: 0.7
+        temperature: this.temperature
       }
     });
 
@@ -183,6 +186,7 @@ export class BedrockLlmService {
     const requestBody = {
       anthropic_version: 'bedrock-2023-05-31',
       max_tokens: 4000,
+      temperature: this.temperature,
       system: systemMessage,
       messages: conversationMessages.map(msg => ({
         role: msg.role,

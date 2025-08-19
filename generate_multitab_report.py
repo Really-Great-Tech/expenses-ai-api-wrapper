@@ -106,11 +106,45 @@ def add_dataframe_to_worksheet(ws, df, start_row, title=""):
                     # Set text wrapping for better readability
                     cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
 
-            # Special formatting for ISSUES SECTION - add text wrapping to description and recommendation columns
+            # Special formatting for ISSUES SECTION - add text wrapping and color coding
             if title == "ISSUES SECTION":
-                # Apply text wrapping to description (column 3), recommendation (column 4), and knowledge_base_reference (column 5) columns
-                if col_idx in [3, 4, 5]:  # description, recommendation, knowledge_base_reference columns
+                # Apply text wrapping to description (column 3), recommendation (column 4), knowledge_base_reference (column 5), and judge_explanation (column 8) columns
+                if col_idx in [3, 4, 5, 8]:  # description, recommendation, knowledge_base_reference, judge_explanation columns
                     cell.alignment = Alignment(wrap_text=True, vertical='top', horizontal='left')
+                
+                # Apply color coding to aggregated_issue_validation_score (column 7) and judge_explanation (column 8) based on validation score
+                if col_idx in [7, 8]:  # aggregated_issue_validation_score and judge_explanation columns
+                    # Get the aggregated validation score from column 7 of the same row
+                    validation_score_value = row_data[6] if len(row_data) > 6 else None  # Column 7 is index 6
+                    
+                    try:
+                        score = float(validation_score_value) if validation_score_value else 0
+                        
+                        # Color coding based on validation score ranges
+                        if score >= 90:
+                            # Excellent validation (90-100) - Dark Green
+                            cell.fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
+                        elif score >= 80:
+                            # Good validation (80-89) - Light Green
+                            cell.fill = PatternFill(start_color="E2F0D9", end_color="E2F0D9", fill_type="solid")
+                        elif score >= 70:
+                            # Moderate validation (70-79) - Light Yellow
+                            cell.fill = PatternFill(start_color="FFF2CC", end_color="FFF2CC", fill_type="solid")
+                        elif score >= 60:
+                            # Fair validation (60-69) - Light Orange
+                            cell.fill = PatternFill(start_color="FCE4D6", end_color="FCE4D6", fill_type="solid")
+                        elif score >= 50:
+                            # Poor validation (50-59) - Light Red
+                            cell.fill = PatternFill(start_color="FFCCCB", end_color="FFCCCB", fill_type="solid")
+                        elif score > 0:
+                            # Very poor validation (1-49) - Red
+                            cell.fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
+                        else:
+                            # No score or zero - Light Gray
+                            cell.fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
+                    except (ValueError, TypeError):
+                        # If score is not a valid number, use light gray
+                        cell.fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
 
             # Special formatting for markdown content
             if title == "MARKDOWN SECTION":
@@ -210,14 +244,57 @@ def create_issues_section(results_data, filename):
     validation = compliance.get('validation_result', {})
     issues = validation.get('issues', [])
 
+    # Load validation data to get aggregated issue validation scores and judge explanations
+    import glob
+    validation_data = None
+    timestamped_validation_files = glob.glob(f'validation_results/{filename}_validation_*.json')
+    if timestamped_validation_files:
+        # Use the most recent timestamped validation file
+        validation_data = load_json_file(sorted(timestamped_validation_files)[-1])
+
     rows = []
     for i, issue in enumerate(issues, 1):
+        # Initialize default values for new columns
+        aggregated_score = ''
+        judge_explanations = ''
+        
+        # Extract aggregated issue validation scores and judge explanations if available
+        if validation_data and 'issue_validation_scores' in validation_data:
+            issue_validation_scores = validation_data['issue_validation_scores']
+            
+            # Find the matching issue by index (i-1 since we start from 1)
+            matching_issue = None
+            for issue_score in issue_validation_scores:
+                if issue_score.get('issue_index') == i - 1:
+                    matching_issue = issue_score
+                    break
+            
+            if matching_issue:
+                aggregated_score = matching_issue.get('overall_validation_score', '')
+                
+                # Collect judge explanations from dimension results
+                explanations = []
+                if 'dimension_results' in validation_data:
+                    for dimension_result in validation_data['dimension_results']:
+                        if 'issue_validation_scores' in dimension_result:
+                            for issue_val_score in dimension_result['issue_validation_scores']:
+                                if issue_val_score.get('issue_index') == i - 1:
+                                    dimension_name = dimension_result.get('dimension', '').replace('_', ' ').title()
+                                    explanation = issue_val_score.get('judge_explanation', '')
+                                    if explanation:
+                                        explanations.append(f"{dimension_name}: {explanation}")
+                
+                judge_explanations = ' | '.join(explanations)
+        
         rows.append({
             'index': i,
             'issue_type': issue.get('issue_type', ''),
             'description': issue.get('description', ''),
             'recommendation': issue.get('recommendation', ''),
             'knowledge_base_reference': issue.get('knowledge_base_reference', ''),
+            'confidence_score': issue.get('confidence_score', ''),
+            'aggregated_issue_validation_score': aggregated_score,
+            'judge_explanation': judge_explanations,
             'QA': '',
             'note': ''
         })
@@ -1265,8 +1342,21 @@ def extract_business_data(file_base):
     else:
         row_data['issue_count'] = 0
     
-    # Extract validation confidence score and normalize to percentage (0-100)
-    if validation_data and 'validation_report' in validation_data:
+    # Extract validation confidence score from timestamped validation files and normalize to percentage (0-100)
+    # First try to load timestamped validation files which have the overall_score at root level
+    timestamped_validation_data = None
+    import glob
+    timestamped_validation_files = glob.glob(f'validation_results/{file_base}_validation_*.json')
+    if timestamped_validation_files:
+        # Use the most recent timestamped validation file
+        timestamped_validation_data = load_json_file(sorted(timestamped_validation_files)[-1])
+    
+    if timestamped_validation_data and 'overall_score' in timestamped_validation_data:
+        validation_score = timestamped_validation_data.get('overall_score', 0)
+        # Convert 0-1 scale to percentage
+        row_data['validation_confidence_score'] = round(validation_score * 100, 1)
+    elif validation_data and 'validation_report' in validation_data:
+        # Fallback to old validation structure
         overall = validation_data['validation_report'].get('overall_assessment', {})
         validation_score = overall.get('confidence_score', 0)
         # Convert 0-1 scale to percentage
@@ -1275,20 +1365,20 @@ def extract_business_data(file_base):
         row_data['validation_confidence_score'] = 0
     
     # Extract average confidence from citation and normalize to percentage (0-100)
-    if citation_data and 'metadata' in citation_data:
-        metadata = citation_data['metadata']
+    if citation_data and 'citations' in citation_data and 'metadata' in citation_data['citations']:
+        metadata = citation_data['citations']['metadata']
         citation_score = metadata.get('average_confidence', 0)
         # Convert 0-1 scale to percentage
         row_data['citation_average_confidence'] = round(citation_score * 100, 1)
     else:
         row_data['citation_average_confidence'] = 0
     
-    # Extract image quality overall score (already 0-100 scale)
-    if quality_data and 'overall_assessment' in quality_data:
-        overall = quality_data['overall_assessment']
-        row_data['image_quality_score'] = round(overall.get('score', 0), 1)
-    else:
-        row_data['image_quality_score'] = 0
+    # Remove image_quality_score column as requested
+    # if quality_data and 'overall_assessment' in quality_data:
+    #     overall = quality_data['overall_assessment']
+    #     row_data['image_quality_score'] = round(overall.get('score', 0), 1)
+    # else:
+    #     row_data['image_quality_score'] = 0
     
     # Extract LLM quality data from image_quality_assessment in results or separate file
     llm_quality_source = None
@@ -1303,40 +1393,37 @@ def extract_business_data(file_base):
         overall_quality_score = llm_quality_source.get('overall_quality_score', 0)
 
         if quality_score > 0:
-            row_data['llm_quality_score'] = round(quality_score, 1)
+            row_data['llm_image_quality_score'] = round(quality_score, 1)
         elif overall_quality_score > 0:
             # Convert 0-10 scale to percentage
-            row_data['llm_quality_score'] = round(overall_quality_score * 10, 1)
+            row_data['llm_image_quality_score'] = round(overall_quality_score * 10, 1)
         else:
-            row_data['llm_quality_score'] = 0
+            row_data['llm_image_quality_score'] = 0
 
         row_data['llm_suitable_for_extraction'] = llm_quality_source.get('suitable_for_extraction', False)
     else:
-        row_data['llm_quality_score'] = 0
+        row_data['llm_image_quality_score'] = 0
         row_data['llm_suitable_for_extraction'] = False
     
     # Calculate overall score with specified weights
-    # Weights: validation 50%, llm_quality 25%, citation 15%, image_quality 10%
+    # Weights: validation 60%, llm_image_quality 25%, citation 15% (removed image_quality)
     # All scores are now in percentage format, so normalize to 0-1 for calculation
     validation_score = row_data['validation_confidence_score'] / 100
     citation_score = row_data['citation_average_confidence'] / 100
-    image_score = row_data['image_quality_score'] / 100
-    llm_score_normalized = row_data['llm_quality_score'] / 100
+    llm_score_normalized = row_data['llm_image_quality_score'] / 100
     
-    # Apply weights
+    # Apply weights (redistributed after removing image_quality)
     weights = {
-        'validation': 0.50,
-        'llm_quality': 0.25,
-        'citation': 0.15,
-        'image_quality': 0.10
+        'validation': 0.60,
+        'llm_image_quality': 0.25,
+        'citation': 0.15
     }
     
     # Calculate weighted overall score (0-1 scale)
     overall_score = (
         validation_score * weights['validation'] +
-        llm_score_normalized * weights['llm_quality'] +
-        citation_score * weights['citation'] +
-        image_score * weights['image_quality']
+        llm_score_normalized * weights['llm_image_quality'] +
+        citation_score * weights['citation']
     )
     
     # Convert to percentage and round
@@ -1463,8 +1550,7 @@ def create_business_summary_worksheet(wb, file_list):
         'issue_count',
         'validation_confidence_score',
         'citation_average_confidence',
-        'image_quality_score',
-        'llm_quality_score',
+        'llm_image_quality_score',
         'llm_suitable_for_extraction'
     ]
     
