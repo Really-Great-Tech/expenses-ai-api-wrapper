@@ -1,0 +1,665 @@
+{
+  "overall_score": 0.7300000000000001,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8333333333333334,
+      "issues": [
+        "None. All issues identified in the AI response are factually grounded in the provided data."
+      ],
+      "summary": "The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, missing invoice number, missing transaction reference, meal expenses requiring gross-up, and the need for a travel report template) are directly supported by the extracted data and compliance rules. The response accurately applies the compliance policies for Austria regarding meal expenses and travel documentation requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer name is missing from the receipt, which is confirmed in the extracted data where \"customer_name\" is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice number is missing from the receipt, which is confirmed in the extracted data where \"invoice_number\" is null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the transaction reference is missing from the receipt, which is confirmed in the extracted data where \"transaction_reference\" is null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly applies the compliance rule for meal expenses in Austria, noting they will be grossed up. This matches the compliance policy which states \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The receipt shows a total amount of €32, which exceeds this limit.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance policies for restaurant expenses.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified in the AI response are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, missing invoice number, missing transaction reference, meal expenses requiring gross-up, and the need for a travel report template) are directly supported by the extracted data and compliance rules. The response accurately applies the compliance policies for Austria regarding meal expenses and travel documentation requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer name is missing from the receipt, which is confirmed in the extracted data where \"customer_name\" is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice number is missing from the receipt, which is confirmed in the extracted data where \"invoice_number\" is null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the transaction reference is missing from the receipt, which is confirmed in the extracted data where \"transaction_reference\" is null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly applies the compliance rule for meal expenses in Austria, noting they will be grossed up. This matches the compliance policy which states \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The receipt shows a total amount of €32, which exceeds this limit.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance policies for restaurant expenses.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified in the AI response are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, missing invoice number, missing transaction reference, meal expenses requiring gross-up, and the need for a travel report template) are directly supported by the extracted data and compliance rules. The response accurately applies the compliance policies for Austria regarding meal expenses and travel documentation requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response accurately identifies the missing customer name, invoice number, and transaction reference on the receipt, which matches the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly states that the meal expense will be grossed up as it exceeds the tax-free limit, which aligns with the compliance policies provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response accurately recommends that the travel expense must be submitted using the travel report template, which is in line with the additional documentation requirement in the compliance policies.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response incorrectly states that the country is Austria, when the extracted data clearly shows the location is Germany.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI response does not mention any issues related to the missing ICP company details, which is a mandatory requirement according to the compliance policies.\n\nCONFIDENCE: 80\nISSUES:\n1. Incorrect country information\n2. Missing ICP company details requirement\n\nSUMMARY: The AI response is generally well-grounded in the provided data, accurately identifying the compliance issues related to missing mandatory fields and the need to gross up the meal expense. However, it fails to correctly identify the country and does not mention the requirement for ICP company details, which are both important compliance checks. These issues reduce the overall factual grounding of the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI response claims a missing customer name, but this is not applicable to a restaurant receipt. The extracted data correctly shows no customer name field for this type of receipt.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI response claims a missing invoice number, which is partially correct. The extracted data shows no invoice number, but it does have a receipt number (33831).\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response correctly identifies that there is no transaction reference in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly identifies that the meal expense (€32) exceeds the tax-free limit (€26.40) and will be grossed up. This aligns with the compliance rules provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response correctly states that travel expenses must be submitted using the travel report template, which aligns with the provided compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI response incorrectly identifies a missing customer name as an issue for a restaurant receipt.\n2. The AI response does not acknowledge the presence of a receipt number, which could serve a similar purpose to an invoice number for this type of transaction.\n3. The AI response assumes the receipt is from Austria, while the extracted data clearly shows it's from Germany (Berlin).\n\nSUMMARY: The AI response is partially grounded in the extracted data and compliance rules, but it makes some incorrect assumptions and overlooks certain details. It correctly identifies issues related to the transaction reference, meal expense grossing up, and the need for a travel report template. However, it incorrectly flags the customer name as missing and fails to recognize the receipt is from Germany, not Austria. The response also doesn't acknowledge the presence of a receipt number, which may be relevant. These discrepancies reduce the overall factual grounding of the response."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the customer name is missing from the receipt, which is confirmed in the extracted data where \"customer_name\" is null.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the invoice number is missing from the receipt, which is confirmed in the extracted data where \"invoice_number\" is null.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the transaction reference is missing from the receipt, which is confirmed in the extracted data where \"transaction_reference\" is null.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly applies the compliance rule for meal expenses in Austria, noting they will be grossed up. This matches the compliance policy which states \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The receipt shows a total amount of €32, which exceeds this limit.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance policies for restaurant expenses.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. The AI incorrectly applied mandatory field requirements that don't exist in the knowledge base for meal receipts.",
+        "2. The AI failed to notice the country mismatch - the receipt is from Germany but the evaluation was requested for Austria.",
+        "3. Three of the five issues identified by the AI are not supported by the compliance rules provided."
+      ],
+      "summary": "The AI response shows significant misalignment with the provided compliance knowledge base. It incorrectly flagged three fields as mandatory that aren't required according to the rules. While it correctly identified the need for a travel report template and the gross-up requirement for meals exceeding the tax-free limit, it failed to notice that the receipt is from Germany while the compliance check was requested for Austria. This country mismatch should have been flagged as a critical issue since country-specific regulations apply differently.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"customer_name\" as a mandatory field for meal receipts. According to the compliance rules provided, customer name is only mandatory for hotel/flight invoices where \"Employee name as guest/traveler\" should appear. For restaurant receipts, supplier business name is required (which is present in the extracted data as \"Ristorante IL GARDA\"), but not customer name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"invoice_number\" as mandatory. The compliance rules only require \"Transaction date\", \"Total amount in local currency\", and \"Supplier business name\" as mandatory for restaurant receipts. There is no specific requirement for invoice numbers in the provided compliance rules for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"transaction_reference\" as mandatory. This field is not listed as a mandatory requirement in the compliance rules for meal receipts.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that meal expenses are subject to gross-up rules and accurately cited the rule: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The total amount of €32 exceeds this threshold. However, there's a discrepancy as the receipt is from Germany (Berlin) but the compliance evaluation was requested for Austria.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that travel expenses must be submitted using the travel report template, which aligns with the compliance rule: \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly applied mandatory field requirements that don't exist in the knowledge base for meal receipts.\n2. The AI failed to notice the country mismatch - the receipt is from Germany but the evaluation was requested for Austria.\n3. Three of the five issues identified by the AI are not supported by the compliance rules provided.\n\nSUMMARY: The AI response shows significant misalignment with the provided compliance knowledge base. It incorrectly flagged three fields as mandatory that aren't required according to the rules. While it correctly identified the need for a travel report template and the gross-up requirement for meals exceeding the tax-free limit, it failed to notice that the receipt is from Germany while the compliance check was requested for Austria. This country mismatch should have been flagged as a critical issue since country-specific regulations apply differently.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"customer_name\" as a mandatory field for meal receipts. According to the compliance rules provided, customer name is only mandatory for hotel/flight invoices where \"Employee name as guest/traveler\" should appear. For restaurant receipts, supplier business name is required (which is present in the extracted data as \"Ristorante IL GARDA\"), but not customer name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"invoice_number\" as mandatory. The compliance rules only require \"Transaction date\", \"Total amount in local currency\", and \"Supplier business name\" as mandatory for restaurant receipts. There is no specific requirement for invoice numbers in the provided compliance rules for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"transaction_reference\" as mandatory. This field is not listed as a mandatory requirement in the compliance rules for meal receipts.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that meal expenses are subject to gross-up rules and accurately cited the rule: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The total amount of €32 exceeds this threshold. However, there's a discrepancy as the receipt is from Germany (Berlin) but the compliance evaluation was requested for Austria.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that travel expenses must be submitted using the travel report template, which aligns with the compliance rule: \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly applied mandatory field requirements that don't exist in the knowledge base for meal receipts.\n2. The AI failed to notice the country mismatch - the receipt is from Germany but the evaluation was requested for Austria.\n3. Three of the five issues identified by the AI are not supported by the compliance rules provided.\n\nSUMMARY: The AI response shows significant misalignment with the provided compliance knowledge base. It incorrectly flagged three fields as mandatory that aren't required according to the rules. While it correctly identified the need for a travel report template and the gross-up requirement for meals exceeding the tax-free limit, it failed to notice that the receipt is from Germany while the compliance check was requested for Austria. This country mismatch should have been flagged as a critical issue since country-specific regulations apply differently."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing customer name as a compliance issue, referencing the knowledge base requirement that the document must show the supplier business name.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing invoice number as a compliance issue, referencing the knowledge base requirement that the document must show the invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing transaction reference as a compliance issue, referencing the knowledge base requirement that the document must show the transaction reference.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly identifies that the meal expense will be grossed up, as it exceeds the tax-free limit for domestic travel in Austria, referencing the knowledge base guidelines.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response correctly identifies that the travel expense must be submitted using the travel report template, referencing the knowledge base requirement.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Austria. It correctly identifies all the compliance issues with the receipt, including missing mandatory fields, the need to gross up the meal expense, and the requirement to submit travel expenses using the travel report template. The response demonstrates a thorough understanding of the country-specific regulations and receipt type requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified the missing customer name as a compliance issue, which aligns with the knowledge base requirement that documents must show the supplier business name.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately flagged the missing invoice number as a compliance issue, which is consistent with standard receipt requirements.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly identified a missing transaction reference as an issue. This is not explicitly mentioned in the provided compliance rules for Austria and may not be applicable.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are subject to gross-up and accurately cited the specific tax-free limits for domestic travel in Austria (€26.40 per day for 12 hours maximum).\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI accurately noted the requirement to submit travel expenses using the travel report template, which aligns with the compliance rules for travel-related expenses.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI incorrectly identified a missing transaction reference as an issue, which is not explicitly mentioned in the provided compliance rules for Austria.\n2. The AI response does not address the fact that the receipt is actually from Germany (Berlin), not Austria, which affects the applicability of some of the cited rules.\n\nSUMMARY: The AI response generally adheres well to the knowledge base for Austria, correctly identifying most compliance issues and accurately citing relevant rules. However, it incorrectly included an issue about a missing transaction reference, which is not explicitly required in the provided rules. Additionally, the AI failed to recognize that the receipt is actually from Germany, not Austria, which impacts the applicability of some of the cited regulations. Despite these issues, the overall adherence to the knowledge base is good, with accurate identification of gross-up requirements and the need for a travel report template."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged \"customer_name\" as a mandatory field for meal receipts. According to the compliance rules provided, customer name is only mandatory for hotel/flight invoices where \"Employee name as guest/traveler\" should appear. For restaurant receipts, supplier business name is required (which is present in the extracted data as \"Ristorante IL GARDA\"), but not customer name.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged \"invoice_number\" as mandatory. The compliance rules only require \"Transaction date\", \"Total amount in local currency\", and \"Supplier business name\" as mandatory for restaurant receipts. There is no specific requirement for invoice numbers in the provided compliance rules for meal receipts.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged \"transaction_reference\" as mandatory. This field is not listed as a mandatory requirement in the compliance rules for meal receipts.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that meal expenses are subject to gross-up rules and accurately cited the rule: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" The total amount of €32 exceeds this threshold. However, there's a discrepancy as the receipt is from Germany (Berlin) but the compliance evaluation was requested for Austria.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that travel expenses must be submitted using the travel report template, which aligns with the compliance rule: \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "1. The assessment incorrectly flags customer name",
+        "invoice number",
+        "and transaction reference as mandatory for restaurant receipts when the compliance rules don't explicitly require these for this expense type.",
+        "2. The assessment correctly identifies the need for gross-up due to exceeding the tax-free limit.",
+        "3. The assessment correctly identifies the need for the travel report template.",
+        "4. There's a discrepancy between the country in the request (Austria) and the extracted data (Germany)",
+        "which wasn't addressed in the validation."
+      ],
+      "summary": "The compliance assessment is partially accurate. It correctly identifies issues related to gross-up requirements and the need for a travel report template. However, it incorrectly flags several fields as mandatory that aren't explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the country discrepancy between the request (Austria) and the receipt data (Germany) wasn't addressed, which could impact which compliance rules should be applied.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue correctly identifies that customer name is missing, but this is only mandatory for non-travel expenses like office supplies, not for restaurant receipts. According to the compliance rules, restaurant receipts don't require the ICP company details to be shown.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue identifies missing invoice number, but the compliance rules don't explicitly state that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831), which may be sufficient.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue identifies missing transaction reference, but this isn't explicitly listed as a mandatory field in the compliance rules for restaurant receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the rules, meal expenses in Austria have a maximum tax-free limit of €26.40 per day, and the receipt shows €32.00, which exceeds this limit and would need to be grossed up.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. The compliance rules clearly state that \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The assessment incorrectly flags customer name, invoice number, and transaction reference as mandatory for restaurant receipts when the compliance rules don't explicitly require these for this expense type.\n2. The assessment correctly identifies the need for gross-up due to exceeding the tax-free limit.\n3. The assessment correctly identifies the need for the travel report template.\n4. There's a discrepancy between the country in the request (Austria) and the extracted data (Germany), which wasn't addressed in the validation.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies issues related to gross-up requirements and the need for a travel report template. However, it incorrectly flags several fields as mandatory that aren't explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the country discrepancy between the request (Austria) and the receipt data (Germany) wasn't addressed, which could impact which compliance rules should be applied.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue correctly identifies that customer name is missing, but this is only mandatory for non-travel expenses like office supplies, not for restaurant receipts. According to the compliance rules, restaurant receipts don't require the ICP company details to be shown.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue identifies missing invoice number, but the compliance rules don't explicitly state that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831), which may be sufficient.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue identifies missing transaction reference, but this isn't explicitly listed as a mandatory field in the compliance rules for restaurant receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the rules, meal expenses in Austria have a maximum tax-free limit of €26.40 per day, and the receipt shows €32.00, which exceeds this limit and would need to be grossed up.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. The compliance rules clearly state that \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The assessment incorrectly flags customer name, invoice number, and transaction reference as mandatory for restaurant receipts when the compliance rules don't explicitly require these for this expense type.\n2. The assessment correctly identifies the need for gross-up due to exceeding the tax-free limit.\n3. The assessment correctly identifies the need for the travel report template.\n4. There's a discrepancy between the country in the request (Austria) and the extracted data (Germany), which wasn't addressed in the validation.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies issues related to gross-up requirements and the need for a travel report template. However, it incorrectly flags several fields as mandatory that aren't explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the country discrepancy between the request (Austria) and the receipt data (Germany) wasn't addressed, which could impact which compliance rules should be applied."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing customer name as a compliance issue, as this is a mandatory field for expense receipts.\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing invoice number as a compliance issue, as this is a mandatory field for expense receipts.\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing transaction reference as a compliance issue, as this is a mandatory field for expense receipts.\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies the meal expense as exceeding the tax-free limit and requiring a gross-up, which is in line with the compliance policies.\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement to submit travel expenses using the travel report template, which is a compliance policy.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The compliance assessment is accurate and comprehensive, correctly identifying all the compliance issues with the expense receipt and providing appropriate recommendations based on the compliance policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The assessment incorrectly states that the customer name is missing. The receipt is for a restaurant meal, so the customer name is not required according to the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 50 - The assessment correctly identifies that an invoice number is missing. However, for a restaurant receipt, an invoice number may not always be present, and the receipt number (33831) could potentially serve this purpose.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that a transaction reference is missing, which is a valid compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment accurately identifies that meal expenses will be grossed up and correctly cites the relevant rule for domestic meals (maximum €26.40 per day tax-free).\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that travel expenses must be submitted using the travel report template, which is in line with the provided compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The assessment incorrectly flags the missing customer name as an issue for a restaurant receipt.\n2. The country is incorrectly identified as Austria in the AI response, while the receipt clearly shows it's from Germany.\n3. The assessment doesn't acknowledge the presence of other required fields like supplier name, transaction date, and total amount, which are present on the receipt.\n\nSUMMARY: The compliance assessment is partially accurate but contains some significant errors. It correctly identifies issues related to grossing up meal expenses and the need for a travel report template. However, it incorrectly flags the customer name as missing when it's not required for restaurant receipts, and it fails to recognize that the receipt is from Germany, not Austria. The assessment also overlooks the presence of several required fields that are actually on the receipt. These inaccuracies reduce the overall confidence in the compliance assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue correctly identifies that customer name is missing, but this is only mandatory for non-travel expenses like office supplies, not for restaurant receipts. According to the compliance rules, restaurant receipts don't require the ICP company details to be shown.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue identifies missing invoice number, but the compliance rules don't explicitly state that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831), which may be sufficient.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue identifies missing transaction reference, but this isn't explicitly listed as a mandatory field in the compliance rules for restaurant receipts.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. According to the rules, meal expenses in Austria have a maximum tax-free limit of €26.40 per day, and the receipt shows €32.00, which exceeds this limit and would need to be grossed up.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. The compliance rules clearly state that \"Travel expenses must be submitted using the travel report template\" for restaurant expenses.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7000000000000001,
+      "issues": [
+        "1. Three out of five issues are incorrectly identified as compliance problems when they don't violate the provided rules.",
+        "2. The system failed to identify that the receipt is from Germany (Berlin) while the country context is Austria",
+        "which may have implications for applying the correct compliance rules.",
+        "3. The system should have flagged that the receipt shows a location in Germany while the request specified Austria as the country."
+      ],
+      "summary": "The validation system correctly identified issues related to gross-up requirements and the need for a travel report template for meal expenses. However, it incorrectly flagged three issues regarding missing customer name, invoice number, and transaction reference, which are not explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the system failed to note the discrepancy between the specified country (Austria) and the actual receipt location (Germany), which could affect compliance evaluation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory customer name on the receipt\" when the receipt is for a restaurant meal. According to the compliance rules, customer name is only mandatory for non-travel expenses like office supplies or for hotel/flight receipts where the employee name should appear as the guest/traveler. For restaurant receipts, there is no explicit requirement for customer name in the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory invoice number on the receipt\" when there is no explicit requirement in the compliance rules that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831) which may be sufficient for identification purposes.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory transaction reference on the receipt\" when there is no explicit requirement in the compliance rules for a transaction reference on restaurant receipts. The receipt already contains a receipt number, transaction date and time.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that meal expenses are subject to gross-up rules and accurately cites the relevant policy: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum). If meals provided by employer/host, per diem reduced by 50%. International: government per diem rates apply, daily rate may be increased but receipt required for amount above set rate to be tax-exempt.\" Since the total amount is €32, which exceeds the €26.40 tax-free limit, this is correctly categorized.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance rules for restaurant expenses under travel.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Three out of five issues are incorrectly identified as compliance problems when they don't violate the provided rules.\n2. The system failed to identify that the receipt is from Germany (Berlin) while the country context is Austria, which may have implications for applying the correct compliance rules.\n3. The system should have flagged that the receipt shows a location in Germany while the request specified Austria as the country.\n\nSUMMARY: The validation system correctly identified issues related to gross-up requirements and the need for a travel report template for meal expenses. However, it incorrectly flagged three issues regarding missing customer name, invoice number, and transaction reference, which are not explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the system failed to note the discrepancy between the specified country (Austria) and the actual receipt location (Germany), which could affect compliance evaluation.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory customer name on the receipt\" when the receipt is for a restaurant meal. According to the compliance rules, customer name is only mandatory for non-travel expenses like office supplies or for hotel/flight receipts where the employee name should appear as the guest/traveler. For restaurant receipts, there is no explicit requirement for customer name in the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory invoice number on the receipt\" when there is no explicit requirement in the compliance rules that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831) which may be sufficient for identification purposes.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue incorrectly states \"Missing mandatory transaction reference on the receipt\" when there is no explicit requirement in the compliance rules for a transaction reference on restaurant receipts. The receipt already contains a receipt number, transaction date and time.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that meal expenses are subject to gross-up rules and accurately cites the relevant policy: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum). If meals provided by employer/host, per diem reduced by 50%. International: government per diem rates apply, daily rate may be increased but receipt required for amount above set rate to be tax-exempt.\" Since the total amount is €32, which exceeds the €26.40 tax-free limit, this is correctly categorized.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance rules for restaurant expenses under travel.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Three out of five issues are incorrectly identified as compliance problems when they don't violate the provided rules.\n2. The system failed to identify that the receipt is from Germany (Berlin) while the country context is Austria, which may have implications for applying the correct compliance rules.\n3. The system should have flagged that the receipt shows a location in Germany while the request specified Austria as the country.\n\nSUMMARY: The validation system correctly identified issues related to gross-up requirements and the need for a travel report template for meal expenses. However, it incorrectly flagged three issues regarding missing customer name, invoice number, and transaction reference, which are not explicitly required for restaurant receipts according to the provided compliance rules. Additionally, the system failed to note the discrepancy between the specified country (Austria) and the actual receipt location (Germany), which could affect compliance evaluation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of missing customer name is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue of missing invoice number is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue of missing transaction reference is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue of the meal expense exceeding the tax-free limit is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description and recommendation are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue of the travel expense requiring submission using the travel report template is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and actionable.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are correctly categorized according to the established taxonomy. The descriptions and recommendations are clear and actionable. Overall, the issue categorization is accurate and comprehensive."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt actually contains the supplier name (Ristorante IL GARDA), so this should not be flagged as an issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is correctly categorized. The receipt is missing an invoice number, which is a mandatory field according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly categorized. The receipt is missing a transaction reference, which is a mandatory field according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly categorized. The meal expense exceeds the tax-free limit and will be grossed up, which aligns with the compliance rules for restaurant expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly categorized. The compliance rules state that travel expenses must be submitted using the travel report template, which is accurately reflected in this issue.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue 1 is incorrectly identified, as the supplier name is present on the receipt.\n2. The system did not flag the missing customer name (Global People IT-Services GmbH) on the receipt, which is a required field for non-travel expenses according to the compliance rules.\n\nSUMMARY: The issue categorization is mostly accurate, with 4 out of 5 issues correctly identified and categorized. However, one issue was incorrectly flagged (supplier name), and one required issue (missing customer name) was not identified. The system demonstrates good understanding of the compliance rules related to gross-up policies and additional documentation requirements for travel expenses."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue incorrectly states \"Missing mandatory customer name on the receipt\" when the receipt is for a restaurant meal. According to the compliance rules, customer name is only mandatory for non-travel expenses like office supplies or for hotel/flight receipts where the employee name should appear as the guest/traveler. For restaurant receipts, there is no explicit requirement for customer name in the provided compliance rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue incorrectly states \"Missing mandatory invoice number on the receipt\" when there is no explicit requirement in the compliance rules that an invoice number is mandatory for restaurant receipts. The receipt does have a receipt number (33831) which may be sufficient for identification purposes.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue incorrectly states \"Missing mandatory transaction reference on the receipt\" when there is no explicit requirement in the compliance rules for a transaction reference on restaurant receipts. The receipt already contains a receipt number, transaction date and time.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that meal expenses are subject to gross-up rules and accurately cites the relevant policy: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum). If meals provided by employer/host, per diem reduced by 50%. International: government per diem rates apply, daily rate may be increased but receipt required for amount above set rate to be tax-exempt.\" Since the total amount is €32, which exceeds the €26.40 tax-free limit, this is correctly categorized.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that travel expenses must be submitted using the travel report template, which is explicitly stated in the compliance rules for restaurant expenses under travel.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.5466666666666667,
+      "issues": [
+        "1. The system incorrectly identified missing fields that are actually present or not required for restaurant receipts",
+        "2. The system applied Austrian rules to a German receipt (though the country was incorrectly specified in the query)",
+        "3. Three of the five issues are invalid and not actual compliance problems",
+        "4. The system failed to recognize that receipt number and TSE transaction information satisfy identification requirements"
+      ],
+      "summary": "The validation results contain several invalid recommendations based on misidentified issues. While the recommendation about using the travel report template is valid, and the gross-up recommendation is mostly correct (though applied to the wrong country), the other three issues incorrectly claim mandatory fields are missing when they are either present or not required for restaurant receipts. The system should have recognized that restaurant receipts have different requirements than formal invoices.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The recommendation to address missing customer name with the supplier is invalid. The receipt is from a restaurant in Germany (not Austria as specified in the query), and restaurant receipts typically don't require the customer's name. This is not a compliance issue for meal receipts according to the provided rules.\n\nISSUE_2_VALIDATION_SCORE: 0 - The recommendation to address missing invoice number is invalid. The receipt does have a receipt number (33831) which serves as the transaction identifier. Restaurant receipts don't typically have formal invoice numbers, and this is not a mandatory requirement for meal receipts according to the rules.\n\nISSUE_3_VALIDATION_SCORE: 0 - The recommendation to address missing transaction reference is invalid. The receipt contains a transaction number (202914) in the TSE information section, which serves as a transaction reference. This is not a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 80 - The recommendation regarding meal expenses being grossed up is valid and correctly references the rule about domestic meals having a maximum €26.40 per day tax-free limit. The receipt shows €32, which exceeds this limit. However, the recommendation doesn't clarify that this is a German receipt, not Austrian.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit travel expenses using the travel report template is valid and directly aligns with the compliance rules which state \"Travel expenses must be submitted using the travel report template.\"\n\nCONFIDENCE: 40\n\nISSUES:\n1. The system incorrectly identified missing fields that are actually present or not required for restaurant receipts\n2. The system applied Austrian rules to a German receipt (though the country was incorrectly specified in the query)\n3. Three of the five issues are invalid and not actual compliance problems\n4. The system failed to recognize that receipt number and TSE transaction information satisfy identification requirements\n\nSUMMARY: The validation results contain several invalid recommendations based on misidentified issues. While the recommendation about using the travel report template is valid, and the gross-up recommendation is mostly correct (though applied to the wrong country), the other three issues incorrectly claim mandatory fields are missing when they are either present or not required for restaurant receipts. The system should have recognized that restaurant receipts have different requirements than formal invoices.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The recommendation to address missing customer name with the supplier is invalid. The receipt is from a restaurant in Germany (not Austria as specified in the query), and restaurant receipts typically don't require the customer's name. This is not a compliance issue for meal receipts according to the provided rules.\n\nISSUE_2_VALIDATION_SCORE: 0 - The recommendation to address missing invoice number is invalid. The receipt does have a receipt number (33831) which serves as the transaction identifier. Restaurant receipts don't typically have formal invoice numbers, and this is not a mandatory requirement for meal receipts according to the rules.\n\nISSUE_3_VALIDATION_SCORE: 0 - The recommendation to address missing transaction reference is invalid. The receipt contains a transaction number (202914) in the TSE information section, which serves as a transaction reference. This is not a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 80 - The recommendation regarding meal expenses being grossed up is valid and correctly references the rule about domestic meals having a maximum €26.40 per day tax-free limit. The receipt shows €32, which exceeds this limit. However, the recommendation doesn't clarify that this is a German receipt, not Austrian.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit travel expenses using the travel report template is valid and directly aligns with the compliance rules which state \"Travel expenses must be submitted using the travel report template.\"\n\nCONFIDENCE: 40\n\nISSUES:\n1. The system incorrectly identified missing fields that are actually present or not required for restaurant receipts\n2. The system applied Austrian rules to a German receipt (though the country was incorrectly specified in the query)\n3. Three of the five issues are invalid and not actual compliance problems\n4. The system failed to recognize that receipt number and TSE transaction information satisfy identification requirements\n\nSUMMARY: The validation results contain several invalid recommendations based on misidentified issues. While the recommendation about using the travel report template is valid, and the gross-up recommendation is mostly correct (though applied to the wrong country), the other three issues incorrectly claim mandatory fields are missing when they are either present or not required for restaurant receipts. The system should have recognized that restaurant receipts have different requirements than formal invoices."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.84,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier or provider is actionable and specific. It correctly identifies the issue and provides a reasonable solution.\n\nISSUE_2_VALIDATION_SCORE: 80 - The recommendation to address the missing invoice number with the supplier or provider is actionable and specific. It correctly identifies the issue and provides a reasonable solution.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to address the missing transaction reference with the supplier or provider is actionable and specific. It correctly identifies the issue and provides a reasonable solution.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to gross up the meal expenses is valid and provides the correct guidance on the applicable tax-free limits for domestic and international travel. The information is specific and practical.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to submit the travel expense using the travel report template is valid and addresses the identified issue. The provided guidance is clear and actionable.\n\nCONFIDENCE: 84\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They address the identified compliance issues in a clear and actionable manner, providing specific guidance on how to resolve the problems. The recommendations are feasible and practical, and there are no contradictory or harmful suggestions. Overall, the recommendations are well-suited to address the compliance concerns raised for this expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The recommendation is not valid. The customer name is not a mandatory field for a restaurant receipt, and the supplier name is already present on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 0 - The recommendation is not valid. An invoice number is not typically required for a restaurant receipt. The receipt number (33831) is already present.\n\nISSUE_3_VALIDATION_SCORE: 0 - The recommendation is not valid. A transaction reference is not typically required for a restaurant receipt. The receipt already contains a receipt number and transaction time.\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation is valid and helpful. It correctly identifies that meal expenses exceeding the tax-free limit will be grossed up and provides specific information about the limits for domestic and international travel.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation is valid and helpful. It correctly states that travel expenses must be submitted using the travel report template, which is in line with the compliance rules.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Three of the five issues (customer name, invoice number, and transaction reference) are incorrectly identified as problems for a restaurant receipt.\n2. The country is incorrectly identified as Austria when the receipt clearly shows it's from Germany.\n\nSUMMARY: While two of the recommendations are valid and helpful (regarding meal expense gross-up and the need for a travel report template), the other three are not applicable to restaurant receipts. The AI has also misidentified the country, which affects the applicability of some rules. These errors significantly reduce the overall validity and usefulness of the recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The recommendation to address missing customer name with the supplier is invalid. The receipt is from a restaurant in Germany (not Austria as specified in the query), and restaurant receipts typically don't require the customer's name. This is not a compliance issue for meal receipts according to the provided rules.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The recommendation to address missing invoice number is invalid. The receipt does have a receipt number (33831) which serves as the transaction identifier. Restaurant receipts don't typically have formal invoice numbers, and this is not a mandatory requirement for meal receipts according to the rules.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The recommendation to address missing transaction reference is invalid. The receipt contains a transaction number (202914) in the TSE information section, which serves as a transaction reference. This is not a compliance issue.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation regarding meal expenses being grossed up is valid and correctly references the rule about domestic meals having a maximum €26.40 per day tax-free limit. The receipt shows €32, which exceeds this limit. However, the recommendation doesn't clarify that this is a German receipt, not Austrian.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to submit travel expenses using the travel report template is valid and directly aligns with the compliance rules which state \"Travel expenses must be submitted using the travel report template.\"",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.7666666666666666,
+      "issues": [
+        "1. The AI incorrectly claims customer name is mandatory for meal receipts",
+        "2. The AI incorrectly claims invoice number is mandatory for meal receipts",
+        "3. The AI incorrectly claims transaction reference is mandatory for meal receipts",
+        "4. The AI response is for Austria",
+        "but the receipt data shows the restaurant is in Germany"
+      ],
+      "summary": "The AI response contains significant hallucinations regarding mandatory fields that aren't actually required according to the provided compliance rules. While issues 4 and 5 correctly identify compliance requirements related to gross-up and travel report templates, issues 1-3 fabricate requirements not present in the source data. Additionally, the AI is validating for Austria when the receipt data clearly shows this is from a restaurant in Berlin, Germany.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not require customer name for meal receipts. The only customer name requirement in the rules is for \"ICP company details\" which applies to non-travel expenses like office supplies, not restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory invoice number on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list invoice number as a mandatory field for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory transaction reference on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list transaction reference as a mandatory field for meal receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that meal expenses are subject to gross-up and accurately cites the rule from the compliance policies: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" This matches the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that \"Travel expenses must be submitted using the travel report template\" which matches the compliance rule that states \"Travel expenses must be submitted using the travel report template\" for restaurant, hotel, and flight expenses.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly claims customer name is mandatory for meal receipts\n2. The AI incorrectly claims invoice number is mandatory for meal receipts\n3. The AI incorrectly claims transaction reference is mandatory for meal receipts\n4. The AI response is for Austria, but the receipt data shows the restaurant is in Germany\n\nSUMMARY: The AI response contains significant hallucinations regarding mandatory fields that aren't actually required according to the provided compliance rules. While issues 4 and 5 correctly identify compliance requirements related to gross-up and travel report templates, issues 1-3 fabricate requirements not present in the source data. Additionally, the AI is validating for Austria when the receipt data clearly shows this is from a restaurant in Berlin, Germany.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not require customer name for meal receipts. The only customer name requirement in the rules is for \"ICP company details\" which applies to non-travel expenses like office supplies, not restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory invoice number on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list invoice number as a mandatory field for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue claims \"Missing mandatory transaction reference on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list transaction reference as a mandatory field for meal receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that meal expenses are subject to gross-up and accurately cites the rule from the compliance policies: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" This matches the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that \"Travel expenses must be submitted using the travel report template\" which matches the compliance rule that states \"Travel expenses must be submitted using the travel report template\" for restaurant, hotel, and flight expenses.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly claims customer name is mandatory for meal receipts\n2. The AI incorrectly claims invoice number is mandatory for meal receipts\n3. The AI incorrectly claims transaction reference is mandatory for meal receipts\n4. The AI response is for Austria, but the receipt data shows the restaurant is in Germany\n\nSUMMARY: The AI response contains significant hallucinations regarding mandatory fields that aren't actually required according to the provided compliance rules. While issues 4 and 5 correctly identify compliance requirements related to gross-up and travel report templates, issues 1-3 fabricate requirements not present in the source data. Additionally, the AI is validating for Austria when the receipt data clearly shows this is from a restaurant in Berlin, Germany."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response matches the source data, with no signs of hallucination or fabrication.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response appear to be accurate and consistent with the ICP context provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the AI response are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts, and the information provided is based on the source data.\n\nISSUE_5_VALIDATION_SCORE: 100 - There are no additional issues detected in the AI response.\n\nCONFIDENCE: 100\n\nISSUES: None detected.\n\nSUMMARY: The AI response appears to be free from hallucinations and fabricated information. All the details provided, including the compliance rules, entity information, and amounts, match the source data. The response does not contain any assumptions presented as facts or other signs of hallucination."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the customer name is missing from the receipt, which is true based on the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice number is missing from the receipt, which is true based on the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies that the transaction reference is missing from the receipt, which is true based on the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly applies the compliance rule for meal expenses in Austria, which matches the provided compliance policies.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly states that travel expenses must be submitted using the travel report template, which matches the provided compliance policies.\n\nCONFIDENCE: 90\n\nISSUES: \n- The AI response assumes the receipt is from Austria, while the extracted data shows it's from Germany.\n- The AI response doesn't acknowledge the discrepancy between the country in the query (Austria) and the actual receipt location (Germany).\n\nSUMMARY: The AI response is largely accurate and free from hallucinations regarding the specific issues identified. However, it fails to address the discrepancy between the queried country (Austria) and the actual receipt location (Germany). This oversight reduces the overall confidence score slightly, as it indicates a lack of cross-referencing between the query parameters and the extracted data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not require customer name for meal receipts. The only customer name requirement in the rules is for \"ICP company details\" which applies to non-travel expenses like office supplies, not restaurant receipts.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue claims \"Missing mandatory invoice number on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list invoice number as a mandatory field for meal receipts.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue claims \"Missing mandatory transaction reference on the receipt\" is a compliance problem, but this is a hallucination. The compliance rules provided do not list transaction reference as a mandatory field for meal receipts.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that meal expenses are subject to gross-up and accurately cites the rule from the compliance policies: \"Domestic: maximum €26.40 per day tax-free (12 hours maximum).\" This matches the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that \"Travel expenses must be submitted using the travel report template\" which matches the compliance rule that states \"Travel expenses must be submitted using the travel report template\" for restaurant, hotel, and flight expenses.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None. All issues identified in the AI response are factually grounded in the provided data.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly applied mandatory field requirements that don't exist in the knowledge base for meal receipts., 2. The AI failed to notice the country mismatch - the receipt is from Germany but the evaluation was requested for Austria., 3. Three of the five issues identified by the AI are not supported by the compliance rules provided.",
+    "Address issues in compliance accuracy: 1. The assessment incorrectly flags customer name, invoice number, and transaction reference as mandatory for restaurant receipts when the compliance rules don't explicitly require these for this expense type., 2. The assessment correctly identifies the need for gross-up due to exceeding the tax-free limit., 3. The assessment correctly identifies the need for the travel report template., 4. There's a discrepancy between the country in the request (Austria) and the extracted data (Germany), which wasn't addressed in the validation.",
+    "Address issues in issue categorization: 1. Three out of five issues are incorrectly identified as compliance problems when they don't violate the provided rules., 2. The system failed to identify that the receipt is from Germany (Berlin) while the country context is Austria, which may have implications for applying the correct compliance rules., 3. The system should have flagged that the receipt shows a location in Germany while the request specified Austria as the country.",
+    "Improve recommendation validity: The validation results contain several invalid recommendations based on misidentified issues. While the recommendation about using the travel report template is valid, and the gross-up recommendation is mostly correct (though applied to the wrong country), the other three issues incorrectly claim mandatory fields are missing when they are either present or not required for restaurant receipts. The system should have recognized that restaurant receipts have different requirements than formal invoices.",
+    "Address issues in recommendation validity: 1. The system incorrectly identified missing fields that are actually present or not required for restaurant receipts, 2. The system applied Austrian rules to a German receipt (though the country was incorrectly specified in the query), 3. Three of the five issues are invalid and not actual compliance problems, 4. The system failed to recognize that receipt number and TSE transaction information satisfy identification requirements",
+    "Address issues in hallucination detection: 1. The AI incorrectly claims customer name is mandatory for meal receipts, 2. The AI incorrectly claims invoice number is mandatory for meal receipts, 3. The AI incorrectly claims transaction reference is mandatory for meal receipts, 4. The AI response is for Austria, but the receipt data shows the restaurant is in Germany"
+  ],
+  "timestamp": "2025-08-26T13:31:05.954Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 84037,
+    "timing": {
+      "validation_start_time": "2025-08-26T13:29:41.916Z",
+      "validation_end_time": "2025-08-26T13:31:05.953Z",
+      "total_validation_time_seconds": "84.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-08-26T13:29:41.916Z",
+          "end_time": "2025-08-26T13:31:05.953Z",
+          "duration_seconds": "84.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "84.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.36",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 31.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 50,
+        "issue_categorization": 0,
+        "recommendation_validity": 0,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 31.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 50,
+        "issue_categorization": 0,
+        "recommendation_validity": 0,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing mandatory transaction reference on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 31.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 50,
+        "issue_categorization": 0,
+        "recommendation_validity": 0,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 96.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Travel expenses must be submitted using the travel report template",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

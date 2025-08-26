@@ -1,0 +1,612 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\austrian_file_7.pdf_full_test_aug_26_austrian_file_7.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-26T13:22:43.299Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image frame.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements blocking document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "flights",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Austria",
+    "expected_location": "Austria",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, and item description. It also provides clear evidence of payment and is consistent with the expected location.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including supplier (Austrian Airlines), consumer (SEPEROVICH SERGEY), transaction amount (EUR 503.85), transaction date (03 Feb 25 and 05 Feb 25), invoice/receipt number (225000410298), item description (flight details), and payment method (PayPal). This meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Austrian Airlines AG",
+    "supplier_address": "Vienna, Office Park 2, A-1300 Vienna-Airport",
+    "supplier_vat_number": "ATU15416707",
+    "supplier_phone": "+43 5 1766 1000",
+    "customer_name": "SEPEROVICH SERGEY",
+    "customer_address": null,
+    "invoice_number": "225000410298",
+    "receipt_number": "257-2166405643",
+    "transaction_reference": "TVW6N7",
+    "currency": "EUR",
+    "total_amount": 503.85,
+    "subtotal": 308,
+    "tax_amount": 195.85,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-01-30",
+    "transaction_time": null,
+    "payment_method": "PayPal",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Flight OS371",
+        "quantity": 1,
+        "unit_price": 308,
+        "total_price": 308,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Passenger Receipt / Invoice / Rechnung",
+    "document_type": "Rechnung",
+    "location_city": "Vienna",
+    "location_country": "Austria",
+    "special_notes": "The Economy Light fare does not include free checked baggage. If you do not want to travel without luggage, please feel free to buy baggage allowance for an extra charge.",
+    "terms_conditions": "FARE RESTRICTION MAY APPLY",
+    "business_registration_number": "111000k"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "The customer address is missing from the receipt. The receipt must show the customer address as per compliance requirements.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Hotel/flights invoices should indicate the name of the worker not the end client",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Travel expenses must be submitted using the travel report template as per compliance requirements.",
+          "recommendation": "Please submit the travel expense using the travel report template",
+          "knowledge_base_reference": "Travel expenses must be submitted using the travel report template",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "The tax amount is present, but the tax rate is missing. The receipt must show the tax rate as per compliance requirements.",
+          "recommendation": "Please ensure the tax rate is included on the receipt",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices; booking confirmations will not suffice",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has issues with missing customer address, missing travel report template, and missing tax rate. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Austria",
+      "icp": "Global People",
+      "receipt_type": "flights",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "passenger_name": {
+        "field_citation": {
+          "source_text": "Name / Name:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Travel dates for / Reisedaten für:\nName / Name:\nSEPEROVICH / SERGEY MR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "SEPEROVICH SERGEY",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna",
+          "match_type": "exact"
+        }
+      },
+      "ticket_number": {
+        "field_citation": {
+          "source_text": "Ticket number / Ticketnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Booking code / Buchungscode:\nTVW6N7\nTicket number / Ticketnummer:\n257-2166405643",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "257-2166405643",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna",
+          "match_type": "exact"
+        }
+      },
+      "routing": {
+        "field_citation": {
+          "source_text": "Routing/Flugstrecke",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Vienna Amsterdam Vienna",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna",
+          "match_type": "exact"
+        }
+      },
+      "amount": {
+        "field_citation": {
+          "source_text": "Amount/Betrag",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EUR 308.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket\nPassenger/Fluggast\nRouting/Flugstrecke\nAmount/Betrag\n257-2166405643\nSEPEROVICH SERGEY\nVienna Amsterdam Vienna\nEUR\n308.00\nMR",
+          "match_type": "exact"
+        }
+      },
+      "tax": {
+        "field_citation": {
+          "source_text": "Tax / Gebühren",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tax / Gebühren\nEUR\n195.85",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EUR 195.85",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tax / Gebühren\nEUR\n195.85",
+          "match_type": "exact"
+        }
+      },
+      "invoice_amount": {
+        "field_citation": {
+          "source_text": "Invoice amount/Rechnungssumme",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Invoice amount/\nRechnungssumme\nEUR\n503.85",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EUR 503.85",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Invoice amount/\nRechnungssumme\nEUR\n503.85",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment Details / Zahlungsinformation:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment Details / Zahlungsinformation:\nPayPal",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "PayPal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment Details / Zahlungsinformation:\nPayPal",
+          "match_type": "exact"
+        }
+      },
+      "issuer": {
+        "field_citation": {
+          "source_text": "Issued by / ausgestellt von:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issued by / ausgestellt von:\nAUSTRIAN AIRLINES",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "AUSTRIAN AIRLINES",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issued by / ausgestellt von:\nAUSTRIAN AIRLINES",
+          "match_type": "exact"
+        }
+      },
+      "issue_date": {
+        "field_citation": {
+          "source_text": "Date of issue / Ausstellungsdatum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issued by / ausgestellt von:\nAUSTRIAN AIRLINES\nDate of issue / Ausstellungsdatum:\n30 Jan 25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "30 Jan 25",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Issued by / ausgestellt von:\nAUSTRIAN AIRLINES\nDate of issue / Ausstellungsdatum:\n30 Jan 25",
+          "match_type": "fuzzy"
+        }
+      },
+      "place_of_issue": {
+        "field_citation": {
+          "source_text": "Place of Issue / Ausstellungsort:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Place of Issue / Ausstellungsort:\nVIENNA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VIENNA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Place of Issue / Ausstellungsort:\nVIENNA",
+          "match_type": "exact"
+        }
+      },
+      "booking_code": {
+        "field_citation": {
+          "source_text": "Booking code / Buchungscode:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Booking code / Buchungscode:\nTVW6N7",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "TVW6N7",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Booking code / Buchungscode:\nTVW6N7",
+          "match_type": "exact"
+        }
+      },
+      "flight_date": {
+        "field_citation": {
+          "source_text": "Date",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Flight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "03 Feb 25",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "fuzzy"
+        }
+      },
+      "flight_number": {
+        "field_citation": {
+          "source_text": "Flight / Flug",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "OS371",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "departure_airport": {
+        "field_citation": {
+          "source_text": "from / von",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Vienna Intl",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "arrival_airport": {
+        "field_citation": {
+          "source_text": "to / nach",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Amsterdam",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "departure_time": {
+        "field_citation": {
+          "source_text": "Departure / Abflug",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "07:15",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "arrival_time": {
+        "field_citation": {
+          "source_text": "Arrival / Ankunft",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "09:10",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "class": {
+        "field_citation": {
+          "source_text": "Class / Klasse",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Economy",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "baggage": {
+        "field_citation": {
+          "source_text": "Bag / Gepäck",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nFlug\nDatum\nvon\nnach\nAbflug\nAnkunft\nKlasse\nGepäck",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0 PC",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Invoice amount/ Rechnungssumme",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Invoice amount/\nRechnungssumme\nEUR\n503.85",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "503.85",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Invoice amount/\nRechnungssumme\nEUR\n503.85",
+          "match_type": "exact"
+        }
+      },
+      "flight_data": {
+        "field_citation": {
+          "source_text": "Flight Data / Flugdaten",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "OS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Flight Data / Flugdaten\nFlight\nDate\nfrom\nto\nDeparture\nArrival\nClass\nBag\nOS371\n03 Feb 25\nVienna Intl\nAmsterdam\n07:15\n09:10\nEconomy\n0 PC",
+          "match_type": "contextual"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 35,
+      "fields_with_field_citations": 35,
+      "fields_with_value_citations": 35,
+      "average_confidence": 0.9342857142857144
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "12.0",
+      "image_quality_assessment_seconds": "4.9",
+      "file_classification_seconds": "5.6",
+      "data_extraction_seconds": "5.6",
+      "issue_detection_seconds": "7.0",
+      "citation_generation_seconds": "45.8",
+      "llm_validation_seconds": "64.4"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-26T13:22:26.466Z",
+        "end_time": "2025-08-26T13:22:38.434Z",
+        "duration_seconds": "12.0",
+        "document_reader_used": "textract"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-26T13:22:38.435Z",
+        "end_time": "2025-08-26T13:22:43.299Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-26T13:22:38.438Z",
+        "end_time": "2025-08-26T13:22:44.001Z",
+        "duration_seconds": "5.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-26T13:22:38.440Z",
+        "end_time": "2025-08-26T13:22:44.070Z",
+        "duration_seconds": "5.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-26T13:22:44.072Z",
+        "end_time": "2025-08-26T13:22:51.094Z",
+        "duration_seconds": "7.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-26T13:22:44.075Z",
+        "end_time": "2025-08-26T13:23:29.876Z",
+        "duration_seconds": "45.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-26T13:23:29.877Z",
+        "end_time": "2025-08-26T13:24:34.235Z",
+        "duration_seconds": "64.4",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "127.8",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.6",
+      "parallel_group_2_seconds": "45.8",
+      "total_parallel_time_seconds": "51.4"
+    }
+  },
+  "metadata": {
+    "filename": "austrian_file_7.pdf",
+    "processing_time": 127773,
+    "country": "Austria",
+    "icp": "Global People",
+    "processed_at": "2025-08-26T13:24:34.239Z"
+  }
+}

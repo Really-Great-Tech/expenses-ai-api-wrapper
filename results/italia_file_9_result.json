@@ -1,0 +1,425 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\italia_file_9.pdf_full_test_aug_26_italia_file_9.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-26T16:25:58.404Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, folds, or creases detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded document portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions, shadows, or other elements blocking document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Italian",
+    "language_confidence": 95,
+    "document_location": "Italy",
+    "expected_location": "Italy",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, item description, and total amount. It details toll payments, which classifies it under 'travel' expenses.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "totalAmount"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, confirming it as an expense document. The fields present include supplier (Telepass), consumer (CANEPARO LUCA), transaction amount (17,80 €), transaction dates (29-01-2025 and 28-01-2025), item description (pedaggio), and total amount (17,8 €)."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Telepass",
+    "customer_name": "CANEPARO LUCA",
+    "customer_address": "VIALE DEL TIRRENO N.371/S 56128 PISA (PI) I",
+    "contract_number": "189730295",
+    "total_amount": 17.8,
+    "currency": "EUR",
+    "transaction_details": [
+      {
+        "location": "BOLOGNA CASAL. FI",
+        "transaction_date": "2025-01-29",
+        "transaction_time": "19:59",
+        "transaction_type": "Pedaggio",
+        "amount": 8.9,
+        "description": "BOLOGNA CASAL."
+      },
+      {
+        "location": "FI SCANDICCI",
+        "transaction_date": "2025-01-28",
+        "transaction_time": "07:52",
+        "transaction_type": "Pedaggio",
+        "amount": 8.9,
+        "description": "SCANDICCI"
+      }
+    ],
+    "document_type": "Nota Spese",
+    "document_issue_date": "2025-01-31",
+    "document_issue_time": "17:41:15",
+    "document_reference": "2025-01-31-17.41.15.763",
+    "fiscal_validity": "Documento non valido ai fini fiscali",
+    "page_number": "1",
+    "total_pages": "1",
+    "special_notes": "Le informazioni di cui sopra sono riportate a fini puramente indicativi. Il loro accertamento avrà luogo al momento delle fatturazione secondo i modi definiti nel contratto."
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Clear and readable receipts and invoices must be submitted with expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "transaction_date",
+          "description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices preferably scanned not photos",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "payment_method",
+          "description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Under Article 10 of Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "recommendation": "Please provide a scan of the car passport and proof of distance travelled, such as a screenshot from an app like Google Maps.",
+          "knowledge_base_reference": "Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided. Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is non-compliant due to missing supplier name, transaction date, and payment method. Additionally, further documentation is required for mileage expenses."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Italy",
+      "icp": "Global People",
+      "receipt_type": "travel",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "cliente": {
+        "field_citation": {
+          "source_text": "Cliente",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Cliente\nCANEPARO LUCA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CANEPARO LUCA",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Cliente\nCANEPARO LUCA",
+          "match_type": "exact"
+        }
+      },
+      "indirizzo": {
+        "field_citation": {
+          "source_text": "Indirizzo",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Indirizzo\nVIALE DEL TIRRENO N.371/S 56128 PISA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VIALE DEL TIRRENO N.371/S 56128 PISA",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Indirizzo\nVIALE DEL TIRRENO N.371/S 56128 PISA",
+          "match_type": "exact"
+        }
+      },
+      "importo_totale_delle_transazioni": {
+        "field_citation": {
+          "source_text": "Importo totale delle transazioni:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Importo totale delle transazioni: 17,80 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "17,80 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Importo totale delle transazioni: 17,80 €",
+          "match_type": "exact"
+        }
+      },
+      "contratto": {
+        "field_citation": {
+          "source_text": "Contratto n.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Contratto n.189730295",
+          "match_type": "fuzzy"
+        },
+        "value_citation": {
+          "source_text": "189730295",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Contratto n.189730295",
+          "match_type": "exact"
+        }
+      },
+      "totale": {
+        "field_citation": {
+          "source_text": "Totale:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Totale: 17,8 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "17,8 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Totale: 17,8 €",
+          "match_type": "exact"
+        }
+      },
+      "data_transazione": {
+        "field_citation": {
+          "source_text": "Data Transazione",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Data Transazione\nTipo Transazione\nDescrizione\nImporto\nDettaglio",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29-01-2025 19:59",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BOLOGNA CASAL. FI\n29-01-2025 19:59\nPedaggio\n8,90 €",
+          "match_type": "exact"
+        }
+      },
+      "tipo_transazione": {
+        "field_citation": {
+          "source_text": "Tipo Transazione",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Data Transazione\nTipo Transazione\nDescrizione\nImporto\nDettaglio",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Pedaggio",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BOLOGNA CASAL. FI\n29-01-2025 19:59\nPedaggio\n8,90 €",
+          "match_type": "exact"
+        }
+      },
+      "descrizione": {
+        "field_citation": {
+          "source_text": "Descrizione",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Data Transazione\nTipo Transazione\nDescrizione\nImporto\nDettaglio",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "BOLOGNA CASAL. FI",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BOLOGNA CASAL. FI\n29-01-2025 19:59\nPedaggio\n8,90 €",
+          "match_type": "exact"
+        }
+      },
+      "importo": {
+        "field_citation": {
+          "source_text": "Importo",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Data Transazione\nTipo Transazione\nDescrizione\nImporto\nDettaglio",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "8,90 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BOLOGNA CASAL. FI\n29-01-2025 19:59\nPedaggio\n8,90 €",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 17,
+      "fields_with_field_citations": 17,
+      "fields_with_value_citations": 17,
+      "average_confidence": 0.9941176470588234
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "12.2",
+      "data_extraction_seconds": "4.1",
+      "file_classification_seconds": "4.1",
+      "image_quality_assessment_seconds": "4.9",
+      "issue_detection_seconds": "11.8",
+      "citation_generation_seconds": "18.7",
+      "llm_validation_seconds": "64.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-26T16:25:41.303Z",
+        "end_time": "2025-08-26T16:25:53.461Z",
+        "duration_seconds": "12.2",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-26T16:25:53.465Z",
+        "end_time": "2025-08-26T16:25:57.591Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-26T16:25:53.464Z",
+        "end_time": "2025-08-26T16:25:57.594Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-26T16:25:53.462Z",
+        "end_time": "2025-08-26T16:25:58.404Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-26T16:25:58.406Z",
+        "end_time": "2025-08-26T16:26:10.250Z",
+        "duration_seconds": "11.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-26T16:25:58.408Z",
+        "end_time": "2025-08-26T16:26:17.151Z",
+        "duration_seconds": "18.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-26T16:26:17.152Z",
+        "end_time": "2025-08-26T16:27:21.649Z",
+        "duration_seconds": "64.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "100.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.9",
+      "parallel_group_2_seconds": "18.7",
+      "total_parallel_time_seconds": "23.7"
+    }
+  },
+  "metadata": {
+    "filename": "italia_file_9.pdf",
+    "processing_time": 100383,
+    "country": "Italy",
+    "icp": "Global People",
+    "processed_at": "2025-08-26T16:27:21.686Z"
+  }
+}

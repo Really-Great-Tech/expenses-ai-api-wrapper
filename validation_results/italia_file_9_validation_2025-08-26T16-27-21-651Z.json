@@ -1,0 +1,603 @@
+{
+  "overall_score": 0.73,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.5333333333333333,
+      "issues": [
+        "1. The AI incorrectly claims the supplier name is missing when \"Telepass\" is clearly listed",
+        "2. The AI incorrectly claims transaction dates are missing when they are clearly provided (2025-01-29 and 2025-01-28)",
+        "3. The AI correctly identifies missing payment method",
+        "4. The AI correctly identifies the need for additional documentation for mileage expenses"
+      ],
+      "summary": "The AI response is only partially factually grounded. It correctly identifies issues related to missing payment method and the need for additional documentation for mileage expenses. However, it incorrectly claims that the supplier name and transaction dates are missing when this information is clearly present in the extracted data. These significant errors undermine the overall factual grounding of the response.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is completely incorrect.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the transaction date is missing, but the extracted data includes specific transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is completely incorrect.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the payment method is missing from the extracted data. There is no information about how the toll charges were paid in the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation is required for mileage expenses according to the compliance rules, including car passport and proof of distance traveled.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly claims the supplier name is missing when \"Telepass\" is clearly listed\n2. The AI incorrectly claims transaction dates are missing when they are clearly provided (2025-01-29 and 2025-01-28)\n3. The AI correctly identifies missing payment method\n4. The AI correctly identifies the need for additional documentation for mileage expenses\n\nSUMMARY: The AI response is only partially factually grounded. It correctly identifies issues related to missing payment method and the need for additional documentation for mileage expenses. However, it incorrectly claims that the supplier name and transaction dates are missing when this information is clearly present in the extracted data. These significant errors undermine the overall factual grounding of the response.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is completely incorrect.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the transaction date is missing, but the extracted data includes specific transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is completely incorrect.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the payment method is missing from the extracted data. There is no information about how the toll charges were paid in the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation is required for mileage expenses according to the compliance rules, including car passport and proof of distance traveled.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly claims the supplier name is missing when \"Telepass\" is clearly listed\n2. The AI incorrectly claims transaction dates are missing when they are clearly provided (2025-01-29 and 2025-01-28)\n3. The AI correctly identifies missing payment method\n4. The AI correctly identifies the need for additional documentation for mileage expenses\n\nSUMMARY: The AI response is only partially factually grounded. It correctly identifies issues related to missing payment method and the need for additional documentation for mileage expenses. However, it incorrectly claims that the supplier name and transaction dates are missing when this information is clearly present in the extracted data. These significant errors undermine the overall factual grounding of the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - All claims in the AI response can be traced back to the extracted data, except for the \"payment method\" requirement, which is not explicitly mentioned in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response does not fabricate or assume any information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 95\n\nISSUES: The AI response mentions a \"payment method\" requirement, which is not explicitly stated in the extracted data.\n\nSUMMARY: The AI response is generally well-grounded in the factual information provided in the extracted data, with the exception of the \"payment method\" requirement, which is not directly supported by the extracted data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.15,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the transaction date is missing, but the extracted data shows two transaction dates: 2025-01-29 and 2025-01-28.\n\nISSUE_3_VALIDATION_SCORE: 50 - The payment method is indeed not explicitly mentioned in the extracted data, so this issue is partially grounded. However, the AI assumes it's missing rather than potentially implied by the nature of the Telepass system.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI mentions the need for additional documentation for mileage expenses, but the extracted data is about toll charges, not mileage. This issue is not grounded in the provided data.\n\nCONFIDENCE: 15\n\nISSUES:\n1. Supplier name is incorrectly claimed to be missing\n2. Transaction dates are incorrectly claimed to be missing\n3. Assumption about mileage expenses when the receipt is for toll charges\n4. Failure to recognize the nature of the Telepass system for toll payments\n\nSUMMARY: The AI response is poorly grounded in the provided data. It misses key information that is clearly present (supplier name, transaction dates) and makes assumptions about mileage expenses that are not relevant to this toll receipt. The only partially grounded issue is about the payment method, which isn't explicitly stated but might be implied by the nature of the Telepass system. Overall, the response demonstrates a significant lack of accurate interpretation of the provided data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is completely incorrect.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the transaction date is missing, but the extracted data includes specific transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is completely incorrect.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that the payment method is missing from the extracted data. There is no information about how the toll charges were paid in the receipt data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that additional documentation is required for mileage expenses according to the compliance rules, including car passport and proof of distance traveled.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9733333333333333,
+      "issues": [
+        "None. The AI response correctly applies all relevant compliance rules from the knowledge base."
+      ],
+      "summary": "The AI response demonstrates excellent adherence to the compliance knowledge base for Italy. It correctly identifies all four issues with the receipt: missing/unclear supplier name, missing/unclear transaction date, missing payment method, and the need for additional documentation for mileage expenses. Each issue is properly linked to specific rules in the knowledge base, and appropriate recommendations are provided. The response accurately reflects Italian compliance requirements for travel receipts, particularly those related to vehicle expenses.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier name is mandatory for all receipts according to the knowledge base rule \"Clear and readable receipts and invoices must be submitted with expenses.\" While the extracted data shows \"Telepass\" as the supplier name, the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction date is mandatory for all receipts according to the knowledge base rule \"Documents must be actual tax receipts or invoices preferably scanned not photos.\" While the extracted data shows transaction dates (2025-01-29 and 2025-01-28), the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the payment method is mandatory for travel receipts according to the knowledge base rule \"Under Article 10 of Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks.\" The payment method is indeed missing from the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage expenses, specifically citing the knowledge base rules \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\" This is appropriate for a toll receipt which is related to vehicle travel.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly applies all relevant compliance rules from the knowledge base.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Italy. It correctly identifies all four issues with the receipt: missing/unclear supplier name, missing/unclear transaction date, missing payment method, and the need for additional documentation for mileage expenses. Each issue is properly linked to specific rules in the knowledge base, and appropriate recommendations are provided. The response accurately reflects Italian compliance requirements for travel receipts, particularly those related to vehicle expenses.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier name is mandatory for all receipts according to the knowledge base rule \"Clear and readable receipts and invoices must be submitted with expenses.\" While the extracted data shows \"Telepass\" as the supplier name, the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction date is mandatory for all receipts according to the knowledge base rule \"Documents must be actual tax receipts or invoices preferably scanned not photos.\" While the extracted data shows transaction dates (2025-01-29 and 2025-01-28), the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the payment method is mandatory for travel receipts according to the knowledge base rule \"Under Article 10 of Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks.\" The payment method is indeed missing from the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage expenses, specifically citing the knowledge base rules \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\" This is appropriate for a toll receipt which is related to vehicle travel.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly applies all relevant compliance rules from the knowledge base.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Italy. It correctly identifies all four issues with the receipt: missing/unclear supplier name, missing/unclear transaction date, missing payment method, and the need for additional documentation for mileage expenses. Each issue is properly linked to specific rules in the knowledge base, and appropriate recommendations are provided. The response accurately reflects Italian compliance requirements for travel receipts, particularly those related to vehicle expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the supplier name is mandatory for all receipts and must be clear and readable, as per the compliance rule. However, the recommendation could be more specific, such as suggesting the user to reach out to the supplier to obtain a compliant receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies that the transaction date is mandatory for all receipts and must be clear and readable, as per the compliance rule. The recommendation could be more specific, such as suggesting the user to reach out to the supplier to obtain a compliant receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies that the payment method is mandatory for travel receipts and must be a traceable payment method, as per the compliance rule. The recommendation could be more specific, such as suggesting the user to reach out to the supplier to obtain a compliant receipt.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response correctly identifies the additional documentation required for mileage expenses, including a scan of the car passport and proof of distance travelled. The recommendation provided is comprehensive and aligned with the knowledge base.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response demonstrates a strong adherence to the compliance knowledge base for Italy, with a few minor areas for improvement in the recommendations provided. Overall, the response accurately interprets and applies the relevant compliance rules and regulations, and properly addresses the receipt type requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier name is mandatory for all receipts, which aligns with the compliance rule stating \"Clear and readable receipts and invoices must be submitted with expenses\" for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue accurately points out that the transaction date is mandatory, which is in line with the compliance rule \"Documents must be actual tax receipts or invoices preferably scanned not photos\" applicable to all expense types.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the payment method is mandatory for travel receipts and must be traceable, which adheres to the rule \"Under Article 10 of Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks\" for travel expenses.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue accurately addresses the need for additional documentation for mileage expenses, including a scan of the car passport and proof of distance travelled, which aligns with the compliance rules stating \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\"\n\nCONFIDENCE: 100\n\nISSUES: None identified. The AI response demonstrates full adherence to the provided compliance knowledge base.\n\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Italy. It correctly interprets and applies the compliance rules, considers country-specific regulations, addresses receipt type requirements accurately, and shows no contradictions with established compliance guidelines. All four issues identified in the response are fully aligned with the provided compliance knowledge base, demonstrating a thorough understanding and application of the rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier name is mandatory for all receipts according to the knowledge base rule \"Clear and readable receipts and invoices must be submitted with expenses.\" While the extracted data shows \"Telepass\" as the supplier name, the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the transaction date is mandatory for all receipts according to the knowledge base rule \"Documents must be actual tax receipts or invoices preferably scanned not photos.\" While the extracted data shows transaction dates (2025-01-29 and 2025-01-28), the AI correctly flagged this as an issue since the original receipt validation indicates this information was missing or unclear.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the payment method is mandatory for travel receipts according to the knowledge base rule \"Under Article 10 of Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks.\" The payment method is indeed missing from the receipt data.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that additional documentation is required for mileage expenses, specifically citing the knowledge base rules \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\" This is appropriate for a toll receipt which is related to vehicle travel.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.6833333333333332,
+      "issues": [
+        "1. The system incorrectly flagged missing supplier name when \"Telepass\" is clearly present",
+        "2. The system incorrectly flagged missing transaction dates when dates are clearly present for both transactions",
+        "3. The system correctly identified missing payment method",
+        "4. The system correctly identified the need for additional documentation for mileage expenses"
+      ],
+      "summary": "The compliance assessment is partially accurate. It correctly identifies two legitimate compliance issues (missing payment method and need for additional documentation), but incorrectly flags two fields (supplier name and transaction date) as missing when they are actually present in the extracted data. This significantly reduces the overall accuracy of the compliance assessment. The receipt is indeed non-compliant, but not for all the reasons stated.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The assessment incorrectly identifies \"supplier_name\" as missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is a significant error in the compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 50 - The assessment incorrectly identifies \"transaction_date\" as missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. This is another significant error in the compliance assessment.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that the payment method is missing, which is required for travel receipts according to the compliance rules. The receipt does not indicate how the toll charges were paid (credit card, bank transfer, etc.).\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional documentation is required for mileage expenses, including car passport (libretto di circolazione) and proof of distance traveled. This aligns with the compliance rules for mileage expenses in Italy.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The system incorrectly flagged missing supplier name when \"Telepass\" is clearly present\n2. The system incorrectly flagged missing transaction dates when dates are clearly present for both transactions\n3. The system correctly identified missing payment method\n4. The system correctly identified the need for additional documentation for mileage expenses\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies two legitimate compliance issues (missing payment method and need for additional documentation), but incorrectly flags two fields (supplier name and transaction date) as missing when they are actually present in the extracted data. This significantly reduces the overall accuracy of the compliance assessment. The receipt is indeed non-compliant, but not for all the reasons stated.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The assessment incorrectly identifies \"supplier_name\" as missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is a significant error in the compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 50 - The assessment incorrectly identifies \"transaction_date\" as missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. This is another significant error in the compliance assessment.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that the payment method is missing, which is required for travel receipts according to the compliance rules. The receipt does not indicate how the toll charges were paid (credit card, bank transfer, etc.).\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional documentation is required for mileage expenses, including car passport (libretto di circolazione) and proof of distance traveled. This aligns with the compliance rules for mileage expenses in Italy.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The system incorrectly flagged missing supplier name when \"Telepass\" is clearly present\n2. The system incorrectly flagged missing transaction dates when dates are clearly present for both transactions\n3. The system correctly identified missing payment method\n4. The system correctly identified the need for additional documentation for mileage expenses\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies two legitimate compliance issues (missing payment method and need for additional documentation), but incorrectly flags two fields (supplier name and transaction date) as missing when they are actually present in the extracted data. This significantly reduces the overall accuracy of the compliance assessment. The receipt is indeed non-compliant, but not for all the reasons stated."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The compliance assessment correctly identifies that the supplier name is missing, which is a mandatory requirement for all receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The compliance assessment correctly identifies that the transaction date is missing, which is a mandatory requirement for all receipts.\n\nISSUE_3_VALIDATION_SCORE: 90 - The compliance assessment correctly identifies that the payment method is missing, which is a mandatory requirement for travel receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - The compliance assessment correctly identifies the need for additional documentation for mileage expenses, including a scan of the car passport and proof of distance travelled.\n\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The compliance assessment is accurate and comprehensive. It correctly identifies all the key issues with the receipt, including missing mandatory fields and the need for additional documentation. The overall compliance determination of \"non-compliant\" is accurate based on the identified issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The supplier name (Telepass) is clearly present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The transaction dates (2025-01-29 and 2025-01-28) are clearly present in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The payment method is indeed missing from the extracted data, which is mandatory for travel receipts according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. For mileage expenses, additional documentation including car passport and proof of distance travelled is required according to the compliance rules.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Two issues (supplier name and transaction date) were incorrectly flagged as missing when they are present in the extracted data.\n2. The assessment failed to identify that this is a mileage-related expense, which has specific compliance requirements.\n3. The assessment did not address the fact that this document is explicitly stated as \"Documento non valido ai fini fiscali\" (Document not valid for tax purposes), which may have implications for its compliance.\n\nSUMMARY: The compliance assessment has significant inaccuracies. While it correctly identified issues related to payment method and additional documentation for mileage expenses, it incorrectly flagged issues with supplier name and transaction date. It also failed to recognize the nature of the expense (mileage) and the document's explicit statement of not being valid for tax purposes. These errors significantly reduce the overall accuracy and reliability of the compliance assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The assessment incorrectly identifies \"supplier_name\" as missing, but the extracted data clearly shows \"Telepass\" as the supplier name. This is a significant error in the compliance assessment.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The assessment incorrectly identifies \"transaction_date\" as missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. This is another significant error in the compliance assessment.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the payment method is missing, which is required for travel receipts according to the compliance rules. The receipt does not indicate how the toll charges were paid (credit card, bank transfer, etc.).",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that additional documentation is required for mileage expenses, including car passport (libretto di circolazione) and proof of distance traveled. This aligns with the compliance rules for mileage expenses in Italy.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.79,
+      "issues": [
+        "1. Two issues incorrectly claim information is missing when it's present in the extracted data",
+        "2. The system may have failed to properly analyze the extracted data before generating issues",
+        "3. The receipt appears to be for toll charges (Telepass)",
+        "not mileage expenses",
+        "so Issue 4 may be misapplied",
+        "4. The validation doesn't acknowledge that this is a Telepass statement showing electronic toll collection",
+        "which has different documentation requirements than general mileage claims"
+      ],
+      "summary": "The validation system correctly identified the missing payment method issue but incorrectly flagged supplier name and transaction date as missing when they were clearly present in the extracted data. Additionally, the system appears to have misclassified toll charges as general mileage expenses, leading to inappropriate documentation requirements. The categorization framework is sound, but the application to this specific receipt shows significant errors in data interpretation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue incorrectly states that the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the factual basis of the issue is incorrect.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue incorrectly states that the transaction date is missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. The issue type is appropriate, but the factual basis is incorrect.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue correctly identifies that the payment method is missing from the receipt, which is mandatory for travel receipts in Italy. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, and the recommendation to address this with the supplier is reasonable.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue correctly identifies that additional documentation is required for mileage expenses, including car passport and proof of distance traveled. This is aligned with the compliance rules for mileage expenses in Italy. The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues incorrectly claim information is missing when it's present in the extracted data\n2. The system may have failed to properly analyze the extracted data before generating issues\n3. The receipt appears to be for toll charges (Telepass), not mileage expenses, so Issue 4 may be misapplied\n4. The validation doesn't acknowledge that this is a Telepass statement showing electronic toll collection, which has different documentation requirements than general mileage claims\n\nSUMMARY: The validation system correctly identified the missing payment method issue but incorrectly flagged supplier name and transaction date as missing when they were clearly present in the extracted data. Additionally, the system appears to have misclassified toll charges as general mileage expenses, leading to inappropriate documentation requirements. The categorization framework is sound, but the application to this specific receipt shows significant errors in data interpretation.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue incorrectly states that the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the factual basis of the issue is incorrect.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue incorrectly states that the transaction date is missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. The issue type is appropriate, but the factual basis is incorrect.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue correctly identifies that the payment method is missing from the receipt, which is mandatory for travel receipts in Italy. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, and the recommendation to address this with the supplier is reasonable.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue correctly identifies that additional documentation is required for mileage expenses, including car passport and proof of distance traveled. This is aligned with the compliance rules for mileage expenses in Italy. The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues incorrectly claim information is missing when it's present in the extracted data\n2. The system may have failed to properly analyze the extracted data before generating issues\n3. The receipt appears to be for toll charges (Telepass), not mileage expenses, so Issue 4 may be misapplied\n4. The validation doesn't acknowledge that this is a Telepass statement showing electronic toll collection, which has different documentation requirements than general mileage claims\n\nSUMMARY: The validation system correctly identified the missing payment method issue but incorrectly flagged supplier name and transaction date as missing when they were clearly present in the extracted data. Additionally, the system appears to have misclassified toll charges as general mileage expenses, leading to inappropriate documentation requirements. The categorization framework is sound, but the application to this specific receipt shows significant errors in data interpretation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is appropriate, and the description clearly identifies the missing supplier name as a compliance issue. The recommendation to address this with the supplier is also relevant.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is correct, and the description accurately captures the missing transaction date as a compliance issue. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is accurate, and the description correctly identifies the missing payment method as a compliance issue for a travel receipt. The recommendation to address this with the supplier is relevant.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate, and the description clearly outlines the additional documentation required for the mileage expense. The recommendation to provide a scan of the car passport and proof of distance traveled is clear and actionable.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The issues are correctly categorized, with clear and actionable descriptions, following the established taxonomy. The categorization accurately identifies the compliance problems with the receipt and provides appropriate recommendations to address them."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue is correctly identified as a Standards & Compliance issue with a fix identified. The description accurately points out the missing supplier name. However, the supplier name \"Telepass\" is actually present in the extracted data, so this issue may not be valid.\n\nISSUE_2_VALIDATION_SCORE: 80 - This issue is also correctly categorized as a Standards & Compliance issue with a fix identified. The description accurately states that the transaction date is mandatory. However, transaction dates are present in the extracted data for each transaction, so this issue may not be valid.\n\nISSUE_3_VALIDATION_SCORE: 90 - This issue is correctly categorized as a Standards & Compliance issue with a fix identified. The description accurately points out the missing payment method, which is indeed not present in the extracted data. The recommendation and knowledge base reference are relevant and appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as a Standards & Compliance issue with a follow-up action identified. The description accurately points out the need for additional documentation for mileage expenses. The recommendation and knowledge base reference are highly relevant and specific to the Italian context.\n\nCONFIDENCE: 85\n\nISSUES: \n1. The first two issues (supplier name and transaction date) are correctly categorized but may not be valid based on the extracted data.\n2. The system may need to improve its ability to recognize and validate data that is present in the extracted information.\n\nSUMMARY: The issue categorization is generally accurate, with appropriate classifications, clear descriptions, and relevant recommendations. However, there are discrepancies between the identified issues and the extracted data for the first two issues, which suggests a need for improved data validation. The last two issues are particularly well-categorized and relevant to the specific receipt type and country context."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue incorrectly states that the supplier name is missing, but the extracted data clearly shows \"Telepass\" as the supplier name. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the factual basis of the issue is incorrect.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue incorrectly states that the transaction date is missing, but the extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both toll transactions. The issue type is appropriate, but the factual basis is incorrect.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue correctly identifies that the payment method is missing from the receipt, which is mandatory for travel receipts in Italy. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, and the recommendation to address this with the supplier is reasonable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue correctly identifies that additional documentation is required for mileage expenses, including car passport and proof of distance traveled. This is aligned with the compliance rules for mileage expenses in Italy. The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7166666666666667,
+      "issues": [
+        "1. Two of the four issues incorrectly identify missing information that is actually present in the receipt",
+        "2. The recommendations for issues 1 and 2 are generic and not helpful since they address non-existent problems",
+        "3. Issue 3 recommendation could be more specific about what documentation would satisfy the payment method requirement"
+      ],
+      "summary": "The validation has mixed quality. Two issues incorrectly claim missing information that is present in the receipt data (supplier name and transaction dates). The recommendation for payment method verification is valid but could be more specific. Only the recommendation for additional mileage documentation is fully valid and actionable. The system needs to better reconcile the extracted data with its compliance checks.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" for the missing supplier name is not valid because the supplier name \"Telepass\" is clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.\n\nISSUE_2_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" for the missing transaction date is not valid because transaction dates (2025-01-29 and 2025-01-28) are clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation regarding the payment method is valid as the receipt does not show how the toll charges were paid. However, it could be more specific by suggesting the user provide documentation showing which traceable payment method was used for the Telepass service (which is typically linked to a credit card or bank account).\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation to provide additional documentation for mileage expenses is valid, specific, and actionable. It correctly identifies the need for a car passport scan and proof of distance traveled, with specific examples of acceptable documentation.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Two of the four issues incorrectly identify missing information that is actually present in the receipt\n2. The recommendations for issues 1 and 2 are generic and not helpful since they address non-existent problems\n3. Issue 3 recommendation could be more specific about what documentation would satisfy the payment method requirement\n\nSUMMARY: The validation has mixed quality. Two issues incorrectly claim missing information that is present in the receipt data (supplier name and transaction dates). The recommendation for payment method verification is valid but could be more specific. Only the recommendation for additional mileage documentation is fully valid and actionable. The system needs to better reconcile the extracted data with its compliance checks.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" for the missing supplier name is not valid because the supplier name \"Telepass\" is clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.\n\nISSUE_2_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" for the missing transaction date is not valid because transaction dates (2025-01-29 and 2025-01-28) are clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation regarding the payment method is valid as the receipt does not show how the toll charges were paid. However, it could be more specific by suggesting the user provide documentation showing which traceable payment method was used for the Telepass service (which is typically linked to a credit card or bank account).\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation to provide additional documentation for mileage expenses is valid, specific, and actionable. It correctly identifies the need for a car passport scan and proof of distance traveled, with specific examples of acceptable documentation.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Two of the four issues incorrectly identify missing information that is actually present in the receipt\n2. The recommendations for issues 1 and 2 are generic and not helpful since they address non-existent problems\n3. Issue 3 recommendation could be more specific about what documentation would satisfy the payment method requirement\n\nSUMMARY: The validation has mixed quality. Two issues incorrectly claim missing information that is present in the receipt data (supplier name and transaction dates). The recommendation for payment method verification is valid but could be more specific. Only the recommendation for additional mileage documentation is fully valid and actionable. The system needs to better reconcile the extracted data with its compliance checks."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier name with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical solution.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction date with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical solution.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing payment method with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical solution.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide a scan of the car passport and proof of distance travelled is actionable and specific. It directly addresses the identified issue and is a feasible and practical solution.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are valid and helpful. They are actionable, specific, and address the identified issues in a feasible and practical manner. There are no contradictory or harmful suggestions. Overall, the recommendations are well-suited to address the compliance concerns raised."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The recommendation to address the issue with the supplier is valid, but not very specific or actionable. The supplier name (Telepass) is actually present in the extracted data, so this recommendation may not be necessary.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, the recommendation is valid but not very specific. The transaction dates are present in the extracted data, so this recommendation may not be necessary.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the payment method issue with the supplier is valid and relevant. It correctly identifies the need for a traceable payment method as per the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation for additional documentation for mileage expenses is highly valid, specific, and actionable. It correctly identifies the need for a car passport scan and proof of distance travelled, which aligns with the compliance rules.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Recommendations for issues 1 and 2 may not be necessary as the information appears to be present in the extracted data.\n2. Recommendations for issues 1, 2, and 3 could be more specific and actionable.\n\nSUMMARY: The recommendations are generally valid but vary in their usefulness. Issues 1 and 2 may be false positives, as the required information seems to be present in the extracted data. The recommendation for issue 3 is relevant but could be more specific. The recommendation for issue 4 is highly valid and actionable, providing clear guidance on the additional documentation required for mileage expenses. Overall, while the recommendations address the identified issues, there's room for improvement in specificity and accuracy for some issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" for the missing supplier name is not valid because the supplier name \"Telepass\" is clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" for the missing transaction date is not valid because transaction dates (2025-01-29 and 2025-01-28) are clearly present in the extracted data. The issue itself is incorrect, making the recommendation irrelevant.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation regarding the payment method is valid as the receipt does not show how the toll charges were paid. However, it could be more specific by suggesting the user provide documentation showing which traceable payment method was used for the Telepass service (which is typically linked to a credit card or bank account).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to provide additional documentation for mileage expenses is valid, specific, and actionable. It correctly identifies the need for a car passport scan and proof of distance traveled, with specific examples of acceptable documentation.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.6833333333333332,
+      "issues": [
+        "1. Falsely claims supplier name is missing when \"Telepass\" is clearly present",
+        "2. Falsely claims transaction date is missing when dates are clearly present",
+        "3. Mischaracterizes toll receipt as mileage expense",
+        "4. Incorrectly determines the receipt is invalid when the main claimed issues don't exist"
+      ],
+      "summary": "The AI response contains significant hallucinations, particularly regarding the missing supplier name and transaction date, which are clearly present in the extracted data. It also mischaracterizes the receipt type, treating toll charges as mileage expenses. The validation result is fundamentally flawed as it claims the receipt is invalid based on non-existent issues.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"The supplier name is mandatory for all receipts and must be clear and readable.\" However, the extracted data clearly shows the supplier name as \"Telepass\". This is a complete hallucination as the data contradicts the claimed issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue claims \"The transaction date is mandatory for all receipts and must be clear and readable.\" The extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is another clear hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about payment method being mandatory for travel receipts is based on a valid compliance rule. However, it's unclear from the extracted data whether a payment method is actually missing, as the data doesn't explicitly show or deny the presence of payment method information.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue claims additional documentation is required for mileage expenses. While the compliance rules do mention requirements for mileage expenses, the receipt appears to be for toll charges (Telepass), not mileage expenses. This is largely hallucinated as it mischaracterizes the receipt type.\n\nCONFIDENCE: 10\n\nISSUES:\n1. Falsely claims supplier name is missing when \"Telepass\" is clearly present\n2. Falsely claims transaction date is missing when dates are clearly present\n3. Mischaracterizes toll receipt as mileage expense\n4. Incorrectly determines the receipt is invalid when the main claimed issues don't exist\n\nSUMMARY: The AI response contains significant hallucinations, particularly regarding the missing supplier name and transaction date, which are clearly present in the extracted data. It also mischaracterizes the receipt type, treating toll charges as mileage expenses. The validation result is fundamentally flawed as it claims the receipt is invalid based on non-existent issues.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"The supplier name is mandatory for all receipts and must be clear and readable.\" However, the extracted data clearly shows the supplier name as \"Telepass\". This is a complete hallucination as the data contradicts the claimed issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue claims \"The transaction date is mandatory for all receipts and must be clear and readable.\" The extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is another clear hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about payment method being mandatory for travel receipts is based on a valid compliance rule. However, it's unclear from the extracted data whether a payment method is actually missing, as the data doesn't explicitly show or deny the presence of payment method information.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue claims additional documentation is required for mileage expenses. While the compliance rules do mention requirements for mileage expenses, the receipt appears to be for toll charges (Telepass), not mileage expenses. This is largely hallucinated as it mischaracterizes the receipt type.\n\nCONFIDENCE: 10\n\nISSUES:\n1. Falsely claims supplier name is missing when \"Telepass\" is clearly present\n2. Falsely claims transaction date is missing when dates are clearly present\n3. Mischaracterizes toll receipt as mileage expense\n4. Incorrectly determines the receipt is invalid when the main claimed issues don't exist\n\nSUMMARY: The AI response contains significant hallucinations, particularly regarding the missing supplier name and transaction date, which are clearly present in the extracted data. It also mischaracterizes the receipt type, treating toll charges as mileage expenses. The validation result is fundamentally flawed as it claims the receipt is invalid based on non-existent issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the extracted data matches the source data. There are no signs of hallucinated or fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements provided in the response appear to be accurate and consistent with the ICP context of \"Global People\". There are no signs of fabricated compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates present in the extracted data and compliance rules appear to be accurate and realistic. There are no signs of fabricated information.\n\nISSUE_4_VALIDATION_SCORE: 100 - The information provided in the response is presented as factual and there are no clear assumptions presented as facts.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. The extracted data and compliance rules are accurate and consistent with the provided source data and ICP context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the supplier name is mandatory and should be clear and readable, which aligns with the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue accurately states that the transaction date is mandatory and should be clear and readable, which is consistent with the given compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies that the payment method is mandatory for travel receipts and must be traceable, which aligns with the provided compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue accurately references the requirement for additional documentation for mileage expenses, including a scan of the car passport and proof of distance travelled, which is consistent with the given compliance rules.\n\nCONFIDENCE: 95\n\nISSUES: No significant hallucinations detected.\n\nSUMMARY: The AI response appears to be highly consistent with the provided source data and compliance rules. All issues identified in the response are accurately based on the given information. The only minor discrepancy is that the response refers to \"Budget Law 2025\" when mentioning traceable payment methods, which is not explicitly stated in the provided rules. However, this could be considered as additional context rather than a hallucination. Overall, the response demonstrates a high level of accuracy and adherence to the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"The supplier name is mandatory for all receipts and must be clear and readable.\" However, the extracted data clearly shows the supplier name as \"Telepass\". This is a complete hallucination as the data contradicts the claimed issue.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"The transaction date is mandatory for all receipts and must be clear and readable.\" The extracted data shows transaction dates (2025-01-29 and 2025-01-28) for both transactions. This is another clear hallucination.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue about payment method being mandatory for travel receipts is based on a valid compliance rule. However, it's unclear from the extracted data whether a payment method is actually missing, as the data doesn't explicitly show or deny the presence of payment method information.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 20,
+          "judge_explanation": "This issue claims additional documentation is required for mileage expenses. While the compliance rules do mention requirements for mileage expenses, the receipt appears to be for toll charges (Telepass), not mileage expenses. This is largely hallucinated as it mischaracterizes the receipt type.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Improve factual grounding: The AI response is only partially factually grounded. It correctly identifies issues related to missing payment method and the need for additional documentation for mileage expenses. However, it incorrectly claims that the supplier name and transaction dates are missing when this information is clearly present in the extracted data. These significant errors undermine the overall factual grounding of the response.",
+    "Address issues in factual grounding: 1. The AI incorrectly claims the supplier name is missing when \"Telepass\" is clearly listed, 2. The AI incorrectly claims transaction dates are missing when they are clearly provided (2025-01-29 and 2025-01-28), 3. The AI correctly identifies missing payment method, 4. The AI correctly identifies the need for additional documentation for mileage expenses",
+    "Address issues in knowledge base adherence: None. The AI response correctly applies all relevant compliance rules from the knowledge base.",
+    "Improve compliance accuracy: The compliance assessment is partially accurate. It correctly identifies two legitimate compliance issues (missing payment method and need for additional documentation), but incorrectly flags two fields (supplier name and transaction date) as missing when they are actually present in the extracted data. This significantly reduces the overall accuracy of the compliance assessment. The receipt is indeed non-compliant, but not for all the reasons stated.",
+    "Address issues in compliance accuracy: 1. The system incorrectly flagged missing supplier name when \"Telepass\" is clearly present, 2. The system incorrectly flagged missing transaction dates when dates are clearly present for both transactions, 3. The system correctly identified missing payment method, 4. The system correctly identified the need for additional documentation for mileage expenses",
+    "Address issues in issue categorization: 1. Two issues incorrectly claim information is missing when it's present in the extracted data, 2. The system may have failed to properly analyze the extracted data before generating issues, 3. The receipt appears to be for toll charges (Telepass), not mileage expenses, so Issue 4 may be misapplied, 4. The validation doesn't acknowledge that this is a Telepass statement showing electronic toll collection, which has different documentation requirements than general mileage claims",
+    "Address issues in recommendation validity: 1. Two of the four issues incorrectly identify missing information that is actually present in the receipt, 2. The recommendations for issues 1 and 2 are generic and not helpful since they address non-existent problems, 3. Issue 3 recommendation could be more specific about what documentation would satisfy the payment method requirement",
+    "Improve hallucination detection: The AI response contains significant hallucinations, particularly regarding the missing supplier name and transaction date, which are clearly present in the extracted data. It also mischaracterizes the receipt type, treating toll charges as mileage expenses. The validation result is fundamentally flawed as it claims the receipt is invalid based on non-existent issues.",
+    "Address issues in hallucination detection: 1. Falsely claims supplier name is missing when \"Telepass\" is clearly present, 2. Falsely claims transaction date is missing when dates are clearly present, 3. Mischaracterizes toll receipt as mileage expense, 4. Incorrectly determines the receipt is invalid when the main claimed issues don't exist"
+  ],
+  "timestamp": "2025-08-26T16:27:21.649Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 64493,
+    "timing": {
+      "validation_start_time": "2025-08-26T16:26:17.156Z",
+      "validation_end_time": "2025-08-26T16:27:21.649Z",
+      "total_validation_time_seconds": "64.5",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-08-26T16:26:17.156Z",
+          "end_time": "2025-08-26T16:27:21.649Z",
+          "duration_seconds": "64.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "64.5",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.47",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 4
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The supplier name is mandatory for all receipts and must be clear and readable.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 35.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 50,
+        "issue_categorization": 50,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The transaction date is mandatory for all receipts and must be clear and readable.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 35.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 50,
+        "issue_categorization": 50,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The payment method is mandatory for travel receipts and must be a traceable payment method.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 86.44,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Additional documentation is required for mileage expenses, including a scan of the car passport and proof of distance travelled.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 85.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 100,
+        "hallucination_detection": 20
+      }
+    }
+  ]
+}

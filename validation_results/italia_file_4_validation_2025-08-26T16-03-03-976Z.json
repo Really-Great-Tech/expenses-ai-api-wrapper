@@ -1,0 +1,534 @@
+{
+  "overall_score": 0.8177777777777778,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8133333333333334,
+      "issues": [
+        "1. The AI doesn't acknowledge that a receipt number exists",
+        "which could potentially serve as an identifier even though it's not specifically labeled as an invoice number.",
+        "2. The AI assumes this is a mileage claim when the extracted data shows this is a bus ticket (Prontobus) for travel between Chieti Scalo and Fiumicino Airport. Issue #3 about mileage documentation is irrelevant to this receipt type."
+      ],
+      "summary": "The AI response is partially grounded in the extracted data. While it correctly identifies missing tax information, it fails to recognize that this is a bus ticket receipt, not a mileage claim, making the third issue irrelevant. It also doesn't acknowledge the presence of a receipt number that could serve as an identifier. The response demonstrates good knowledge of Italian compliance requirements but misapplies them to the wrong receipt type.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the invoice number is missing from the receipt. While the extracted data shows \"invoice_number: null\", there is a \"receipt_number: 2962036-7\" present. The AI doesn't acknowledge this receipt number could serve as an identifier, though technically it's correct that a specific \"invoice number\" field is empty.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\", which supports this claim. The reference to Italian regulations requiring tax information is consistent with the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI accurately states that additional documentation is required for mileage claims, specifically mentioning the need for a car passport scan and screenshots tracking the journey. This directly matches the compliance rules that state \"Scan of the card passport (libretto di circolazione)\" and \"Any screenshot from any app that can track start point, arrival point and KM\" are required.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI doesn't acknowledge that a receipt number exists, which could potentially serve as an identifier even though it's not specifically labeled as an invoice number.\n2. The AI assumes this is a mileage claim when the extracted data shows this is a bus ticket (Prontobus) for travel between Chieti Scalo and Fiumicino Airport. Issue #3 about mileage documentation is irrelevant to this receipt type.\n\nSUMMARY: The AI response is partially grounded in the extracted data. While it correctly identifies missing tax information, it fails to recognize that this is a bus ticket receipt, not a mileage claim, making the third issue irrelevant. It also doesn't acknowledge the presence of a receipt number that could serve as an identifier. The response demonstrates good knowledge of Italian compliance requirements but misapplies them to the wrong receipt type.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the invoice number is missing from the receipt. While the extracted data shows \"invoice_number: null\", there is a \"receipt_number: 2962036-7\" present. The AI doesn't acknowledge this receipt number could serve as an identifier, though technically it's correct that a specific \"invoice number\" field is empty.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\", which supports this claim. The reference to Italian regulations requiring tax information is consistent with the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI accurately states that additional documentation is required for mileage claims, specifically mentioning the need for a car passport scan and screenshots tracking the journey. This directly matches the compliance rules that state \"Scan of the card passport (libretto di circolazione)\" and \"Any screenshot from any app that can track start point, arrival point and KM\" are required.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI doesn't acknowledge that a receipt number exists, which could potentially serve as an identifier even though it's not specifically labeled as an invoice number.\n2. The AI assumes this is a mileage claim when the extracted data shows this is a bus ticket (Prontobus) for travel between Chieti Scalo and Fiumicino Airport. Issue #3 about mileage documentation is irrelevant to this receipt type.\n\nSUMMARY: The AI response is partially grounded in the extracted data. While it correctly identifies missing tax information, it fails to recognize that this is a bus ticket receipt, not a mileage claim, making the third issue irrelevant. It also doesn't acknowledge the presence of a receipt number that could serve as an identifier. The response demonstrates good knowledge of Italian compliance requirements but misapplies them to the wrong receipt type."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.97,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the response can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The response does not contain any fabricated or assumed information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 90 - The numerical values, dates, and amounts in the response mostly match the extracted data, with the exception of the \"card_last_four\" field, which is missing from the extracted data.\n\nCONFIDENCE: 97\n\nISSUES: The \"card_last_four\" field is missing from the extracted data, but this is a minor issue.\n\nSUMMARY: The AI response is highly factually grounded, with all claims traceable to the provided extracted data and no significant fabrications or assumptions. The numerical values, dates, and amounts are also mostly accurate, with a minor issue regarding the \"card_last_four\" field. Overall, the response demonstrates a strong factual grounding in the available information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.67,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing from the receipt. The extracted data shows \"invoice_number\": null, confirming this issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, validating this claim.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is not factually grounded in the extracted data. The AI mentions additional documentation required for mileage claims, but the receipt is for bus transportation (\"Express Promo\") and not for mileage. There's no information in the extracted data about car travel or mileage claims.\n\nCONFIDENCE: 67\n\nISSUES:\n1. The third issue about mileage claims is not relevant to this receipt and is not supported by the extracted data.\n2. The AI did not mention that this is a bus ticket, which is clearly indicated in the extracted data.\n3. The AI didn't acknowledge the presence of other important information like the supplier details, customer name, and travel details that are present in the extracted data.\n\nSUMMARY: The AI response is partially factually grounded. It correctly identified missing invoice number and tax information. However, it incorrectly included information about mileage claims that is not relevant to this bus ticket receipt. The response also missed mentioning several key details present in the extracted data, such as the nature of the receipt (bus ticket) and available supplier and travel information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims the invoice number is missing from the receipt. While the extracted data shows \"invoice_number: null\", there is a \"receipt_number: 2962036-7\" present. The AI doesn't acknowledge this receipt number could serve as an identifier, though technically it's correct that a specific \"invoice number\" field is empty.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\", which supports this claim. The reference to Italian regulations requiring tax information is consistent with the compliance rules provided.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI accurately states that additional documentation is required for mileage claims, specifically mentioning the need for a car passport scan and screenshots tracking the journey. This directly matches the compliance rules that state \"Scan of the card passport (libretto di circolazione)\" and \"Any screenshot from any app that can track start point, arrival point and KM\" are required.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8166666666666668,
+      "issues": [
+        "1. Misclassification of receipt type - applying mileage documentation requirements to a bus ticket",
+        "2. Confusion between receipt number and invoice number",
+        "3. Failure to recognize this is a public transportation receipt",
+        "not a personal vehicle expense"
+      ],
+      "summary": "The AI response correctly identifies some compliance issues like missing tax information but makes a critical error by treating a bus ticket as a mileage claim. This misapplication of the knowledge base leads to inappropriate recommendations about car documentation. While the response correctly cites some relevant compliance rules, the fundamental misunderstanding of the receipt type undermines the overall accuracy of the compliance assessment.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that invoice number is missing, which aligns with the compliance rule \"Clear and readable receipts and invoices must be submitted with expenses.\" However, this is not entirely accurate as the receipt does contain a receipt number (2962036-7), which may serve the same purpose for a travel receipt. The knowledge base reference is correctly cited, but the issue may be overstated.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that tax information is missing from the receipt, which is important for Italian compliance. The recommendation to ensure tax information is included is appropriate. The knowledge base reference about gross-up is correctly applied, as expenses need proper tax documentation to determine if they should be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue shows a significant misapplication of the knowledge base. The receipt is for a bus ticket (Prontobus), not a mileage claim. The AI incorrectly applied mileage documentation requirements (car passport, tracking app) to a public transportation receipt. The knowledge base clearly distinguishes between mileage claims and other transportation expenses, and this distinction was not properly observed.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Misclassification of receipt type - applying mileage documentation requirements to a bus ticket\n2. Confusion between receipt number and invoice number\n3. Failure to recognize this is a public transportation receipt, not a personal vehicle expense\n\nSUMMARY: The AI response correctly identifies some compliance issues like missing tax information but makes a critical error by treating a bus ticket as a mileage claim. This misapplication of the knowledge base leads to inappropriate recommendations about car documentation. While the response correctly cites some relevant compliance rules, the fundamental misunderstanding of the receipt type undermines the overall accuracy of the compliance assessment.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that invoice number is missing, which aligns with the compliance rule \"Clear and readable receipts and invoices must be submitted with expenses.\" However, this is not entirely accurate as the receipt does contain a receipt number (2962036-7), which may serve the same purpose for a travel receipt. The knowledge base reference is correctly cited, but the issue may be overstated.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that tax information is missing from the receipt, which is important for Italian compliance. The recommendation to ensure tax information is included is appropriate. The knowledge base reference about gross-up is correctly applied, as expenses need proper tax documentation to determine if they should be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue shows a significant misapplication of the knowledge base. The receipt is for a bus ticket (Prontobus), not a mileage claim. The AI incorrectly applied mileage documentation requirements (car passport, tracking app) to a public transportation receipt. The knowledge base clearly distinguishes between mileage claims and other transportation expenses, and this distinction was not properly observed.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Misclassification of receipt type - applying mileage documentation requirements to a bus ticket\n2. Confusion between receipt number and invoice number\n3. Failure to recognize this is a public transportation receipt, not a personal vehicle expense\n\nSUMMARY: The AI response correctly identifies some compliance issues like missing tax information but makes a critical error by treating a bus ticket as a mileage claim. This misapplication of the knowledge base leads to inappropriate recommendations about car documentation. While the response correctly cites some relevant compliance rules, the fundamental misunderstanding of the receipt type undermines the overall accuracy of the compliance assessment."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identified that the missing invoice number is an issue according to the compliance rules, which state that \"Clear and readable receipts and invoices must be submitted with expenses\". The recommendation to address this with the supplier is also appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identified that the missing tax amount and rate is an issue, as the compliance rules state that \"Tax amount and rate must be clearly stated on the receipt\" for Italy. The recommendation to provide the tax information is in line with the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly recognized that additional documentation is required for mileage claims, such as a scan of the car passport and a screenshot from a tracking app. This aligns with the compliance rules that state \"Scan of the card passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided\" for mileage expenses.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response demonstrates a strong understanding of the compliance rules and regulations for Italy, particularly regarding the requirements for invoices, tax information, and mileage documentation. The recommendations provided are appropriate and in line with the knowledge base. Overall, the response adheres well to the established compliance guidelines."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice number is missing, which aligns with the compliance rule stating \"Clear and readable receipts and invoices must be submitted with expenses\". The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI accurately noted the missing tax amount and rate, which is crucial for Italian regulations. This adheres to the knowledge base rule that all approved expenses will be paid as NET to the employee and grossed up if they are not tax-free, implying the importance of tax information on receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI's identification of additional documentation required for mileage claims, specifically the car passport scan and screenshot of travel details, perfectly aligns with the compliance rules stated in the knowledge base for mileage expenses.\n\nCONFIDENCE: 95\n\nISSUES:\n1. The AI response doesn't mention the payment method requirement for travel expenses, which is listed in the compliance rules.\n2. The response doesn't address the rule about submitting separate reports for each business trip, which could be relevant for this travel receipt.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Italy. It correctly identifies key issues such as missing invoice number, tax information, and additional documentation requirements for mileage claims. The recommendations provided are in line with the compliance rules. However, there are minor omissions regarding payment method verification and the requirement for separate reports for each business trip. Overall, the response shows a high level of compliance with the established guidelines, with only minor areas for improvement."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI correctly identified that invoice number is missing, which aligns with the compliance rule \"Clear and readable receipts and invoices must be submitted with expenses.\" However, this is not entirely accurate as the receipt does contain a receipt number (2962036-7), which may serve the same purpose for a travel receipt. The knowledge base reference is correctly cited, but the issue may be overstated.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified that tax information is missing from the receipt, which is important for Italian compliance. The recommendation to ensure tax information is included is appropriate. The knowledge base reference about gross-up is correctly applied, as expenses need proper tax documentation to determine if they should be grossed up.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This issue shows a significant misapplication of the knowledge base. The receipt is for a bus ticket (Prontobus), not a mileage claim. The AI incorrectly applied mileage documentation requirements (car passport, tracking app) to a public transportation receipt. The knowledge base clearly distinguishes between mileage claims and other transportation expenses, and this distinction was not properly observed.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.65,
+      "issues": [
+        "1. Issue 3 incorrectly applies mileage documentation requirements to a bus transportation receipt",
+        "2. The receipt type is \"travel\" but more specifically it's public transportation",
+        "not a mileage claim",
+        "3. The system failed to recognize that receipt number 2962036-7 might be sufficient for this type of travel document"
+      ],
+      "summary": "The compliance assessment correctly identifies missing tax information but incorrectly applies mileage documentation requirements to a bus ticket. The receipt is for public transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not a personal vehicle mileage claim. While the invoice number issue is partially valid, the receipt does have a receipt number which may be sufficient for this type of document. The overall assessment needs refinement to properly distinguish between different types of travel expenses and their specific compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue regarding the missing invoice number is partially accurate. While the receipt does lack an invoice number, it does have a receipt number (2962036-7) which may be sufficient for travel receipts like bus tickets. The compliance rules don't explicitly state that an invoice number is mandatory for travel receipts, so this might be overly strict.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment regarding missing tax information is accurate. Italian regulations generally require tax information to be clearly stated on receipts, and this information is indeed missing from the receipt data. The recommendation to ensure the receipt includes tax amount and rate is appropriate for compliance with Italian tax regulations.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue is inaccurate for this receipt type. The receipt is for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only applicable to mileage claims, not to public transportation receipts. This is a significant misapplication of the compliance rules.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 incorrectly applies mileage documentation requirements to a bus transportation receipt\n2. The receipt type is \"travel\" but more specifically it's public transportation, not a mileage claim\n3. The system failed to recognize that receipt number 2962036-7 might be sufficient for this type of travel document\n\nSUMMARY: The compliance assessment correctly identifies missing tax information but incorrectly applies mileage documentation requirements to a bus ticket. The receipt is for public transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not a personal vehicle mileage claim. While the invoice number issue is partially valid, the receipt does have a receipt number which may be sufficient for this type of document. The overall assessment needs refinement to properly distinguish between different types of travel expenses and their specific compliance requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue regarding the missing invoice number is partially accurate. While the receipt does lack an invoice number, it does have a receipt number (2962036-7) which may be sufficient for travel receipts like bus tickets. The compliance rules don't explicitly state that an invoice number is mandatory for travel receipts, so this might be overly strict.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment regarding missing tax information is accurate. Italian regulations generally require tax information to be clearly stated on receipts, and this information is indeed missing from the receipt data. The recommendation to ensure the receipt includes tax amount and rate is appropriate for compliance with Italian tax regulations.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue is inaccurate for this receipt type. The receipt is for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only applicable to mileage claims, not to public transportation receipts. This is a significant misapplication of the compliance rules.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 incorrectly applies mileage documentation requirements to a bus transportation receipt\n2. The receipt type is \"travel\" but more specifically it's public transportation, not a mileage claim\n3. The system failed to recognize that receipt number 2962036-7 might be sufficient for this type of travel document\n\nSUMMARY: The compliance assessment correctly identifies missing tax information but incorrectly applies mileage documentation requirements to a bus ticket. The receipt is for public transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not a personal vehicle mileage claim. While the invoice number issue is partially valid, the receipt does have a receipt number which may be sufficient for this type of document. The overall assessment needs refinement to properly distinguish between different types of travel expenses and their specific compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified that the invoice number is missing from the receipt, which is a mandatory requirement according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment accurately determined that the tax amount and rate are missing from the receipt, which is a violation of the Italian tax regulations.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identified that additional documentation is required for the mileage claim, including a scan of the car passport and a screenshot from a tracking app. This is in line with the compliance rules.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is highly accurate. It correctly identified the key issues with the receipt, including the missing invoice number, tax information, and the need for additional documentation for the mileage claim. The assessment is well-aligned with the provided compliance rules and regulations, and the recommended actions are appropriate. Overall, the compliance determination is accurate and comprehensive."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.45,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The assessment correctly identifies that the invoice number is missing, which is a compliance issue. However, it fails to recognize that the receipt number (2962036-7) is present, which may serve as an acceptable alternative in some cases for travel receipts. The recommendation to address this with the supplier is appropriate, but the assessment could be more nuanced.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment accurately identifies the missing tax amount and rate as a compliance issue for Italian regulations. The recommendation to ensure the receipt includes this information is correct and aligns with Italian tax requirements.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is completely misidentified. The receipt is for a bus ticket, not a mileage claim. The additional documentation requirements for mileage claims (car passport, tracking app screenshots) are not applicable to this type of travel expense. This is a significant error in the compliance assessment.\n\nCONFIDENCE: 45\n\nISSUES:\n1. Misidentification of the receipt type (bus ticket vs mileage claim)\n2. Failure to recognize the receipt number as a potential alternative to an invoice number\n3. Overly strict application of mileage claim rules to a public transportation receipt\n\nSUMMARY: The compliance assessment shows mixed accuracy. It correctly identifies some issues like the missing tax information, but makes a critical error in misclassifying the receipt type. The assessment fails to recognize that this is a public transportation receipt, not a mileage claim, leading to irrelevant recommendations. The overall approach needs refinement to better distinguish between different types of travel expenses and apply the appropriate compliance rules accordingly."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue regarding the missing invoice number is partially accurate. While the receipt does lack an invoice number, it does have a receipt number (2962036-7) which may be sufficient for travel receipts like bus tickets. The compliance rules don't explicitly state that an invoice number is mandatory for travel receipts, so this might be overly strict.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment regarding missing tax information is accurate. Italian regulations generally require tax information to be clearly stated on receipts, and this information is indeed missing from the receipt data. The recommendation to ensure the receipt includes tax amount and rate is appropriate for compliance with Italian tax regulations.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This issue is inaccurate for this receipt type. The receipt is for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only applicable to mileage claims, not to public transportation receipts. This is a significant misapplication of the compliance rules.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8166666666666668,
+      "issues": [
+        "1. Issue 3 incorrectly applies mileage documentation requirements to a bus ticket receipt",
+        "2. The system may be overly strict about invoice numbers for travel receipts that typically use ticket/receipt numbers instead",
+        "3. The system doesn't acknowledge that the receipt does contain a receipt number which might be sufficient for this document type"
+      ],
+      "summary": "While the system correctly identifies tax-related compliance issues, it incorrectly applies mileage documentation requirements to a bus ticket. The system should better distinguish between different types of travel receipts and their specific requirements. For public transportation receipts like bus tickets, different documentation standards apply compared to personal vehicle mileage claims.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue about missing invoice number is correctly identified as a Standards & Compliance issue with a Fix Identified. However, this may not be a critical issue for a travel receipt like a bus ticket, which often uses receipt/ticket numbers instead of invoice numbers. The receipt does have a receipt number (2962036-7), which might be sufficient for this type of document.\n\nISSUE_2_VALIDATION_SCORE: 85 - The tax amount issue is correctly categorized as a Standards & Compliance issue with Gross-up implications. The system correctly identifies that Italian regulations require tax information on receipts, and this is missing. The connection to the gross-up policy is appropriate since tax-related issues directly impact whether the expense needs to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The receipt is for a bus ticket (Prontobus), not a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only relevant for mileage claims, not for public transportation receipts. This is a significant miscategorization based on the receipt type.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 3 incorrectly applies mileage documentation requirements to a bus ticket receipt\n2. The system may be overly strict about invoice numbers for travel receipts that typically use ticket/receipt numbers instead\n3. The system doesn't acknowledge that the receipt does contain a receipt number which might be sufficient for this document type\n\nSUMMARY: While the system correctly identifies tax-related compliance issues, it incorrectly applies mileage documentation requirements to a bus ticket. The system should better distinguish between different types of travel receipts and their specific requirements. For public transportation receipts like bus tickets, different documentation standards apply compared to personal vehicle mileage claims.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue about missing invoice number is correctly identified as a Standards & Compliance issue with a Fix Identified. However, this may not be a critical issue for a travel receipt like a bus ticket, which often uses receipt/ticket numbers instead of invoice numbers. The receipt does have a receipt number (2962036-7), which might be sufficient for this type of document.\n\nISSUE_2_VALIDATION_SCORE: 85 - The tax amount issue is correctly categorized as a Standards & Compliance issue with Gross-up implications. The system correctly identifies that Italian regulations require tax information on receipts, and this is missing. The connection to the gross-up policy is appropriate since tax-related issues directly impact whether the expense needs to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The receipt is for a bus ticket (Prontobus), not a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only relevant for mileage claims, not for public transportation receipts. This is a significant miscategorization based on the receipt type.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 3 incorrectly applies mileage documentation requirements to a bus ticket receipt\n2. The system may be overly strict about invoice numbers for travel receipts that typically use ticket/receipt numbers instead\n3. The system doesn't acknowledge that the receipt does contain a receipt number which might be sufficient for this document type\n\nSUMMARY: While the system correctly identifies tax-related compliance issues, it incorrectly applies mileage documentation requirements to a bus ticket. The system should better distinguish between different types of travel receipts and their specific requirements. For public transportation receipts like bus tickets, different documentation standards apply compared to personal vehicle mileage claims."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue related to the missing invoice number is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly explains the problem and provides a relevant recommendation for the user.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue related to the missing tax information is also correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description provides a clear explanation of the problem and the recommendation to include the tax amount and rate is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue related to the additional documentation required for mileage claims is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and actionable, providing the specific documentation required.\n\nCONFIDENCE: 90\nISSUES: None.\nSUMMARY: The issues identified are correctly categorized according to the established taxonomy. The descriptions are clear, the recommendations are relevant, and no issues appear to be missed or incorrectly classified. Overall, the issue categorization is accurate and follows the expected standards."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description clearly states the problem (missing invoice number) and the recommendation is appropriate. The knowledge base reference is relevant, though it could be more specific to invoice numbers.\n\nISSUE_2_VALIDATION_SCORE: 95 - This issue is accurately categorized as \"Standards & Compliance | Gross-up Identified\". The description correctly identifies the missing tax information and links it to Italian regulations. The recommendation and knowledge base reference are both relevant and appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue is categorized as \"Standards & Compliance | Follow-up Action Identified\", which is generally correct. However, it could be more specifically labeled as \"Documentation Required\" since it relates to additional documentation needs. The description and recommendation are clear and actionable, and the knowledge base reference is highly relevant.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 3 could have a more specific categorization.\n2. The knowledge base reference for Issue 1 could be more specific to invoice numbers.\n\nSUMMARY: Overall, the issues are well-categorized with clear descriptions, appropriate recommendations, and relevant knowledge base references. The categorization follows an established taxonomy and addresses key compliance concerns. Minor improvements could be made in the specificity of Issue 3's categorization and Issue 1's knowledge base reference. No significant issues appear to be missed or incorrectly classified."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue about missing invoice number is correctly identified as a Standards & Compliance issue with a Fix Identified. However, this may not be a critical issue for a travel receipt like a bus ticket, which often uses receipt/ticket numbers instead of invoice numbers. The receipt does have a receipt number (2962036-7), which might be sufficient for this type of document.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The tax amount issue is correctly categorized as a Standards & Compliance issue with Gross-up implications. The system correctly identifies that Italian regulations require tax information on receipts, and this is missing. The connection to the gross-up policy is appropriate since tax-related issues directly impact whether the expense needs to be grossed up.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 40,
+          "judge_explanation": "This issue is incorrectly categorized. The receipt is for a bus ticket (Prontobus), not a mileage claim. The additional documentation requirements cited (car passport and tracking app screenshots) are only relevant for mileage claims, not for public transportation receipts. This is a significant miscategorization based on the receipt type.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.81,
+      "issues": [
+        "1. Issue 3 recommendation is completely misaligned with the receipt type - this is a bus ticket",
+        "not a mileage claim",
+        "2. The system has incorrectly categorized a public transportation receipt as requiring mileage documentation",
+        "3. The recommendations don't acknowledge that transportation tickets may have different formatting requirements than standard invoices"
+      ],
+      "summary": "While the first two recommendations regarding invoice number and tax information are generally valid, the third recommendation is completely inappropriate as it requests mileage documentation for what is clearly a bus ticket. This significant error undermines the overall validity of the recommendations and could create confusion for the user. The system needs to better distinguish between different types of travel expenses rather than applying mileage documentation requirements to public transportation receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. Since this is a bus ticket receipt which may not always include a formal invoice number, the recommendation appropriately suggests addressing this with the provider rather than demanding an immediate fix from the employee.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation regarding missing tax information is valid as Italian regulations do require tax details on receipts. However, this is a transportation ticket which sometimes follows different formatting rules than standard invoices. The recommendation to ensure the receipt includes tax information is appropriate but could acknowledge that transportation tickets may have different requirements.\n\nISSUE_3_VALIDATION_SCORE: 30 - This recommendation is problematic because it's requesting documentation for mileage claims, but the receipt is clearly for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for personal vehicle mileage. The recommendation for car passport and mileage tracking is completely irrelevant to this expense type and creates unnecessary confusion.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 3 recommendation is completely misaligned with the receipt type - this is a bus ticket, not a mileage claim\n2. The system has incorrectly categorized a public transportation receipt as requiring mileage documentation\n3. The recommendations don't acknowledge that transportation tickets may have different formatting requirements than standard invoices\n\nSUMMARY: While the first two recommendations regarding invoice number and tax information are generally valid, the third recommendation is completely inappropriate as it requests mileage documentation for what is clearly a bus ticket. This significant error undermines the overall validity of the recommendations and could create confusion for the user. The system needs to better distinguish between different types of travel expenses rather than applying mileage documentation requirements to public transportation receipts.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. Since this is a bus ticket receipt which may not always include a formal invoice number, the recommendation appropriately suggests addressing this with the provider rather than demanding an immediate fix from the employee.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation regarding missing tax information is valid as Italian regulations do require tax details on receipts. However, this is a transportation ticket which sometimes follows different formatting rules than standard invoices. The recommendation to ensure the receipt includes tax information is appropriate but could acknowledge that transportation tickets may have different requirements.\n\nISSUE_3_VALIDATION_SCORE: 30 - This recommendation is problematic because it's requesting documentation for mileage claims, but the receipt is clearly for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for personal vehicle mileage. The recommendation for car passport and mileage tracking is completely irrelevant to this expense type and creates unnecessary confusion.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 3 recommendation is completely misaligned with the receipt type - this is a bus ticket, not a mileage claim\n2. The system has incorrectly categorized a public transportation receipt as requiring mileage documentation\n3. The recommendations don't acknowledge that transportation tickets may have different formatting requirements than standard invoices\n\nSUMMARY: While the first two recommendations regarding invoice number and tax information are generally valid, the third recommendation is completely inappropriate as it requests mileage documentation for what is clearly a bus ticket. This significant error undermines the overall validity of the recommendations and could create confusion for the user. The system needs to better distinguish between different types of travel expenses rather than applying mileage documentation requirements to public transportation receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number is actionable and specific. It clearly identifies the issue and advises the employee to work with the supplier to obtain a compliant receipt.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to include the tax amount and rate on the receipt is valid and addresses the compliance issue. However, it could be more specific on the exact tax information required.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendations to provide a scan of the car passport and a screenshot from a tracking app are appropriate and address the documentation requirements for mileage claims in Italy.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They clearly identify the compliance issues with the receipt and provide specific, actionable steps to address them. The recommendations cover the key areas of concern and are feasible for the employee to implement. Overall, the recommendations are well-aligned with the compliance requirements in Italy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing invoice number with the supplier is valid and actionable. However, it could be more specific by suggesting alternative documentation if an invoice number cannot be obtained.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to ensure the receipt includes tax amount and rate is highly valid, specific, and directly addresses the compliance issue with Italian tax regulations.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation for providing additional documentation for mileage claims is very specific, actionable, and aligns perfectly with the stated compliance rules for Italy.\n\nCONFIDENCE: 88\n\nISSUES:\n- The first recommendation could be more specific about alternative solutions if an invoice number is not available.\n- No major issues with the validity of the recommendations.\n\nSUMMARY: The recommendations provided are generally valid, specific, and align well with the identified issues and compliance rules. They offer actionable steps to address the missing invoice number, tax information, and additional documentation requirements for mileage claims. The advice is practical and feasible, with no contradictory or harmful suggestions. The highest validity is seen in the recommendations for tax information and mileage documentation, while the invoice number recommendation could be slightly more comprehensive."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and actionable. Since this is a bus ticket receipt which may not always include a formal invoice number, the recommendation appropriately suggests addressing this with the provider rather than demanding an immediate fix from the employee.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation regarding missing tax information is valid as Italian regulations do require tax details on receipts. However, this is a transportation ticket which sometimes follows different formatting rules than standard invoices. The recommendation to ensure the receipt includes tax information is appropriate but could acknowledge that transportation tickets may have different requirements.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This recommendation is problematic because it's requesting documentation for mileage claims, but the receipt is clearly for bus transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not for personal vehicle mileage. The recommendation for car passport and mileage tracking is completely irrelevant to this expense type and creates unnecessary confusion.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 1,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response does not contain any hallucinations or fabricated information. All three issues identified in the validation result are accurately based on the extracted data and compliance rules provided. The missing invoice number, missing tax information, and requirements for additional documentation for mileage claims are all legitimate concerns supported by the provided context.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows \"invoice_number\": null, confirming this is accurate and not hallucinated.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, confirming this is accurate and not hallucinated. The reference to Italian regulations is supported by the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that additional documentation is required for mileage claims, specifically a scan of the car passport and tracking information. This aligns perfectly with the compliance rules that state \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response does not contain any hallucinations or fabricated information. All three issues identified in the validation result are accurately based on the extracted data and compliance rules provided. The missing invoice number, missing tax information, and requirements for additional documentation for mileage claims are all legitimate concerns supported by the provided context.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows \"invoice_number\": null, confirming this is accurate and not hallucinated.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, confirming this is accurate and not hallucinated. The reference to Italian regulations is supported by the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that additional documentation is required for mileage claims, specifically a scan of the car passport and tracking information. This aligns perfectly with the compliance rules that state \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response does not contain any hallucinations or fabricated information. All three issues identified in the validation result are accurately based on the extracted data and compliance rules provided. The missing invoice number, missing tax information, and requirements for additional documentation for mileage claims are all legitimate concerns supported by the provided context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response is present in the source data and does not appear to be fabricated.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response are consistent with the provided compliance policy information and do not appear to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the AI response are present in the source data and do not appear to be fabricated.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided are consistent with the source data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately identifies the missing invoice number, which is not present in the extracted data. This is not a hallucination.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly points out that tax amount and rate are missing from the receipt, which is consistent with the extracted data. The reference to Italian regulations is in line with the provided compliance rules. This is not a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue accurately reflects the additional documentation requirements for mileage claims as specified in the compliance rules. The recommendation aligns with the provided information. This is not a hallucination.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All issues identified are consistent with the provided receipt data and compliance rules. The response accurately reflects the missing invoice number, lack of tax information, and additional documentation requirements for mileage claims as specified in the compliance rules. No made-up entities, amounts, or dates were introduced, and all statements are supported by the given information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice number is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows \"invoice_number\": null, confirming this is accurate and not hallucinated.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue correctly identifies that tax amount and rate are missing from the receipt. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, confirming this is accurate and not hallucinated. The reference to Italian regulations is supported by the compliance rules provided.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue correctly states that additional documentation is required for mileage claims, specifically a scan of the car passport and tracking information. This aligns perfectly with the compliance rules that state \"Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided\" and \"Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI doesn't acknowledge that a receipt number exists, which could potentially serve as an identifier even though it's not specifically labeled as an invoice number., 2. The AI assumes this is a mileage claim when the extracted data shows this is a bus ticket (Prontobus) for travel between Chieti Scalo and Fiumicino Airport. Issue #3 about mileage documentation is irrelevant to this receipt type.",
+    "Address issues in knowledge base adherence: 1. Misclassification of receipt type - applying mileage documentation requirements to a bus ticket, 2. Confusion between receipt number and invoice number, 3. Failure to recognize this is a public transportation receipt, not a personal vehicle expense",
+    "Improve compliance accuracy: The compliance assessment correctly identifies missing tax information but incorrectly applies mileage documentation requirements to a bus ticket. The receipt is for public transportation (Prontobus) between Chieti Scalo and Fiumicino Airport, not a personal vehicle mileage claim. While the invoice number issue is partially valid, the receipt does have a receipt number which may be sufficient for this type of document. The overall assessment needs refinement to properly distinguish between different types of travel expenses and their specific compliance requirements.",
+    "Address issues in compliance accuracy: 1. Issue 3 incorrectly applies mileage documentation requirements to a bus transportation receipt, 2. The receipt type is \"travel\" but more specifically it's public transportation, not a mileage claim, 3. The system failed to recognize that receipt number 2962036-7 might be sufficient for this type of travel document",
+    "Address issues in issue categorization: 1. Issue 3 incorrectly applies mileage documentation requirements to a bus ticket receipt, 2. The system may be overly strict about invoice numbers for travel receipts that typically use ticket/receipt numbers instead, 3. The system doesn't acknowledge that the receipt does contain a receipt number which might be sufficient for this document type",
+    "Address issues in recommendation validity: 1. Issue 3 recommendation is completely misaligned with the receipt type - this is a bus ticket, not a mileage claim, 2. The system has incorrectly categorized a public transportation receipt as requiring mileage documentation, 3. The recommendations don't acknowledge that transportation tickets may have different formatting requirements than standard invoices",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-08-26T16:03:03.975Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 64201,
+    "timing": {
+      "validation_start_time": "2025-08-26T16:01:59.773Z",
+      "validation_end_time": "2025-08-26T16:03:03.974Z",
+      "total_validation_time_seconds": "64.2",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-08-26T16:01:59.773Z",
+          "end_time": "2025-08-26T16:03:03.974Z",
+          "duration_seconds": "64.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "64.2",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.47",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The invoice number is missing from the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 73.56,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 70,
+        "issue_categorization": 70,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 89.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 90,
+        "issue_categorization": 85,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 57.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 30,
+        "compliance_accuracy": 30,
+        "issue_categorization": 40,
+        "recommendation_validity": 30,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

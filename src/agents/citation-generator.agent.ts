@@ -274,69 +274,227 @@ export class CitationGeneratorAgent extends BaseAgent {
     markdownContent: string,
     expectedFields: number
   ): Promise<CitationResult> {
-    const combinedPrompt = await this.getPromptTemplate('citation-generation-prompt', {
-      extractedDataJson: JSON.stringify(batchData, null, 2),
-      markdownContent
-    });
-    const promptInfo = { ...this.lastPromptInfo! };
+    try {
+      const combinedPrompt = await this.getPromptTemplate('citation-generation-prompt', {
+        extractedDataJson: JSON.stringify(batchData, null, 2),
+        markdownContent
+      });
+      const promptInfo = { ...this.lastPromptInfo! };
 
-    // Generate prompt version tags (will be used in main method)
-    const promptVersionTags = this.getPromptVersionTags();
+      // Generate prompt version tags (will be used in main method)
+      const promptVersionTags = this.getPromptVersionTags();
 
-    const response = await this.llm.chat({
-      messages: [
-        {
-          role: 'user',
-          content: combinedPrompt,
-        },
-      ],
-    });
+      this.logger.debug(`Sending batch request with ${Object.keys(batchData).length} fields`);
 
-    let rawContent = '';
+      const response = await this.llm.chat({
+        messages: [
+          {
+            role: 'user',
+            content: combinedPrompt,
+          },
+        ],
+      });
 
-    // Parse the JSON response manually since structured output isn't working as expected
-    if (typeof response.message.content === 'string') {
-      rawContent = response.message.content;
-    } else if (Array.isArray(response.message.content) && response.message.content.length > 0) {
-      // Anthropic format: [{"type":"text","text":"actual JSON content"}]
-      const firstItem = response.message.content[0];
-      if (firstItem && firstItem.type === 'text' && firstItem.text) {
-        rawContent = firstItem.text;
-      } else {
+      let rawContent = '';
+
+      // Parse the JSON response manually since structured output isn't working as expected
+      if (typeof response.message.content === 'string') {
+        rawContent = response.message.content;
+      } else if (Array.isArray(response.message.content) && response.message.content.length > 0) {
+        // Anthropic format: [{"type":"text","text":"actual JSON content"}]
+        const firstItem = response.message.content[0];
+        if (firstItem && firstItem.type === 'text' && firstItem.text) {
+          rawContent = firstItem.text;
+        } else {
+          rawContent = JSON.stringify(response.message.content);
+        }
+      } else if (response.message.content && typeof response.message.content === 'object') {
         rawContent = JSON.stringify(response.message.content);
+      } else {
+        rawContent = String(response.message.content || '');
       }
-    } else if (response.message.content && typeof response.message.content === 'object') {
-      rawContent = JSON.stringify(response.message.content);
-    } else {
-      rawContent = String(response.message.content || '');
-    }
 
-    const parsedResult = this.parseJsonResponse(rawContent);
-    return CitationResultSchema.parse(parsedResult);
+      this.logger.debug(`Received response content length: ${rawContent.length}`);
+
+      const parsedResult = this.parseJsonResponse(rawContent);
+      
+      // Validate the parsed result against the schema
+      const validatedResult = CitationResultSchema.parse(parsedResult);
+      
+      this.logger.debug(`Successfully processed batch with ${Object.keys(validatedResult.citations).length} citations`);
+      
+      return validatedResult;
+    } catch (error) {
+      this.logger.error(`Failed to process citation batch: ${error.message}`);
+      this.logger.error(`Batch data keys: ${Object.keys(batchData).join(', ')}`);
+      
+      // Return a fallback result for this batch
+      const fallbackResult: CitationResult = {
+        citations: {},
+        metadata: {
+          total_fields_analyzed: Object.keys(batchData).length,
+          fields_with_field_citations: 0,
+          fields_with_value_citations: 0,
+          average_confidence: 0.0
+        }
+      };
+
+      // Try to create minimal citations for each field in the batch
+      for (const fieldName of Object.keys(batchData)) {
+        fallbackResult.citations[fieldName] = {
+          field_citation: null,
+          value_citation: null
+        };
+      }
+
+      this.logger.warn(`Returning fallback result for batch with ${Object.keys(batchData).length} fields`);
+      return fallbackResult;
+    }
   }
 
 
   private parseJsonResponse(content: string): any {
     try {
-      // Simple cleanup for Claude models - they produce clean JSON
-      let cleanContent = content
-        .replace(/```json\s*/g, '')
-        .replace(/```\s*/g, '')
-        .trim();
-
-      // Find JSON start and end
-      const jsonStart = cleanContent.indexOf('{');
-      const jsonEnd = cleanContent.lastIndexOf('}');
+      // Enhanced JSON parsing with multiple fallback strategies
+      let cleanContent = this.cleanJsonContent(content);
       
-      if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
-        cleanContent = cleanContent.substring(jsonStart, jsonEnd + 1);
+      // Try parsing the cleaned content
+      try {
+        return JSON.parse(cleanContent);
+      } catch (parseError) {
+        this.logger.warn('Initial JSON parse failed, attempting repair...', parseError.message);
+        
+        // Attempt to repair common JSON issues
+        const repairedContent = this.repairJsonContent(cleanContent);
+        
+        try {
+          return JSON.parse(repairedContent);
+        } catch (repairError) {
+          this.logger.warn('JSON repair failed, attempting extraction...', repairError.message);
+          
+          // Last resort: extract valid JSON fragments
+          const extractedJson = this.extractValidJsonFragments(content);
+          return extractedJson;
+        }
       }
-
-      return JSON.parse(cleanContent);
     } catch (error) {
-      this.logger.error('Failed to parse JSON response:', error);
-      this.logger.error(`Content preview: ${content.substring(0, 500)}...`);
-      throw new Error(`Invalid JSON response: ${error.message}`);
+      this.logger.error('All JSON parsing strategies failed:', error);
+      this.logger.error(`Content preview: ${content.substring(0, 1000)}...`);
+      
+      // Return a fallback structure that matches the expected schema
+      return this.getFallbackCitationResult();
     }
+  }
+
+  private cleanJsonContent(content: string): string {
+    // Remove markdown code blocks
+    let cleanContent = content
+      .replace(/```json\s*/gi, '')
+      .replace(/```\s*/g, '')
+      .trim();
+
+    // Find JSON boundaries more robustly
+    const jsonStart = cleanContent.indexOf('{');
+    const jsonEnd = cleanContent.lastIndexOf('}');
+    
+    if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+      cleanContent = cleanContent.substring(jsonStart, jsonEnd + 1);
+    }
+
+    return cleanContent;
+  }
+
+  private repairJsonContent(content: string): string {
+    let repaired = content;
+
+    // Fix common JSON issues
+    // 1. Remove trailing commas before closing braces/brackets
+    repaired = repaired.replace(/,(\s*[}\]])/g, '$1');
+    
+    // 2. Fix unescaped quotes in string values (basic approach)
+    repaired = repaired.replace(/"([^"]*)"(\s*:\s*)"([^"]*(?:[^"\\]|\\.)*[^"\\])"/g, (match, key, colon, value) => {
+      // Escape unescaped quotes in the value
+      const escapedValue = value.replace(/(?<!\\)"/g, '\\"');
+      return `"${key}"${colon}"${escapedValue}"`;
+    });
+
+    // 3. Fix incomplete string values (add closing quotes)
+    repaired = repaired.replace(/"([^"]*)"(\s*:\s*)"([^"]*?)(\s*[,}])/g, (match, key, colon, value, ending) => {
+      if (!value.endsWith('"') && !ending.startsWith('"')) {
+        return `"${key}"${colon}"${value}"${ending}`;
+      }
+      return match;
+    });
+
+    // 4. Remove any non-JSON content after the last closing brace
+    const lastBrace = repaired.lastIndexOf('}');
+    if (lastBrace !== -1) {
+      repaired = repaired.substring(0, lastBrace + 1);
+    }
+
+    return repaired;
+  }
+
+  private extractValidJsonFragments(content: string): any {
+    this.logger.warn('Attempting to extract valid JSON fragments from malformed content');
+    
+    try {
+      // Try to find and extract the citations object specifically
+      const citationsMatch = content.match(/"citations"\s*:\s*\{[^}]*(?:\{[^}]*\}[^}]*)*\}/);
+      const metadataMatch = content.match(/"metadata"\s*:\s*\{[^}]*\}/);
+      
+      if (citationsMatch || metadataMatch) {
+        const result: any = {
+          citations: {},
+          metadata: {
+            total_fields_analyzed: 0,
+            fields_with_field_citations: 0,
+            fields_with_value_citations: 0,
+            average_confidence: 0.0
+          }
+        };
+
+        if (citationsMatch) {
+          try {
+            const citationsJson = `{${citationsMatch[0]}}`;
+            const parsed = JSON.parse(citationsJson);
+            result.citations = parsed.citations || {};
+          } catch (e) {
+            this.logger.warn('Failed to parse extracted citations fragment');
+          }
+        }
+
+        if (metadataMatch) {
+          try {
+            const metadataJson = `{${metadataMatch[0]}}`;
+            const parsed = JSON.parse(metadataJson);
+            result.metadata = { ...result.metadata, ...parsed.metadata };
+          } catch (e) {
+            this.logger.warn('Failed to parse extracted metadata fragment');
+          }
+        }
+
+        return result;
+      }
+    } catch (error) {
+      this.logger.warn('Fragment extraction failed:', error.message);
+    }
+
+    // If all else fails, return fallback
+    return this.getFallbackCitationResult();
+  }
+
+  private getFallbackCitationResult(): any {
+    this.logger.warn('Returning fallback citation result due to JSON parsing failure');
+    
+    return {
+      citations: {},
+      metadata: {
+        total_fields_analyzed: 0,
+        fields_with_field_citations: 0,
+        fields_with_value_citations: 0,
+        average_confidence: 0.0
+      }
+    };
   }
 }

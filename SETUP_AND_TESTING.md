@@ -4,53 +4,26 @@
 
 ### 1. Install Dependencies
 ```bash
-cd nextjs-api-wrapper-base-service
+cd expenses-ai-api-wrapper
 npm install
 ```
 
 ### 2. Environment Variables
-Create a `.env` file in the root directory:
-```env
-# LLM Provider Configuration (Bedrock primary, Anthropic fallback)
-ANTHROPIC_KEY=your_anthropic_api_key_here
+Get a copy of `.env` file and save it in the root directory:
 
-# Redis Configuration (for BullMQ)
-REDIS_HOST=localhost
-REDIS_PORT=6379
-REDIS_PASSWORD=
+### 3. Install and Start Redis (Required for BullMQ)
 
-# Application Configuration
-PORT=3000
-UPLOAD_PATH=./uploads
-MAX_RETRY_ATTEMPTS=3
+For Windows: https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/
 
-# AWS Bedrock Configuration (Primary AI Provider)
-# Supports both Amazon Nova and Claude models
-BEDROCK_AWS_ACCESS_KEY_ID=your_bedrock_aws_access_key_id_here
-BEDROCK_AWS_SECRET_ACCESS_KEY=your_bedrock_aws_secret_access_key_here
-BEDROCK_AWS_SESSION_TOKEN=your_bedrock_aws_session_token_here
-BEDROCK_AWS_REGION=us-east-1
-BEDROCK_MODEL=eu.amazon.nova-pro-v1:0  # Default: Nova Pro (can also use Claude models)
+For Linux: https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-linux/
 
-# AWS Textract Configuration (Document Processing)
-TEXTRACT_AWS_ACCESS_KEY_ID=your_textract_aws_access_key_id_here
-TEXTRACT_AWS_SECRET_ACCESS_KEY=your_textract_aws_secret_access_key_here
-TEXTRACT_AWS_REGION=us-east-1
+For MacOS: https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-mac-os/
 
-# Document Reader Configuration
-DOCUMENT_READER=llamaparse  # Options: llamaparse, textract
-```
+### 4. Create /uploads/ directory
+Create uploads directory at the root level. This is a local storage for expense files user uploads
 
-### 3. Start Redis (Required for BullMQ)
-```bash
-# Using Docker
-docker run -d -p 6379:6379 redis:alpine
 
-# Or install Redis locally and start
-redis-server
-```
-
-### 4. Start the Application
+### 5. Start the Application
 ```bash
 npm run start:dev
 ```
@@ -60,53 +33,22 @@ npm run start:dev
 The service supports multiple AI providers with automatic fallback:
 
 1. **Primary**: AWS Bedrock (Amazon Nova and Claude models)
-   - **Amazon Nova**: Uses Converse API (recommended)
-   - **Claude**: Uses Invoke API (legacy support)
 2. **Fallback**: Anthropic API (Direct Claude access)
 
-### Supported Models
-
-**Amazon Nova Models (via Bedrock):**
-- `eu.amazon.nova-pro-v1:0` (Default - advanced reasoning and accuracy)
-- `amazon.nova-lite-v1:0` (Fast with good reasoning)
-- `amazon.nova-micro-v1:0` (Ultra-fast and cost-effective)
-
-**Claude Models (via Bedrock):**
-- `eu.anthropic.claude-3-5-sonnet-20240620-v1:0`
-- `us.anthropic.claude-3-5-sonnet-20240620-v1:0`
-
-Configure your preferred model in the `BEDROCK_MODEL` environment variable.
 
 ## 🧪 Testing the API
 
 ### 1. Access Swagger Documentation
-Open your browser and go to:
+ Expense Processing Service is running on: http://localhost:3000
+📚 API Documentation available at: http://localhost:3000/rgt-expense/api/docs
 ```
-http://localhost:3000/api
+http://localhost:3000/rgt-expense/api/docs
 ```
 
 ### 2. Test File Upload Endpoint
 **POST** `/documents/process`
+Upload an expense document. Enter a unique user id and the appropriate country. Select textract for the document reader and execute.
 
-**Using curl:**
-```bash
-curl -X POST \
-  http://localhost:3000/documents/process \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@path/to/your/receipt.pdf' \
-  -F 'userId=test-user-123' \
-  -F 'country=Germany' \
-  -F 'icp=Global People'
-```
-
-**Using Postman:**
-1. Set method to POST
-2. URL: `http://localhost:3000/documents/process`
-3. Body → form-data:
-   - `file`: Select your receipt file (PDF/JPG/PNG/TIFF)
-   - `userId`: `test-user-123`
-   - `country`: `Germany`
-   - `icp`: `Global People`
 
 ### 3. Check Processing Status
 **GET** `/documents/status/{jobId}`
@@ -122,37 +64,11 @@ curl http://localhost:3000/documents/status/test-user-123
 curl http://localhost:3000/documents/results/test-user-123
 ```
 
-## 🔍 Testing Individual Agents
-
-### Test File Classification Only
-```bash
-curl -X POST \
-  http://localhost:3000/documents/classify \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'file=@receipt.pdf' \
-  -F 'country=Germany'
-```
 
 ### Health Check
 ```bash
 curl http://localhost:3000/health
 ```
-
-## 📋 Current Limitations & TODOs
-
-### ⚠️ Known Issues:
-1. **Prompts Changed**: The TypeScript agents have simplified prompts compared to Python version
-2. **Missing Implementation**: 
-   - `readDocumentContent()` method needs PDF/image to markdown conversion
-   - `loadComplianceData()` needs actual compliance database loading
-   - `loadExpenseSchema()` needs schema file loading
-
-### 🔧 Required Fixes:
-
-1. **Restore Original Prompts**: Update TypeScript agents to match Python prompts exactly
-2. **Implement Document Reading**: Add PDF/image processing to convert to markdown
-3. **Add Compliance Data**: Load actual compliance requirements from files/database
-4. **Add Expense Schema**: Load expense field schema for classification
 
 ## 🐛 Debugging
 
@@ -176,42 +92,5 @@ You can add Bull Dashboard for monitoring:
 ```bash
 npm install bull-board
 ```
+Or Redis Insight
 
-## 📊 Expected Response Format
-
-### Successful Processing Response:
-```json
-{
-  "classification": {
-    "is_expense": true,
-    "expense_type": "meals",
-    "language": "English",
-    "language_confidence": 95
-  },
-  "extraction": {
-    "supplier_name": "Restaurant ABC",
-    "total_amount": "25.50 EUR",
-    "transaction_date": "2024-01-15"
-  },
-  "compliance": {
-    "validation_result": {
-      "is_valid": true,
-      "issues_count": 0,
-      "issues": []
-    }
-  },
-  "citations": {
-    "citations": {},
-    "metadata": {
-      "total_fields_analyzed": 3,
-      "average_confidence": 0.85
-    }
-  }
-}
-```
-
-## 🔄 Next Steps
-
-1. **Refine Prompts**: Refine prompts based on results
-2. **Run tests on different countries**: 
-3. **Concurrency test**: Upload more files (eg: 5) concurrently

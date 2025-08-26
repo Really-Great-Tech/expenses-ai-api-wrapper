@@ -1,0 +1,681 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\italia_file_3.pdf_full_test_aug_26_italia_file_3.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-26T15:56:32.042Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, folds, or creases detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or missing portions of the document.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows blocking the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "accommodation",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Hannover, Germany",
+    "expected_location": "Italy",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location (Hannover, Germany) does not match the expected location (Italy).",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, item description, and payment method. It is classified as an expense under the 'accommodation' type.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, item description, and payment method. It meets the criteria for being classified as an expense."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Congress Hotel am Stadtpark",
+    "supplier_address": "Clausewitzstraße 6, 30175 Hannover",
+    "supplier_phone": "+49(0)511-2805-0",
+    "supplier_fax": "+49(0)511-814652",
+    "supplier_email": "info@congress-hotel-hannover.de",
+    "customer_name": "Simone Filice",
+    "customer_address": null,
+    "customer_phone": null,
+    "customer_email": null,
+    "booking_number": "CHS_32872",
+    "booking_date": "2025-02-26",
+    "arrival_date": "2025-03-13",
+    "departure_date": "2025-03-15",
+    "room_type": "Einzelzimmer Classic",
+    "number_of_adults": 1,
+    "rate_type": "Hot Deal Angebot sparen 5,- €",
+    "currency": "EUR",
+    "total_amount": 232,
+    "line_items": [
+      {
+        "date": "2025-03-13",
+        "description": "Hotdeal - save 5,- €",
+        "rate": 139
+      },
+      {
+        "date": "2025-03-14",
+        "description": "Hotdeal - save 5,- €",
+        "rate": 93
+      }
+    ],
+    "payment_method": "creditcard",
+    "reservation_policies": {
+      "guaranteed_reservation": "For your residence is used to guarantee a credit card. The room on the day of arrival will fix for you.",
+      "cancellation_policy": "A free cancellation of the reservation not possible. In case of non arrival we will charge a 100% of the full amount.",
+      "warranty_terms": "An advance payment for the entire stay, Your credit card can be charged after reservation, for this we need a credit card authorization. Otherwise you pay by arrival with your credit card. You are required to provide valid personal identification and the credit card by arrival."
+    },
+    "location_city": "Hannover",
+    "location_country": "Germany",
+    "special_notes": null,
+    "terms_conditions": null,
+    "document_type": "Buchungsbestätigung"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the customer name as the guest/traveler",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_phone",
+          "description": "Missing mandatory customer phone on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the customer name as the guest/traveler",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_email",
+          "description": "Missing mandatory customer email on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the customer name as the guest/traveler",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_company_details",
+          "description": "Missing mandatory ICP company details on the invoice",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice must show Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation required for mileage claim",
+          "recommendation": "Please provide a scan of the card passport (libretto di circolazione) and any screenshot from any app that can track start point, arrival point and KM",
+          "knowledge_base_reference": "Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including customer address, phone, and email. Additionally, the ICP company details are missing from the invoice. Further, additional documentation is required for the mileage claim."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Italy",
+      "icp": "Global People",
+      "receipt_type": "accommodation",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "hotel_name": {
+        "field_citation": {
+          "source_text": "CONGRESS HOTEL AM STADTPARK",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BUCHUNGSBESTÄTIGUNG\nfür das\nCongress Hotel am Stadtpark",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CONGRESS HOTEL AM STADTPARK",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BUCHUNGSBESTÄTIGUNG\nfür das\nCongress Hotel am Stadtpark",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "Clausewitzstraße 6",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Clausewitzstraße 6\n30175 Hannover",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Clausewitzstraße 6",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Clausewitzstraße 6\n30175 Hannover",
+          "match_type": "exact"
+        }
+      },
+      "booking_number": {
+        "field_citation": {
+          "source_text": "Buchungsnummer:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Buchungsnummer:\nCHS_32872",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHS_32872",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Buchungsnummer:\nCHS_32872",
+          "match_type": "exact"
+        }
+      },
+      "booking_date": {
+        "field_citation": {
+          "source_text": "Buchungsdatum:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Buchungsdatum:\n26.02.2025 13:54",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "26.02.2025 13:54",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Buchungsdatum:\n26.02.2025 13:54",
+          "match_type": "exact"
+        }
+      },
+      "arrival_date": {
+        "field_citation": {
+          "source_text": "Anreisetag:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Anreisetag:\n13.03.2025 (Donnerstag)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13.03.2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Anreisetag:\n13.03.2025 (Donnerstag)",
+          "match_type": "exact"
+        }
+      },
+      "departure_date": {
+        "field_citation": {
+          "source_text": "Abreisetag:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Abreisetag:\n15.03.2025 (Samstag)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "15.03.2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Abreisetag:\n15.03.2025 (Samstag)",
+          "match_type": "exact"
+        }
+      },
+      "room_category": {
+        "field_citation": {
+          "source_text": "Zimmerkategorie:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Zimmerkategorie:\nEinzelzimmer Classic",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Einzelzimmer Classic",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Zimmerkategorie:\nEinzelzimmer Classic",
+          "match_type": "exact"
+        }
+      },
+      "guest_name": {
+        "field_citation": {
+          "source_text": "Gastname:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gastname:\nSimone Filice",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Simone Filice",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gastname:\nSimone Filice",
+          "match_type": "exact"
+        }
+      },
+      "rate_type": {
+        "field_citation": {
+          "source_text": "Ratentyp:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Ratentyp:\nHot Deal Angebot sparen 5,- €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Hot Deal Angebot sparen 5,- €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Ratentyp:\nHot Deal Angebot sparen 5,- €",
+          "match_type": "exact"
+        }
+      },
+      "number_of_adults": {
+        "field_citation": {
+          "source_text": "Anzahl der Erwachsenen:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Anzahl der Erwachsenen:\n1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Anzahl der Erwachsenen:\n1",
+          "match_type": "exact"
+        }
+      },
+      "rate_per_night": {
+        "field_citation": {
+          "source_text": "Rate pro Nacht:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rate pro Nacht:\nDo, 13. Mrz 2025 Hotdeal - save 5,- €\n139,00 €\nFr, 14. Mrz 2025 Hotdeal - save 5,- €\n93,00 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "139,00 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rate pro Nacht:\nDo, 13. Mrz 2025 Hotdeal - save 5,- €\n139,00 €\nFr, 14. Mrz 2025 Hotdeal - save 5,- €\n93,00 €",
+          "match_type": "exact"
+        }
+      },
+      "total_price": {
+        "field_citation": {
+          "source_text": "Gesamtpreis",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtpreis\n232,00 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "232,00 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtpreis\n232,00 €",
+          "match_type": "exact"
+        }
+      },
+      "payment_type": {
+        "field_citation": {
+          "source_text": "Payment type:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment type:\ncreditcard",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "creditcard",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment type:\ncreditcard",
+          "match_type": "exact"
+        }
+      },
+      "Buchungsnummer": {
+        "field_citation": {
+          "source_text": "Buchungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Buchungsnummer:\nCHS_32872",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHS_32872",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Buchungsnummer:\nCHS_32872",
+          "match_type": "exact"
+        }
+      },
+      "Buchungsdatum": {
+        "field_citation": {
+          "source_text": "Buchungsdatum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Buchungsdatum:\n26.02.2025 13:54",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "26.02.2025 13:54",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Buchungsdatum:\n26.02.2025 13:54",
+          "match_type": "exact"
+        }
+      },
+      "Anreisetag": {
+        "field_citation": {
+          "source_text": "Anreisetag:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anreisetag:\n13.03.2025 (Donnerstag)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13.03.2025 (Donnerstag)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anreisetag:\n13.03.2025 (Donnerstag)",
+          "match_type": "exact"
+        }
+      },
+      "Abreisetag": {
+        "field_citation": {
+          "source_text": "Abreisetag:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Abreisetag:\n15.03.2025 (Samstag)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "15.03.2025 (Samstag)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Abreisetag:\n15.03.2025 (Samstag)",
+          "match_type": "exact"
+        }
+      },
+      "Zimmerkategorie": {
+        "field_citation": {
+          "source_text": "Zimmerkategorie:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zimmerkategorie:\nEinzelzimmer Classic",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Einzelzimmer Classic",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zimmerkategorie:\nEinzelzimmer Classic",
+          "match_type": "exact"
+        }
+      },
+      "Gastname": {
+        "field_citation": {
+          "source_text": "Gastname:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gastname:\nSimone Filice",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Simone Filice",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gastname:\nSimone Filice",
+          "match_type": "exact"
+        }
+      },
+      "Ratentyp": {
+        "field_citation": {
+          "source_text": "Ratentyp:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ratentyp:\nHot Deal Angebot sparen 5,- €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Hot Deal Angebot sparen 5,- €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ratentyp:\nHot Deal Angebot sparen 5,- €",
+          "match_type": "exact"
+        }
+      },
+      "Anzahl der Erwachsenen": {
+        "field_citation": {
+          "source_text": "Anzahl der Erwachsenen:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anzahl der Erwachsenen:\n1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anzahl der Erwachsenen:\n1",
+          "match_type": "exact"
+        }
+      },
+      "Rate pro Nacht": {
+        "field_citation": {
+          "source_text": "Rate pro Nacht:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rate pro Nacht:\nDo, 13. Mrz 2025 Hotdeal - save 5,- €\n139,00 €\nFr, 14. Mrz 2025 Hotdeal - save 5,- €\n93,00 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "139,00 €\n93,00 €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rate pro Nacht:\nDo, 13. Mrz 2025 Hotdeal - save 5,- €\n139,00 €\nFr, 14. Mrz 2025 Hotdeal - save 5,- €\n93,00 €",
+          "match_type": "exact"
+        }
+      },
+      "Gesamtpreis": {
+        "field_citation": {
+          "source_text": "Gesamtpreis",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gesamtpreis\n232,00 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "232,00 €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gesamtpreis\n232,00 €",
+          "match_type": "exact"
+        }
+      },
+      "Payment type": {
+        "field_citation": {
+          "source_text": "Payment type:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment type:\ncreditcard",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "creditcard",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment type:\ncreditcard",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 42,
+      "fields_with_field_citations": 42,
+      "fields_with_value_citations": 42,
+      "average_confidence": 0.9761904761904762
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "9.0",
+      "image_quality_assessment_seconds": "4.4",
+      "file_classification_seconds": "4.8",
+      "data_extraction_seconds": "5.1",
+      "issue_detection_seconds": "9.9",
+      "citation_generation_seconds": "39.6",
+      "llm_validation_seconds": "69.9"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-26T15:56:18.699Z",
+        "end_time": "2025-08-26T15:56:27.689Z",
+        "duration_seconds": "9.0",
+        "document_reader_used": "textract"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-26T15:56:27.690Z",
+        "end_time": "2025-08-26T15:56:32.042Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-26T15:56:27.692Z",
+        "end_time": "2025-08-26T15:56:32.472Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-26T15:56:27.694Z",
+        "end_time": "2025-08-26T15:56:32.751Z",
+        "duration_seconds": "5.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-26T15:56:32.753Z",
+        "end_time": "2025-08-26T15:56:42.692Z",
+        "duration_seconds": "9.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-26T15:56:32.756Z",
+        "end_time": "2025-08-26T15:57:12.377Z",
+        "duration_seconds": "39.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-26T15:57:12.378Z",
+        "end_time": "2025-08-26T15:58:22.283Z",
+        "duration_seconds": "69.9",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "123.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.1",
+      "parallel_group_2_seconds": "39.6",
+      "total_parallel_time_seconds": "44.7"
+    }
+  },
+  "metadata": {
+    "filename": "italia_file_3.pdf",
+    "processing_time": 123618,
+    "country": "Italy",
+    "icp": "Global People",
+    "processed_at": "2025-08-26T15:58:22.317Z"
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\swiss_file_3.pdf_full_test_aug_26_swiss_file_3.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-26T16:43:28.638Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no signs of blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are present on the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements that block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "accommodation",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Switzerland",
+    "expected_location": "Switzerland",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description line items. It is classified as an expense under the 'accommodation' type.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document details a completed payment for accommodation services."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Motel One",
+    "supplier_address": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
+    "supplier_vat_number": "ATU 633 08227",
+    "supplier_phone": "+43 512 219353-0",
+    "supplier_email": "innsbruck@motel-one.com",
+    "supplier_website": "www.fiskaltrust.at",
+    "customer_name": "Fred Tavas",
+    "customer_address": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
+    "invoice_number": "2024808055606",
+    "receipt_number": null,
+    "transaction_reference": "808090897/1",
+    "currency": "EUR",
+    "total_amount": 131,
+    "subtotal": 129,
+    "tax_amount": 11.73,
+    "tax_rate": 10,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2024-12-19",
+    "transaction_time": "16:21:12",
+    "payment_method": "American Express",
+    "card_last_four": "6813",
+    "line_items": [
+      {
+        "description": "Logis",
+        "quantity": 1,
+        "unit_price": 129,
+        "total_price": 129,
+        "category": "Accommodation"
+      },
+      {
+        "description": "Ortstaxe",
+        "quantity": 1,
+        "unit_price": 2,
+        "total_price": 2,
+        "category": "Tax"
+      }
+    ],
+    "receipt_type": "Hotel Receipt",
+    "document_type": "Rechnung",
+    "room_number": "1220",
+    "check_in_date": "2024-12-19",
+    "check_out_date": "2024-12-20",
+    "vat_id": "CF9RTY03F",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": "366/1498 FA Wien 2/20/21/22"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_company_details_on_invoice",
+          "description": "The invoice does not show the ICP company details 'Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918' as required.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipts and invoices must show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918 - The Local Employer's name and details should appear on invoices",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "currency",
+          "description": "The total amount is in EUR, but the local currency for Switzerland is CHF.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The total amount of CHF 131 for accommodation will be grossed up as it is not tax-free.",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free",
+          "knowledge_base_reference": "Overnight expenses such as hotels and transport should be reimbursed as expenses against receipts and invoices - all approved expenses will be paid as NET to employee and grossed up if not tax free",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for this hotel expense.",
+          "recommendation": "Workers should submit a separate report per each business trip",
+          "knowledge_base_reference": "Workers should submit a separate report per each business trip",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing ICP company details, incorrect currency, and requirement for gross-up. Additional documentation is also needed as per compliance policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Switzerland",
+      "icp": "Global People",
+      "receipt_type": "accommodation",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "Datum": {
+        "field_citation": {
+          "source_text": "Datum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Datum:\n19.12.2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "19.12.2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Datum:\n19.12.2024",
+          "match_type": "exact"
+        }
+      },
+      "Zimmer": {
+        "field_citation": {
+          "source_text": "Zimmer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zimmer:\n1220",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1220",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zimmer:\n1220",
+          "match_type": "exact"
+        }
+      },
+      "Rechnungsnummer": {
+        "field_citation": {
+          "source_text": "Rechnungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer:\n2024808055606",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2024808055606",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer:\n2024808055606",
+          "match_type": "exact"
+        }
+      },
+      "Anreise": {
+        "field_citation": {
+          "source_text": "Anreise:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anreise:\n19.12.2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "19.12.2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anreise:\n19.12.2024",
+          "match_type": "exact"
+        }
+      },
+      "Reservierungsnummer": {
+        "field_citation": {
+          "source_text": "Reservierungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Reservierungsnummer:\n808090897/1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "808090897/1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Reservierungsnummer:\n808090897/1",
+          "match_type": "exact"
+        }
+      },
+      "Abreise": {
+        "field_citation": {
+          "source_text": "Abreise:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Abreise:\n20.12.2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20.12.2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Abreise:\n20.12.2024",
+          "match_type": "exact"
+        }
+      },
+      "Ihre USt.-Id.": {
+        "field_citation": {
+          "source_text": "Ihre USt.-Id.:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ihre USt.-Id.:\nCF9RTY03F",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CF9RTY03F",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ihre USt.-Id.:\nCF9RTY03F",
+          "match_type": "exact"
+        }
+      },
+      "Gesamtpreis EUR": {
+        "field_citation": {
+          "source_text": "Gesamtpreis EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gesamtpreis EUR\n129,00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "129,00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gesamtpreis EUR\n129,00",
+          "match_type": "exact"
+        }
+      },
+      "Zahlung EUR": {
+        "field_citation": {
+          "source_text": "Zahlung EUR",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Zahlung EUR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "-131,00",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Zahlung EUR -131,00",
+          "match_type": "fuzzy"
+        }
+      },
+      "Saldo Leistungen": {
+        "field_citation": {
+          "source_text": "Saldo Leistungen",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Saldo Leistungen\n131,00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "131,00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Saldo Leistungen\n131,00",
+          "match_type": "exact"
+        }
+      },
+      "Rechnungsbetrag": {
+        "field_citation": {
+          "source_text": "Rechnungsbetrag",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsbetrag\n0,00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsbetrag\n0,00",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 35,
+      "fields_with_field_citations": 35,
+      "fields_with_value_citations": 35,
+      "average_confidence": 0.9194285714285714
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "12.7",
+      "file_classification_seconds": "4.0",
+      "data_extraction_seconds": "5.5",
+      "image_quality_assessment_seconds": "5.7",
+      "issue_detection_seconds": "9.7",
+      "citation_generation_seconds": "33.6",
+      "llm_validation_seconds": "61.3"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-26T16:43:10.250Z",
+        "end_time": "2025-08-26T16:43:22.956Z",
+        "duration_seconds": "12.7",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-08-26T16:43:22.959Z",
+        "end_time": "2025-08-26T16:43:26.986Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-26T16:43:22.961Z",
+        "end_time": "2025-08-26T16:43:28.486Z",
+        "duration_seconds": "5.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-26T16:43:22.957Z",
+        "end_time": "2025-08-26T16:43:28.638Z",
+        "duration_seconds": "5.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-26T16:43:28.639Z",
+        "end_time": "2025-08-26T16:43:38.386Z",
+        "duration_seconds": "9.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-26T16:43:28.641Z",
+        "end_time": "2025-08-26T16:44:02.239Z",
+        "duration_seconds": "33.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-26T16:44:02.240Z",
+        "end_time": "2025-08-26T16:45:03.546Z",
+        "duration_seconds": "61.3",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "113.3",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.7",
+      "parallel_group_2_seconds": "33.6",
+      "total_parallel_time_seconds": "39.3"
+    }
+  },
+  "metadata": {
+    "filename": "swiss_file_3.pdf",
+    "processing_time": 113329,
+    "country": "Switzerland",
+    "icp": "Global People",
+    "processed_at": "2025-08-26T16:45:03.580Z"
+  }
+}

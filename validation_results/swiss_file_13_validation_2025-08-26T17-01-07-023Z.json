@@ -1,0 +1,525 @@
+{
+  "overall_score": 0.9327777777777778,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9500000000000001,
+      "issues": [
+        "The first issue has a slightly lower validation score because while the AI correctly identified the missing ICP details",
+        "it doesn't explicitly confirm from the extracted data that the receipt is for a business trip (though this can be reasonably inferred from the context)."
+      ],
+      "summary": "The AI response is well-grounded in the extracted data and compliance rules. It correctly identified that the invoice lacks the required ICP company details, uses EUR instead of the required CHF currency, and references the requirement for separate business trip reports. All three issues can be directly traced to both the extracted receipt data and the provided compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice does not show the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). The extracted data shows the customer name as \"Ms Katja Roll\" with an address in Oslo, Norway, not the required Swiss ICP details. This aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately identified that the receipt currency is EUR (as shown in the extracted data) while the local currency for Switzerland should be CHF. This is clearly supported by the extracted data showing \"currency\": \"EUR\" and the line items and totals all in EUR. The recommendation to report expenses in CHF is directly based on the compliance rule stating \"The receipts/invoices should be reported in the local currency.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per business trip, which is directly stated in the compliance policies under additional information required for travel expenses: \"Workers should submit a separate report per each business trip.\"\n\nCONFIDENCE: 95\n\nISSUES: The first issue has a slightly lower validation score because while the AI correctly identified the missing ICP details, it doesn't explicitly confirm from the extracted data that the receipt is for a business trip (though this can be reasonably inferred from the context).\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identified that the invoice lacks the required ICP company details, uses EUR instead of the required CHF currency, and references the requirement for separate business trip reports. All three issues can be directly traced to both the extracted receipt data and the provided compliance rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice does not show the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). The extracted data shows the customer name as \"Ms Katja Roll\" with an address in Oslo, Norway, not the required Swiss ICP details. This aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately identified that the receipt currency is EUR (as shown in the extracted data) while the local currency for Switzerland should be CHF. This is clearly supported by the extracted data showing \"currency\": \"EUR\" and the line items and totals all in EUR. The recommendation to report expenses in CHF is directly based on the compliance rule stating \"The receipts/invoices should be reported in the local currency.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per business trip, which is directly stated in the compliance policies under additional information required for travel expenses: \"Workers should submit a separate report per each business trip.\"\n\nCONFIDENCE: 95\n\nISSUES: The first issue has a slightly lower validation score because while the AI correctly identified the missing ICP details, it doesn't explicitly confirm from the extracted data that the receipt is for a business trip (though this can be reasonably inferred from the context).\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identified that the invoice lacks the required ICP company details, uses EUR instead of the required CHF currency, and references the requirement for separate business trip reports. All three issues can be directly traced to both the extracted receipt data and the provided compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response accurately represents the missing ICP company details on the invoice, which is a compliance issue identified based on the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies the currency mismatch issue, where the expense is in EUR but the local currency for Switzerland is CHF. This is in line with the information extracted from the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response accurately states that workers should submit a separate report per business trip, which matches the additional documentation requirement identified in the extracted data.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response is well-grounded in the factual information extracted from the receipt. All the key claims made in the response can be traced back to the extracted data, and no information is fabricated or assumed beyond what is provided. The numerical values, dates, and amounts also match the extracted data. Overall, the AI response demonstrates a high level of factual grounding."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing ICP company details is accurately identified based on the compliance rules, which state that the Local Employer's name and details should appear on invoices for hotel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The currency mismatch issue is correctly identified. The extracted data shows the currency as EUR, while the compliance rules state that expenses should be reported in the local currency (CHF for Switzerland).\n\nISSUE_3_VALIDATION_SCORE: 100 - The requirement for a separate report per business trip is accurately stated based on the compliance rules for travel expenses.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised in the AI response are factually grounded in the provided extracted data and compliance rules.\n\nSUMMARY: The AI response is fully grounded in the provided information. It accurately identifies issues related to missing ICP company details, currency mismatch, and the need for separate business trip reports. All claims made in the response can be traced back to the extracted data or the compliance rules, with no apparent fabrication or assumption of information beyond what's provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the invoice does not show the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). The extracted data shows the customer name as \"Ms Katja Roll\" with an address in Oslo, Norway, not the required Swiss ICP details. This aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI accurately identified that the receipt currency is EUR (as shown in the extracted data) while the local currency for Switzerland should be CHF. This is clearly supported by the extracted data showing \"currency\": \"EUR\" and the line items and totals all in EUR. The recommendation to report expenses in CHF is directly based on the compliance rule stating \"The receipts/invoices should be reported in the local currency.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that workers should submit a separate report per business trip, which is directly stated in the compliance policies under additional information required for travel expenses: \"Workers should submit a separate report per each business trip.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9433333333333334,
+      "issues": [
+        "- The AI could have mentioned that online copies of invoices/receipts are sufficient (as per the knowledge base)",
+        "but this wasn't critical to the validation.",
+        "- The confidence score for issue 1 (95%) might be slightly high given that hotels sometimes cannot include the employer's details on standard invoices."
+      ],
+      "summary": "The AI response demonstrates strong adherence to the compliance knowledge base for Switzerland. All three identified issues are valid and directly supported by the compliance rules. The recommendations provided are appropriate and align with the knowledge base. The currency mismatch and separate report requirements are particularly well-identified and explained. The response correctly applies the country-specific regulations for Switzerland and accurately addresses the receipt type requirements for accommodation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is in EUR while the local currency for Switzerland is CHF. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation that the worker needs to add the FX rate used is directly from the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per business trip, which directly matches the compliance rule \"Workers should submit a separate report per each business trip\" for travel expenses including hotel accommodations. The recommendation to submit a separate report is appropriate.\n\nCONFIDENCE: 95\n\nISSUES: \n- The AI could have mentioned that online copies of invoices/receipts are sufficient (as per the knowledge base), but this wasn't critical to the validation.\n- The confidence score for issue 1 (95%) might be slightly high given that hotels sometimes cannot include the employer's details on standard invoices.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Switzerland. All three identified issues are valid and directly supported by the compliance rules. The recommendations provided are appropriate and align with the knowledge base. The currency mismatch and separate report requirements are particularly well-identified and explained. The response correctly applies the country-specific regulations for Switzerland and accurately addresses the receipt type requirements for accommodation.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is in EUR while the local currency for Switzerland is CHF. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation that the worker needs to add the FX rate used is directly from the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per business trip, which directly matches the compliance rule \"Workers should submit a separate report per each business trip\" for travel expenses including hotel accommodations. The recommendation to submit a separate report is appropriate.\n\nCONFIDENCE: 95\n\nISSUES: \n- The AI could have mentioned that online copies of invoices/receipts are sufficient (as per the knowledge base), but this wasn't critical to the validation.\n- The confidence score for issue 1 (95%) might be slightly high given that hotels sometimes cannot include the employer's details on standard invoices.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Switzerland. All three identified issues are valid and directly supported by the compliance rules. The recommendations provided are appropriate and align with the knowledge base. The currency mismatch and separate report requirements are particularly well-identified and explained. The response correctly applies the country-specific regulations for Switzerland and accurately addresses the receipt type requirements for accommodation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The AI response correctly identifies that the invoice does not show the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). This is a mandatory requirement for non-travel expenses in Switzerland according to the compliance knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies that the expense is in EUR instead of the local currency CHF, which will result in the expense being grossed up. This is in line with the compliance knowledge base requirement that expenses should be reported in the local currency.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly identifies that the worker should submit a separate report for each business trip, as per the compliance knowledge base requirement. However, the response could have provided more detailed guidance on the additional documentation required.\n\nCONFIDENCE: 90\nISSUES: \n1. The AI response could have provided more detailed guidance on the additional documentation required for the business trip report.\n\nSUMMARY: The AI response overall adheres well to the compliance knowledge base for Switzerland. It correctly identifies the key issues with the receipt, including missing ICP company details, currency mismatch, and the need for a separate business trip report. The response provides appropriate recommendations to address these issues and aligns with the established compliance guidelines."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The AI correctly identified that the invoice should show the Local Employer's details (Global PPL CH GmbH) as per the compliance rules. This aligns well with the knowledge base requirement for accommodation receipts.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately pointed out the currency mismatch (EUR instead of CHF) and recommended reporting expenses in CHF with an FX rate. This perfectly adheres to the knowledge base rule about reporting in local currency.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for a separate report for each business trip, which directly aligns with the compliance rule stated in the knowledge base.\n\nCONFIDENCE: 98\n\nISSUES:\n- No significant issues found. The AI response demonstrates strong adherence to the knowledge base.\n\nSUMMARY: The AI response shows excellent adherence to the compliance knowledge base for Switzerland. It correctly identifies key issues related to company details on invoices, local currency requirements, and the need for separate business trip reports. The response accurately interprets and applies the compliance rules, considers country-specific regulations, and addresses receipt type requirements without contradicting established guidelines. The high confidence score reflects the strong alignment between the AI's analysis and the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt is in EUR while the local currency for Switzerland is CHF. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation that the worker needs to add the FX rate used is directly from the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that workers should submit a separate report per business trip, which directly matches the compliance rule \"Workers should submit a separate report per each business trip\" for travel expenses including hotel accommodations. The recommendation to submit a separate report is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.96,
+      "issues": [
+        "None identified. All compliance issues were accurately assessed according to the provided rules."
+      ],
+      "summary": "The compliance assessment is highly accurate. It correctly identifies three valid compliance issues: (1) missing ICP company details on the hotel invoice, (2) currency mismatch between EUR on the receipt and the required CHF for Switzerland, and (3) the need for a separate business trip report. All issues are properly aligned with the compliance rules provided, and the recommendations are appropriate for resolving each issue.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This is a hotel accommodation receipt, where it would typically be possible to include the company details.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt is in EUR while the local currency for Switzerland is CHF. The compliance rules clearly state: \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation to report expenses in CHF and include the FX rate is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement that \"Workers should submit a separate report per each business trip\" as stated in the compliance rules. This is a valid follow-up action for accommodation expenses.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All compliance issues were accurately assessed according to the provided rules.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies three valid compliance issues: (1) missing ICP company details on the hotel invoice, (2) currency mismatch between EUR on the receipt and the required CHF for Switzerland, and (3) the need for a separate business trip report. All issues are properly aligned with the compliance rules provided, and the recommendations are appropriate for resolving each issue.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This is a hotel accommodation receipt, where it would typically be possible to include the company details.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt is in EUR while the local currency for Switzerland is CHF. The compliance rules clearly state: \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation to report expenses in CHF and include the FX rate is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement that \"Workers should submit a separate report per each business trip\" as stated in the compliance rules. This is a valid follow-up action for accommodation expenses.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All compliance issues were accurately assessed according to the provided rules.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies three valid compliance issues: (1) missing ICP company details on the hotel invoice, (2) currency mismatch between EUR on the receipt and the required CHF for Switzerland, and (3) the need for a separate business trip report. All issues are properly aligned with the compliance rules provided, and the recommendations are appropriate for resolving each issue."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The assessment correctly identifies that the invoice does not show the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). This is a valid compliance issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that the expense is in EUR, while the local currency for Switzerland is CHF. This currency mismatch will result in the expense being grossed up. The recommendation to report the expense in CHF and provide the FX rate is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identifies that workers should submit a separate report per each business trip. This is a valid compliance requirement. However, the recommendation could be more specific, e.g., providing guidance on the information that should be included in the separate report.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The compliance assessment is generally accurate, with a few minor areas that could be improved. The key compliance issues are correctly identified, and the recommendations provided are appropriate. The overall confidence in the accuracy of the compliance assessment is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The assessment correctly identifies that the ICP company details (Global PPL CH GmbH) are missing from the invoice. This is accurately flagged as a compliance issue for accommodation receipts in Switzerland.\n\nISSUE_2_VALIDATION_SCORE: 100 - The currency mismatch (EUR instead of CHF) is correctly identified as a compliance issue. The recommendation to report expenses in CHF and provide the FX rate used is accurate and aligns with the stated compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The requirement for a separate report for each business trip is accurately flagged as an additional documentation need, which aligns with the compliance rules for travel expenses.\n\nCONFIDENCE: 98\n\nISSUES:\n- No significant issues found with the compliance assessment accuracy.\n\nSUMMARY: The compliance assessment appears to be highly accurate. It correctly identifies the missing ICP company details, currency mismatch, and the need for a separate business trip report. These issues align well with the provided compliance rules for Switzerland and the Global PPL CH GmbH ICP. The recommendations given are appropriate and consistent with the compliance policies. The high confidence score is justified by the precise application of the relevant rules to the specific receipt details."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the invoice is missing the required ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918). According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This is a hotel accommodation receipt, where it would typically be possible to include the company details.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the receipt is in EUR while the local currency for Switzerland is CHF. The compliance rules clearly state: \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The recommendation to report expenses in CHF and include the FX rate is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies the requirement that \"Workers should submit a separate report per each business trip\" as stated in the compliance rules. This is a valid follow-up action for accommodation expenses.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9,
+      "issues": [
+        "No significant categorization problems identified. All issues are properly classified according to the compliance rules provided. The confidence scores assigned to each issue (0.95",
+        "0.9",
+        "0.85) appropriately reflect their relative certainty and importance."
+      ],
+      "summary": "The system has correctly categorized all three compliance issues with the receipt. The issues about missing ICP company details, currency mismatch requiring gross-up, and the need for separate business trip reports are all valid based on the provided compliance rules. The categorization taxonomy is consistently applied, and the recommendations are clear and actionable.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue about missing ICP company details is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately identifies that the invoice doesn't show the required Global PPL CH GmbH details. The recommendation to address this with the supplier is appropriate, and the knowledge base reference correctly cites the rule that the Local Employer's details should appear on invoices.\n\nISSUE_2_VALIDATION_SCORE: 90 - The currency mismatch issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately identifies that the receipt is in EUR while Switzerland's local currency is CHF, which will trigger a gross-up. The recommendation to report expenses in CHF with FX rate is appropriate. The knowledge base reference correctly supports this categorization.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue about submitting a separate report per business trip is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description and recommendation are clear and actionable. The knowledge base reference directly supports this categorization. However, this is more of a procedural requirement rather than a receipt-specific issue, which explains the slightly lower score.\n\nCONFIDENCE: 90\n\nISSUES: No significant categorization problems identified. All issues are properly classified according to the compliance rules provided. The confidence scores assigned to each issue (0.95, 0.9, 0.85) appropriately reflect their relative certainty and importance.\n\nSUMMARY: The system has correctly categorized all three compliance issues with the receipt. The issues about missing ICP company details, currency mismatch requiring gross-up, and the need for separate business trip reports are all valid based on the provided compliance rules. The categorization taxonomy is consistently applied, and the recommendations are clear and actionable.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue about missing ICP company details is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately identifies that the invoice doesn't show the required Global PPL CH GmbH details. The recommendation to address this with the supplier is appropriate, and the knowledge base reference correctly cites the rule that the Local Employer's details should appear on invoices.\n\nISSUE_2_VALIDATION_SCORE: 90 - The currency mismatch issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately identifies that the receipt is in EUR while Switzerland's local currency is CHF, which will trigger a gross-up. The recommendation to report expenses in CHF with FX rate is appropriate. The knowledge base reference correctly supports this categorization.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue about submitting a separate report per business trip is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description and recommendation are clear and actionable. The knowledge base reference directly supports this categorization. However, this is more of a procedural requirement rather than a receipt-specific issue, which explains the slightly lower score.\n\nCONFIDENCE: 90\n\nISSUES: No significant categorization problems identified. All issues are properly classified according to the compliance rules provided. The confidence scores assigned to each issue (0.95, 0.9, 0.85) appropriately reflect their relative certainty and importance.\n\nSUMMARY: The system has correctly categorized all three compliance issues with the receipt. The issues about missing ICP company details, currency mismatch requiring gross-up, and the need for separate business trip reports are all valid based on the provided compliance rules. The categorization taxonomy is consistently applied, and the recommendations are clear and actionable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue regarding missing ICP company details on the invoice is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly explains the problem and provides a relevant recommendation.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue related to the currency mismatch is also correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description accurately identifies the problem and provides appropriate guidance.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue about the need for a separate report per business trip is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear, but the knowledge base reference could be more specific.\n\nCONFIDENCE: 90\nISSUES: The categorization of the issues is generally accurate and follows the established taxonomy. The descriptions are clear and provide actionable recommendations. However, the knowledge base reference for the third issue could be more specific.\n\nSUMMARY: The issues identified in the receipt are correctly categorized, with clear descriptions and appropriate recommendations. The overall issue categorization accuracy is high, with a few minor areas for improvement in the knowledge base references."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the missing ICP company details on the invoice, which is a compliance requirement. The recommendation and knowledge base reference are appropriate and aligned with the issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is appropriately categorized as \"Standards & Compliance | Gross-up Identified\". It correctly identifies the currency mismatch between EUR and CHF, which could lead to a gross-up. The recommendation and knowledge base reference are relevant and actionable.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue is categorized as \"Standards & Compliance | Follow-up Action Identified\", which is accurate. However, the confidence score could be higher as this is a clear compliance requirement for travel expenses. The description and recommendation are clear and actionable.\n\nCONFIDENCE: 90\n\nISSUES:\n- The third issue could potentially be categorized more specifically, such as \"Documentation Requirement\" or \"Reporting Procedure\", to better reflect its nature.\n- The confidence scores for issues 2 and 3 could be adjusted to better reflect their certainty and importance.\n\nSUMMARY: Overall, the issues are well-categorized and align with the compliance rules provided. The descriptions are clear, and recommendations are actionable. Minor improvements could be made in the specificity of the third issue's categorization and in adjusting confidence scores to better reflect the certainty of each issue."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue about missing ICP company details is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately identifies that the invoice doesn't show the required Global PPL CH GmbH details. The recommendation to address this with the supplier is appropriate, and the knowledge base reference correctly cites the rule that the Local Employer's details should appear on invoices.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The currency mismatch issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately identifies that the receipt is in EUR while Switzerland's local currency is CHF, which will trigger a gross-up. The recommendation to report expenses in CHF with FX rate is appropriate. The knowledge base reference correctly supports this categorization.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The issue about submitting a separate report per business trip is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description and recommendation are clear and actionable. The knowledge base reference directly supports this categorization. However, this is more of a procedural requirement rather than a receipt-specific issue, which explains the slightly lower score.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.91,
+      "issues": [
+        "The first recommendation could be more specific about how to address the missing company details issue with the hotel."
+      ],
+      "summary": "The recommendations are highly valid and actionable, directly addressing the identified compliance issues. They provide clear guidance on what actions the worker needs to take: addressing the missing company details with the supplier, reporting expenses in the local currency (CHF) with appropriate FX rates, and submitting a separate report for the business trip. The only minor improvement would be providing more specific guidance on how to address the missing company details issue with the hotel.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding missing ICP company details is actionable and aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\" However, it could be more specific about how exactly to address this with the hotel (e.g., requesting an updated invoice with correct company details).\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation that \"Expenses should be reported in CHF\" and \"The worker will need to add the FX rate they have used to calculate the expense\" directly addresses the currency mismatch issue and provides clear, specific guidance on what the worker needs to do. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to \"Please submit a separate report for this business trip\" is clear, specific, and directly addresses the compliance requirement. It provides straightforward guidance that is easy to follow and fully aligned with the rule that \"Workers should submit a separate report per each business trip.\"\n\nCONFIDENCE: 95\n\nISSUES: The first recommendation could be more specific about how to address the missing company details issue with the hotel.\n\nSUMMARY: The recommendations are highly valid and actionable, directly addressing the identified compliance issues. They provide clear guidance on what actions the worker needs to take: addressing the missing company details with the supplier, reporting expenses in the local currency (CHF) with appropriate FX rates, and submitting a separate report for the business trip. The only minor improvement would be providing more specific guidance on how to address the missing company details issue with the hotel.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding missing ICP company details is actionable and aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\" However, it could be more specific about how exactly to address this with the hotel (e.g., requesting an updated invoice with correct company details).\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation that \"Expenses should be reported in CHF\" and \"The worker will need to add the FX rate they have used to calculate the expense\" directly addresses the currency mismatch issue and provides clear, specific guidance on what the worker needs to do. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to \"Please submit a separate report for this business trip\" is clear, specific, and directly addresses the compliance requirement. It provides straightforward guidance that is easy to follow and fully aligned with the rule that \"Workers should submit a separate report per each business trip.\"\n\nCONFIDENCE: 95\n\nISSUES: The first recommendation could be more specific about how to address the missing company details issue with the hotel.\n\nSUMMARY: The recommendations are highly valid and actionable, directly addressing the identified compliance issues. They provide clear guidance on what actions the worker needs to take: addressing the missing company details with the supplier, reporting expenses in the local currency (CHF) with appropriate FX rates, and submitting a separate report for the business trip. The only minor improvement would be providing more specific guidance on how to address the missing company details issue with the hotel."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company details on the invoice is valid and actionable. It provides a clear explanation of the issue and a specific recommendation to work with the supplier to ensure the Local Employer's name and details are included on the invoice.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to report the expense in the local currency (CHF) is valid and addresses the currency mismatch issue. The suggestion for the worker to add the FX rate they used is a practical solution.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to submit a separate report for this business trip is valid and addresses the need for additional documentation. It provides a clear explanation of the requirement.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are valid, actionable, and address the identified compliance issues effectively. They are feasible and practical solutions that should help ensure the expense report meets the required standards."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing ICP company details with the supplier is valid and actionable. However, it could be more specific about how to approach the supplier or what exactly needs to be communicated.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to report expenses in CHF and add the FX rate used for calculation is highly valid, specific, and directly addresses the currency mismatch issue. It provides clear guidance on what the worker needs to do.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation to submit a separate report for this business trip is straightforward, actionable, and directly addresses the compliance requirement. It's a simple and clear instruction for the worker to follow.\n\nCONFIDENCE: 88\n\nISSUES:\n- The first recommendation could be more specific about how to address the issue with the supplier.\n- No guidance is provided on how to handle the current receipt if it can't be reissued with correct details.\n\nSUMMARY: Overall, the recommendations are valid and helpful, addressing the identified issues with practical solutions. They are generally actionable and align with compliance requirements. The currency and reporting recommendations are particularly strong. The supplier details issue recommendation could be more detailed, but it still points in the right direction. No contradictory or harmful advice is given."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding missing ICP company details is actionable and aligns with the compliance rule that \"The Local Employer's name and details should appear on invoices.\" However, it could be more specific about how exactly to address this with the hotel (e.g., requesting an updated invoice with correct company details).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation that \"Expenses should be reported in CHF\" and \"The worker will need to add the FX rate they have used to calculate the expense\" directly addresses the currency mismatch issue and provides clear, specific guidance on what the worker needs to do. This perfectly aligns with the compliance rule stating \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\"",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to \"Please submit a separate report for this business trip\" is clear, specific, and directly addresses the compliance requirement. It provides straightforward guidance that is easy to follow and fully aligned with the rule that \"Workers should submit a separate report per each business trip.\"",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies three compliance issues based on the receipt data and compliance rules. All issues are properly supported by the provided information, with no hallucinations or fabricated information detected. The response correctly cites the relevant compliance rules and accurately describes the discrepancies in the receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice doesn't show the required ICP company details (Global PPL CH GmbH). The compliance rules clearly state that \"The Local Employer's name and details should appear on invoices\" for hotel expenses, which is missing from the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt shows amounts in EUR while Switzerland's local currency is CHF. The compliance rules state \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The receipt data confirms the currency is EUR.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly references the compliance rule that \"Workers should submit a separate report per each business trip\" which is applicable to hotel expenses according to the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the receipt data and compliance rules. All issues are properly supported by the provided information, with no hallucinations or fabricated information detected. The response correctly cites the relevant compliance rules and accurately describes the discrepancies in the receipt.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice doesn't show the required ICP company details (Global PPL CH GmbH). The compliance rules clearly state that \"The Local Employer's name and details should appear on invoices\" for hotel expenses, which is missing from the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt shows amounts in EUR while Switzerland's local currency is CHF. The compliance rules state \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The receipt data confirms the currency is EUR.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly references the compliance rule that \"Workers should submit a separate report per each business trip\" which is applicable to hotel expenses according to the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the receipt data and compliance rules. All issues are properly supported by the provided information, with no hallucinations or fabricated information detected. The response correctly cites the relevant compliance rules and accurately describes the discrepancies in the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI response contains information not present in the source data, such as the ICP company details (Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918) and the recommendation to address the issue with the supplier or provider. These details are likely based on the AI's knowledge base and compliance rules, rather than being directly extracted from the source data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response includes several compliance rules and requirements that are not present in the source data, such as the rules related to gross-up, additional documentation, and separate reporting for each business trip. These appear to be fabricated based on the AI's understanding of compliance policies, rather than being directly extracted from the source data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response does not contain any made-up entity names, amounts, or dates. All the information extracted from the source data appears to be accurate.\n\nCONFIDENCE: 80\nISSUES: The AI response contains some hallucinated information, such as the ICP company details and the compliance rules and requirements.\nSUMMARY: The AI response is mostly accurate, with the exception of some hallucinated information related to compliance rules and requirements. The extracted data from the source document appears to be reliable, but the AI has supplemented this with additional details and recommendations that are not directly supported by the source data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue does not contain hallucinated information. The requirement for ICP company details on the invoice is present in the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue does not contain hallucinated information. The requirement for expenses to be reported in local currency (CHF for Switzerland) is present in the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue does not contain hallucinated information. The requirement for workers to submit a separate report for each business trip is present in the compliance rules provided.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All issues mentioned in the response are directly based on the provided compliance rules and receipt data. The response accurately identifies discrepancies between the receipt and the compliance requirements without introducing any information that is not supported by the given context."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the invoice doesn't show the required ICP company details (Global PPL CH GmbH). The compliance rules clearly state that \"The Local Employer's name and details should appear on invoices\" for hotel expenses, which is missing from the receipt data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the receipt shows amounts in EUR while Switzerland's local currency is CHF. The compliance rules state \"The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.\" The receipt data confirms the currency is EUR.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly references the compliance rule that \"Workers should submit a separate report per each business trip\" which is applicable to hotel expenses according to the compliance policies.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: The first issue has a slightly lower validation score because while the AI correctly identified the missing ICP details, it doesn't explicitly confirm from the extracted data that the receipt is for a business trip (though this can be reasonably inferred from the context).",
+    "Address issues in knowledge base adherence: - The AI could have mentioned that online copies of invoices/receipts are sufficient (as per the knowledge base), but this wasn't critical to the validation., - The confidence score for issue 1 (95%) might be slightly high given that hotels sometimes cannot include the employer's details on standard invoices.",
+    "Address issues in compliance accuracy: None identified. All compliance issues were accurately assessed according to the provided rules.",
+    "Address issues in issue categorization: No significant categorization problems identified. All issues are properly classified according to the compliance rules provided. The confidence scores assigned to each issue (0.95, 0.9, 0.85) appropriately reflect their relative certainty and importance.",
+    "Address issues in recommendation validity: The first recommendation could be more specific about how to address the missing company details issue with the hotel.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-08-26T17:01:07.022Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 55343,
+    "timing": {
+      "validation_start_time": "2025-08-26T17:00:11.678Z",
+      "validation_end_time": "2025-08-26T17:01:07.021Z",
+      "total_validation_time_seconds": "55.3",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-08-26T17:00:11.678Z",
+          "end_time": "2025-08-26T17:01:07.021Z",
+          "duration_seconds": "55.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "55.3",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.54",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The invoice does not show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918. The Local Employer's name and details should appear on invoices.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 94.67,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The total amount is in EUR, but the local currency for Switzerland is CHF. The expense will be grossed up due to the currency mismatch.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 98.11,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Workers should submit a separate report per each business trip.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

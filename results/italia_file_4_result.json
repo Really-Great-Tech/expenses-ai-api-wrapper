@@ -1,0 +1,425 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\italia_file_4.pdf_full_test_aug_26_italia_file_4.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-08-26T16:01:05.453Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows detected.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Italian",
+    "language_confidence": 95,
+    "document_location": "Italy",
+    "expected_location": "Italy",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, item description, and payment method. It represents a bus ticket purchase, which is classified under travel expenses.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including evidence of payment, actual amounts charged, and payment confirmation, thus meeting the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Prontobus srl",
+    "supplier_address": "Strada Prati 4, Pescara",
+    "supplier_website": "www.prontobusitalia.it",
+    "supplier_vat_number": "02114590686",
+    "supplier_email": "info@prontobusitalia.it",
+    "supplier_phone": "+39 329 8631455",
+    "customer_name": "Fabio Papadia",
+    "invoice_number": null,
+    "receipt_number": "2962036-7",
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 30.4,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-01-07",
+    "transaction_time": "11:35",
+    "payment_method": "Credit Card",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Express Promo",
+        "quantity": 1,
+        "unit_price": 30.4,
+        "total_price": 30.4,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Biglietto",
+    "departure_location": "FS Piazz.le G. Marconi, Chieti Scalo (CH)",
+    "arrival_location": "Aeroporto di Fiumicino (RM)",
+    "departure_date": "2025-02-09",
+    "departure_time": "01:30",
+    "arrival_date": "2025-02-09",
+    "arrival_time": "04:15",
+    "special_notes": "NON TRANSITA per ROMA TIBURTINA",
+    "terms_conditions": "Il pagamento del biglietto con la relativa emissione comporta l'accettazione delle condizioni generali di viaggio riportate sul sito prontobusitalia.it.",
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "The invoice number is missing from the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Clear and readable receipts and invoices must be submitted with expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Tax amount and rate are missing from the receipt. According to Italian regulations, tax information must be clearly stated on the receipt.",
+          "recommendation": "Please ensure that the receipt includes the tax amount and rate to comply with Italian tax regulations.",
+          "knowledge_base_reference": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for mileage claims. Specifically, a scan of the car passport (libretto di circolazione) and any screenshot from an app that can track the start point, arrival point, and kilometers traveled should be provided.",
+          "recommendation": "Please provide a scan of the car passport and a screenshot from an app that tracks the start point, arrival point, and kilometers traveled.",
+          "knowledge_base_reference": "Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner must be provided. Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM.",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the invoice number and tax information, which are mandatory according to Italian compliance standards. Additionally, for mileage claims, further documentation such as a scan of the car passport and a screenshot from a tracking app is required."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Italy",
+      "icp": "Global People",
+      "receipt_type": "travel",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Prontobus srl",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Prontobus srl",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara",
+          "match_type": "exact"
+        }
+      },
+      "departure_date": {
+        "field_citation": {
+          "source_text": "Partenza 9 febbraio 2025 ore 01:30",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9 febbraio 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        }
+      },
+      "departure_time": {
+        "field_citation": {
+          "source_text": "Partenza 9 febbraio 2025 ore 01:30",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "01:30",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        }
+      },
+      "arrival_date": {
+        "field_citation": {
+          "source_text": "Arrivo 9 febbraio 2025 ore 04:15",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9 febbraio 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        }
+      },
+      "arrival_time": {
+        "field_citation": {
+          "source_text": "Arrivo 9 febbraio 2025 ore 04:15",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "04:15",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Partenza 9 febbraio 2025 ore 01:30\nArrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        }
+      },
+      "departure_location": {
+        "field_citation": {
+          "source_text": "FS Piazz.le G. Marconi, Chieti Scalo (CH)",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "FS Piazz.le G. Marconi, Chieti Scalo (CH)\nBIGLIETTO 2962036-7",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "FS Piazz.le G. Marconi, Chieti Scalo (CH)",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "FS Piazz.le G. Marconi, Chieti Scalo (CH)\nBIGLIETTO 2962036-7",
+          "match_type": "exact"
+        }
+      },
+      "ticket_number": {
+        "field_citation": {
+          "source_text": "BIGLIETTO 2962036-7",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "FS Piazz.le G. Marconi, Chieti Scalo (CH)\nBIGLIETTO 2962036-7",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2962036-7",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "FS Piazz.le G. Marconi, Chieti Scalo (CH)\nBIGLIETTO 2962036-7",
+          "match_type": "exact"
+        }
+      },
+      "total_price": {
+        "field_citation": {
+          "source_text": "Totale\n€ 30,40",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Tariffa\nSconto\nTotale\nExpress\nPromo\nFabio Papadia\n€ 30,40",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€ 30,40",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Tariffa\nSconto\nTotale\nExpress\nPromo\nFabio Papadia\n€ 30,40",
+          "match_type": "exact"
+        }
+      },
+      "arrival_location": {
+        "field_citation": {
+          "source_text": "Arrivo",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Arrivo 9 febbraio 2025 ore 04:15",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Fiumicino aeroporto",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fiumicino aeroporto Chieti scalo",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 42,
+      "fields_with_field_citations": 42,
+      "fields_with_value_citations": 42,
+      "average_confidence": 0.9561904761904761
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "9.1",
+      "image_quality_assessment_seconds": "4.3",
+      "file_classification_seconds": "4.4",
+      "data_extraction_seconds": "4.9",
+      "issue_detection_seconds": "8.6",
+      "citation_generation_seconds": "53.7",
+      "llm_validation_seconds": "64.2"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-08-26T16:00:52.085Z",
+        "end_time": "2025-08-26T16:01:01.167Z",
+        "duration_seconds": "9.1",
+        "document_reader_used": "textract"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-26T16:01:01.168Z",
+        "end_time": "2025-08-26T16:01:05.453Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-08-26T16:01:01.170Z",
+        "end_time": "2025-08-26T16:01:05.619Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-08-26T16:01:01.171Z",
+        "end_time": "2025-08-26T16:01:06.031Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-26T16:01:06.032Z",
+        "end_time": "2025-08-26T16:01:14.596Z",
+        "duration_seconds": "8.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-26T16:01:06.034Z",
+        "end_time": "2025-08-26T16:01:59.769Z",
+        "duration_seconds": "53.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-08-26T16:01:59.770Z",
+        "end_time": "2025-08-26T16:03:03.975Z",
+        "duration_seconds": "64.2",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "131.9",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.9",
+      "parallel_group_2_seconds": "53.7",
+      "total_parallel_time_seconds": "58.6"
+    }
+  },
+  "metadata": {
+    "filename": "italia_file_4.pdf",
+    "processing_time": 131896,
+    "country": "Italy",
+    "icp": "Global People",
+    "processed_at": "2025-08-26T16:03:03.981Z"
+  }
+}
