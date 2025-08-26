@@ -1035,7 +1035,7 @@ lifecycle_rules:
 
 This MVP architecture provides a solid foundation for a scalable, production-ready AI-powered expense processing service with intelligent receipt recognition and event-driven processing capabilities. The design emphasizes:
 
-1. **Event-Driven Architecture**: Complete RabbitMQ-based message processing replacing HTTP API calls
+1. **Event-Driven Architecture**: Complete RabbitMQ-based message processing
 2. **Intelligent Processing**: Advanced receipt recognition layer for multi-receipt PDF handling
 3. **Modularity**: Clear separation of concerns with microservices architecture
 4. **Scalability**: Horizontal and vertical scaling with AWS Aurora Serverless auto-scaling
@@ -1044,4 +1044,4 @@ This MVP architecture provides a solid foundation for a scalable, production-rea
 7. **Security**: Enterprise-grade security and compliance features
 8. **Cost Efficiency**: Optimized resource utilization with serverless database scaling
 
-The enhanced architecture with RabbitMQ event-driven processing, Receipt Recognition layer, and AWS Aurora Serverless ensures efficient processing of complex multi-receipt documents while maintaining the robust, enterprise-ready foundation for rapid scaling and deployment.
+The enhanced architecture ensures efficient processing of expense documents and maintaining the robust, enterprise-ready foundation for rapid scaling and deployment.
