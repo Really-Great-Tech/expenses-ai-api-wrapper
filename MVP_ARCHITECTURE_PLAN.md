@@ -14,7 +14,7 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 6. [Security & Compliance](#security--compliance)
 7. [Monitoring & Observability](#monitoring--observability)
 8. [Deployment Strategy](#deployment-strategy)
-9. [API Design](#api-design)
+9. [Event-Driven Architecture Design](#event-driven-architecture-design)
 10. [Performance Requirements](#performance-requirements)
 11. [Disaster Recovery](#disaster-recovery)
 12. [Cost Optimization](#cost-optimization)
@@ -22,10 +22,12 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 ## System Overview
 
 ### Core Functionality
+- **Event-Driven Processing**: RabbitMQ-based message consumption for document processing requests
+- **Receipt Recognition**: Intelligent multi-receipt PDF splitting and individual receipt processing
 - **Document Processing**: Multi-format expense document ingestion (PDF, images)
 - **AI-Powered Analysis**: Multi-agent workflow for classification, extraction, and validation
 - **Compliance Checking**: Country-specific expense policy validation
-- **Real-time Processing**: Asynchronous job processing with status tracking
+- **Asynchronous Processing**: Queue-based job processing with status tracking
 - **Quality Assessment**: Image quality analysis and recommendations
 
 ### Key Features
@@ -33,24 +35,25 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 - Parallel processing with two-stage agent execution
 - LLM-as-judge validation system
 - Comprehensive audit trails via Langfuse
-- RESTful API with OpenAPI documentation
+- RabbitMQ event-driven architecture
 - Health monitoring and metrics collection
 
 ## Architecture Components
 
-### 1. API Gateway Layer
+### 1. Message Broker Layer
 ```
 ┌─────────────────────────────────────────┐
-│              Load Balancer              │
-│         (AWS ALB / NGINX)               │
-└─────────────────────────────────────────┘
-                    │
-┌─────────────────────────────────────────┐
-│            API Gateway                  │
-│    - Rate Limiting (100 req/min)       │
-│    - Authentication & Authorization    │
-│    - Request/Response Logging          │
-│    - CORS Management                   │
+│            RabbitMQ Broker              │
+│          (External System)              │
+│                                         │
+│  ┌─────────────────────────────────────┐ │
+│  │         Message Queues              │ │
+│  │                                     │ │
+│  │ - document.processing.queue         │ │
+│  │ - document.results.queue            │ │
+│  │ - document.status.queue             │ │
+│  │ - system.health.queue               │ │
+│  └─────────────────────────────────────┘ │
 └─────────────────────────────────────────┘
 ```
 
@@ -60,13 +63,23 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │         NestJS Application              │
 │                                         │
 │  ┌─────────────┐  ┌─────────────────┐   │
-│  │ Controllers │  │    Services     │   │
-│  │             │  │                 │   │
-│  │ - Document  │  │ - Processing    │   │
-│  │ - Health    │  │ - User Session  │   │
-│  │ - Validation│  │ - Langfuse      │   │
-│  │ - Invoice   │  │ - Dataset Mgmt  │   │
+│  │ RabbitMQ    │  │    Services     │   │
+│  │ Consumers   │  │                 │   │
+│  │             │  │ - Processing    │   │
+│  │ - Document  │  │ - User Session  │   │
+│  │ - Health    │  │ - Langfuse      │   │
+│  │ - Validation│  │ - Dataset Mgmt  │   │
+│  │ - Results   │  │ - Message Pub   │   │
 │  └─────────────┘  └─────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────────┐ │
+│  │      Receipt Recognition Layer      │ │
+│  │                                     │ │
+│  │ - Multi-Receipt PDF Detection      │ │
+│  │ - Document Splitting Service       │ │
+│  │ - Invoice Splitter Agent           │ │
+│  │ - Page Boundary Analysis           │ │
+│  └─────────────────────────────────────┘ │
 │                                         │
 │  ┌─────────────────────────────────────┐ │
 │  │         AI Agent Layer              │ │
@@ -76,6 +89,16 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │  │ - Issue Detection Agent            │ │
 │  │ - Citation Generator Agent         │ │
 │  │ - Image Quality Assessment Agent   │ │
+│  └─────────────────────────────────────┘ │
+│                                         │
+│  ┌─────────────────────────────────────┐ │
+│  │         Validation Layer            │ │
+│  │                                     │ │
+│  │ - LLM-as-Judge Validation          │ │
+│  │ - Compliance Verification          │ │
+│  │ - Expense Policy Validation        │ │
+│  │ - Country-Specific Rule Engine     │ │
+│  │ - Parallel Validation Processing   │ │
 │  └─────────────────────────────────────┘ │
 └─────────────────────────────────────────┘
 ```
@@ -112,8 +135,7 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │  ┌─────────────────────────────────────┐ │
 │  │      Document Processing            │ │
 │  │                                     │ │
-│  │ - AWS Textract (Primary)           │ │
-│  │ - LlamaIndex (Alternative)         │ │
+│  │ - AWS Textract                     │ │
 │  └─────────────────────────────────────┘ │
 └─────────────────────────────────────────┘
 ```
@@ -126,7 +148,7 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │  ┌─────────────┐  ┌─────────────────┐   │
 │  │File Storage │  │   Databases     │   │
 │  │             │  │                 │   │
-│  │ - S3 Bucket │  │ - PostgreSQL    │   │
+│  │ - S3 Bucket │  │ - AWS Aurora    │   │
 │  │ - Local FS  │  │   (User Data)   │   │
 │  │ - CDN       │  │ - Redis         │   │
 │  │             │  │   (Cache/Queue) │   │
@@ -141,11 +163,11 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │                                         │
 │  ┌─────────────┐  ┌─────────────────┐   │
 │  │  Langfuse   │  │   Monitoring    │   │
-│  │             │  │                 │   │
+│  │             │  │(Needs Approval) │   │
 │  │ - LLM Traces│  │ - Prometheus    │   │
 │  │ - Prompts   │  │ - Grafana       │   │
 │  │ - Analytics │  │ - AlertManager  │   │
-│  │ - Debugging │  │ - ELK Stack     │   │
+│  │ - Debugging │  │                 │   │
 │  └─────────────┘  └─────────────────┘   │
 └─────────────────────────────────────────┘
 ```
@@ -155,22 +177,27 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 ### Backend Framework
 - **NestJS**: Enterprise-grade Node.js framework
 - **TypeScript**: Type-safe development
-- **Express**: HTTP server foundation
+- **Node.js**: Runtime environment for message processing
 
 ### AI & ML Services
 - **AWS Bedrock**: Primary LLM provider (Nova Pro/Lite, Claude 3.5)
 - **Anthropic Claude**: Fallback LLM provider
 - **AWS Textract**: Document OCR and analysis
-- **LlamaIndex**: Alternative document processing
 
-### Queue & Caching
-- **BullMQ**: Advanced job queue system
+### Message Broker & Caching
+- **RabbitMQ**: Message broker for event-driven processing (external)
+- **amqplib**: RabbitMQ client library for Node.js
+- **BullMQ**: Internal job queue system
 - **Redis**: In-memory data store and cache
 - **IORedis**: Redis client with clustering support
 
 ### Storage
-- **AWS S3**: Object storage for documents
-- **AWS Aurora/PostgreSQL**: Relational database for structured data
+- **AWS S3**: Object storage for documents and split receipt files
+- **AWS Aurora Serverless**: Auto-scaling relational database with:
+  - Automatic scaling based on demand
+  - Multi-AZ deployment for high availability
+  - Automated backups and point-in-time recovery
+  - Enhanced security with encryption at rest and in transit
 
 ### Monitoring & Observability
 - **Langfuse**: LLM observability and prompt management
@@ -185,50 +212,56 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 
 ## Data Flow Architecture
 
-### 1. Document Ingestion Flow
+### 1. Message Consumption Flow
 ```mermaid
 graph TD
-    A[Client Upload] --> B[API Gateway]
-    B --> C[Document Controller]
-    C --> D[File Validation]
-    D --> E[Store in S3]
-    E --> F[Create Job in Queue]
-    F --> G[Return Job ID]
+    A[RabbitMQ Message Queue] --> B[Message Consumer]
+    B --> C[Message Validation]
+    C --> D[Document Retrieval from S3]
+    D --> E[Create Internal Processing Job]
+    E --> F[Start Processing Pipeline]
+    F --> G[Publish Status Update]
 ```
 
-### 2. Enhanced Processing Pipeline with Quality Gates
+### 2. Processing Pipeline
 ```mermaid
 graph TD
     A[Job Queue] --> B[Duplicate Check]
     B --> C{File Hash Exists?}
     C -->|Yes| D[Return Cached Result]
-    C -->|No| E[Document Reader]
-    E --> F[Markdown Extraction]
-    F --> G[Image Quality Assessment]
-    G --> H{Quality Score > Threshold?}
-    H -->|No| I[Return Quality Error]
-    H -->|Yes| J[Parallel Group 1]
+    C -->|No| E[Receipt Recognition Layer]
+    E --> F{Multi-Receipt PDF?}
+    F -->|Yes| G[Split into Individual Receipts]
+    F -->|No| H[Single Receipt Processing]
+    G --> I[Process Each Receipt Separately]
+    H --> J[Document Reader]
+    I --> J
+    J --> K[Markdown Extraction]
+    K --> L[Image Quality Assessment]
+    L --> M{Quality Score > Threshold?}
+    M -->|No| N[Return Quality Error]
+    M -->|Yes| O[Parallel Group 1]
     
-    J --> K[Classification Agent]
-    J --> L[Extraction Agent]
-    G --> J
+    O --> P[Classification Agent]
+    O --> Q[Extraction Agent]
+    L --> O
     
-    K --> M[Parallel Group 2]
-    L --> M
+    P --> R[Parallel Group 2]
+    Q --> R
     
-    M --> N[Issue Detection Agent]
-    M --> O[Citation Generator Agent]
+    R --> S[Issue Detection Agent]
+    R --> T[Citation Generator Agent]
     
-    N --> P[LLM Validation]
-    O --> P
-    P --> Q[Save Results & Cache]
-    Q --> R[Update Job Status]
+    S --> U[LLM Validation]
+    T --> U
+    U --> V[Save Results & Cache]
+    V --> W[Update Job Status]
 ```
 
 ### 3. Duplicate Detection Flow
 ```mermaid
 graph TD
-    A[File Upload] --> B[Generate SHA-256 Hash]
+    A[Document Processing Message] --> B[Generate SHA-256 Hash]
     B --> C[Check Redis Cache]
     C --> D{Hash + User Exists?}
     D -->|Yes| E[Check Result Status]
@@ -243,15 +276,15 @@ graph TD
 ### 4. Quality Gate Decision Tree
 ```mermaid
 graph TD
-    A[Image Quality Assessment] --> B{Blur Score > 0.7?}
-    B -->|Yes| C[FAIL: Image too blurry]
-    B -->|No| D{Contrast Score < 0.6?}
-    D -->|Yes| E[FAIL: Poor contrast]
-    D -->|No| F{Glare Level High/Medium?}
-    F -->|Yes| G[FAIL: Glare interference]
-    F -->|No| H{Tears/Folds Detected?}
-    H -->|High Severity| I[FAIL: Document damaged]
-    H -->|No/Low| J[Quality Check PASSED]
+    A[Image Quality Assessment] --> B{Blur Threshold Met?}
+    B -->|No| C[FAIL: Image too blurry]
+    B -->|Yes| D{Contrast Threshold Met?}
+    D -->|No| E[FAIL: Poor contrast]
+    D -->|Yes| F{Glare Threshold Met?}
+    F -->|No| G[FAIL: Glare interference]
+    F -->|Yes| H{Document Damage Threshold Met?}
+    H -->|No| I[FAIL: Document damaged]
+    H -->|Yes| J[Quality Check PASSED]
     J --> K[Continue Processing]
     
     C --> L[Return Quality Error + Recommendations]
@@ -260,15 +293,157 @@ graph TD
     I --> L
 ```
 
-### 5. User Session Management
+### 5. Session Management
 ```mermaid
 graph TD
-    A[User Request] --> B[Session Service]
+    A[Processing Message] --> B[Session Service]
     B --> C[Generate Session ID]
     C --> D[Create Job Mapping]
     D --> E[Store in Redis]
     E --> F[Link to Langfuse Trace]
 ```
+
+### 7. Receipt Recognition Layer
+```
+┌─────────────────────────────────────────┐
+│        Receipt Recognition Layer        │
+│                                         │
+│  ┌─────────────┐  ┌─────────────────┐   │
+│  │   PDF       │  │   Intelligence  │   │
+│  │ Processing  │  │    Engine       │   │
+│  │             │  │                 │   │
+│  │ - Multi-PDF │  │ - LLM Analysis  │   │
+│  │   Detection │  │ - Page Grouping │   │
+│  │ - Page      │  │ - Confidence    │   │
+│  │   Splitting │  │   Scoring       │   │
+│  │ - File      │  │ - Boundary      │   │
+│  │   Creation  │  │   Detection     │   │
+│  └─────────────┘  └─────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────────┐ │
+│  │         Document Processing         │ │
+│  │                                     │ │
+│  │ - AWS Textract Integration         │ │
+│  │ - Markdown Page Parsing            │ │
+│  │ - Receipt Boundary Analysis        │ │
+│  │ - Multi-Page Receipt Handling      │ │
+│  └─────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+```
+
+#### Receipt Recognition Features
+
+**Multi-Receipt PDF Detection**: The system automatically analyzes uploaded PDF files to determine if they contain multiple individual receipts. Using AWS Textract for document extraction and LLM-powered analysis, the system identifies receipt boundaries based on transaction-level identifiers rather than document container headers.
+
+**Intelligent Splitting Logic**: The Receipt Recognition layer implements sophisticated logic to distinguish between document containers (expense reports, compilations) and individual transactions. It focuses on transaction-level identifiers such as receipt numbers, transaction times, totals, and payment methods to accurately separate individual receipts.
+
+**Page Boundary Analysis**: The system handles complex scenarios including:
+- Multiple receipts on a single page
+- Single receipts spanning multiple pages
+- Mixed document types within the same PDF
+- Expense report containers with multiple individual receipts
+
+**Quality and Confidence Scoring**: Each detected receipt boundary includes confidence scoring and detailed reasoning to ensure accurate splitting. The system provides transparency in its decision-making process and allows for manual review of low-confidence splits.
+
+**Bypass Logic for Single Receipts**: Single-page files (images, single-page PDFs) automatically bypass the splitting process and proceed directly to the main processing pipeline, optimizing performance for simple cases.
+
+#### Receipt Recognition Flow
+```mermaid
+graph TD
+    A[Document Processing Job] --> B[File Type Detection]
+    B --> C{Multi-Page PDF?}
+    C -->|No| D[Direct to Processing Pipeline]
+    C -->|Yes| E[Extract Full Document with Textract]
+    E --> F[Parse Page Markers]
+    F --> G[LLM Receipt Boundary Analysis]
+    G --> H{Multiple Receipts Detected?}
+    H -->|No| I[Single Receipt - Direct Processing]
+    H -->|Yes| J[Create Split PDF Files]
+    J --> K[Generate Individual Receipt Jobs]
+    K --> L[Queue Each Receipt for Processing]
+    I --> M[Main Processing Pipeline]
+    L --> M
+```
+
+#### Integration with Existing Pipeline
+
+The Receipt Recognition layer seamlessly integrates with the existing expense processing pipeline:
+
+**Pre-Processing Stage**: Receipt recognition occurs immediately after duplicate detection and before quality assessment, ensuring that each individual receipt is processed independently with its own quality validation.
+
+**Job Queue Integration**: When multiple receipts are detected, the system creates separate processing jobs for each individual receipt, allowing for parallel processing and independent status tracking.
+
+**Result Aggregation**: Results from split receipts can be aggregated at the user session level while maintaining individual receipt traceability and audit trails.
+
+**Error Handling**: If receipt splitting fails, the system gracefully falls back to processing the entire document as a single unit, ensuring no processing failures due to splitting issues.
+
+### 8. RabbitMQ Integration Layer
+```
+┌─────────────────────────────────────────┐
+│        RabbitMQ Integration             │
+│                                         │
+│  ┌─────────────┐  ┌─────────────────┐   │
+│  │  Consumer   │  │    Publisher    │   │
+│  │  Services   │  │    Services     │   │
+│  │             │  │                 │   │
+│  │ - Document  │  │ - Status Updates│   │
+│  │   Processing│  │ - Results       │   │
+│  │ - Validation│  │ - Error Reports │   │
+│  │ - Health    │  │ - Progress      │   │
+│  │   Checks    │  │   Notifications │   │
+│  └─────────────┘  └─────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────────┐ │
+│  │         Message Handling            │ │
+│  │                                     │ │
+│  │ - Message Validation & Parsing     │ │
+│  │ - Dead Letter Queue Management     │ │
+│  │ - Retry Logic & Exponential Backoff│ │
+│  │ - Consumer Scaling & Load Balancing│ │
+│  └─────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+```
+
+#### RabbitMQ Integration Features
+
+**Message Consumer Architecture**: The system implements multiple specialized consumers for different message types. Document processing consumers handle expense document analysis requests, validation consumers process compliance verification requests, and health check consumers monitor system status. Each consumer type can be scaled independently based on message volume and processing requirements.
+
+**Queue Configuration**: The system uses durable queues with appropriate routing keys and exchange configurations. Document processing messages are routed through topic exchanges to enable flexible message routing based on document type, country, and processing requirements. Dead letter queues capture failed messages for manual review and reprocessing.
+
+**Message Acknowledgment**: All consumers implement manual message acknowledgment to ensure reliable processing. Messages are acknowledged only after successful processing completion, preventing message loss during system failures or processing errors. Failed messages are rejected and routed to dead letter queues for investigation.
+
+**Consumer Scaling**: The system supports horizontal scaling of consumer instances based on queue depth and processing load. Multiple consumer instances can process messages concurrently, with automatic load balancing across available consumers. Consumer instances can be added or removed dynamically based on system demand.
+
+**Error Handling and Retry Logic**: Failed message processing triggers intelligent retry mechanisms with exponential backoff. Transient errors (network issues, temporary service unavailability) are retried automatically, while permanent errors (invalid message format, missing required fields) are immediately routed to dead letter queues.
+
+#### Message Flow Architecture
+```mermaid
+graph TD
+    A[RabbitMQ Document Processing Queue] --> B[Document Consumer]
+    C[RabbitMQ Health Check Queue] --> D[Health Consumer]
+    
+    B --> E[Receipt Recognition]
+    B --> F[Quality Assessment]
+    B --> G[AI Processing Pipeline]
+    B --> H[Validation Processing]
+    
+    E --> I[Status Publisher]
+    F --> I
+    G --> I
+    H --> I
+    
+    I --> J[RabbitMQ Results Queue]
+    I --> K[RabbitMQ Status Queue]
+```
+
+#### Integration with Existing Pipeline
+
+**Message-Driven Processing Integration**: RabbitMQ consumers trigger the processing pipeline by consuming messages from designated queues. Document processing messages are validated, parsed, and passed to the Receipt Recognition layer, followed by quality assessment and AI processing stages.
+
+**Status Publishing**: Throughout the processing pipeline, status updates are published to designated result queues. External systems can consume these status messages to track processing progress, handle completion notifications, and respond to error conditions.
+
+**Result Distribution**: Completed processing results are published to result queues with comprehensive processing outcomes, quality scores, and AI-generated insights. Results are made available for consumption through designated result queues.
+
 
 ## Scalability Design
 
@@ -323,8 +498,9 @@ The system implements a sophisticated two-stage parallel processing architecture
 - **Concurrency Control**: Configurable per-worker concurrency
 
 #### 3. Database Scaling
-- **Read Replicas**: PostgreSQL read replicas for query scaling
-- **Connection Pooling**: PgBouncer for connection management
+- **Aurora Serverless**: Auto-scaling compute capacity based on demand
+- **Aurora Read Replicas**: Multi-AZ read replicas for query scaling
+- **Connection Pooling**: RDS Proxy for connection management
 - **Redis Clustering**: Redis Cluster for cache scaling
 
 ### Vertical Scaling Considerations
@@ -363,16 +539,7 @@ spec:
 
 ## Security & Compliance
 
-### 1. Authentication & Authorization
-The system implements JWT-based authentication with role-based access control. Each authenticated request includes a token containing user identification, assigned roles, permissions, and expiration time. The system supports three primary user roles:
-
-- **Admin Role**: Full system access including user management, system configuration, and all processing operations
-- **User Role**: Standard access for document processing, result retrieval, and personal data management
-- **Viewer Role**: Read-only access to results and status information without processing capabilities
-
-Authentication tokens are validated on each request, with automatic refresh mechanisms to maintain session continuity while ensuring security through token expiration.
-
-### 2. Data Protection
+### 1. Data Protection
 - **Encryption at Rest**: AES-256 for stored documents
 - **Encryption in Transit**: TLS 1.3 for all communications
 - **PII Handling**: Automatic detection and masking
@@ -381,16 +548,7 @@ Authentication tokens are validated on each request, with automatic refresh mech
 - **File Integrity**: Checksum validation on upload and processing
 - **Cache Security**: Encrypted Redis cache with TTL expiration
 
-### 3. API Security
-The API implements comprehensive security measures to protect against common attacks and ensure data integrity:
-
-**Rate Limiting**: Each IP address is limited to 100 requests per minute to prevent abuse and ensure fair resource allocation. The system returns appropriate HTTP status codes and headers when limits are exceeded.
-
-**Input Validation**: All incoming requests undergo strict validation to ensure data integrity and prevent injection attacks. Required fields like country and ICP are validated for presence and format, while optional parameters like document reader selection are sanitized.
-
-**Request Sanitization**: All user inputs are sanitized to remove potentially malicious content, with special attention to file uploads and text parameters that could contain executable code or SQL injection attempts.
-
-### 4. Compliance Features
+### 2. Compliance Features
 - **GDPR Compliance**: Data subject rights implementation
 - **SOC 2**: Security controls and audit trails
 - **HIPAA Ready**: Healthcare data handling capabilities
@@ -400,7 +558,7 @@ The API implements comprehensive security measures to protect against common att
 
 ### 1. Application Metrics
 ```typescript
-// Enhanced metrics collection with quality and duplicate tracking
+// Enhanced metrics collection with receipt recognition, quality and duplicate tracking
 interface ProcessingMetrics {
   totalJobs: number;
   completedJobs: number;
@@ -408,8 +566,9 @@ interface ProcessingMetrics {
   duplicateJobs: number;
   qualityFailures: number;
   timeoutFailures: number;
+  receiptSplittingJobs: number;
+  averageReceiptsPerDocument: number;
   averageProcessingTime: number;
-  averageQualityScore: number;
   queueHealth: QueueHealthMetrics;
 }
 
@@ -420,8 +579,16 @@ interface QualityMetrics {
   glareFailures: number;
   tearFailures: number;
   obstructionFailures: number;
-  overallQualityScore: number;
   qualityPassRate: number;
+}
+
+// Receipt recognition metrics
+interface ReceiptRecognitionMetrics {
+  totalMultiReceiptDocuments: number;
+  averageReceiptsPerDocument: number;
+  splittingSuccessRate: number;
+  splittingConfidenceScore: number;
+  averageSplittingTime: number;
 }
 
 // Duplicate detection metrics
@@ -458,7 +625,7 @@ The system implements multi-layered health monitoring to ensure reliable operati
 ### 3. Alerting Strategy
 The monitoring system implements intelligent alerting to ensure rapid response to operational issues:
 
-**Error Rate Monitoring**: Alerts trigger when HTTP 5xx error rates exceed 10% over a 5-minute period, indicating potential system issues requiring immediate attention. These critical alerts notify on-call engineers within 2 minutes of detection.
+**Error Rate Monitoring**: Alerts trigger when message processing error rates exceed 10% over a 5-minute period, indicating potential system issues requiring immediate attention. These critical alerts notify on-call engineers within 2 minutes of detection.
 
 **Queue Health Monitoring**: Warning alerts activate when job queues exceed 100 waiting jobs for more than 5 minutes, suggesting processing bottlenecks or resource constraints that may require scaling intervention.
 
@@ -512,68 +679,116 @@ The system implements blue-green deployment strategy for zero-downtime updates a
 
 **Gradual Rollout**: The system supports gradual traffic shifting, allowing a percentage of traffic to be routed to the new version while monitoring for issues before full cutover.
 
-## API Design
+## Event-Driven Architecture Design
 
-### 1. Enhanced RESTful API Design
-The API provides comprehensive document processing capabilities with built-in duplicate detection and quality validation:
+### 1. RabbitMQ Message-Based Processing
+The system operates entirely through RabbitMQ message consumption for event-driven document processing:
 
-**Document Processing Endpoint**: The primary processing endpoint first generates a SHA-256 hash of the uploaded file and checks against a user-scoped cache for duplicates. If a duplicate is found, the system immediately returns the cached results without reprocessing, significantly improving response times and reducing computational costs.
+**Document Processing Messages**: The system consumes document processing requests from designated RabbitMQ queues. Each message contains document metadata, file location (S3 path or base64 encoded content), processing parameters, and user context. The system generates a SHA-256 hash for duplicate detection and validates message structure before processing.
 
-For new files, the system validates file format, size constraints, and user permissions before queuing the document for processing. The endpoint supports configurable quality thresholds and timeout values, allowing clients to specify processing requirements based on their use case.
+**Message Validation**: All incoming messages undergo strict validation to ensure data integrity and prevent malformed requests. Required fields include country, ICP (Internal Control Policy), document type, and user identification. Optional parameters support document reader selection, quality thresholds, and timeout configurations.
 
-**Status Monitoring**: The status endpoint provides real-time processing updates with enhanced error categorization. Errors are classified into specific types (TIMEOUT_ERROR, QUALITY_ERROR, DUPLICATE_ERROR, NETWORK_ERROR, PROCESSING_ERROR) to enable intelligent client-side handling and user feedback.
+**Status Broadcasting**: Processing status updates are published to dedicated result queues, enabling real-time progress tracking. Status messages include job identification, current processing stage, completion percentages, error categorization (TIMEOUT_ERROR, QUALITY_ERROR, DUPLICATE_ERROR, PROCESSING_ERROR), and detailed progress information.
 
-**Results Retrieval**: The results endpoint returns comprehensive processing outcomes including quality scores, duplicate indicators, and detailed processing metrics. Results include confidence scores for AI-generated insights and quality assessments for transparency.
+**Results Publishing**: Completed processing results are published to result queues with comprehensive outcomes including quality scores, duplicate indicators, processing metrics, confidence scores for AI-generated insights, and quality assessments for transparency.
 
-**Validation Services**: A dedicated validation endpoint allows post-processing verification using LLM-as-judge techniques, providing additional confidence scoring and compliance verification.
+**Validation Processing**: Post-processing verification is handled within the document consumer using LLM-as-judge techniques for additional confidence scoring and compliance verification.
 
-**Request/Response Structure**: All endpoints support structured request validation with required fields (country, ICP) and optional parameters (document reader selection, quality thresholds, timeout values). Responses include comprehensive metadata about processing status, quality metrics, and performance indicators.
+**Message Structure**: All messages follow standardized JSON schemas with required fields (messageId, timestamp, userId, documentId, country, ICP) and optional parameters (documentReader, qualityThresholds, timeoutSettings). Response messages include comprehensive metadata about processing status, quality metrics, and performance indicators.
 
-**Enhanced Data Transfer Objects**: Request validation includes country and ICP as required fields, with optional parameters for document reader selection, quality check bypass, configurable quality thresholds (0.1-1.0 range), and timeout settings (30 seconds to 1 minute maximum).
+### 2. RabbitMQ Queue Architecture
+The system implements a comprehensive queue-based communication pattern for all processing operations:
 
-**Response Types**: Processing responses include job identification, status indicators, duplicate flags, quality issue details, and estimated processing times. Status responses provide comprehensive progress tracking across all processing phases including quality assessment and LLM validation.
+**Queue Topology**: The system consumes from specialized queues including document processing and health checks. Each queue is configured with appropriate durability, routing, and dead letter queue settings for reliable message handling.
 
-### 2. Real-Time Communication
-The system provides WebSocket-based real-time updates for enhanced user experience during document processing:
+**Message Routing**: Messages are routed based on content type and processing requirements. Document processing messages are distributed across multiple consumer instances for load balancing, while validation requests are handled by specialized validation consumers.
 
-**Job Subscription Model**: Clients can subscribe to specific job updates by providing a job ID, enabling real-time progress tracking without polling. The system maintains secure, user-scoped connections to ensure data privacy and prevents unauthorized access to job status information.
+**Progress Publishing**: As documents move through the processing pipeline (receipt recognition, quality assessment, classification, extraction, compliance checking, citation generation), the system publishes progress updates to designated status and result queues with detailed stage information and completion percentages.
 
-**Progress Notifications**: As documents move through the processing pipeline (quality assessment, classification, extraction, compliance checking, citation generation), clients receive immediate updates with progress percentages and current stage information. This includes detailed progress tracking for each processing phase.
+**Error Handling**: Processing failures, quality gate rejections, and timeout errors are published to the status queue with specific categorization and actionable recommendations. Dead letter queues capture messages that cannot be processed after retry attempts.
 
-**Error Broadcasting**: Quality failures, timeouts, and processing errors are immediately broadcast to subscribed clients, allowing for immediate user feedback and potential corrective actions. Error messages include specific categorization and actionable recommendations.
+**Consumer Management**: The system implements multiple consumer instances with configurable concurrency levels, automatic reconnection, and graceful shutdown handling. Message acknowledgment ensures reliable processing and prevents message loss during system failures.
 
-**Connection Management**: The WebSocket gateway handles connection lifecycle, automatic reconnection, and graceful degradation when real-time updates are unavailable. CORS configuration allows cross-origin connections while maintaining security through proper authentication.
+**Event Publishing**: The system publishes structured events containing job identification, current processing stage, completion percentages, error details, and comprehensive metadata to designated status and result queues for consumption.
 
-**Event-Driven Updates**: The system emits structured progress events containing job identification, current processing stage, completion percentages, and any relevant metadata. Clients can handle these events to update user interfaces in real-time.
-
-### 3. OpenAPI Documentation
+### 3. Message Schema Documentation
 ```typescript
-// Swagger configuration
-const config = new DocumentBuilder()
-  .setTitle('Expense Processing Service')
-  .setDescription('AI-powered expense document processing service')
-  .setVersion('1.0')
-  .addTag('documents', 'Document processing endpoints')
-  .addTag('validation', 'Validation endpoints')
-  .addTag('health', 'Health check endpoints')
-  .addBearerAuth()
-  .build();
+// RabbitMQ Message Schemas
+interface DocumentProcessingMessage {
+  messageId: string;
+  timestamp: string;
+  userId: string;
+  documentId: string;
+  country: string;
+  icp: string;
+  documentType: 'pdf' | 'image';
+  fileLocation: {
+    s3Bucket?: string;
+    s3Key?: string;
+    base64Content?: string;
+  };
+  processingOptions?: {
+    documentReader?: 'textract';
+    qualityThresholds?: QualityThresholds;
+    timeoutSeconds?: number;
+    bypassQualityCheck?: boolean;
+  };
+  metadata?: Record<string, any>;
+}
+
+interface ProcessingStatusMessage {
+  messageId: string;
+  correlationId: string;
+  timestamp: string;
+  userId: string;
+  documentId: string;
+  status: 'PROCESSING' | 'COMPLETED' | 'FAILED';
+  stage: string;
+  progress: number;
+  error?: {
+    type: 'TIMEOUT_ERROR' | 'QUALITY_ERROR' | 'PROCESSING_ERROR';
+    message: string;
+    details?: any;
+  };
+  results?: ProcessingResults;
+}
+
+interface ValidationMessage {
+  messageId: string;
+  timestamp: string;
+  userId: string;
+  documentId: string;
+  validationType: 'compliance' | 'quality' | 'accuracy';
+  processingResults: ProcessingResults;
+  validationCriteria?: Record<string, any>;
+}
 ```
 
 ## Performance Requirements
 
-### 1. Response Time Targets
+### 1. Message Processing Time Targets
 ```
-Endpoint                    Target      Acceptable
+Message Type                Target      Acceptable
 ─────────────────────────────────────────────────
-POST /documents/process     < 200ms     < 500ms
-GET  /documents/:id/status  < 100ms     < 200ms
-GET  /documents/:id/results < 150ms     < 300ms
+Message Consumption         < 50ms      < 100ms
+Message Validation          < 100ms     < 200ms
+Status Publishing           < 50ms      < 100ms
 Processing Pipeline         < 30s       < 60s
+Result Publishing           < 100ms     < 200ms
 ```
 
 ### 2. Throughput Requirements
-## Enhanced Processing Logic
+```
+Metric                      Target      Peak
+─────────────────────────────────────────────
+Documents/hour              1,000       2,500
+Concurrent consumers        10          25
+Messages/second             50          125
+Queue processing rate       10 jobs/s   25 jobs/s
+Message publishing rate     100 msg/s   250 msg/s
+```
+
+### 3. Enhanced Processing Logic
 
 ### 1. Duplicate Detection Service
 The duplicate detection service implements intelligent file deduplication to optimize processing resources and improve response times:
@@ -593,7 +808,7 @@ The quality gate service implements comprehensive image quality validation to en
 
 **Configurable Thresholds**: Quality standards are environment-configurable, allowing different thresholds for development, staging, and production environments. Default thresholds include blur detection at 0.7 confidence, contrast assessment at 0.6, and glare detection at medium severity level.
 
-**Scoring Algorithm**: The service calculates an overall quality score by applying weighted penalties for detected issues. Blur detection reduces the score by 70%, poor contrast by 60%, glare by 80%, and significant tears by 70%. The overall minimum acceptable score defaults to 0.5 but can be configured.
+**Threshold-Based Assessment**: The service evaluates each quality dimension against individual configurable thresholds with specific score and severity criteria. Each quality check (blur, contrast, glare, document damage) has its own threshold settings. If any image fails to meet any of the configured thresholds, the system immediately flags a quality error and terminates processing.
 
 **Early Termination**: When quality issues are detected that fall below thresholds, processing is immediately terminated with specific error messages and recommendations. This prevents wasted computational resources on documents that cannot be accurately processed.
 
@@ -627,7 +842,7 @@ The system implements sophisticated retry logic that adapts to different error t
 - **Timeout Errors**: Only retried once, as subsequent attempts are likely to timeout again
 - **Duplicate Detection Errors**: Never retried as they represent successful duplicate identification
 - **File System Errors**: Never retried for missing files, as they indicate permanent issues
-- **Network/API Errors**: Retried up to 3 attempts with exponential backoff for transient issues
+- **Network Errors**: Retried up to 3 attempts with exponential backoff for transient issues
 
 **Exponential Backoff**: Retry delays increase exponentially (2 seconds, 4 seconds, 8 seconds) with a maximum cap of 10 seconds to prevent excessive delays while allowing transient issues to resolve.
 
@@ -638,13 +853,15 @@ The system implements sophisticated retry logic that adapts to different error t
 ### 5. Enhanced Monitoring and Alerting
 The monitoring system includes specialized alerts for quality gates, duplicates, and timeout scenarios:
 
+**Receipt Recognition Monitoring**: Alerts activate when receipt splitting failure rates exceed 20% over 5 minutes, indicating potential issues with the LLM analysis or document parsing logic. These alerts help maintain the accuracy of multi-receipt processing.
+
 **Quality Failure Monitoring**: Alerts trigger when quality gate failure rates exceed 30% over a 5-minute period, indicating potential issues with document submission guidelines, quality threshold calibration, or user education needs. These warnings help identify trends in document quality.
 
 **Duplicate Detection Tracking**: Informational alerts activate when duplicate detection rates exceed 50% over 5 minutes, which may indicate user workflow issues or potential system abuse. While not critical, high duplicate rates can inform user experience improvements.
 
 **Timeout Spike Detection**: Critical alerts fire when job timeout rates exceed 10% over 1 minute, suggesting system performance degradation, resource constraints, or processing bottlenecks requiring immediate attention.
 
-**Trend Analysis**: The monitoring system tracks quality score distributions, duplicate patterns by user, and timeout frequency to identify optimization opportunities and system health trends.
+**Trend Analysis**: The monitoring system tracks receipt splitting patterns, quality score distributions, duplicate patterns by user, and timeout frequency to identify optimization opportunities and system health trends.
 
 
 ## Key Architectural Decisions
@@ -669,15 +886,7 @@ The monitoring system includes specialized alerts for quality gates, duplicates,
 
 This enhanced architecture ensures robust, production-ready processing with comprehensive quality controls and efficient resource utilization.
 ```
-Metric                      Target      Peak
-─────────────────────────────────────────────
-Documents/hour              1,000       2,500
-Concurrent users            100         250
-API requests/second         50          125
-Queue processing rate       10 jobs/s   25 jobs/s
-```
-
-### 3. Resource Utilization
+### 4. Resource Utilization
 ```yaml
 # Resource allocation per component
 api:
@@ -695,10 +904,11 @@ redis:
   memory: "512Mi"
   replicas: 1
 
-postgres:
+aurora:
   cpu: "500m"
   memory: "1Gi"
-  replicas: 1
+  serverless: true
+  auto_scaling: true
 ```
 
 ## Disaster Recovery
@@ -728,9 +938,10 @@ backups:
 #!/bin/bash
 # Disaster recovery script
 
-# 1. Restore database
-pg_restore --host=$DB_HOST --username=$DB_USER \
-  --dbname=$DB_NAME backup_file.sql
+# 1. Restore Aurora database
+aws rds restore-db-cluster-from-snapshot \
+  --db-cluster-identifier=$CLUSTER_ID \
+  --snapshot-identifier=$SNAPSHOT_ID
 
 # 2. Restore file storage
 aws s3 sync s3://backup-bucket/ s3://primary-bucket/
@@ -822,13 +1033,15 @@ lifecycle_rules:
 
 ## Conclusion
 
-This MVP architecture provides a solid foundation for a scalable, production-ready AI-powered expense processing service. The design emphasizes:
+This MVP architecture provides a solid foundation for a scalable, production-ready AI-powered expense processing service with intelligent receipt recognition and event-driven processing capabilities. The design emphasizes:
 
-1. **Modularity**: Clear separation of concerns with microservices architecture
-2. **Scalability**: Horizontal and vertical scaling capabilities
-3. **Reliability**: Comprehensive error handling and recovery mechanisms
-4. **Observability**: Full visibility into system performance and behavior
-5. **Security**: Enterprise-grade security and compliance features
-6. **Cost Efficiency**: Optimized resource utilization and cost management
+1. **Event-Driven Architecture**: Complete RabbitMQ-based message processing replacing HTTP API calls
+2. **Intelligent Processing**: Advanced receipt recognition layer for multi-receipt PDF handling
+3. **Modularity**: Clear separation of concerns with microservices architecture
+4. **Scalability**: Horizontal and vertical scaling with AWS Aurora Serverless auto-scaling
+5. **Reliability**: Comprehensive error handling and recovery mechanisms
+6. **Observability**: Full visibility into system performance and behavior
+7. **Security**: Enterprise-grade security and compliance features
+8. **Cost Efficiency**: Optimized resource utilization with serverless database scaling
 
-The phased implementation approach ensures rapid time-to-market while building towards a robust, enterprise-ready solution.
+The enhanced architecture with RabbitMQ event-driven processing, Receipt Recognition layer, and AWS Aurora Serverless ensures efficient processing of complex multi-receipt documents while maintaining the robust, enterprise-ready foundation for rapid scaling and deployment.
