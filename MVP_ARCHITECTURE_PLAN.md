@@ -95,10 +95,6 @@ This document outlines the MVP architecture for a scalable, production-ready AI-
 │  │         Validation Layer            │ │
 │  │                                     │ │
 │  │ - LLM-as-Judge Validation          │ │
-│  │ - Compliance Verification          │ │
-│  │ - Expense Policy Validation        │ │
-│  │ - Country-Specific Rule Engine     │ │
-│  │ - Parallel Validation Processing   │ │
 │  └─────────────────────────────────────┘ │
 └─────────────────────────────────────────┘
 ```
