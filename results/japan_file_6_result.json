@@ -1,0 +1,468 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\japan_file_6.pdf_full_test_2_sep_1_japan_file_6.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-01T11:09:56.647Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No edges of the document are cut off or excluded from the image.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "All sections of the receipt/invoice are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "accommodation",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Seoul, Korea",
+    "expected_location": "Japan",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location is Seoul, Korea, which does not match the expected location of Japan.",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. It includes details such as the guest name, accommodation charges, dates, and payment method. The total amount and payment confirmation are also present.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. This meets the criteria for being classified as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "SHILLA STAY SAMSUNG",
+    "supplier_address": "506, Yeongdong-daero, Gangnam-gu, Seoul, Korea",
+    "supplier_phone": "82-02-2175-9000",
+    "supplier_fax": "83-02-2175-9100",
+    "supplier_website": "www.shillastay.com",
+    "customer_name": "Ms. MARISSA CATHERINE FORD",
+    "customer_address": "United States",
+    "arrival_date": "2025-05-12",
+    "departure_date": "2025-05-16",
+    "company": null,
+    "no_of_guests": 2,
+    "account_no": null,
+    "confirmation_no": "495688",
+    "room_no": "1414",
+    "currency": "KRW",
+    "total_amount": 865012,
+    "balance_due": 0,
+    "payment_method": "Master Card",
+    "card_last_four": "865,012",
+    "line_items": [
+      {
+        "date": "2025-05-12",
+        "description": "Accommodation Charge",
+        "amount": 196762
+      },
+      {
+        "date": "2025-05-13",
+        "description": "Accommodation Charge",
+        "amount": 222750
+      },
+      {
+        "date": "2025-05-14",
+        "description": "Accommodation Charge",
+        "amount": 222750
+      },
+      {
+        "date": "2025-05-15",
+        "description": "Accommodation Charge",
+        "amount": 222750
+      }
+    ],
+    "receipt_type": "Hotel Receipt",
+    "document_type": "Receipt",
+    "special_notes": "Guest agrees that their liability for the bill is not waived and agrees to hold personal liability in case the indicated person, company or association fails to pay for part or the whole amount of the charges."
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Date of the expense",
+          "description": "The receipt does not clearly show the date when the expense occurred.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must show the date when the expense occurred",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "T-Number (Tax Number)",
+          "description": "The receipt does not show the tax registration number of the supplier.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must show the tax registration number of the supplier",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "Exchange rate of main banks on the day of purchase",
+          "description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "recommendation": "Please provide the exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.",
+          "knowledge_base_reference": "For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "Receipt must be attached, not invoice",
+          "description": "The receipt does not confirm that it is a receipt and not an invoice.",
+          "recommendation": "Please confirm that the document is a receipt and not an invoice, as per the requirement for domestic travel and accommodation expenses.",
+          "knowledge_base_reference": "For domestic travel and accommodation, receipt must be attached, not invoice",
+          "confidence_score": 0.8
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues that need to be addressed. These include missing the date of the expense, the tax registration number of the supplier, and the exchange rate of main banks on the day of purchase. Additionally, it needs confirmation that the document is a receipt and not an invoice. These issues must be resolved to ensure compliance with GoGlobal's ICP requirements for Japan."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Japan",
+      "icp": "GoGlobal",
+      "receipt_type": "accommodation",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "guest_name": {
+        "field_citation": {
+          "source_text": "GUEST NAME",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "GUEST NAME Ms. MARISSA CATHERINE FORD",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Ms. MARISSA CATHERINE FORD",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "GUEST NAME Ms. MARISSA CATHERINE FORD",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "ADDRESS",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ADDRESS\nUnited States",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "United States",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ADDRESS\nUnited States",
+          "match_type": "exact"
+        }
+      },
+      "arrival": {
+        "field_citation": {
+          "source_text": "ARRIVAL",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ARRIVAL\n05-12-25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05-12-25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ARRIVAL\n05-12-25",
+          "match_type": "exact"
+        }
+      },
+      "departure": {
+        "field_citation": {
+          "source_text": "DEPARTURE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DEPARTURE 05-16-25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05-16-25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DEPARTURE 05-16-25",
+          "match_type": "exact"
+        }
+      },
+      "company": {
+        "field_citation": {
+          "source_text": "COMPANY",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "COMPANY\nNO. OF GUEST 2",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NO. OF GUEST 2",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "COMPANY\nNO. OF GUEST 2",
+          "match_type": "contextual"
+        }
+      },
+      "no_of_guest": {
+        "field_citation": {
+          "source_text": "NO. OF GUEST",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "COMPANY\nNO. OF GUEST 2",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "COMPANY\nNO. OF GUEST 2",
+          "match_type": "exact"
+        }
+      },
+      "account_no": {
+        "field_citation": {
+          "source_text": "ACCOUNT NO.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ACCOUNT NO.\nCONF. NO",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "ACCOUNT NO.\nCONF. NO",
+          "match_type": "missing"
+        }
+      },
+      "conf_no": {
+        "field_citation": {
+          "source_text": "CONF. NO",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ACCOUNT NO.\nCONF. NO",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "495688",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "CONF. NO\n495688",
+          "match_type": "exact"
+        }
+      },
+      "room_no": {
+        "field_citation": {
+          "source_text": "ROOM NO.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ROOM NO.\n1414",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1414",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ROOM NO.\n1414",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "TOTAL",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL\nKRW\n865,012/\n865,012",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "865,012",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL\nKRW\n865,012/\n865,012",
+          "match_type": "exact"
+        }
+      },
+      "balance_due": {
+        "field_citation": {
+          "source_text": "BALANCE DUE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BALANCE DUE\nKRW\no",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BALANCE DUE\nKRW\no",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 30,
+      "fields_with_field_citations": 30,
+      "fields_with_value_citations": 25,
+      "average_confidence": 0.895
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.6",
+      "file_classification_seconds": "4.1",
+      "data_extraction_seconds": "4.5",
+      "image_quality_assessment_seconds": "4.6",
+      "issue_detection_seconds": "10.7",
+      "citation_generation_seconds": "26.8",
+      "llm_validation_seconds": "69.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-01T11:09:45.391Z",
+        "end_time": "2025-09-01T11:09:52.030Z",
+        "duration_seconds": "6.6",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-01T11:09:52.033Z",
+        "end_time": "2025-09-01T11:09:56.084Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-01T11:09:52.035Z",
+        "end_time": "2025-09-01T11:09:56.547Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-01T11:09:52.031Z",
+        "end_time": "2025-09-01T11:09:56.647Z",
+        "duration_seconds": "4.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-01T11:09:56.648Z",
+        "end_time": "2025-09-01T11:10:07.336Z",
+        "duration_seconds": "10.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-01T11:09:56.651Z",
+        "end_time": "2025-09-01T11:10:23.436Z",
+        "duration_seconds": "26.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-01T11:10:23.438Z",
+        "end_time": "2025-09-01T11:11:32.461Z",
+        "duration_seconds": "69.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "107.1",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.6",
+      "parallel_group_2_seconds": "26.8",
+      "total_parallel_time_seconds": "31.4"
+    }
+  },
+  "metadata": {
+    "filename": "japan_file_6.pdf",
+    "processing_time": 107112,
+    "country": "Japan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-01T11:11:32.504Z"
+  }
+}

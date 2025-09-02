@@ -1,0 +1,808 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\vietnamese_file_49.pdf_full_test_2_sep_1_vietnamese_file_49.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-01T14:54:37.116Z",
+    "quality_score": 70,
+    "quality_level": "good",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.85,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to camera movement or out-of-focus capture.",
+      "recommendation": "Retake the image ensuring the camera is steady and focused."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure even lighting and avoid shadows when capturing the document."
+    },
+    "glare_identification": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.75,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present in the upper-right corner, slightly affecting readability.",
+      "recommendation": "Adjust the angle of capture to minimize reflections."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "There are no visible tears or folds on the document.",
+      "recommendation": "None required."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the left edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No sections of the document appear to be missing.",
+      "recommendation": "None required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "There are no obstructions blocking the document content.",
+      "recommendation": "None required."
+    },
+    "overall_quality_score": 7
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Vietnamese",
+    "language_confidence": 95,
+    "document_location": "Vietnam",
+    "expected_location": "Vietnam",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 95,
+    "reasoning": "The document contains all necessary fields to be classified as an expense document. It includes supplier details, consumer details, transaction amount, transaction date, invoice number, tax information, payment method, and item description line items.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All 8 required fields are present, confirming this is an expense document."
+    }
+  },
+  "extraction": {
+    "country": "Vietnam",
+    "supplier_name": "CÔNG TY TNHH THE GREEN BOX",
+    "supplier_address": "Số 6 Đường Lê Văn Mién, Phường Thảo Điền, Thành phố Thu Đức, Thành phố Hồ Chí Minh, Việt Nam",
+    "supplier_vat_number": "0316147048",
+    "supplier_phone": null,
+    "supplier_email": "info@thegreenbox.vn",
+    "supplier_website": null,
+    "customer_name": "CÔNG TY TNHH GOGLOBAL VIET NAM",
+    "customer_address": "P.903, Tầng 9, Tòa nhà Diamond Plaza, 34 Lê Duẩn, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh, Việt Nam",
+    "customer_vat_number": "0315261446",
+    "invoice_number": "11415",
+    "receipt_number": null,
+    "transaction_reference": "J7VP65W64LSQVUWU2HCE",
+    "currency": "VND",
+    "total_amount": 1458000,
+    "subtotal": 1350000,
+    "tax_amount": 108000,
+    "tax_rate": 8,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-04-10",
+    "transaction_time": "21:15",
+    "payment_method": "TM/CK",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Lunch promo 5 days",
+        "quantity": 2,
+        "unit_price": 675000,
+        "total_price": 1350000,
+        "category": null
+      }
+    ],
+    "receipt_type": "VAT Invoice",
+    "document_type": "Electronic Invoice",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Hồ Chí Minh",
+    "location_country": "Vietnam",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_phone",
+          "description": "Supplier phone number is missing.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must display the business name of the supplier who provided goods or services.",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Tax amount is present, but ensure tax exemptions are applied correctly.",
+          "recommendation": "Ensure that tax exemptions are correctly applied to purely business-related elements.",
+          "knowledge_base_reference": "Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for expense submission.",
+          "recommendation": "Expense submission must have an itemized report along with clear receipts.",
+          "knowledge_base_reference": "Expense submission must have an itemized report along with clear receipts.",
+          "confidence_score": 0.95
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has missing supplier phone number and requires additional documentation for compliance. Tax exemptions should be verified."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Vietnam",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "Serial No": {
+        "field_citation": {
+          "source_text": "Ký hiêu (Serial No)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "HÓA DON GIÁ TRI GIA TĂNG (VAT INVOICE) GREEN Ký hiêu (Serial No): 1C25MYY",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1C25MYY",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "HÓA DON GIÁ TRI GIA TĂNG (VAT INVOICE) GREEN Ký hiêu (Serial No): 1C25MYY",
+          "match_type": "exact"
+        }
+      },
+      "No": {
+        "field_citation": {
+          "source_text": "Só (No.)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Só (No.): 11415",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11415",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Só (No.): 11415",
+          "match_type": "exact"
+        }
+      },
+      "Date": {
+        "field_citation": {
+          "source_text": "Ngày (date) 10 tháng (month) 04 năm (year) 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ngày (date) 10 tháng (month) 04 năm (year) 2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10 tháng (month) 04 năm (year) 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ngày (date) 10 tháng (month) 04 năm (year) 2025",
+          "match_type": "exact"
+        }
+      },
+      "Tax code": {
+        "field_citation": {
+          "source_text": "Mã sô thué (Tax code)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Mã sô thué (Tax code): 0316147048",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0316147048",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Mã sô thué (Tax code): 0316147048",
+          "match_type": "exact"
+        }
+      },
+      "Address": {
+        "field_citation": {
+          "source_text": "Dia chi (Address)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dia chi (Address): Só 6 Duòng Lê Văn Mién, Phuòng Thão Diên, Thành phô Thu Dúc, Thành phò Hô Chí Minh, Viêt Nam",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Só 6 Duòng Lê Văn Mién, Phuòng Thão Diên, Thành phô Thu Dúc, Thành phò Hô Chí Minh, Viêt Nam",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dia chi (Address): Só 6 Duòng Lê Văn Mién, Phuòng Thão Diên, Thành phô Thu Dúc, Thành phò Hô Chí Minh, Viêt Nam",
+          "match_type": "exact"
+        }
+      },
+      "Email": {
+        "field_citation": {
+          "source_text": "Email",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Email: info@thegreenbox.vn",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "info@thegreenbox.vn",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Email: info@thegreenbox.vn",
+          "match_type": "exact"
+        }
+      },
+      "Buyer's Company Name": {
+        "field_citation": {
+          "source_text": "Tên don vi (Company's name):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        }
+      },
+      "Buyer's Address": {
+        "field_citation": {
+          "source_text": "Dia chi (Address)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dia chi (Address): P.903, Tâng 9, Tòa nhà Diamond Plaza, 34 Lê Duân, Phurong Bên Nghé, Quân 1, Thành phô Hô Chí Minh, Viêt Nam",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "P.903, Tâng 9, Tòa nhà Diamond Plaza, 34 Lê Duân, Phurong Bên Nghé, Quân 1, Thành phô Hô Chí Minh, Viêt Nam",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dia chi (Address): P.903, Tâng 9, Tòa nhà Diamond Plaza, 34 Lê Duân, Phurong Bên Nghé, Quân 1, Thành phô Hô Chí Minh, Viêt Nam",
+          "match_type": "exact"
+        }
+      },
+      "Buyer's Tax code": {
+        "field_citation": {
+          "source_text": "Mã sô thué (Tax code)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Mã sô thué (Tax code): 0315261446",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0315261446",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Mã sô thué (Tax code): 0315261446",
+          "match_type": "exact"
+        }
+      },
+      "Payment method": {
+        "field_citation": {
+          "source_text": "Hình thúc thanh toán (Payment method)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Hình thúc thanh toán (Payment method): TM/CK",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "TM/CK",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Hình thúc thanh toán (Payment method): TM/CK",
+          "match_type": "exact"
+        }
+      },
+      "Total amount": {
+        "field_citation": {
+          "source_text": "Giá tri thanh toán",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông hop Thué suât Tri giá chura thué GTGT Tiên thué GTGT Giá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.458.000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) : 8% 1.350.000 108.000 1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "Seller": {
+        "field_citation": {
+          "source_text": "Don vi bán hàng (Seller)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH THE GREEN BOX",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX",
+          "match_type": "exact"
+        }
+      },
+      "Buyer's fullname": {
+        "field_citation": {
+          "source_text": "Ho tên nguòi mua hàng (Buyer's fullname)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ho tên nguòi mua hàng (Buyer's fullname):",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "Ho tên nguòi mua hàng (Buyer's fullname):",
+          "match_type": "missing"
+        }
+      },
+      "Company's name": {
+        "field_citation": {
+          "source_text": "Tên don vi (Company's name)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        }
+      },
+      "VAT rate": {
+        "field_citation": {
+          "source_text": "Thué suât",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông hop Thué suât Tri giá chura thué GTGT Tiên thué GTGT Giá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "8%",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) : 8% 1.350.000 108.000 1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "Amount before VAT": {
+        "field_citation": {
+          "source_text": "Tri giá chura thué GTGT",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông hop Thué suât Tri giá chura thué GTGT Tiên thué GTGT Giá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.350.000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) : 8% 1.350.000 108.000 1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "VAT amount": {
+        "field_citation": {
+          "source_text": "Tiên thué GTGT",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông hop Thué suât Tri giá chura thué GTGT Tiên thué GTGT Giá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "108.000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) : 8% 1.350.000 108.000 1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "serial_no": {
+        "field_citation": {
+          "source_text": "Ký hiêu (Serial No)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "HÓA DON GIÁ TRI GIA TĂNG\n(VAT INVOICE)\nGREEN\nKý hiêu (Serial No): 1C25MYY",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1C25MYY",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "HÓA DON GIÁ TRI GIA TĂNG\n(VAT INVOICE)\nGREEN\nKý hiêu (Serial No): 1C25MYY",
+          "match_type": "exact"
+        }
+      },
+      "invoice_no": {
+        "field_citation": {
+          "source_text": "Só (No.)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BOX\nSó (No.):\n11415",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11415",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BOX\nSó (No.):\n11415",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "Ngày (date)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Ngày (date) 10 tháng (month) 04 năm (year) 2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10 tháng (month) 04 năm (year) 2025",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Ngày (date) 10 tháng (month) 04 năm (year) 2025",
+          "match_type": "exact"
+        }
+      },
+      "tax_code": {
+        "field_citation": {
+          "source_text": "Mã sô thué (Tax code)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX\nMã sô thué (Tax code): 0316147048",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0316147048",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX\nMã sô thué (Tax code): 0316147048",
+          "match_type": "exact"
+        }
+      },
+      "seller_name": {
+        "field_citation": {
+          "source_text": "Don vi bán hàng (Seller)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH THE GREEN BOX",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Don vi bán hàng (Seller): CÔNG TY TNHH THE GREEN BOX",
+          "match_type": "exact"
+        }
+      },
+      "buyer_name": {
+        "field_citation": {
+          "source_text": "Tên don vi (Company's name)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        }
+      },
+      "vat_rate": {
+        "field_citation": {
+          "source_text": "Thué suât",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông hop\nThué suât\nTri giá chura thué GTGT\nTiên thué GTGT\nGiá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "8%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) :\n8%\n1.350.000\n108.000\n1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "total_amount_before_vat": {
+        "field_citation": {
+          "source_text": "Tri giá chura thué GTGT",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông hop\nThué suât\nTri giá chura thué GTGT\nTiên thué GTGT\nGiá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.350.000",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) :\n8%\n1.350.000\n108.000\n1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "vat_amount": {
+        "field_citation": {
+          "source_text": "Tiên thué GTGT",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông hop\nThué suât\nTri giá chura thué GTGT\nTiên thué GTGT\nGiá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "108.000",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) :\n8%\n1.350.000\n108.000\n1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Giá tri thanh toán",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông hop\nThué suât\nTri giá chura thué GTGT\nTiên thué GTGT\nGiá tri thanh toán",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.458.000",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tông tiên chiu thué suât (Total amount) :\n8%\n1.350.000\n108.000\n1.458.000",
+          "match_type": "exact"
+        }
+      },
+      "Buyer's Company": {
+        "field_citation": {
+          "source_text": "Tên don vi (Company's name)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tên don vi (Company's name): CÔNG TY TNHH GOGLOBAL VIET NAM",
+          "match_type": "exact"
+        }
+      },
+      "Description": {
+        "field_citation": {
+          "source_text": "Tên hàng hóa, dich vu",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "STT Tên hàng hóa, dich vu Do'n vi tính Só lurong Do'n giá Thành tiên",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Lunch promo 5 days",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 Lunch promo 5 days Món 2 675.000 1.350.000",
+          "match_type": "exact"
+        }
+      },
+      "Unit": {
+        "field_citation": {
+          "source_text": "Do'n vi tính",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "STT Tên hàng hóa, dich vu Do'n vi tính Só lurong Do'n giá Thành tiên",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Món",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 Lunch promo 5 days Món 2 675.000 1.350.000",
+          "match_type": "exact"
+        }
+      },
+      "Quantity": {
+        "field_citation": {
+          "source_text": "Só lurong",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "STT Tên hàng hóa, dich vu Do'n vi tính Só lurong Do'n giá Thành tiên",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 Lunch promo 5 days Món 2 675.000 1.350.000",
+          "match_type": "exact"
+        }
+      },
+      "Unit price": {
+        "field_citation": {
+          "source_text": "Do'n giá",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "STT Tên hàng hóa, dich vu Do'n vi tính Só lurong Do'n giá Thành tiên",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "675.000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 Lunch promo 5 days Món 2 675.000 1.350.000",
+          "match_type": "exact"
+        }
+      },
+      "Amount": {
+        "field_citation": {
+          "source_text": "Thành tiên",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "STT Tên hàng hóa, dich vu Do'n vi tính Só lurong Do'n giá Thành tiên",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.350.000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 Lunch promo 5 days Món 2 675.000 1.350.000",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 60,
+      "fields_with_field_citations": 60,
+      "fields_with_value_citations": 59,
+      "average_confidence": 0.9309999999999999
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "10.1",
+      "file_classification_seconds": "3.5",
+      "data_extraction_seconds": "4.8",
+      "image_quality_assessment_seconds": "5.0",
+      "issue_detection_seconds": "8.5",
+      "citation_generation_seconds": "73.6",
+      "llm_validation_seconds": "73.3"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-01T14:54:21.981Z",
+        "end_time": "2025-09-01T14:54:32.126Z",
+        "duration_seconds": "10.1",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-01T14:54:32.130Z",
+        "end_time": "2025-09-01T14:54:35.643Z",
+        "duration_seconds": "3.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-01T14:54:32.132Z",
+        "end_time": "2025-09-01T14:54:36.947Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-01T14:54:32.127Z",
+        "end_time": "2025-09-01T14:54:37.116Z",
+        "duration_seconds": "5.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-01T14:54:37.117Z",
+        "end_time": "2025-09-01T14:54:45.616Z",
+        "duration_seconds": "8.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-01T14:54:37.119Z",
+        "end_time": "2025-09-01T14:55:50.692Z",
+        "duration_seconds": "73.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-01T14:55:50.694Z",
+        "end_time": "2025-09-01T14:57:04.025Z",
+        "duration_seconds": "73.3",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "162.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.0",
+      "parallel_group_2_seconds": "73.6",
+      "total_parallel_time_seconds": "78.6"
+    }
+  },
+  "metadata": {
+    "filename": "vietnamese_file_49.pdf",
+    "processing_time": 162048,
+    "country": "Vietnam",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-01T14:57:04.029Z"
+  }
+}

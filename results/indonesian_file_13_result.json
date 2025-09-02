@@ -1,0 +1,433 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\indonesian_file_13.pdf_full_test_2_sep_1_indonesian_file_13.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-01T14:05:51.656Z",
+    "quality_score": 80,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.3,
+      "description": "The text and edges are slightly blurred, indicating moderate camera shake or out-of-focus capture.",
+      "recommendation": "Retake the image ensuring the camera is stable and focused."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.9,
+      "description": "The contrast between text and background is excellent, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are present.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds are detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "All sections of the receipt/invoice are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 8
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Indonesian",
+    "language_confidence": 95,
+    "document_location": "Indonesia",
+    "expected_location": "Indonesia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, and item description line items. The presence of a total fare and detailed breakdown of charges confirms it as a travel-related expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "invoiceReceiptNumber"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including supplier (Bluebird), transaction amount (Rp215.000), transaction date (02-06-2025), item description line items (Platform Fee, Toll / Parking, Fare), and invoice receipt number (Order ID 10214013953). This meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Bluebird",
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "order_id": "10214013953",
+    "vehicle_id": "SE1553",
+    "start_time": "2025-02-06T00:11:00+07:00",
+    "end_time": "2025-02-06T00:37:00+07:00",
+    "distance": 25.2,
+    "currency": "IDR",
+    "platform_fee": 0,
+    "toll_parking": 70000,
+    "fare": 145000,
+    "total_fare": 215000,
+    "transaction_date": "2025-02-06",
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Toll / Parking",
+        "quantity": 1,
+        "unit_price": 70000,
+        "total_price": 70000,
+        "category": "Toll/Parking"
+      },
+      {
+        "description": "Fare",
+        "quantity": 1,
+        "unit_price": 145000,
+        "total_price": 145000,
+        "category": "Fare"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Receipt",
+    "special_notes": null,
+    "terms_conditions": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Missing required supplier address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "Missing VAT number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount should be listed clearly on the invoice if applicable",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Missing additional documentation for mileage reimbursement",
+          "recommendation": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates",
+          "knowledge_base_reference": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name, supplier address, and VAT number. Additionally, the receipt lacks the required additional documentation for mileage reimbursement. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "Order ID": {
+        "field_citation": {
+          "source_text": "Order ID",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Bluebird\nOrder ID\n10214013953",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10214013953",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Bluebird\nOrder ID\n10214013953",
+          "match_type": "exact"
+        }
+      },
+      "Vehicle ID": {
+        "field_citation": {
+          "source_text": "Vehicle ID",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Vehicle ID\nSE1553",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "SE1553",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Vehicle ID\nSE1553",
+          "match_type": "exact"
+        }
+      },
+      "Start Time": {
+        "field_citation": {
+          "source_text": "Start Time",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Start Time\n02-06-2025 00:11 WIB",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "02-06-2025 00:11 WIB",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Start Time\n02-06-2025 00:11 WIB",
+          "match_type": "exact"
+        }
+      },
+      "End Time": {
+        "field_citation": {
+          "source_text": "End Time",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "End Time\n02-06-2025 00:37 WIB",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "02-06-2025 00:37 WIB",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "End Time\n02-06-2025 00:37 WIB",
+          "match_type": "exact"
+        }
+      },
+      "Distance": {
+        "field_citation": {
+          "source_text": "Distance",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Distance\n25.2 Km",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "25.2 Km",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Distance\n25.2 Km",
+          "match_type": "exact"
+        }
+      },
+      "Platform Fee": {
+        "field_citation": {
+          "source_text": "Platform Fee",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Platform Fee\nRp0",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rp0",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Platform Fee\nRp0",
+          "match_type": "exact"
+        }
+      },
+      "Toll / Parking": {
+        "field_citation": {
+          "source_text": "Toll / Parking",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Toll / Parking\nRp70.000",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rp70.000",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Toll / Parking\nRp70.000",
+          "match_type": "exact"
+        }
+      },
+      "Fare": {
+        "field_citation": {
+          "source_text": "Fare",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fare\nRp145.000",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rp145.000",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fare\nRp145.000",
+          "match_type": "exact"
+        }
+      },
+      "Total Fare": {
+        "field_citation": {
+          "source_text": "Total Fare",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Fare\nRp215.000",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rp215.000",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Fare\nRp215.000",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 36,
+      "fields_with_field_citations": 36,
+      "fields_with_value_citations": 36,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "15.0",
+      "data_extraction_seconds": "3.5",
+      "image_quality_assessment_seconds": "3.9",
+      "file_classification_seconds": "4.7",
+      "issue_detection_seconds": "7.3",
+      "citation_generation_seconds": "30.7",
+      "llm_validation_seconds": "80.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-01T14:05:32.767Z",
+        "end_time": "2025-09-01T14:05:47.760Z",
+        "duration_seconds": "15.0",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-01T14:05:47.766Z",
+        "end_time": "2025-09-01T14:05:51.271Z",
+        "duration_seconds": "3.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-01T14:05:47.761Z",
+        "end_time": "2025-09-01T14:05:51.656Z",
+        "duration_seconds": "3.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-01T14:05:47.764Z",
+        "end_time": "2025-09-01T14:05:52.474Z",
+        "duration_seconds": "4.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-01T14:05:52.476Z",
+        "end_time": "2025-09-01T14:05:59.780Z",
+        "duration_seconds": "7.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-01T14:05:52.478Z",
+        "end_time": "2025-09-01T14:06:23.217Z",
+        "duration_seconds": "30.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-01T14:06:23.218Z",
+        "end_time": "2025-09-01T14:07:43.260Z",
+        "duration_seconds": "80.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "130.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.7",
+      "parallel_group_2_seconds": "30.7",
+      "total_parallel_time_seconds": "35.5"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_13.pdf",
+    "processing_time": 130498,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-01T14:07:43.265Z"
+  }
+}

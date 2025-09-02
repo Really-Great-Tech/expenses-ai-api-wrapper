@@ -1,0 +1,460 @@
+{
+  "overall_score": 0.9522222222222222,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9666666666666667,
+      "issues": [
+        "None. All claims made by the AI are directly supported by the extracted data and compliance rules."
+      ],
+      "summary": "The AI response is completely factually grounded. It correctly identified two compliance issues: (1) the future-dated receipt issue (2025-04-08) and (2) the missing exchange rate information required for overseas expenses. Both issues are clearly supported by the extracted data and the compliance rules provided. The AI's recommendations align with the compliance requirements, and no information was fabricated or misrepresented.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the issue date on the receipt is \"2025-04-08\", which is indeed a future date. This is directly supported by the extracted data which shows \"issue_date\": \"2025-04-08\". The AI accurately flagged this as a compliance issue since receipts should reflect past transactions.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that this is a flight receipt (overseas expense) and according to the compliance rules, exchange rate information is required. The compliance rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase...\" The AI accurately noted this requirement is missing from the receipt data.\n\nCONFIDENCE: 100\n\nISSUES: None. All claims made by the AI are directly supported by the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. It correctly identified two compliance issues: (1) the future-dated receipt issue (2025-04-08) and (2) the missing exchange rate information required for overseas expenses. Both issues are clearly supported by the extracted data and the compliance rules provided. The AI's recommendations align with the compliance requirements, and no information was fabricated or misrepresented.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the issue date on the receipt is \"2025-04-08\", which is indeed a future date. This is directly supported by the extracted data which shows \"issue_date\": \"2025-04-08\". The AI accurately flagged this as a compliance issue since receipts should reflect past transactions.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that this is a flight receipt (overseas expense) and according to the compliance rules, exchange rate information is required. The compliance rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase...\" The AI accurately noted this requirement is missing from the receipt data.\n\nCONFIDENCE: 100\n\nISSUES: None. All claims made by the AI are directly supported by the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. It correctly identified two compliance issues: (1) the future-dated receipt issue (2025-04-08) and (2) the missing exchange rate information required for overseas expenses. Both issues are clearly supported by the extracted data and the compliance rules provided. The AI's recommendations align with the compliance requirements, and no information was fabricated or misrepresented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the provided extracted data. No information is fabricated or assumed beyond what's in the data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The numerical values, dates, and amounts in the AI response match the extracted data, with one exception. The issue date is listed as 2025-04-08, which is in the future. This does not match the compliance rule that \"Receipt must show the date when the expense occurred.\"\n\nCONFIDENCE: 95\nISSUES: The issue date is in the future, which does not comply with the requirement that the expense date must be in the past.\nSUMMARY: Overall, the AI response is well-grounded in the factual information provided in the extracted data, with the exception of the future issue date, which is not compliant with the stated policy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response accurately identifies that the issue date (2025-04-08) is in the future, which matches the extracted data exactly.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that this is a flight receipt and accurately references the compliance rule about providing exchange rates for overseas expenses.\n\nCONFIDENCE: 95\n\nISSUES:\n- No significant factual grounding issues identified.\n\nSUMMARY: The AI response is highly factually grounded in the provided extracted data and compliance rules. Both identified issues are accurately based on the information given. The response does not fabricate or assume information beyond what's provided. The dates, receipt type, and other details match the extracted data precisely. The reference to compliance policies is also accurate based on the provided rules. The only minor point that slightly reduces confidence is that the AI doesn't explicitly mention some details like the specific flight route or total amount, but this doesn't impact the factual accuracy of the issues raised."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the issue date on the receipt is \"2025-04-08\", which is indeed a future date. This is directly supported by the extracted data which shows \"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that this is a flight receipt (overseas expense) and according to the compliance rules, exchange rate information is required. The compliance rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase...\" The AI accurately noted this requirement is missing from the receipt data.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.96,
+      "issues": [
+        "None. The AI response correctly interprets and applies the compliance rules from the knowledge base."
+      ],
+      "summary": "The AI response demonstrates perfect adherence to the compliance knowledge base for Japan. It correctly identifies two valid issues: (1) the future-dated receipt which violates the requirement that receipts show when expenses actually occurred, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly supported by specific references to the knowledge base rules, and the recommendations provided are appropriate and aligned with compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule stating \"Receipt must show the date when the expense occurred.\" This is a valid interpretation of the knowledge base as receipts should reflect past transactions, not future ones.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately applied the rule for overseas expenses requiring exchange rate information. The knowledge base explicitly states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" Since this is a flight receipt (travel expense) and appears to be an overseas expense (Korean Air, with route NRT-ICN-HND), this rule applies.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly interprets and applies the compliance rules from the knowledge base.\n\nSUMMARY: The AI response demonstrates perfect adherence to the compliance knowledge base for Japan. It correctly identifies two valid issues: (1) the future-dated receipt which violates the requirement that receipts show when expenses actually occurred, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly supported by specific references to the knowledge base rules, and the recommendations provided are appropriate and aligned with compliance requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule stating \"Receipt must show the date when the expense occurred.\" This is a valid interpretation of the knowledge base as receipts should reflect past transactions, not future ones.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately applied the rule for overseas expenses requiring exchange rate information. The knowledge base explicitly states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" Since this is a flight receipt (travel expense) and appears to be an overseas expense (Korean Air, with route NRT-ICN-HND), this rule applies.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly interprets and applies the compliance rules from the knowledge base.\n\nSUMMARY: The AI response demonstrates perfect adherence to the compliance knowledge base for Japan. It correctly identifies two valid issues: (1) the future-dated receipt which violates the requirement that receipts show when expenses actually occurred, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly supported by specific references to the knowledge base rules, and the recommendations provided are appropriate and aligned with compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue date of the expense is in the future (2025-04-08), which contradicts the compliance rule that \"Receipt must show the date when the expense occurred\". This is a valid issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 95 - The receipt is for a flight, which is a travel expense. According to the compliance knowledge base, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided. The receipt does not include this information, which is a valid issue that needs to be addressed.\n\nCONFIDENCE: 90\nISSUES:\n1. The issue date of the expense is in the future, which contradicts the compliance rule that \"Receipt must show the date when the expense occurred\".\n2. The receipt does not include the exchange rate of main banks on the day of purchase, as required for overseas travel expenses.\n\nSUMMARY:\nThe AI response correctly identifies two compliance issues with the receipt: the future issue date and the lack of exchange rate information for the overseas travel expense. These issues need to be addressed to ensure full compliance with the GoGlobal ICP requirements for Japan. Overall, the response demonstrates a strong adherence to the compliance knowledge base, with a few minor gaps."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the issue date of the expense (2025-04-08) is in the future, which contradicts the compliance rule stating \"Receipt must show the date when the expense occurred\". This aligns perfectly with the knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI accurately flagged the need for exchange rate information for overseas expenses, which is a requirement specified in the compliance rules. The recommendation to provide the exchange rate from main banks on the day of purchase is directly from the knowledge base. The slight deduction is because the AI didn't explicitly mention that this rule applies to travel expenses, though it's implied.\n\nCONFIDENCE: 98\n\nISSUES:\n- No significant issues in knowledge base adherence were identified.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Japan. It correctly identified two key issues: the future-dated receipt and the missing exchange rate information for overseas travel expenses. Both issues are directly tied to specific rules in the provided compliance guidelines. The AI's recommendations are accurate and well-supported by the knowledge base. The high confidence score reflects the strong alignment between the AI's response and the established compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule stating \"Receipt must show the date when the expense occurred.\" This is a valid interpretation of the knowledge base as receipts should reflect past transactions, not future ones.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI accurately applied the rule for overseas expenses requiring exchange rate information. The knowledge base explicitly states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" Since this is a flight receipt (travel expense) and appears to be an overseas expense (Korean Air, with route NRT-ICN-HND), this rule applies.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9499999999999998,
+      "issues": [
+        "None identified. The compliance assessment is accurate and complete."
+      ],
+      "summary": "The compliance assessment correctly identified two valid issues: (1) the future-dated receipt which violates the requirement that expenses must reflect past transactions, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly identified with appropriate references to the compliance rules and recommendations for resolution.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule that \"Receipt must show the date when the expense occurred.\" Since expenses should reflect past transactions, this is a valid compliance issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified that for overseas flight expenses, the exchange rate information is required according to GoGlobal's ICP requirements for Japan. The rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is for a flight itinerary (NRT-ICN-HND) which involves international travel, and the receipt is in JPY, but lacks the required exchange rate information.\n\nCONFIDENCE: 100\n\nISSUES: None identified. The compliance assessment is accurate and complete.\n\nSUMMARY: The compliance assessment correctly identified two valid issues: (1) the future-dated receipt which violates the requirement that expenses must reflect past transactions, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly identified with appropriate references to the compliance rules and recommendations for resolution.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule that \"Receipt must show the date when the expense occurred.\" Since expenses should reflect past transactions, this is a valid compliance issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified that for overseas flight expenses, the exchange rate information is required according to GoGlobal's ICP requirements for Japan. The rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is for a flight itinerary (NRT-ICN-HND) which involves international travel, and the receipt is in JPY, but lacks the required exchange rate information.\n\nCONFIDENCE: 100\n\nISSUES: None identified. The compliance assessment is accurate and complete.\n\nSUMMARY: The compliance assessment correctly identified two valid issues: (1) the future-dated receipt which violates the requirement that expenses must reflect past transactions, and (2) the missing exchange rate information required for overseas expenses. Both issues are properly identified with appropriate references to the compliance rules and recommendations for resolution."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding the future issue date on the receipt is accurately identified and validated as non-compliant with the GoGlobal policy which requires expenses to reflect past transactions.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue regarding the missing exchange rate information for the overseas flight expense is also accurately identified and validated as non-compliant with the GoGlobal policy which requires providing the exchange rate of main banks on the day of purchase for overseas expenses.\n\nCONFIDENCE: 90\n\nISSUES: None\n\nSUMMARY: The compliance assessment is largely accurate. The two issues identified, the future issue date and the missing exchange rate information, are correctly flagged as non-compliant with the applicable GoGlobal policies. The overall compliance determination is appropriate given these identified issues. The assessment covers the key compliance requirements comprehensively and handles the edge cases well."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the issue date (2025-04-08) is in the future, which violates the rule that receipts must show the date when the expense occurred. This is an accurate application of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identifies that for overseas expenses, the exchange rate of main banks on the day of purchase must be provided. This is a correct application of the compliance rule for travel expenses, especially flights.\n\nCONFIDENCE: 95\n\nISSUES:\n- No issues identified with the compliance assessment. Both identified issues are accurate and relevant.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies two key issues: the future date on the receipt and the missing exchange rate information for an overseas expense. These align perfectly with the provided compliance rules. The assessment demonstrates a thorough understanding of the requirements for flight receipts in Japan under GoGlobal's ICP. The high confidence score is justified by the precise application of the rules to the given receipt data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that the issue date (2025-04-08) is in the future, which violates the compliance rule that \"Receipt must show the date when the expense occurred.\" Since expenses should reflect past transactions, this is a valid compliance issue that needs to be addressed.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that for overseas flight expenses, the exchange rate information is required according to GoGlobal's ICP requirements for Japan. The rule states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is for a flight itinerary (NRT-ICN-HND) which involves international travel, and the receipt is in JPY, but lacks the required exchange rate information.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.93,
+      "issues": [
+        "No significant issues with categorization. Both issues are correctly identified and categorized according to GoGlobal's compliance requirements for Japan. The only minor improvement could be explicitly mentioning that flights are considered travel expenses in the second issue",
+        "though this is implied."
+      ],
+      "summary": "The system has accurately categorized both compliance issues with the receipt. Issue 1 correctly identifies the future-dated receipt as a standards violation requiring a fix. Issue 2 correctly identifies the missing exchange rate information required for overseas travel expenses. Both issues include appropriate recommendations and reference the relevant compliance rules from the knowledge base.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a clear compliance violation with the receipt date being in the future (2025-04-08). The description accurately explains why this is problematic (expenses should reflect past transactions), and the recommendation is appropriate. The knowledge base reference correctly cites the relevant rule that \"Receipt must show the date when the expense occurred.\"\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is appropriately categorized as \"Standards & Compliance | Follow-up Action Identified\" since it identifies a missing requirement for overseas expenses. The description correctly identifies that exchange rate information is required for flight receipts as they are travel expenses. The recommendation provides clear guidance on what information needs to be provided. The knowledge base reference accurately cites the relevant rule about exchange rates for overseas expenses.\n\nCONFIDENCE: 92\n\nISSUES: No significant issues with categorization. Both issues are correctly identified and categorized according to GoGlobal's compliance requirements for Japan. The only minor improvement could be explicitly mentioning that flights are considered travel expenses in the second issue, though this is implied.\n\nSUMMARY: The system has accurately categorized both compliance issues with the receipt. Issue 1 correctly identifies the future-dated receipt as a standards violation requiring a fix. Issue 2 correctly identifies the missing exchange rate information required for overseas travel expenses. Both issues include appropriate recommendations and reference the relevant compliance rules from the knowledge base.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a clear compliance violation with the receipt date being in the future (2025-04-08). The description accurately explains why this is problematic (expenses should reflect past transactions), and the recommendation is appropriate. The knowledge base reference correctly cites the relevant rule that \"Receipt must show the date when the expense occurred.\"\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is appropriately categorized as \"Standards & Compliance | Follow-up Action Identified\" since it identifies a missing requirement for overseas expenses. The description correctly identifies that exchange rate information is required for flight receipts as they are travel expenses. The recommendation provides clear guidance on what information needs to be provided. The knowledge base reference accurately cites the relevant rule about exchange rates for overseas expenses.\n\nCONFIDENCE: 92\n\nISSUES: No significant issues with categorization. Both issues are correctly identified and categorized according to GoGlobal's compliance requirements for Japan. The only minor improvement could be explicitly mentioning that flights are considered travel expenses in the second issue, though this is implied.\n\nSUMMARY: The system has accurately categorized both compliance issues with the receipt. Issue 1 correctly identifies the future-dated receipt as a standards violation requiring a fix. Issue 2 correctly identifies the missing exchange rate information required for overseas travel expenses. Both issues include appropriate recommendations and reference the relevant compliance rules from the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding the future issue date is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly explains the problem and provides a relevant recommendation.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue regarding the missing exchange rate information is also correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description clearly explains the requirement and provides a specific recommendation on how to address it.\n\nCONFIDENCE: 95\n\nISSUES: None identified. The issues are categorized accurately according to the established taxonomy.\n\nSUMMARY: The issues identified in the receipt are categorized correctly and the descriptions provide clear and actionable guidance. The categorization follows the established taxonomy, and no issues are missed or incorrectly classified. Overall, the issue categorization is highly accurate and meets the expectations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the future date problem, which violates the rule that receipts must show the date when the expense occurred. The recommendation is appropriate, suggesting to address this with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is appropriately categorized as \"Standards & Compliance | Follow-up Action Identified\". It correctly identifies the need for exchange rate information for overseas expenses. The description and recommendation align well with the compliance rules provided.\n\nCONFIDENCE: 92\n\nISSUES:\n- No major issues in categorization. Both issues are correctly identified and categorized.\n- Minor point: Issue 2 could potentially include a mention of the specific currency (JPY) used in the receipt to provide more context.\n\nSUMMARY: The issues are accurately categorized and described, with clear references to the relevant compliance rules. The categorizations follow the established taxonomy and provide actionable recommendations. No issues appear to be missed or incorrectly classified. The minor suggestion for Issue 2 doesn't significantly impact the overall high quality of the categorization."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a clear compliance violation with the receipt date being in the future (2025-04-08). The description accurately explains why this is problematic (expenses should reflect past transactions), and the recommendation is appropriate. The knowledge base reference correctly cites the relevant rule that \"Receipt must show the date when the expense occurred.\"",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue is appropriately categorized as \"Standards & Compliance | Follow-up Action Identified\" since it identifies a missing requirement for overseas expenses. The description correctly identifies that exchange rate information is required for flight receipts as they are travel expenses. The recommendation provides clear guidance on what information needs to be provided. The knowledge base reference accurately cites the relevant rule about exchange rates for overseas expenses.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9066666666666667,
+      "issues": [
+        "None significant. Both recommendations are valid",
+        "actionable",
+        "and directly address the compliance issues identified."
+      ],
+      "summary": "Both recommendations are highly valid and useful. The first recommendation correctly identifies the future date issue and suggests addressing it with the supplier. The second recommendation accurately cites the exchange rate requirement for overseas expenses and provides specific guidance based on payment method. Both are actionable, specific to the issues identified, and aligned with GoGlobal's compliance requirements for Japan.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" for the future-dated receipt is valid and actionable. The issue correctly identifies that the receipt date (2025-04-08) is in the future, which violates the compliance rule that receipts must show when the expense actually occurred. The recommendation appropriately suggests contacting the supplier to correct this error, as this is likely a date entry mistake that needs correction.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation to provide the exchange rate of main banks on the day of purchase is highly valid and directly addresses the compliance requirement. The recommendation correctly cites the specific rule for overseas expenses and provides clear guidance on what information is needed based on the payment method (cash vs. credit card). This is actionable, specific, and directly tied to the compliance policy for GoGlobal in Japan.\n\nCONFIDENCE: 92\n\nISSUES: None significant. Both recommendations are valid, actionable, and directly address the compliance issues identified.\n\nSUMMARY: Both recommendations are highly valid and useful. The first recommendation correctly identifies the future date issue and suggests addressing it with the supplier. The second recommendation accurately cites the exchange rate requirement for overseas expenses and provides specific guidance based on payment method. Both are actionable, specific to the issues identified, and aligned with GoGlobal's compliance requirements for Japan.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" for the future-dated receipt is valid and actionable. The issue correctly identifies that the receipt date (2025-04-08) is in the future, which violates the compliance rule that receipts must show when the expense actually occurred. The recommendation appropriately suggests contacting the supplier to correct this error, as this is likely a date entry mistake that needs correction.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation to provide the exchange rate of main banks on the day of purchase is highly valid and directly addresses the compliance requirement. The recommendation correctly cites the specific rule for overseas expenses and provides clear guidance on what information is needed based on the payment method (cash vs. credit card). This is actionable, specific, and directly tied to the compliance policy for GoGlobal in Japan.\n\nCONFIDENCE: 92\n\nISSUES: None significant. Both recommendations are valid, actionable, and directly address the compliance issues identified.\n\nSUMMARY: Both recommendations are highly valid and useful. The first recommendation correctly identifies the future date issue and suggests addressing it with the supplier. The second recommendation accurately cites the exchange rate requirement for overseas expenses and provides specific guidance based on payment method. Both are actionable, specific to the issues identified, and aligned with GoGlobal's compliance requirements for Japan."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the issue with the supplier or provider regarding the future issue date is valid and actionable. It provides a clear next step for the user to resolve the compliance concern.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to provide the exchange rate of main banks on the day of purchase is specific and addresses the compliance requirement for overseas expenses. It offers a practical solution to fulfill the missing information.\n\nCONFIDENCE: 90\n\nISSUES: None\n\nSUMMARY: The provided recommendations are valid and useful. They are actionable, address the identified compliance issues, and provide feasible solutions. There are no contradictory or harmful suggestions. Overall, the recommendations are well-suited to help the user resolve the compliance concerns for this expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the future date issue with the supplier is valid and actionable. It correctly identifies the problem and suggests a practical solution. However, it could be more specific about how to approach the supplier or what exactly to request.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation for providing the exchange rate information is highly valid, specific, and directly addresses the compliance requirement. It offers clear instructions on how to proceed based on the payment method used, which is practical and feasible.\n\nCONFIDENCE: 90\n\nISSUES:\n- The recommendation for Issue 1 could be more specific about the process of addressing the date discrepancy with the supplier.\n- No major validity issues identified in the recommendations.\n\nSUMMARY: The recommendations provided are generally valid, actionable, and address the identified compliance issues effectively. The suggestion for the exchange rate issue is particularly strong and specific. The recommendation for the date issue, while valid, could benefit from more detailed guidance. Overall, the advice given is practical, feasible, and aligns well with the compliance requirements, without any contradictory or harmful suggestions."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" for the future-dated receipt is valid and actionable. The issue correctly identifies that the receipt date (2025-04-08) is in the future, which violates the compliance rule that receipts must show when the expense actually occurred. The recommendation appropriately suggests contacting the supplier to correct this error, as this is likely a date entry mistake that needs correction.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to provide the exchange rate of main banks on the day of purchase is highly valid and directly addresses the compliance requirement. The recommendation correctly cites the specific rule for overseas expenses and provides clear guidance on what information is needed based on the payment method (cash vs. credit card). This is actionable, specific, and directly tied to the compliance policy for GoGlobal in Japan.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 1,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies two compliance issues without hallucinating any information. The first issue correctly notes the future-dated receipt (2025-04-08), and the second issue correctly identifies the missing exchange rate information required for overseas expenses according to the provided compliance rules. All information in the response is grounded in the extracted data and compliance rules provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the issue date (2025-04-08) is in the future. This matches the extracted data and is a valid compliance concern based on the rule that \"Receipt must show the date when the expense occurred.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that for overseas flight expenses, exchange rate information is required according to the compliance rules. This is accurately based on the rule \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies two compliance issues without hallucinating any information. The first issue correctly notes the future-dated receipt (2025-04-08), and the second issue correctly identifies the missing exchange rate information required for overseas expenses according to the provided compliance rules. All information in the response is grounded in the extracted data and compliance rules provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the issue date (2025-04-08) is in the future. This matches the extracted data and is a valid compliance concern based on the rule that \"Receipt must show the date when the expense occurred.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that for overseas flight expenses, exchange rate information is required according to the compliance rules. This is accurately based on the rule \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies two compliance issues without hallucinating any information. The first issue correctly notes the future-dated receipt (2025-04-08), and the second issue correctly identifies the missing exchange rate information required for overseas expenses according to the provided compliance rules. All information in the response is grounded in the extracted data and compliance rules provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The information in the AI response aligns with the source data provided and does not contain any information that is not present in the original data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements extracted from the source data appear to be accurate and valid. There is no evidence of fabricated compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 0 - The entity names, amounts, and dates present in the extracted data match the information provided in the source data. There are no signs of made-up or fabricated information.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response does not present any assumptions as facts. All the information provided is directly extracted from the source data.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response accurately extracts and presents the information from the provided source data. There are no signs of hallucinated or fabricated information. The response appears to be reliable and trustworthy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately identifies that the issue date (2025-04-08) is in the future, which is correctly derived from the receipt data provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly references the compliance rule about providing exchange rates for overseas expenses, which is present in the given compliance rules.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. Both issues identified are based on accurate information from the receipt data and compliance rules provided. The response does not introduce any information that is not present in the source data or compliance rules. The entity names, amounts, and dates mentioned are all consistent with the given information. No assumptions are presented as facts, and the recommendations are in line with the provided compliance guidelines."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that the issue date (2025-04-08) is in the future. This matches the extracted data and is a valid compliance concern based on the rule that \"Receipt must show the date when the expense occurred.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue correctly identifies that for overseas flight expenses, exchange rate information is required according to the compliance rules. This is accurately based on the rule \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None. All claims made by the AI are directly supported by the extracted data and compliance rules.",
+    "Address issues in knowledge base adherence: None. The AI response correctly interprets and applies the compliance rules from the knowledge base.",
+    "Address issues in compliance accuracy: None identified. The compliance assessment is accurate and complete.",
+    "Address issues in issue categorization: No significant issues with categorization. Both issues are correctly identified and categorized according to GoGlobal's compliance requirements for Japan. The only minor improvement could be explicitly mentioning that flights are considered travel expenses in the second issue, though this is implied.",
+    "Address issues in recommendation validity: None significant. Both recommendations are valid, actionable, and directly address the compliance issues identified.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-09-01T11:09:45.245Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 48134,
+    "timing": {
+      "validation_start_time": "2025-09-01T11:08:57.111Z",
+      "validation_end_time": "2025-09-01T11:09:45.245Z",
+      "total_validation_time_seconds": "48.1",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-01T11:08:57.111Z",
+          "end_time": "2025-09-01T11:09:45.245Z",
+          "duration_seconds": "48.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "48.1",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.62",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 2
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The issue date of the expense is in the future (2025-04-08). Expenses should reflect past transactions.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The receipt is for a flight, which is a travel expense. According to compliancePoliciesAdditionalInfoRelated, for overseas expenses, the exchange rate of main banks on the day of purchase must be provided.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98.11,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

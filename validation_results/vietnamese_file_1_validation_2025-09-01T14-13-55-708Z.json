@@ -1,0 +1,549 @@
+{
+  "overall_score": 0.7577777777777778,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.47666666666666674,
+      "issues": [
+        "1. The AI misidentified a VAT invoice as a white receipt requiring signatures",
+        "2. The AI incorrectly applied the 200",
+        "000 VND threshold rule (the receipt is only 36",
+        "000 VND)",
+        "3. The AI completely misclassified a Grab ride receipt as a flight expense",
+        "4. The AI failed to recognize that the customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) are already present on the receipt",
+        "5. The AI ignored the clear transportation service nature of the receipt (with origin and destination points listed)"
+      ],
+      "summary": "The AI response is poorly grounded in the extracted data. It misclassified the receipt type, applied irrelevant compliance rules, and failed to recognize that this is a standard Grab ride receipt with appropriate VAT information and customer details already included. The receipt appears to be compliant with Vietnam regulations for transportation expenses under 200,000 VND.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.\" However, the extracted data shows this is a VAT invoice (HÓA DON GIÁ TRI GIA TĂNG) for 36,000 VND from CÔNG TY TNHH GRAB, not a white receipt. The rule about seller signatures applies specifically to white receipts, not VAT/Red invoices.\n\nISSUE_2_VALIDATION_SCORE: 50 - The second issue states \"The receipt does not show the local employer details for GoGlobal Vietnam Company Limited.\" This is partially accurate because while the customer name in the extracted data does show \"CÔNG TY TNHH GOGLOBAL VIET NAM\" with address and tax code matching what's required in the compliance rules, the AI is correct that this information should be verified on VAT/Red invoices above 200,000 VND. However, this receipt is only for 36,000 VND, which is below the 200,000 VND threshold mentioned in the rule.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue claims \"The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.\" This is completely unfounded as the extracted data clearly shows this is a Grab transportation receipt (ride-hailing service) with line items for \"Cuóc phí vân chuyên\" (transportation fee) and \"Phí dich vu\" (service fee). This is not a flight expense at all, so the requirement for boarding passes and flight tickets is irrelevant.\n\nCONFIDENCE: 10\n\nISSUES:\n1. The AI misidentified a VAT invoice as a white receipt requiring signatures\n2. The AI incorrectly applied the 200,000 VND threshold rule (the receipt is only 36,000 VND)\n3. The AI completely misclassified a Grab ride receipt as a flight expense\n4. The AI failed to recognize that the customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) are already present on the receipt\n5. The AI ignored the clear transportation service nature of the receipt (with origin and destination points listed)\n\nSUMMARY: The AI response is poorly grounded in the extracted data. It misclassified the receipt type, applied irrelevant compliance rules, and failed to recognize that this is a standard Grab ride receipt with appropriate VAT information and customer details already included. The receipt appears to be compliant with Vietnam regulations for transportation expenses under 200,000 VND.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.\" However, the extracted data shows this is a VAT invoice (HÓA DON GIÁ TRI GIA TĂNG) for 36,000 VND from CÔNG TY TNHH GRAB, not a white receipt. The rule about seller signatures applies specifically to white receipts, not VAT/Red invoices.\n\nISSUE_2_VALIDATION_SCORE: 50 - The second issue states \"The receipt does not show the local employer details for GoGlobal Vietnam Company Limited.\" This is partially accurate because while the customer name in the extracted data does show \"CÔNG TY TNHH GOGLOBAL VIET NAM\" with address and tax code matching what's required in the compliance rules, the AI is correct that this information should be verified on VAT/Red invoices above 200,000 VND. However, this receipt is only for 36,000 VND, which is below the 200,000 VND threshold mentioned in the rule.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue claims \"The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.\" This is completely unfounded as the extracted data clearly shows this is a Grab transportation receipt (ride-hailing service) with line items for \"Cuóc phí vân chuyên\" (transportation fee) and \"Phí dich vu\" (service fee). This is not a flight expense at all, so the requirement for boarding passes and flight tickets is irrelevant.\n\nCONFIDENCE: 10\n\nISSUES:\n1. The AI misidentified a VAT invoice as a white receipt requiring signatures\n2. The AI incorrectly applied the 200,000 VND threshold rule (the receipt is only 36,000 VND)\n3. The AI completely misclassified a Grab ride receipt as a flight expense\n4. The AI failed to recognize that the customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) are already present on the receipt\n5. The AI ignored the clear transportation service nature of the receipt (with origin and destination points listed)\n\nSUMMARY: The AI response is poorly grounded in the extracted data. It misclassified the receipt type, applied irrelevant compliance rules, and failed to recognize that this is a standard Grab ride receipt with appropriate VAT information and customer details already included. The receipt appears to be compliant with Vietnam regulations for transportation expenses under 200,000 VND."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the response can be traced back to the extracted data. The response accurately represents the information provided, including supplier details, customer details, invoice details, line items, and receipt type.\n\nISSUE_2_VALIDATION_SCORE: 100 - The response does not fabricate or assume any information beyond what is provided in the extracted data. All numerical values, dates, and amounts match the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - Entity names and details are accurately represented in the response, including the supplier name, address, VAT number, and phone number, as well as the customer name, address, and VAT number.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims can be traced back to the data, no information is fabricated or assumed, and all details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.33,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is not factually grounded in the extracted data. The receipt is a VAT invoice for 36,000 VND, which is above 200,000 VND, so the rule about seller signatures for white receipts below 200,000 VND does not apply.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is fully grounded in the extracted data. The receipt shows the customer as \"CÔNG TY TNHH GOGLOBAL VIET NAM\" with the correct tax code and address matching the compliance rule for GoGlobal Vietnam Company Limited.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is not factually grounded in the extracted data. The receipt is for a transportation service (Grab ride), not for a flight expense. There's no mention of air travel in the extracted data.\n\nCONFIDENCE: 33\n\nISSUES:\n1. The first issue incorrectly applies a rule for receipts below 200,000 VND to a receipt that is above that amount.\n2. The third issue assumes this is a flight expense when the receipt clearly shows it's for a Grab ride (transportation service).\n3. The AI response fails to acknowledge that the receipt actually complies with the rule about local employer details on VAT invoices above 200,000 VND.\n\nSUMMARY: The AI response has significant factual grounding issues. It misapplies rules, makes incorrect assumptions about the type of expense, and fails to recognize compliance with certain rules. Only one out of three issues raised is factually grounded in the extracted data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue claims \"The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.\" However, the extracted data shows this is a VAT invoice (HÓA DON GIÁ TRI GIA TĂNG) for 36,000 VND from CÔNG TY TNHH GRAB, not a white receipt. The rule about seller signatures applies specifically to white receipts, not VAT/Red invoices.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The second issue states \"The receipt does not show the local employer details for GoGlobal Vietnam Company Limited.\" This is partially accurate because while the customer name in the extracted data does show \"CÔNG TY TNHH GOGLOBAL VIET NAM\" with address and tax code matching what's required in the compliance rules, the AI is correct that this information should be verified on VAT/Red invoices above 200,000 VND. However, this receipt is only for 36,000 VND, which is below the 200,000 VND threshold mentioned in the rule.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The third issue claims \"The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.\" This is completely unfounded as the extracted data clearly shows this is a Grab transportation receipt (ride-hailing service) with line items for \"Cuóc phí vân chuyên\" (transportation fee) and \"Phí dich vu\" (service fee). This is not a flight expense at all, so the requirement for boarding passes and flight tickets is irrelevant.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7266666666666666,
+      "issues": [
+        "1. Incorrectly identified the receipt as a white receipt when it's clearly a VAT/Red invoice",
+        "2. Incorrectly applied flight documentation requirements to a ground transportation receipt",
+        "3. Failed to recognize the receipt type correctly despite clear labeling in the extracted data",
+        "4. Did not properly distinguish between different types of transportation expenses (ground vs. air)"
+      ],
+      "summary": "The AI response shows significant misinterpretation of the receipt type and applicable compliance rules. Two of the three issues identified (Issues 1 and 3) are completely incorrect and not applicable to this receipt. Only Issue 2 regarding local employer details on VAT invoices is correctly identified. The AI appears to have confused receipt types and applied rules for white receipts and flight expenses to what is clearly a VAT invoice for ground transportation (Grab ride service).",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue regarding \"Vendor signature for white receipts below 200,000 VND\" is incorrectly applied. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt. According to the extracted data, this is clearly labeled as \"VAT INVOICE\" and \"HÓA DON GIÁ TRI GIA TĂNG\" which indicates it's a red invoice, not a white receipt. The rule about seller signatures applies only to white receipts, not VAT/Red invoices.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that the VAT/Red invoice should include the local employer details for GoGlobal Vietnam Company Limited. The knowledge base clearly states: \"VAT/Red invoice must show: GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City.\" While the customer name appears to be included on the receipt, the recommendation to ensure all details are present is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue about \"Additional documentation for flight expenses\" is incorrectly applied. The receipt is for a Grab transportation service (ride-hailing), not for a flight. The rule requiring boarding passes and flight tickets only applies to air travel expenses, not ground transportation. The extracted data clearly shows this is for transportation services with pickup and drop-off locations in Ho Chi Minh City.\n\nCONFIDENCE: 30\n\nISSUES:\n1. Incorrectly identified the receipt as a white receipt when it's clearly a VAT/Red invoice\n2. Incorrectly applied flight documentation requirements to a ground transportation receipt\n3. Failed to recognize the receipt type correctly despite clear labeling in the extracted data\n4. Did not properly distinguish between different types of transportation expenses (ground vs. air)\n\nSUMMARY: The AI response shows significant misinterpretation of the receipt type and applicable compliance rules. Two of the three issues identified (Issues 1 and 3) are completely incorrect and not applicable to this receipt. Only Issue 2 regarding local employer details on VAT invoices is correctly identified. The AI appears to have confused receipt types and applied rules for white receipts and flight expenses to what is clearly a VAT invoice for ground transportation (Grab ride service).",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.3,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue regarding \"Vendor signature for white receipts below 200,000 VND\" is incorrectly applied. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt. According to the extracted data, this is clearly labeled as \"VAT INVOICE\" and \"HÓA DON GIÁ TRI GIA TĂNG\" which indicates it's a red invoice, not a white receipt. The rule about seller signatures applies only to white receipts, not VAT/Red invoices.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that the VAT/Red invoice should include the local employer details for GoGlobal Vietnam Company Limited. The knowledge base clearly states: \"VAT/Red invoice must show: GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City.\" While the customer name appears to be included on the receipt, the recommendation to ensure all details are present is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue about \"Additional documentation for flight expenses\" is incorrectly applied. The receipt is for a Grab transportation service (ride-hailing), not for a flight. The rule requiring boarding passes and flight tickets only applies to air travel expenses, not ground transportation. The extracted data clearly shows this is for transportation services with pickup and drop-off locations in Ho Chi Minh City.\n\nCONFIDENCE: 30\n\nISSUES:\n1. Incorrectly identified the receipt as a white receipt when it's clearly a VAT/Red invoice\n2. Incorrectly applied flight documentation requirements to a ground transportation receipt\n3. Failed to recognize the receipt type correctly despite clear labeling in the extracted data\n4. Did not properly distinguish between different types of transportation expenses (ground vs. air)\n\nSUMMARY: The AI response shows significant misinterpretation of the receipt type and applicable compliance rules. Two of the three issues identified (Issues 1 and 3) are completely incorrect and not applicable to this receipt. Only Issue 2 regarding local employer details on VAT invoices is correctly identified. The AI appears to have confused receipt types and applied rules for white receipts and flight expenses to what is clearly a VAT invoice for ground transportation (Grab ride service)."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing seller signature for the white receipt below 200,000 VND, which is a mandatory requirement as per the compliance knowledge base. The recommendation provided to address this issue is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identifies the missing local employer details (GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City) on the VAT/Red invoice above 200,000 VND, which is a mandatory requirement. The recommendation to include the missing details is in line with the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly identifies the missing additional documentation (Boarding Pass, flight ticket, and red invoice) for the flight expense, which is a mandatory requirement as per the knowledge base. The recommendation to provide the missing documents is appropriate, but the confidence score is slightly lower due to the fact that the knowledge base reference does not explicitly mention the Boarding Pass as a required document.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response demonstrates a strong adherence to the compliance knowledge base for Vietnam. It accurately identifies the issues with the receipt and provides appropriate recommendations to address them. The overall confidence in the response's knowledge base adherence is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The AI correctly identified the issue regarding the missing seller signature for white receipts below 200,000 VND, which aligns with the compliance rule stating \"Where vendor does not have stamp, white receipt must show vendor name, address, date of purchase and signature of seller.\" This demonstrates strong adherence to the knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately flagged the missing local employer details on VAT/Red invoice above 200,000 VND for GoGlobal Vietnam Company Limited. This perfectly matches the compliance rule specifying \"VAT/Red invoice must show: GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for flight expenses, including the Boarding Pass, flight ticket, and red invoice. This aligns perfectly with the compliance rule stating \"Air Ticket claims must include the Boarding Pass, the flight ticket and a red invoice.\"\n\nCONFIDENCE: 98\n\nISSUES:\n- No significant issues identified. The AI response demonstrates strong adherence to the compliance knowledge base for Vietnam.\n\nSUMMARY: The AI response shows excellent adherence to the compliance knowledge base for Vietnam. It correctly identified and applied relevant rules for receipt requirements, local employer details, and additional documentation needed for travel expenses. The issues raised are accurate and well-supported by the provided compliance rules. The high validation scores reflect the AI's thorough understanding and application of the country-specific regulations and receipt type requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue regarding \"Vendor signature for white receipts below 200,000 VND\" is incorrectly applied. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt. According to the extracted data, this is clearly labeled as \"VAT INVOICE\" and \"HÓA DON GIÁ TRI GIA TĂNG\" which indicates it's a red invoice, not a white receipt. The rule about seller signatures applies only to white receipts, not VAT/Red invoices.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue correctly identifies that the VAT/Red invoice should include the local employer details for GoGlobal Vietnam Company Limited. The knowledge base clearly states: \"VAT/Red invoice must show: GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City.\" While the customer name appears to be included on the receipt, the recommendation to ensure all details are present is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The third issue about \"Additional documentation for flight expenses\" is incorrectly applied. The receipt is for a Grab transportation service (ride-hailing), not for a flight. The rule requiring boarding passes and flight tickets only applies to air travel expenses, not ground transportation. The extracted data clearly shows this is for transportation services with pickup and drop-off locations in Ho Chi Minh City.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7166666666666667,
+      "issues": [
+        "1. Incorrectly applied white receipt rule to a VAT invoice",
+        "2. Incorrectly identified a Grab transportation receipt as a flight expense",
+        "3. Failed to recognize that the receipt already contains the required transportation details (departure/destination)",
+        "4. Missed validating that this is a compliant transportation receipt for the GoGlobal ICP"
+      ],
+      "summary": "The compliance assessment contains significant errors. Two of the three identified issues are incorrect - the receipt is not a white receipt requiring seller signature, and it's not a flight expense requiring boarding passes. Only the issue regarding the exact format of the employer details on the VAT invoice is valid. The receipt is actually largely compliant as a transportation expense receipt for GoGlobal, showing proper VAT details, departure/destination points, and vendor information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The rule about seller signature for white receipts applies to receipts below 200,000 VND, but this is a VAT/Red invoice for 36,000 VND with proper VAT details. The receipt is not a \"white receipt\" but a formal VAT invoice (as shown by \"HÓA DON GIÁ TRI GIA TĂNG\" in the document type), so this requirement doesn't apply.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is correctly identified. The receipt is a VAT/Red invoice above 200,000 VND (36,000 VND), and while it does show the customer name as \"CÔNG TY TNHH GOGLOBAL VIET NAM\" and address, it should match exactly the required format specified in the compliance rules: \"GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City\".\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt is for a Grab ride (transportation service), not for flight expenses. The rule about requiring boarding passes, flight tickets, and red invoices only applies to air travel expenses, not ground transportation. The receipt already shows departure and destination points in the special notes section.\n\nCONFIDENCE: 30\n\nISSUES:\n1. Incorrectly applied white receipt rule to a VAT invoice\n2. Incorrectly identified a Grab transportation receipt as a flight expense\n3. Failed to recognize that the receipt already contains the required transportation details (departure/destination)\n4. Missed validating that this is a compliant transportation receipt for the GoGlobal ICP\n\nSUMMARY: The compliance assessment contains significant errors. Two of the three identified issues are incorrect - the receipt is not a white receipt requiring seller signature, and it's not a flight expense requiring boarding passes. Only the issue regarding the exact format of the employer details on the VAT invoice is valid. The receipt is actually largely compliant as a transportation expense receipt for GoGlobal, showing proper VAT details, departure/destination points, and vendor information.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.3,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The rule about seller signature for white receipts applies to receipts below 200,000 VND, but this is a VAT/Red invoice for 36,000 VND with proper VAT details. The receipt is not a \"white receipt\" but a formal VAT invoice (as shown by \"HÓA DON GIÁ TRI GIA TĂNG\" in the document type), so this requirement doesn't apply.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is correctly identified. The receipt is a VAT/Red invoice above 200,000 VND (36,000 VND), and while it does show the customer name as \"CÔNG TY TNHH GOGLOBAL VIET NAM\" and address, it should match exactly the required format specified in the compliance rules: \"GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City\".\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt is for a Grab ride (transportation service), not for flight expenses. The rule about requiring boarding passes, flight tickets, and red invoices only applies to air travel expenses, not ground transportation. The receipt already shows departure and destination points in the special notes section.\n\nCONFIDENCE: 30\n\nISSUES:\n1. Incorrectly applied white receipt rule to a VAT invoice\n2. Incorrectly identified a Grab transportation receipt as a flight expense\n3. Failed to recognize that the receipt already contains the required transportation details (departure/destination)\n4. Missed validating that this is a compliant transportation receipt for the GoGlobal ICP\n\nSUMMARY: The compliance assessment contains significant errors. Two of the three identified issues are incorrect - the receipt is not a white receipt requiring seller signature, and it's not a flight expense requiring boarding passes. Only the issue regarding the exact format of the employer details on the VAT invoice is valid. The receipt is actually largely compliant as a transportation expense receipt for GoGlobal, showing proper VAT details, departure/destination points, and vendor information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing vendor signature for the white receipt below 200,000 VND, which is a mandatory requirement as per the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing local employer details (GoGlobal Vietnam Company Limited, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City) on the VAT/Red invoice above 200,000 VND, which is a mandatory requirement.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identified the missing additional documentation (boarding pass, flight ticket, and red invoice) for the flight expense. However, the recommendation could be more specific on the required documentation.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The compliance assessment is accurate overall, with the required fields being properly validated and the business rules correctly applied. The assessment accurately identified the key compliance issues with the receipt, providing clear recommendations on how to address them. The only minor area for improvement is around providing more specific guidance on the required documentation for flight expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the seller signature is missing for white receipts below 200,000 VND, which is a mandatory requirement according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately points out that the local employer details for GoGlobal Vietnam Company Limited are missing on the VAT/Red invoice above 200,000 VND, which is a mandatory requirement as per the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional documentation (Boarding Pass, flight ticket, and red invoice) is required for flight expenses, which aligns with the compliance rules for travel expenses.\n\nCONFIDENCE: 95\n\nISSUES:\n1. The assessment does not mention the compliance of other mandatory fields such as date of expense, expense description, total amount, and vendor name, which are present in the receipt data.\n2. The assessment does not address the compliance of the VAT amount being clearly listed on the invoice, which is an optional requirement according to the rules.\n\nSUMMARY: The compliance assessment is highly accurate in identifying the three main issues. It correctly applies the business rules for seller signature on white receipts, local employer details on VAT/Red invoices, and additional documentation for flight expenses. However, it does not explicitly mention the compliance of other mandatory fields that are present in the receipt data, which could have provided a more comprehensive assessment. The optional requirement of VAT amount being clearly listed is also not addressed. Despite these minor omissions, the overall assessment accurately identifies the key compliance issues for this travel receipt in Vietnam."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The rule about seller signature for white receipts applies to receipts below 200,000 VND, but this is a VAT/Red invoice for 36,000 VND with proper VAT details. The receipt is not a \"white receipt\" but a formal VAT invoice (as shown by \"HÓA DON GIÁ TRI GIA TĂNG\" in the document type), so this requirement doesn't apply.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. The receipt is a VAT/Red invoice above 200,000 VND (36,000 VND), and while it does show the customer name as \"CÔNG TY TNHH GOGLOBAL VIET NAM\" and address, it should match exactly the required format specified in the compliance rules: \"GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City\".",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The receipt is for a Grab ride (transportation service), not for flight expenses. The rule about requiring boarding passes, flight tickets, and red invoices only applies to air travel expenses, not ground transportation. The receipt already shows departure and destination points in the special notes section.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.75,
+      "issues": [
+        "1. Issue 1 misidentifies a VAT/Red invoice as a white receipt requiring seller signature",
+        "2. Issue 3 incorrectly applies flight documentation requirements to a ground transportation receipt",
+        "3. The system fails to recognize that this is a Grab ride receipt that actually complies with GoGlobal's ground transportation requirements which state \"If the employee uses Grab/Bee or other apps to call a car",
+        "both invoices and trip details are necessary to be submitted\""
+      ],
+      "summary": "The validation system has significant categorization errors. It misidentifies the receipt type in Issue 1, applies flight documentation requirements to a ground transportation receipt in Issue 3, and fails to recognize that the receipt appears to meet GoGlobal's specific requirements for Grab transportation. Only Issue 2 regarding employer details is reasonably accurate, though the customer details do appear to be present in some form on the receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - This issue is incorrectly categorized. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt below 200,000 VND. The seller signature requirement applies only to white receipts below 200,000 VND, not to VAT/Red invoices. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the field and description are incorrect.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately identifies that the local employer details for GoGlobal Vietnam Company Limited should be included on VAT/Red invoices. The extracted data shows the customer name is \"CÔNG TY TNHH GOGLOBAL VIET NAM\" which appears to be present, but the recommendation correctly provides the full required details per compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate, the receipt is for a Grab ride (transportation), not a flight expense. The rule about requiring boarding passes and flight tickets applies only to air travel, not to ground transportation like Grab rides. For ground transportation, different documentation requirements apply.\n\nCONFIDENCE: 45\n\nISSUES:\n1. Issue 1 misidentifies a VAT/Red invoice as a white receipt requiring seller signature\n2. Issue 3 incorrectly applies flight documentation requirements to a ground transportation receipt\n3. The system fails to recognize that this is a Grab ride receipt that actually complies with GoGlobal's ground transportation requirements which state \"If the employee uses Grab/Bee or other apps to call a car, both invoices and trip details are necessary to be submitted\"\n\nSUMMARY: The validation system has significant categorization errors. It misidentifies the receipt type in Issue 1, applies flight documentation requirements to a ground transportation receipt in Issue 3, and fails to recognize that the receipt appears to meet GoGlobal's specific requirements for Grab transportation. Only Issue 2 regarding employer details is reasonably accurate, though the customer details do appear to be present in some form on the receipt.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.45,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - This issue is incorrectly categorized. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt below 200,000 VND. The seller signature requirement applies only to white receipts below 200,000 VND, not to VAT/Red invoices. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the field and description are incorrect.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately identifies that the local employer details for GoGlobal Vietnam Company Limited should be included on VAT/Red invoices. The extracted data shows the customer name is \"CÔNG TY TNHH GOGLOBAL VIET NAM\" which appears to be present, but the recommendation correctly provides the full required details per compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate, the receipt is for a Grab ride (transportation), not a flight expense. The rule about requiring boarding passes and flight tickets applies only to air travel, not to ground transportation like Grab rides. For ground transportation, different documentation requirements apply.\n\nCONFIDENCE: 45\n\nISSUES:\n1. Issue 1 misidentifies a VAT/Red invoice as a white receipt requiring seller signature\n2. Issue 3 incorrectly applies flight documentation requirements to a ground transportation receipt\n3. The system fails to recognize that this is a Grab ride receipt that actually complies with GoGlobal's ground transportation requirements which state \"If the employee uses Grab/Bee or other apps to call a car, both invoices and trip details are necessary to be submitted\"\n\nSUMMARY: The validation system has significant categorization errors. It misidentifies the receipt type in Issue 1, applies flight documentation requirements to a ground transportation receipt in Issue 3, and fails to recognize that the receipt appears to meet GoGlobal's specific requirements for Grab transportation. Only Issue 2 regarding employer details is reasonably accurate, though the customer details do appear to be present in some form on the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing vendor signature on the white receipt below 200,000 VND, which is a mandatory requirement. The recommendation and knowledge base reference provide clear guidance on how to address this issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description accurately identifies the missing local employer details on the VAT/Red invoice above 200,000 VND, which is a mandatory requirement. The recommendation and knowledge base reference provide the specific details that need to be included on the invoice.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description accurately identifies the missing additional documentation (boarding pass, flight ticket, and red invoice) for the flight expense, which is a mandatory requirement. The recommendation and knowledge base reference provide clear guidance on the required documentation.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are categorized accurately, with clear descriptions, actionable recommendations, and references to the relevant compliance standards. The categorization follows the established taxonomy, and no issues appear to be missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description clearly states the problem (missing seller signature) and references the specific rule it violates. The recommendation is actionable and the knowledge base reference is accurate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is appropriately categorized as \"Standards & Compliance | Follow-up Action Identified\". It correctly identifies the missing local employer details on VAT/Red invoices above 200,000 VND. The recommendation provides the exact details needed, matching the compliance rules. However, it could be more specific about the invoice type (VAT/Red) in the description.\n\nISSUE_3_VALIDATION_SCORE: 85 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". It accurately identifies the missing documentation for flight expenses. The recommendation is clear and actionable. However, the confidence score could be higher if the issue description explicitly mentioned that this is a flight expense, which would make the connection to the rule clearer.\n\nCONFIDENCE: 90\n\nISSUES: \n- Issue 3 could benefit from a more explicit connection between the receipt type (travel) and the specific flight expense rule in the description.\n- The system could potentially identify an additional issue related to the VAT amount being clearly listed on the invoice, as this is mentioned as an optional rule in the compliance guidelines.\n\nSUMMARY: Overall, the issues are well-categorized and align closely with the provided compliance rules. The categorizations accurately reflect the nature of the problems and provide clear, actionable recommendations. Minor improvements could be made in explicitly connecting travel receipts to flight-specific rules and potentially identifying optional compliance elements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "This issue is incorrectly categorized. The receipt is a VAT/Red invoice for 36,000 VND, not a white receipt below 200,000 VND. The seller signature requirement applies only to white receipts below 200,000 VND, not to VAT/Red invoices. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the field and description are incorrect.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately identifies that the local employer details for GoGlobal Vietnam Company Limited should be included on VAT/Red invoices. The extracted data shows the customer name is \"CÔNG TY TNHH GOGLOBAL VIET NAM\" which appears to be present, but the recommendation correctly provides the full required details per compliance rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 40,
+          "judge_explanation": "This issue is incorrectly categorized. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate, the receipt is for a Grab ride (transportation), not a flight expense. The rule about requiring boarding passes and flight tickets applies only to air travel, not to ground transportation like Grab rides. For ground transportation, different documentation requirements apply.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8766666666666668,
+      "issues": [
+        "The first recommendation lacks specific actionable steps for obtaining the missing seller signature. Also",
+        "there's a potential confusion since the receipt appears to be a VAT invoice for 36",
+        "000 VND",
+        "which is below 200",
+        "000 VND but is a red invoice rather than a white receipt",
+        "so the first issue may not be applicable."
+      ],
+      "summary": "The recommendations for issues 2 and 3 are highly valid and actionable, providing clear guidance on what documentation is required for compliance. The first recommendation correctly identifies a compliance requirement but provides limited actionable guidance on how to resolve the issue. There's also a potential misclassification of the receipt type in the first issue, as the document appears to be a VAT invoice rather than a white receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 60 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing seller signature is somewhat vague. While it correctly identifies the compliance requirement for white receipts below 200,000 VND, it doesn't provide specific actionable steps on how to obtain the missing signature or what alternatives might be acceptable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding local employer details is highly valid and specific. It clearly states what information should be included on the VAT/Red invoice (GoGlobal Vietnam Company Limited, Tax Code: 0315261446, and the complete address). This is directly actionable and addresses the compliance requirement precisely.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide the Boarding Pass, flight ticket, and red invoice for flight expenses is valid and specific. It clearly identifies what additional documentation is needed to comply with Vietnam's requirements for flight expense reimbursement. However, it could be slightly more helpful by explaining how to obtain these documents if they weren't initially collected.\n\nCONFIDENCE: 80\n\nISSUES: The first recommendation lacks specific actionable steps for obtaining the missing seller signature. Also, there's a potential confusion since the receipt appears to be a VAT invoice for 36,000 VND, which is below 200,000 VND but is a red invoice rather than a white receipt, so the first issue may not be applicable.\n\nSUMMARY: The recommendations for issues 2 and 3 are highly valid and actionable, providing clear guidance on what documentation is required for compliance. The first recommendation correctly identifies a compliance requirement but provides limited actionable guidance on how to resolve the issue. There's also a potential misclassification of the receipt type in the first issue, as the document appears to be a VAT invoice rather than a white receipt.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 60 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing seller signature is somewhat vague. While it correctly identifies the compliance requirement for white receipts below 200,000 VND, it doesn't provide specific actionable steps on how to obtain the missing signature or what alternatives might be acceptable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding local employer details is highly valid and specific. It clearly states what information should be included on the VAT/Red invoice (GoGlobal Vietnam Company Limited, Tax Code: 0315261446, and the complete address). This is directly actionable and addresses the compliance requirement precisely.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide the Boarding Pass, flight ticket, and red invoice for flight expenses is valid and specific. It clearly identifies what additional documentation is needed to comply with Vietnam's requirements for flight expense reimbursement. However, it could be slightly more helpful by explaining how to obtain these documents if they weren't initially collected.\n\nCONFIDENCE: 80\n\nISSUES: The first recommendation lacks specific actionable steps for obtaining the missing seller signature. Also, there's a potential confusion since the receipt appears to be a VAT invoice for 36,000 VND, which is below 200,000 VND but is a red invoice rather than a white receipt, so the first issue may not be applicable.\n\nSUMMARY: The recommendations for issues 2 and 3 are highly valid and actionable, providing clear guidance on what documentation is required for compliance. The first recommendation correctly identifies a compliance requirement but provides limited actionable guidance on how to resolve the issue. There's also a potential misclassification of the receipt type in the first issue, as the document appears to be a VAT invoice rather than a white receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing seller signature for white receipts below 200,000 VND is actionable and specific. It clearly identifies the issue and provides a practical solution to obtain the required signature from the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to include the local employer details (GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446, Address: Tầng 1, tòa nhà Packsimex, 52 Đông Du, Phường Bến Nghé, Quận 1, Thành phố Hồ Chí Minh City) on the VAT/Red invoice above 200,000 VND is valid and addresses the identified issue directly.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide the Boarding Pass, the flight ticket, and a red invoice for the flight expenses is reasonable and addresses the missing documentation. However, the recommendation could be more specific on the exact documents required.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are overall valid and helpful. They are actionable, specific, and address the identified compliance issues. The recommendations are feasible and practical, and no contradictory or harmful advice is given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing seller signature with the supplier is valid and actionable. However, it could be more specific by suggesting how to approach the supplier or what alternative documentation might be acceptable.\n\nISSUE_2_VALIDATION_SCORE: 100 - The recommendation is highly specific, actionable, and directly addresses the issue. It provides the exact details that need to be included on the VAT/Red invoice for GoGlobal Vietnam Company Limited.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation is clear, specific, and directly addresses the missing documentation for flight expenses. It lists all required documents (Boarding Pass, flight ticket, and red invoice) that need to be provided.\n\nCONFIDENCE: 93\n\nISSUES:\n- The first recommendation could be more specific about how to address the issue with the supplier.\n- No guidance is provided on what to do if obtaining the missing documentation is not possible.\n\nSUMMARY: Overall, the recommendations are highly valid and useful. They directly address the identified issues and provide clear, actionable steps. The second and third recommendations are particularly strong, offering specific details on what documentation is required. The first recommendation, while valid, could be more detailed in its guidance. The high level of specificity in most recommendations increases confidence in their validity and usefulness."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing seller signature is somewhat vague. While it correctly identifies the compliance requirement for white receipts below 200,000 VND, it doesn't provide specific actionable steps on how to obtain the missing signature or what alternatives might be acceptable.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding local employer details is highly valid and specific. It clearly states what information should be included on the VAT/Red invoice (GoGlobal Vietnam Company Limited, Tax Code: 0315261446, and the complete address). This is directly actionable and addresses the compliance requirement precisely.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to provide the Boarding Pass, flight ticket, and red invoice for flight expenses is valid and specific. It clearly identifies what additional documentation is needed to comply with Vietnam's requirements for flight expense reimbursement. However, it could be slightly more helpful by explaining how to obtain these documents if they weren't initially collected.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 1,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. All issues reference actual compliance requirements from the knowledge base without fabrication or hallucination. The response correctly applies the GoGlobal ICP context and the travel receipt type to identify relevant compliance issues. No fabricated information, made-up entities, or unsupported assumptions are present in the response.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that seller signatures are required for white receipts below 200,000 VND according to the compliance rules. This matches the provided compliance data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue accurately states that VAT/Red invoices above 200,000 VND must show GoGlobal Vietnam Company Limited details, including the tax code and address. This matches exactly with the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that flight expenses require additional documentation (Boarding Pass, flight ticket, and red invoice) as specified in the compliance rules under \"Air Ticket claims must include the Boarding Pass, the flight ticket and a red invoice.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. All issues reference actual compliance requirements from the knowledge base without fabrication or hallucination. The response correctly applies the GoGlobal ICP context and the travel receipt type to identify relevant compliance issues. No fabricated information, made-up entities, or unsupported assumptions are present in the response.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that seller signatures are required for white receipts below 200,000 VND according to the compliance rules. This matches the provided compliance data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue accurately states that VAT/Red invoices above 200,000 VND must show GoGlobal Vietnam Company Limited details, including the tax code and address. This matches exactly with the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that flight expenses require additional documentation (Boarding Pass, flight ticket, and red invoice) as specified in the compliance rules under \"Air Ticket claims must include the Boarding Pass, the flight ticket and a red invoice.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. All issues reference actual compliance requirements from the knowledge base without fabrication or hallucination. The response correctly applies the GoGlobal ICP context and the travel receipt type to identify relevant compliance issues. No fabricated information, made-up entities, or unsupported assumptions are present in the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response is present in the source data and does not appear to be hallucinated or fabricated.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response are consistent with the compliance policies included in the source data. There is no evidence of fabricated information.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates provided in the AI response match the information extracted from the source data. There are no signs of made-up details.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided are consistent with the source data, including the extracted information and the compliance rules. The response appears to be a comprehensive and accurate analysis of the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rule about seller signatures for white receipts below 200,000 VND, which is present in the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly states the requirement for local employer details on VAT/Red invoices above 200,000 VND for GOGLOBAL VIETNAM COMPANY LIMITED, which matches the information in the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue accurately reflects the requirement for additional documentation for flight expenses, including the Boarding Pass, flight ticket, and red invoice, which is present in the compliance rules.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All issues mentioned in the response are directly based on the provided compliance rules and are relevant to the given context of a travel receipt for Vietnam with GoGlobal as the ICP. The response accurately reflects the requirements and standards outlined in the compliance rules without adding any unsupported information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that seller signatures are required for white receipts below 200,000 VND according to the compliance rules. This matches the provided compliance data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue accurately states that VAT/Red invoices above 200,000 VND must show GoGlobal Vietnam Company Limited details, including the tax code and address. This matches exactly with the compliance rules provided.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue correctly identifies that flight expenses require additional documentation (Boarding Pass, flight ticket, and red invoice) as specified in the compliance rules under \"Air Ticket claims must include the Boarding Pass, the flight ticket and a red invoice.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [
+    "1. The AI misidentified a VAT invoice as a white receipt requiring signatures",
+    "2. The AI incorrectly applied the 200",
+    "000 VND threshold rule (the receipt is only 36",
+    "000 VND)",
+    "3. The AI completely misclassified a Grab ride receipt as a flight expense",
+    "4. The AI failed to recognize that the customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) are already present on the receipt",
+    "5. The AI ignored the clear transportation service nature of the receipt (with origin and destination points listed)"
+  ],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Improve factual grounding: The AI response is poorly grounded in the extracted data. It misclassified the receipt type, applied irrelevant compliance rules, and failed to recognize that this is a standard Grab ride receipt with appropriate VAT information and customer details already included. The receipt appears to be compliant with Vietnam regulations for transportation expenses under 200,000 VND.",
+    "Address issues in factual grounding: 1. The AI misidentified a VAT invoice as a white receipt requiring signatures, 2. The AI incorrectly applied the 200, 000 VND threshold rule (the receipt is only 36, 000 VND), 3. The AI completely misclassified a Grab ride receipt as a flight expense, 4. The AI failed to recognize that the customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) are already present on the receipt, 5. The AI ignored the clear transportation service nature of the receipt (with origin and destination points listed)",
+    "Address issues in knowledge base adherence: 1. Incorrectly identified the receipt as a white receipt when it's clearly a VAT/Red invoice, 2. Incorrectly applied flight documentation requirements to a ground transportation receipt, 3. Failed to recognize the receipt type correctly despite clear labeling in the extracted data, 4. Did not properly distinguish between different types of transportation expenses (ground vs. air)",
+    "Address issues in compliance accuracy: 1. Incorrectly applied white receipt rule to a VAT invoice, 2. Incorrectly identified a Grab transportation receipt as a flight expense, 3. Failed to recognize that the receipt already contains the required transportation details (departure/destination), 4. Missed validating that this is a compliant transportation receipt for the GoGlobal ICP",
+    "Address issues in issue categorization: 1. Issue 1 misidentifies a VAT/Red invoice as a white receipt requiring seller signature, 2. Issue 3 incorrectly applies flight documentation requirements to a ground transportation receipt, 3. The system fails to recognize that this is a Grab ride receipt that actually complies with GoGlobal's ground transportation requirements which state \"If the employee uses Grab/Bee or other apps to call a car, both invoices and trip details are necessary to be submitted\"",
+    "Address issues in recommendation validity: The first recommendation lacks specific actionable steps for obtaining the missing seller signature. Also, there's a potential confusion since the receipt appears to be a VAT invoice for 36, 000 VND, which is below 200, 000 VND but is a red invoice rather than a white receipt, so the first issue may not be applicable.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-09-01T14:13:55.706Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 80888,
+    "timing": {
+      "validation_start_time": "2025-09-01T14:12:34.818Z",
+      "validation_end_time": "2025-09-01T14:13:55.706Z",
+      "total_validation_time_seconds": "80.9",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-01T14:12:34.818Z",
+          "end_time": "2025-09-01T14:13:55.706Z",
+          "duration_seconds": "80.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "80.9",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.37",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not show the seller signature, which is mandatory for white receipts below 200,000 VND.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 28.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 30,
+        "recommendation_validity": 60,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The receipt does not show the local employer details for GoGlobal Vietnam Company Limited as required for VAT/Red invoices above 200,000 VND.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 87.56,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The receipt does not include the Boarding Pass, the flight ticket, and a red invoice as required for flight expenses.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 32.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 40,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

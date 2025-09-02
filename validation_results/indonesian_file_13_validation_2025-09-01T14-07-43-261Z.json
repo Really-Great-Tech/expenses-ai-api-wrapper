@@ -1,0 +1,602 @@
+{
+  "overall_score": 0.7905555555555556,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8666666666666667,
+      "issues": [
+        "1. The AI incorrectly flags customer name as mandatory when it's not required for taxi receipts",
+        "2. The AI overstates the importance of the missing VAT number",
+        "which is optional according to the compliance rules",
+        "3. The AI correctly identifies missing supplier address and mileage documentation issues"
+      ],
+      "summary": "The AI response is partially factually grounded. It correctly identifies issues with missing supplier address and mileage documentation. However, it incorrectly flags customer name as a mandatory field for taxi receipts when the compliance rules don't require this for this expense type. It also overstates the importance of the missing VAT number, which is listed as optional in the compliance rules. The response demonstrates good attention to detail in some areas but misinterprets the applicability of certain compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims there is a \"Missing mandatory customer name on the receipt\" but this is not factually grounded. The compliance rules do not explicitly require a customer name for taxi/travel receipts. The rule about employee name is only mandatory for Hotel and Flight expenses, not for Taxi expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that the supplier address is missing from the receipt. The extracted data shows \"supplier_address: null\" and the compliance rules state \"Document must show vendor name or merchant name that provided goods/services\" which would typically include an address.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing VAT number on the receipt\" but the compliance rules show VAT information is listed as \"Optional\" not \"Mandatory\" for taxi expenses. While the VAT number is indeed missing (shown as \"supplier_vat_number: null\"), flagging this as an issue overstates its importance given it's optional.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation for mileage reimbursement is missing. The compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates\" and this information is not fully present in the extracted data.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The AI incorrectly flags customer name as mandatory when it's not required for taxi receipts\n2. The AI overstates the importance of the missing VAT number, which is optional according to the compliance rules\n3. The AI correctly identifies missing supplier address and mileage documentation issues\n\nSUMMARY: The AI response is partially factually grounded. It correctly identifies issues with missing supplier address and mileage documentation. However, it incorrectly flags customer name as a mandatory field for taxi receipts when the compliance rules don't require this for this expense type. It also overstates the importance of the missing VAT number, which is listed as optional in the compliance rules. The response demonstrates good attention to detail in some areas but misinterprets the applicability of certain compliance requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims there is a \"Missing mandatory customer name on the receipt\" but this is not factually grounded. The compliance rules do not explicitly require a customer name for taxi/travel receipts. The rule about employee name is only mandatory for Hotel and Flight expenses, not for Taxi expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that the supplier address is missing from the receipt. The extracted data shows \"supplier_address: null\" and the compliance rules state \"Document must show vendor name or merchant name that provided goods/services\" which would typically include an address.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing VAT number on the receipt\" but the compliance rules show VAT information is listed as \"Optional\" not \"Mandatory\" for taxi expenses. While the VAT number is indeed missing (shown as \"supplier_vat_number: null\"), flagging this as an issue overstates its importance given it's optional.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation for mileage reimbursement is missing. The compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates\" and this information is not fully present in the extracted data.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The AI incorrectly flags customer name as mandatory when it's not required for taxi receipts\n2. The AI overstates the importance of the missing VAT number, which is optional according to the compliance rules\n3. The AI correctly identifies missing supplier address and mileage documentation issues\n\nSUMMARY: The AI response is partially factually grounded. It correctly identifies issues with missing supplier address and mileage documentation. However, it incorrectly flags customer name as a mandatory field for taxi receipts when the compliance rules don't require this for this expense type. It also overstates the importance of the missing VAT number, which is listed as optional in the compliance rules. The response demonstrates good attention to detail in some areas but misinterprets the applicability of certain compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the provided extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response does not contain any fabricated or assumed information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - All numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - Entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details are accurately represented and can be traced back to the extracted information. There is no fabricated or assumed information in the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the extracted data, which is a mandatory field according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the supplier address is missing from the extracted data, which is indeed a required field according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the VAT number is missing from the extracted data. This is consistent with the compliance rules which state that VAT amount should be listed clearly if applicable.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately noted the need for additional documentation for mileage reimbursement, which is consistent with the compliance rules for travel expenses of this type.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance rules. It accurately identifies missing mandatory fields (customer name, supplier address, VAT number) and the need for additional documentation for mileage reimbursement. The response does not fabricate or assume information beyond what's provided, and all claims can be traced back to the extracted data or compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims there is a \"Missing mandatory customer name on the receipt\" but this is not factually grounded. The compliance rules do not explicitly require a customer name for taxi/travel receipts. The rule about employee name is only mandatory for Hotel and Flight expenses, not for Taxi expenses.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that the supplier address is missing from the receipt. The extracted data shows \"supplier_address: null\" and the compliance rules state \"Document must show vendor name or merchant name that provided goods/services\" which would typically include an address.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims there is a \"Missing VAT number on the receipt\" but the compliance rules show VAT information is listed as \"Optional\" not \"Mandatory\" for taxi expenses. While the VAT number is indeed missing (shown as \"supplier_vat_number: null\"), flagging this as an issue overstates its importance given it's optional.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that additional documentation for mileage reimbursement is missing. The compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates\" and this information is not fully present in the extracted data.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8766666666666666,
+      "issues": [
+        "1. Incorrectly flagged missing customer name when the rule requires supplier name (which is present)",
+        "2. Flagged missing supplier address without clear knowledge base support",
+        "3. Flagged missing VAT number as an issue when it's optional according to the knowledge base",
+        "4. Correctly identified missing mileage documentation requirements"
+      ],
+      "summary": "The AI response shows mixed adherence to the knowledge base. It correctly identified the need for additional documentation for mileage reimbursement, but incorrectly flagged issues regarding customer name (when supplier name was present), supplier address (not explicitly required), and VAT information (which is optional for travel receipts). The AI should have focused more on the actual mandatory requirements and distinguished between mandatory and optional fields based on the knowledge base.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that supplier name is mandatory according to the knowledge base (\"Document must show vendor name or merchant name that provided goods/services\"). However, the issue incorrectly states \"Missing mandatory customer name\" when the rule actually requires supplier/vendor name. The extracted data shows \"Bluebird\" as the supplier name, so this issue shouldn't have been flagged at all.\n\nISSUE_2_VALIDATION_SCORE: 75 - The AI correctly identified that supplier address is missing, which is important information. However, the knowledge base doesn't explicitly list supplier address as a mandatory field for travel receipts. The reference to \"Document must show vendor name or merchant name that provided goods/services\" doesn't specifically mention address requirements.\n\nISSUE_3_VALIDATION_SCORE: 60 - The AI correctly noted that VAT information is missing, but the knowledge base specifically states that VAT is \"Optional\" for travel expenses including taxi services. The confidence score of 0.8 reflects some uncertainty, but the AI should have recognized this as optional rather than presenting it as an issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursement based on the knowledge base rule: \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" This is accurately referenced and appropriate for a travel receipt involving distance-based transportation.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Incorrectly flagged missing customer name when the rule requires supplier name (which is present)\n2. Flagged missing supplier address without clear knowledge base support\n3. Flagged missing VAT number as an issue when it's optional according to the knowledge base\n4. Correctly identified missing mileage documentation requirements\n\nSUMMARY: The AI response shows mixed adherence to the knowledge base. It correctly identified the need for additional documentation for mileage reimbursement, but incorrectly flagged issues regarding customer name (when supplier name was present), supplier address (not explicitly required), and VAT information (which is optional for travel receipts). The AI should have focused more on the actual mandatory requirements and distinguished between mandatory and optional fields based on the knowledge base.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that supplier name is mandatory according to the knowledge base (\"Document must show vendor name or merchant name that provided goods/services\"). However, the issue incorrectly states \"Missing mandatory customer name\" when the rule actually requires supplier/vendor name. The extracted data shows \"Bluebird\" as the supplier name, so this issue shouldn't have been flagged at all.\n\nISSUE_2_VALIDATION_SCORE: 75 - The AI correctly identified that supplier address is missing, which is important information. However, the knowledge base doesn't explicitly list supplier address as a mandatory field for travel receipts. The reference to \"Document must show vendor name or merchant name that provided goods/services\" doesn't specifically mention address requirements.\n\nISSUE_3_VALIDATION_SCORE: 60 - The AI correctly noted that VAT information is missing, but the knowledge base specifically states that VAT is \"Optional\" for travel expenses including taxi services. The confidence score of 0.8 reflects some uncertainty, but the AI should have recognized this as optional rather than presenting it as an issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursement based on the knowledge base rule: \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" This is accurately referenced and appropriate for a travel receipt involving distance-based transportation.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Incorrectly flagged missing customer name when the rule requires supplier name (which is present)\n2. Flagged missing supplier address without clear knowledge base support\n3. Flagged missing VAT number as an issue when it's optional according to the knowledge base\n4. Correctly identified missing mileage documentation requirements\n\nSUMMARY: The AI response shows mixed adherence to the knowledge base. It correctly identified the need for additional documentation for mileage reimbursement, but incorrectly flagged issues regarding customer name (when supplier name was present), supplier address (not explicitly required), and VAT information (which is optional for travel receipts). The AI should have focused more on the actual mandatory requirements and distinguished between mandatory and optional fields based on the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing supplier name as a mandatory field requirement based on the compliance rules for Indonesia.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response accurately identifies the missing supplier address as a mandatory field requirement according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly flags the missing VAT number as an issue, but the confidence score could be improved as the VAT number requirement is listed as optional rather than mandatory in the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response appropriately identifies the lack of additional documentation for mileage reimbursement as a compliance issue, and provides the specific recommendation to include the required details.\n\nCONFIDENCE: 98\nISSUES: The receipt is missing the supplier name and address, which are mandatory fields. The VAT number is also missing, though this is listed as an optional requirement.\nSUMMARY: Overall, the AI response accurately applies the compliance rules and knowledge base for Indonesia. It correctly identifies the key missing fields and provides appropriate recommendations to address the compliance issues. The only minor gap is the slightly lower confidence score for the VAT number requirement, as it is listed as optional rather than mandatory."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified the missing customer name as a compliance issue, which aligns with the knowledge base rule stating \"Document must show vendor name or merchant name that provided goods/services\" for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately flagged the missing supplier address as a compliance issue, adhering to the same knowledge base rule as Issue 1, which requires vendor information to be present on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI noted the missing VAT number as an issue, which is in line with the knowledge base rule \"VAT amount should be listed clearly on the invoice if applicable\". However, this rule is listed as \"Optional\" in the compliance rules, so it may not be a critical issue for all cases.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for mileage reimbursement, which directly corresponds to the knowledge base rule \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates\".\n\nCONFIDENCE: 95\n\nISSUES:\n1. The AI response did not address the gross-up rules specific to mileage expenses in Indonesia, which are mentioned in the compliance policies.\n2. The response didn't mention the need for currency conversion information for foreign currency expenses, which is a requirement according to the knowledge base.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Indonesia, correctly identifying key issues such as missing vendor information, VAT details, and additional documentation requirements for mileage reimbursement. However, it didn't address some specific aspects like gross-up rules for mileage expenses and currency conversion requirements. Overall, the response shows a high level of compliance with the established guidelines, with minor areas for improvement in comprehensiveness."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly identified that supplier name is mandatory according to the knowledge base (\"Document must show vendor name or merchant name that provided goods/services\"). However, the issue incorrectly states \"Missing mandatory customer name\" when the rule actually requires supplier/vendor name. The extracted data shows \"Bluebird\" as the supplier name, so this issue shouldn't have been flagged at all.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 75,
+          "judge_explanation": "The AI correctly identified that supplier address is missing, which is important information. However, the knowledge base doesn't explicitly list supplier address as a mandatory field for travel receipts. The reference to \"Document must show vendor name or merchant name that provided goods/services\" doesn't specifically mention address requirements.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The AI correctly noted that VAT information is missing, but the knowledge base specifically states that VAT is \"Optional\" for travel expenses including taxi services. The confidence score of 0.8 reflects some uncertainty, but the AI should have recognized this as optional rather than presenting it as an issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that additional documentation is required for mileage reimbursement based on the knowledge base rule: \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" This is accurately referenced and appropriate for a travel receipt involving distance-based transportation.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.5666666666666667,
+      "issues": [
+        "1. Three out of four issues are incorrectly identified as compliance problems",
+        "2. The system confused vendor name requirements with customer name requirements",
+        "3. The system treated optional VAT information as mandatory",
+        "4. The system correctly identified only the mileage documentation issue"
+      ],
+      "summary": "The compliance assessment is largely inaccurate. It incorrectly flags missing customer name and supplier address as issues when referencing rules about vendor name (which is present as \"Bluebird\"). It also incorrectly flags missing VAT number as an issue when the rules explicitly mark this as optional for travel expenses. Only the issue regarding additional documentation for mileage reimbursement is correctly identified. The receipt contains the required vendor name, transaction date, total amount, and item descriptions, making it largely compliant with the mandatory requirements for travel receipts in Indonesia.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing mandatory customer name on the receipt\" but references a rule about vendor/merchant name. The extracted data already shows \"Bluebird\" as the supplier_name, which satisfies the vendor name requirement. Customer name is not mandatory for taxi receipts according to the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing required supplier address on the receipt\" but references the same rule about vendor/merchant name. While the supplier address is indeed missing, the compliance rules don't specifically require supplier address for travel receipts. The rule only requires vendor name, which is present.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing VAT number on the receipt\" but the compliance rules clearly state that VAT amount is \"Optional\" for travel expenses including taxi. The rule states \"VAT amount should be listed clearly on the invoice if applicable\" but doesn't make it mandatory.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. For mileage reimbursements, the compliance rules do require additional documentation including \"To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it doesn't show the specific locations.\n\nCONFIDENCE: 25\n\nISSUES:\n1. Three out of four issues are incorrectly identified as compliance problems\n2. The system confused vendor name requirements with customer name requirements\n3. The system treated optional VAT information as mandatory\n4. The system correctly identified only the mileage documentation issue\n\nSUMMARY: The compliance assessment is largely inaccurate. It incorrectly flags missing customer name and supplier address as issues when referencing rules about vendor name (which is present as \"Bluebird\"). It also incorrectly flags missing VAT number as an issue when the rules explicitly mark this as optional for travel expenses. Only the issue regarding additional documentation for mileage reimbursement is correctly identified. The receipt contains the required vendor name, transaction date, total amount, and item descriptions, making it largely compliant with the mandatory requirements for travel receipts in Indonesia.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.25,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing mandatory customer name on the receipt\" but references a rule about vendor/merchant name. The extracted data already shows \"Bluebird\" as the supplier_name, which satisfies the vendor name requirement. Customer name is not mandatory for taxi receipts according to the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing required supplier address on the receipt\" but references the same rule about vendor/merchant name. While the supplier address is indeed missing, the compliance rules don't specifically require supplier address for travel receipts. The rule only requires vendor name, which is present.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The validation claims \"Missing VAT number on the receipt\" but the compliance rules clearly state that VAT amount is \"Optional\" for travel expenses including taxi. The rule states \"VAT amount should be listed clearly on the invoice if applicable\" but doesn't make it mandatory.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. For mileage reimbursements, the compliance rules do require additional documentation including \"To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it doesn't show the specific locations.\n\nCONFIDENCE: 25\n\nISSUES:\n1. Three out of four issues are incorrectly identified as compliance problems\n2. The system confused vendor name requirements with customer name requirements\n3. The system treated optional VAT information as mandatory\n4. The system correctly identified only the mileage documentation issue\n\nSUMMARY: The compliance assessment is largely inaccurate. It incorrectly flags missing customer name and supplier address as issues when referencing rules about vendor name (which is present as \"Bluebird\"). It also incorrectly flags missing VAT number as an issue when the rules explicitly mark this as optional for travel expenses. Only the issue regarding additional documentation for mileage reimbursement is correctly identified. The receipt contains the required vendor name, transaction date, total amount, and item descriptions, making it largely compliant with the mandatory requirements for travel receipts in Indonesia."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified the missing customer name as a mandatory field requirement for compliance.\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified the missing supplier address as a mandatory field requirement for compliance.\nISSUE_3_VALIDATION_SCORE: 80 - The assessment correctly identified the missing VAT number as an issue, but the confidence score could be higher as the VAT number is an optional field requirement.\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified the missing additional documentation for mileage reimbursement as a compliance requirement.\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The compliance assessment is highly accurate. It correctly identified the key missing fields and documentation required for this travel expense receipt to be compliant with the specified standards and policies. The only minor issue is the slightly lower confidence score for the VAT number, as it is an optional field. Overall, the assessment provides a comprehensive and accurate evaluation of the compliance status of this receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer name is not a mandatory field for travel receipts according to the provided compliance rules. The rules only specify that the employee name is required for hotel and flight expenses, not for taxi/transport receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The supplier address is not listed as a mandatory field in the provided compliance rules for travel receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The VAT number is listed as an optional field in the compliance rules, and it is indeed missing from the receipt.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. The compliance rules state that for mileage reimbursements, additional documentation including To and Fro locations, distance travelled, and per diem rates should be included.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Incorrect identification of customer name as a mandatory field for this receipt type.\n2. Incorrect identification of supplier address as a mandatory field.\n3. Failure to recognize that the receipt contains the required transaction date and total amount.\n4. Failure to identify that the receipt meets the requirement for item description (fare and toll/parking clearly listed).\n5. Missed opportunity to flag the potential need for gross-up, as mileage/fuel reimbursements are subject to taxation according to the compliance rules.\n\nSUMMARY: The compliance assessment has significant inaccuracies. It incorrectly flags issues with customer name and supplier address, which are not mandatory for this receipt type according to the provided rules. It also fails to recognize that the receipt meets several mandatory requirements such as transaction date, total amount, and item description. While it correctly identifies the missing VAT number and the need for additional mileage documentation, it misses the potential need for gross-up on mileage reimbursement. The overall accuracy of the compliance assessment is low, requiring substantial revision to align with the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The validation claims \"Missing mandatory customer name on the receipt\" but references a rule about vendor/merchant name. The extracted data already shows \"Bluebird\" as the supplier_name, which satisfies the vendor name requirement. Customer name is not mandatory for taxi receipts according to the compliance rules provided.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The validation claims \"Missing required supplier address on the receipt\" but references the same rule about vendor/merchant name. While the supplier address is indeed missing, the compliance rules don't specifically require supplier address for travel receipts. The rule only requires vendor name, which is present.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The validation claims \"Missing VAT number on the receipt\" but the compliance rules clearly state that VAT amount is \"Optional\" for travel expenses including taxi. The rule states \"VAT amount should be listed clearly on the invoice if applicable\" but doesn't make it mandatory.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. For mileage reimbursements, the compliance rules do require additional documentation including \"To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it doesn't show the specific locations.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9166666666666666,
+      "issues": [
+        "1. Issues 1 and 2 use the same knowledge base reference that doesn't directly support the identified issues",
+        "2. Issue 3 identifies a missing VAT number as an issue when the rules indicate it's optional",
+        "3. No issue was raised about the need for business purpose documentation",
+        "which is required according to the compliance rules"
+      ],
+      "summary": "The validation system correctly identifies several legitimate compliance issues but has some misalignments between the issues identified and the knowledge base references cited. The most accurate categorization is for the mileage documentation issue. The system should better align its issue descriptions with the actual compliance rules and distinguish between mandatory and optional requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue correctly identifies that the customer name is missing, which is a valid compliance concern. However, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") actually refers to supplier information, not customer information. While customer name may be important for some travel receipts, the cited rule doesn't directly support this requirement.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue correctly identifies that supplier address is missing, which is a compliance concern. However, similar to Issue 1, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") doesn't explicitly mention address requirements. The reference is about vendor name, which is actually present in the receipt (Bluebird).\n\nISSUE_3_VALIDATION_SCORE: 70 - The issue correctly identifies that VAT number is missing. However, according to the compliance rules, VAT information is listed as \"Optional\" not \"Mandatory\" in the receiptStandards section. The confidence score of 0.8 is appropriate given this is not a mandatory field according to the provided rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly categorized. The receipt is for travel/mileage, and the compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it's missing the To and From locations. The issue type, description, recommendation, and knowledge base reference all align perfectly.\n\nCONFIDENCE: 82\n\nISSUES:\n1. Issues 1 and 2 use the same knowledge base reference that doesn't directly support the identified issues\n2. Issue 3 identifies a missing VAT number as an issue when the rules indicate it's optional\n3. No issue was raised about the need for business purpose documentation, which is required according to the compliance rules\n\nSUMMARY: The validation system correctly identifies several legitimate compliance issues but has some misalignments between the issues identified and the knowledge base references cited. The most accurate categorization is for the mileage documentation issue. The system should better align its issue descriptions with the actual compliance rules and distinguish between mandatory and optional requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.82,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue correctly identifies that the customer name is missing, which is a valid compliance concern. However, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") actually refers to supplier information, not customer information. While customer name may be important for some travel receipts, the cited rule doesn't directly support this requirement.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue correctly identifies that supplier address is missing, which is a compliance concern. However, similar to Issue 1, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") doesn't explicitly mention address requirements. The reference is about vendor name, which is actually present in the receipt (Bluebird).\n\nISSUE_3_VALIDATION_SCORE: 70 - The issue correctly identifies that VAT number is missing. However, according to the compliance rules, VAT information is listed as \"Optional\" not \"Mandatory\" in the receiptStandards section. The confidence score of 0.8 is appropriate given this is not a mandatory field according to the provided rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly categorized. The receipt is for travel/mileage, and the compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it's missing the To and From locations. The issue type, description, recommendation, and knowledge base reference all align perfectly.\n\nCONFIDENCE: 82\n\nISSUES:\n1. Issues 1 and 2 use the same knowledge base reference that doesn't directly support the identified issues\n2. Issue 3 identifies a missing VAT number as an issue when the rules indicate it's optional\n3. No issue was raised about the need for business purpose documentation, which is required according to the compliance rules\n\nSUMMARY: The validation system correctly identifies several legitimate compliance issues but has some misalignments between the issues identified and the knowledge base references cited. The most accurate categorization is for the mileage documentation issue. The system should better align its issue descriptions with the actual compliance rules and distinguish between mandatory and optional requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue related to the missing customer name is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and actionable, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue related to the missing supplier address is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are suitable.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue related to the missing VAT number is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate, but the confidence score could be slightly higher as VAT may not be a mandatory requirement for all expense types.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue related to the missing additional documentation for mileage reimbursement is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and actionable.\n\nCONFIDENCE: 98\nISSUES: None identified.\n\nSUMMARY: The issues identified in the receipt are accurately categorized according to the established taxonomy. The descriptions are clear, the recommendations are appropriate, and the confidence scores reflect the severity and importance of each issue. Overall, the issue categorization is highly accurate and follows the expected standards and compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately identifies the missing customer name, which is a mandatory field according to the compliance rules. The recommendation and knowledge base reference are appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is also correctly categorized as \"Standards & Compliance | Fix Identified\". The missing supplier address is accurately identified as a required field. The recommendation and knowledge base reference are consistent with the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". However, the compliance rules state that VAT amount is optional, not mandatory. While it's good to note its absence, the severity might be overstated. The confidence score of 0.8 reflects this uncertainty appropriately.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is accurately categorized as \"Standards & Compliance | Follow-up Action Identified\". The description correctly identifies the missing additional documentation for mileage reimbursement, which is required according to the compliance rules. The recommendation and knowledge base reference are spot-on.\n\nCONFIDENCE: 95\n\nISSUES: \n- The VAT number issue (Issue 3) might be slightly overstated given that it's listed as optional in the compliance rules.\n\nSUMMARY: Overall, the issues are very well categorized, with appropriate types, clear descriptions, and actionable recommendations. They follow the established taxonomy and align closely with the provided compliance rules. The only minor concern is the slight overemphasis on the VAT number issue, but this is reflected in its lower confidence score. No significant issues appear to be missed or incorrectly classified."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue correctly identifies that the customer name is missing, which is a valid compliance concern. However, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") actually refers to supplier information, not customer information. While customer name may be important for some travel receipts, the cited rule doesn't directly support this requirement.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue correctly identifies that supplier address is missing, which is a compliance concern. However, similar to Issue 1, the knowledge base reference used (\"Document must show vendor name or merchant name that provided goods/services\") doesn't explicitly mention address requirements. The reference is about vendor name, which is actually present in the receipt (Bluebird).",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue correctly identifies that VAT number is missing. However, according to the compliance rules, VAT information is listed as \"Optional\" not \"Mandatory\" in the receiptStandards section. The confidence score of 0.8 is appropriate given this is not a mandatory field according to the provided rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly categorized. The receipt is for travel/mileage, and the compliance rules clearly state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt shows distance traveled (25.2), it's missing the To and From locations. The issue type, description, recommendation, and knowledge base reference all align perfectly.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7833333333333333,
+      "issues": [
+        "1. Recommendations for issues 1-3 are somewhat generic and could provide more specific guidance",
+        "2. Issue 3 (VAT number) recommendation may not fully account for local practices regarding taxi receipts in Indonesia",
+        "3. No mention of the need to establish business purpose",
+        "which is a requirement in the compliance rules"
+      ],
+      "summary": "The recommendations are generally valid and address the identified compliance issues, particularly for the mileage documentation requirement. However, they tend to be generic for the first three issues, lacking specific actionable steps beyond contacting the supplier. The recommendations could be improved by providing more concrete guidance on how to obtain compliant documentation and by acknowledging potential local variations in receipt requirements for taxi services in Indonesia.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing customer name is actionable but somewhat generic. While it correctly identifies the compliance requirement, it could be more specific about how to obtain a receipt with the customer name included, such as requesting a formal invoice or asking for a corrected receipt that includes the customer's details.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the recommendation to address the missing supplier address with the supplier is valid but lacks specific guidance. It correctly identifies the compliance requirement but could provide more concrete steps, such as contacting Bluebird customer service to request a complete receipt with their business address included.\n\nISSUE_3_VALIDATION_SCORE: 60 - The recommendation regarding the missing VAT number is somewhat valid but may not be fully applicable. While addressing this with the supplier is reasonable, the recommendation doesn't acknowledge that not all taxi receipts in Indonesia necessarily include VAT numbers, especially for standard transportation services. The confidence score of 0.8 reflects this uncertainty, but the recommendation could be more nuanced.\n\nISSUE_4_VALIDATION_SCORE: 90 - This recommendation is highly valid and specific. It correctly identifies that for mileage reimbursements, additional documentation is required including \"To and Fro locations, distance travelled and per diem rates.\" This aligns perfectly with the compliance rules and provides clear guidance on what information needs to be included.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Recommendations for issues 1-3 are somewhat generic and could provide more specific guidance\n2. Issue 3 (VAT number) recommendation may not fully account for local practices regarding taxi receipts in Indonesia\n3. No mention of the need to establish business purpose, which is a requirement in the compliance rules\n\nSUMMARY: The recommendations are generally valid and address the identified compliance issues, particularly for the mileage documentation requirement. However, they tend to be generic for the first three issues, lacking specific actionable steps beyond contacting the supplier. The recommendations could be improved by providing more concrete guidance on how to obtain compliant documentation and by acknowledging potential local variations in receipt requirements for taxi services in Indonesia.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing customer name is actionable but somewhat generic. While it correctly identifies the compliance requirement, it could be more specific about how to obtain a receipt with the customer name included, such as requesting a formal invoice or asking for a corrected receipt that includes the customer's details.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the recommendation to address the missing supplier address with the supplier is valid but lacks specific guidance. It correctly identifies the compliance requirement but could provide more concrete steps, such as contacting Bluebird customer service to request a complete receipt with their business address included.\n\nISSUE_3_VALIDATION_SCORE: 60 - The recommendation regarding the missing VAT number is somewhat valid but may not be fully applicable. While addressing this with the supplier is reasonable, the recommendation doesn't acknowledge that not all taxi receipts in Indonesia necessarily include VAT numbers, especially for standard transportation services. The confidence score of 0.8 reflects this uncertainty, but the recommendation could be more nuanced.\n\nISSUE_4_VALIDATION_SCORE: 90 - This recommendation is highly valid and specific. It correctly identifies that for mileage reimbursements, additional documentation is required including \"To and Fro locations, distance travelled and per diem rates.\" This aligns perfectly with the compliance rules and provides clear guidance on what information needs to be included.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Recommendations for issues 1-3 are somewhat generic and could provide more specific guidance\n2. Issue 3 (VAT number) recommendation may not fully account for local practices regarding taxi receipts in Indonesia\n3. No mention of the need to establish business purpose, which is a requirement in the compliance rules\n\nSUMMARY: The recommendations are generally valid and address the identified compliance issues, particularly for the mileage documentation requirement. However, they tend to be generic for the first three issues, lacking specific actionable steps beyond contacting the supplier. The recommendations could be improved by providing more concrete guidance on how to obtain compliant documentation and by acknowledging potential local variations in receipt requirements for taxi services in Indonesia."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier is actionable and specific. It is a valid suggestion to ensure the receipt complies with the required standards.\n\nISSUE_2_VALIDATION_SCORE: 80 - The recommendation to address the missing supplier address with the supplier is actionable and specific. It is a valid suggestion to ensure the receipt complies with the required standards.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation to address the missing VAT number with the supplier is actionable and specific. However, the confidence score of 0.8 indicates some uncertainty about the necessity of this requirement.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to include the additional documentation for mileage reimbursement is clear, actionable, and directly addresses the identified issue. It provides specific guidance on the required information.\n\nCONFIDENCE: 80\nISSUES: The recommendation for the missing VAT number has a relatively lower confidence score, indicating some uncertainty about the necessity of this requirement.\nSUMMARY: The provided recommendations are generally valid and useful, addressing the identified issues in a clear and actionable manner. The recommendations are feasible and practical, and there are no contradictory or harmful suggestions. The overall confidence in the validity of the recommendations is high, with a minor concern about the VAT number requirement."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier is valid and actionable. However, it could be more specific about how to obtain this information or alternative solutions if the supplier cannot provide it.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to Issue 1, the recommendation to address the missing supplier address with the provider is valid but could be more specific about alternative solutions or how to proceed if the information cannot be obtained.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation to address the missing VAT number is valid, but it's worth noting that not all transactions require a VAT number, especially for smaller amounts or certain types of services. The recommendation could be improved by suggesting to check if a VAT number is actually required for this specific transaction.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation for including additional documentation for mileage reimbursement is highly valid and specific. It clearly outlines what information is needed (To and Fro locations, distance travelled, and per diem rates), which directly addresses the identified issue.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Recommendations for Issues 1-3 could be more specific about alternative solutions if the supplier cannot provide the requested information.\n2. The recommendation for Issue 3 (VAT number) doesn't consider whether a VAT number is actually required for this specific transaction.\n\nSUMMARY: The recommendations are generally valid and address the identified issues. They are actionable and practical, focusing on obtaining the missing information from the supplier or provider. The recommendation for the mileage reimbursement documentation is particularly strong and specific. However, the recommendations could be improved by providing more specific guidance on alternative solutions if the requested information cannot be obtained, and by considering whether all requested information (like the VAT number) is necessary for every transaction. Overall, the recommendations are helpful but could benefit from more detailed, context-specific advice."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing customer name is actionable but somewhat generic. While it correctly identifies the compliance requirement, it could be more specific about how to obtain a receipt with the customer name included, such as requesting a formal invoice or asking for a corrected receipt that includes the customer's details.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to issue 1, the recommendation to address the missing supplier address with the supplier is valid but lacks specific guidance. It correctly identifies the compliance requirement but could provide more concrete steps, such as contacting Bluebird customer service to request a complete receipt with their business address included.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The recommendation regarding the missing VAT number is somewhat valid but may not be fully applicable. While addressing this with the supplier is reasonable, the recommendation doesn't acknowledge that not all taxi receipts in Indonesia necessarily include VAT numbers, especially for standard transportation services. The confidence score of 0.8 reflects this uncertainty, but the recommendation could be more nuanced.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "This recommendation is highly valid and specific. It correctly identifies that for mileage reimbursements, additional documentation is required including \"To and Fro locations, distance travelled and per diem rates.\" This aligns perfectly with the compliance rules and provides clear guidance on what information needs to be included.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Falsely claiming customer name is mandatory for taxi receipts",
+        "2. Falsely claiming supplier address is mandatory for taxi receipts",
+        "3. Presenting an optional VAT requirement as a mandatory issue",
+        "4. Only the mileage documentation requirement is accurate"
+      ],
+      "summary": "The AI response contains significant hallucinations by inventing mandatory requirements that don't exist in the compliance rules. It incorrectly flags missing customer name and supplier address as compliance issues when these aren't required for taxi receipts according to the provided rules. It also misrepresents an optional VAT requirement as mandatory. Only the fourth issue about mileage documentation is accurately represented based on the compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not require customer name for travel/taxi receipts. The rules only require employee name for Hotel and Flight expenses, not for taxi/transport receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"Missing required supplier address on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not list supplier address as a mandatory field for travel/taxi receipts. The only requirement is supplier business name, which is present (\"Bluebird\").\n\nISSUE_3_VALIDATION_SCORE: 50 - The third issue claims \"Missing VAT number on the receipt\" is a compliance problem. The compliance rules do state \"VAT amount should be listed clearly on the invoice if applicable\" for taxi expenses, but it's listed as \"Optional\" not \"Mandatory\" in the rules. The AI incorrectly presents this as a definitive issue rather than noting it's optional.\n\nISSUE_4_VALIDATION_SCORE: 100 - The fourth issue about \"Missing additional documentation for mileage reimbursement\" is valid and matches the compliance rules which state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 25\n\nISSUES:\n1. Falsely claiming customer name is mandatory for taxi receipts\n2. Falsely claiming supplier address is mandatory for taxi receipts\n3. Presenting an optional VAT requirement as a mandatory issue\n4. Only the mileage documentation requirement is accurate\n\nSUMMARY: The AI response contains significant hallucinations by inventing mandatory requirements that don't exist in the compliance rules. It incorrectly flags missing customer name and supplier address as compliance issues when these aren't required for taxi receipts according to the provided rules. It also misrepresents an optional VAT requirement as mandatory. Only the fourth issue about mileage documentation is accurately represented based on the compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.25,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not require customer name for travel/taxi receipts. The rules only require employee name for Hotel and Flight expenses, not for taxi/transport receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"Missing required supplier address on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not list supplier address as a mandatory field for travel/taxi receipts. The only requirement is supplier business name, which is present (\"Bluebird\").\n\nISSUE_3_VALIDATION_SCORE: 50 - The third issue claims \"Missing VAT number on the receipt\" is a compliance problem. The compliance rules do state \"VAT amount should be listed clearly on the invoice if applicable\" for taxi expenses, but it's listed as \"Optional\" not \"Mandatory\" in the rules. The AI incorrectly presents this as a definitive issue rather than noting it's optional.\n\nISSUE_4_VALIDATION_SCORE: 100 - The fourth issue about \"Missing additional documentation for mileage reimbursement\" is valid and matches the compliance rules which state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 25\n\nISSUES:\n1. Falsely claiming customer name is mandatory for taxi receipts\n2. Falsely claiming supplier address is mandatory for taxi receipts\n3. Presenting an optional VAT requirement as a mandatory issue\n4. Only the mileage documentation requirement is accurate\n\nSUMMARY: The AI response contains significant hallucinations by inventing mandatory requirements that don't exist in the compliance rules. It incorrectly flags missing customer name and supplier address as compliance issues when these aren't required for taxi receipts according to the provided rules. It also misrepresents an optional VAT requirement as mandatory. Only the fourth issue about mileage documentation is accurately represented based on the compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response appears to be fully consistent with the source data. All the extracted data fields match the information present in the receipt.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements referenced in the response are all consistent with the provided compliance policy information. No fabricated rules or requirements were detected.\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates mentioned in the extracted data appear to be present in the original receipt and do not seem to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts. It clearly distinguishes the extracted data from the compliance rules and recommendations.\n\nCONFIDENCE: 100\nISSUES: No hallucinations or fabricated information detected.\nSUMMARY: The AI response appears to be fully grounded in the provided source data and compliance policy information. No hallucinations or fabricated elements were identified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing customer name, which is not present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies the missing supplier address, which is indeed not provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The missing VAT number is accurately reported, as it's not present in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies the need for additional documentation for mileage reimbursement, which is a valid requirement based on the provided compliance rules.\n\nCONFIDENCE: 95\n\nISSUES: No significant hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All issues identified are consistent with the extracted data and compliance rules provided. The response accurately reflects the missing information in the receipt (customer name, supplier address, VAT number) and correctly applies the relevant compliance rule for mileage reimbursement documentation. The high confidence score is given because the response sticks closely to the available information and established rules without introducing unsupported claims or details."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue claims \"Missing mandatory customer name on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not require customer name for travel/taxi receipts. The rules only require employee name for Hotel and Flight expenses, not for taxi/transport receipts.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing required supplier address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The second issue claims \"Missing required supplier address on the receipt\" is a compliance problem. This is a hallucination as the compliance rules do not list supplier address as a mandatory field for travel/taxi receipts. The only requirement is supplier business name, which is present (\"Bluebird\").",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing VAT number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The third issue claims \"Missing VAT number on the receipt\" is a compliance problem. The compliance rules do state \"VAT amount should be listed clearly on the invoice if applicable\" for taxi expenses, but it's listed as \"Optional\" not \"Mandatory\" in the rules. The AI incorrectly presents this as a definitive issue rather than noting it's optional.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing additional documentation for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The fourth issue about \"Missing additional documentation for mileage reimbursement\" is valid and matches the compliance rules which state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI incorrectly flags customer name as mandatory when it's not required for taxi receipts, 2. The AI overstates the importance of the missing VAT number, which is optional according to the compliance rules, 3. The AI correctly identifies missing supplier address and mileage documentation issues",
+    "Address issues in knowledge base adherence: 1. Incorrectly flagged missing customer name when the rule requires supplier name (which is present), 2. Flagged missing supplier address without clear knowledge base support, 3. Flagged missing VAT number as an issue when it's optional according to the knowledge base, 4. Correctly identified missing mileage documentation requirements",
+    "Improve compliance accuracy: The compliance assessment is largely inaccurate. It incorrectly flags missing customer name and supplier address as issues when referencing rules about vendor name (which is present as \"Bluebird\"). It also incorrectly flags missing VAT number as an issue when the rules explicitly mark this as optional for travel expenses. Only the issue regarding additional documentation for mileage reimbursement is correctly identified. The receipt contains the required vendor name, transaction date, total amount, and item descriptions, making it largely compliant with the mandatory requirements for travel receipts in Indonesia.",
+    "Address issues in compliance accuracy: 1. Three out of four issues are incorrectly identified as compliance problems, 2. The system confused vendor name requirements with customer name requirements, 3. The system treated optional VAT information as mandatory, 4. The system correctly identified only the mileage documentation issue",
+    "Address issues in issue categorization: 1. Issues 1 and 2 use the same knowledge base reference that doesn't directly support the identified issues, 2. Issue 3 identifies a missing VAT number as an issue when the rules indicate it's optional, 3. No issue was raised about the need for business purpose documentation, which is required according to the compliance rules",
+    "Address issues in recommendation validity: 1. Recommendations for issues 1-3 are somewhat generic and could provide more specific guidance, 2. Issue 3 (VAT number) recommendation may not fully account for local practices regarding taxi receipts in Indonesia, 3. No mention of the need to establish business purpose, which is a requirement in the compliance rules",
+    "Address issues in hallucination detection: 1. Falsely claiming customer name is mandatory for taxi receipts, 2. Falsely claiming supplier address is mandatory for taxi receipts, 3. Presenting an optional VAT requirement as a mandatory issue, 4. Only the mileage documentation requirement is accurate"
+  ],
+  "timestamp": "2025-09-01T14:07:43.259Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 80037,
+    "timing": {
+      "validation_start_time": "2025-09-01T14:06:23.222Z",
+      "validation_end_time": "2025-09-01T14:07:43.259Z",
+      "total_validation_time_seconds": "80.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-01T14:06:23.222Z",
+          "end_time": "2025-09-01T14:07:43.259Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "80.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.37",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 4
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 26.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 0,
+        "issue_categorization": 80,
+        "recommendation_validity": 70,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing required supplier address on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 50.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 75,
+        "compliance_accuracy": 0,
+        "issue_categorization": 80,
+        "recommendation_validity": 70,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing VAT number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 44.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 60,
+        "compliance_accuracy": 0,
+        "issue_categorization": 70,
+        "recommendation_validity": 60,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Missing additional documentation for mileage reimbursement",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}
