@@ -11,6 +11,9 @@ export interface DocumentProcessingData {
   actualUserId?: string;
   sessionId?: string;
   legacyUserId?: string; // Keep original userId for backward compatibility
+  // NEW: Enhanced processing fields
+  processingMode?: 'standard' | 'enhanced-with-splitting';
+  useEnhancedProcessing?: boolean;
 }
 
 export interface ExpenseLineItem {

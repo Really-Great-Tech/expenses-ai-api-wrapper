@@ -3,6 +3,7 @@ import { InjectQueue } from "@nestjs/bull";
 import { Queue, Job } from "bull";
 import { ConfigService } from "@nestjs/config";
 import { ExpenseProcessingService } from "../../services/expense-processing.service";
+import { EnhancedDocumentProcessingService } from "../../services/enhanced-document-processing.service";
 import { UserSessionService } from "../../services/user-session.service";
 import * as fs from "fs";
 import * as path from "path";
@@ -23,6 +24,7 @@ export class DocumentService {
     private expenseQueue: Queue,
     private configService: ConfigService,
     private expenseProcessingService: ExpenseProcessingService,
+    private enhancedDocumentProcessingService: EnhancedDocumentProcessingService,
     private userSessionService: UserSessionService,
   ) {}
 
@@ -33,14 +35,21 @@ export class DocumentService {
     icp: string;
     documentReader?: string;
     actualUserId?: string; // For backward compatibility, but now same as userId
+    useEnhancedProcessing?: boolean; // New option for invoice splitting workflow
     metadata?: {
       userAgent?: string;
       ipAddress?: string;
       clientId?: string;
     };
-  }): Promise<{ jobId: string; status: string; userId: string; sessionId: string }> {
+  }): Promise<{ jobId: string; status: string; userId: string; sessionId: string; processingMode: string }> {
     try {
-      const { file, userId, country, icp, documentReader, metadata } = request;
+      const { file, userId, country, icp, documentReader, useEnhancedProcessing, metadata } = request;
+      
+      // Determine processing mode
+      const shouldUseEnhanced = useEnhancedProcessing ?? await this.enhancedDocumentProcessingService.shouldUseInvoiceSplitting(file);
+      const processingMode = shouldUseEnhanced ? 'enhanced-with-splitting' : 'standard';
+      
+      this.logger.log(`Processing mode determined: ${processingMode} for file: ${file.originalname}`);
       
       // NEW: Always use hierarchical user system (no more legacy mode)
       const jobInfo = await this.userSessionService.createJobForUser(
@@ -54,7 +63,7 @@ export class DocumentService {
       const jobId = jobInfo.jobId;
       const sessionId = jobInfo.sessionId;
       
-      this.logger.log(`Created filename-based job ${jobId} for user ${userId} in session ${sessionId}`);
+      this.logger.log(`Created filename-based job ${jobId} for user ${userId} in session ${sessionId} (${processingMode})`);
       const uploadPath = this.configService.get("UPLOAD_PATH", "./uploads");
 
       // Ensure upload directory exists
@@ -113,6 +122,9 @@ export class DocumentService {
         actualUserId: userId, // Same as userId now
         sessionId,
         legacyUserId: undefined, // No longer needed
+        // Enhanced processing options
+        processingMode,
+        useEnhancedProcessing: shouldUseEnhanced,
       };
 
       // Add job to expense processing queue
@@ -139,6 +151,7 @@ export class DocumentService {
         status: "queued",
         userId: userId, // Return the user ID
         sessionId,
+        processingMode,
       };
     } catch (error) {
       this.logger.error("Failed to queue document processing:", error);

@@ -32,6 +32,14 @@ export class InvoiceSplitterAgent {
             role: 'system',
             content: `You are an expert document analyst specializing in individual receipt/invoice identification. Your primary expertise is detecting separate transactions within document containers and avoiding incorrect grouping.
 
+🚨 CRITICAL EXCLUSION RULE - MUST BE FOLLOWED:
+- NEVER include pages containing "Powered by Expensify" in any pageGroups
+- These are Expensify-generated summary/cover pages, NOT actual receipts
+- If a page contains "Powered by Expensify" anywhere in the content, EXCLUDE it completely
+- Even if the page contains multiple different receipts/invoices AND still contains "Powered by Expensify", it MUST be excluded
+- The presence of "Powered by Expensify" overrides any receipt content - ALWAYS exclude such pages
+- Only process pages that contain actual transaction receipts from merchants/vendors WITHOUT Expensify branding
+
 CORE PRINCIPLE: Distinguish between DOCUMENT CONTAINERS and INDIVIDUAL TRANSACTIONS.
 
 CRITICAL UNDERSTANDING:
@@ -41,12 +49,13 @@ CRITICAL UNDERSTANDING:
 - Each complete transaction should be treated as a separate receipt, regardless of container
 
 Your analysis should be precise and methodical:
-1. IGNORE document-level headers and focus on transaction-level details
-2. Look for complete transaction cycles on individual pages
-3. Identify unique transaction markers (receipt numbers, transaction times, totals, payment methods)
-4. Separate receipts even if they share the same expense report number or vendor
-5. Only group pages when there's clear evidence of multi-page continuation of the SAME transaction
-6. When in doubt, separate rather than group - it's better to over-split than under-split
+1. FIRST: Check each page for "Powered by Expensify" - if found, EXCLUDE that page completely
+2. IGNORE document-level headers and focus on transaction-level details
+3. Look for complete transaction cycles on individual pages
+4. Identify unique transaction markers (receipt numbers, transaction times, totals, payment methods)
+5. Separate receipts even if they share the same expense report number or vendor
+6. Only group pages when there's clear evidence of multi-page continuation of the SAME transaction
+7. When in doubt, separate rather than group - it's better to over-split than under-split
 
 CRITICAL: Container headers are NOT reasons to group transactions together.
 
@@ -112,12 +121,19 @@ Always respond with valid JSON only - no explanations or markdown formatting.`,
       `=== PAGE ${page.pageNumber} ===\n${page.content.substring(0, 2000)}${page.content.length > 2000 ? '...' : ''}\n`
     ).join('\n');
 
-    return `Analyze these PDF pages to identify individual receipts/invoices. Each page could potentially be a separate receipt unless proven otherwise.
+    return `🚨 MANDATORY FIRST STEP: Check each page for "Powered by Expensify" text - if found, EXCLUDE that page completely from all analysis and pageGroups.
+
+Analyze these PDF pages to identify individual receipts/invoices. Each page could potentially be a separate receipt unless proven otherwise.
 
 DOCUMENT PAGES:
 ${pagesContent}
 
-ANALYSIS APPROACH:
+🚨 CRITICAL EXCLUSION CHECK:
+Before any analysis, scan each page for "Powered by Expensify" text. If found anywhere in the page content, that page MUST be excluded from all pageGroups. These are Expensify summary pages, not actual receipts.
+
+IMPORTANT: Even if a page contains multiple different receipts/invoices but also contains "Powered by Expensify", the ENTIRE page must be excluded. The Expensify branding indicates it's a processed/summary page, not original receipt data.
+
+ANALYSIS APPROACH (after exclusion check):
 1. ASSUME each page is a separate receipt/invoice by default
 2. DISTINGUISH between document containers and individual transactions
 3. Focus on TRANSACTION-LEVEL identifiers, not document-level headers
@@ -214,6 +230,15 @@ COMMON CONTAINER PATTERNS TO IGNORE FOR GROUPING:
 - Document compilation headers
 - Scanning app watermarks or headers
 
+🚨🚨🚨 MANDATORY EXCLUSION RULE - ABSOLUTELY CRITICAL 🚨🚨🚨
+PAGES THAT MUST BE COMPLETELY EXCLUDED FROM ALL pageGroups:
+- ANY page containing "Powered by Expensify" text ANYWHERE in the content
+- These are Expensify-generated summary/cover pages, NOT actual receipts
+- Even if the page contains transaction data, if it has "Powered by Expensify", EXCLUDE IT
+- Even if the page contains multiple different receipts/invoices, if it has "Powered by Expensify", EXCLUDE THE ENTIRE PAGE
+- The presence of "Powered by Expensify" indicates processed/summary data, not original receipts
+- This rule overrides all other analysis - exclusion comes first, regardless of receipt content
+
 CONFIDENCE SCORING:
 - 0.9-1.0: Clear individual receipts with complete transaction cycles
 - 0.7-0.8: Likely separate receipts with minor ambiguities
@@ -221,36 +246,40 @@ CONFIDENCE SCORING:
 - 0.3-0.4: Unclear boundaries, lean toward separation
 - 0.0-0.2: Strong evidence for grouping (true multi-page invoice)
 
+🚨 STEP-BY-STEP EXCLUSION PROCESS:
+1. FIRST: Scan each page content for "Powered by Expensify"
+2. If found: Mark that page as EXCLUDED - do not include in any pageGroups (even if it contains multiple receipts)
+3. THEN: Analyze remaining pages for receipt identification
+4. NEVER include excluded pages in the final response
+
+REMEMBER: Expensify pages are summary/cover pages, not original receipts. Even if they contain receipt data from multiple transactions, they are processed summaries and must be excluded entirely.
+
 RESPONSE FORMAT (valid JSON only):
 {
-  "totalInvoices": 4,
+  "totalInvoices": 3,
   "pageGroups": [
     {
       "invoiceNumber": 1,
-      "pages": [1],
+      "pages": [2],
       "confidence": 0.95,
-      "reasoning": "Page 1: Individual receipt within expense report - Receipt #12345, total €15.50, 2024-01-15 09:30, Restaurant ABC"
+      "reasoning": "Page 2: Individual receipt within expense report - Receipt #12345, total €15.50, 2024-01-15 09:30, Restaurant ABC"
     },
     {
       "invoiceNumber": 2,
-      "pages": [2],
+      "pages": [3],
       "confidence": 0.92,
-      "reasoning": "Page 2: Individual receipt within expense report - Receipt #67890, total €8.75, 2024-01-15 14:20, Cafe XYZ - different transaction"
+      "reasoning": "Page 3: Individual receipt within expense report - Receipt #67890, total €8.75, 2024-01-15 14:20, Cafe XYZ - different transaction"
     },
     {
       "invoiceNumber": 3,
-      "pages": [3],
-      "confidence": 0.90,
-      "reasoning": "Page 3: Individual receipt within expense report - Receipt #11111, total €25.00, 2024-01-16 12:00, Hotel DEF - different date/amount"
-    },
-    {
-      "invoiceNumber": 4,
-      "pages": [4, 5],
+      "pages": [5, 6],
       "confidence": 0.88,
-      "reasoning": "Pages 4-5: Multi-page invoice #INV-2024-001, same invoice number, 'Page 1 of 2' indicator, building totals (subtotal on page 4, final total on page 5)"
+      "reasoning": "Pages 5-6: Multi-page invoice #INV-2024-001, same invoice number, 'Page 1 of 2' indicator, building totals (subtotal on page 5, final total on page 6)"
     }
   ]
 }
+
+NOTE: In this example, pages 1 and 4 were excluded because they contained "Powered by Expensify" and were not actual receipts.
 
 CRITICAL: Respond with ONLY the JSON object. No explanations, markdown formatting, or additional text.`;
   }

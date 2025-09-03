@@ -106,6 +106,12 @@ export class DocumentController {
           example: "llamaparse",
           default: "llamaparse",
         },
+        useEnhancedProcessing: {
+          type: "boolean",
+          description: "Enable enhanced processing with invoice splitting for multi-page documents (default: auto-detect for PDFs)",
+          example: true,
+          default: false,
+        },
         metadata: {
           type: "object",
           description: "Optional metadata for user session tracking",
@@ -131,7 +137,8 @@ export class DocumentController {
           jobId: "restaurant_receipt.pdf_user_john_doe_123",
           status: "queued",
           userId: "user_john_doe_123",
-          sessionId: "session_user_john_doe_123_2025-08-14T15-21-00-000Z_abc12345"
+          sessionId: "session_user_john_doe_123_2025-08-14T15-21-00-000Z_abc12345",
+          processingMode: "enhanced-with-splitting"
         },
       },
     },
@@ -202,6 +209,7 @@ export class DocumentController {
       country?: string;
       icp?: string;
       documentReader?: string;
+      useEnhancedProcessing?: boolean; // New option for invoice splitting workflow
       metadata?: {
         userAgent?: string;
         ipAddress?: string;
@@ -224,6 +232,7 @@ export class DocumentController {
         country: body.country || "Germany",
         icp: body.icp || "Global People",
         documentReader: body.documentReader || "llamaparse",
+        useEnhancedProcessing: body.useEnhancedProcessing, // Pass through enhanced processing option
         actualUserId: body.userId, // Same as userId (simplified)
         metadata: body.metadata,
       });
@@ -547,6 +556,189 @@ export class DocumentController {
       throw new HttpException(
         `Health check failed: ${error.message}`,
         HttpStatus.SERVICE_UNAVAILABLE
+      );
+    }
+  }
+
+  @Post("process-enhanced")
+  @UseInterceptors(
+    FileInterceptor("file", {
+      dest: "./uploads/temp",
+      limits: {
+        fileSize: 50 * 1024 * 1024, // 50MB limit
+      },
+      fileFilter: (req, file, cb) => {
+        const allowedMimes = [
+          "application/pdf",
+          "image/png",
+          "image/jpeg",
+          "image/jpg",
+          "image/tiff",
+        ];
+        if (allowedMimes.includes(file.mimetype)) {
+          cb(null, true);
+        } else {
+          cb(
+            new Error(
+              "Invalid file type. Only PDF, PNG, JPG, JPEG, and TIFF files are allowed."
+            ),
+            false
+          );
+        }
+      },
+    })
+  )
+  @UsePipes(new ValidationPipe({ transform: true }))
+  @ApiOperation({
+    summary: "Upload and process an expense document with enhanced invoice splitting",
+    description:
+      "Upload an expense document for enhanced AI-powered processing with automatic invoice splitting. Multi-page documents are automatically split into individual receipts, each processed through image quality assessment and the complete expense processing pipeline.",
+  })
+  @ApiConsumes("multipart/form-data")
+  @ApiBody({
+    description: "Expense document upload with enhanced processing parameters",
+    schema: {
+      type: "object",
+      properties: {
+        file: {
+          type: "string",
+          format: "binary",
+          description: "Expense document file (PDF, PNG, JPG, JPEG, TIFF, max 50MB)",
+        },
+        userId: {
+          type: "string",
+          description: "User ID for hierarchical trace grouping",
+          example: "user_john_doe_123",
+        },
+        country: {
+          type: "string",
+          description: "Country for compliance requirements (default: Germany)",
+          example: "Germany",
+          default: "Germany",
+        },
+        icp: {
+          type: "string",
+          description: "ICP provider for compliance rules (default: Global People)",
+          example: "Global People",
+          default: "Global People",
+        },
+        documentReader: {
+          type: "string",
+          description: "Document reader to use for content extraction (default: textract for optimal splitting)",
+          enum: ["llamaparse", "textract"],
+          example: "textract",
+          default: "textract",
+        },
+      },
+      required: ["file", "userId"],
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: "Enhanced document processing completed successfully",
+    schema: {
+      example: {
+        success: true,
+        message: "Enhanced document processing completed successfully",
+        data: {
+          originalDocument: {
+            filename: "multi_receipt_document.pdf",
+            totalPages: 4,
+            hasMultipleInvoices: true,
+          },
+          individualReceipts: [
+            {
+              receiptId: "receipt_1_abc12345",
+              invoiceNumber: 1,
+              pages: [1],
+              imageQualityAssessment: {
+                overall_quality_score: 8.5,
+                suitable_for_extraction: true,
+              },
+              expenseProcessingResult: {
+                classification: { expense_type: "restaurant" },
+                extraction: { amount: 25.50, currency: "EUR" },
+                compliance: { validation_result: { is_valid: true } },
+              },
+              processingTime: 15000,
+            },
+            {
+              receiptId: "receipt_2_def67890",
+              invoiceNumber: 2,
+              pages: [2],
+              imageQualityAssessment: {
+                overall_quality_score: 7.2,
+                suitable_for_extraction: true,
+              },
+              expenseProcessingResult: {
+                classification: { expense_type: "taxi" },
+                extraction: { amount: 18.75, currency: "EUR" },
+                compliance: { validation_result: { is_valid: true } },
+              },
+              processingTime: 12000,
+            },
+          ],
+          summary: {
+            totalReceipts: 2,
+            successfulProcessing: 2,
+            failedProcessing: 0,
+            totalProcessingTime: 27000,
+            averageQualityScore: 7.85,
+          },
+          tempDirectory: "/tmp/invoice-splits/1234567890",
+        },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: "Invalid file or request parameters",
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 500,
+    description: "Internal server error",
+    type: ErrorResponseDto,
+  })
+  async processDocumentEnhanced(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: {
+      userId: string;
+      country?: string;
+      icp?: string;
+      documentReader?: string;
+    }
+  ) {
+    if (!file) {
+      throw new HttpException("No file uploaded", HttpStatus.BAD_REQUEST);
+    }
+
+    if (!body.userId) {
+      throw new HttpException("userId is required", HttpStatus.BAD_REQUEST);
+    }
+
+    try {
+      // Force enhanced processing for this endpoint
+      const result = await this.documentService.queueDocumentProcessing({
+        file,
+        userId: body.userId,
+        country: body.country || "Germany",
+        icp: body.icp || "Global People",
+        documentReader: body.documentReader || "textract", // Default to textract for better splitting
+        useEnhancedProcessing: true, // Force enhanced processing
+        actualUserId: body.userId,
+        metadata: {},
+      });
+
+      return {
+        success: true,
+        message: "Enhanced expense document processing job created successfully",
+        data: result,
+      };
+    } catch (error) {
+      throw new HttpException(
+        `Failed to queue enhanced expense document processing: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR
       );
     }
   }

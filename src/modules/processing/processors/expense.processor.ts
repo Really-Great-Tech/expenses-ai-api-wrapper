@@ -3,6 +3,7 @@ import { Logger } from "@nestjs/common";
 import { Job } from "bull";
 import { DocumentService } from "../../document/document.service";
 import { ExpenseProcessingService } from "../../../services/expense-processing.service";
+import { EnhancedDocumentProcessingService } from "../../../services/enhanced-document-processing.service";
 import { DocumentReaderFactory } from "../../../utils/documentReaderFactory";
 import { DocumentReader } from "../../../utils/types";
 import {
@@ -18,69 +19,36 @@ export class ExpenseProcessor {
 
   constructor(
     private readonly documentService: DocumentService,
-    private readonly expenseProcessingService: ExpenseProcessingService
+    private readonly expenseProcessingService: ExpenseProcessingService,
+    private readonly enhancedDocumentProcessingService: EnhancedDocumentProcessingService
   ) {}
 
   @Process(JOB_TYPES.PROCESS_DOCUMENT)
   async processDocument(job: Job<DocumentProcessingData>): Promise<JobResult> {
     const startTime = Date.now();
-    const { jobId, filePath, fileName, userId, country, icp, documentReader } = job.data;
+    const {
+      jobId,
+      filePath,
+      fileName,
+      userId,
+      country,
+      icp,
+      documentReader,
+      processingMode,
+      useEnhancedProcessing
+    } = job.data;
 
     try {
       this.logger.log(
-        `Starting expense document processing for job: ${jobId}, file: ${fileName}`
+        `Starting ${processingMode || 'standard'} expense document processing for job: ${jobId}, file: ${fileName}`
       );
 
-      // Read the document content using the specified document reader with timing
-      const markdownExtractionStart = Date.now();
-      const markdownContent = await this.readDocumentContent(filePath, documentReader);
-      const markdownExtractionEnd = Date.now();
-
-      const markdownExtractionTime = markdownExtractionEnd - markdownExtractionStart;
-      this.logger.log(`Markdown extraction completed in ${markdownExtractionTime}ms using ${documentReader || 'default'} reader`);
-
-      // Save markdown content locally
-      await this.saveMarkdownContent(fileName, markdownContent, documentReader || 'default');
-      
-      // Load compliance data and expense schema (placeholder - should be loaded from config/database)
-      const complianceData = await this.loadComplianceData(country, icp);
-      const expenseSchema = await this.loadExpenseSchema();
-
-      // Process the document through all agents
-      // Check environment variable for processing mode (default to parallel)
-      const useParallelProcessing = process.env.USE_PARALLEL_PROCESSING !== 'false';
-
-      const result = await this.expenseProcessingService.processExpenseDocument(
-        markdownContent,
-        fileName,
-        filePath,
-        country,
-        icp,
-        complianceData,
-        expenseSchema,
-        async (stage: string, progress: number) => {
-          await job.progress(progress);
-          this.logger.log(`${stage}: ${progress}%`);
-        },
-        {
-          markdownExtractionTime,
-          documentReader: documentReader || 'default'
-        },
-        useParallelProcessing,
-        userId // Pass the userId from the API to Langfuse tracking
-      );
-
-      const processingTime = Date.now() - startTime;
-      const totalProcessingTimeSeconds = result.timing?.total_processing_time_seconds || 'N/A';
-      this.logger.log(
-        `Expense document processing finished for job: ${jobId} in ${processingTime}ms (${totalProcessingTimeSeconds}s total)`
-      );
-
-      return {
-        success: true,
-        data: result,
-        processingTime,
-      };
+      // Check if we should use enhanced processing with invoice splitting
+      if (useEnhancedProcessing && processingMode === 'enhanced-with-splitting') {
+        return await this.processDocumentEnhanced(job);
+      } else {
+        return await this.processDocumentStandard(job);
+      }
     } catch (error) {
       const processingTime = Date.now() - startTime;
       this.logger.error(`Expense document processing failed for job: ${jobId}:`, error);
@@ -90,6 +58,140 @@ export class ExpenseProcessor {
         error: error.message,
         processingTime,
       };
+    }
+  }
+
+  private async processDocumentStandard(job: Job<DocumentProcessingData>): Promise<JobResult> {
+    const startTime = Date.now();
+    const { jobId, filePath, fileName, userId, country, icp, documentReader } = job.data;
+
+    // Read the document content using the specified document reader with timing
+    const markdownExtractionStart = Date.now();
+    const markdownContent = await this.readDocumentContent(filePath, documentReader);
+    const markdownExtractionEnd = Date.now();
+
+    const markdownExtractionTime = markdownExtractionEnd - markdownExtractionStart;
+    this.logger.log(`Markdown extraction completed in ${markdownExtractionTime}ms using ${documentReader || 'default'} reader`);
+
+    // Save markdown content locally
+    await this.saveMarkdownContent(fileName, markdownContent, documentReader || 'default');
+    
+    // Load compliance data and expense schema (placeholder - should be loaded from config/database)
+    const complianceData = await this.loadComplianceData(country, icp);
+    const expenseSchema = await this.loadExpenseSchema();
+
+    // Process the document through all agents
+    // Check environment variable for processing mode (default to parallel)
+    const useParallelProcessing = process.env.USE_PARALLEL_PROCESSING !== 'false';
+
+    const result = await this.expenseProcessingService.processExpenseDocument(
+      markdownContent,
+      fileName,
+      filePath,
+      country,
+      icp,
+      complianceData,
+      expenseSchema,
+      async (stage: string, progress: number) => {
+        await job.progress(progress);
+        this.logger.log(`${stage}: ${progress}%`);
+      },
+      {
+        markdownExtractionTime,
+        documentReader: documentReader || 'default'
+      },
+      useParallelProcessing,
+      userId // Pass the userId from the API to Langfuse tracking
+    );
+
+    const processingTime = Date.now() - startTime;
+    const totalProcessingTimeSeconds = result.timing?.total_processing_time_seconds || 'N/A';
+    this.logger.log(
+      `Standard expense document processing finished for job: ${jobId} in ${processingTime}ms (${totalProcessingTimeSeconds}s total)`
+    );
+
+    return {
+      success: true,
+      data: result,
+      processingTime,
+    };
+  }
+
+  private async processDocumentEnhanced(job: Job<DocumentProcessingData>): Promise<JobResult> {
+    const startTime = Date.now();
+    const { jobId, filePath, fileName, userId, country, icp, documentReader } = job.data;
+
+    this.logger.log(`🚀 Starting enhanced processing with invoice splitting for job: ${jobId}`);
+
+    // Load compliance data and expense schema
+    const complianceData = await this.loadComplianceData(country, icp);
+    const expenseSchema = await this.loadExpenseSchema();
+
+    // Create a file object from the file path for the enhanced service
+    const fs = require('fs');
+    const fileBuffer = fs.readFileSync(filePath);
+    const file: Express.Multer.File = {
+      fieldname: 'file',
+      originalname: fileName,
+      encoding: '7bit',
+      mimetype: this.getMimeTypeFromPath(filePath),
+      size: fileBuffer.length,
+      buffer: fileBuffer,
+      destination: '',
+      filename: fileName,
+      path: filePath,
+      stream: null as any,
+    };
+
+    // Process using enhanced service
+    const result = await this.enhancedDocumentProcessingService.processDocumentWithInvoiceSplitting(
+      file,
+      {
+        userId,
+        country,
+        icp,
+        documentReader,
+        complianceData,
+        expenseSchema,
+        progressCallback: async (stage: string, progress: number, receiptIndex?: number) => {
+          await job.progress(progress);
+          const logMessage = receiptIndex
+            ? `${stage} (Receipt ${receiptIndex}): ${progress}%`
+            : `${stage}: ${progress}%`;
+          this.logger.log(logMessage);
+        },
+      }
+    );
+
+    const processingTime = Date.now() - startTime;
+    this.logger.log(
+      `Enhanced expense document processing finished for job: ${jobId} in ${processingTime}ms. Processed ${result.summary.totalReceipts} receipts (${result.summary.successfulProcessing} successful)`
+    );
+
+    return {
+      success: true,
+      data: result,
+      processingTime,
+    };
+  }
+
+  private getMimeTypeFromPath(filePath: string): string {
+    const path = require('path');
+    const ext = path.extname(filePath).toLowerCase();
+    
+    switch (ext) {
+      case '.pdf':
+        return 'application/pdf';
+      case '.png':
+        return 'image/png';
+      case '.jpg':
+      case '.jpeg':
+        return 'image/jpeg';
+      case '.tiff':
+      case '.tif':
+        return 'image/tiff';
+      default:
+        return 'application/octet-stream';
     }
   }
 

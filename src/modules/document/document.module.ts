@@ -6,10 +6,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { DocumentController } from './document.controller';
 import { DocumentService } from './document.service';
 import { ExpenseProcessingService } from '../../services/expense-processing.service';
+import { EnhancedDocumentProcessingService } from '../../services/enhanced-document-processing.service';
 import { UserSessionService } from '../../services/user-session.service';
 import { ExpenseProcessor } from '../processing/processors/expense.processor';
 import { ProcessingService } from '../processing/services/processing.service';
 import { LangfuseModule } from '../langfuse/langfuse.module';
+import { InvoiceSplitterModule } from '../invoice-splitter/invoice-splitter.module';
 
 import { QUEUE_NAMES } from '../../types';
 import * as multer from 'multer';
@@ -19,6 +21,9 @@ import * as path from 'path';
   imports: [
     // Import Langfuse for tracing
     LangfuseModule,
+
+    // Import Invoice Splitter for enhanced processing
+    InvoiceSplitterModule,
 
     // Register the queue with proper configuration and processor
     BullModule.registerQueue({
@@ -84,7 +89,19 @@ import * as path from 'path';
     }]),
   ],
   controllers: [DocumentController],
-  providers: [DocumentService, ExpenseProcessingService, UserSessionService, ExpenseProcessor, ProcessingService],
-  exports: [DocumentService, UserSessionService, ProcessingService],
+  providers: [
+    DocumentService,
+    ExpenseProcessingService,
+    EnhancedDocumentProcessingService,
+    UserSessionService,
+    ExpenseProcessor,
+    ProcessingService
+  ],
+  exports: [
+    DocumentService,
+    EnhancedDocumentProcessingService,
+    UserSessionService,
+    ProcessingService
+  ],
 })
 export class DocumentModule {}
