@@ -1,0 +1,539 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\taiwan_file_11.jpg_full_test_dataset_3_taiwan_file_11.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T17:48:47.718Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or blocked content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Chinese",
+    "language_confidence": 90,
+    "document_location": "Taiwan",
+    "expected_location": "Taiwan",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 95,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including transaction amount, payment method, and item description. The presence of these fields, along with the context suggesting a payment for goods or services, indicates that this is an expense document. The language and location also match the expected criteria.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including transaction amount (\"11 RMB:46.50\"), payment method (\"visa 14:387667667\"), and item description (\"UMS POS (Wiik)\"). This meets the criteria for identifying it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": "469521******3951/C",
+    "receipt_number": null,
+    "transaction_reference": "0001094",
+    "currency": "RMB",
+    "total_amount": 46.5,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2021-05-21",
+    "transaction_time": "15:25:20",
+    "payment_method": "visa",
+    "card_last_four": "3876",
+    "line_items": [],
+    "receipt_type": null,
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null,
+    "additional_codes": {
+      "ARQC": "80DE2FBD38C0F727"
+    }
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 6,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Missing mandatory supplier name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Required supplier address is missing or incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_amount",
+          "description": "Tax amount is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount, listed clearly on the Invoice (if applicable)",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "currency",
+          "description": "Currency is not in local currency (RMB instead of TWD)",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Meal expenses exceed the maximum of NT 3,000/month",
+          "recommendation": "The upper tax exempted limit of monthly meal allowance per person is NT 3,000. Amounts above this limit will be subject to tax",
+          "knowledge_base_reference": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation required for clear business purpose and approval",
+          "recommendation": "Submit expense claims with clear and legible copies of receipts to Client line manager for approval preferably within the same month of the expense",
+          "knowledge_base_reference": "Submit expense claims with clear and legible copies of receipts to Client line manager for approval preferably within the same month of the expense",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields (supplier name, supplier address, tax amount), incorrect currency, and exceeding the meal allowance limit. Additionally, proper documentation and approval are required."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 6
+    }
+  },
+  "citations": {
+    "citations": {
+      "21": {
+        "field_citation": {
+          "source_text": "21",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as part of a timestamp '21 15:25:20'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "21 15:25:20",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as part of a timestamp '21 15:25:20'.",
+          "match_type": "exact"
+        }
+      },
+      "44": {
+        "field_citation": {
+          "source_text": "44",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as part of a sequence '44 :31711040'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "44 :31711040",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as part of a sequence '44 :31711040'.",
+          "match_type": "exact"
+        }
+      },
+      "404": {
+        "field_citation": {
+          "source_text": "404",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as a standalone number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "404",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as a standalone number.",
+          "match_type": "exact"
+        }
+      },
+      "transaction_id": {
+        "field_citation": {
+          "source_text": "#:",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "#:469521******3951/C",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "469521******3951",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "#:469521******3951/C",
+          "match_type": "exact"
+        }
+      },
+      "amount": {
+        "field_citation": {
+          "source_text": "11 RMB:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "11 RMB:46.50",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "46.50",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "11 RMB:46.50",
+          "match_type": "exact"
+        }
+      },
+      "card_number": {
+        "field_citation": {
+          "source_text": ":visa",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": ":visa 14:387667667",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "387667667",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": ":visa 14:387667667",
+          "match_type": "exact"
+        }
+      },
+      "arqc": {
+        "field_citation": {
+          "source_text": "ARQC:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "ARQC:80DE2FBD38C0F727",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "80DE2FBD38C0F727",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ARQC:80DE2FBD38C0F727",
+          "match_type": "exact"
+        }
+      },
+      "UMS": {
+        "field_citation": {
+          "source_text": "UMS",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a standalone identifier at the beginning of the document.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "UMS",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a standalone identifier at the beginning of the document.",
+          "match_type": "exact"
+        }
+      },
+      "POS": {
+        "field_citation": {
+          "source_text": "POS",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a standalone identifier following 'UMS'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "POS",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a standalone identifier following 'UMS'.",
+          "match_type": "exact"
+        }
+      },
+      "TEj P": {
+        "field_citation": {
+          "source_text": "TEj P",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a label before a series of numbers.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "104310053114870",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after 'TEj P'.",
+          "match_type": "exact"
+        }
+      },
+      "K 40": {
+        "field_citation": {
+          "source_text": "K 40",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a label before 'G84'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "G84",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after 'K 40'.",
+          "match_type": "exact"
+        }
+      },
+      "RMB": {
+        "field_citation": {
+          "source_text": "RMB",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as part of a sequence '11 RMB:46.50'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11 RMB:46.50",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as part of a sequence '11 RMB:46.50'.",
+          "match_type": "exact"
+        }
+      },
+      "ARQC": {
+        "field_citation": {
+          "source_text": "ARQC",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a label before a series of characters.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "80DE2FBD38C0F727",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after 'ARQC'.",
+          "match_type": "exact"
+        }
+      },
+      "21 15:25:20": {
+        "field_citation": {
+          "source_text": "21 15:25:20",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a timestamp.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "21 15:25:20",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a timestamp.",
+          "match_type": "exact"
+        }
+      },
+      "11 RMB": {
+        "field_citation": {
+          "source_text": "11 RMB",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a currency amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "46.50",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after '11 RMB'.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 28,
+      "fields_with_field_citations": 28,
+      "fields_with_value_citations": 28,
+      "average_confidence": 0.8392857142857143
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "32.4",
+      "data_extraction_seconds": "3.3",
+      "file_classification_seconds": "4.2",
+      "image_quality_assessment_seconds": "4.3",
+      "issue_detection_seconds": "11.6",
+      "citation_generation_seconds": "24.6",
+      "llm_validation_seconds": "66.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T17:48:11.082Z",
+        "end_time": "2025-09-04T17:48:43.450Z",
+        "duration_seconds": "32.4",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T17:48:43.456Z",
+        "end_time": "2025-09-04T17:48:46.796Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T17:48:43.453Z",
+        "end_time": "2025-09-04T17:48:47.679Z",
+        "duration_seconds": "4.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T17:48:43.451Z",
+        "end_time": "2025-09-04T17:48:47.718Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T17:48:47.720Z",
+        "end_time": "2025-09-04T17:48:59.307Z",
+        "duration_seconds": "11.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T17:48:47.723Z",
+        "end_time": "2025-09-04T17:49:12.348Z",
+        "duration_seconds": "24.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T17:49:12.349Z",
+        "end_time": "2025-09-04T17:50:18.377Z",
+        "duration_seconds": "66.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "127.3",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.3",
+      "parallel_group_2_seconds": "24.6",
+      "total_parallel_time_seconds": "28.9"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_11.jpg",
+    "processing_time": 127299,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T17:50:18.384Z"
+  }
+}

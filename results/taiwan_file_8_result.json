@@ -1,0 +1,444 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\taiwan_file_8.jpg_full_test_dataset_3_taiwan_file_8.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T17:46:35.273Z",
+    "quality_score": 70,
+    "quality_level": "good",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.85,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are moderately blurred, likely due to camera shake.",
+      "recommendation": "Retake the image with a steadier hand or use a tripod."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.7,
+      "description": "The contrast between text and background is slightly low, but still legible.",
+      "recommendation": "Improve lighting conditions to enhance contrast."
+    },
+    "glare_identification": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.75,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present in the top-right corner, affecting a small portion of the text.",
+      "recommendation": "Adjust the angle of the camera to avoid direct light reflection."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No visible tears or folds are present on the document.",
+      "recommendation": "None required."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the bottom edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No missing sections are detected on the document.",
+      "recommendation": "None required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No obstructions are present on the document.",
+      "recommendation": "None required."
+    },
+    "overall_quality_score": 7
+  },
+  "classification": {
+    "is_expense": false,
+    "expense_type": null,
+    "language": "Japanese",
+    "language_confidence": 90,
+    "document_location": "Taiwan",
+    "expected_location": "Taiwan",
+    "location_match": true,
+    "error_type": "File identified not as an expense",
+    "error_message": "The document does not contain sufficient fields to be classified as an expense.",
+    "classification_confidence": 80,
+    "reasoning": "The document contains some numerical values and possible dates, but it lacks critical fields such as supplier, consumer recipient, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description/line items. Therefore, it does not meet the criteria for being classified as an expense document.",
+    "schema_field_analysis": {
+      "fields_found": [],
+      "fields_missing": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "total_fields_found": 0,
+      "expense_identification_reasoning": "The document lacks the necessary fields to be identified as an expense document. Only numerical values and possible dates are present, but no clear expense-related information is provided."
+    }
+  },
+  "extraction": {
+    "supplier_name": "la.s HONES'S",
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": "03-5670-6778",
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "T2011801013963",
+    "transaction_reference": null,
+    "currency": "¥",
+    "total_amount": 1600,
+    "subtotal": null,
+    "tax_amount": 145,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-19",
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": null,
+        "quantity": null,
+        "unit_price": 1100,
+        "total_price": 1100,
+        "category": null
+      },
+      {
+        "description": null,
+        "quantity": null,
+        "unit_price": 500,
+        "total_price": 500,
+        "category": null
+      },
+      {
+        "description": null,
+        "quantity": null,
+        "unit_price": 1600,
+        "total_price": 1600,
+        "category": null
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 10,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Required supplier address is missing or incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "Supplier VAT number is missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Mandatory customer name is missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Required customer address is missing or incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is not clearly visible or missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the total cost of the expense",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "transaction_reference",
+          "description": "Transaction reference is missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Tax rate is missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount, listed clearly on the Invoice (if applicable)",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "line_items",
+          "description": "Description of line items is missing",
+          "recommendation": "Please provide detailed descriptions of goods/services purchased",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Restaurant expense exceeds the maximum tax-exempt limit of NT 3,000 per month",
+          "recommendation": "Amounts above NT 3,000 will be subject to tax",
+          "knowledge_base_reference": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation required for expense reimbursement",
+          "recommendation": "Please provide itemized report along with clear receipts",
+          "knowledge_base_reference": "Expense submission must have itemized report along with clear receipts",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields, incomplete information, and tax implications. The restaurant expense exceeds the tax-exempt limit, and additional documentation is required for reimbursement."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "Restaurant Receipt",
+      "issues_count": 10
+    }
+  },
+  "citations": {
+    "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Supplier Name:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Supplier Name' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "la.s HONES'S",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears at the beginning of the document, likely a supplier name.",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total Amount:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Total Amount' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "¥1600-",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears in a list of amounts, likely a total amount.",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Invoice Number:",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Invoice Number' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "T2011801013963",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears in a structured format, likely an invoice number.",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "Date:",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Date' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025 05 19",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears in a date format, likely the invoice date.",
+          "match_type": "exact"
+        }
+      },
+      "contact_number": {
+        "field_citation": {
+          "source_text": "Contact Number:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Contact Number' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "03-5670-6778",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears in a phone number format, likely a contact number.",
+          "match_type": "exact"
+        }
+      },
+      "contact_phone": {
+        "field_citation": {
+          "source_text": "Contact Phone:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Contact Phone' is a common label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "03-5670-6778",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears in a phone number format, likely a contact phone number.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 20,
+      "fields_with_field_citations": 20,
+      "fields_with_value_citations": 20,
+      "average_confidence": 0.785
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "16.3",
+      "data_extraction_seconds": "3.6",
+      "file_classification_seconds": "3.7",
+      "image_quality_assessment_seconds": "5.4",
+      "issue_detection_seconds": "15.7",
+      "citation_generation_seconds": "18.7",
+      "llm_validation_seconds": "77.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T17:46:13.627Z",
+        "end_time": "2025-09-04T17:46:29.902Z",
+        "duration_seconds": "16.3",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T17:46:29.909Z",
+        "end_time": "2025-09-04T17:46:33.460Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T17:46:29.906Z",
+        "end_time": "2025-09-04T17:46:33.579Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T17:46:29.903Z",
+        "end_time": "2025-09-04T17:46:35.273Z",
+        "duration_seconds": "5.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T17:46:35.274Z",
+        "end_time": "2025-09-04T17:46:50.984Z",
+        "duration_seconds": "15.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T17:46:35.276Z",
+        "end_time": "2025-09-04T17:46:53.981Z",
+        "duration_seconds": "18.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T17:46:53.982Z",
+        "end_time": "2025-09-04T17:48:10.979Z",
+        "duration_seconds": "77.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "117.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.4",
+      "parallel_group_2_seconds": "18.7",
+      "total_parallel_time_seconds": "24.1"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_8.jpg",
+    "processing_time": 117362,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T17:48:10.991Z"
+  }
+}

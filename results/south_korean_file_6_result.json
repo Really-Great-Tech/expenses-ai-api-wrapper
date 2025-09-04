@@ -1,0 +1,463 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\south_korean_file_6.pdf_full_test_dataset_3_south_korean_file_6.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T16:55:58.737Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows detected.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": false,
+    "expense_type": null,
+    "language": "unknown",
+    "language_confidence": 0,
+    "document_location": "unknown",
+    "expected_location": "South_Korea",
+    "location_match": false,
+    "error_type": "File cannot be analysed",
+    "error_message": "The document text is unreadable and does not contain recognizable expense-related fields.",
+    "classification_confidence": 0,
+    "reasoning": "The provided document text is not readable and does not contain any recognizable expense-related fields. The text appears to be corrupted or contains non-standard characters, making it impossible to analyze.",
+    "schema_field_analysis": {
+      "fields_found": [],
+      "fields_missing": [
+        "supplier",
+        "consumerRecipient",
+        "icpRequirements",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "total_fields_found": 0,
+      "expense_identification_reasoning": "No recognizable expense-related fields were found in the document text."
+    }
+  },
+  "extraction": {
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": null,
+    "total_amount": null,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": null,
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [],
+    "receipt_type": null,
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 7,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Missing mandatory supplier name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "total_amount",
+          "description": "Total amount of the expense is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Total amount of the expense must be clearly displayed on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "date_of_issue",
+          "description": "Date of the expense is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Date of the expense must be clearly visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "itemDescriptionLineItems",
+          "description": "Missing mandatory expense type description on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services purchased must be shown on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Business purpose must be established and clearly documented for the expense",
+          "recommendation": "Please provide clear documentation of the business purpose for this expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "recommendation": "Please submit clear and legible copies of receipts, properly labeled for identification",
+          "knowledge_base_reference": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Client line manager approval required before payroll cutoff date",
+          "recommendation": "Please obtain client line manager approval before the payroll cutoff date",
+          "knowledge_base_reference": "Client line manager approval required before payroll cutoff date",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is non-compliant due to missing mandatory fields such as supplier name, total amount, date of issue, and expense type description. Additionally, the receipt lacks the required documentation of business purpose, clear and legible copies of receipts, and client line manager approval. These issues need to be addressed to ensure compliance with GoGlobal's standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South_Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "unknown",
+      "issues_count": 7
+    }
+  },
+  "citations": {
+    "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Supplier Name:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Supplier' is a common field label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "IPHONE 16 PRO",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a distinct product name.",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total Amount:",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Total' is a common field label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "117,450",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a large numerical value, likely a total amount.",
+          "match_type": "exact"
+        }
+      },
+      "invoice_date": {
+        "field_citation": {
+          "source_text": "Invoice Date:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Date' is a common field label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025.04.01",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears in a date format.",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Invoice Number:",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "No exact match found, but the concept of 'Invoice Number' is likely present in the markdown text.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "010-34**-65**",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "The value '010-34**-65**' appears in the markdown text, likely representing the invoice number.",
+          "match_type": "exact"
+        }
+      },
+      "date_range": {
+        "field_citation": {
+          "source_text": "DATE RANGE",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "The date range is often indicated by labels like 'Date Range' or similar.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025.04.01 2025.04.30",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "2025.04.01 2025.04.30 appears as a date range in the document.",
+          "match_type": "exact"
+        }
+      },
+      "product_description": {
+        "field_citation": {
+          "source_text": "PRODUCT DESCRIPTION",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "The product description is often indicated by labels like 'Product Description' or similar.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "RAZ",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "RAZ appears in a context that suggests it is a product description.",
+          "match_type": "exact"
+        }
+      },
+      "quantity": {
+        "field_citation": {
+          "source_text": "QUANTITY",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "The quantity is typically indicated by a label like 'Quantity' or similar.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "1 appears in a context that suggests it is a quantity.",
+          "match_type": "exact"
+        }
+      },
+      "unit_price": {
+        "field_citation": {
+          "source_text": "UNIT PRICE",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "The unit price is often indicated by labels like 'Unit Price' or similar.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "29,830",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "29,830 appears in a context that suggests it is a unit price.",
+          "match_type": "exact"
+        }
+      },
+      "invoice_period": {
+        "field_citation": {
+          "source_text": "Invoice Period:",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Period' is a common field label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025.04.01 2025.04.30",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a date range.",
+          "match_type": "exact"
+        }
+      },
+      "contact_number": {
+        "field_citation": {
+          "source_text": "Contact Number:",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "No exact match found, but 'Number' is a common field label.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "010-34**-65**",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a phone number format.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 20,
+      "fields_with_field_citations": 20,
+      "fields_with_value_citations": 20,
+      "average_confidence": 0.79001
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.6",
+      "data_extraction_seconds": "2.9",
+      "file_classification_seconds": "3.2",
+      "image_quality_assessment_seconds": "3.4",
+      "issue_detection_seconds": "7.6",
+      "citation_generation_seconds": "20.9",
+      "llm_validation_seconds": "61.1"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T16:55:48.729Z",
+        "end_time": "2025-09-04T16:55:55.352Z",
+        "duration_seconds": "6.6",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T16:55:55.359Z",
+        "end_time": "2025-09-04T16:55:58.221Z",
+        "duration_seconds": "2.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T16:55:55.357Z",
+        "end_time": "2025-09-04T16:55:58.573Z",
+        "duration_seconds": "3.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T16:55:55.354Z",
+        "end_time": "2025-09-04T16:55:58.737Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T16:55:58.739Z",
+        "end_time": "2025-09-04T16:56:06.320Z",
+        "duration_seconds": "7.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T16:55:58.741Z",
+        "end_time": "2025-09-04T16:56:19.612Z",
+        "duration_seconds": "20.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T16:56:19.614Z",
+        "end_time": "2025-09-04T16:57:20.724Z",
+        "duration_seconds": "61.1",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "92.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "3.4",
+      "parallel_group_2_seconds": "20.9",
+      "total_parallel_time_seconds": "24.3"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_6.pdf",
+    "processing_time": 92002,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T16:57:20.732Z"
+  }
+}

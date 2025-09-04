@@ -1,0 +1,644 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\belgium_file_1.pdf_full_test_dataset_3_belgium_file_1.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T16:01:36.603Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions are present in the image.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration are present.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, folds, or wrinkles are present.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all necessary portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No parts of the receipt/invoice are missing or incomplete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements are obstructing the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "other",
+    "language": "French",
+    "language_confidence": 95,
+    "document_location": "Belgium",
+    "expected_location": "Belgium",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice/receipt number, and item description. The document is a bank statement showing a payment made, which classifies it as an expense. The expense type is classified as 'other' since it does not fit into the predefined categories like flights, meals, etc.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including supplier, transaction amount, transaction date, invoice/receipt number, and item description. This meets the criteria for being classified as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Aspria La Rasante SA",
+    "supplier_address": "Avenue du Port 2, 1080 Bruxelles, Belgique",
+    "supplier_vat_number": "BE 0462.920.226",
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "MOREL DE WESTGAVER OPHéLIE",
+    "customer_address": null,
+    "customer_vat_number": null,
+    "customer_phone": null,
+    "customer_email": null,
+    "customer_website": null,
+    "invoice_number": null,
+    "receipt_number": "153631",
+    "transaction_reference": "9014-20040112",
+    "currency": "EUR",
+    "total_amount": 252,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-06-05",
+    "transaction_time": "14:07:30",
+    "payment_method": "Bank Transfer",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Subcr.Fee ASPMEM-214332",
+        "quantity": null,
+        "unit_price": null,
+        "total_price": 252,
+        "category": "Membership Fee"
+      }
+    ],
+    "receipt_type": "Bank Statement",
+    "document_type": "Expense Document",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Bruxelles",
+    "location_country": "Belgique",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 6,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must include the identity of the supplier/trade",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Customer address is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must include the purchaser details",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_vat_number",
+          "description": "Customer VAT number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must include the purchaser details",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "item_description_line_items",
+          "description": "Itemized description of each purchase/expenditure is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must include itemized description of each purchase/expenditure",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business purpose must be established and clearly documented for all expenses",
+          "recommendation": "Please provide clear documentation of the business purpose for this expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Employee's line manager approval required before payroll cutoff date",
+          "recommendation": "Please obtain approval from the employee's line manager before the payroll cutoff date",
+          "knowledge_base_reference": "Employee's line manager approval required before payroll cutoff date",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including invoice number, customer address, customer VAT number, and itemized description. Additionally, the business purpose and line manager approval are required but not provided. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Belgium",
+      "icp": "GoGlobal",
+      "receipt_type": "other",
+      "issues_count": 6
+    }
+  },
+  "citations": {
+    "citations": {
+      "name": {
+        "field_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        }
+      },
+      "account_number": {
+        "field_citation": {
+          "source_text": "Compte KBC Brussels",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "BE78 7340 5684 0086",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR",
+          "match_type": "exact"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        }
+      },
+      "bank_name": {
+        "field_citation": {
+          "source_text": "KBC Brussels",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Compte KBC Brussels\nBE78 7340 5684 0086 EUR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "KBC Brussels",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Compte KBC Brussels\nBE78 7340 5684 0086 EUR",
+          "match_type": "exact"
+        }
+      },
+      "city": {
+        "field_citation": {
+          "source_text": "Brussels",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC\nBrussels",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Brussels",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC\nBrussels",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "KBC\nBrussels\n05-06-2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "KBC\nBrussels\n05-06-2025",
+          "match_type": "exact"
+        }
+      },
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Aspria La Rasante SA - KBC",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aspria La Rasante SA - KBC\n-252,00 EUR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Aspria La Rasante SA - KBC",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aspria La Rasante SA - KBC\n-252,00 EUR",
+          "match_type": "exact"
+        }
+      },
+      "amount": {
+        "field_citation": {
+          "source_text": "-252,00 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "-252,00 EUR\nRéférence du créancier",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "-252,00 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "-252,00 EUR\nRéférence du créancier",
+          "match_type": "exact"
+        }
+      },
+      "creditor_reference": {
+        "field_citation": {
+          "source_text": "Référence du créancier",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Référence du créancier\n9014-20040112",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9014-20040112",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "9014-20040112\nRéférence du mandat",
+          "match_type": "exact"
+        }
+      },
+      "mandate_reference": {
+        "field_citation": {
+          "source_text": "Référence du mandat",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Référence du mandat\n153631",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "153631",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "153631\nCommunication",
+          "match_type": "exact"
+        }
+      },
+      "communication": {
+        "field_citation": {
+          "source_text": "Communication",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Communication\nAspRIr MemberNo:20089289 mandat",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "AspRIr MemberNo:20089289 mandat e reference: 153631 Subcr.Fee ASPMEM-214332",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AspRIr MemberNo:20089289 mandat e reference: 153631 Subcr.Fee ASPMEM-214332\nDomiciliation",
+          "match_type": "exact"
+        }
+      },
+      "domiciliation": {
+        "field_citation": {
+          "source_text": "Domiciliation",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Domiciliation\nKBC Brussels by KBC Bank SA Avenue du Port 2 1080 Bruxelles - Belgique",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "KBC Brussels by KBC Bank SA Avenue du Port 2 1080 Bruxelles - Belgique",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "KBC Brussels by KBC Bank SA Avenue du Port 2 1080 Bruxelles - Belgique\nTVA BE 0462.920.226 RPM Bruxelles- IBAN BE98 7300 0000 0083 BIC KREDBEBB FSMA 026256 A, agissant d'une part comme organisme de crédit et d'autre part comme agent lié de KBC Assurances SA.",
+          "match_type": "exact"
+        }
+      },
+      "account_holder_name": {
+        "field_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        }
+      },
+      "iban": {
+        "field_citation": {
+          "source_text": "BE78 7340 5684 0086",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "BE78 7340 5684 0086",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        }
+      },
+      "bank_code": {
+        "field_citation": {
+          "source_text": "KBC",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "KBC",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BE78 7340 5684 0086 EUR\nKBC",
+          "match_type": "exact"
+        }
+      },
+      "maturity_date": {
+        "field_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "05-06-2025\nAspria La Rasante SA - KBC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "05-06-2025\nAspria La Rasante SA - KBC",
+          "match_type": "exact"
+        }
+      },
+      "account_holder": {
+        "field_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MOREL DE WESTGAVER OPHéLIE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MOREL DE WESTGAVER OPHéLIE\nCompte KBC Brussels",
+          "match_type": "exact"
+        }
+      },
+      "tax_id": {
+        "field_citation": {
+          "source_text": "TVA BE 0462.920.226",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "KBC Brussels by KBC Bank SA Avenue du Port 2 1080 Bruxelles - Belgique\nTVA BE 0462.920.226",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "BE 0462.920.226",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "KBC Brussels by KBC Bank SA Avenue du Port 2 1080 Bruxelles - Belgique\nTVA BE 0462.920.226",
+          "match_type": "exact"
+        }
+      },
+      "bic": {
+        "field_citation": {
+          "source_text": "BIC KREDBEBB",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "TVA BE 0462.920.226 RPM Bruxelles- IBAN BE98 7300 0000 0083 BIC KREDBEBB FSMA 026256 A",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "KREDBEBB",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "TVA BE 0462.920.226 RPM Bruxelles- IBAN BE98 7300 0000 0083 BIC KREDBEBB FSMA 026256 A",
+          "match_type": "exact"
+        }
+      },
+      "fsma_number": {
+        "field_citation": {
+          "source_text": "FSMA 026256 A",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "TVA BE 0462.920.226 RPM Bruxelles- IBAN BE98 7300 0000 0083 BIC KREDBEBB FSMA 026256 A",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "026256 A",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "TVA BE 0462.920.226 RPM Bruxelles- IBAN BE98 7300 0000 0083 BIC KREDBEBB FSMA 026256 A",
+          "match_type": "exact"
+        }
+      },
+      "due_date": {
+        "field_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "05-06-2025\nAspria La Rasante SA - KBC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05-06-2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "05-06-2025\nAspria La Rasante SA - KBC",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 59,
+      "fields_with_field_citations": 59,
+      "fields_with_value_citations": 59,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "5.0",
+      "file_classification_seconds": "3.7",
+      "data_extraction_seconds": "4.4",
+      "image_quality_assessment_seconds": "5.0",
+      "issue_detection_seconds": "8.1",
+      "citation_generation_seconds": "59.2",
+      "llm_validation_seconds": "65.4"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T16:01:26.621Z",
+        "end_time": "2025-09-04T16:01:31.598Z",
+        "duration_seconds": "5.0",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T16:01:31.635Z",
+        "end_time": "2025-09-04T16:01:35.362Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T16:01:31.638Z",
+        "end_time": "2025-09-04T16:01:36.020Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T16:01:31.599Z",
+        "end_time": "2025-09-04T16:01:36.603Z",
+        "duration_seconds": "5.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T16:01:36.605Z",
+        "end_time": "2025-09-04T16:01:44.708Z",
+        "duration_seconds": "8.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T16:01:36.608Z",
+        "end_time": "2025-09-04T16:02:35.855Z",
+        "duration_seconds": "59.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T16:02:35.857Z",
+        "end_time": "2025-09-04T16:03:41.245Z",
+        "duration_seconds": "65.4",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "134.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.0",
+      "parallel_group_2_seconds": "59.3",
+      "total_parallel_time_seconds": "64.3"
+    }
+  },
+  "metadata": {
+    "filename": "belgium_file_1.pdf",
+    "processing_time": 134631,
+    "country": "Belgium",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T16:03:41.253Z"
+  }
+}

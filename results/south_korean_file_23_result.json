@@ -1,0 +1,319 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\south_korean_file_23.pdf_full_test_dataset_3_south_korean_file_23.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T17:11:38.372Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.98,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important document portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No parts of the receipt/invoice are missing, incomplete, or not captured in the image.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": false,
+    "expense_type": null,
+    "language": "unknown",
+    "language_confidence": 0,
+    "document_location": "unknown",
+    "expected_location": "South_Korea",
+    "location_match": false,
+    "error_type": "File cannot be processed",
+    "error_message": "The document text is unreadable and does not contain any recognizable expense-related fields.",
+    "classification_confidence": 0,
+    "reasoning": "The provided document text is not readable and does not contain any of the required fields to be classified as an expense document. The text appears to be corrupted or incomplete.",
+    "schema_field_analysis": {
+      "fields_found": [],
+      "fields_missing": [
+        "supplier",
+        "consumerRecipient",
+        "icpRequirements",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "total_fields_found": 0,
+      "expense_identification_reasoning": "None of the required fields for expense identification were found in the document."
+    }
+  },
+  "extraction": {
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": null,
+    "total_amount": null,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": null,
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [],
+    "receipt_type": null,
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 7,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Missing mandatory supplier name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "total_amount",
+          "description": "Total amount of the expense is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Total amount of the expense must be clearly displayed on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "date_of_issue",
+          "description": "Date of the expense is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Date of the expense must be clearly visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "itemDescriptionLineItems",
+          "description": "Expense type or description of goods/services purchased is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services purchased must be shown on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business purpose must be established and clearly documented for all expenses",
+          "recommendation": "Please provide clear documentation of the business purpose for the expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "recommendation": "Please submit clear and legible copies of receipts, properly labeled for identification",
+          "knowledge_base_reference": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Client line manager approval required before payroll cutoff date",
+          "recommendation": "Please obtain client line manager approval before the payroll cutoff date",
+          "knowledge_base_reference": "Client line manager approval required before payroll cutoff date",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is non-compliant due to missing mandatory fields such as supplier name, total amount, date of issue, and expense type description. Additionally, there are missing documentation requirements such as business purpose documentation, clear and legible receipts, and manager approval."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South_Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "unknown",
+      "issues_count": 7
+    }
+  },
+  "citations": {
+    "citations": {
+      "field_name": {
+        "field_citation": {
+          "source_text": "No exact field labels found in the provided markdown text.",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "The markdown text does not contain clear field labels or headers that can be matched semantically to common field names.",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "No exact values found in the provided markdown text that can be matched to common field values.",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "The markdown text contains some numbers and symbols, but without clear field labels, it is not possible to determine which values correspond to which fields.",
+          "match_type": "none"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 2,
+      "fields_with_field_citations": 0,
+      "fields_with_value_citations": 0,
+      "average_confidence": 0
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "7.3",
+      "file_classification_seconds": "3.0",
+      "data_extraction_seconds": "3.1",
+      "image_quality_assessment_seconds": "5.0",
+      "citation_generation_seconds": "12.3",
+      "issue_detection_seconds": "16.2",
+      "llm_validation_seconds": "66.9"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T17:11:26.020Z",
+        "end_time": "2025-09-04T17:11:33.323Z",
+        "duration_seconds": "7.3",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T17:11:33.326Z",
+        "end_time": "2025-09-04T17:11:36.307Z",
+        "duration_seconds": "3.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T17:11:33.328Z",
+        "end_time": "2025-09-04T17:11:36.405Z",
+        "duration_seconds": "3.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T17:11:33.324Z",
+        "end_time": "2025-09-04T17:11:38.372Z",
+        "duration_seconds": "5.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T17:11:38.376Z",
+        "end_time": "2025-09-04T17:11:50.691Z",
+        "duration_seconds": "12.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T17:11:38.373Z",
+        "end_time": "2025-09-04T17:11:54.578Z",
+        "duration_seconds": "16.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T17:11:54.580Z",
+        "end_time": "2025-09-04T17:13:01.522Z",
+        "duration_seconds": "66.9",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "95.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.0",
+      "parallel_group_2_seconds": "16.2",
+      "total_parallel_time_seconds": "21.3"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_23.pdf",
+    "processing_time": 95508,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T17:13:01.529Z"
+  }
+}

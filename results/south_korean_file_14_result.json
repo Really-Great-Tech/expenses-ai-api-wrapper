@@ -1,0 +1,628 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\south_korean_file_14.pdf_full_test_dataset_3_south_korean_file_14.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T17:08:22.178Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded document portions.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or blocked content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "South Korea",
+    "expected_location": "South_Korea",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, payment method, and item description. The presence of these fields, along with the clear indication of a completed payment, confirms that this is an expense document. The expense type is classified as 'travel' due to the nature of the service (ride service).",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including evidence of payment completed, actual amounts charged/paid, and payment confirmation. This meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "ALS",
+    "supplier_address": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "38785",
+    "transaction_reference": "CHA 892 E",
+    "currency": "KRW",
+    "total_amount": "25300",
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-14",
+    "transaction_time": "20:06",
+    "payment_method": "Credit Card",
+    "card_last_four": "5411",
+    "line_items": [
+      {
+        "description": "Fare",
+        "quantity": 1,
+        "unit_price": "25300",
+        "total_price": "25300",
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Receipt",
+    "driver_name": "THE",
+    "surge_pricing_multiplier": "1.14",
+    "location_city": "Seoul",
+    "location_country": "South Korea",
+    "special_notes": "Lost and found",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Unique identifier for the transaction",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business purpose must be established and clearly documented for all expenses",
+          "recommendation": "Please provide a clear documentation of the business purpose for this expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "recommendation": "Please ensure that the receipt is clear, legible, and properly labeled",
+          "knowledge_base_reference": "Expenses must be submitted with clear and legible copies of receipts, properly labeled for identification",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Client line manager approval required before payroll cutoff date",
+          "recommendation": "Please obtain client line manager approval before the payroll cutoff date",
+          "knowledge_base_reference": "Client line manager approval required before payroll cutoff date",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name and invoice number. Additionally, there are missing documentation requirements such as business purpose documentation, clear and legible receipt, and client line manager approval. These issues need to be addressed to ensure compliance."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South_Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "date": {
+        "field_citation": {
+          "source_text": "Wed, May 14, 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a date indicating when the ride was completed.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Wed, May 14, 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a date indicating when the ride was completed.",
+          "match_type": "exact"
+        }
+      },
+      "fare": {
+        "field_citation": {
+          "source_text": "Fare",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the fare amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "₩25,300",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the fare amount.",
+          "match_type": "exact"
+        }
+      },
+      "total_fare": {
+        "field_citation": {
+          "source_text": "Total fare",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the total fare amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "₩25,300",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the total fare amount.",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment method",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the payment method used.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CH **5411 Personal",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the payment method used.",
+          "match_type": "exact"
+        }
+      },
+      "completed": {
+        "field_citation": {
+          "source_text": "Completed",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a standalone header indicating the status of the ride.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Completed",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a standalone header indicating the status of the ride.",
+          "match_type": "exact"
+        }
+      },
+      "pickup_time": {
+        "field_citation": {
+          "source_text": "20:06",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a time indicating when the ride was picked up.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20:06",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a time indicating when the ride was picked up.",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_time": {
+        "field_citation": {
+          "source_text": "20:41",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a time indicating when the ride was dropped off.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20:41",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a time indicating when the ride was dropped off.",
+          "match_type": "exact"
+        }
+      },
+      "pickup_location": {
+        "field_citation": {
+          "source_text": "CHA 892 E",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a location indicating where the ride was picked up.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHA 892 E",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a location indicating where the ride was picked up.",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_location": {
+        "field_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a location indicating where the ride was dropped off.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a location indicating where the ride was dropped off.",
+          "match_type": "exact"
+        }
+      },
+      "destination_address": {
+        "field_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "exact"
+        }
+      },
+      "driver_name": {
+        "field_citation": {
+          "source_text": "Driver THE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Driver THE\n№38785",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "THE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Driver THE\n№38785",
+          "match_type": "exact"
+        }
+      },
+      "driver_id": {
+        "field_citation": {
+          "source_text": "№38785",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the driver's ID.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "38785",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as part of the driver's ID.",
+          "match_type": "exact"
+        }
+      },
+      "my_rating": {
+        "field_citation": {
+          "source_text": "My rating",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the user's rating.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Not rated",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the user's rating.",
+          "match_type": "exact"
+        }
+      },
+      "prime_driver_charter_rating": {
+        "field_citation": {
+          "source_text": "Prime Driver Charter Rating",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the driver's charter rating.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92% 1000+ trips Deluxe License",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the driver's charter rating.",
+          "match_type": "exact"
+        }
+      },
+      "prime_driver_charter_trips": {
+        "field_citation": {
+          "source_text": "1000+ trips",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prime Driver Charter Rating 92% 1000+ trips Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1000+ trips",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prime Driver Charter Rating 92% 1000+ trips Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "prime_driver_charter_license": {
+        "field_citation": {
+          "source_text": "Deluxe License",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prime Driver Charter Rating 92% 1000+ trips Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Deluxe License",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Prime Driver Charter Rating 92% 1000+ trips Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "lost_and_found": {
+        "field_citation": {
+          "source_text": "Lost and found",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Lost and found",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Lost and found",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Lost and found",
+          "match_type": "exact"
+        }
+      },
+      "fare_details": {
+        "field_citation": {
+          "source_text": "Fare details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fare details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Fare details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fare details",
+          "match_type": "exact"
+        }
+      },
+      "surge_pricing": {
+        "field_citation": {
+          "source_text": "* Surge pricing",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the surge pricing factor.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.14x",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as the surge pricing factor.",
+          "match_type": "exact"
+        }
+      },
+      "ride_type": {
+        "field_citation": {
+          "source_text": "ALS ride",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the type of ride.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ALS ride",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the type of ride.",
+          "match_type": "exact"
+        }
+      },
+      "driver": {
+        "field_citation": {
+          "source_text": "Driver THE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as a label indicating the driver's name.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "THE",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Appears as part of the driver's name.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 43,
+      "fields_with_field_citations": 43,
+      "fields_with_value_citations": 43,
+      "average_confidence": 0.9930232558139536
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "5.1",
+      "data_extraction_seconds": "3.1",
+      "file_classification_seconds": "3.6",
+      "image_quality_assessment_seconds": "4.4",
+      "issue_detection_seconds": "5.9",
+      "citation_generation_seconds": "40.5",
+      "llm_validation_seconds": "58.2"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T17:08:12.640Z",
+        "end_time": "2025-09-04T17:08:17.751Z",
+        "duration_seconds": "5.1",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T17:08:17.757Z",
+        "end_time": "2025-09-04T17:08:20.820Z",
+        "duration_seconds": "3.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T17:08:17.755Z",
+        "end_time": "2025-09-04T17:08:21.318Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T17:08:17.752Z",
+        "end_time": "2025-09-04T17:08:22.178Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T17:08:22.180Z",
+        "end_time": "2025-09-04T17:08:28.105Z",
+        "duration_seconds": "5.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T17:08:22.183Z",
+        "end_time": "2025-09-04T17:09:02.696Z",
+        "duration_seconds": "40.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T17:09:02.698Z",
+        "end_time": "2025-09-04T17:10:00.885Z",
+        "duration_seconds": "58.2",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "108.3",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.4",
+      "parallel_group_2_seconds": "40.5",
+      "total_parallel_time_seconds": "44.9"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_14.pdf",
+    "processing_time": 108305,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T17:10:00.946Z"
+  }
+}

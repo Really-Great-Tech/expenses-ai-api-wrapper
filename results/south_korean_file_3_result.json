@@ -1,0 +1,463 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\south_korean_file_3.pdf_full_test_dataset_3_south_korean_file_3.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T16:50:29.605Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, folds, or wrinkles detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No edges are cut off, and the entire document is captured.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the receipt/invoice are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions, such as objects or shadows, are present.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": false,
+    "expense_type": null,
+    "language": "Korean",
+    "language_confidence": 90,
+    "document_location": "South_Korea",
+    "expected_location": "South_Korea",
+    "location_match": true,
+    "error_type": "File identified not as an expense",
+    "error_message": "The document does not contain sufficient fields to be classified as an expense.",
+    "classification_confidence": 70,
+    "reasoning": "The document text lacks critical fields such as supplier, consumer recipient, transaction amount, and other necessary details to be classified as an expense. Only partial and unclear data is present.",
+    "schema_field_analysis": {
+      "fields_found": [],
+      "fields_missing": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "total_fields_found": 0,
+      "expense_identification_reasoning": "The document does not meet the criteria for an expense as it lacks the necessary fields and clear transaction details."
+    }
+  },
+  "extraction": {
+    "country": null,
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": null,
+    "total_amount": null,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-12",
+    "transaction_time": "18:54:00",
+    "payment_method": "ShinhanCard",
+    "card_last_four": "2222",
+    "line_items": [],
+    "receipt_type": null,
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 7,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Missing mandatory supplier name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Required supplier address is missing or incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "total_amount",
+          "description": "Total amount of the expense must be clearly displayed on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Total amount of the expense must be clearly displayed on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is not clearly visible or missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Alphanumeric identifier on document, Description: Usually present somewhere",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Receipt number is not clearly visible or missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Alphanumeric identifier on document, Description: Usually present somewhere",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "line_items",
+          "description": "Expense type or description of goods/services purchased must be shown on the receipt",
+          "recommendation": "Please provide a detailed breakdown of goods or services purchased",
+          "knowledge_base_reference": "Expense type or description of goods/services purchased must be shown on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business purpose must be established and clearly documented for all expenses",
+          "recommendation": "Please provide documentation that establishes the business purpose of the expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including supplier name, supplier address, total amount, invoice number, and receipt number. Additionally, the expense type or description of goods/services purchased is missing, and the business purpose of the expense is not documented. These issues need to be addressed to ensure compliance with GoGlobal's receipt standards and additional information requirements."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South_Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "unknown",
+      "issues_count": 7
+    }
+  },
+  "citations": {
+    "citations": {
+      "1010": {
+        "field_citation": {
+          "source_text": "1010",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a standalone number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1010",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a standalone number.",
+          "match_type": "exact"
+        }
+      },
+      "L/L": {
+        "field_citation": {
+          "source_text": "L/L",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a standalone label.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "510",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after the label 'L/L'.",
+          "match_type": "exact"
+        }
+      },
+      "In": {
+        "field_citation": {
+          "source_text": "In",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a standalone label.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.20%",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after the label 'In'.",
+          "match_type": "exact"
+        }
+      },
+      "00'90T": {
+        "field_citation": {
+          "source_text": "00'90T",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears multiple times, likely a code or identifier.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "000'90T",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears multiple times, likely a code or identifier.",
+          "match_type": "fuzzy"
+        }
+      },
+      "lv": {
+        "field_citation": {
+          "source_text": "lv",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as a standalone label.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "222",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears immediately after the label 'lv'.",
+          "match_type": "exact"
+        }
+      },
+      "2025.05.12": {
+        "field_citation": {
+          "source_text": "2025.05.12",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a date.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025.05.12",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a date.",
+          "match_type": "exact"
+        }
+      },
+      "2025.5.16 18:54:0": {
+        "field_citation": {
+          "source_text": "2025.5.16 18:54:0",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a datetime.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025.5.16 18:54:0",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a datetime.",
+          "match_type": "exact"
+        }
+      },
+      "ŠhinhanCard": {
+        "field_citation": {
+          "source_text": "ŠhinhanCard",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a name or identifier.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ŠhinhanCard",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Appears as a name or identifier.",
+          "match_type": "exact"
+        }
+      },
+      "25. 5. 16. 10 6:54": {
+        "field_citation": {
+          "source_text": "25. 5. 16. 10 6:54",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a datetime.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "25. 5. 16. 10 6:54",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as a datetime.",
+          "match_type": "exact"
+        }
+      },
+      "O": {
+        "field_citation": {
+          "source_text": "O",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Appears as a standalone label.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "to Hot",
+          "confidence": 0.6,
+          "source_location": "markdown",
+          "context": "Appears immediately after the label 'O'.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 46,
+      "fields_with_field_citations": 46,
+      "fields_with_value_citations": 46,
+      "average_confidence": 0.8421739130434783
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.4",
+      "data_extraction_seconds": "2.9",
+      "file_classification_seconds": "3.2",
+      "image_quality_assessment_seconds": "4.0",
+      "issue_detection_seconds": "8.4",
+      "citation_generation_seconds": "43.5",
+      "llm_validation_seconds": "61.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T16:50:19.166Z",
+        "end_time": "2025-09-04T16:50:25.600Z",
+        "duration_seconds": "6.4",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T16:50:25.606Z",
+        "end_time": "2025-09-04T16:50:28.538Z",
+        "duration_seconds": "2.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T16:50:25.603Z",
+        "end_time": "2025-09-04T16:50:28.762Z",
+        "duration_seconds": "3.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T16:50:25.601Z",
+        "end_time": "2025-09-04T16:50:29.605Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T16:50:29.607Z",
+        "end_time": "2025-09-04T16:50:38.057Z",
+        "duration_seconds": "8.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T16:50:29.612Z",
+        "end_time": "2025-09-04T16:51:13.125Z",
+        "duration_seconds": "43.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T16:51:13.126Z",
+        "end_time": "2025-09-04T16:52:14.839Z",
+        "duration_seconds": "61.7",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "115.7",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.0",
+      "parallel_group_2_seconds": "43.5",
+      "total_parallel_time_seconds": "47.5"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_3.pdf",
+    "processing_time": 115681,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T16:52:14.848Z"
+  }
+}

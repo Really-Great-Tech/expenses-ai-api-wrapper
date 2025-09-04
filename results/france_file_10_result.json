@@ -1,0 +1,544 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\france_file_10.pdf_full_test_dataset_3_france_file_10.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-04T16:40:00.647Z",
+    "quality_score": 60,
+    "quality_level": "good",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are moderately blurred, likely due to camera movement or out-of-focus capture.",
+      "recommendation": "Re-capture the document with a stable camera and ensure it is in focus."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.7,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure proper lighting and avoid backlighting when capturing the document."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected on the document.",
+      "recommendation": "None required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration detected on the document.",
+      "recommendation": "None required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No tears, folds, or creases detected on the document.",
+      "recommendation": "None required."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "Minor cut-off detected at the bottom edge of the document.",
+      "recommendation": "Ensure the entire document is within the frame when capturing."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No missing sections detected; the document appears complete.",
+      "recommendation": "None required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No obstructions detected on the document.",
+      "recommendation": "None required."
+    },
+    "overall_quality_score": 6
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "France",
+    "expected_location": "France",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 95,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. It represents a completed payment for a ride service, thus classified as a travel expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, indicating it is an expense document. The missing fields are 'icpRequirements' and 'taxInformation', but the presence of other critical fields confirms it as an expense."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Uber",
+    "customer_name": "Liliia",
+    "transaction_date": "2025-06-10",
+    "transaction_time": "11:29",
+    "receipt_number": null,
+    "currency": "EUR",
+    "total_amount": 63.2,
+    "subtotal": 63.2,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "payment_method": "Apple Pay",
+    "card_last_four": "4517",
+    "line_items": [
+      {
+        "description": "Trip fare",
+        "quantity": 1,
+        "unit_price": 63.2,
+        "total_price": 63.2,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "driver_name": "HOMERE",
+    "pickup_location": "14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+    "dropoff_location": "Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+    "pickup_time": "10:39",
+    "dropoff_time": "11:28",
+    "distance": 39.65,
+    "duration": 49,
+    "special_notes": "Fare does not include fees that may be charged by your bank. Please contact your bank directly for inquiries."
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Receipt number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt number is a mandatory field as per the receiptStandards",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_amount",
+          "description": "Tax amount is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount is a mandatory field as per the receiptStandards",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Tax rate is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax rate is a mandatory field as per the receiptStandards",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Detailed mileage log reports justifying business mileage are required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "recommendation": "Please provide detailed mileage log reports justifying business mileage including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "knowledge_base_reference": "compliancePoliciesAdditionalInfoRelated",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "A1 certificate is required when travelling",
+          "recommendation": "Please provide A1 certificate for international travel documentation",
+          "knowledge_base_reference": "compliancePoliciesAdditionalInfoRelated",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing mandatory fields such as receipt number, tax amount, and tax rate. Additionally, detailed mileage log reports and A1 certificate are required for compliance."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "France",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "total": {
+        "field_citation": {
+          "source_text": "Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Here's your receipt for your ride, Liliia\nWe hope you enjoyed your ride this morning.\nTotal\n€63.20",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€63.20",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total\n€63.20\nTrip fare\n€63.20",
+          "match_type": "exact"
+        }
+      },
+      "trip_fare": {
+        "field_citation": {
+          "source_text": "Trip fare",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Total\n€63.20\nTrip fare\n€63.20",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€63.20",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Total\n€63.20\nTrip fare\n€63.20",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Trip fare\n€63.20\nSubtotal\n€63.20",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€63.20",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Trip fare\n€63.20\nSubtotal\n€63.20",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payments",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Subtotal\n€63.20\nPayments\nPay\nApple Pay Visa 4517",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Apple Pay Visa 4517",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Payments\nPay\nApple Pay Visa 4517\n€63.20",
+          "match_type": "exact"
+        }
+      },
+      "payment_amount": {
+        "field_citation": {
+          "source_text": "Payments",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Subtotal\n€63.20\nPayments\nPay\nApple Pay Visa 4517",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€63.20",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Payments\nPay\nApple Pay Visa 4517\n€63.20",
+          "match_type": "exact"
+        }
+      },
+      "payment_date": {
+        "field_citation": {
+          "source_text": "6/10/25 11:29 AM",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Apple Pay Visa 4517\n€63.20\n6/10/25 11:29 AM",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "6/10/25 11:29 AM",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Apple Pay Visa 4517\n€63.20\n6/10/25 11:29 AM",
+          "match_type": "exact"
+        }
+      },
+      "driver_name": {
+        "field_citation": {
+          "source_text": "You rode with HOMERE",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Visit the trip page for more information, including invoices (where available)\nYou rode with HOMERE",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "HOMERE",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Visit the trip page for more information, including invoices (where available)\nYou rode with HOMERE",
+          "match_type": "exact"
+        }
+      },
+      "issuer_name": {
+        "field_citation": {
+          "source_text": "Issued on behalf of HOMERE SHAHEEN",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "You rode with HOMERE\nIssued on behalf of HOMERE SHAHEEN",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "HOMERE SHAHEEN",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "You rode with HOMERE\nIssued on behalf of HOMERE SHAHEEN",
+          "match_type": "exact"
+        }
+      },
+      "distance": {
+        "field_citation": {
+          "source_text": "Comfort 39.65 kilometers",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Issued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49 min",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "39.65 kilometers",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Issued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49 min",
+          "match_type": "exact"
+        }
+      },
+      "duration": {
+        "field_citation": {
+          "source_text": "49 min",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Issued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49 min",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "49 min",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Issued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49 min",
+          "match_type": "exact"
+        }
+      },
+      "pickup_time": {
+        "field_citation": {
+          "source_text": "10:39 AM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Comfort 39.65 kilometers | 49 min\n10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10:39 AM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Comfort 39.65 kilometers | 49 min\n10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+          "match_type": "exact"
+        }
+      },
+      "pickup_location": {
+        "field_citation": {
+          "source_text": "10:39 AM",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Comfort 39.65 kilometers | 49\nmin\n10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Comfort 39.65 kilometers | 49\nmin\n10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_time": {
+        "field_citation": {
+          "source_text": "11:28 AM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France\n11:28 AM | Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11:28 AM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France\n11:28 AM | Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_location": {
+        "field_citation": {
+          "source_text": "11:28 AM",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France\n11:28 AM | Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "10:39 AM | 14 Rue de Meudon, 92100 Boulogne-Billancourt, France\n11:28 AM | Terminal 2F, Aéroport Paris-Charles-de-Gaulle (CDG), 95711 Paris",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "Issued on behalf of HOMERE SHAHEEN",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "You rode with HOMERE\nIssued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49\nmin",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "6/10/25",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "€63.20\n6/10/25 11:29 AM",
+          "match_type": "exact"
+        }
+      },
+      "time": {
+        "field_citation": {
+          "source_text": "Issued on behalf of HOMERE SHAHEEN",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "You rode with HOMERE\nIssued on behalf of HOMERE SHAHEEN\nComfort 39.65 kilometers | 49\nmin",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "11:29 AM",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "€63.20\n6/10/25 11:29 AM",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 32,
+      "fields_with_field_citations": 32,
+      "fields_with_value_citations": 32,
+      "average_confidence": 0.8978124999999999
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "5.5",
+      "data_extraction_seconds": "3.0",
+      "file_classification_seconds": "3.2",
+      "image_quality_assessment_seconds": "4.0",
+      "issue_detection_seconds": "6.3",
+      "citation_generation_seconds": "35.1",
+      "llm_validation_seconds": "64.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-04T16:39:51.188Z",
+        "end_time": "2025-09-04T16:39:56.668Z",
+        "duration_seconds": "5.5",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-04T16:39:56.673Z",
+        "end_time": "2025-09-04T16:39:59.650Z",
+        "duration_seconds": "3.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-04T16:39:56.671Z",
+        "end_time": "2025-09-04T16:39:59.859Z",
+        "duration_seconds": "3.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-04T16:39:56.670Z",
+        "end_time": "2025-09-04T16:40:00.647Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-04T16:40:00.649Z",
+        "end_time": "2025-09-04T16:40:06.900Z",
+        "duration_seconds": "6.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-04T16:40:00.653Z",
+        "end_time": "2025-09-04T16:40:35.782Z",
+        "duration_seconds": "35.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-04T16:40:35.783Z",
+        "end_time": "2025-09-04T16:41:39.772Z",
+        "duration_seconds": "64.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "108.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.0",
+      "parallel_group_2_seconds": "35.1",
+      "total_parallel_time_seconds": "39.1"
+    }
+  },
+  "metadata": {
+    "filename": "france_file_10.pdf",
+    "processing_time": 108592,
+    "country": "France",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-04T16:41:39.781Z"
+  }
+}

@@ -1,0 +1,665 @@
+{
+  "overall_score": 0.7594444444444445,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8066666666666666,
+      "issues": [
+        "- Issue #3 slightly overinterprets the receipt as car rental when it appears to be a taxi service",
+        "but the requirement for mileage documentation is still valid for transport expenses in France.",
+        "- The AI response correctly identifies all the key compliance issues based on the extracted data and compliance rules."
+      ],
+      "summary": "The AI response is well-grounded in the extracted data and compliance rules. It correctly identifies missing invoice number, customer address, and tax information. The interpretation of the transport receipt as requiring mileage documentation is supported by the compliance rules, though the specific characterization as \"car rental\" might be slightly imprecise given the \"Taxicab and Limousines\" description in the line item. Overall, the response accurately reflects the compliance issues based on the provided information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that the invoice number is missing. The extracted data shows \"invoice_number\": null, while there is a receipt number present. According to compliance rules, transaction documentation is required, so this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer address is missing. The extracted data shows \"customer_address\": null, which confirms this issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI identified that additional documentation is required for car rental expenses. The extracted data shows this is a transport receipt for \"Taxicab and Limousines\" which could be interpreted as car rental. The compliance rules state \"Detailed mileage log reports justifying business mileage required\" which supports this issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that mileage claims require logbook documentation. This aligns with the compliance rules that state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that tax information is missing. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, which confirms this issue. The compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nCONFIDENCE: 92\n\nISSUES: \n- Issue #3 slightly overinterprets the receipt as car rental when it appears to be a taxi service, but the requirement for mileage documentation is still valid for transport expenses in France.\n- The AI response correctly identifies all the key compliance issues based on the extracted data and compliance rules.\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identifies missing invoice number, customer address, and tax information. The interpretation of the transport receipt as requiring mileage documentation is supported by the compliance rules, though the specific characterization as \"car rental\" might be slightly imprecise given the \"Taxicab and Limousines\" description in the line item. Overall, the response accurately reflects the compliance issues based on the provided information.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that the invoice number is missing. The extracted data shows \"invoice_number\": null, while there is a receipt number present. According to compliance rules, transaction documentation is required, so this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer address is missing. The extracted data shows \"customer_address\": null, which confirms this issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI identified that additional documentation is required for car rental expenses. The extracted data shows this is a transport receipt for \"Taxicab and Limousines\" which could be interpreted as car rental. The compliance rules state \"Detailed mileage log reports justifying business mileage required\" which supports this issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that mileage claims require logbook documentation. This aligns with the compliance rules that state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that tax information is missing. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, which confirms this issue. The compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nCONFIDENCE: 92\n\nISSUES: \n- Issue #3 slightly overinterprets the receipt as car rental when it appears to be a taxi service, but the requirement for mileage documentation is still valid for transport expenses in France.\n- The AI response correctly identifies all the key compliance issues based on the extracted data and compliance rules.\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identifies missing invoice number, customer address, and tax information. The interpretation of the transport receipt as requiring mileage documentation is supported by the compliance rules, though the specific characterization as \"car rental\" might be slightly imprecise given the \"Taxicab and Limousines\" description in the line item. Overall, the response accurately reflects the compliance issues based on the provided information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the provided extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response does not fabricate or assume any information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - All numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - Entity names and details are accurately represented in the AI response.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response accurately reflects the compliance rules provided in the extracted data.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, entity details, and compliance rules are accurately represented and can be traced back to the information given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the invoice number is missing, which is correct as per the extracted data. However, the receipt number is present, which the AI doesn't mention.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that the customer address is missing from the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is not grounded in the extracted data. The receipt is for a taxi service, not a car rental. There's no mention of mileage breakdown or car rental in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 0 - Similar to issue 3, this is not grounded in the data. The receipt is for a taxi service, not a mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that the tax amount and rate are not provided in the extracted data.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly assumes the receipt is for a car rental or mileage claim when it's actually for a taxi service.\n2. The AI doesn't acknowledge the presence of a receipt number, focusing only on the missing invoice number.\n3. The AI doesn't mention several pieces of information that are present in the extracted data, such as the supplier name, address, and VAT number.\n\nSUMMARY: The AI response is partially grounded in the extracted data, correctly identifying some issues like missing customer address and tax information. However, it makes unfounded assumptions about the nature of the expense (car rental/mileage instead of taxi) and overlooks some available information. The overall factual grounding is inconsistent and requires improvement."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing. The extracted data shows \"invoice_number\": null, while there is a receipt number present. According to compliance rules, transaction documentation is required, so this is a valid issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer address is missing. The extracted data shows \"customer_address\": null, which confirms this issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI identified that additional documentation is required for car rental expenses. The extracted data shows this is a transport receipt for \"Taxicab and Limousines\" which could be interpreted as car rental. The compliance rules state \"Detailed mileage log reports justifying business mileage required\" which supports this issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that mileage claims require logbook documentation. This aligns with the compliance rules that state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that tax information is missing. The extracted data shows \"tax_amount\": null and \"tax_rate\": null, which confirms this issue. The compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7666666666666666,
+      "issues": [
+        "1. Issues 3 and 4 appear to misclassify a taxi receipt as a car rental/mileage claim",
+        "though the requirement for additional documentation is still relevant for travel expenses.",
+        "2. The AI did not identify that the receipt is dated in the future (2025-06-02)",
+        "which should raise concerns about validity.",
+        "3. The AI correctly identified missing invoice number",
+        "customer address",
+        "and tax information as compliance issues."
+      ],
+      "summary": "The AI response generally adheres to the compliance knowledge base for France, correctly identifying several key issues like missing invoice number, customer address, and tax information. However, there appears to be some confusion in classifying the receipt as car rental/mileage when it's actually for taxi services. While the documentation requirements cited are valid, they may not be precisely applicable to this specific receipt type. Additionally, the AI missed flagging the future date on the receipt (2025-06-02), which should raise validity concerns. Overall, the response demonstrates good knowledge of French compliance requirements but has some misapplications in the specific context.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice number is missing, which aligns with the compliance requirement that \"Date of the expense must be clearly visible on the receipt.\" While the date is present (2025-06-02), the invoice number is indeed missing from the extracted data, making this a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI correctly identified that the customer address is missing, which aligns with the compliance requirement that \"Name of the vendor or merchant must be visible on the receipt.\" While the vendor name is present (LYDIA Solutions), the customer address is indeed missing from the extracted data, making this a valid compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI identified that additional documentation is required for car rental expenses. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, the receipt appears to be for a taxi service (line item description: \"Taxicab and Limousines\"), not a car rental, so this issue may be partially misapplied.\n\nISSUE_4_VALIDATION_SCORE: 85 - The AI identified that mileage claims require logbooks with detailed information. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, as with Issue 3, this appears to be a taxi receipt rather than a mileage claim, so this issue may be partially misapplied.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI correctly identified that tax information is missing, which aligns with the compliance guideline that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms that tax_amount and tax_rate are null, making this a valid compliance issue.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issues 3 and 4 appear to misclassify a taxi receipt as a car rental/mileage claim, though the requirement for additional documentation is still relevant for travel expenses.\n2. The AI did not identify that the receipt is dated in the future (2025-06-02), which should raise concerns about validity.\n3. The AI correctly identified missing invoice number, customer address, and tax information as compliance issues.\n\nSUMMARY: The AI response generally adheres to the compliance knowledge base for France, correctly identifying several key issues like missing invoice number, customer address, and tax information. However, there appears to be some confusion in classifying the receipt as car rental/mileage when it's actually for taxi services. While the documentation requirements cited are valid, they may not be precisely applicable to this specific receipt type. Additionally, the AI missed flagging the future date on the receipt (2025-06-02), which should raise validity concerns. Overall, the response demonstrates good knowledge of French compliance requirements but has some misapplications in the specific context.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice number is missing, which aligns with the compliance requirement that \"Date of the expense must be clearly visible on the receipt.\" While the date is present (2025-06-02), the invoice number is indeed missing from the extracted data, making this a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI correctly identified that the customer address is missing, which aligns with the compliance requirement that \"Name of the vendor or merchant must be visible on the receipt.\" While the vendor name is present (LYDIA Solutions), the customer address is indeed missing from the extracted data, making this a valid compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI identified that additional documentation is required for car rental expenses. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, the receipt appears to be for a taxi service (line item description: \"Taxicab and Limousines\"), not a car rental, so this issue may be partially misapplied.\n\nISSUE_4_VALIDATION_SCORE: 85 - The AI identified that mileage claims require logbooks with detailed information. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, as with Issue 3, this appears to be a taxi receipt rather than a mileage claim, so this issue may be partially misapplied.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI correctly identified that tax information is missing, which aligns with the compliance guideline that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms that tax_amount and tax_rate are null, making this a valid compliance issue.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issues 3 and 4 appear to misclassify a taxi receipt as a car rental/mileage claim, though the requirement for additional documentation is still relevant for travel expenses.\n2. The AI did not identify that the receipt is dated in the future (2025-06-02), which should raise concerns about validity.\n3. The AI correctly identified missing invoice number, customer address, and tax information as compliance issues.\n\nSUMMARY: The AI response generally adheres to the compliance knowledge base for France, correctly identifying several key issues like missing invoice number, customer address, and tax information. However, there appears to be some confusion in classifying the receipt as car rental/mileage when it's actually for taxi services. While the documentation requirements cited are valid, they may not be precisely applicable to this specific receipt type. Additionally, the AI missed flagging the future date on the receipt (2025-06-02), which should raise validity concerns. Overall, the response demonstrates good knowledge of French compliance requirements but has some misapplications in the specific context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the invoice number is missing, which is a compliance issue as per the knowledge base requirement that the \"Invoice number is clearly visible on the receipt\".\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies that the customer address is missing, which is a compliance issue as per the knowledge base requirement that the \"Name of the vendor or merchant must be visible on the receipt\".\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly identifies that additional documentation is required for the car rental expense, including a mileage breakdown. This aligns with the knowledge base requirement for \"Detailed mileage log reports justifying business mileage\". However, the recommendation could be more specific in terms of the required details (dates, purpose, destinations, kilometers).\n\nISSUE_4_VALIDATION_SCORE: 85 - The AI response correctly identifies that a mileage logbook with date, route, purpose, and odometer readings is required. This aligns with the knowledge base requirement for \"Detailed mileage log reports justifying business mileage\". However, the recommendation could be more specific in terms of the required details.\n\nISSUE_5_VALIDATION_SCORE: 80 - The AI response correctly identifies that the tax amount and rate are not provided on the receipt, which is a compliance issue as per the knowledge base requirement that \"VAT amount must be listed clearly on the invoice if applicable\". However, the recommendation could be more specific in terms of the required tax information.\n\nCONFIDENCE: 85\nISSUES: The AI response generally adheres well to the compliance knowledge base, with some room for improvement in the specificity of the recommendations for additional documentation requirements.\n\nSUMMARY: The AI response accurately identifies the key compliance issues with the travel receipt from France, including missing invoice number, customer address, and tax information. It also correctly identifies the need for additional documentation for the car rental expense and mileage claim. The recommendations provided are mostly aligned with the knowledge base, but could be more detailed in terms of the specific requirements. Overall, the response demonstrates a good understanding of the compliance rules and regulations for France."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding the missing invoice number correctly adheres to the knowledge base. The rule states \"Date of the expense must be clearly visible on the receipt,\" and the AI response accurately identifies this as a compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The missing customer address is correctly identified as an issue. This aligns with the knowledge base rule stating \"Name of the vendor or merchant must be visible on the receipt.\" While this rule doesn't explicitly mention customer address, it's reasonable to include this as part of the required information.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue does not adhere to the knowledge base. The receipt is for a taxi service, not a car rental. There are no specific rules in the provided knowledge base about additional documentation for taxi services.\n\nISSUE_4_VALIDATION_SCORE: 0 - Similar to Issue 3, this issue does not adhere to the knowledge base. The receipt is for a taxi service, not a mileage claim, so a mileage logbook is not required according to the provided rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding missing tax information correctly adheres to the knowledge base. The rule states \"VAT amount must be listed clearly on the invoice if applicable,\" and the AI response accurately identifies this as a compliance issue.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issues 3 and 4 incorrectly apply rules for car rentals and mileage claims to a taxi receipt.\n2. The response doesn't address some relevant rules from the knowledge base, such as the need for a business purpose and the requirement for itemized expense reports.\n3. The response doesn't mention the gross-up rule for transportation expenses, which states that reimbursement for public transport is exempt from social security contributions.\n\nSUMMARY: While the AI response correctly identifies issues related to missing invoice number, customer address, and tax information, it incorrectly applies rules for car rentals and mileage claims to a taxi receipt. The response also misses some relevant compliance rules from the knowledge base. Overall, the adherence to the knowledge base is partial, with significant room for improvement in accurately applying the specific rules for this type of travel expense."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing, which aligns with the compliance requirement that \"Date of the expense must be clearly visible on the receipt.\" While the date is present (2025-06-02), the invoice number is indeed missing from the extracted data, making this a valid compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that the customer address is missing, which aligns with the compliance requirement that \"Name of the vendor or merchant must be visible on the receipt.\" While the vendor name is present (LYDIA Solutions), the customer address is indeed missing from the extracted data, making this a valid compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI identified that additional documentation is required for car rental expenses. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, the receipt appears to be for a taxi service (line item description: \"Taxicab and Limousines\"), not a car rental, so this issue may be partially misapplied.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI identified that mileage claims require logbooks with detailed information. This aligns with the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" However, as with Issue 3, this appears to be a taxi receipt rather than a mileage claim, so this issue may be partially misapplied.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that tax information is missing, which aligns with the compliance guideline that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms that tax_amount and tax_rate are null, making this a valid compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7266666666666667,
+      "issues": [
+        "1. Issues 3 and 4 incorrectly apply mileage documentation requirements to a taxi receipt",
+        "2. The system appears to have confused a taxi service receipt with a car rental or personal mileage claim",
+        "3. The system did not recognize that \"Taxicab and Limousines\" in the line items indicates this is a taxi service",
+        "not a car rental or personal vehicle use"
+      ],
+      "summary": "The compliance assessment correctly identifies issues related to missing invoice number, customer address, and tax information. However, it incorrectly flags the receipt as requiring car rental and mileage documentation when it's clearly a taxi service receipt. This misclassification significantly reduces the overall accuracy of the compliance assessment. The system should better distinguish between different types of transportation expenses to avoid applying irrelevant compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the invoice number is missing, which is a valid compliance issue. According to French regulations, proper documentation requires an invoice number for tracking and verification purposes. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The assessment correctly identifies that the customer address is missing, which is required for proper documentation in France. The extracted data confirms this field is null. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue appears to be inaccurate. The receipt is for a taxi service (Taxicab and Limousines), not a car rental. The compliance rules for mileage breakdown from car rental services should not apply to taxi receipts. This is an incorrectly flagged issue.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue is also inaccurate. The receipt is for a taxi service paid to LYDIA Solutions, not a personal mileage claim. The requirement for a mileage logbook with odometer readings is not applicable to taxi receipts. This is another incorrectly flagged issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identifies that tax information (VAT amount and rate) is missing from the receipt. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The recommendation to provide the tax amount and rate is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 3 and 4 incorrectly apply mileage documentation requirements to a taxi receipt\n2. The system appears to have confused a taxi service receipt with a car rental or personal mileage claim\n3. The system did not recognize that \"Taxicab and Limousines\" in the line items indicates this is a taxi service, not a car rental or personal vehicle use\n\nSUMMARY: The compliance assessment correctly identifies issues related to missing invoice number, customer address, and tax information. However, it incorrectly flags the receipt as requiring car rental and mileage documentation when it's clearly a taxi service receipt. This misclassification significantly reduces the overall accuracy of the compliance assessment. The system should better distinguish between different types of transportation expenses to avoid applying irrelevant compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the invoice number is missing, which is a valid compliance issue. According to French regulations, proper documentation requires an invoice number for tracking and verification purposes. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The assessment correctly identifies that the customer address is missing, which is required for proper documentation in France. The extracted data confirms this field is null. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 30 - This issue appears to be inaccurate. The receipt is for a taxi service (Taxicab and Limousines), not a car rental. The compliance rules for mileage breakdown from car rental services should not apply to taxi receipts. This is an incorrectly flagged issue.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue is also inaccurate. The receipt is for a taxi service paid to LYDIA Solutions, not a personal mileage claim. The requirement for a mileage logbook with odometer readings is not applicable to taxi receipts. This is another incorrectly flagged issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identifies that tax information (VAT amount and rate) is missing from the receipt. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The recommendation to provide the tax amount and rate is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 3 and 4 incorrectly apply mileage documentation requirements to a taxi receipt\n2. The system appears to have confused a taxi service receipt with a car rental or personal mileage claim\n3. The system did not recognize that \"Taxicab and Limousines\" in the line items indicates this is a taxi service, not a car rental or personal vehicle use\n\nSUMMARY: The compliance assessment correctly identifies issues related to missing invoice number, customer address, and tax information. However, it incorrectly flags the receipt as requiring car rental and mileage documentation when it's clearly a taxi service receipt. This misclassification significantly reduces the overall accuracy of the compliance assessment. The system should better distinguish between different types of transportation expenses to avoid applying irrelevant compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing invoice number as a compliance issue. This is an important requirement for expense receipts in France.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing customer address as a compliance issue. The supplier/customer details are required information on expense receipts.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identified the need for additional documentation for the car rental expense. However, the recommendation could be more specific, e.g. requesting a detailed mileage log with date, purpose, destinations, and kilometers for each trip.\n\nISSUE_4_VALIDATION_SCORE: 85 - The assessment correctly identified the need for a mileage logbook with detailed information. However, the recommendation could be more comprehensive, e.g. also requesting the vehicle registration details.\n\nISSUE_5_VALIDATION_SCORE: 80 - The assessment correctly identified the missing tax information as a compliance issue. However, the recommendation could be more specific, e.g. requesting the VAT amount and rate.\n\nCONFIDENCE: 85\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate, with a few areas where the recommendations could be more comprehensive to fully address the compliance requirements. Overall, the assessment provides a good understanding of the key compliance issues with the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.68,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the invoice number is missing, which is a valid compliance issue. However, the recommendation could be more specific to the French context.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue of missing customer address is correctly identified. However, the reference to the vendor's name being visible is not directly related to the customer address issue, reducing the score slightly.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt is for a taxi service, not a car rental. There's no indication of car rental in the extracted data, making this assessment inaccurate.\n\nISSUE_4_VALIDATION_SCORE: 70 - While mileage documentation is generally required for transportation expenses in France, this specific receipt is for a taxi service, not personal mileage. The assessment is partially correct but not entirely applicable to this specific case.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing tax information, which is a valid compliance issue for France, especially given that VAT information is required on invoices when applicable.\n\nCONFIDENCE: 68\n\nISSUES:\n1. Misidentification of the expense type (taxi service vs car rental)\n2. Overgeneralization of mileage documentation requirement for all transportation expenses\n3. Lack of consideration for the specific nature of the expense (taxi service) in applying compliance rules\n\nSUMMARY: The compliance assessment accurately identifies some key issues such as missing invoice number, customer address, and tax information. However, it falters in correctly identifying the nature of the expense (taxi service), leading to the application of irrelevant compliance rules. The assessment would benefit from a more nuanced approach that considers the specific type of transportation expense. Overall, while some compliance issues are correctly identified, the misclassification of the expense type significantly impacts the accuracy of the assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the invoice number is missing, which is a valid compliance issue. According to French regulations, proper documentation requires an invoice number for tracking and verification purposes. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The assessment correctly identifies that the customer address is missing, which is required for proper documentation in France. The extracted data confirms this field is null. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This issue appears to be inaccurate. The receipt is for a taxi service (Taxicab and Limousines), not a car rental. The compliance rules for mileage breakdown from car rental services should not apply to taxi receipts. This is an incorrectly flagged issue.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 20,
+          "judge_explanation": "This issue is also inaccurate. The receipt is for a taxi service paid to LYDIA Solutions, not a personal mileage claim. The requirement for a mileage logbook with odometer readings is not applicable to taxi receipts. This is another incorrectly flagged issue.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that tax information (VAT amount and rate) is missing from the receipt. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The recommendation to provide the tax amount and rate is appropriate.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "1. Issues #3 and #4 incorrectly treat a taxi/limousine expense as either a car rental or personal vehicle mileage expense",
+        "2. Some knowledge base references don't perfectly align with the issues they support",
+        "3. The system correctly identified tax information issues but didn't note the location discrepancy (receipt shows London",
+        "UK but is being processed for France)"
+      ],
+      "summary": "The system generally categorizes compliance issues correctly, especially for standard receipt requirements like invoice number, customer address, and tax information. However, it mischaracterizes the transportation expense type, requesting documentation appropriate for car rentals and personal vehicle mileage rather than taxi services. The knowledge base references sometimes don't perfectly align with the issues they support, though the underlying compliance concerns are valid. The system should better distinguish between different types of transportation expenses to provide more accurate documentation requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies the problem and the recommendation is appropriate. The knowledge base reference about date visibility is slightly mismatched, but the issue itself is valid.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing customer address issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description and recommendation are clear. The knowledge base reference about vendor name is not perfectly aligned with the customer address issue, but the compliance concern is valid based on French receipt requirements.\n\nISSUE_3_VALIDATION_SCORE: 60 - This issue about car rental documentation is incorrectly categorized. The receipt shows a taxi/limousine expense (not car rental), so requiring car rental documentation is inappropriate. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is correct, the specific documentation requested doesn't match the expense type.\n\nISSUE_4_VALIDATION_SCORE: 70 - The mileage logbook requirement is partially correct as the expense is transportation-related, but it's specifically for a taxi service (not personal vehicle mileage). The issue type is correct, but the specific documentation requirement doesn't match the actual expense type shown on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 85 - The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" since the receipt is missing tax amount and rate information. The description, recommendation, and knowledge base reference are all aligned and appropriate for French VAT requirements.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issues #3 and #4 incorrectly treat a taxi/limousine expense as either a car rental or personal vehicle mileage expense\n2. Some knowledge base references don't perfectly align with the issues they support\n3. The system correctly identified tax information issues but didn't note the location discrepancy (receipt shows London, UK but is being processed for France)\n\nSUMMARY: The system generally categorizes compliance issues correctly, especially for standard receipt requirements like invoice number, customer address, and tax information. However, it mischaracterizes the transportation expense type, requesting documentation appropriate for car rentals and personal vehicle mileage rather than taxi services. The knowledge base references sometimes don't perfectly align with the issues they support, though the underlying compliance concerns are valid. The system should better distinguish between different types of transportation expenses to provide more accurate documentation requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies the problem and the recommendation is appropriate. The knowledge base reference about date visibility is slightly mismatched, but the issue itself is valid.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing customer address issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description and recommendation are clear. The knowledge base reference about vendor name is not perfectly aligned with the customer address issue, but the compliance concern is valid based on French receipt requirements.\n\nISSUE_3_VALIDATION_SCORE: 60 - This issue about car rental documentation is incorrectly categorized. The receipt shows a taxi/limousine expense (not car rental), so requiring car rental documentation is inappropriate. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is correct, the specific documentation requested doesn't match the expense type.\n\nISSUE_4_VALIDATION_SCORE: 70 - The mileage logbook requirement is partially correct as the expense is transportation-related, but it's specifically for a taxi service (not personal vehicle mileage). The issue type is correct, but the specific documentation requirement doesn't match the actual expense type shown on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 85 - The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" since the receipt is missing tax amount and rate information. The description, recommendation, and knowledge base reference are all aligned and appropriate for French VAT requirements.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issues #3 and #4 incorrectly treat a taxi/limousine expense as either a car rental or personal vehicle mileage expense\n2. Some knowledge base references don't perfectly align with the issues they support\n3. The system correctly identified tax information issues but didn't note the location discrepancy (receipt shows London, UK but is being processed for France)\n\nSUMMARY: The system generally categorizes compliance issues correctly, especially for standard receipt requirements like invoice number, customer address, and tax information. However, it mischaracterizes the transportation expense type, requesting documentation appropriate for car rentals and personal vehicle mileage rather than taxi services. The knowledge base references sometimes don't perfectly align with the issues they support, though the underlying compliance concerns are valid. The system should better distinguish between different types of transportation expenses to provide more accurate documentation requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is appropriate as the missing invoice number is a clear compliance violation. The description and recommendation are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is appropriate as the missing customer address is a compliance violation. The description and recommendation are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate as the additional documentation requirement for car rental expenses is a valid compliance need. The description and recommendation are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate as the requirement for a mileage logbook is a valid compliance need. The description and recommendation are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 85 - The issue type \"Standards & Compliance | Gross-up Identified\" is appropriate as the missing tax information is a compliance issue. However, the recommendation could be more specific on the required tax details.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are categorized accurately according to the established taxonomy. The descriptions and recommendations provided are clear and actionable. The overall confidence in the issue categorization is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately describes the missing invoice number. The recommendation and knowledge base reference are relevant and appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing customer address. However, the knowledge base reference mentions the supplier name, which is not directly related to the customer address issue.\n\nISSUE_3_VALIDATION_SCORE: 70 - While the issue is categorized as \"Standards & Compliance | Follow-up Action Identified\", it incorrectly assumes this is a car rental expense. The receipt actually shows a taxi/limousine service, so the mileage breakdown requirement may not be applicable.\n\nISSUE_4_VALIDATION_SCORE: 60 - This issue is redundant with Issue 3 and incorrectly applies to this receipt. The expense is for a taxi/limousine service, not a personal mileage claim, so a logbook is not required.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately points out the missing tax information. The recommendation and knowledge base reference are appropriate.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue 3 and 4 are based on an incorrect assumption that this is a car rental or personal mileage expense.\n2. There is redundancy between Issues 3 and 4.\n3. An issue regarding the missing supplier phone number could have been included.\n\nSUMMARY: The issue categorization is generally accurate, with most issues correctly identified and categorized. However, there are some misinterpretations regarding the nature of the travel expense (taxi vs. car rental/personal mileage), leading to irrelevant issues being raised. The redundancy between Issues 3 and 4 also reduces the overall accuracy of the categorization. Despite these problems, the other issues are well-categorized and provide relevant recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies the problem and the recommendation is appropriate. The knowledge base reference about date visibility is slightly mismatched, but the issue itself is valid.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing customer address issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description and recommendation are clear. The knowledge base reference about vendor name is not perfectly aligned with the customer address issue, but the compliance concern is valid based on French receipt requirements.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 60,
+          "judge_explanation": "This issue about car rental documentation is incorrectly categorized. The receipt shows a taxi/limousine expense (not car rental), so requiring car rental documentation is inappropriate. While the issue type \"Standards & Compliance | Follow-up Action Identified\" is correct, the specific documentation requested doesn't match the expense type.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 70,
+          "judge_explanation": "The mileage logbook requirement is partially correct as the expense is transportation-related, but it's specifically for a taxi service (not personal vehicle mileage). The issue type is correct, but the specific documentation requirement doesn't match the actual expense type shown on the receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" since the receipt is missing tax amount and rate information. The description, recommendation, and knowledge base reference are all aligned and appropriate for French VAT requirements.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.79,
+      "issues": [
+        "1. Issues 3 and 4 incorrectly identify a taxi receipt as requiring car rental or personal mileage documentation",
+        "2. The system has confused different types of transportation expenses (taxi vs. car rental vs. personal vehicle mileage)",
+        "3. Recommendations for issues 3 and 4 are not applicable to the actual expense type shown on the receipt"
+      ],
+      "summary": "While recommendations for issues 1, 2, and 5 are valid and aligned with compliance requirements, there's a significant misclassification in issues 3 and 4. The receipt clearly shows a taxi expense, but the recommendations incorrectly treat it as a car rental or personal vehicle mileage claim, leading to inappropriate documentation requests. This misalignment significantly reduces the overall validity and usefulness of the recommendations provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. The compliance rules clearly state that proper documentation is required, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding the missing customer address is valid and aligned with compliance requirements. The suggestion to address this with the supplier is practical and actionable, as the receipt should include complete customer information.\n\nISSUE_3_VALIDATION_SCORE: 30 - This recommendation is problematic. The receipt shows a taxi expense (Taxicab and Limousines), not a car rental. The recommendation about requiring mileage breakdown from a car rental service is therefore not applicable to this type of expense and could confuse the user.\n\nISSUE_4_VALIDATION_SCORE: 30 - Similar to issue 3, this recommendation about providing a mileage logbook is not applicable to a taxi receipt. While the compliance rules do mention mileage documentation requirements, these apply to personal vehicle use claims, not taxi services which are a fixed-fee transportation service.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation regarding missing tax information is valid. According to the compliance rules, VAT information should be included on receipts where applicable. The recommendation to provide tax amount and rate is actionable, though it could be more specific about how to obtain this information from the taxi service provider.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 3 and 4 incorrectly identify a taxi receipt as requiring car rental or personal mileage documentation\n2. The system has confused different types of transportation expenses (taxi vs. car rental vs. personal vehicle mileage)\n3. Recommendations for issues 3 and 4 are not applicable to the actual expense type shown on the receipt\n\nSUMMARY: While recommendations for issues 1, 2, and 5 are valid and aligned with compliance requirements, there's a significant misclassification in issues 3 and 4. The receipt clearly shows a taxi expense, but the recommendations incorrectly treat it as a car rental or personal vehicle mileage claim, leading to inappropriate documentation requests. This misalignment significantly reduces the overall validity and usefulness of the recommendations provided.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. The compliance rules clearly state that proper documentation is required, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding the missing customer address is valid and aligned with compliance requirements. The suggestion to address this with the supplier is practical and actionable, as the receipt should include complete customer information.\n\nISSUE_3_VALIDATION_SCORE: 30 - This recommendation is problematic. The receipt shows a taxi expense (Taxicab and Limousines), not a car rental. The recommendation about requiring mileage breakdown from a car rental service is therefore not applicable to this type of expense and could confuse the user.\n\nISSUE_4_VALIDATION_SCORE: 30 - Similar to issue 3, this recommendation about providing a mileage logbook is not applicable to a taxi receipt. While the compliance rules do mention mileage documentation requirements, these apply to personal vehicle use claims, not taxi services which are a fixed-fee transportation service.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation regarding missing tax information is valid. According to the compliance rules, VAT information should be included on receipts where applicable. The recommendation to provide tax amount and rate is actionable, though it could be more specific about how to obtain this information from the taxi service provider.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 3 and 4 incorrectly identify a taxi receipt as requiring car rental or personal mileage documentation\n2. The system has confused different types of transportation expenses (taxi vs. car rental vs. personal vehicle mileage)\n3. Recommendations for issues 3 and 4 are not applicable to the actual expense type shown on the receipt\n\nSUMMARY: While recommendations for issues 1, 2, and 5 are valid and aligned with compliance requirements, there's a significant misclassification in issues 3 and 4. The receipt clearly shows a taxi expense, but the recommendations incorrectly treat it as a car rental or personal vehicle mileage claim, leading to inappropriate documentation requests. This misalignment significantly reduces the overall validity and usefulness of the recommendations provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is actionable and specific. This issue needs to be resolved to ensure compliance.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing customer address with the supplier is actionable and specific. This information is required on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide a mileage logbook with complete route details and odometer readings is relevant and specific. This additional documentation is necessary for car rental expenses.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide a mileage logbook with date, route, purpose, and odometer readings is relevant and specific. This additional documentation is necessary to justify the mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 80 - The recommendation to provide the tax amount and rate as per the country regulations is valid. However, it could be more specific on how to obtain this information.\n\nCONFIDENCE: 88\nISSUES: None\nSUMMARY: The recommendations provided are generally valid and useful. They address the identified compliance issues in a clear and actionable manner. The suggestions are feasible and practical for the employee to implement. Overall, the recommendations are well-suited to help resolve the compliance problems with this expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.84,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. It directly addresses the compliance issue and is a practical step to ensure proper documentation.\n\nISSUE_2_VALIDATION_SCORE: 90 - Suggesting to address the missing customer address with the supplier is a valid and specific recommendation. It directly targets the compliance issue and is feasible to implement.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to submit additional documentation for car rental expenses, including a mileage breakdown, is valid and specific. However, it's not entirely clear if this expense is actually for car rental, as the receipt seems to be for a taxi service.\n\nISSUE_4_VALIDATION_SCORE: 70 - While the recommendation to provide a mileage logbook is generally valid for mileage claims, it may not be applicable in this case as the receipt appears to be for a taxi service rather than a personal vehicle use. This recommendation might be misplaced.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation to provide tax amount and rate is valid and addresses the compliance issue. However, it might be challenging to obtain this information after the fact, especially for a taxi receipt.\n\nCONFIDENCE: 84\n\nISSUES:\n1. The recommendations for issues 3 and 4 may not be applicable if the expense is indeed for a taxi service rather than car rental or personal vehicle use.\n2. Obtaining tax information after the fact for a taxi receipt might be challenging.\n\nSUMMARY: Most recommendations are valid, actionable, and address the identified compliance issues. However, there seems to be some confusion regarding the nature of the expense (taxi vs. car rental/personal vehicle), which affects the relevance of recommendations 3 and 4. The overall recommendations are generally helpful, but some adjustments may be needed based on the actual type of transportation expense."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and actionable. The compliance rules clearly state that proper documentation is required, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding the missing customer address is valid and aligned with compliance requirements. The suggestion to address this with the supplier is practical and actionable, as the receipt should include complete customer information.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This recommendation is problematic. The receipt shows a taxi expense (Taxicab and Limousines), not a car rental. The recommendation about requiring mileage breakdown from a car rental service is therefore not applicable to this type of expense and could confuse the user.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "Similar to issue 3, this recommendation about providing a mileage logbook is not applicable to a taxi receipt. While the compliance rules do mention mileage documentation requirements, these apply to personal vehicle use claims, not taxi services which are a fixed-fee transportation service.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation regarding missing tax information is valid. According to the compliance rules, VAT information should be included on receipts where applicable. The recommendation to provide tax amount and rate is actionable, though it could be more specific about how to obtain this information from the taxi service provider.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.6666666666666666,
+      "issues": [
+        "1. Issues 3 and 4 incorrectly classify a taxi receipt as a car rental/mileage claim requiring additional documentation.",
+        "2. The AI misinterprets the nature of the expense (taxi service) and applies irrelevant compliance rules about mileage logs and car rental documentation.",
+        "3. The AI treats the missing VAT information as a major compliance issue when the compliance rules indicate this is optional."
+      ],
+      "summary": "The AI response contains significant hallucinations by misclassifying a taxi receipt as a car rental/mileage expense and applying irrelevant compliance requirements. While issues 1 and 2 correctly identify missing information, issues 3 and 4 are completely fabricated based on a misunderstanding of the expense type. Issue 5 overemphasizes an optional requirement. These hallucinations could lead to unnecessary follow-up actions and documentation requests from the user.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice number is missing from the receipt data. This is a valid compliance concern based on the requirement that transaction details must be clearly visible.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer address is missing from the extracted data, which is a valid compliance concern based on the requirement that vendor information must be visible.\n\nISSUE_3_VALIDATION_SCORE: 20 - This issue contains hallucinated information. The receipt is for a taxi/transportation service (Lydia Solutions with \"Taxicab and Limousines\" as the line item), but the AI incorrectly assumes it's a car rental expense requiring mileage breakdown documentation. There's no indication this is a car rental in the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue contains hallucinated information. Similar to issue 3, the AI incorrectly assumes this is a mileage claim requiring logbook documentation when the receipt is clearly for a taxi service. The receipt shows a one-time transportation expense, not a personal vehicle mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 80 - The issue correctly identifies that tax information is missing, which is mentioned in the compliance rules as \"VAT amount must be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, not mandatory.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Issues 3 and 4 incorrectly classify a taxi receipt as a car rental/mileage claim requiring additional documentation.\n2. The AI misinterprets the nature of the expense (taxi service) and applies irrelevant compliance rules about mileage logs and car rental documentation.\n3. The AI treats the missing VAT information as a major compliance issue when the compliance rules indicate this is optional.\n\nSUMMARY: The AI response contains significant hallucinations by misclassifying a taxi receipt as a car rental/mileage expense and applying irrelevant compliance requirements. While issues 1 and 2 correctly identify missing information, issues 3 and 4 are completely fabricated based on a misunderstanding of the expense type. Issue 5 overemphasizes an optional requirement. These hallucinations could lead to unnecessary follow-up actions and documentation requests from the user.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice number is missing from the receipt data. This is a valid compliance concern based on the requirement that transaction details must be clearly visible.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer address is missing from the extracted data, which is a valid compliance concern based on the requirement that vendor information must be visible.\n\nISSUE_3_VALIDATION_SCORE: 20 - This issue contains hallucinated information. The receipt is for a taxi/transportation service (Lydia Solutions with \"Taxicab and Limousines\" as the line item), but the AI incorrectly assumes it's a car rental expense requiring mileage breakdown documentation. There's no indication this is a car rental in the receipt data.\n\nISSUE_4_VALIDATION_SCORE: 20 - This issue contains hallucinated information. Similar to issue 3, the AI incorrectly assumes this is a mileage claim requiring logbook documentation when the receipt is clearly for a taxi service. The receipt shows a one-time transportation expense, not a personal vehicle mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 80 - The issue correctly identifies that tax information is missing, which is mentioned in the compliance rules as \"VAT amount must be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, not mandatory.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Issues 3 and 4 incorrectly classify a taxi receipt as a car rental/mileage claim requiring additional documentation.\n2. The AI misinterprets the nature of the expense (taxi service) and applies irrelevant compliance rules about mileage logs and car rental documentation.\n3. The AI treats the missing VAT information as a major compliance issue when the compliance rules indicate this is optional.\n\nSUMMARY: The AI response contains significant hallucinations by misclassifying a taxi receipt as a car rental/mileage expense and applying irrelevant compliance requirements. While issues 1 and 2 correctly identify missing information, issues 3 and 4 are completely fabricated based on a misunderstanding of the expense type. Issue 5 overemphasizes an optional requirement. These hallucinations could lead to unnecessary follow-up actions and documentation requests from the user."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "Here is my assessment of the AI response for potential hallucinations and fabricated information:\n\nISSUE_1_VALIDATION_SCORE: 100 - The information about the invoice number being missing is present in the source data provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - The information about the customer address being missing is present in the source data provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the response appear to be valid and consistent with the compliance policy information provided.\n\nISSUE_4_VALIDATION_SCORE: 100 - All the entities, amounts, and dates mentioned in the response are present in the source data provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - The information about the tax amount and rate not being provided on the receipt is present in the source data provided.\n\nCONFIDENCE: 100\nISSUES: No hallucinations or fabricated information detected.\n\nSUMMARY: The AI response appears to be completely free from hallucinations or fabricated information. All the issues identified and the corresponding recommendations are directly supported by the source data provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing invoice number, which is not present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The customer address is indeed missing from the extracted data, so this issue is valid.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue appears to be hallucinated. The receipt is for a taxi/limousine service, not a car rental. There's no mention of car rental in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is also hallucinated. While mileage documentation is mentioned in the compliance rules, this receipt is for a taxi service, not a personal mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 100 - The tax amount and rate are indeed missing from the extracted data, making this a valid issue.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Hallucination about car rental and associated documentation requirements.\n2. Hallucination about mileage claim and logbook requirements.\n\nSUMMARY: The AI response contains accurate observations about missing invoice number, customer address, and tax information. However, it also includes significant hallucinations related to car rental and mileage claims, which are not relevant to the actual receipt for taxi/limousine service. These hallucinations severely impact the overall accuracy and reliability of the response."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the invoice number is missing from the receipt data. This is a valid compliance concern based on the requirement that transaction details must be clearly visible.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Required customer address is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the customer address is missing from the extracted data, which is a valid compliance concern based on the requirement that vendor information must be visible.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Expense is car rental related - additional documentation is required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 20,
+          "judge_explanation": "This issue contains hallucinated information. The receipt is for a taxi/transportation service (Lydia Solutions with \"Taxicab and Limousines\" as the line item), but the AI incorrectly assumes it's a car rental expense requiring mileage breakdown documentation. There's no indication this is a car rental in the receipt data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 20,
+          "judge_explanation": "This issue contains hallucinated information. Similar to issue 3, the AI incorrectly assumes this is a mileage claim requiring logbook documentation when the receipt is clearly for a taxi service. The receipt shows a one-time transportation expense, not a personal vehicle mileage claim.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Tax amount and rate are not provided on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue correctly identifies that tax information is missing, which is mentioned in the compliance rules as \"VAT amount must be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, not mandatory.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: - Issue #3 slightly overinterprets the receipt as car rental when it appears to be a taxi service, but the requirement for mileage documentation is still valid for transport expenses in France., - The AI response correctly identifies all the key compliance issues based on the extracted data and compliance rules.",
+    "Address issues in knowledge base adherence: 1. Issues 3 and 4 appear to misclassify a taxi receipt as a car rental/mileage claim, though the requirement for additional documentation is still relevant for travel expenses., 2. The AI did not identify that the receipt is dated in the future (2025-06-02), which should raise concerns about validity., 3. The AI correctly identified missing invoice number, customer address, and tax information as compliance issues.",
+    "Address issues in compliance accuracy: 1. Issues 3 and 4 incorrectly apply mileage documentation requirements to a taxi receipt, 2. The system appears to have confused a taxi service receipt with a car rental or personal mileage claim, 3. The system did not recognize that \"Taxicab and Limousines\" in the line items indicates this is a taxi service, not a car rental or personal vehicle use",
+    "Address issues in issue categorization: 1. Issues #3 and #4 incorrectly treat a taxi/limousine expense as either a car rental or personal vehicle mileage expense, 2. Some knowledge base references don't perfectly align with the issues they support, 3. The system correctly identified tax information issues but didn't note the location discrepancy (receipt shows London, UK but is being processed for France)",
+    "Address issues in recommendation validity: 1. Issues 3 and 4 incorrectly identify a taxi receipt as requiring car rental or personal mileage documentation, 2. The system has confused different types of transportation expenses (taxi vs. car rental vs. personal vehicle mileage), 3. Recommendations for issues 3 and 4 are not applicable to the actual expense type shown on the receipt",
+    "Improve hallucination detection: The AI response contains significant hallucinations by misclassifying a taxi receipt as a car rental/mileage expense and applying irrelevant compliance requirements. While issues 1 and 2 correctly identify missing information, issues 3 and 4 are completely fabricated based on a misunderstanding of the expense type. Issue 5 overemphasizes an optional requirement. These hallucinations could lead to unnecessary follow-up actions and documentation requests from the user.",
+    "Address issues in hallucination detection: 1. Issues 3 and 4 incorrectly classify a taxi receipt as a car rental/mileage claim requiring additional documentation., 2. The AI misinterprets the nature of the expense (taxi service) and applies irrelevant compliance rules about mileage logs and car rental documentation., 3. The AI treats the missing VAT information as a major compliance issue when the compliance rules indicate this is optional."
+  ],
+  "timestamp": "2025-09-04T16:26:34.115Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 66373,
+    "timing": {
+      "validation_start_time": "2025-09-04T16:25:27.741Z",
+      "validation_end_time": "2025-09-04T16:26:34.114Z",
+      "total_validation_time_seconds": "66.4",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-04T16:25:27.741Z",
+          "end_time": "2025-09-04T16:26:34.114Z",
+          "duration_seconds": "66.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "66.4",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.45",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Invoice number is not clearly visible or missing.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 89.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Required customer address is missing or incomplete.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 93.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 85,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Expense is car rental related - additional documentation is required.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 52.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 30,
+        "issue_categorization": 60,
+        "recommendation_validity": 30,
+        "hallucination_detection": 20
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Mileage claim requires logbook with date, route, purpose, and odometer readings.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 51.89,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 20,
+        "issue_categorization": 70,
+        "recommendation_validity": 30,
+        "hallucination_detection": 20
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Tax amount and rate are not provided on the receipt.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 85,
+        "recommendation_validity": 85,
+        "hallucination_detection": 80
+      }
+    }
+  ]
+}

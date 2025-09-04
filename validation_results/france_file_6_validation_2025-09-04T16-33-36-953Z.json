@@ -1,0 +1,718 @@
+{
+  "overall_score": 0.8972222222222221,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "None identified. All issues raised by the AI are factually grounded in the extracted data and compliance rules."
+      ],
+      "summary": "The AI response is fully grounded in the provided data. All six identified compliance issues accurately reflect missing information in the extracted data when compared against the compliance rules. The AI correctly identified missing supplier address, VAT information, invoice number, and tax details, while also appropriately flagging the need for mileage documentation and noting that parking/toll fees should be claimed separately.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information to be visible on receipts.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the VAT information is missing. The \"supplier_vat_number\", \"tax_amount\", and \"tax_rate\" fields are all null in the extracted data, which conflicts with the compliance rule stating \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data, which relates to the compliance rule requiring clear display of transaction information.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for detailed mileage log reports. This aligns with the compliance policy stating \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" The extracted data shows this is a transport receipt with distance traveled of 36.65 units.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that parking or toll fees can be claimed separately from mileage allowance. This aligns with the compliance policy stating \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that tax information is missing. The \"tax_amount\" and \"tax_rate\" fields are explicitly shown as null in the extracted data, which conflicts with compliance requirements for proper tax documentation.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is fully grounded in the provided data. All six identified compliance issues accurately reflect missing information in the extracted data when compared against the compliance rules. The AI correctly identified missing supplier address, VAT information, invoice number, and tax details, while also appropriately flagging the need for mileage documentation and noting that parking/toll fees should be claimed separately.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information to be visible on receipts.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the VAT information is missing. The \"supplier_vat_number\", \"tax_amount\", and \"tax_rate\" fields are all null in the extracted data, which conflicts with the compliance rule stating \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data, which relates to the compliance rule requiring clear display of transaction information.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for detailed mileage log reports. This aligns with the compliance policy stating \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" The extracted data shows this is a transport receipt with distance traveled of 36.65 units.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that parking or toll fees can be claimed separately from mileage allowance. This aligns with the compliance policy stating \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that tax information is missing. The \"tax_amount\" and \"tax_rate\" fields are explicitly shown as null in the extracted data, which conflicts with compliance requirements for proper tax documentation.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is fully grounded in the provided data. All six identified compliance issues accurately reflect missing information in the extracted data when compared against the compliance rules. The AI correctly identified missing supplier address, VAT information, invoice number, and tax details, while also appropriately flagging the need for mileage documentation and noting that parking/toll fees should be claimed separately."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response accurately identifies that the supplier address is missing from the extracted data. This information can be traced back to the \"supplier_address\" field being null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly points out that the VAT amount is not listed clearly on the invoice. This matches the \"supplier_vat_number\" field being null in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response accurately states that the invoice number is not clearly visible or missing. This can be verified from the \"invoice_number\" field being null in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response correctly identifies the need for detailed mileage log reports, including dates, purpose of trips, destinations, and kilometers travelled. This requirement is supported by the \"additional_documentation\" section in the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response accurately states that expenses like parking or toll fees are not included in the mileage allowance and need to be claimed separately. This is in line with the \"additional_documentation\" section in the compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 85 - The AI response correctly identifies that the tax amount and rate are missing. However, the extracted data does not provide any information about the tax amount or rate, so this claim is not fully supported by the provided information.\n\nCONFIDENCE: 90\nISSUES: The tax amount and rate are not fully supported by the extracted data.\nSUMMARY: The AI response is generally well-grounded in the provided extracted data and compliance rules, with a few minor issues related to the tax information. The response accurately identifies the missing or incomplete fields in the receipt, as well as the additional documentation requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier address is missing, but the extracted data shows a supplier name (Uber) without an address. This issue is not factually grounded as it assumes an address should be present when the data doesn't indicate this.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that the VAT amount is not listed on the invoice. This matches the extracted data where supplier_vat_number and tax_amount are null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI accurately states that the invoice number is not clearly visible or missing. This aligns with the extracted data where invoice_number is null.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI mentions the need for detailed mileage log reports, but this is not relevant to the extracted data which shows an Uber ride, not personal mileage. This issue is not factually grounded in the provided information.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI discusses parking and toll fees, which are not mentioned in the extracted data and not relevant to an Uber ride. This issue is not factually grounded.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identifies that tax amount and rate are missing from the receipt. This matches the extracted data where tax_amount and tax_rate are null.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI assumes a supplier address should be present when the data doesn't indicate this requirement for an Uber receipt.\n2. The AI discusses mileage log reports, which are not relevant to an Uber ride.\n3. The AI mentions parking and toll fees, which are not applicable to the given Uber receipt.\n\nSUMMARY: The AI response is partially factually grounded. While it correctly identifies issues related to missing VAT information, invoice number, and tax details, it also makes assumptions and recommendations that are not relevant to the provided Uber receipt data. The response seems to be applying a general set of rules without fully considering the specific nature of the expense (an Uber ride) as shown in the extracted data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information to be visible on receipts.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the VAT information is missing. The \"supplier_vat_number\", \"tax_amount\", and \"tax_rate\" fields are all null in the extracted data, which conflicts with the compliance rule stating \"VAT amount must be listed clearly on the invoice if applicable.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data, which relates to the compliance rule requiring clear display of transaction information.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for detailed mileage log reports. This aligns with the compliance policy stating \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" The extracted data shows this is a transport receipt with distance traveled of 36.65 units.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that parking or toll fees can be claimed separately from mileage allowance. This aligns with the compliance policy stating \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that tax information is missing. The \"tax_amount\" and \"tax_rate\" fields are explicitly shown as null in the extracted data, which conflicts with compliance requirements for proper tax documentation.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.96,
+      "issues": [
+        "- No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules for France and for travel receipts.",
+        "- All identified issues are properly aligned with the compliance rules provided."
+      ],
+      "summary": "The AI response demonstrates excellent adherence to the compliance knowledge base for France regarding travel receipts. It correctly identified missing supplier address, VAT information, invoice number, and tax details. It appropriately flagged the need for detailed mileage documentation and noted that parking/toll fees should be claimed separately. All issues raised are valid according to the compliance rules, with appropriate recommendations provided. The response correctly interprets France-specific regulations and GoGlobal ICP context requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that supplier address is missing, which aligns with the compliance rule stating \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (Uber) is present, the complete supplier address is missing, which is a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI correctly noted that VAT amount is not listed clearly on the invoice. This aligns with the compliance rule that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms VAT information is missing, though this is listed as \"Optional\" in the compliance rules, making it a valid but less critical issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. This aligns with the compliance rule that \"Total amount of the expense must be clearly displayed on the receipt.\" While the total amount is present (57.55 EUR), the invoice/receipt number is indeed missing from the extracted data, which is a valid compliance concern.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly flagged the need for detailed mileage log reports. This perfectly aligns with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly noted that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This directly quotes the compliance rule and is relevant for a transportation/travel expense in France.\n\nISSUE_6_VALIDATION_SCORE: 95 - The AI correctly identified that tax amount and rate are missing from the receipt. This aligns with the need for proper tax documentation, though the specific rule isn't explicitly stated in the compliance rules provided. However, tax information is generally required for proper expense processing in France.\n\nCONFIDENCE: 98\n\nISSUES: \n- No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules for France and for travel receipts.\n- All identified issues are properly aligned with the compliance rules provided.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for France regarding travel receipts. It correctly identified missing supplier address, VAT information, invoice number, and tax details. It appropriately flagged the need for detailed mileage documentation and noted that parking/toll fees should be claimed separately. All issues raised are valid according to the compliance rules, with appropriate recommendations provided. The response correctly interprets France-specific regulations and GoGlobal ICP context requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that supplier address is missing, which aligns with the compliance rule stating \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (Uber) is present, the complete supplier address is missing, which is a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI correctly noted that VAT amount is not listed clearly on the invoice. This aligns with the compliance rule that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms VAT information is missing, though this is listed as \"Optional\" in the compliance rules, making it a valid but less critical issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. This aligns with the compliance rule that \"Total amount of the expense must be clearly displayed on the receipt.\" While the total amount is present (57.55 EUR), the invoice/receipt number is indeed missing from the extracted data, which is a valid compliance concern.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly flagged the need for detailed mileage log reports. This perfectly aligns with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly noted that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This directly quotes the compliance rule and is relevant for a transportation/travel expense in France.\n\nISSUE_6_VALIDATION_SCORE: 95 - The AI correctly identified that tax amount and rate are missing from the receipt. This aligns with the need for proper tax documentation, though the specific rule isn't explicitly stated in the compliance rules provided. However, tax information is generally required for proper expense processing in France.\n\nCONFIDENCE: 98\n\nISSUES: \n- No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules for France and for travel receipts.\n- All identified issues are properly aligned with the compliance rules provided.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for France regarding travel receipts. It correctly identified missing supplier address, VAT information, invoice number, and tax details. It appropriately flagged the need for detailed mileage documentation and noted that parking/toll fees should be claimed separately. All issues raised are valid according to the compliance rules, with appropriate recommendations provided. The response correctly interprets France-specific regulations and GoGlobal ICP context requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing supplier address as a compliance issue, which is a mandatory requirement according to the knowledge base. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI response correctly identifies the missing VAT amount as a compliance issue. While the VAT amount is optional for some expense types, it is required for travel expenses according to the knowledge base. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing invoice number as a compliance issue, which is a mandatory requirement according to the knowledge base. The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response correctly identifies the need for detailed mileage log reports as a compliance requirement for travel expenses. The recommendation to provide the necessary documentation is in line with the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies the need to claim parking and toll fees separately from the mileage allowance, which is a compliance requirement according to the knowledge base. The recommendation to provide the necessary receipts is appropriate.\n\nISSUE_6_VALIDATION_SCORE: 85 - The AI response correctly identifies the missing tax information as a compliance issue. While the tax amount and rate are optional for some expense types, they are required for travel expenses according to the knowledge base. The recommendation to provide the necessary tax information is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for France. It correctly identifies the compliance issues with the receipt, including missing mandatory fields, the need for additional documentation, and tax-related requirements. The recommendations provided are in line with the established compliance guidelines. Overall, the response demonstrates a strong adherence to the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier address is missing, which aligns with the compliance rule stating \"Name of the vendor or merchant must be visible on the receipt\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue accurately points out that the VAT amount is not listed clearly on the invoice, which is in line with the compliance rule \"VAT amount must be listed clearly on the invoice if applicable\".\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice number is missing or not clearly visible, which adheres to the compliance rule \"Total amount of the expense must be clearly displayed on the receipt\".\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue accurately requires detailed mileage log reports, which is in perfect alignment with the compliance rule \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey\".\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly points out that parking or toll fees should be claimed separately, which adheres to the compliance rule \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts\".\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue accurately identifies that tax information is missing, which is important for compliance and tax purposes in France.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised in the AI response accurately reflect the compliance rules and knowledge base for France.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for France. It correctly identifies missing required information such as supplier address, VAT amount, and invoice number. It also accurately addresses the need for detailed mileage logs and separate claims for parking or toll fees. The response considers country-specific regulations and receipt type requirements for travel expenses in France. There are no contradictions with established compliance guidelines, and all issues raised are relevant and in line with the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that supplier address is missing, which aligns with the compliance rule stating \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (Uber) is present, the complete supplier address is missing, which is a valid compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly noted that VAT amount is not listed clearly on the invoice. This aligns with the compliance rule that \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data confirms VAT information is missing, though this is listed as \"Optional\" in the compliance rules, making it a valid but less critical issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing. This aligns with the compliance rule that \"Total amount of the expense must be clearly displayed on the receipt.\" While the total amount is present (57.55 EUR), the invoice/receipt number is indeed missing from the extracted data, which is a valid compliance concern.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly flagged the need for detailed mileage log reports. This perfectly aligns with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly noted that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This directly quotes the compliance rule and is relevant for a transportation/travel expense in France.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that tax amount and rate are missing from the receipt. This aligns with the need for proper tax documentation, though the specific rule isn't explicitly stated in the compliance rules provided. However, tax information is generally required for proper expense processing in France.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9199999999999999,
+      "issues": [
+        "The only minor issue is that VAT information is listed as \"optional\" in the compliance rules",
+        "yet it's flagged as a compliance issue. However",
+        "since this is a travel receipt and proper documentation is still required",
+        "this is a reasonable assessment."
+      ],
+      "summary": "The compliance assessment is highly accurate. It correctly identifies all the key missing elements required for a compliant travel receipt in France according to GoGlobal's policies. The assessment properly flags the missing supplier address, VAT information, invoice number, and tax details. It also correctly identifies the need for additional documentation such as detailed mileage logs and separate receipts for parking or toll fees. All identified issues align with the provided compliance rules and the extracted receipt data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier address is missing, which is a mandatory requirement according to the compliance rules. The receipt data shows supplier_address as null, confirming this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that VAT information is missing. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number as null and tax_amount as null. This is generally accurate, though VAT is listed as \"optional\" in the rules, so the severity might be slightly overstated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice number is missing. The extracted data confirms invoice_number is null, and according to compliance rules, \"Total amount of the expense must be clearly displayed on the receipt\" which typically includes an invoice/receipt number for proper documentation.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that detailed mileage log reports are required. This aligns perfectly with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly notes that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This is directly from the compliance rules and is relevant for a transportation expense.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies that tax information is missing. The extracted data shows tax_amount and tax_rate as null, which confirms this issue. Tax information is important for proper expense reporting and compliance with French regulations.\n\nCONFIDENCE: 98\n\nISSUES: The only minor issue is that VAT information is listed as \"optional\" in the compliance rules, yet it's flagged as a compliance issue. However, since this is a travel receipt and proper documentation is still required, this is a reasonable assessment.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies all the key missing elements required for a compliant travel receipt in France according to GoGlobal's policies. The assessment properly flags the missing supplier address, VAT information, invoice number, and tax details. It also correctly identifies the need for additional documentation such as detailed mileage logs and separate receipts for parking or toll fees. All identified issues align with the provided compliance rules and the extracted receipt data.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier address is missing, which is a mandatory requirement according to the compliance rules. The receipt data shows supplier_address as null, confirming this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that VAT information is missing. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number as null and tax_amount as null. This is generally accurate, though VAT is listed as \"optional\" in the rules, so the severity might be slightly overstated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice number is missing. The extracted data confirms invoice_number is null, and according to compliance rules, \"Total amount of the expense must be clearly displayed on the receipt\" which typically includes an invoice/receipt number for proper documentation.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that detailed mileage log reports are required. This aligns perfectly with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly notes that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This is directly from the compliance rules and is relevant for a transportation expense.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies that tax information is missing. The extracted data shows tax_amount and tax_rate as null, which confirms this issue. Tax information is important for proper expense reporting and compliance with French regulations.\n\nCONFIDENCE: 98\n\nISSUES: The only minor issue is that VAT information is listed as \"optional\" in the compliance rules, yet it's flagged as a compliance issue. However, since this is a travel receipt and proper documentation is still required, this is a reasonable assessment.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies all the key missing elements required for a compliant travel receipt in France according to GoGlobal's policies. The assessment properly flags the missing supplier address, VAT information, invoice number, and tax details. It also correctly identifies the need for additional documentation such as detailed mileage logs and separate receipts for parking or toll fees. All identified issues align with the provided compliance rules and the extracted receipt data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing supplier address as a compliance issue. This is a mandatory field as per the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 85 - The assessment correctly identifies the missing VAT amount as a compliance issue. VAT amount is an optional field but must be listed clearly if applicable.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing invoice number as a compliance issue. The invoice number is a mandatory field that must be clearly visible on the receipt.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment correctly identifies the need for detailed mileage logs to justify the business mileage. This is a mandatory requirement as per the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identifies the need to provide separate receipts for parking or toll fees, as these are not included in the mileage allowance.\n\nISSUE_6_VALIDATION_SCORE: 85 - The assessment correctly identifies the missing tax information as a compliance issue. The tax amount and rate must be provided as per the country regulations.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is highly accurate, with most issues being properly identified and validated against the compliance rules. The assessment covers all the mandatory fields and additional documentation requirements, providing appropriate recommendations to address the compliance gaps. The overall confidence in the accuracy of the compliance determination is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the supplier address is missing, which is a required field according to the compliance rules. This is an accurate compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 70 - While the VAT amount is indeed not listed on the receipt, it's worth noting that for transportation expenses like Uber rides, VAT may not always be applicable or required to be shown separately. The assessment is correct but may be overly strict in this case.\n\nISSUE_3_VALIDATION_SCORE: 80 - The assessment correctly notes that the invoice number is missing. However, for ride-sharing services like Uber, a transaction reference or receipt number might be considered sufficient. The issue is valid but could be more nuanced.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is accurately identified. This is a crucial compliance requirement for mileage-related expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly points out that parking and toll fees should be claimed separately from mileage allowance. This aligns perfectly with the compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 85 - The assessment correctly identifies that tax information is missing. However, for an Uber receipt, detailed tax breakdowns might not always be provided, so this issue, while valid, might be challenging to resolve.\n\nCONFIDENCE: 88\n\nISSUES:\n1. The assessment doesn't consider that this is an Uber receipt, which may have different standards compared to traditional travel receipts.\n2. The validation doesn't acknowledge that some required fields (like date, total amount, and supplier name) are present and compliant.\n3. The assessment doesn't mention the compliance with the rule about documenting the business purpose of the expense.\n\nSUMMARY: The compliance assessment is generally accurate and thorough, identifying key missing elements required by French regulations and company policies. However, it doesn't fully account for the specific nature of ride-sharing receipts, which may have different standards. The assessment correctly identifies issues related to missing supplier address, VAT information, invoice number, and tax details. It also accurately notes the need for additional documentation for mileage-related expenses. The overall approach is somewhat rigid and could benefit from more nuanced consideration of digital receipt formats for services like Uber. Despite these minor issues, the assessment provides a solid basis for ensuring compliance with expense reporting requirements in France."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the supplier address is missing, which is a mandatory requirement according to the compliance rules. The receipt data shows supplier_address as null, confirming this is a valid issue.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that VAT information is missing. According to the compliance rules, \"VAT amount must be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number as null and tax_amount as null. This is generally accurate, though VAT is listed as \"optional\" in the rules, so the severity might be slightly overstated.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the invoice number is missing. The extracted data confirms invoice_number is null, and according to compliance rules, \"Total amount of the expense must be clearly displayed on the receipt\" which typically includes an invoice/receipt number for proper documentation.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that detailed mileage log reports are required. This aligns perfectly with the compliance rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\" Since this is an Uber receipt (transportation), this requirement is applicable.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly notes that \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\" This is directly from the compliance rules and is relevant for a transportation expense.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that tax information is missing. The extracted data shows tax_amount and tax_rate as null, which confirms this issue. Tax information is important for proper expense reporting and compliance with French regulations.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.89,
+      "issues": [
+        "1. Issue 2 (VAT information) is correctly identified but may be overstated in severity since VAT information is listed as optional for transportation expenses.",
+        "2. Issue 3 uses a knowledge base reference about total amount rather than invoice number specifically.",
+        "3. Issue 6 (tax information) may be overstated in importance as the compliance rules don't explicitly require tax details for transportation receipts."
+      ],
+      "summary": "The issue categorization is generally accurate with appropriate classifications and actionable recommendations. Most issues align well with the compliance rules provided. Minor improvements could be made regarding the severity assessment of optional fields (like VAT information) and ensuring knowledge base references directly match the identified issues. The mileage-related issues are particularly well-categorized with perfect alignment to compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field according to the compliance rules. The description accurately identifies the problem and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 70 - While VAT information is indeed missing, the compliance rules indicate this is an \"Optional\" field for transportation expenses, not mandatory. The categorization as \"Standards & Compliance | Fix Identified\" is correct, but the severity may be overstated given its optional nature for this expense type.\n\nISSUE_3_VALIDATION_SCORE: 85 - The missing invoice number issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" However, the knowledge base reference mentions \"Total amount\" rather than invoice number specifically, which creates a slight mismatch between the issue and the reference.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue regarding detailed mileage log reports is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description matches exactly with the compliance rule for mileage expenses, and the recommendation is clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue about parking and toll fees is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation align perfectly with the compliance rules for mileage expenses.\n\nISSUE_6_VALIDATION_SCORE: 85 - The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" However, the compliance rules don't explicitly state that tax amount and rate are mandatory for transportation receipts, making the severity potentially overstated.\n\nCONFIDENCE: 87\n\nISSUES: \n1. Issue 2 (VAT information) is correctly identified but may be overstated in severity since VAT information is listed as optional for transportation expenses.\n2. Issue 3 uses a knowledge base reference about total amount rather than invoice number specifically.\n3. Issue 6 (tax information) may be overstated in importance as the compliance rules don't explicitly require tax details for transportation receipts.\n\nSUMMARY: The issue categorization is generally accurate with appropriate classifications and actionable recommendations. Most issues align well with the compliance rules provided. Minor improvements could be made regarding the severity assessment of optional fields (like VAT information) and ensuring knowledge base references directly match the identified issues. The mileage-related issues are particularly well-categorized with perfect alignment to compliance requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field according to the compliance rules. The description accurately identifies the problem and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 70 - While VAT information is indeed missing, the compliance rules indicate this is an \"Optional\" field for transportation expenses, not mandatory. The categorization as \"Standards & Compliance | Fix Identified\" is correct, but the severity may be overstated given its optional nature for this expense type.\n\nISSUE_3_VALIDATION_SCORE: 85 - The missing invoice number issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" However, the knowledge base reference mentions \"Total amount\" rather than invoice number specifically, which creates a slight mismatch between the issue and the reference.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue regarding detailed mileage log reports is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description matches exactly with the compliance rule for mileage expenses, and the recommendation is clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue about parking and toll fees is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation align perfectly with the compliance rules for mileage expenses.\n\nISSUE_6_VALIDATION_SCORE: 85 - The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" However, the compliance rules don't explicitly state that tax amount and rate are mandatory for transportation receipts, making the severity potentially overstated.\n\nCONFIDENCE: 87\n\nISSUES: \n1. Issue 2 (VAT information) is correctly identified but may be overstated in severity since VAT information is listed as optional for transportation expenses.\n2. Issue 3 uses a knowledge base reference about total amount rather than invoice number specifically.\n3. Issue 6 (tax information) may be overstated in importance as the compliance rules don't explicitly require tax details for transportation receipts.\n\nSUMMARY: The issue categorization is generally accurate with appropriate classifications and actionable recommendations. Most issues align well with the compliance rules provided. Minor improvements could be made regarding the severity assessment of optional fields (like VAT information) and ensuring knowledge base references directly match the identified issues. The mileage-related issues are particularly well-categorized with perfect alignment to compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the supplier address is missing or incomplete, which is a mandatory requirement. The description and recommendation are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the VAT amount is not listed clearly on the invoice. The description and recommendation are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the invoice number is not clearly visible or missing. The description and recommendation are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as detailed mileage log reports are required. The description and recommendation are clear and appropriate.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as receipts for parking or toll fees are required separately. The description and recommendation are clear and actionable.\n\nISSUE_6_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue, as the tax amount and rate are missing. The description and recommendation are appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are well-categorized, with clear descriptions and actionable recommendations. The categorization follows the established taxonomy, and no issues appear to be missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing supplier address. The description is clear and actionable, aligning with the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue is appropriately categorized as \"Standards & Compliance | Fix Identified\" for the missing VAT amount. However, the description could be more specific about whether VAT is applicable in this case, given it's a transportation receipt.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing invoice number. The description is clear and aligns well with the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the required mileage log. The description is detailed and directly addresses the compliance requirement for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for separate parking and toll fee receipts. It accurately reflects the compliance rules, though it could be more specific to the current receipt context.\n\nISSUE_6_VALIDATION_SCORE: 85 - The issue is appropriately categorized as \"Standards & Compliance | Gross-up Identified\" for missing tax information. However, it could be more specific about the tax implications for this type of expense (transportation).\n\nCONFIDENCE: 90\n\nISSUES: \n1. Some issues could be more tailored to the specific context of the Uber receipt.\n2. The VAT issue (Issue 2) could be more specific about its applicability to transportation services.\n\nSUMMARY: Overall, the issues are well-categorized and align closely with the compliance rules. Most descriptions are clear and actionable. Minor improvements could be made in tailoring some issues more specifically to the context of the Uber receipt and clarifying tax implications for transportation services. The categorization follows the established taxonomy and covers the main compliance aspects relevant to this receipt type."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field according to the compliance rules. The description accurately identifies the problem and the recommendation is appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "While VAT information is indeed missing, the compliance rules indicate this is an \"Optional\" field for transportation expenses, not mandatory. The categorization as \"Standards & Compliance | Fix Identified\" is correct, but the severity may be overstated given its optional nature for this expense type.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The missing invoice number issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" However, the knowledge base reference mentions \"Total amount\" rather than invoice number specifically, which creates a slight mismatch between the issue and the reference.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue regarding detailed mileage log reports is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description matches exactly with the compliance rule for mileage expenses, and the recommendation is clear and actionable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue about parking and toll fees is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation align perfectly with the compliance rules for mileage expenses.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The tax information issue is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" However, the compliance rules don't explicitly state that tax amount and rate are mandatory for transportation receipts, making the severity potentially overstated.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8133333333333334,
+      "issues": [
+        "1. Issues 4 and 5 incorrectly categorize an Uber ride as a mileage expense",
+        "leading to irrelevant recommendations",
+        "2. The system fails to recognize that this is a transportation service (Uber) rather than personal vehicle use",
+        "3. Some recommendations are generic and could be more specific to Uber receipts in France"
+      ],
+      "summary": "The recommendations for addressing missing supplier address, VAT information, invoice number, and tax details are valid and actionable. However, two issues incorrectly identify this Uber receipt as a mileage expense, providing irrelevant recommendations about mileage logs and parking fees. This misclassification significantly reduces the overall validity of the recommendations. The system should better distinguish between transportation services (like Uber) and personal vehicle mileage claims.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier is valid and actionable. For Uber receipts in France, the supplier address is indeed a mandatory field according to the compliance rules, and contacting Uber to obtain a more detailed receipt with their address is a practical solution.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to address the missing VAT information with the supplier is valid. In France, VAT information should be included on receipts, especially for business expenses. The recommendation correctly identifies this as an issue that needs to be addressed with Uber to obtain a proper VAT invoice.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and specific. According to French regulations and the compliance rules, an invoice number is required for proper documentation. Contacting Uber to request a formal invoice with an invoice number is an appropriate solution.\n\nISSUE_4_VALIDATION_SCORE: 30 - This recommendation is not valid for this receipt type. The issue incorrectly identifies this as a mileage expense requiring mileage logs, when it's actually an Uber ride (transportation service). Mileage logs are only relevant when an employee uses their personal vehicle, not for taxi/Uber services.\n\nISSUE_5_VALIDATION_SCORE: 20 - This recommendation is also not valid for this receipt type. Like issue 4, it incorrectly treats this as a mileage expense. The recommendation about parking or toll fees being claimed separately is irrelevant since this is an Uber receipt, not a personal vehicle mileage claim.\n\nISSUE_6_VALIDATION_SCORE: 85 - The recommendation to provide tax amount and rate is valid and aligns with French regulations. The receipt should include tax information for proper accounting and compliance with tax authorities. Requesting this information from Uber is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 4 and 5 incorrectly categorize an Uber ride as a mileage expense, leading to irrelevant recommendations\n2. The system fails to recognize that this is a transportation service (Uber) rather than personal vehicle use\n3. Some recommendations are generic and could be more specific to Uber receipts in France\n\nSUMMARY: The recommendations for addressing missing supplier address, VAT information, invoice number, and tax details are valid and actionable. However, two issues incorrectly identify this Uber receipt as a mileage expense, providing irrelevant recommendations about mileage logs and parking fees. This misclassification significantly reduces the overall validity of the recommendations. The system should better distinguish between transportation services (like Uber) and personal vehicle mileage claims.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier is valid and actionable. For Uber receipts in France, the supplier address is indeed a mandatory field according to the compliance rules, and contacting Uber to obtain a more detailed receipt with their address is a practical solution.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to address the missing VAT information with the supplier is valid. In France, VAT information should be included on receipts, especially for business expenses. The recommendation correctly identifies this as an issue that needs to be addressed with Uber to obtain a proper VAT invoice.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and specific. According to French regulations and the compliance rules, an invoice number is required for proper documentation. Contacting Uber to request a formal invoice with an invoice number is an appropriate solution.\n\nISSUE_4_VALIDATION_SCORE: 30 - This recommendation is not valid for this receipt type. The issue incorrectly identifies this as a mileage expense requiring mileage logs, when it's actually an Uber ride (transportation service). Mileage logs are only relevant when an employee uses their personal vehicle, not for taxi/Uber services.\n\nISSUE_5_VALIDATION_SCORE: 20 - This recommendation is also not valid for this receipt type. Like issue 4, it incorrectly treats this as a mileage expense. The recommendation about parking or toll fees being claimed separately is irrelevant since this is an Uber receipt, not a personal vehicle mileage claim.\n\nISSUE_6_VALIDATION_SCORE: 85 - The recommendation to provide tax amount and rate is valid and aligns with French regulations. The receipt should include tax information for proper accounting and compliance with tax authorities. Requesting this information from Uber is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issues 4 and 5 incorrectly categorize an Uber ride as a mileage expense, leading to irrelevant recommendations\n2. The system fails to recognize that this is a transportation service (Uber) rather than personal vehicle use\n3. Some recommendations are generic and could be more specific to Uber receipts in France\n\nSUMMARY: The recommendations for addressing missing supplier address, VAT information, invoice number, and tax details are valid and actionable. However, two issues incorrectly identify this Uber receipt as a mileage expense, providing irrelevant recommendations about mileage logs and parking fees. This misclassification significantly reduces the overall validity of the recommendations. The system should better distinguish between transportation services (like Uber) and personal vehicle mileage claims."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier or provider is valid and actionable. Providing a complete supplier address is a standard requirement for expense receipts.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to address the missing VAT amount with the supplier or provider is valid. Clearly displaying the VAT amount is an important compliance requirement, though the recommendation could be more specific on how to obtain this information.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier or provider is valid and actionable. Having a clear invoice number is a standard requirement.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to provide detailed mileage log reports justifying the business mileage is valid and specific. This additional documentation is a common requirement for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to provide receipts for parking or toll fees separately is valid and addresses the issue of these expenses not being included in the mileage allowance.\n\nISSUE_6_VALIDATION_SCORE: 85 - The recommendation to provide the tax amount and rate as per country regulations is valid, though it could be more specific on how to determine the correct tax information.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are generally valid and address the key issues identified with the expense receipt. The suggestions are actionable, specific, and aligned with standard compliance requirements. No contradictory or harmful advice is given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.89,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier is valid and actionable. It directly addresses the compliance issue and is a practical step to take.\n\nISSUE_2_VALIDATION_SCORE: 85 - Recommending to address the missing VAT amount with the supplier is valid and specific. It's a feasible action that directly addresses the compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid, specific, and actionable. It directly addresses the compliance issue identified.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to provide detailed mileage log reports is highly valid, specific, and directly addresses the compliance requirement. It provides clear guidance on what information is needed.\n\nISSUE_5_VALIDATION_SCORE: 90 - Recommending to provide separate receipts for parking or toll fees is valid, specific, and addresses the compliance requirement. It's a practical and feasible action.\n\nISSUE_6_VALIDATION_SCORE: 85 - The recommendation to provide tax amount and rate is valid and addresses the compliance issue. However, it could be more specific about how to obtain this information if it's not readily available.\n\nCONFIDENCE: 89\n\nISSUES: \n- Some recommendations could be more specific about how to obtain the missing information, especially for tax-related details.\n- The recommendations don't address potential challenges in obtaining some of the required information retrospectively.\n\nSUMMARY: Overall, the recommendations are valid, actionable, and directly address the identified compliance issues. They are practical and feasible, providing clear guidance on what needs to be done to meet compliance requirements. However, some recommendations could benefit from more detailed instructions on how to obtain the required information, especially for tax-related details. The high confidence score reflects the overall quality and relevance of the recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing supplier address with the supplier is valid and actionable. For Uber receipts in France, the supplier address is indeed a mandatory field according to the compliance rules, and contacting Uber to obtain a more detailed receipt with their address is a practical solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing VAT information with the supplier is valid. In France, VAT information should be included on receipts, especially for business expenses. The recommendation correctly identifies this as an issue that needs to be addressed with Uber to obtain a proper VAT invoice.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and specific. According to French regulations and the compliance rules, an invoice number is required for proper documentation. Contacting Uber to request a formal invoice with an invoice number is an appropriate solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This recommendation is not valid for this receipt type. The issue incorrectly identifies this as a mileage expense requiring mileage logs, when it's actually an Uber ride (transportation service). Mileage logs are only relevant when an employee uses their personal vehicle, not for taxi/Uber services.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 20,
+          "judge_explanation": "This recommendation is also not valid for this receipt type. Like issue 4, it incorrectly treats this as a mileage expense. The recommendation about parking or toll fees being claimed separately is irrelevant since this is an Uber receipt, not a personal vehicle mileage claim.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to provide tax amount and rate is valid and aligns with French regulations. The receipt should include tax information for proper accounting and compliance with tax authorities. Requesting this information from Uber is appropriate.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 1,
+      "issues": [
+        "None detected. All issues identified in the AI response are supported by the data and compliance rules provided."
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the extracted data and compliance rules. There are no hallucinations or fabricated information in the response. All identified issues correspond to actual missing information in the receipt data or requirements specified in the compliance rules for France and the GoGlobal ICP.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules clearly state \"Name of the vendor or merchant must be visible on the receipt\" as mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding VAT amount not being listed is valid. The extracted data shows supplier_vat_number and tax_rate as null, and the compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and the compliance rules require that \"Total amount of the expense must be clearly displayed on the receipt.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding detailed mileage log reports is valid. This is a transportation receipt (Uber) and the compliance rules explicitly state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding parking or toll fees is valid. The compliance rules specifically state \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue regarding missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and proper tax documentation is required according to the compliance rules.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the data and compliance rules provided.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted data and compliance rules. There are no hallucinations or fabricated information in the response. All identified issues correspond to actual missing information in the receipt data or requirements specified in the compliance rules for France and the GoGlobal ICP.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules clearly state \"Name of the vendor or merchant must be visible on the receipt\" as mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding VAT amount not being listed is valid. The extracted data shows supplier_vat_number and tax_rate as null, and the compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and the compliance rules require that \"Total amount of the expense must be clearly displayed on the receipt.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding detailed mileage log reports is valid. This is a transportation receipt (Uber) and the compliance rules explicitly state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding parking or toll fees is valid. The compliance rules specifically state \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue regarding missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and proper tax documentation is required according to the compliance rules.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the data and compliance rules provided.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted data and compliance rules. There are no hallucinations or fabricated information in the response. All identified issues correspond to actual missing information in the receipt data or requirements specified in the compliance rules for France and the GoGlobal ICP."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information about the supplier address, VAT number, and invoice number being missing is present in the source data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the response match the information provided in the Compliance Rules section.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the response are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The information presented in the response does not appear to contain any assumptions presented as facts.\n\nISSUE_5_VALIDATION_SCORE: 100 - The details about the required mileage log reports and parking/toll fee receipts are present in the Compliance Rules section.\n\nISSUE_6_VALIDATION_SCORE: 100 - The information about the missing tax amount and rate is present in the source data.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response appears to be free from hallucinations and fabricated information. All the details mentioned in the response are present in the source data, and the compliance rules and requirements match the information provided in the Compliance Rules section."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing supplier address in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The VAT amount is indeed not listed in the extracted data, making this a valid issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The invoice number is missing from the extracted data, confirming this as a valid issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies the need for additional documentation regarding mileage logs, which is in line with the compliance rules provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rule about parking and toll fees being claimed separately from mileage allowance.\n\nISSUE_6_VALIDATION_SCORE: 100 - The tax amount and rate are indeed missing from the extracted data, making this a valid issue.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All issues raised are consistent with the provided extracted data and compliance rules. The response accurately identifies missing information and requirements based on the given context and rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules clearly state \"Name of the vendor or merchant must be visible on the receipt\" as mandatory.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding VAT amount not being listed is valid. The extracted data shows supplier_vat_number and tax_rate as null, and the compliance rules state \"VAT amount must be listed clearly on the invoice if applicable.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Invoice number is not clearly visible or missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and the compliance rules require that \"Total amount of the expense must be clearly displayed on the receipt.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding detailed mileage log reports is valid. This is a transportation receipt (Uber) and the compliance rules explicitly state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding parking or toll fees is valid. The compliance rules specifically state \"Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Tax amount and rate are missing",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and proper tax documentation is required according to the compliance rules.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None identified. All issues raised by the AI are factually grounded in the extracted data and compliance rules.",
+    "Address issues in knowledge base adherence: - No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules for France and for travel receipts., - All identified issues are properly aligned with the compliance rules provided.",
+    "Address issues in compliance accuracy: The only minor issue is that VAT information is listed as \"optional\" in the compliance rules, yet it's flagged as a compliance issue. However, since this is a travel receipt and proper documentation is still required, this is a reasonable assessment.",
+    "Address issues in issue categorization: 1. Issue 2 (VAT information) is correctly identified but may be overstated in severity since VAT information is listed as optional for transportation expenses., 2. Issue 3 uses a knowledge base reference about total amount rather than invoice number specifically., 3. Issue 6 (tax information) may be overstated in importance as the compliance rules don't explicitly require tax details for transportation receipts.",
+    "Address issues in recommendation validity: 1. Issues 4 and 5 incorrectly categorize an Uber ride as a mileage expense, leading to irrelevant recommendations, 2. The system fails to recognize that this is a transportation service (Uber) rather than personal vehicle use, 3. Some recommendations are generic and could be more specific to Uber receipts in France",
+    "Address issues in hallucination detection: None detected. All issues identified in the AI response are supported by the data and compliance rules provided."
+  ],
+  "timestamp": "2025-09-04T16:33:36.951Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 67968,
+    "timing": {
+      "validation_start_time": "2025-09-04T16:32:28.983Z",
+      "validation_end_time": "2025-09-04T16:33:36.951Z",
+      "total_validation_time_seconds": "68.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-04T16:32:28.983Z",
+          "end_time": "2025-09-04T16:33:36.951Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "68.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.44",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 6
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Required supplier address is missing or incomplete",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 97.56,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "VAT amount is not listed clearly on the invoice if applicable",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 91.33,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 90,
+        "issue_categorization": 70,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Invoice number is not clearly visible or missing",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 96.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 91.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 30,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Expenses like parking or toll fees are not included in mileage allowance. These can be claimed separately based on receipts",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 90.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 20,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 5,
+      "issue_description": "Tax amount and rate are missing",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 95.56,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}
