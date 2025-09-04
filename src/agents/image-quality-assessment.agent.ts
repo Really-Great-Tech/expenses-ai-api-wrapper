@@ -6,17 +6,20 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export class ImageQualityAssessmentAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
+  private rateLimitMonitor: RateLimitMonitorService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, rateLimitMonitor?: RateLimitMonitorService) {
     super(langfuseService);
     this.currentProvider = provider;
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
 
     if (provider === 'bedrock') {
-      this.llm = new BedrockLlmService();
+      this.llm = new BedrockLlmService(undefined, this.rateLimitMonitor);
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
@@ -41,7 +44,10 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
     }
   }
 
-  async assessImageQuality(imagePath: string, parentTrace?: LangfuseTraceClient): Promise<ImageQualityAssessment> {
+  async assessImageQuality(imagePath: string, parentTrace?: LangfuseTraceClient, context?: {
+    filename?: string;
+    userId?: string;
+  }): Promise<ImageQualityAssessment> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
     let generation: LangfuseGenerationClient | null = null;
@@ -115,6 +121,15 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
       // Generate prompt version tags
       const promptVersionTags = this.getPromptVersionTags();
 
+      // Set context for rate limit monitoring if using Bedrock
+      if (this.currentProvider === 'bedrock' && this.llm.setContext) {
+        this.llm.setContext({
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'image-quality-assessment',
+        });
+      }
+
       const response = await this.llm.chat({
         messages: [
           {
@@ -122,6 +137,11 @@ export class ImageQualityAssessmentAgent extends BaseAgent {
             content: userPrompt,
           },
         ],
+        context: {
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'image-quality-assessment',
+        },
       });
 
       // Parse the JSON response manually - handle different response formats

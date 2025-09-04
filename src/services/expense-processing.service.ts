@@ -7,6 +7,7 @@ import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
 import { LangfuseService } from './langfuse.service';
 import { UserSessionService } from './user-session.service';
+import { RateLimitMonitorService } from './rate-limit-monitor.service';
 import { ExpenseComplianceUQLMValidator } from '../utils/judge/validation/ExpenseComplianceUQLMValidator';
 import { ParallelExpenseComplianceUQLMValidator } from '../utils/judge/validation/ParallelExpenseComplianceUQLMValidator';
 import {
@@ -35,19 +36,20 @@ export class ExpenseProcessingService {
 
   constructor(
     private langfuseService: LangfuseService,
-    private userSessionService?: UserSessionService
+    private userSessionService: UserSessionService,
+    private rateLimitMonitor: RateLimitMonitorService
   ) {
     // Use Bedrock as default provider with Anthropic fallback
     const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
     this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
-    // Initialize agents WITH Langfuse tracing
-    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService);
-    this.dataExtractionAgent = new DataExtractionAgent(provider, this.langfuseService);
-    this.issueDetectionAgent = new IssueDetectionAgent(provider, this.langfuseService);
-    this.citationGeneratorAgent = new CitationGeneratorAgent(provider, this.langfuseService);
-    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService);
+    // Initialize agents WITH Langfuse tracing and rate limit monitoring
+    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService, this.rateLimitMonitor);
+    this.dataExtractionAgent = new DataExtractionAgent(provider, this.langfuseService, this.rateLimitMonitor);
+    this.issueDetectionAgent = new IssueDetectionAgent(provider, this.langfuseService, this.rateLimitMonitor);
+    this.citationGeneratorAgent = new CitationGeneratorAgent(provider, this.langfuseService, this.rateLimitMonitor);
+    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService, this.rateLimitMonitor);
 
     // Initialize optimized service with Langfuse
     this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService);
@@ -244,7 +246,10 @@ export class ExpenseProcessingService {
       this.logger.log('Phase 0: Image Quality Assessment');
 
       const qualityStart = Date.now();
-      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath, mainTrace);
+      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath, mainTrace, {
+        filename,
+        userId,
+      });
       const qualityEnd = Date.now();
       const formattedQualityAssessment = this.imageQualityAssessmentAgent.formatAssessmentForWorkflow(qualityAssessment, imagePath);
 
@@ -265,7 +270,11 @@ export class ExpenseProcessingService {
         markdownContent,
         country,
         expenseSchema,
-        mainTrace
+        mainTrace,
+        {
+          filename,
+          userId,
+        }
       );
       const classificationEnd = Date.now();
 
@@ -287,7 +296,11 @@ export class ExpenseProcessingService {
       const extraction = await this.dataExtractionAgent.extractData(
         markdownContent,
         complianceData,
-        mainTrace
+        mainTrace,
+        {
+          filename,
+          userId,
+        }
       );
       const extractionEnd = Date.now();
 
@@ -312,7 +325,11 @@ export class ExpenseProcessingService {
         icp,
         complianceData,
         extraction,
-        mainTrace
+        mainTrace,
+        {
+          filename,
+          userId,
+        }
       );
       const issueDetectionEnd = Date.now();
 
@@ -335,7 +352,11 @@ export class ExpenseProcessingService {
         extraction,
         markdownContent,
         filename,
-        mainTrace
+        mainTrace,
+        {
+          filename,
+          userId,
+        }
       );
       const citationEnd = Date.now();
 

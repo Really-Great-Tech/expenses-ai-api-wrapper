@@ -1,0 +1,655 @@
+{
+  "overall_score": 0.9177777777777779,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9066666666666666,
+      "issues": [
+        "None. All issues identified by the AI are factually grounded in the extracted data and compliance rules."
+      ],
+      "summary": "The AI response is completely factually grounded. All five issues identified (missing supplier address, missing VAT information, missing employee name, toll/parking expenses requiring gross-up, and missing business purpose) are directly supported by the extracted data showing these fields as null or containing values that trigger compliance rules. The response accurately applies the compliance policies to the receipt data without fabricating or assuming information beyond what's provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the VAT amount is not listed in the receipt. The \"supplier_vat_number\" field is null in the extracted data, and this aligns with the compliance rule about VAT amounts being clearly listed.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name is missing. The \"customer_name\" field is null in the extracted data, which violates the compliance rule requiring worker's name on travel-related receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that toll/parking expenses are subject to gross-up. The extracted data shows a toll_parking amount of 55500 IDR, and this aligns with the compliance policy stating \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the business purpose is not established. The \"special_notes\" field is null in the extracted data, which aligns with the compliance policy requiring a clear business purpose for all expenses.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified by the AI are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. All five issues identified (missing supplier address, missing VAT information, missing employee name, toll/parking expenses requiring gross-up, and missing business purpose) are directly supported by the extracted data showing these fields as null or containing values that trigger compliance rules. The response accurately applies the compliance policies to the receipt data without fabricating or assuming information beyond what's provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the VAT amount is not listed in the receipt. The \"supplier_vat_number\" field is null in the extracted data, and this aligns with the compliance rule about VAT amounts being clearly listed.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name is missing. The \"customer_name\" field is null in the extracted data, which violates the compliance rule requiring worker's name on travel-related receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that toll/parking expenses are subject to gross-up. The extracted data shows a toll_parking amount of 55500 IDR, and this aligns with the compliance policy stating \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the business purpose is not established. The \"special_notes\" field is null in the extracted data, which aligns with the compliance policy requiring a clear business purpose for all expenses.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified by the AI are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. All five issues identified (missing supplier address, missing VAT information, missing employee name, toll/parking expenses requiring gross-up, and missing business purpose) are directly supported by the extracted data showing these fields as null or containing values that trigger compliance rules. The response accurately applies the compliance policies to the receipt data without fabricating or assuming information beyond what's provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The AI response correctly identifies the missing supplier address as an issue, which matches the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI response correctly identifies the presence of VAT amount on the receipt as an issue, which matches the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI response correctly identifies the missing customer/employee name as an issue, which matches the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response correctly identifies the toll and parking expenses as being subject to gross-up, which matches the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies the need to establish a clear business purpose for the expense, which matches the compliance rules.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response is well-grounded in the provided extracted data and compliance rules. All the issues identified in the response can be traced back to the information given, and the response does not make any unsupported claims."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identifies that the supplier address is missing, which is accurate based on the extracted data showing \"supplier_address\": null.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly states that the \"VAT amount clearly listed\" is an issue. The extracted data does not show any VAT information, so this claim is not factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the employee name is missing, which is accurate based on the extracted data showing \"customer_name\": null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that toll and parking expenses are present and subject to gross-up, which is accurate based on the extracted data showing \"toll_parking\": 55500 and the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies that the business purpose needs to be established, which is accurate based on the compliance rules and the lack of \"special_notes\" in the extracted data.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI incorrectly claims that the VAT amount is clearly listed, which is not supported by the extracted data.\n2. The AI response does not mention some relevant information from the extracted data, such as the specific amounts for fare and total fare.\n\nSUMMARY: The AI response is mostly factually grounded, accurately identifying issues related to missing supplier address, missing employee name, toll/parking expenses subject to gross-up, and the need for establishing business purpose. However, it incorrectly claims an issue with VAT amount listing, which is not supported by the data. The response also omits some specific financial details from the extracted data. Overall, the response is largely accurate but has one significant error and some omissions."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data, which aligns with the compliance rule requiring vendor information.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the VAT amount is not listed in the receipt. The \"supplier_vat_number\" field is null in the extracted data, and this aligns with the compliance rule about VAT amounts being clearly listed.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the employee name is missing. The \"customer_name\" field is null in the extracted data, which violates the compliance rule requiring worker's name on travel-related receipts.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that toll/parking expenses are subject to gross-up. The extracted data shows a toll_parking amount of 55500 IDR, and this aligns with the compliance policy stating \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the business purpose is not established. The \"special_notes\" field is null in the extracted data, which aligns with the compliance policy requiring a clear business purpose for all expenses.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.96,
+      "issues": [
+        "- No significant knowledge base adherence issues found. The AI has correctly applied the compliance rules for Indonesia and for the travel receipt type.",
+        "- The VAT issue is correctly identified but is marked as optional in the rules",
+        "so it could have been noted with lower severity."
+      ],
+      "summary": "The AI response demonstrates excellent adherence to the compliance knowledge base for Indonesia. It correctly identified all five compliance issues: missing supplier address, missing VAT information, missing employee name, toll/parking expenses subject to gross-up, and lack of business purpose. All issues are properly aligned with the specific rules in the knowledge base, and the recommendations provided are appropriate. The confidence scores assigned by the AI also appear reasonable given the clarity of the violations.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which violates the compliance rule stating \"Document must show vendor name or merchant name that provided goods/services.\" While the supplier name (Bluebird) is present, the address is missing, which is a required element for proper documentation.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the VAT amount is not clearly listed on the receipt, which aligns with the compliance rule stating \"VAT amount should be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, so while correct, it may not need to be flagged with the same severity as mandatory elements.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name is missing, which violates the compliance rule stating \"Workers name and details should generally be used on invoices where required.\" For travel expenses like taxi receipts, the employee name is a mandatory element according to the knowledge base.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that toll and parking expenses are subject to gross-up according to the compliance rule: \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll/parking charges of 55500 IDR which falls under this rule.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the business purpose must be established clearly according to the rule: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt lacks any indication of business purpose.\n\nCONFIDENCE: 98\n\nISSUES: \n- No significant knowledge base adherence issues found. The AI has correctly applied the compliance rules for Indonesia and for the travel receipt type.\n- The VAT issue is correctly identified but is marked as optional in the rules, so it could have been noted with lower severity.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Indonesia. It correctly identified all five compliance issues: missing supplier address, missing VAT information, missing employee name, toll/parking expenses subject to gross-up, and lack of business purpose. All issues are properly aligned with the specific rules in the knowledge base, and the recommendations provided are appropriate. The confidence scores assigned by the AI also appear reasonable given the clarity of the violations.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which violates the compliance rule stating \"Document must show vendor name or merchant name that provided goods/services.\" While the supplier name (Bluebird) is present, the address is missing, which is a required element for proper documentation.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the VAT amount is not clearly listed on the receipt, which aligns with the compliance rule stating \"VAT amount should be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, so while correct, it may not need to be flagged with the same severity as mandatory elements.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name is missing, which violates the compliance rule stating \"Workers name and details should generally be used on invoices where required.\" For travel expenses like taxi receipts, the employee name is a mandatory element according to the knowledge base.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that toll and parking expenses are subject to gross-up according to the compliance rule: \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll/parking charges of 55500 IDR which falls under this rule.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the business purpose must be established clearly according to the rule: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt lacks any indication of business purpose.\n\nCONFIDENCE: 98\n\nISSUES: \n- No significant knowledge base adherence issues found. The AI has correctly applied the compliance rules for Indonesia and for the travel receipt type.\n- The VAT issue is correctly identified but is marked as optional in the rules, so it could have been noted with lower severity.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Indonesia. It correctly identified all five compliance issues: missing supplier address, missing VAT information, missing employee name, toll/parking expenses subject to gross-up, and lack of business purpose. All issues are properly aligned with the specific rules in the knowledge base, and the recommendations provided are appropriate. The confidence scores assigned by the AI also appear reasonable given the clarity of the violations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The AI response correctly identifies that the supplier address is missing, which is a required field as per the compliance rules for Indonesia. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI response correctly identifies that the VAT amount is clearly listed on the receipt, which is an optional requirement as per the compliance rules. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI response correctly identifies that the customer name (employee name) is missing, which is a mandatory requirement as per the compliance rules for travel expenses in Indonesia. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response correctly identifies that the toll and parking expenses are subject to gross-up as per the compliance rules for Indonesia. The recommendation provided is accurate and in line with the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies that the business purpose of the expense needs to be clearly established, as per the compliance rules for Indonesia. The recommendation to provide a clear business purpose is appropriate.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Indonesia. It correctly identifies the issues with the receipt, such as missing supplier address, missing employee name, and the need to gross-up certain expenses. The recommendations provided are in line with the established compliance guidelines. Overall, the response demonstrates a strong adherence to the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which is a mandatory requirement according to the compliance rules for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly noted that the VAT amount should be clearly listed. However, it's worth noting that the compliance rules state this as optional, not mandatory. The high confidence score (0.85) may be slightly overstated given the optional nature of this requirement.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI accurately identified that the employee name is missing, which is a mandatory requirement for travel expenses like taxis according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that reimbursement of toll and parking from car rental or private car use is subject to gross-up, which aligns perfectly with the compliance rules for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI accurately noted that the business purpose must be clearly established, which is in line with the compliance rules stating that any expense without a clear business purpose will be rejected or postponed.\n\nCONFIDENCE: 98\n\nISSUES:\n- Minor overemphasis on the importance of VAT listing, which is optional according to the rules.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Indonesia. It correctly identifies and applies the relevant rules for supplier information, employee details, gross-up requirements, and business purpose documentation. The only minor discrepancy is a slight overemphasis on the VAT listing requirement, which is optional according to the rules. Overall, the response shows a high level of accuracy in interpreting and applying the compliance guidelines for the given receipt type and country context."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing, which violates the compliance rule stating \"Document must show vendor name or merchant name that provided goods/services.\" While the supplier name (Bluebird) is present, the address is missing, which is a required element for proper documentation.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the VAT amount is not clearly listed on the receipt, which aligns with the compliance rule stating \"VAT amount should be listed clearly on the invoice if applicable.\" However, this is listed as \"Optional\" in the compliance rules, so while correct, it may not need to be flagged with the same severity as mandatory elements.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the employee name is missing, which violates the compliance rule stating \"Workers name and details should generally be used on invoices where required.\" For travel expenses like taxi receipts, the employee name is a mandatory element according to the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that toll and parking expenses are subject to gross-up according to the compliance rule: \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll/parking charges of 55500 IDR which falls under this rule.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the business purpose must be established clearly according to the rule: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt lacks any indication of business purpose.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9066666666666667,
+      "issues": [
+        "1. Issue 2 regarding VAT information might be overstated as it's listed as optional in the compliance rules for travel expenses.",
+        "2. The assessment doesn't mention the missing transaction date",
+        "which appears to be set in the future (2025-05-26) and is a mandatory field according to the compliance rules."
+      ],
+      "summary": "The compliance assessment is generally accurate, correctly identifying most key issues including missing supplier address, employee name, business purpose, and the need for gross-up on toll/parking expenses. The VAT issue may be overstated given its optional status for travel receipts. The assessment missed flagging the transaction date issue, which shows a future date (2025) that is likely incorrect. Overall, the assessment provides a solid compliance evaluation with minor improvements needed.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the supplier address is missing, which is a required field according to the compliance rules. The rule \"Document must show vendor name or merchant name that provided goods/services\" is cited correctly, though this rule specifically mentions the supplier name rather than address. However, having a complete supplier address is a standard requirement for proper documentation.\n\nISSUE_2_VALIDATION_SCORE: 70 - The assessment flags missing VAT information, but according to the compliance rules, VAT amount is listed as \"Optional\" for travel expenses including taxis. While it's good practice to have VAT information, marking this as an issue may be overstating its importance given the optional status in the rules.\n\nISSUE_3_VALIDATION_SCORE: 95 - The assessment correctly identifies that the employee name is missing, which is required for travel receipts according to the compliance rules. The rule \"Workers name and details should generally be used on invoices where required\" is correctly cited.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that toll and parking expenses are subject to gross-up according to the compliance rules. The rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up\" is accurately applied to the toll/parking charge of 55500 IDR.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that the business purpose must be established clearly. According to the compliance rules, \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The special_notes field is null, indicating no business purpose was provided.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 2 regarding VAT information might be overstated as it's listed as optional in the compliance rules for travel expenses.\n2. The assessment doesn't mention the missing transaction date, which appears to be set in the future (2025-05-26) and is a mandatory field according to the compliance rules.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying most key issues including missing supplier address, employee name, business purpose, and the need for gross-up on toll/parking expenses. The VAT issue may be overstated given its optional status for travel receipts. The assessment missed flagging the transaction date issue, which shows a future date (2025) that is likely incorrect. Overall, the assessment provides a solid compliance evaluation with minor improvements needed.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the supplier address is missing, which is a required field according to the compliance rules. The rule \"Document must show vendor name or merchant name that provided goods/services\" is cited correctly, though this rule specifically mentions the supplier name rather than address. However, having a complete supplier address is a standard requirement for proper documentation.\n\nISSUE_2_VALIDATION_SCORE: 70 - The assessment flags missing VAT information, but according to the compliance rules, VAT amount is listed as \"Optional\" for travel expenses including taxis. While it's good practice to have VAT information, marking this as an issue may be overstating its importance given the optional status in the rules.\n\nISSUE_3_VALIDATION_SCORE: 95 - The assessment correctly identifies that the employee name is missing, which is required for travel receipts according to the compliance rules. The rule \"Workers name and details should generally be used on invoices where required\" is correctly cited.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that toll and parking expenses are subject to gross-up according to the compliance rules. The rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up\" is accurately applied to the toll/parking charge of 55500 IDR.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that the business purpose must be established clearly. According to the compliance rules, \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The special_notes field is null, indicating no business purpose was provided.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 2 regarding VAT information might be overstated as it's listed as optional in the compliance rules for travel expenses.\n2. The assessment doesn't mention the missing transaction date, which appears to be set in the future (2025-05-26) and is a mandatory field according to the compliance rules.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying most key issues including missing supplier address, employee name, business purpose, and the need for gross-up on toll/parking expenses. The VAT issue may be overstated given its optional status for travel receipts. The assessment missed flagging the transaction date issue, which shows a future date (2025) that is likely incorrect. Overall, the assessment provides a solid compliance evaluation with minor improvements needed."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The missing supplier address is correctly identified as a compliance issue, as the supplier address is a required field for travel expenses.\nISSUE_2_VALIDATION_SCORE: 85 - The presence of the VAT amount is correctly flagged as an issue, even though it is not a mandatory field. This is a valid compliance check.\nISSUE_3_VALIDATION_SCORE: 95 - The missing customer/employee name is correctly identified as a compliance issue, as this is a required field for travel expenses.\nISSUE_4_VALIDATION_SCORE: 95 - The assessment correctly identifies the toll and parking expenses as taxable benefits-in-kind (BIK) that require gross-up, which is a valid compliance rule.\nISSUE_5_VALIDATION_SCORE: 90 - The requirement to clearly establish the business purpose of the expense is a valid compliance check, and the assessment correctly flags this as an issue.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The compliance assessment is highly accurate, correctly identifying the key compliance issues with the receipt. The validation of required fields, application of business rules, and handling of edge cases are all well-executed. The overall confidence in the accuracy of the compliance determination is very high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier address is missing, which is a required field according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 50 - The assessment flags the VAT number as missing, but the compliance rules state this is optional. However, it's correct to note that the VAT amount should be clearly listed if applicable, which is not present on this receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment accurately identifies that the employee name is missing, which is a required field for travel-related expenses according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that reimbursement of toll and parking from car rental or private car use is subject to gross-up as a taxable benefit in kind (BIK).\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment accurately notes that the business purpose must be clearly established, which is a requirement across all expense types according to the compliance rules.\n\nCONFIDENCE: 90\n\nISSUES:\n1. The assessment of the VAT number issue is partially inaccurate as it's listed as optional in the compliance rules.\n\nSUMMARY: The compliance assessment is largely accurate, correctly identifying most of the key issues such as missing supplier address, missing employee name, gross-up requirements for toll/parking, and the need for a clear business purpose. However, there's a minor discrepancy in the treatment of the VAT number issue, which slightly reduces the overall confidence. The assessment demonstrates a strong understanding and application of the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the supplier address is missing, which is a required field according to the compliance rules. The rule \"Document must show vendor name or merchant name that provided goods/services\" is cited correctly, though this rule specifically mentions the supplier name rather than address. However, having a complete supplier address is a standard requirement for proper documentation.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The assessment flags missing VAT information, but according to the compliance rules, VAT amount is listed as \"Optional\" for travel expenses including taxis. While it's good practice to have VAT information, marking this as an issue may be overstating its importance given the optional status in the rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The assessment correctly identifies that the employee name is missing, which is required for travel receipts according to the compliance rules. The rule \"Workers name and details should generally be used on invoices where required\" is correctly cited.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that toll and parking expenses are subject to gross-up according to the compliance rules. The rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up\" is accurately applied to the toll/parking charge of 55500 IDR.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the business purpose must be established clearly. According to the compliance rules, \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The special_notes field is null, indicating no business purpose was provided.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9133333333333334,
+      "issues": [
+        "1. Issue 2 has a contradictory description stating \"VAT amount clearly listed\" when the VAT information is actually missing from the receipt.",
+        "2. The system could have also flagged the missing supplier phone number",
+        "email",
+        "and website as potential issues",
+        "though these may not be mandatory fields."
+      ],
+      "summary": "Most issues are correctly categorized with appropriate descriptions, recommendations, and knowledge base references. The main problem is with Issue 2, where the description contradicts the actual state of the receipt (stating VAT is present when it's missing). Overall, the system demonstrates strong accuracy in identifying compliance issues related to missing supplier address, employee name, business purpose requirements, and correctly identifying expenses subject to gross-up according to Indonesian tax regulations.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies that the supplier address is missing, which is a required field according to the compliance rules. The recommendation and knowledge base reference are appropriate and align with the standards.\n\nISSUE_2_VALIDATION_SCORE: 70 - This issue is somewhat incorrectly categorized. While it's labeled as \"Standards & Compliance | Fix Identified\" for \"supplier_vat_number,\" the description states \"VAT amount clearly listed\" which is contradictory. The receipt data shows VAT is null, so the issue should indicate VAT is missing rather than present. The knowledge base reference is correct but the description doesn't match the actual issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing employee name. This aligns with the compliance rule that states \"Workers name and details should generally be used on invoices where required\" for travel expenses. The recommendation is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for toll/parking expenses. The description accurately references the compliance rule that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The recommendation matches the knowledge base reference.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the missing business purpose. The description and recommendation align with the compliance policy that states \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 89\n\nISSUES:\n1. Issue 2 has a contradictory description stating \"VAT amount clearly listed\" when the VAT information is actually missing from the receipt.\n2. The system could have also flagged the missing supplier phone number, email, and website as potential issues, though these may not be mandatory fields.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions, recommendations, and knowledge base references. The main problem is with Issue 2, where the description contradicts the actual state of the receipt (stating VAT is present when it's missing). Overall, the system demonstrates strong accuracy in identifying compliance issues related to missing supplier address, employee name, business purpose requirements, and correctly identifying expenses subject to gross-up according to Indonesian tax regulations.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.89,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies that the supplier address is missing, which is a required field according to the compliance rules. The recommendation and knowledge base reference are appropriate and align with the standards.\n\nISSUE_2_VALIDATION_SCORE: 70 - This issue is somewhat incorrectly categorized. While it's labeled as \"Standards & Compliance | Fix Identified\" for \"supplier_vat_number,\" the description states \"VAT amount clearly listed\" which is contradictory. The receipt data shows VAT is null, so the issue should indicate VAT is missing rather than present. The knowledge base reference is correct but the description doesn't match the actual issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing employee name. This aligns with the compliance rule that states \"Workers name and details should generally be used on invoices where required\" for travel expenses. The recommendation is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for toll/parking expenses. The description accurately references the compliance rule that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The recommendation matches the knowledge base reference.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the missing business purpose. The description and recommendation align with the compliance policy that states \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 89\n\nISSUES:\n1. Issue 2 has a contradictory description stating \"VAT amount clearly listed\" when the VAT information is actually missing from the receipt.\n2. The system could have also flagged the missing supplier phone number, email, and website as potential issues, though these may not be mandatory fields.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions, recommendations, and knowledge base references. The main problem is with Issue 2, where the description contradicts the actual state of the receipt (stating VAT is present when it's missing). Overall, the system demonstrates strong accuracy in identifying compliance issues related to missing supplier address, employee name, business purpose requirements, and correctly identifying expenses subject to gross-up according to Indonesian tax regulations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue of missing supplier address is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and actionable, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue of the VAT amount being clearly listed is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are relevant, though the severity could be slightly lower since VAT listing is not a mandatory requirement.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue of the missing customer/employee name is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and in line with the established taxonomy.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue of the toll and parking expenses being subject to gross-up is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description and recommendation are accurate and in accordance with the compliance policies.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue of the need to establish a clear business purpose is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are relevant, though the severity could be slightly lower since this is a common requirement.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The issue categorization is accurate and follows the established taxonomy. The descriptions are clear and actionable, and the recommendations are appropriate. The overall confidence in the categorization is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the missing supplier address, which is a required field according to the compliance rules. The recommendation and knowledge base reference are appropriate.\n\nISSUE_2_VALIDATION_SCORE: 80 - While the issue type \"Standards & Compliance | Fix Identified\" is correct, the description \"VAT amount clearly listed\" is inconsistent with the actual issue, which should be that the VAT number is missing. The recommendation and knowledge base reference are appropriate, but the description needs adjustment.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the missing employee name, which is required for travel expenses according to the compliance rules. The recommendation and knowledge base reference are appropriate.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\". The description, recommendation, and knowledge base reference accurately reflect the compliance rule regarding the taxable nature of toll and parking reimbursements.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description, recommendation, and knowledge base reference accurately reflect the compliance rule regarding the need for a clear business purpose for expenses.\n\nCONFIDENCE: 93\n\nISSUES:\n1. Issue 2 has a minor discrepancy in its description, which should focus on the missing VAT number rather than stating that the VAT amount is clearly listed.\n\nSUMMARY: Overall, the issue categorization is highly accurate, with only a minor discrepancy in Issue 2's description. The issues are properly classified by type and severity, with clear and actionable descriptions that follow the established taxonomy. All relevant issues appear to be identified and correctly classified based on the provided compliance rules and receipt data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies that the supplier address is missing, which is a required field according to the compliance rules. The recommendation and knowledge base reference are appropriate and align with the standards.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "This issue is somewhat incorrectly categorized. While it's labeled as \"Standards & Compliance | Fix Identified\" for \"supplier_vat_number,\" the description states \"VAT amount clearly listed\" which is contradictory. The receipt data shows VAT is null, so the issue should indicate VAT is missing rather than present. The knowledge base reference is correct but the description doesn't match the actual issue.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing employee name. This aligns with the compliance rule that states \"Workers name and details should generally be used on invoices where required\" for travel expenses. The recommendation is appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for toll/parking expenses. The description accurately references the compliance rule that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The recommendation matches the knowledge base reference.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the missing business purpose. The description and recommendation align with the compliance policy that states \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8866666666666667,
+      "issues": [
+        "- Issue 2 about VAT has somewhat unclear wording that could confuse the user about whether VAT is missing or just needs to be more clearly identified",
+        "- Some recommendations could be more specific about the exact steps needed to resolve the issues"
+      ],
+      "summary": "Overall, the recommendations are valid and helpful, addressing the key compliance issues identified in the receipt. Most recommendations are actionable and align with the compliance rules. The recommendation about VAT could be clearer, but the others regarding supplier address, employee name, toll/parking expenses being subject to gross-up, and establishing business purpose are specific and practical. All recommendations are feasible to implement and none contain contradictory or harmful advice.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier address is valid and actionable. It correctly identifies the compliance requirement that documents must show vendor information. However, it could be more specific about exactly what information is needed and how to obtain it from Bluebird.\n\nISSUE_2_VALIDATION_SCORE: 70 - The recommendation about VAT amount being clearly listed is somewhat confusing. The issue states \"VAT amount clearly listed\" but frames it as an issue to be fixed. The recommendation to address this with the supplier is valid but lacks clarity on whether VAT is missing or just needs to be more clearly identified. The compliance rule indicates VAT listing is optional, not mandatory.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid and aligns with the compliance requirement that worker's name should be included on travel-related invoices. It's actionable and specific to the issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation regarding toll/parking expenses being subject to gross-up is highly valid and directly references the applicable compliance rule. It correctly identifies that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to \"provide a clear business purpose for the expense\" is highly valid, specific, and directly addresses the compliance requirement. It's actionable and aligns perfectly with the rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 88\n\nISSUES: \n- Issue 2 about VAT has somewhat unclear wording that could confuse the user about whether VAT is missing or just needs to be more clearly identified\n- Some recommendations could be more specific about the exact steps needed to resolve the issues\n\nSUMMARY: Overall, the recommendations are valid and helpful, addressing the key compliance issues identified in the receipt. Most recommendations are actionable and align with the compliance rules. The recommendation about VAT could be clearer, but the others regarding supplier address, employee name, toll/parking expenses being subject to gross-up, and establishing business purpose are specific and practical. All recommendations are feasible to implement and none contain contradictory or harmful advice.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier address is valid and actionable. It correctly identifies the compliance requirement that documents must show vendor information. However, it could be more specific about exactly what information is needed and how to obtain it from Bluebird.\n\nISSUE_2_VALIDATION_SCORE: 70 - The recommendation about VAT amount being clearly listed is somewhat confusing. The issue states \"VAT amount clearly listed\" but frames it as an issue to be fixed. The recommendation to address this with the supplier is valid but lacks clarity on whether VAT is missing or just needs to be more clearly identified. The compliance rule indicates VAT listing is optional, not mandatory.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid and aligns with the compliance requirement that worker's name should be included on travel-related invoices. It's actionable and specific to the issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation regarding toll/parking expenses being subject to gross-up is highly valid and directly references the applicable compliance rule. It correctly identifies that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to \"provide a clear business purpose for the expense\" is highly valid, specific, and directly addresses the compliance requirement. It's actionable and aligns perfectly with the rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 88\n\nISSUES: \n- Issue 2 about VAT has somewhat unclear wording that could confuse the user about whether VAT is missing or just needs to be more clearly identified\n- Some recommendations could be more specific about the exact steps needed to resolve the issues\n\nSUMMARY: Overall, the recommendations are valid and helpful, addressing the key compliance issues identified in the receipt. Most recommendations are actionable and align with the compliance rules. The recommendation about VAT could be clearer, but the others regarding supplier address, employee name, toll/parking expenses being subject to gross-up, and establishing business purpose are specific and practical. All recommendations are feasible to implement and none contain contradictory or harmful advice."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address is actionable and specific. Providing the supplier's address is a common requirement for expense receipts, so this is a valid and helpful suggestion.\n\nISSUE_2_VALIDATION_SCORE: 80 - The recommendation to address the VAT amount being clearly listed is appropriate. While the VAT amount is not always required, if it is applicable, it should be clearly shown on the receipt. This is a reasonable recommendation.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to include the employee name is valid and addresses the identified issue. Worker details are typically required on expense receipts, so this is a useful suggestion.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to account for the toll and parking expenses as taxable benefits that require gross-up is accurate and relevant. This is an important compliance consideration that should be addressed.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to clearly establish the business purpose of the expense is appropriate. Providing a clear justification for the expense is a common requirement and helps ensure compliance.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are generally valid and useful. They address the key issues identified with the expense receipt and provide actionable steps to improve compliance. The suggestions are feasible and practical, and there are no contradictory or harmful recommendations. Overall, the recommendations are high-quality and should help resolve the compliance concerns."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier is valid and actionable. It directly addresses the compliance issue and is a practical step to take.\n\nISSUE_2_VALIDATION_SCORE: 70 - While the recommendation to address the VAT issue with the supplier is valid, it may not be fully applicable as the issue description mentions \"VAT amount clearly listed\" which contradicts the need for this recommendation. Clarification might be needed.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid, specific, and directly addresses the compliance issue. It's a practical step to ensure proper documentation.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation accurately identifies the need for gross-up on toll and parking expenses. It's specific to the issue and aligns with the compliance rules provided.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to provide a clear business purpose for the expense is highly valid. It directly addresses the compliance requirement and is an actionable step for the employee submitting the expense.\n\nCONFIDENCE: 88\n\nISSUES:\n- Slight inconsistency in Issue 2 between the description and the recommendation\n- No major validity issues in the other recommendations\n\nSUMMARY: Overall, the recommendations are highly valid and useful. They provide specific, actionable steps to address the identified compliance issues. The recommendations are feasible and align well with the provided compliance rules. The only minor concern is the potential inconsistency in Issue 2 regarding the VAT amount, which may need clarification. Otherwise, the advice given is practical and directly addresses the compliance requirements for expense reporting in Indonesia."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier address is valid and actionable. It correctly identifies the compliance requirement that documents must show vendor information. However, it could be more specific about exactly what information is needed and how to obtain it from Bluebird.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation about VAT amount being clearly listed is somewhat confusing. The issue states \"VAT amount clearly listed\" but frames it as an issue to be fixed. The recommendation to address this with the supplier is valid but lacks clarity on whether VAT is missing or just needs to be more clearly identified. The compliance rule indicates VAT listing is optional, not mandatory.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing employee name with the supplier is valid and aligns with the compliance requirement that worker's name should be included on travel-related invoices. It's actionable and specific to the issue.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding toll/parking expenses being subject to gross-up is highly valid and directly references the applicable compliance rule. It correctly identifies that \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\"",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to \"provide a clear business purpose for the expense\" is highly valid, specific, and directly addresses the compliance requirement. It's actionable and aligns perfectly with the rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "None detected. All issues identified by the AI are supported by the provided data and compliance rules."
+      ],
+      "summary": "The AI response correctly identified compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the validation results. All issues raised are directly tied to missing information in the receipt data that is required according to the compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue about missing supplier address is valid and based on the compliance rules which state \"Document must show vendor name or merchant name that provided goods/services.\" The extracted data shows supplier_address is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about VAT amount is valid based on the compliance rules which state \"VAT amount should be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number is null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about missing employee name is valid based on the compliance rules which state \"Workers name and details should generally be used on invoices where required.\" The extracted data shows customer_name is null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about toll/parking being subject to gross-up is valid based on the compliance rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll_parking charges of 55500 IDR.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue about business purpose is valid based on the compliance rule \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data shows special_notes is null.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified by the AI are supported by the provided data and compliance rules.\n\nSUMMARY: The AI response correctly identified compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the validation results. All issues raised are directly tied to missing information in the receipt data that is required according to the compliance rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue about missing supplier address is valid and based on the compliance rules which state \"Document must show vendor name or merchant name that provided goods/services.\" The extracted data shows supplier_address is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about VAT amount is valid based on the compliance rules which state \"VAT amount should be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number is null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about missing employee name is valid based on the compliance rules which state \"Workers name and details should generally be used on invoices where required.\" The extracted data shows customer_name is null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about toll/parking being subject to gross-up is valid based on the compliance rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll_parking charges of 55500 IDR.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue about business purpose is valid based on the compliance rule \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data shows special_notes is null.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified by the AI are supported by the provided data and compliance rules.\n\nSUMMARY: The AI response correctly identified compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the validation results. All issues raised are directly tied to missing information in the receipt data that is required according to the compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information about the missing supplier address is present in the source data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The information about the VAT number being clearly listed is present in the source data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The information about the missing customer name is present in the source data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The information about the toll and parking expenses being subject to gross-up is present in the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The information about the need to establish a clear business purpose is present in the compliance rules.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the issues and recommendations identified are based on the source data provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing supplier address in the extracted data and aligns with the compliance rules requiring supplier business name.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is hallucinated. The extracted data does not show any VAT amount, and the compliance rules only state that VAT should be listed if applicable. The AI incorrectly assumes VAT is present and clearly listed.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies that the employee name is missing, which is required for travel expenses according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rule regarding fuel and toll reimbursements being subject to gross-up for taxable BIK.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies the need for a clear business purpose, which is required according to the compliance rules.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue 2 incorrectly states that VAT amount is clearly listed, when there is no evidence of VAT in the extracted data.\n\nSUMMARY: The AI response is mostly accurate, with 4 out of 5 issues correctly identified based on the extracted data and compliance rules. However, there is one significant hallucination regarding the VAT amount, which reduces the overall confidence in the response. The other issues and recommendations align well with the provided information and compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Required supplier address is missing or incomplete",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue about missing supplier address is valid and based on the compliance rules which state \"Document must show vendor name or merchant name that provided goods/services.\" The extracted data shows supplier_address is null.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "VAT amount clearly listed",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about VAT amount is valid based on the compliance rules which state \"VAT amount should be listed clearly on the invoice if applicable.\" The extracted data shows supplier_vat_number is null.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Employee name is missing",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about missing employee name is valid based on the compliance rules which state \"Workers name and details should generally be used on invoices where required.\" The extracted data shows customer_name is null.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about toll/parking being subject to gross-up is valid based on the compliance rule \"Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up.\" The receipt shows toll_parking charges of 55500 IDR.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about business purpose is valid based on the compliance rule \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data shows special_notes is null.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None. All issues identified by the AI are factually grounded in the extracted data and compliance rules.",
+    "Address issues in knowledge base adherence: - No significant knowledge base adherence issues found. The AI has correctly applied the compliance rules for Indonesia and for the travel receipt type., - The VAT issue is correctly identified but is marked as optional in the rules, so it could have been noted with lower severity.",
+    "Address issues in compliance accuracy: 1. Issue 2 regarding VAT information might be overstated as it's listed as optional in the compliance rules for travel expenses., 2. The assessment doesn't mention the missing transaction date, which appears to be set in the future (2025-05-26) and is a mandatory field according to the compliance rules.",
+    "Address issues in issue categorization: 1. Issue 2 has a contradictory description stating \"VAT amount clearly listed\" when the VAT information is actually missing from the receipt., 2. The system could have also flagged the missing supplier phone number, email, and website as potential issues, though these may not be mandatory fields.",
+    "Address issues in recommendation validity: - Issue 2 about VAT has somewhat unclear wording that could confuse the user about whether VAT is missing or just needs to be more clearly identified, - Some recommendations could be more specific about the exact steps needed to resolve the issues",
+    "Address issues in hallucination detection: None detected. All issues identified by the AI are supported by the provided data and compliance rules."
+  ],
+  "timestamp": "2025-09-03T13:45:43.752Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 292770,
+    "timing": {
+      "validation_start_time": "2025-09-03T13:40:50.982Z",
+      "validation_end_time": "2025-09-03T13:45:43.752Z",
+      "total_validation_time_seconds": "292.8",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-03T13:40:50.982Z",
+          "end_time": "2025-09-03T13:45:43.752Z",
+          "duration_seconds": "292.8",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "292.8",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.10",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Required supplier address is missing or incomplete",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 96,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 90,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "VAT amount clearly listed",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 84.44,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 70,
+        "issue_categorization": 70,
+        "recommendation_validity": 70,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Employee name is missing",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 96.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 95,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Reimbursement of fuel and toll from car rental or on private car used is taxable BIK - subject to gross-up",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 98.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

@@ -4,18 +4,21 @@ import { LangfuseService } from '../services/langfuse.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export class DataExtractionAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
+  private rateLimitMonitor: RateLimitMonitorService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, rateLimitMonitor?: RateLimitMonitorService) {
     super(langfuseService);
     this.currentProvider = provider;
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
     this.logger.log(`Initializing DataExtractionAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
-      this.llm = new BedrockLlmService();
+      this.llm = new BedrockLlmService(undefined, this.rateLimitMonitor);
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
@@ -43,7 +46,11 @@ export class DataExtractionAgent extends BaseAgent {
   async extractData(
     markdownContent: string,
     complianceRequirements: any, // Note: No longer used for schema definition, kept for API compatibility
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    context?: {
+      filename?: string;
+      userId?: string;
+    }
   ): Promise<ExpenseData> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -114,6 +121,15 @@ export class DataExtractionAgent extends BaseAgent {
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
 
+      // Set context for rate limit monitoring if using Bedrock
+      if (this.currentProvider === 'bedrock' && this.llm.setContext) {
+        this.llm.setContext({
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'data-extraction',
+        });
+      }
+
       const response = await this.llm.chat({
         messages: [
           {
@@ -121,6 +137,11 @@ export class DataExtractionAgent extends BaseAgent {
             content: combinedPrompt,
           },
         ],
+        context: {
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'data-extraction',
+        },
       });
 
       // Parse the JSON response manually since structured output isn't working as expected

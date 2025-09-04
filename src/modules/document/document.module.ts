@@ -8,6 +8,7 @@ import { DocumentService } from './document.service';
 import { ExpenseProcessingService } from '../../services/expense-processing.service';
 import { EnhancedDocumentProcessingService } from '../../services/enhanced-document-processing.service';
 import { UserSessionService } from '../../services/user-session.service';
+import { RateLimitMonitorService } from '../../services/rate-limit-monitor.service';
 import { ExpenseProcessor } from '../processing/processors/expense.processor';
 import { ProcessingService } from '../processing/services/processing.service';
 import { LangfuseModule } from '../langfuse/langfuse.module';
@@ -94,6 +95,7 @@ import * as path from 'path';
     ExpenseProcessingService,
     EnhancedDocumentProcessingService,
     UserSessionService,
+    RateLimitMonitorService,
     ExpenseProcessor,
     ProcessingService
   ],
@@ -101,6 +103,7 @@ import * as path from 'path';
     DocumentService,
     EnhancedDocumentProcessingService,
     UserSessionService,
+    RateLimitMonitorService,
     ProcessingService
   ],
 })

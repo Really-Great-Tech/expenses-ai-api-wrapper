@@ -4,18 +4,21 @@ import { LangfuseService } from '../services/langfuse.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export class FileClassificationAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
+  private rateLimitMonitor: RateLimitMonitorService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock',  private readonly modelName: string, langfuseService?: LangfuseService) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', private readonly modelName: string, langfuseService?: LangfuseService, rateLimitMonitor?: RateLimitMonitorService) {
     super(langfuseService);
     this.currentProvider = provider;
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
     this.logger.log(`Initializing FileClassificationAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
-      this.llm = new BedrockLlmService();
+      this.llm = new BedrockLlmService(undefined, this.rateLimitMonitor);
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
@@ -44,7 +47,11 @@ export class FileClassificationAgent extends BaseAgent {
     markdownContent: string,
     expectedCountry: string,
     expenseSchema: any,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    context?: {
+      filename?: string;
+      userId?: string;
+    }
   ): Promise<FileClassificationResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -120,6 +127,15 @@ export class FileClassificationAgent extends BaseAgent {
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
 
+      // Set context for rate limit monitoring if using Bedrock
+      if (this.currentProvider === 'bedrock' && this.llm.setContext) {
+        this.llm.setContext({
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'file-classification',
+        });
+      }
+
       const response = await this.llm.chat({
         messages: [
           {
@@ -127,6 +143,11 @@ export class FileClassificationAgent extends BaseAgent {
             content: combinedPrompt,
           },
         ],
+        context: {
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'file-classification',
+        },
       });
 
       const endTime = new Date();

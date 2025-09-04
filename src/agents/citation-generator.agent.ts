@@ -4,20 +4,23 @@ import { LangfuseService } from '../services/langfuse.service';
 import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export class CitationGeneratorAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
+  private rateLimitMonitor: RateLimitMonitorService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, rateLimitMonitor?: RateLimitMonitorService) {
     super(langfuseService);
     this.currentProvider = provider;
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
     this.logger.log(`Initializing CitationGeneratorAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
       // Use Nova Micro for citations - better for structured output
       const citationModel = process.env.CITATION_MODEL || 'amazon.nova-micro-v1:0';
-      this.llm = new BedrockLlmService({ modelId: citationModel });
+      this.llm = new BedrockLlmService({ modelId: citationModel }, this.rateLimitMonitor);
       this.logger.log(`Using model for citations: ${citationModel}`);
     } else {
       this.llm = new Anthropic({
@@ -47,7 +50,11 @@ export class CitationGeneratorAgent extends BaseAgent {
     extractedData: any,
     markdownContent: string,
     filename: string,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    context?: {
+      filename?: string;
+      userId?: string;
+    }
   ): Promise<CitationResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -129,7 +136,8 @@ export class CitationGeneratorAgent extends BaseAgent {
         const batchResult = await this.processCitationBatch(
           batchData,
           markdownContent,
-          batch.length
+          batch.length,
+          context
         );
 
         // Merge batch results
@@ -272,7 +280,11 @@ export class CitationGeneratorAgent extends BaseAgent {
   private async processCitationBatch(
     batchData: any,
     markdownContent: string,
-    expectedFields: number
+    expectedFields: number,
+    context?: {
+      filename?: string;
+      userId?: string;
+    }
   ): Promise<CitationResult> {
     try {
       const combinedPrompt = await this.getPromptTemplate('citation-generation-prompt', {
@@ -286,6 +298,15 @@ export class CitationGeneratorAgent extends BaseAgent {
 
       this.logger.debug(`Sending batch request with ${Object.keys(batchData).length} fields`);
 
+      // Set context for rate limit monitoring if using Bedrock
+      if (this.currentProvider === 'bedrock' && this.llm.setContext) {
+        this.llm.setContext({
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'citation-generation',
+        });
+      }
+
       const response = await this.llm.chat({
         messages: [
           {
@@ -293,6 +314,11 @@ export class CitationGeneratorAgent extends BaseAgent {
             content: combinedPrompt,
           },
         ],
+        context: {
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'citation-generation',
+        },
       });
 
       let rawContent = '';

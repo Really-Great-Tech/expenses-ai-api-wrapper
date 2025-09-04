@@ -1,6 +1,7 @@
 import { BedrockRuntimeClient, InvokeModelCommand, ConverseCommand } from '@aws-sdk/client-bedrock-runtime';
 import { Anthropic } from '@llamaindex/anthropic';
 import { Logger } from '@nestjs/common';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export interface BedrockConfig {
   accessKeyId?: string;
@@ -41,8 +42,16 @@ export class BedrockLlmService {
   private temperature: number;
   private fallbackEnabled: boolean = true;
   private lastUsedProvider: 'bedrock' | 'anthropic' | null = null;
+  private rateLimitMonitor: RateLimitMonitorService;
+  private currentContext: {
+    filename?: string;
+    userId?: string;
+    processingStage?: string;
+  } = {};
 
-  constructor(config?: BedrockConfig) {
+  constructor(config?: BedrockConfig, rateLimitMonitor?: RateLimitMonitorService) {
+    // Initialize rate limit monitor
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
     // Initialize Bedrock client with service-specific credentials
     try {
       const bedrockConfig = {
@@ -97,7 +106,21 @@ export class BedrockLlmService {
   /**
    * Chat with Nova/Claude model via Bedrock or Anthropic fallback
    */
-  async chat(options: { messages: ChatMessage[] }): Promise<ChatResponse> {
+  async chat(options: {
+    messages: ChatMessage[];
+    context?: {
+      filename?: string;
+      userId?: string;
+      processingStage?: string;
+    };
+  }): Promise<ChatResponse> {
+    // Update current context for rate limit logging
+    if (options.context) {
+      this.currentContext = options.context;
+    }
+
+    // Track the request
+    this.rateLimitMonitor.trackRequest('BedrockLlmService', this.modelId);
     // Try Bedrock first
     if (this.bedrockClient) {
       try {
@@ -113,15 +136,155 @@ export class BedrockLlmService {
       } catch (error) {
         this.logger.error(`❌ Bedrock chat failed: ${error.message}`);
 
-        // Fall back to Anthropic if enabled
-        if (this.fallbackEnabled && this.anthropicClient) {
-          this.logger.log('🔄 Falling back to Anthropic API');
-          const result = await this.chatWithAnthropic(options.messages);
-          this.lastUsedProvider = 'anthropic';
-          return result;
-        }
+        // Check if this is a rate limit error and log it
+        if (this.rateLimitMonitor.isRateLimitError(error)) {
+          const retryStartTime = Date.now();
+          let fallbackSuccessful = false;
+          let retryDelayMs = 0;
 
-        throw error;
+          // Fall back to Anthropic if enabled
+          if (this.fallbackEnabled && this.anthropicClient) {
+            this.logger.log('🔄 Falling back to Anthropic API due to rate limit');
+            try {
+              const result = await this.chatWithAnthropic(options.messages);
+              this.lastUsedProvider = 'anthropic';
+              fallbackSuccessful = true;
+              retryDelayMs = Date.now() - retryStartTime;
+
+              // Get detailed call statistics
+              const callStats = this.rateLimitMonitor.getCallStatistics('BedrockLlmService', this.modelId);
+              const sessionStats = this.rateLimitMonitor.getSessionStatistics();
+
+              // Log the rate limit event with successful fallback
+              await this.rateLimitMonitor.recordRateLimitEvent({
+                service: 'BedrockLlmService',
+                modelId: this.modelId,
+                provider: 'bedrock',
+                errorType: this.rateLimitMonitor.determineErrorType(error),
+                errorMessage: error.message,
+                requestDetails: {
+                  region: process.env.BEDROCK_AWS_REGION || 'eu-west-1',
+                  retryAttempt: 1,
+                  concurrentRequests: this.rateLimitMonitor.getCurrentRequestCount('BedrockLlmService', this.modelId),
+                  totalCallsBeforeRateLimit: callStats.totalCalls,
+                  callsInCurrentWindow: callStats.callsInCurrentWindow,
+                  windowDurationMs: callStats.windowDurationMs,
+                  requestsPerSecond: callStats.averageCallsPerSecond,
+                },
+                context: {
+                  filename: this.currentContext.filename,
+                  userId: this.currentContext.userId,
+                  processingStage: this.currentContext.processingStage,
+                  totalRequestsInWindow: callStats.callsInCurrentWindow,
+                  windowStartTime: new Date(Date.now() - callStats.windowDurationMs).toISOString(),
+                  successfulCallsBeforeLimit: callStats.totalCalls - 1, // Subtract the failed call
+                  timeToRateLimit: callStats.timeToRateLimit,
+                  averageCallsPerSecond: sessionStats.averageCallsPerSecond,
+                },
+                recovery: {
+                  fallbackUsed: true,
+                  fallbackProvider: 'anthropic',
+                  retrySuccessful: true,
+                  retryDelayMs,
+                },
+              });
+
+              return result;
+            } catch (fallbackError) {
+              this.logger.error(`❌ Anthropic fallback also failed: ${fallbackError.message}`);
+              retryDelayMs = Date.now() - retryStartTime;
+              
+              // Get detailed call statistics
+              const callStats = this.rateLimitMonitor.getCallStatistics('BedrockLlmService', this.modelId);
+              const sessionStats = this.rateLimitMonitor.getSessionStatistics();
+              
+              // Log the rate limit event with failed fallback
+              await this.rateLimitMonitor.recordRateLimitEvent({
+                service: 'BedrockLlmService',
+                modelId: this.modelId,
+                provider: 'bedrock',
+                errorType: this.rateLimitMonitor.determineErrorType(error),
+                errorMessage: error.message,
+                requestDetails: {
+                  region: process.env.BEDROCK_AWS_REGION || 'eu-west-1',
+                  retryAttempt: 1,
+                  concurrentRequests: this.rateLimitMonitor.getCurrentRequestCount('BedrockLlmService', this.modelId),
+                  totalCallsBeforeRateLimit: callStats.totalCalls,
+                  callsInCurrentWindow: callStats.callsInCurrentWindow,
+                  windowDurationMs: callStats.windowDurationMs,
+                  requestsPerSecond: callStats.averageCallsPerSecond,
+                },
+                context: {
+                  filename: this.currentContext.filename,
+                  userId: this.currentContext.userId,
+                  processingStage: this.currentContext.processingStage,
+                  totalRequestsInWindow: callStats.callsInCurrentWindow,
+                  windowStartTime: new Date(Date.now() - callStats.windowDurationMs).toISOString(),
+                  successfulCallsBeforeLimit: callStats.totalCalls - 1, // Subtract the failed call
+                  timeToRateLimit: callStats.timeToRateLimit,
+                  averageCallsPerSecond: sessionStats.averageCallsPerSecond,
+                },
+                recovery: {
+                  fallbackUsed: true,
+                  fallbackProvider: 'anthropic',
+                  retrySuccessful: false,
+                  retryDelayMs,
+                },
+              });
+
+              throw fallbackError;
+            }
+          } else {
+            // Get detailed call statistics
+            const callStats = this.rateLimitMonitor.getCallStatistics('BedrockLlmService', this.modelId);
+            const sessionStats = this.rateLimitMonitor.getSessionStatistics();
+            
+            // No fallback available, log the rate limit event
+            await this.rateLimitMonitor.recordRateLimitEvent({
+              service: 'BedrockLlmService',
+              modelId: this.modelId,
+              provider: 'bedrock',
+              errorType: this.rateLimitMonitor.determineErrorType(error),
+              errorMessage: error.message,
+              requestDetails: {
+                region: process.env.BEDROCK_AWS_REGION || 'eu-west-1',
+                retryAttempt: 0,
+                concurrentRequests: this.rateLimitMonitor.getCurrentRequestCount('BedrockLlmService', this.modelId),
+                totalCallsBeforeRateLimit: callStats.totalCalls,
+                callsInCurrentWindow: callStats.callsInCurrentWindow,
+                windowDurationMs: callStats.windowDurationMs,
+                requestsPerSecond: callStats.averageCallsPerSecond,
+              },
+              context: {
+                filename: this.currentContext.filename,
+                userId: this.currentContext.userId,
+                processingStage: this.currentContext.processingStage,
+                totalRequestsInWindow: callStats.callsInCurrentWindow,
+                windowStartTime: new Date(Date.now() - callStats.windowDurationMs).toISOString(),
+                successfulCallsBeforeLimit: callStats.totalCalls - 1, // Subtract the failed call
+                timeToRateLimit: callStats.timeToRateLimit,
+                averageCallsPerSecond: sessionStats.averageCallsPerSecond,
+              },
+              recovery: {
+                fallbackUsed: false,
+                retrySuccessful: false,
+              },
+            });
+
+            throw error;
+          }
+        } else {
+          // Not a rate limit error, handle normally
+          // Fall back to Anthropic if enabled
+          if (this.fallbackEnabled && this.anthropicClient) {
+            this.logger.log('🔄 Falling back to Anthropic API');
+            const result = await this.chatWithAnthropic(options.messages);
+            this.lastUsedProvider = 'anthropic';
+            return result;
+          }
+
+          throw error;
+        }
       }
     }
 
@@ -296,5 +459,26 @@ export class BedrockLlmService {
    */
   getLastUsedProvider(): 'bedrock' | 'anthropic' | null {
     return this.lastUsedProvider;
+  }
+
+  /**
+   * Get the rate limit monitor instance
+   */
+  getRateLimitMonitor(): RateLimitMonitorService {
+    return this.rateLimitMonitor;
+  }
+
+  /**
+   * Set context for rate limit logging
+   */
+  setContext(context: { filename?: string; userId?: string; processingStage?: string }): void {
+    this.currentContext = context;
+  }
+
+  /**
+   * Clear context
+   */
+  clearContext(): void {
+    this.currentContext = {};
   }
 }

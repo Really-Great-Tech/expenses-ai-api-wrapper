@@ -6,19 +6,22 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { BedrockLlmService } from '../utils/bedrockLlm';
 import { BaseAgent } from './base.agent';
+import { RateLimitMonitorService } from '../services/rate-limit-monitor.service';
 
 export class IssueDetectionAgent extends BaseAgent {
   private llm: any;
   private expenseSchema: any;
   private currentProvider: 'bedrock' | 'anthropic';
+  private rateLimitMonitor: RateLimitMonitorService;
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService, rateLimitMonitor?: RateLimitMonitorService) {
     super(langfuseService);
     this.currentProvider = provider;
+    this.rateLimitMonitor = rateLimitMonitor || new RateLimitMonitorService();
     this.logger.log(`Initializing IssueDetectionAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
-      this.llm = new BedrockLlmService();
+      this.llm = new BedrockLlmService(undefined, this.rateLimitMonitor);
     } else {
       this.llm = new Anthropic({
         apiKey: process.env.ANTHROPIC_KEY,
@@ -64,7 +67,11 @@ export class IssueDetectionAgent extends BaseAgent {
     icp: string,
     complianceData: any,
     extractedData: any,
-    parentTrace?: LangfuseTraceClient
+    parentTrace?: LangfuseTraceClient,
+    context?: {
+      filename?: string;
+      userId?: string;
+    }
   ): Promise<IssueDetectionResult> {
     const startTime = new Date();
     let trace: LangfuseTraceClient | null = null;
@@ -145,6 +152,15 @@ export class IssueDetectionAgent extends BaseAgent {
       // Generate prompt version tags (now just one prompt)
       const promptVersionTags = this.getPromptVersionTags();
 
+      // Set context for rate limit monitoring if using Bedrock
+      if (this.currentProvider === 'bedrock' && this.llm.setContext) {
+        this.llm.setContext({
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'issue-detection',
+        });
+      }
+
       const response = await this.llm.chat({
         messages: [
           {
@@ -152,6 +168,11 @@ export class IssueDetectionAgent extends BaseAgent {
             content: combinedPrompt,
           },
         ],
+        context: {
+          filename: context?.filename,
+          userId: context?.userId,
+          processingStage: 'issue-detection',
+        },
       });
 
       // Parse the JSON response manually since structured output isn't working as expected

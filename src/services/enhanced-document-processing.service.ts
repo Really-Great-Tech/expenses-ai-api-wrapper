@@ -170,16 +170,7 @@ export class EnhancedDocumentProcessingService {
           const baseProgress = 20 + (i / totalReceipts) * 70;
           options.progressCallback?.('processingReceipt', Math.round(baseProgress), i + 1);
 
-          // Step 2a: Image Quality Assessment (if PDF path available)
-          let imageQualityAssessment = null;
-          if (invoice.pdfPath) {
-            this.logger.log(`🔍 Assessing image quality for receipt ${receiptId}`);
-            const imageQualityAgent = new ImageQualityAssessmentAgent('bedrock', this.langfuseService);
-            imageQualityAssessment = await imageQualityAgent.assessImageQuality(invoice.pdfPath, mainTrace);
-            this.logger.log(`📊 Quality assessment complete: Score ${imageQualityAssessment.overall_quality_score}/10`);
-          }
-
-          // Step 2b: Process through expense processing pipeline
+          // Step 2: Process through expense processing pipeline (includes image quality assessment)
           this.logger.log(`⚙️ Processing receipt ${receiptId} through expense pipeline`);
           
           // Create a temporary image path for processing if we have a PDF
@@ -211,23 +202,29 @@ export class EnhancedDocumentProcessingService {
 
           this.logger.log(`✅ Receipt ${receiptId} processed successfully in ${receiptProcessingTime}ms`);
 
-          return {
+          const receiptResult = {
             receiptId,
             invoiceNumber: invoice.invoiceNumber,
             pages: invoice.pages,
             markdown: invoice.content,
             pdfPath: invoice.pdfPath,
-            imageQualityAssessment,
+            imageQualityAssessment: expenseResult.image_quality_assessment || null,
             expenseProcessingResult: expenseResult,
             processingTime: receiptProcessingTime,
             success: true,
           };
 
+          // Store result immediately when receipt completes
+          await this.saveIndividualReceiptResult(file.originalname, receiptResult);
+          this.logger.log(`💾 Receipt ${receiptId} result saved immediately`);
+
+          return receiptResult;
+
         } catch (error) {
           const receiptProcessingTime = Date.now() - receiptStartTime;
           this.logger.error(`❌ Failed to process receipt ${receiptId}:`, error);
           
-          return {
+          const receiptResult = {
             receiptId,
             invoiceNumber: invoice.invoiceNumber,
             pages: invoice.pages,
@@ -241,6 +238,12 @@ export class EnhancedDocumentProcessingService {
             processingTime: receiptProcessingTime,
             success: false,
           };
+
+          // Store failed result immediately
+          await this.saveIndividualReceiptResult(file.originalname, receiptResult);
+          this.logger.log(`💾 Failed receipt ${receiptId} result saved immediately`);
+
+          return receiptResult;
         }
       });
 
@@ -327,10 +330,9 @@ export class EnhancedDocumentProcessingService {
 
       this.logger.log(`🎯 Enhanced document processing complete: ${successfulProcessing}/${totalReceipts} receipts processed successfully in ${totalProcessingTime}ms`);
       
-      // Save individual receipt results to separate files
-      await this.saveIndividualReceiptResults(file.originalname, individualReceipts);
-      
-      // Save individual receipt markdown files
+      // Individual receipt results are already saved immediately as they complete
+      // Now save consolidated summary and markdown files
+      await this.saveConsolidatedSummary(file.originalname, individualReceipts);
       await this.saveIndividualReceiptMarkdown(file.originalname, individualReceipts);
       
       return result;
@@ -408,9 +410,69 @@ export class EnhancedDocumentProcessingService {
   }
 
   /**
-   * Save individual receipt results to separate files in the results folder
+   * Save individual receipt result immediately when it completes
    */
-  private async saveIndividualReceiptResults(
+  private async saveIndividualReceiptResult(
+    originalFilename: string,
+    receipt: any
+  ): Promise<void> {
+    try {
+      const fs = require('fs');
+      const path = require('path');
+
+      // Create results directory if it doesn't exist
+      const resultsDir = path.join(process.cwd(), 'results');
+      if (!fs.existsSync(resultsDir)) {
+        fs.mkdirSync(resultsDir, { recursive: true });
+      }
+
+      // Get base filename without extension
+      const baseFilename = path.parse(originalFilename).name;
+
+      // Create filename: originalname_receipt_X_result.json
+      const receiptFilename = `${baseFilename}_receipt_${receipt.invoiceNumber}_result.json`;
+      const receiptFilePath = path.join(resultsDir, receiptFilename);
+
+      // Create individual receipt result object
+      const receiptResult = {
+        originalDocument: {
+          filename: originalFilename,
+          receiptId: receipt.receiptId,
+          invoiceNumber: receipt.invoiceNumber,
+          pages: receipt.pages,
+          processingTime: receipt.processingTime,
+          processedAt: new Date().toISOString(),
+        },
+        imageQualityAssessment: receipt.imageQualityAssessment,
+        expenseProcessingResult: receipt.expenseProcessingResult,
+        metadata: {
+          receiptId: receipt.receiptId,
+          invoiceNumber: receipt.invoiceNumber,
+          pages: receipt.pages,
+          pdfPath: receipt.pdfPath,
+          markdownLength: receipt.markdown?.length || 0,
+          processingTime: receipt.processingTime,
+          success: receipt.success !== false,
+          processedAt: new Date().toISOString(),
+          originalFilename: originalFilename,
+          storedImmediately: true, // Flag to indicate immediate storage
+        }
+      };
+
+      // Save the individual receipt result immediately
+      fs.writeFileSync(receiptFilePath, JSON.stringify(receiptResult, null, 2), 'utf8');
+      
+      this.logger.log(`   ✅ Immediately saved receipt ${receipt.invoiceNumber} result: ${receiptFilePath}`);
+
+    } catch (error) {
+      this.logger.error(`   ❌ Failed to immediately save receipt ${receipt.invoiceNumber} result:`, error);
+    }
+  }
+
+  /**
+   * Save consolidated summary after all receipts complete
+   */
+  private async saveConsolidatedSummary(
     originalFilename: string,
     receipts: any[]
   ): Promise<void> {
@@ -427,51 +489,9 @@ export class EnhancedDocumentProcessingService {
       // Get base filename without extension
       const baseFilename = path.parse(originalFilename).name;
 
-      this.logger.log(`💾 Saving ${receipts.length} individual receipt results for ${originalFilename}`);
+      this.logger.log(`📋 Saving consolidated summary for ${receipts.length} receipts from ${originalFilename}`);
 
-      // Save each receipt result separately
-      for (const receipt of receipts) {
-        try {
-          // Create filename: originalname_receipt_X_result.json
-          const receiptFilename = `${baseFilename}_receipt_${receipt.invoiceNumber}_result.json`;
-          const receiptFilePath = path.join(resultsDir, receiptFilename);
-
-          // Create individual receipt result object
-          const receiptResult = {
-            originalDocument: {
-              filename: originalFilename,
-              receiptId: receipt.receiptId,
-              invoiceNumber: receipt.invoiceNumber,
-              pages: receipt.pages,
-              processingTime: receipt.processingTime,
-              processedAt: new Date().toISOString(),
-            },
-            imageQualityAssessment: receipt.imageQualityAssessment,
-            expenseProcessingResult: receipt.expenseProcessingResult,
-            metadata: {
-              receiptId: receipt.receiptId,
-              invoiceNumber: receipt.invoiceNumber,
-              pages: receipt.pages,
-              pdfPath: receipt.pdfPath,
-              markdownLength: receipt.markdown?.length || 0,
-              processingTime: receipt.processingTime,
-              success: receipt.success !== false,
-              processedAt: new Date().toISOString(),
-              originalFilename: originalFilename,
-            }
-          };
-
-          // Save the individual receipt result
-          fs.writeFileSync(receiptFilePath, JSON.stringify(receiptResult, null, 2), 'utf8');
-          
-          this.logger.log(`   ✅ Saved receipt ${receipt.invoiceNumber} result: ${receiptFilePath}`);
-
-        } catch (error) {
-          this.logger.error(`   ❌ Failed to save receipt ${receipt.invoiceNumber} result:`, error);
-        }
-      }
-
-      // Also save a consolidated summary file
+      // Save consolidated summary file (individual receipts already saved immediately)
       const summaryFilename = `${baseFilename}_enhanced_summary.json`;
       const summaryFilePath = path.join(resultsDir, summaryFilename);
 
