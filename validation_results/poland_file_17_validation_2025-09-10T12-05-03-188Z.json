@@ -1,0 +1,531 @@
+{
+  "overall_score": 0.9216666666666667,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.91,
+      "issues": [
+        "1. The AI mischaracterizes the document as missing vendor names when it appears to be a travel expense report summary rather than individual receipts.",
+        "2. The AI suggests the hotel expense exceeds limits when it actually appears to be within the stated limit of PLN 900."
+      ],
+      "summary": "The AI response is mostly factually grounded, correctly identifying the need for a mileage logbook and referencing appropriate compliance rules. However, it mischaracterizes the document type (treating a travel expense report as if it should contain vendor names) and incorrectly suggests the hotel expense exceeds limits when it appears to be within the PLN 900 threshold.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the receipt does not show the name of the vendor/merchant. While the extracted data does include document numbers for each expense item, it doesn't explicitly show vendor/merchant names. However, the data shows a travel expense report format rather than individual receipts, so this issue is partially valid but mischaracterizes the document type.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identifies that hotel expenses (PLN 656.50) may exceed allowable limits. According to the compliance rules, domestic accommodation cannot exceed 20 times the allowance (PLN 900). While the hotel expense is within this limit, the AI's reference to the rule is accurate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly notes that for mileage expenses, a logbook must be submitted with specific details. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI mischaracterizes the document as missing vendor names when it appears to be a travel expense report summary rather than individual receipts.\n2. The AI suggests the hotel expense exceeds limits when it actually appears to be within the stated limit of PLN 900.\n\nSUMMARY: The AI response is mostly factually grounded, correctly identifying the need for a mileage logbook and referencing appropriate compliance rules. However, it mischaracterizes the document type (treating a travel expense report as if it should contain vendor names) and incorrectly suggests the hotel expense exceeds limits when it appears to be within the PLN 900 threshold.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the receipt does not show the name of the vendor/merchant. While the extracted data does include document numbers for each expense item, it doesn't explicitly show vendor/merchant names. However, the data shows a travel expense report format rather than individual receipts, so this issue is partially valid but mischaracterizes the document type.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identifies that hotel expenses (PLN 656.50) may exceed allowable limits. According to the compliance rules, domestic accommodation cannot exceed 20 times the allowance (PLN 900). While the hotel expense is within this limit, the AI's reference to the rule is accurate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly notes that for mileage expenses, a logbook must be submitted with specific details. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI mischaracterizes the document as missing vendor names when it appears to be a travel expense report summary rather than individual receipts.\n2. The AI suggests the hotel expense exceeds limits when it actually appears to be within the stated limit of PLN 900.\n\nSUMMARY: The AI response is mostly factually grounded, correctly identifying the need for a mileage logbook and referencing appropriate compliance rules. However, it mischaracterizes the document type (treating a travel expense report as if it should contain vendor names) and incorrectly suggests the hotel expense exceeds limits when it appears to be within the PLN 900 threshold."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - All claims in the AI response regarding missing supplier business name, exceeding allowable hotel expenses, and missing mileage logbook can be traced back to the extracted data and compliance rules. The response accurately represents these issues.\n\nISSUE_2_VALIDATION_SCORE: 95 - The numerical values, dates, and amounts in the AI response match the extracted data very closely. There is no evidence of fabricated or assumed information beyond what is provided.\n\nISSUE_3_VALIDATION_SCORE: 95 - The entity names and details, such as the company name \"GOGLOBAL GEO Poland Sp. Z O.O.\", employee name \"Maciej Pietras\", and travel details, are accurately represented in the AI response.\n\nCONFIDENCE: 93\nISSUES: None identified.\nSUMMARY: The AI response is very well factually grounded in the provided extracted data and compliance rules. All key claims can be traced back to the information given, and numerical values, dates, and entity details are accurately represented. There is a high degree of confidence that the response is factually accurate."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding the missing supplier business name is accurately identified. The extracted data does not show individual supplier names for each expense item, which aligns with the AI's observation.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about hotel expenses exceeding the maximum allowable amount is correctly identified. The extracted data shows a hotel expense of 656.5 PLN, which exceeds the stated limit of 20 times the daily allowance (45 PLN * 20 = 900 PLN).\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding the missing mileage logbook is accurately identified. The extracted data shows that the form of transport is \"CAR\", but there's no mention of a mileage logbook, which aligns with the AI's observation.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the provided extracted data.\n\nSUMMARY: The AI response is highly factually grounded. All three issues identified (missing supplier business name, exceeding hotel expense limit, and missing mileage logbook) are accurately based on the information provided in the extracted data. The numerical values and details mentioned in the AI response match the extracted data precisely. There is no evidence of fabrication or assumptions beyond the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims the receipt does not show the name of the vendor/merchant. While the extracted data does include document numbers for each expense item, it doesn't explicitly show vendor/merchant names. However, the data shows a travel expense report format rather than individual receipts, so this issue is partially valid but mischaracterizes the document type.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identifies that hotel expenses (PLN 656.50) may exceed allowable limits. According to the compliance rules, domestic accommodation cannot exceed 20 times the allowance (PLN 900). While the hotel expense is within this limit, the AI's reference to the rule is accurate.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly notes that for mileage expenses, a logbook must be submitted with specific details. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8833333333333333,
+      "issues": [
+        "1. Issue 2 incorrectly flags the hotel expense (PLN 656.50) as exceeding the maximum allowable amount",
+        "when it is actually within the PLN 900 limit.",
+        "2. The AI did not identify potential issues with the meal expense reimbursement",
+        "which according to the rules should be covered by the per diem allowance.",
+        "3. The AI did not mention the requirement for GoGlobal company name on the receipt",
+        "which is mandatory according to the compliance rules."
+      ],
+      "summary": "The AI response correctly identified two compliance issues (missing supplier names and mileage logbook requirement) but incorrectly flagged the hotel expense as exceeding limits when it was within the allowable amount. It also missed potential issues with meal reimbursement and the requirement for the GoGlobal company name on receipts. Overall, the response demonstrates good knowledge of Polish travel expense regulations but contains some inaccuracies and omissions that reduce its reliability.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that supplier business names are missing from the receipt, which is a mandatory requirement according to the compliance rules. The knowledge base clearly states \"Document must show the name of the vendor/merchant that provided the goods or services\" for both travel and non-travel expenses. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI accurately applied the rule regarding domestic accommodation limits. According to the knowledge base, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" The hotel expense listed is PLN 656.50, which is within the limit, so this should not have been flagged as an issue. The AI incorrectly identified this as exceeding the allowable amount.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI correctly identified the requirement for a mileage logbook. The compliance rules state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form of transport is listed as \"CAR,\" this requirement applies, and the recommendation to submit a mileage logbook is appropriate.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue 2 incorrectly flags the hotel expense (PLN 656.50) as exceeding the maximum allowable amount, when it is actually within the PLN 900 limit.\n2. The AI did not identify potential issues with the meal expense reimbursement, which according to the rules should be covered by the per diem allowance.\n3. The AI did not mention the requirement for GoGlobal company name on the receipt, which is mandatory according to the compliance rules.\n\nSUMMARY: The AI response correctly identified two compliance issues (missing supplier names and mileage logbook requirement) but incorrectly flagged the hotel expense as exceeding limits when it was within the allowable amount. It also missed potential issues with meal reimbursement and the requirement for the GoGlobal company name on receipts. Overall, the response demonstrates good knowledge of Polish travel expense regulations but contains some inaccuracies and omissions that reduce its reliability.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that supplier business names are missing from the receipt, which is a mandatory requirement according to the compliance rules. The knowledge base clearly states \"Document must show the name of the vendor/merchant that provided the goods or services\" for both travel and non-travel expenses. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI accurately applied the rule regarding domestic accommodation limits. According to the knowledge base, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" The hotel expense listed is PLN 656.50, which is within the limit, so this should not have been flagged as an issue. The AI incorrectly identified this as exceeding the allowable amount.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI correctly identified the requirement for a mileage logbook. The compliance rules state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form of transport is listed as \"CAR,\" this requirement applies, and the recommendation to submit a mileage logbook is appropriate.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue 2 incorrectly flags the hotel expense (PLN 656.50) as exceeding the maximum allowable amount, when it is actually within the PLN 900 limit.\n2. The AI did not identify potential issues with the meal expense reimbursement, which according to the rules should be covered by the per diem allowance.\n3. The AI did not mention the requirement for GoGlobal company name on the receipt, which is mandatory according to the compliance rules.\n\nSUMMARY: The AI response correctly identified two compliance issues (missing supplier names and mileage logbook requirement) but incorrectly flagged the hotel expense as exceeding limits when it was within the allowable amount. It also missed potential issues with meal reimbursement and the requirement for the GoGlobal company name on receipts. Overall, the response demonstrates good knowledge of Polish travel expense regulations but contains some inaccuracies and omissions that reduce its reliability."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing supplier business name as an issue, which is a mandatory requirement according to the compliance knowledge base for Poland. The recommendation provided aligns with the knowledge base guidelines.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI response accurately identifies the hotel expense exceeding the maximum allowable amount for domestic accommodation in Poland. The recommendation provided is in line with the specific compliance rule for domestic hotel expenses.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly flags the missing mileage logbook as an issue, which is a required additional information item for mileage expenses in Poland. The recommendation provided matches the knowledge base guidelines.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response demonstrates a strong adherence to the compliance knowledge base for Poland. It correctly identifies the key issues with the receipt, including missing supplier name, exceeding hotel expense limits, and lack of mileage logbook. The recommendations provided are in line with the country-specific regulations and requirements. Overall, the response shows a high level of compliance knowledge and application."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt, which is a mandatory requirement according to the compliance rules for both travel and non-travel expenses across all ICP names, including GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately applied the rule for domestic accommodation expenses, citing the correct limit of 20 times the daily allowance (PLN 900). This aligns perfectly with the compliance policy stated in the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for a mileage logbook with specific details (start/end date and time, reason for travel, location, and approval) as required by the compliance rules for mileage expenses.\n\nCONFIDENCE: 100\n\nISSUES: None identified. The AI response adheres closely to the provided knowledge base.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Poland. It correctly identifies three key issues: missing supplier business name, exceeding allowable hotel expenses, and the requirement for a mileage logbook. Each issue is accurately linked to specific rules in the compliance policies, showing a thorough understanding and application of the knowledge base. The recommendations provided are in line with the stated regulations, and the confidence scores for each issue reflect appropriate certainty levels based on the clarity of the rules. The response also correctly applies the context of GoGlobal as the ICP. Overall, the AI's interpretation and application of the compliance rules show no contradictions or misinterpretations of the established guidelines."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that supplier business names are missing from the receipt, which is a mandatory requirement according to the compliance rules. The knowledge base clearly states \"Document must show the name of the vendor/merchant that provided the goods or services\" for both travel and non-travel expenses. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI accurately applied the rule regarding domestic accommodation limits. According to the knowledge base, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" The hotel expense listed is PLN 656.50, which is within the limit, so this should not have been flagged as an issue. The AI incorrectly identified this as exceeding the allowable amount.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified the requirement for a mileage logbook. The compliance rules state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form of transport is listed as \"CAR,\" this requirement applies, and the recommendation to submit a mileage logbook is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "1. Issue 2 slightly mischaracterizes the hotel expense as exceeding the limit when it's actually within the PLN 900 limit."
+      ],
+      "summary": "The compliance assessment is highly accurate. It correctly identifies three legitimate compliance issues: missing supplier business names, the need for a mileage logbook for car travel, and a concern about hotel expenses (though the hotel expense is actually within limits at PLN 656.50, not exceeding the PLN 900 maximum). The validation correctly applies the relevant business rules from the compliance policies and identifies appropriate follow-up actions. The assessment provides proper recommendations for addressing each issue in accordance with Poland's travel expense regulations.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt lacks the supplier business name for the various expenses listed. According to the compliance rules, the \"Supplier business name\" is mandatory for all expense types, and the rule states \"Document must show the name of the vendor/merchant that provided the goods or services.\" The receipt only shows document numbers but no vendor names.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that the hotel expense (PLN 656.50) potentially exceeds the maximum allowable amount for domestic accommodation. According to the rules, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" While the hotel expense is within this limit (656.50 < 900), the assessment may be flagging this as a potential issue that requires verification. The slight inaccuracy is that the hotel expense is actually within the limit.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that for mileage expenses, a logbook must be submitted with specific details. The compliance rule clearly states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form indicates \"CAR\" as the form of transport, this documentation is required but not evident in the provided receipt.\n\nCONFIDENCE: 95\n\nISSUES: \n1. Issue 2 slightly mischaracterizes the hotel expense as exceeding the limit when it's actually within the PLN 900 limit.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies three legitimate compliance issues: missing supplier business names, the need for a mileage logbook for car travel, and a concern about hotel expenses (though the hotel expense is actually within limits at PLN 656.50, not exceeding the PLN 900 maximum). The validation correctly applies the relevant business rules from the compliance policies and identifies appropriate follow-up actions. The assessment provides proper recommendations for addressing each issue in accordance with Poland's travel expense regulations.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt lacks the supplier business name for the various expenses listed. According to the compliance rules, the \"Supplier business name\" is mandatory for all expense types, and the rule states \"Document must show the name of the vendor/merchant that provided the goods or services.\" The receipt only shows document numbers but no vendor names.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that the hotel expense (PLN 656.50) potentially exceeds the maximum allowable amount for domestic accommodation. According to the rules, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" While the hotel expense is within this limit (656.50 < 900), the assessment may be flagging this as a potential issue that requires verification. The slight inaccuracy is that the hotel expense is actually within the limit.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that for mileage expenses, a logbook must be submitted with specific details. The compliance rule clearly states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form indicates \"CAR\" as the form of transport, this documentation is required but not evident in the provided receipt.\n\nCONFIDENCE: 95\n\nISSUES: \n1. Issue 2 slightly mischaracterizes the hotel expense as exceeding the limit when it's actually within the PLN 900 limit.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies three legitimate compliance issues: missing supplier business names, the need for a mileage logbook for car travel, and a concern about hotel expenses (though the hotel expense is actually within limits at PLN 656.50, not exceeding the PLN 900 maximum). The validation correctly applies the relevant business rules from the compliance policies and identifies appropriate follow-up actions. The assessment provides proper recommendations for addressing each issue in accordance with Poland's travel expense regulations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The validation for the missing supplier business name is accurate. The compliance rule clearly states that the receipt must show the name of the vendor/merchant, and the assessment correctly identified this as an issue.\n\nISSUE_2_VALIDATION_SCORE: 95 - The validation for the hotel expense exceeding the maximum allowable amount is also accurate. The compliance rule specifies the domestic accommodation limit, and the assessment correctly identified this expense as non-compliant.\n\nISSUE_3_VALIDATION_SCORE: 85 - The validation for the missing mileage logbook is mostly accurate. The compliance rule requires a logbook with specific details, and the assessment correctly identified this as an issue. However, the recommendation could be more specific on the required logbook details.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is generally very accurate. It correctly identifies the key compliance issues with the receipt, including missing supplier information, exceeding accommodation limits, and lacking a mileage logbook. The validation of these issues is thorough and aligned with the provided compliance rules. Overall, the assessment is comprehensive and reliable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement according to the compliance rules. This is an accurate identification of a compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment accurately identifies that the hotel expense exceeds the maximum allowable amount for domestic accommodation. The rule states that it cannot exceed 20 times the daily allowance (45 PLN), which is 900 PLN. The hotel expense of 656.50 PLN does not exceed this limit, so this issue is not actually present. However, the assessment is correct in referencing the relevant rule.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the need for a mileage logbook, which is required according to the compliance rules for mileage expenses. This is an accurate identification of a compliance requirement.\n\nCONFIDENCE: 95\n\nISSUES:\n1. The second issue (regarding hotel expenses) is incorrectly flagged as the hotel expense does not actually exceed the limit.\n2. The assessment does not mention the requirement for the GoGlobal company name on the receipt, which is a mandatory rule for GoGlobal ICP.\n3. The assessment does not address the rule about expenses needing to be submitted within 4 months, which is relevant for GoGlobal ICP.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying issues related to missing supplier business name and the requirement for a mileage logbook. However, it incorrectly flags the hotel expense as exceeding limits when it does not. Additionally, it misses a couple of GoGlobal-specific requirements. Despite these minor issues, the overall assessment provides a good foundation for ensuring compliance with most of the key rules and regulations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the receipt lacks the supplier business name for the various expenses listed. According to the compliance rules, the \"Supplier business name\" is mandatory for all expense types, and the rule states \"Document must show the name of the vendor/merchant that provided the goods or services.\" The receipt only shows document numbers but no vendor names.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the hotel expense (PLN 656.50) potentially exceeds the maximum allowable amount for domestic accommodation. According to the rules, \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\" While the hotel expense is within this limit (656.50 < 900), the assessment may be flagging this as a potential issue that requires verification. The slight inaccuracy is that the hotel expense is actually within the limit.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that for mileage expenses, a logbook must be submitted with specific details. The compliance rule clearly states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" Since the form indicates \"CAR\" as the form of transport, this documentation is required but not evident in the provided receipt.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "The system has correctly identified and categorized the main compliance issues. However",
+        "there could be additional issues worth noting: 1) The daily allowance calculation with meal deductions should be verified against the rules",
+        "2) The receipt appears to be a travel expense report rather than individual receipts",
+        "which may require different validation."
+      ],
+      "summary": "The issue categorization is generally accurate and follows the established taxonomy. All three issues are properly classified with appropriate severity levels and actionable recommendations. The descriptions clearly identify what's missing or problematic, and the knowledge base references correctly cite relevant rules. The only minor concern is whether the mileage logbook requirement applies in this specific case, but overall the categorization is sound.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier business name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies what's missing, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the relevant rule.\n\nISSUE_2_VALIDATION_SCORE: 95 - The hotel expense exceeding allowable amount issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" which aligns with the compliance policy that excess hotel expenses are subject to taxation. The description clearly identifies the problem, and the recommendation includes the specific limit (PLN 900) from the compliance rules. The knowledge base reference is directly quoted from the rules.\n\nISSUE_3_VALIDATION_SCORE: 85 - The mileage logbook issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since additional documentation is required. The description and recommendation accurately reflect the compliance requirement. However, this score is slightly lower because the receipt shows \"CAR\" as the form of transport, but it's unclear if this is specifically a mileage reimbursement claim requiring a logbook or just indicating the mode of transport.\n\nCONFIDENCE: 90\n\nISSUES: The system has correctly identified and categorized the main compliance issues. However, there could be additional issues worth noting: 1) The daily allowance calculation with meal deductions should be verified against the rules, 2) The receipt appears to be a travel expense report rather than individual receipts, which may require different validation.\n\nSUMMARY: The issue categorization is generally accurate and follows the established taxonomy. All three issues are properly classified with appropriate severity levels and actionable recommendations. The descriptions clearly identify what's missing or problematic, and the knowledge base references correctly cite relevant rules. The only minor concern is whether the mileage logbook requirement applies in this specific case, but overall the categorization is sound.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier business name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies what's missing, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the relevant rule.\n\nISSUE_2_VALIDATION_SCORE: 95 - The hotel expense exceeding allowable amount issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" which aligns with the compliance policy that excess hotel expenses are subject to taxation. The description clearly identifies the problem, and the recommendation includes the specific limit (PLN 900) from the compliance rules. The knowledge base reference is directly quoted from the rules.\n\nISSUE_3_VALIDATION_SCORE: 85 - The mileage logbook issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since additional documentation is required. The description and recommendation accurately reflect the compliance requirement. However, this score is slightly lower because the receipt shows \"CAR\" as the form of transport, but it's unclear if this is specifically a mileage reimbursement claim requiring a logbook or just indicating the mode of transport.\n\nCONFIDENCE: 90\n\nISSUES: The system has correctly identified and categorized the main compliance issues. However, there could be additional issues worth noting: 1) The daily allowance calculation with meal deductions should be verified against the rules, 2) The receipt appears to be a travel expense report rather than individual receipts, which may require different validation.\n\nSUMMARY: The issue categorization is generally accurate and follows the established taxonomy. All three issues are properly classified with appropriate severity levels and actionable recommendations. The descriptions clearly identify what's missing or problematic, and the knowledge base references correctly cite relevant rules. The only minor concern is whether the mileage logbook requirement applies in this specific case, but overall the categorization is sound."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding the missing supplier business name is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the problem and provides a relevant recommendation to address it.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue regarding the hotel expense exceeding the maximum allowable amount is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description accurately identifies the problem and provides a clear recommendation on the applicable policy.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue regarding the missing mileage logbook is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description clearly outlines the requirement and provides a suitable recommendation.\n\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The issues are accurately categorized according to the established taxonomy. The descriptions are clear, actionable, and aligned with the compliance rules provided. No issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the missing supplier business name, which is a mandatory requirement according to the compliance rules. The recommendation is clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is perfectly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately identifies that the hotel expense exceeds the maximum allowable amount for domestic accommodation. The recommendation provides the exact rule and allowance limits, which matches the compliance policies provided.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". It accurately points out the missing mileage logbook, which is required according to the compliance rules. The recommendation is clear and actionable. However, it could be improved by mentioning that this is specifically for non-travel mileage expenses, as the context suggests this is a travel expense.\n\nCONFIDENCE: 95\n\nISSUES: \n- Issue 3 could be more specific about the context (travel vs. non-travel mileage)\n- No issues related to per diem or meal allowances were identified, which might be relevant given the travel context and compliance rules\n\nSUMMARY: The issue categorization is highly accurate overall. All three issues are correctly classified and described, with clear recommendations that align with the provided compliance rules. The only minor improvements could be in specifying the context for the mileage logbook issue and potentially identifying any issues related to per diem or meal allowances, given the travel nature of the expense report."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing supplier business name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory receipt standard. The description clearly identifies what's missing, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the relevant rule.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The hotel expense exceeding allowable amount issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" which aligns with the compliance policy that excess hotel expenses are subject to taxation. The description clearly identifies the problem, and the recommendation includes the specific limit (PLN 900) from the compliance rules. The knowledge base reference is directly quoted from the rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The mileage logbook issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since additional documentation is required. The description and recommendation accurately reflect the compliance requirement. However, this score is slightly lower because the receipt shows \"CAR\" as the form of transport, but it's unclear if this is specifically a mileage reimbursement claim requiring a logbook or just indicating the mode of transport.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8866666666666667,
+      "issues": [
+        "The first recommendation could be more specific about how to address the missing vendor information. While all recommendations are valid",
+        "the system could have also noted that the hotel expense of 656.50 PLN is actually within the allowable limit of 900 PLN",
+        "contrary to what issue #2 suggests."
+      ],
+      "summary": "The recommendations are generally valid and helpful, with clear references to the compliance rules. The hotel expense recommendation contains an error in assessment (the amount is within limits), but the rule citation is correct. The mileage logbook recommendation is specific and actionable. The supplier name recommendation could be more specific but correctly identifies a compliance gap.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier business name is valid but somewhat generic. It correctly identifies that vendor information is mandatory per the compliance rules, but could be more specific about exactly what action to take (e.g., request a corrected receipt with vendor details).\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding hotel expenses is highly valid and specific. It correctly cites the exact rule that \"domestic accommodation amount cannot exceed 20 times the amount of the allowance (PLN 900)\" and provides the alternative option for when no bill is submitted. This directly addresses the compliance issue with the hotel expense of PLN 656.50 shown on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to \"submit a mileage logbook with the start/end date and time, reason for travel, location, and approval\" is specific, actionable, and directly addresses the compliance requirement. It correctly identifies all the required elements for the mileage documentation according to the compliance rules.\n\nCONFIDENCE: 88\n\nISSUES: The first recommendation could be more specific about how to address the missing vendor information. While all recommendations are valid, the system could have also noted that the hotel expense of 656.50 PLN is actually within the allowable limit of 900 PLN, contrary to what issue #2 suggests.\n\nSUMMARY: The recommendations are generally valid and helpful, with clear references to the compliance rules. The hotel expense recommendation contains an error in assessment (the amount is within limits), but the rule citation is correct. The mileage logbook recommendation is specific and actionable. The supplier name recommendation could be more specific but correctly identifies a compliance gap.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier business name is valid but somewhat generic. It correctly identifies that vendor information is mandatory per the compliance rules, but could be more specific about exactly what action to take (e.g., request a corrected receipt with vendor details).\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding hotel expenses is highly valid and specific. It correctly cites the exact rule that \"domestic accommodation amount cannot exceed 20 times the amount of the allowance (PLN 900)\" and provides the alternative option for when no bill is submitted. This directly addresses the compliance issue with the hotel expense of PLN 656.50 shown on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to \"submit a mileage logbook with the start/end date and time, reason for travel, location, and approval\" is specific, actionable, and directly addresses the compliance requirement. It correctly identifies all the required elements for the mileage documentation according to the compliance rules.\n\nCONFIDENCE: 88\n\nISSUES: The first recommendation could be more specific about how to address the missing vendor information. While all recommendations are valid, the system could have also noted that the hotel expense of 656.50 PLN is actually within the allowable limit of 900 PLN, contrary to what issue #2 suggests.\n\nSUMMARY: The recommendations are generally valid and helpful, with clear references to the compliance rules. The hotel expense recommendation contains an error in assessment (the amount is within limits), but the rule citation is correct. The mileage logbook recommendation is specific and actionable. The supplier name recommendation could be more specific but correctly identifies a compliance gap."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name on the receipt is specific, actionable, and directly addresses the identified issue. It is a reasonable and feasible request to make to the supplier.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation regarding the domestic hotel expense limit is detailed and specific, providing the exact allowable amount and options for lump-sum payment if no bill is submitted. This addresses the issue directly, though the employee may need to negotiate with the hotel if the expense exceeds the limit.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to submit a mileage logbook with the required details is clear, actionable, and addresses the issue. This is a standard requirement that the employee should be able to fulfill.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are overall valid and useful. They directly address the identified compliance issues with specific, actionable guidance. The recommendations are feasible and practical for the employee to implement. No contradictory or harmful advice is given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing supplier business name with the supplier or provider is valid and actionable. It directly addresses the identified issue and is a practical step to ensure compliance. However, it could be more specific by suggesting how to approach the supplier or what documentation to request.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding hotel expenses is highly valid and specific. It clearly states the maximum allowable amount for domestic accommodation and provides alternative options. This directly addresses the compliance issue and gives actionable information to correct the expense.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation for the mileage logbook is very specific, actionable, and directly addresses the identified issue. It clearly outlines what information needs to be included in the logbook, making it easy for the employee to comply with the requirement.\n\nCONFIDENCE: 88\n\nISSUES:\n- The recommendation for Issue 1 could be more specific about how to address the missing information with the supplier.\n- No major issues with the validity of the recommendations.\n\nSUMMARY: Overall, the recommendations provided are valid, actionable, and address the identified compliance issues effectively. They offer practical solutions that are feasible to implement. The advice for the hotel expenses and mileage logbook is particularly strong, providing clear guidance on what needs to be done to ensure compliance. The recommendation for the missing supplier business name, while valid, could be slightly more detailed in its approach. There are no contradictory or harmful suggestions, and the recommendations align well with the compliance rules provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier business name is valid but somewhat generic. It correctly identifies that vendor information is mandatory per the compliance rules, but could be more specific about exactly what action to take (e.g., request a corrected receipt with vendor details).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding hotel expenses is highly valid and specific. It correctly cites the exact rule that \"domestic accommodation amount cannot exceed 20 times the amount of the allowance (PLN 900)\" and provides the alternative option for when no bill is submitted. This directly addresses the compliance issue with the hotel expense of PLN 656.50 shown on the receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"submit a mileage logbook with the start/end date and time, reason for travel, location, and approval\" is specific, actionable, and directly addresses the compliance requirement. It correctly identifies all the required elements for the mileage documentation according to the compliance rules.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9833333333333334,
+      "issues": [
+        "None detected. All three issues identified by the AI are based on actual compliance rules and match the data provided in the receipt."
+      ],
+      "summary": "The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. There are no hallucinations or fabricated information in the validation results. The AI correctly applied the relevant compliance rules to the receipt data, identifying legitimate issues regarding missing supplier names, hotel expense limits, and mileage documentation requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt lacks supplier business name information. The extracted data shows line items with document numbers but no vendor/merchant names, which is a valid compliance concern according to the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly applies the compliance rule about domestic accommodation limits. The hotel expense is PLN 656.50 (within the PLN 900 limit), but the AI correctly identifies the rule that \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\"\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies the requirement for a mileage logbook. The form indicates \"CAR\" as the form of transport, and the compliance rules clearly state that \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nCONFIDENCE: 95\n\nISSUES: None detected. All three issues identified by the AI are based on actual compliance rules and match the data provided in the receipt.\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. There are no hallucinations or fabricated information in the validation results. The AI correctly applied the relevant compliance rules to the receipt data, identifying legitimate issues regarding missing supplier names, hotel expense limits, and mileage documentation requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt lacks supplier business name information. The extracted data shows line items with document numbers but no vendor/merchant names, which is a valid compliance concern according to the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly applies the compliance rule about domestic accommodation limits. The hotel expense is PLN 656.50 (within the PLN 900 limit), but the AI correctly identifies the rule that \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\"\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies the requirement for a mileage logbook. The form indicates \"CAR\" as the form of transport, and the compliance rules clearly state that \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nCONFIDENCE: 95\n\nISSUES: None detected. All three issues identified by the AI are based on actual compliance rules and match the data provided in the receipt.\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. There are no hallucinations or fabricated information in the validation results. The AI correctly applied the relevant compliance rules to the receipt data, identifying legitimate issues regarding missing supplier names, hotel expense limits, and mileage documentation requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response appears to be fully consistent with the source data. There are no signs of fabricated or hallucinated details.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements described in the response align with the information provided in the \"Compliance Rules\" section, which seems to be a comprehensive and accurate representation of the relevant policies.\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates mentioned in the extracted data and compliance rules appear to be factual and consistent with the source information. There are no signs of fabricated details.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided are fully consistent with the source data and compliance rules. The response appears to be a reliable and accurate representation of the information given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing supplier business name on the receipt, which is a valid compliance requirement based on the provided rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The hotel expense exceeding the maximum allowable amount is correctly identified based on the compliance rules provided, which state a limit of PLN 900 for domestic accommodation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The requirement for a mileage logbook is accurately stated and matches the compliance rules provided for mileage expenses.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be entirely based on the provided receipt data and compliance rules. All issues identified are supported by the given information, and no fabricated or hallucinated content was detected. The response accurately applies the compliance rules to the receipt data without introducing any unsupported information or assumptions."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the receipt lacks supplier business name information. The extracted data shows line items with document numbers but no vendor/merchant names, which is a valid compliance concern according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly applies the compliance rule about domestic accommodation limits. The hotel expense is PLN 656.50 (within the PLN 900 limit), but the AI correctly identifies the rule that \"Domestic accommodation: amount for an overnight stay cannot exceed 20 times the amount of the allowance (PLN 900).\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies the requirement for a mileage logbook. The form indicates \"CAR\" as the form of transport, and the compliance rules clearly state that \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI mischaracterizes the document as missing vendor names when it appears to be a travel expense report summary rather than individual receipts., 2. The AI suggests the hotel expense exceeds limits when it actually appears to be within the stated limit of PLN 900.",
+    "Address issues in knowledge base adherence: 1. Issue 2 incorrectly flags the hotel expense (PLN 656.50) as exceeding the maximum allowable amount, when it is actually within the PLN 900 limit., 2. The AI did not identify potential issues with the meal expense reimbursement, which according to the rules should be covered by the per diem allowance., 3. The AI did not mention the requirement for GoGlobal company name on the receipt, which is mandatory according to the compliance rules.",
+    "Address issues in compliance accuracy: 1. Issue 2 slightly mischaracterizes the hotel expense as exceeding the limit when it's actually within the PLN 900 limit.",
+    "Address issues in issue categorization: The system has correctly identified and categorized the main compliance issues. However, there could be additional issues worth noting: 1) The daily allowance calculation with meal deductions should be verified against the rules, 2) The receipt appears to be a travel expense report rather than individual receipts, which may require different validation.",
+    "Address issues in recommendation validity: The first recommendation could be more specific about how to address the missing vendor information. While all recommendations are valid, the system could have also noted that the hotel expense of 656.50 PLN is actually within the allowable limit of 900 PLN, contrary to what issue #2 suggests.",
+    "Address issues in hallucination detection: None detected. All three issues identified by the AI are based on actual compliance rules and match the data provided in the receipt."
+  ],
+  "timestamp": "2025-09-10T12:05:03.186Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 67412,
+    "timing": {
+      "validation_start_time": "2025-09-10T12:03:55.774Z",
+      "validation_end_time": "2025-09-10T12:05:03.186Z",
+      "total_validation_time_seconds": "67.4",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-10T12:03:55.774Z",
+          "end_time": "2025-09-10T12:05:03.186Z",
+          "duration_seconds": "67.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "67.4",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.45",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not show the name of the vendor/merchant that provided the goods or services.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 84.89,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The hotel expense exceeds the maximum allowable amount for domestic accommodation.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 93.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 90,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "For mileage, a logbook must be submitted with the start/end date and time, reason for travel, location, and approval.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 94.56,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

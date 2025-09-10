@@ -1,0 +1,531 @@
+{
+  "overall_score": 0.8255555555555555,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8833333333333333,
+      "issues": [],
+      "summary": "The AI response is completely factually grounded in the provided data. All three issues identified (missing receipt number, missing transaction reference, and tax amount requiring gross-up) are directly supported by the extracted data and compliance rules. The AI made no claims beyond what was provided in the data and accurately represented all details.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing. The extracted data shows \"receipt_number\": null, confirming this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction reference is missing. The extracted data shows \"transaction_reference\": null, confirming this issue is factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that tax amount is present and will be grossed up as per local regulations. The extracted data shows \"tax_amount\": 8.22 and \"tax_rate\": 6, and this aligns with the compliance rules provided that indicate approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All three issues identified (missing receipt number, missing transaction reference, and tax amount requiring gross-up) are directly supported by the extracted data and compliance rules. The AI made no claims beyond what was provided in the data and accurately represented all details.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing. The extracted data shows \"receipt_number\": null, confirming this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction reference is missing. The extracted data shows \"transaction_reference\": null, confirming this issue is factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that tax amount is present and will be grossed up as per local regulations. The extracted data shows \"tax_amount\": 8.22 and \"tax_rate\": 6, and this aligns with the compliance rules provided that indicate approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All three issues identified (missing receipt number, missing transaction reference, and tax amount requiring gross-up) are directly supported by the extracted data and compliance rules. The AI made no claims beyond what was provided in the data and accurately represented all details."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the response can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - No information is fabricated or assumed beyond what's provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - Numerical values, dates, and amounts match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - Entity names and details are accurately represented in the response.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details can be traced back to the information given. There is no fabrication or assumption beyond the extracted data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims that the receipt number is missing, but the extracted data shows an invoice number (329073647). While this is not explicitly labeled as a receipt number, it could serve the same purpose for a telecommunications invoice.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that there is no transaction reference in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI accurately notes the presence of a tax amount (8.22 MYR) in the extracted data, which aligns with the gross-up policy mentioned.\n\nCONFIDENCE: 65\n\nISSUES:\n1. The AI incorrectly states that the receipt number is missing when there is an invoice number present.\n2. The AI does not acknowledge that for a telecommunications invoice, an invoice number might serve the same purpose as a receipt number.\n\nSUMMARY: The AI response is partially grounded in the extracted data. It correctly identifies the missing transaction reference and the presence of a tax amount. However, it fails to recognize that the invoice number could potentially serve as a receipt number for this type of document, leading to an inaccurate assessment of the first issue. The overall factual grounding is moderate, with room for improvement in interpreting industry-specific document conventions."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt number is missing. The extracted data shows \"receipt_number\": null, confirming this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the transaction reference is missing. The extracted data shows \"transaction_reference\": null, confirming this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that tax amount is present and will be grossed up as per local regulations. The extracted data shows \"tax_amount\": 8.22 and \"tax_rate\": 6, and this aligns with the compliance rules provided that indicate approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "1. The AI incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the knowledge base for telecommunications receipts.",
+        "2. The AI did not acknowledge that the invoice does contain all the mandatory fields listed in the knowledge base (transaction date",
+        "expense description",
+        "total amount",
+        "supplier name).",
+        "3. The AI correctly applied the gross-up policy for tax amounts."
+      ],
+      "summary": "The AI response partially adheres to the knowledge base. While it correctly identified the tax amount gross-up requirement, it incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the provided knowledge base for telecommunications receipts in Malaysia. The AI should focus on the specific mandatory fields listed in the knowledge base rather than applying generic receipt requirements not specified in the provided rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The AI flagged missing receipt number as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts in Malaysia. The receiptStandards section lists mandatory fields as transaction date, expense type description, total amount, and supplier business name - all of which are present in the extracted data. Receipt number is not specifically mentioned as required.\n\nISSUE_2_VALIDATION_SCORE: 30 - Similarly, the AI flagged missing transaction reference as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts. The knowledge base does not specify transaction reference as a required field for this receipt type in Malaysia.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that tax amount is present and that the expense will be grossed up as per local regulations. This aligns with the compliancePoliciesGrossUpRelated section which states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the knowledge base for telecommunications receipts.\n2. The AI did not acknowledge that the invoice does contain all the mandatory fields listed in the knowledge base (transaction date, expense description, total amount, supplier name).\n3. The AI correctly applied the gross-up policy for tax amounts.\n\nSUMMARY: The AI response partially adheres to the knowledge base. While it correctly identified the tax amount gross-up requirement, it incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the provided knowledge base for telecommunications receipts in Malaysia. The AI should focus on the specific mandatory fields listed in the knowledge base rather than applying generic receipt requirements not specified in the provided rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The AI flagged missing receipt number as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts in Malaysia. The receiptStandards section lists mandatory fields as transaction date, expense type description, total amount, and supplier business name - all of which are present in the extracted data. Receipt number is not specifically mentioned as required.\n\nISSUE_2_VALIDATION_SCORE: 30 - Similarly, the AI flagged missing transaction reference as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts. The knowledge base does not specify transaction reference as a required field for this receipt type in Malaysia.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that tax amount is present and that the expense will be grossed up as per local regulations. This aligns with the compliancePoliciesGrossUpRelated section which states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the knowledge base for telecommunications receipts.\n2. The AI did not acknowledge that the invoice does contain all the mandatory fields listed in the knowledge base (transaction date, expense description, total amount, supplier name).\n3. The AI correctly applied the gross-up policy for tax amounts.\n\nSUMMARY: The AI response partially adheres to the knowledge base. While it correctly identified the tax amount gross-up requirement, it incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the provided knowledge base for telecommunications receipts in Malaysia. The AI should focus on the specific mandatory fields listed in the knowledge base rather than applying generic receipt requirements not specified in the provided rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identified that the receipt is missing the mandatory fields of receipt number and transaction reference, as per the receipt standards for Malaysia. This is a valid compliance issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI response accurately recognized that the tax amount on the receipt indicates the expense will be grossed up as per local regulations in Malaysia. This is in line with the compliance policies related to gross-up.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response provided the appropriate recommendation to address the gross-up issue, which is to pay the expense net to the employee and then gross it up if it is not tax-free, as per the compliance policies.\n\nCONFIDENCE: 95\nISSUES: None\n\nSUMMARY: The AI response has demonstrated a strong understanding of the compliance rules and knowledge base for Malaysia. It correctly identified the key compliance issues with the receipt, such as missing mandatory fields and the need for gross-up, and provided appropriate recommendations to address them. The response is well-aligned with the established compliance guidelines for the country and receipt type."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing, which is a mandatory field according to the receiptStandards in the knowledge base. This aligns perfectly with the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately pointed out that the transaction reference is missing, which is also a mandatory field as per the receiptStandards in the knowledge base. This demonstrates full adherence to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the tax amount is present and that the expense will be grossed up as per local regulations. This aligns with the compliancePoliciesGrossUpRelated rules in the knowledge base, which state that all approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\n\nCONFIDENCE: 95\n\nISSUES:\n- No significant issues with knowledge base adherence were identified.\n\nSUMMARY: The AI response demonstrates a high level of adherence to the compliance knowledge base for Malaysia. It correctly identifies missing mandatory fields (receipt number and transaction reference) and accurately applies the gross-up policy for tax amounts. The response considers country-specific regulations and receipt type requirements appropriately. There are no contradictions with established compliance guidelines. The only minor point that could potentially be improved is explicitly mentioning that the date of issue is present on the receipt, which is a mandatory field according to the receiptStandards. However, this omission does not significantly impact the overall accuracy and compliance of the response."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The AI flagged missing receipt number as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts in Malaysia. The receiptStandards section lists mandatory fields as transaction date, expense type description, total amount, and supplier business name - all of which are present in the extracted data. Receipt number is not specifically mentioned as required.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "Similarly, the AI flagged missing transaction reference as a compliance issue, but this is not explicitly listed in the provided knowledge base as a mandatory field for telecommunications receipts. The knowledge base does not specify transaction reference as a required field for this receipt type in Malaysia.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that tax amount is present and that the expense will be grossed up as per local regulations. This aligns with the compliancePoliciesGrossUpRelated section which states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.6833333333333335,
+      "issues": [
+        "1. The system may be too strict in requiring separate receipt number and transaction reference fields when the invoice number could serve both purposes for telecommunications expenses.",
+        "2. The system doesn't acknowledge that this is an invoice rather than a receipt",
+        "which might have different documentation requirements.",
+        "3. The system doesn't validate the date of issue (2025-09-04)",
+        "which appears to be in the future and may indicate an error in the receipt data."
+      ],
+      "summary": "The compliance assessment is generally accurate, particularly regarding the tax gross-up requirement. However, it may be overly strict in flagging missing receipt number and transaction reference when an invoice number is present. The system also missed validating the potentially erroneous future date on the invoice. For telecommunications expenses in Malaysia under GoGlobal ICP, the assessment correctly applies the gross-up rules but could be more flexible in interpreting identification fields on invoices versus receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The system correctly identified that a receipt number is missing, which is generally a required field for proper documentation. However, this is an invoice (document_type: \"Invoice\") rather than a receipt, and the invoice number (329073647) is present. For telecommunications expenses, the invoice number often serves as the receipt number, so this may be an overly strict interpretation.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the system flags a missing transaction reference, but for telecommunications invoices, the invoice number (329073647) often serves as the transaction reference. The validation is technically correct that a separate transaction reference field is empty, but may be unnecessarily strict given the invoice number is present.\n\nISSUE_3_VALIDATION_SCORE: 95 - The system correctly identified that the tax amount (MYR 8.22) is present and that the expense will need to be grossed up according to local regulations in Malaysia. This aligns with the compliance rule that states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"\n\nCONFIDENCE: 80\n\nISSUES:\n1. The system may be too strict in requiring separate receipt number and transaction reference fields when the invoice number could serve both purposes for telecommunications expenses.\n2. The system doesn't acknowledge that this is an invoice rather than a receipt, which might have different documentation requirements.\n3. The system doesn't validate the date of issue (2025-09-04), which appears to be in the future and may indicate an error in the receipt data.\n\nSUMMARY: The compliance assessment is generally accurate, particularly regarding the tax gross-up requirement. However, it may be overly strict in flagging missing receipt number and transaction reference when an invoice number is present. The system also missed validating the potentially erroneous future date on the invoice. For telecommunications expenses in Malaysia under GoGlobal ICP, the assessment correctly applies the gross-up rules but could be more flexible in interpreting identification fields on invoices versus receipts.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The system correctly identified that a receipt number is missing, which is generally a required field for proper documentation. However, this is an invoice (document_type: \"Invoice\") rather than a receipt, and the invoice number (329073647) is present. For telecommunications expenses, the invoice number often serves as the receipt number, so this may be an overly strict interpretation.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the system flags a missing transaction reference, but for telecommunications invoices, the invoice number (329073647) often serves as the transaction reference. The validation is technically correct that a separate transaction reference field is empty, but may be unnecessarily strict given the invoice number is present.\n\nISSUE_3_VALIDATION_SCORE: 95 - The system correctly identified that the tax amount (MYR 8.22) is present and that the expense will need to be grossed up according to local regulations in Malaysia. This aligns with the compliance rule that states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"\n\nCONFIDENCE: 80\n\nISSUES:\n1. The system may be too strict in requiring separate receipt number and transaction reference fields when the invoice number could serve both purposes for telecommunications expenses.\n2. The system doesn't acknowledge that this is an invoice rather than a receipt, which might have different documentation requirements.\n3. The system doesn't validate the date of issue (2025-09-04), which appears to be in the future and may indicate an error in the receipt data.\n\nSUMMARY: The compliance assessment is generally accurate, particularly regarding the tax gross-up requirement. However, it may be overly strict in flagging missing receipt number and transaction reference when an invoice number is present. The system also missed validating the potentially erroneous future date on the invoice. For telecommunications expenses in Malaysia under GoGlobal ICP, the assessment correctly applies the gross-up rules but could be more flexible in interpreting identification fields on invoices versus receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt is missing the mandatory receipt number and transaction reference fields, which is accurate based on the compliance standards.\n\nISSUE_2_VALIDATION_SCORE: 95 - The assessment accurately determines that the tax amount on the receipt indicates the expense will be grossed up as per local regulations, which is in line with the compliance policies.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing fields and the need to address them with the supplier, which is a reasonable recommendation based on the compliance standards.\n\nCONFIDENCE: 92 - The compliance assessment appears to be accurate overall, with the key issues identified and the appropriate recommendations provided.\n\nISSUES: None identified.\n\nSUMMARY: The compliance assessment is accurate and comprehensive, correctly identifying the missing mandatory fields on the receipt and the need for tax gross-up as per local regulations. The recommendations provided are appropriate and in line with the compliance standards and policies. Overall, the compliance determination is accurate and thorough."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.33,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt number is present as the invoice number (329073647), which serves the same purpose for telecommunications receipts.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The invoice number (329073647) serves as a transaction reference for telecommunications receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The tax amount is present, and the gross-up policy is accurately applied according to the compliance rules.\n\nCONFIDENCE: 33\n\nISSUES:\n1. Misidentification of receipt number and transaction reference as missing\n2. Failure to recognize invoice number as a valid substitute for receipt number and transaction reference in telecommunications context\n3. Overlooking the presence of other required fields such as transaction date, expense type description, total amount, and supplier name\n\nSUMMARY: The compliance assessment has significant inaccuracies. It incorrectly flags missing receipt number and transaction reference when these are present in the form of an invoice number. The assessment also fails to acknowledge the presence of other required fields. The only accurate identification is the tax amount and gross-up policy application. A thorough review of the receipt against the compliance rules is needed to improve the accuracy of the assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The system correctly identified that a receipt number is missing, which is generally a required field for proper documentation. However, this is an invoice (document_type: \"Invoice\") rather than a receipt, and the invoice number (329073647) is present. For telecommunications expenses, the invoice number often serves as the receipt number, so this may be an overly strict interpretation.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to issue 1, the system flags a missing transaction reference, but for telecommunications invoices, the invoice number (329073647) often serves as the transaction reference. The validation is technically correct that a separate transaction reference field is empty, but may be unnecessarily strict given the invoice number is present.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The system correctly identified that the tax amount (MYR 8.22) is present and that the expense will need to be grossed up according to local regulations in Malaysia. This aligns with the compliance rule that states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8633333333333333,
+      "issues": [
+        "1. Issues 1 and 2 reference mandatory fields that aren't explicitly listed in the provided compliance rules.",
+        "2. The system doesn't identify potential issues with the transaction date being in the future (2025-09-04).",
+        "3. No issue was raised about payment method being missing",
+        "which might be relevant for expense validation."
+      ],
+      "summary": "The gross-up issue is correctly categorized with high confidence, as it directly references applicable compliance rules. However, the receipt number and transaction reference issues appear to reference standards not explicitly stated in the provided compliance rules, reducing confidence in their categorization. Additionally, the system missed flagging the future-dated receipt (2025-09-04), which would be a potential compliance concern.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that the receipt number is missing, which is a valid compliance concern. However, the categorization as \"Standards & Compliance | Fix Identified\" is somewhat misleading since the knowledge base reference states receipt number is mandatory, but the actual compliance rules provided don't specifically list \"receipt number\" as a required field. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.\n\nISSUE_2_VALIDATION_SCORE: 60 - Similar to issue 1, the transaction reference is identified as missing, but the compliance rules don't explicitly list \"transaction reference\" as a mandatory field. The categorization as \"Standards & Compliance | Fix Identified\" suggests this is a fixable issue, but it's unclear from the provided compliance rules that this is actually required.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the relevant compliance policy. The tax amount is present (8.22 MYR), and according to the compliancePoliciesGrossUpRelated rules, telecommunications expenses would fall under the general expense types that require gross-up treatment. The description and recommendation align perfectly with the compliance rule.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issues 1 and 2 reference mandatory fields that aren't explicitly listed in the provided compliance rules.\n2. The system doesn't identify potential issues with the transaction date being in the future (2025-09-04).\n3. No issue was raised about payment method being missing, which might be relevant for expense validation.\n\nSUMMARY: The gross-up issue is correctly categorized with high confidence, as it directly references applicable compliance rules. However, the receipt number and transaction reference issues appear to reference standards not explicitly stated in the provided compliance rules, reducing confidence in their categorization. Additionally, the system missed flagging the future-dated receipt (2025-09-04), which would be a potential compliance concern.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that the receipt number is missing, which is a valid compliance concern. However, the categorization as \"Standards & Compliance | Fix Identified\" is somewhat misleading since the knowledge base reference states receipt number is mandatory, but the actual compliance rules provided don't specifically list \"receipt number\" as a required field. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.\n\nISSUE_2_VALIDATION_SCORE: 60 - Similar to issue 1, the transaction reference is identified as missing, but the compliance rules don't explicitly list \"transaction reference\" as a mandatory field. The categorization as \"Standards & Compliance | Fix Identified\" suggests this is a fixable issue, but it's unclear from the provided compliance rules that this is actually required.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the relevant compliance policy. The tax amount is present (8.22 MYR), and according to the compliancePoliciesGrossUpRelated rules, telecommunications expenses would fall under the general expense types that require gross-up treatment. The description and recommendation align perfectly with the compliance rule.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issues 1 and 2 reference mandatory fields that aren't explicitly listed in the provided compliance rules.\n2. The system doesn't identify potential issues with the transaction date being in the future (2025-09-04).\n3. No issue was raised about payment method being missing, which might be relevant for expense validation.\n\nSUMMARY: The gross-up issue is correctly categorized with high confidence, as it directly references applicable compliance rules. However, the receipt number and transaction reference issues appear to reference standards not explicitly stated in the provided compliance rules, reducing confidence in their categorization. Additionally, the system missed flagging the future-dated receipt (2025-09-04), which would be a potential compliance concern."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is appropriate, as the receipt is missing the mandatory field of receipt number. The description and recommendation provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" is appropriate, as the receipt is missing the mandatory field of transaction reference. The description and recommendation provided are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue type \"Standards & Compliance | Gross-up Identified\" is appropriate, as the tax amount indicates that the expense will be grossed up as per local regulations. The description and recommendation provided are clear and actionable.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The identified issues are correctly categorized, with clear and actionable descriptions and recommendations. The categorization follows the established taxonomy, and no issues appear to be missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately describes the missing receipt number. The recommendation and knowledge base reference are appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, this issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately describes the missing transaction reference. The recommendation and knowledge base reference are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\". It accurately identifies the presence of a tax amount and the need for gross-up as per local regulations. The recommendation and knowledge base reference are highly relevant.\n\nCONFIDENCE: 92\n\nISSUES:\n- No significant issues with categorization were identified.\n- All issues are properly classified and follow the established taxonomy.\n- Descriptions are clear and actionable.\n- No apparent missed or incorrectly classified issues.\n\nSUMMARY: The issue categorization is highly accurate and consistent. All three issues are correctly identified and categorized according to the established taxonomy. The descriptions are clear, actionable, and reference appropriate knowledge base entries. The categorization effectively distinguishes between fix-required issues (receipt number and transaction reference) and gross-up requirements. No significant problems or missed issues were identified in the categorization process."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue correctly identifies that the receipt number is missing, which is a valid compliance concern. However, the categorization as \"Standards & Compliance | Fix Identified\" is somewhat misleading since the knowledge base reference states receipt number is mandatory, but the actual compliance rules provided don't specifically list \"receipt number\" as a required field. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "Similar to issue 1, the transaction reference is identified as missing, but the compliance rules don't explicitly list \"transaction reference\" as a mandatory field. The categorization as \"Standards & Compliance | Fix Identified\" suggests this is a fixable issue, but it's unclear from the provided compliance rules that this is actually required.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the relevant compliance policy. The tax amount is present (8.22 MYR), and according to the compliancePoliciesGrossUpRelated rules, telecommunications expenses would fall under the general expense types that require gross-up treatment. The description and recommendation align perfectly with the compliance rule.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8966666666666666,
+      "issues": [
+        "The recommendations for issues 1 and 2 could be more specific about alternative documentation or next steps if the supplier cannot provide the missing information."
+      ],
+      "summary": "The recommendations are generally valid and actionable, particularly for the tax gross-up issue which is very well explained. The recommendations for the missing receipt number and transaction reference could be enhanced with more specific alternatives or workarounds, but they do provide clear direction to address the issues with the supplier. All recommendations align with the compliance rules and are practical for the user to implement.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user can contact the telecommunications provider to request a receipt with a receipt number. However, it could be more specific by suggesting alternative documentation that might be acceptable if a receipt number cannot be obtained.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to issue 1, the recommendation to address the missing transaction reference with the supplier is valid and actionable. The user can contact the provider to request this information. Again, it could be more specific about alternative documentation or workarounds if this information cannot be obtained.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding tax gross-up is highly valid and informative. It correctly explains the policy that expenses with tax amounts will be paid as NET to the employee and grossed up according to local regulations. This aligns perfectly with the compliance rules provided and gives clear expectations to the employee about how their expense will be handled.\n\nCONFIDENCE: 85\n\nISSUES: The recommendations for issues 1 and 2 could be more specific about alternative documentation or next steps if the supplier cannot provide the missing information.\n\nSUMMARY: The recommendations are generally valid and actionable, particularly for the tax gross-up issue which is very well explained. The recommendations for the missing receipt number and transaction reference could be enhanced with more specific alternatives or workarounds, but they do provide clear direction to address the issues with the supplier. All recommendations align with the compliance rules and are practical for the user to implement.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user can contact the telecommunications provider to request a receipt with a receipt number. However, it could be more specific by suggesting alternative documentation that might be acceptable if a receipt number cannot be obtained.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to issue 1, the recommendation to address the missing transaction reference with the supplier is valid and actionable. The user can contact the provider to request this information. Again, it could be more specific about alternative documentation or workarounds if this information cannot be obtained.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding tax gross-up is highly valid and informative. It correctly explains the policy that expenses with tax amounts will be paid as NET to the employee and grossed up according to local regulations. This aligns perfectly with the compliance rules provided and gives clear expectations to the employee about how their expense will be handled.\n\nCONFIDENCE: 85\n\nISSUES: The recommendations for issues 1 and 2 could be more specific about alternative documentation or next steps if the supplier cannot provide the missing information.\n\nSUMMARY: The recommendations are generally valid and actionable, particularly for the tax gross-up issue which is very well explained. The recommendations for the missing receipt number and transaction reference could be enhanced with more specific alternatives or workarounds, but they do provide clear direction to address the issues with the supplier. All recommendations align with the compliance rules and are practical for the user to implement."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing receipt number with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction reference with the supplier or provider is also actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation to treat the expense as net to the employee and gross it up if it is not tax-free, as per local regulations, is appropriate and helpful. It provides clear guidance on how to handle the tax amount identified on the receipt.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The provided recommendations are valid and useful. They directly address the identified issues, are actionable and practical, and do not contain any contradictory or harmful advice. Overall, the recommendations are well-aligned with the compliance rules and regulations for the given country and ICP context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing receipt number with the supplier is valid and actionable. It directly addresses the identified issue and is a practical solution.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, the recommendation to address the missing transaction reference with the supplier is valid, specific, and addresses the issue directly. It's a feasible and practical approach.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding the gross-up of the expense due to tax amount is highly valid. It accurately reflects the compliance policy and provides clear guidance on how the expense will be treated.\n\nCONFIDENCE: 92\n\nISSUES:\n- While valid, the recommendations for Issues 1 and 2 could be more specific about how to address these with the supplier (e.g., through which channel, what information to provide).\n- The recommendation for Issue 3 is more of an explanation than an actionable recommendation, though it's still valuable information.\n\nSUMMARY: The recommendations provided are generally valid, actionable, and address the identified issues directly. They align well with the compliance rules and are practical to implement. The advice for addressing missing information with the supplier is straightforward, while the explanation of the gross-up policy is informative and in line with company regulations. Minor improvements could be made in providing more specific guidance on how to address issues with suppliers, but overall, the recommendations are sound and useful."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user can contact the telecommunications provider to request a receipt with a receipt number. However, it could be more specific by suggesting alternative documentation that might be acceptable if a receipt number cannot be obtained.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "Similar to issue 1, the recommendation to address the missing transaction reference with the supplier is valid and actionable. The user can contact the provider to request this information. Again, it could be more specific about alternative documentation or workarounds if this information cannot be obtained.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding tax gross-up is highly valid and informative. It correctly explains the policy that expenses with tax amounts will be paid as NET to the employee and grossed up according to local regulations. This aligns perfectly with the compliance rules provided and gives clear expectations to the employee about how their expense will be handled.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.8266666666666667,
+      "issues": [
+        "1. The claim that receipt number is a mandatory field is not clearly supported by the provided compliance rules.",
+        "2. The claim that transaction reference is a mandatory field is completely fabricated and not found in the compliance rules."
+      ],
+      "summary": "The AI response contains significant hallucinations regarding mandatory receipt fields. While the tax amount and gross-up issue is valid and supported by the compliance rules, the claims about receipt number and transaction reference being mandatory fields are not supported by the provided compliance documentation. The AI appears to have fabricated requirements that don't exist in the given compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The first issue claims \"Receipt number is missing on the receipt\" and states it's a mandatory field per receiptStandards. While the extracted data shows receipt_number as null, the compliance rules don't explicitly state that receipt number is mandatory. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"Transaction reference is missing on the receipt\" and states it's a mandatory field per receiptStandards. This is a complete hallucination as there is no mention in the compliance rules that transaction reference is a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue about tax amount and gross-up is accurate. The extracted data shows a tax amount of 8.22 MYR, and the compliance rules do state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The claim that receipt number is a mandatory field is not clearly supported by the provided compliance rules.\n2. The claim that transaction reference is a mandatory field is completely fabricated and not found in the compliance rules.\n\nSUMMARY: The AI response contains significant hallucinations regarding mandatory receipt fields. While the tax amount and gross-up issue is valid and supported by the compliance rules, the claims about receipt number and transaction reference being mandatory fields are not supported by the provided compliance documentation. The AI appears to have fabricated requirements that don't exist in the given compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The first issue claims \"Receipt number is missing on the receipt\" and states it's a mandatory field per receiptStandards. While the extracted data shows receipt_number as null, the compliance rules don't explicitly state that receipt number is mandatory. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"Transaction reference is missing on the receipt\" and states it's a mandatory field per receiptStandards. This is a complete hallucination as there is no mention in the compliance rules that transaction reference is a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue about tax amount and gross-up is accurate. The extracted data shows a tax amount of 8.22 MYR, and the compliance rules do state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The claim that receipt number is a mandatory field is not clearly supported by the provided compliance rules.\n2. The claim that transaction reference is a mandatory field is completely fabricated and not found in the compliance rules.\n\nSUMMARY: The AI response contains significant hallucinations regarding mandatory receipt fields. While the tax amount and gross-up issue is valid and supported by the compliance rules, the claims about receipt number and transaction reference being mandatory fields are not supported by the provided compliance documentation. The AI appears to have fabricated requirements that don't exist in the given compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response matches the source data and does not appear to contain any hallucinated or fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the response are consistent with the provided \"Compliance Rules\" section and do not seem to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the response are present in the source data and do not appear to be made up.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response appears to be free from hallucinations and fabricated information. All the details provided are consistent with the source data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately identifies that the receipt number is missing, which is consistent with the extracted data where \"receipt_number\" is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the transaction reference is missing, which aligns with the extracted data where \"transaction_reference\" is null.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue accurately identifies the presence of a tax amount and refers to local regulations for gross-up. The tax amount of 8.22 MYR is present in the extracted data, and the gross-up rule is consistent with the provided compliance policies.\n\nCONFIDENCE: 98\n\nISSUES: No significant hallucinations detected.\n\nSUMMARY: The AI response appears to be highly accurate and free from hallucinations. It correctly identifies missing fields (receipt number and transaction reference) and accurately references the tax amount and gross-up policy. The information provided aligns well with the extracted data and given compliance rules. The slightly lower score for Issue 3 (95) is due to the inherent complexity of tax regulations, but the response still appears to be consistent with the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The first issue claims \"Receipt number is missing on the receipt\" and states it's a mandatory field per receiptStandards. While the extracted data shows receipt_number as null, the compliance rules don't explicitly state that receipt number is mandatory. The rules mention transaction date, expense type, total amount, and supplier name as mandatory, but not receipt number specifically.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Transaction reference is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The second issue claims \"Transaction reference is missing on the receipt\" and states it's a mandatory field per receiptStandards. This is a complete hallucination as there is no mention in the compliance rules that transaction reference is a mandatory field.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue about tax amount and gross-up is accurate. The extracted data shows a tax amount of 8.22 MYR, and the compliance rules do state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly flagged missing receipt number and transaction reference as compliance issues when these are not explicitly required in the knowledge base for telecommunications receipts., 2. The AI did not acknowledge that the invoice does contain all the mandatory fields listed in the knowledge base (transaction date, expense description, total amount, supplier name)., 3. The AI correctly applied the gross-up policy for tax amounts.",
+    "Improve compliance accuracy: The compliance assessment is generally accurate, particularly regarding the tax gross-up requirement. However, it may be overly strict in flagging missing receipt number and transaction reference when an invoice number is present. The system also missed validating the potentially erroneous future date on the invoice. For telecommunications expenses in Malaysia under GoGlobal ICP, the assessment correctly applies the gross-up rules but could be more flexible in interpreting identification fields on invoices versus receipts.",
+    "Address issues in compliance accuracy: 1. The system may be too strict in requiring separate receipt number and transaction reference fields when the invoice number could serve both purposes for telecommunications expenses., 2. The system doesn't acknowledge that this is an invoice rather than a receipt, which might have different documentation requirements., 3. The system doesn't validate the date of issue (2025-09-04), which appears to be in the future and may indicate an error in the receipt data.",
+    "Address issues in issue categorization: 1. Issues 1 and 2 reference mandatory fields that aren't explicitly listed in the provided compliance rules., 2. The system doesn't identify potential issues with the transaction date being in the future (2025-09-04)., 3. No issue was raised about payment method being missing, which might be relevant for expense validation.",
+    "Address issues in recommendation validity: The recommendations for issues 1 and 2 could be more specific about alternative documentation or next steps if the supplier cannot provide the missing information.",
+    "Address issues in hallucination detection: 1. The claim that receipt number is a mandatory field is not clearly supported by the provided compliance rules., 2. The claim that transaction reference is a mandatory field is completely fabricated and not found in the compliance rules."
+  ],
+  "timestamp": "2025-09-10T10:25:17.626Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 66611,
+    "timing": {
+      "validation_start_time": "2025-09-10T10:24:11.013Z",
+      "validation_end_time": "2025-09-10T10:25:17.624Z",
+      "total_validation_time_seconds": "66.6",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-10T10:24:11.013Z",
+          "end_time": "2025-09-10T10:25:17.624Z",
+          "duration_seconds": "66.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "66.6",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.45",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Receipt number is missing on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 67.33,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 30,
+        "compliance_accuracy": 70,
+        "issue_categorization": 70,
+        "recommendation_validity": 80,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Transaction reference is missing on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 57.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 30,
+        "compliance_accuracy": 70,
+        "issue_categorization": 60,
+        "recommendation_validity": 80,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Tax amount is present, but the expense will be grossed up as per local regulations",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 96.11,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 95,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,708 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\spanish_file_14.pdf_full_test_new_dataset_4_spanish_file_14.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T12:52:47.637Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded document portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document appear to be present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions, shadows, or other elements blocking content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "parking",
+    "language": "Spanish",
+    "language_confidence": 95,
+    "document_location": "Spain",
+    "expected_location": "Spain",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, item description, and payment method. It represents a parking expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, indicating it is an expense document. The fields present include supplier (El Corte Ingles, S.A.), transaction amount (€17,50), transaction date (16/06/25), invoice receipt number (Factura 064338), item description (Ticket Aparc. Limitado), and payment method (VISA). These elements confirm the document is an expense related to parking."
+    }
+  },
+  "extraction": {
+    "supplier_name": "EL CORTE INGLES, S.A.",
+    "supplier_address": "C.C. CASTELLANA, HERMOSILLA N°112 MADRID",
+    "supplier_vat_number": "A-28017895",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": "064338",
+    "receipt_number": "ST7371938",
+    "transaction_reference": "Ticket Aparc. Limitado 3 - N° 020486",
+    "currency": "EUR",
+    "total_amount": 17.5,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-06-16",
+    "transaction_time": "16:32",
+    "payment_method": "VISA",
+    "card_last_four": "5899",
+    "line_items": [
+      {
+        "description": "Parking",
+        "quantity": 1,
+        "unit_price": 17.5,
+        "total_price": 17.5,
+        "category": "Service"
+      }
+    ],
+    "receipt_type": "Parking Receipt",
+    "document_type": "Factura",
+    "location_city": "Madrid",
+    "location_country": "Spain",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": "CIF-28009",
+    "parking_duration": "0d6h2'"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer. Electronic signature is allowed",
+          "recommendation": "Please provide the required documentation as per the GoGlobal compliance policy",
+          "knowledge_base_reference": "Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer. Electronic signature is allowed",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Expenses must be submitted within 6 months after the date that the expense was incurred",
+          "recommendation": "Please ensure that the expense is submitted within the required timeframe",
+          "knowledge_base_reference": "Expenses must be submitted within 6 months after the date that the expense was incurred",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the mandatory customer name and requires additional documentation as per GoGlobal compliance policies. The expense must also be submitted within the required timeframe."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Spain",
+      "icp": "GoGlobal",
+      "receipt_type": "parking",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "company_name": {
+        "field_citation": {
+          "source_text": "EL CORTE INGLES, S.A.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "EL CORTE INGLES, S.A.\nC.C. CASTELLANA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EL CORTE INGLES, S.A.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "EL CORTE INGLES, S.A.\nC.C. CASTELLANA",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "C.C. CASTELLANA",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "EL CORTE INGLES, S.A.\nC.C. CASTELLANA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "HERMOSILLA N°112 MADRID",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "HERMOSILLA N°112 MADRID",
+          "match_type": "exact"
+        }
+      },
+      "cif": {
+        "field_citation": {
+          "source_text": "CIF",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "CIF. A-28017895",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A-28017895",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "CIF. A-28017895",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Factura",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Factura 064338",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "064338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Factura 064338",
+          "match_type": "exact"
+        }
+      },
+      "operation": {
+        "field_citation": {
+          "source_text": "Operación: ST7371938",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938\nTicket Aparc. Limitado",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ST7371938",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938\nTicket Aparc. Limitado",
+          "match_type": "exact"
+        }
+      },
+      "ticket_number": {
+        "field_citation": {
+          "source_text": "Ticket Aparc. Limitado",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Ticket Aparc. Limitado\n3 - N° 020486",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "020486",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "3 - N° 020486\n16/06/25 10:31",
+          "match_type": "exact"
+        }
+      },
+      "start_date": {
+        "field_citation": {
+          "source_text": "16/06/25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 10:31",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16/06/25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 10:31",
+          "match_type": "exact"
+        }
+      },
+      "end_date": {
+        "field_citation": {
+          "source_text": "16/06/25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 16:32",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16/06/25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 16:32",
+          "match_type": "exact"
+        }
+      },
+      "duration": {
+        "field_citation": {
+          "source_text": "Duración",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Duración 0d6h2'",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0d6h2'",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Duración 0d6h2'",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total bruto",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total bruto\n€17,50",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€17,50",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total bruto\n€17,50",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Pago",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Pago\nCOMERCIO:000674507",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VISA",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "VISA\nAplicacion:A0000000031010",
+          "match_type": "exact"
+        }
+      },
+      "tax_id": {
+        "field_citation": {
+          "source_text": "CIF. A-28017895",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "CIF. A-28017895\nCIF-28009",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A-28017895",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "CIF. A-28017895\nCIF-28009",
+          "match_type": "exact"
+        }
+      },
+      "operation_id": {
+        "field_citation": {
+          "source_text": "Operación: ST7371938",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ST7371938",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938",
+          "match_type": "exact"
+        }
+      },
+      "parking_ticket_number": {
+        "field_citation": {
+          "source_text": "Ticket Aparc. Limitado",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Ticket Aparc. Limitado\n3 - N° 020486",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "020486",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "3 - N° 020486",
+          "match_type": "exact"
+        }
+      },
+      "entry_date": {
+        "field_citation": {
+          "source_text": "16/06/25 10:31",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 10:31",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16/06/25 10:31",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 10:31",
+          "match_type": "exact"
+        }
+      },
+      "exit_date": {
+        "field_citation": {
+          "source_text": "16/06/25 16:32",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 16:32",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16/06/25 16:32",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "16/06/25 16:32",
+          "match_type": "exact"
+        }
+      },
+      "commerce_code": {
+        "field_citation": {
+          "source_text": "COMERCIO:000674507",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "COMERCIO:000674507\nTerminal 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "000674507",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "COMERCIO:000674507\nTerminal 1",
+          "match_type": "exact"
+        }
+      },
+      "terminal_id": {
+        "field_citation": {
+          "source_text": "Terminal 1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Terminal 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Terminal 1",
+          "match_type": "exact"
+        }
+      },
+      "transaction_id": {
+        "field_citation": {
+          "source_text": "Aut.629402 Pedido:162338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "162338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338",
+          "match_type": "exact"
+        }
+      },
+      "authorization_code": {
+        "field_citation": {
+          "source_text": "Aut.629402",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "629402",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338",
+          "match_type": "exact"
+        }
+      },
+      "transaction_date": {
+        "field_citation": {
+          "source_text": "Fecha 16.06.25 Hora:16:32",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fecha 16.06.25 Hora:16:32\nVISA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16.06.25",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fecha 16.06.25 Hora:16:32\nVISA",
+          "match_type": "exact"
+        }
+      },
+      "transaction_time": {
+        "field_citation": {
+          "source_text": "Fecha 16.06.25 Hora:16:32",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fecha 16.06.25 Hora:16:32\nVISA",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16:32",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fecha 16.06.25 Hora:16:32\nVISA",
+          "match_type": "exact"
+        }
+      },
+      "operation_number": {
+        "field_citation": {
+          "source_text": "Operación:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ST7371938",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Operación: ST7371938",
+          "match_type": "exact"
+        }
+      },
+      "terminal_number": {
+        "field_citation": {
+          "source_text": "Terminal 1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Terminal 1\n480046",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Terminal 1\n480046",
+          "match_type": "exact"
+        }
+      },
+      "transaction_code": {
+        "field_citation": {
+          "source_text": "Aut.629402 Pedido:162338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338\n589 589",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "629402",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338\n589 589",
+          "match_type": "exact"
+        }
+      },
+      "order_number": {
+        "field_citation": {
+          "source_text": "Pedido:162338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338\n589 589",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "162338",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aut.629402 Pedido:162338\n589 589",
+          "match_type": "exact"
+        }
+      },
+      "application_code": {
+        "field_citation": {
+          "source_text": "Aplicacion:A0000000031010",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aplicacion:A0000000031010",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A0000000031010",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Aplicacion:A0000000031010",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 56,
+      "fields_with_field_citations": 56,
+      "fields_with_value_citations": 56,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "7.6",
+      "data_extraction_seconds": "4.0",
+      "file_classification_seconds": "4.5",
+      "image_quality_assessment_seconds": "5.3",
+      "issue_detection_seconds": "6.9",
+      "citation_generation_seconds": "45.8",
+      "llm_validation_seconds": "59.6"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T12:52:34.707Z",
+        "end_time": "2025-09-10T12:52:42.292Z",
+        "duration_seconds": "7.6",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T12:52:42.298Z",
+        "end_time": "2025-09-10T12:52:46.300Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T12:52:42.296Z",
+        "end_time": "2025-09-10T12:52:46.846Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T12:52:42.293Z",
+        "end_time": "2025-09-10T12:52:47.637Z",
+        "duration_seconds": "5.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T12:52:47.638Z",
+        "end_time": "2025-09-10T12:52:54.492Z",
+        "duration_seconds": "6.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T12:52:47.641Z",
+        "end_time": "2025-09-10T12:53:33.408Z",
+        "duration_seconds": "45.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T12:53:33.409Z",
+        "end_time": "2025-09-10T12:54:33.030Z",
+        "duration_seconds": "59.6",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "118.3",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.3",
+      "parallel_group_2_seconds": "45.8",
+      "total_parallel_time_seconds": "51.1"
+    }
+  },
+  "metadata": {
+    "filename": "spanish_file_14.pdf",
+    "processing_time": 118327,
+    "country": "Spain",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T12:54:33.035Z"
+  }
+}

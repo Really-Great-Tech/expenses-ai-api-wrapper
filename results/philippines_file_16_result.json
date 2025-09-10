@@ -1,0 +1,536 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\philippines_file_16.pdf_full_test_new_dataset_4_philippines_file_16.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T11:09:05.687Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "parking",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Philippines",
+    "expected_location": "Philippines",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice/receipt number, and item description. It also includes payment confirmation and is consistent with the expected location.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "taxInformation"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "paymentMethod"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, including evidence of payment, transaction amount, and date, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "SPI Parking Services, INC",
+    "supplier_address": "Desenent 2 lover 1 The Enterprise Center, Avola Ave Car Posso to Roses, Meketi City 1226",
+    "supplier_vat_number": "214-617-904-001",
+    "supplier_tin_number": "007-553-126-00000",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": "66445",
+    "receipt_number": "6688/0601/500",
+    "transaction_reference": "NEWSESO",
+    "currency": "PHP",
+    "total_amount": 60,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-03-07",
+    "transaction_time": "17:54",
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "018100 Casuel Parker FYP",
+        "quantity": 1,
+        "unit_price": 63,
+        "total_price": 63,
+        "category": "Parking"
+      }
+    ],
+    "receipt_type": "Parking Invoice",
+    "document_type": "Receipt",
+    "location_city": "Calamba City",
+    "location_country": "Philippines",
+    "special_notes": "Accestad Day total PHP 100.00",
+    "terms_conditions": null,
+    "business_registration_number": "23020811025559856",
+    "serial_number": "400049744 PTU-F702023-947-89197-030",
+    "parking_duration": "3",
+    "accr_number": "0560075531282015090416",
+    "accr_date": "2015-09-29"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Under the Local Partner Procloz, the receipt and supporting documents should be in the name of the worker",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_amount",
+          "description": "Missing tax amount on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount should be listed clearly on the Invoice if applicable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Missing tax rate on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount should be listed clearly on the Invoice if applicable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation required for foreign currency expenses",
+          "recommendation": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name, customer address, tax amount, and tax rate. Additionally, for foreign currency expenses, the amount should be converted to local currency and the currency & exchange rate used should be included. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Philippines",
+      "icp": "GoGlobal",
+      "receipt_type": "parking",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "SPI Parking Services, INC",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The supplier name appears as 'SPI Parking Services, INC' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "SPI Parking Services, INC",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The supplier name 'SPI Parking Services, INC' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "vat_reg_no": {
+        "field_citation": {
+          "source_text": "VAT REG TIM: 214-617-904-001",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "The VAT registration number appears as 'VAT REG TIM: 214-617-904-001' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "214-617-904-001",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "The VAT registration number '214-617-904-001' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "id": {
+        "field_citation": {
+          "source_text": "ID: 23020811025559856",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The ID appears as 'ID: 23020811025559856' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "23020811025559856",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The ID '23020811025559856' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "sn": {
+        "field_citation": {
+          "source_text": "SN: 400049744 PTU-F702023-947-89197-030",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The serial number is labeled as 'SN: 400049744 PTU-F702023-947-89197-030' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "400049744 PTU-F702023-947-89197-030",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The serial number '400049744 PTU-F702023-947-89197-030' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "parking_invoice": {
+        "field_citation": {
+          "source_text": "Parking Invoice: 66445",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The parking invoice number appears as 'Parking Invoice: 66445' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "66445",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The parking invoice number '66445' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "receipt_no": {
+        "field_citation": {
+          "source_text": "Receipt no 6688/0601/500 03/07/25 17:54",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The receipt number appears as 'Receipt no 6688/0601/500 03/07/25 17:54' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "6688/0601/500",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The receipt number '6688/0601/500' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "lps": {
+        "field_citation": {
+          "source_text": "LPS: NEWSESO",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The LPS appears as 'LPS: NEWSESO' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NEWSESO",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The LPS 'NEWSESO' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total amount PHP 60.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total amount appears as 'Total amount PHP 60.00' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "PHP 60.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The total amount 'PHP 60.00' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "accestad_day_total": {
+        "field_citation": {
+          "source_text": "Accestad Day total PHP 100.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Accestad Day total PHP 100.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "100.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Accestad Day total PHP 100.00",
+          "match_type": "exact"
+        }
+      },
+      "net_amount": {
+        "field_citation": {
+          "source_text": "NET Amount PHP 40,00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "The net amount appears as 'NET Amount PHP 40,00' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "PHP 40,00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "The net amount 'PHP 40,00' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "tin_number": {
+        "field_citation": {
+          "source_text": "TIN Number : 007-553-126-00000",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The TIN number appears as 'TIN Number : 007-553-126-00000' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "007-553-126-00000",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The TIN number '007-553-126-00000' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "accr_no": {
+        "field_citation": {
+          "source_text": "Accr #: 0560075531282015090416",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The Accr number appears as 'Accr #: 0560075531282015090416' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0560075531282015090416",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The Accr number '0560075531282015090416' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "accr_date": {
+        "field_citation": {
+          "source_text": "Accr date: 09-29-2015",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The Accr date appears as 'Accr date: 09-29-2015' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "09-29-2015",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The Accr date '09-29-2015' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "serial_number": {
+        "field_citation": {
+          "source_text": "SN: 400049744 PTU-F702023-947-89197-030",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The serial number appears as 'SN: 400049744 PTU-F702023-947-89197-030' in the markdown text.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "400049744 PTU-F702023-947-89197-030",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The serial number '400049744 PTU-F702023-947-89197-030' is found in the markdown text.",
+          "match_type": "exact"
+        }
+      },
+      "accr_number": {
+        "field_citation": {
+          "source_text": "Accr #: 0560075531282015090416",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Accr #: 0560075531282015090416",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0560075531282015090416",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Accr #: 0560075531282015090416",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 45,
+      "fields_with_field_citations": 45,
+      "fields_with_value_citations": 45,
+      "average_confidence": 0.932888888888889
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.7",
+      "image_quality_assessment_seconds": "4.0",
+      "file_classification_seconds": "4.0",
+      "data_extraction_seconds": "4.8",
+      "issue_detection_seconds": "8.1",
+      "citation_generation_seconds": "52.7",
+      "llm_validation_seconds": "73.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T11:08:55.009Z",
+        "end_time": "2025-09-10T11:09:01.663Z",
+        "duration_seconds": "6.7",
+        "document_reader_used": "textract"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T11:09:01.664Z",
+        "end_time": "2025-09-10T11:09:05.687Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T11:09:01.666Z",
+        "end_time": "2025-09-10T11:09:05.697Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T11:09:01.668Z",
+        "end_time": "2025-09-10T11:09:06.443Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T11:09:06.445Z",
+        "end_time": "2025-09-10T11:09:14.559Z",
+        "duration_seconds": "8.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T11:09:06.446Z",
+        "end_time": "2025-09-10T11:09:59.192Z",
+        "duration_seconds": "52.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T11:09:59.193Z",
+        "end_time": "2025-09-10T11:11:12.701Z",
+        "duration_seconds": "73.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "137.7",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.8",
+      "parallel_group_2_seconds": "52.7",
+      "total_parallel_time_seconds": "57.5"
+    }
+  },
+  "metadata": {
+    "filename": "philippines_file_16.pdf",
+    "processing_time": 137699,
+    "country": "Philippines",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T11:11:12.709Z"
+  }
+}

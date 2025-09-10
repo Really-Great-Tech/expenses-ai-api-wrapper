@@ -1,0 +1,668 @@
+{
+  "overall_score": 0.7438888888888888,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8333333333333334,
+      "issues": [
+        "None identified. All issues mentioned in the AI response are factually grounded in the extracted data and compliance rules."
+      ],
+      "summary": "The AI response is completely factually grounded. All five issues identified (missing customer name, customer address, invoice number, transaction reference, and the tax implications of meal expenses) are directly supported by the extracted data and the compliance rules provided. The response accurately identifies the missing mandatory fields and correctly applies the relevant tax rule for meal expenses in Malaysia.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The extracted data shows \"customer_name: null\", confirming that the customer name is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The extracted data shows \"customer_address: null\", confirming that the customer address is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_3_VALIDATION_SCORE: 100 - The extracted data shows \"invoice_number: null\", confirming that the invoice number is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The extracted data shows \"transaction_reference: null\", confirming that the transaction reference is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_5_VALIDATION_SCORE: 100 - The extracted data shows this is a meal expense (restaurant receipt with food and drink items) with a tax amount of 10.92 MYR. The compliance rule states \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" - this appears to be a one-time restaurant meal rather than a regular allowance, so the gross-up identification is accurate.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues mentioned in the AI response are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. All five issues identified (missing customer name, customer address, invoice number, transaction reference, and the tax implications of meal expenses) are directly supported by the extracted data and the compliance rules provided. The response accurately identifies the missing mandatory fields and correctly applies the relevant tax rule for meal expenses in Malaysia.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The extracted data shows \"customer_name: null\", confirming that the customer name is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The extracted data shows \"customer_address: null\", confirming that the customer address is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_3_VALIDATION_SCORE: 100 - The extracted data shows \"invoice_number: null\", confirming that the invoice number is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The extracted data shows \"transaction_reference: null\", confirming that the transaction reference is indeed missing from the receipt as claimed in the AI response.\n\nISSUE_5_VALIDATION_SCORE: 100 - The extracted data shows this is a meal expense (restaurant receipt with food and drink items) with a tax amount of 10.92 MYR. The compliance rule states \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" - this appears to be a one-time restaurant meal rather than a regular allowance, so the gross-up identification is accurate.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues mentioned in the AI response are factually grounded in the extracted data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. All five issues identified (missing customer name, customer address, invoice number, transaction reference, and the tax implications of meal expenses) are directly supported by the extracted data and the compliance rules provided. The response accurately identifies the missing mandatory fields and correctly applies the relevant tax rule for meal expenses in Malaysia."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The claim about the missing customer name on the receipt is fully supported by the extracted data, which shows the \"customer_name\" field as null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The claim about the missing customer address on the receipt is fully supported by the extracted data, which shows the \"customer_address\" field as null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The claim about the missing invoice number on the receipt is fully supported by the extracted data, which shows the \"invoice_number\" field as null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The claim about the missing transaction reference on the receipt is fully supported by the extracted data, which shows the \"transaction_reference\" field as null.\n\nISSUE_5_VALIDATION_SCORE: 100 - The claim about the meal expenses being subject to gross-up is supported by the extracted compliance rules, which state that \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\".\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance rules. All claims made in the response can be directly traced back to the information given, and no fabrication or unsupported assumptions are present."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims that the customer name is missing, but this field is not typically present on restaurant receipts. The extracted data doesn't show a customer name field, so this issue is not factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims that the customer address is missing, but this is not a standard field on restaurant receipts. The extracted data doesn't include a customer address field, so this issue is not factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI correctly notes that there's no invoice number, which is true based on the extracted data. However, restaurant receipts often use receipt numbers instead, which is present in the data as \"409456\".\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that there's no transaction reference in the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that meal expenses are not tax-exempt and will be grossed up, which aligns with the compliance rules provided.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly flags missing customer name and address as issues, which are not typically required on restaurant receipts.\n2. The AI doesn't acknowledge the presence of a receipt number, which could serve a similar purpose to an invoice number in this context.\n3. The AI doesn't mention any of the correctly present information from the receipt, such as supplier details, date, time, and line items.\n\nSUMMARY: The AI response is partially factually grounded, but it makes some incorrect assumptions about required information on restaurant receipts. It correctly identifies the lack of a transaction reference and the tax implications of meal expenses. However, it fails to acknowledge the presence of many relevant details in the extracted data, focusing only on perceived missing elements. The response could be improved by better aligning with the typical content of restaurant receipts and acknowledging the information that is present in the extracted data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The extracted data shows \"customer_name: null\", confirming that the customer name is indeed missing from the receipt as claimed in the AI response.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The extracted data shows \"customer_address: null\", confirming that the customer address is indeed missing from the receipt as claimed in the AI response.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The extracted data shows \"invoice_number: null\", confirming that the invoice number is indeed missing from the receipt as claimed in the AI response.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The extracted data shows \"transaction_reference: null\", confirming that the transaction reference is indeed missing from the receipt as claimed in the AI response.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The extracted data shows this is a meal expense (restaurant receipt with food and drink items) with a tax amount of 10.92 MYR. The compliance rule states \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" - this appears to be a one-time restaurant meal rather than a regular allowance, so the gross-up identification is accurate.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.6999999999999998,
+      "issues": [
+        "1. The AI incorrectly identifies several fields as mandatory that aren't specified as such in the compliance rules",
+        "2. The knowledge base reference cited for issues 1-4 doesn't support the claims made",
+        "3. The AI misinterprets the compliance rules regarding required receipt information",
+        "4. The receipt actually contains sufficient information according to the mandatory requirements in the compliance rules"
+      ],
+      "summary": "The AI response correctly identifies that meal expenses would be subject to gross-up taxation, but incorrectly flags several fields as mandatory that aren't specified as such in the compliance rules. The receipt contains the mandatory information required by the compliance rules: transaction date, expense type description, total amount, and supplier business name. The AI's knowledge base references don't support the issues identified for customer name, address, invoice number, and transaction reference.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI claims customer name is mandatory, but the compliance rules don't explicitly require customer name for restaurant receipts. The rule states \"Worker name on receipt\" is optional for GoGlobal, not mandatory. The knowledge base reference cited (\"Expense type or description of goods/services must be visible on receipt\") doesn't support this issue.\n\nISSUE_2_VALIDATION_SCORE: 40 - Similar to Issue 1, the AI incorrectly claims customer address is mandatory. The compliance rules don't specify customer address as mandatory for restaurant receipts. The knowledge base reference cited is about expense type/description visibility, not customer address.\n\nISSUE_3_VALIDATION_SCORE: 40 - The AI incorrectly claims invoice number is mandatory. The compliance rules don't specify invoice number as mandatory for restaurant receipts. The receipt has a receipt number (409456), which may be sufficient. The knowledge base reference cited doesn't support this issue.\n\nISSUE_4_VALIDATION_SCORE: 40 - The AI incorrectly claims transaction reference is mandatory. The compliance rules don't specify transaction reference as mandatory for restaurant receipts. The knowledge base reference cited doesn't support this issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up unless they are \"meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees.\" This appears to be a one-time restaurant meal, not a regular allowance, so it would be subject to gross-up.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly identifies several fields as mandatory that aren't specified as such in the compliance rules\n2. The knowledge base reference cited for issues 1-4 doesn't support the claims made\n3. The AI misinterprets the compliance rules regarding required receipt information\n4. The receipt actually contains sufficient information according to the mandatory requirements in the compliance rules\n\nSUMMARY: The AI response correctly identifies that meal expenses would be subject to gross-up taxation, but incorrectly flags several fields as mandatory that aren't specified as such in the compliance rules. The receipt contains the mandatory information required by the compliance rules: transaction date, expense type description, total amount, and supplier business name. The AI's knowledge base references don't support the issues identified for customer name, address, invoice number, and transaction reference.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI claims customer name is mandatory, but the compliance rules don't explicitly require customer name for restaurant receipts. The rule states \"Worker name on receipt\" is optional for GoGlobal, not mandatory. The knowledge base reference cited (\"Expense type or description of goods/services must be visible on receipt\") doesn't support this issue.\n\nISSUE_2_VALIDATION_SCORE: 40 - Similar to Issue 1, the AI incorrectly claims customer address is mandatory. The compliance rules don't specify customer address as mandatory for restaurant receipts. The knowledge base reference cited is about expense type/description visibility, not customer address.\n\nISSUE_3_VALIDATION_SCORE: 40 - The AI incorrectly claims invoice number is mandatory. The compliance rules don't specify invoice number as mandatory for restaurant receipts. The receipt has a receipt number (409456), which may be sufficient. The knowledge base reference cited doesn't support this issue.\n\nISSUE_4_VALIDATION_SCORE: 40 - The AI incorrectly claims transaction reference is mandatory. The compliance rules don't specify transaction reference as mandatory for restaurant receipts. The knowledge base reference cited doesn't support this issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up unless they are \"meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees.\" This appears to be a one-time restaurant meal, not a regular allowance, so it would be subject to gross-up.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly identifies several fields as mandatory that aren't specified as such in the compliance rules\n2. The knowledge base reference cited for issues 1-4 doesn't support the claims made\n3. The AI misinterprets the compliance rules regarding required receipt information\n4. The receipt actually contains sufficient information according to the mandatory requirements in the compliance rules\n\nSUMMARY: The AI response correctly identifies that meal expenses would be subject to gross-up taxation, but incorrectly flags several fields as mandatory that aren't specified as such in the compliance rules. The receipt contains the mandatory information required by the compliance rules: transaction date, expense type description, total amount, and supplier business name. The AI's knowledge base references don't support the issues identified for customer name, address, invoice number, and transaction reference."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing mandatory customer name field on the receipt, which aligns with the compliance rule that the \"Name of the vendor/merchant must be visible on receipt\". This is a valid issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing mandatory customer address field on the receipt, which aligns with the compliance rule that the \"Name of the vendor/merchant must be visible on receipt\". This is a valid issue that needs to be addressed.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing mandatory invoice number field on the receipt, which aligns with the compliance rule that the \"Name of the vendor/merchant must be visible on receipt\". This is a valid issue that needs to be addressed.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing mandatory transaction reference field on the receipt, which aligns with the compliance rule that the \"Name of the vendor/merchant must be visible on receipt\". This is a valid issue that needs to be addressed.\n\nISSUE_5_VALIDATION_SCORE: 85 - The AI response correctly identifies that the meal expenses will be grossed up, as meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount. This aligns with the compliance policy for Malaysia.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately identifies the compliance issues with the receipt, including missing mandatory fields and the need to gross up the meal expenses. The response aligns well with the compliance knowledge base for Malaysia and the specific receipt type of \"meals\"."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identifies the missing customer name as an issue, which aligns with the compliance rules requiring expense type or description to be visible. However, customer name is not explicitly mentioned in the knowledge base as a mandatory field for meal receipts.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to Issue 1, the AI correctly notes the missing customer address, but this is not explicitly listed as a mandatory field in the provided compliance rules for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI correctly identifies the missing invoice number as an issue. While this is not explicitly listed in the compliance rules, it could be considered part of the \"expense type or description\" requirement.\n\nISSUE_4_VALIDATION_SCORE: 50 - The AI notes the missing transaction reference, which is not explicitly mentioned in the compliance rules for meal receipts. This may be an overapplication of general receipt standards.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI correctly identifies that meal expenses are not tax-exempt and will be grossed up, which aligns well with the compliance policy stating \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" The AI correctly interprets that this meal does not fall under that exemption.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Overemphasis on fields not explicitly required for meal receipts in Malaysia.\n2. Lack of mention of some mandatory fields that are present (e.g., transaction date, total amount, supplier name).\n3. No mention of the need for additional information like clear business purpose.\n\nSUMMARY: The AI response partially adheres to the compliance knowledge base for Malaysia. It correctly identifies the tax implications for meal expenses and some general receipt requirements. However, it overemphasizes certain fields not explicitly required for meal receipts while overlooking some mandatory fields that are present. The response could be improved by focusing more on the specific requirements for meal receipts in Malaysia and including the need for additional information like the business purpose of the expense."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI claims customer name is mandatory, but the compliance rules don't explicitly require customer name for restaurant receipts. The rule states \"Worker name on receipt\" is optional for GoGlobal, not mandatory. The knowledge base reference cited (\"Expense type or description of goods/services must be visible on receipt\") doesn't support this issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "Similar to Issue 1, the AI incorrectly claims customer address is mandatory. The compliance rules don't specify customer address as mandatory for restaurant receipts. The knowledge base reference cited is about expense type/description visibility, not customer address.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI incorrectly claims invoice number is mandatory. The compliance rules don't specify invoice number as mandatory for restaurant receipts. The receipt has a receipt number (409456), which may be sufficient. The knowledge base reference cited doesn't support this issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI incorrectly claims transaction reference is mandatory. The compliance rules don't specify transaction reference as mandatory for restaurant receipts. The knowledge base reference cited doesn't support this issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up unless they are \"meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees.\" This appears to be a one-time restaurant meal, not a regular allowance, so it would be subject to gross-up.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.5666666666666667,
+      "issues": [
+        "1. The system appears to be applying stricter standards than what's explicitly stated in the compliance rules for restaurant receipts",
+        "2. The receipt contains the mandatory elements specified in the rules: transaction date",
+        "expense type description",
+        "total amount",
+        "and supplier business name",
+        "3. The system correctly identifies the tax implications for meal expenses"
+      ],
+      "summary": "The compliance assessment appears to be overly strict in flagging missing fields that aren't explicitly required by the provided compliance rules for restaurant receipts. While the assessment correctly identifies the tax implications for meal expenses, it incorrectly flags several issues related to customer information and reference numbers that aren't clearly mandated in the rules. The receipt actually contains all the mandatory elements specified in the compliance rules: transaction date, expense type description, total amount in local currency, and supplier business name.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The system flags missing customer name as an issue, but this is not clearly listed as mandatory in the compliance rules for restaurant receipts. The rules require \"Expense type description\" and \"Supplier business name\" which are present, but don't explicitly require customer name for meal receipts.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similarly, customer address is flagged as missing, but the compliance rules don't explicitly require this for restaurant receipts. The rules focus on supplier information (which is present) rather than customer information.\n\nISSUE_3_VALIDATION_SCORE: 50 - Invoice number is flagged as missing, but the receipt does include a receipt number (409456). The compliance rules don't specifically require an invoice number for restaurant receipts, only that expense type/description and total amount be visible.\n\nISSUE_4_VALIDATION_SCORE: 50 - Transaction reference is flagged as missing, but this isn't explicitly required in the compliance rules provided. The receipt includes a receipt number which could serve as a transaction reference.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue correctly identifies that meal expenses are not tax exempt and will be grossed up, which aligns with the compliance rule stating \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" Since this appears to be a one-time restaurant meal (not a regular allowance), it would be subject to gross-up.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The system appears to be applying stricter standards than what's explicitly stated in the compliance rules for restaurant receipts\n2. The receipt contains the mandatory elements specified in the rules: transaction date, expense type description, total amount, and supplier business name\n3. The system correctly identifies the tax implications for meal expenses\n\nSUMMARY: The compliance assessment appears to be overly strict in flagging missing fields that aren't explicitly required by the provided compliance rules for restaurant receipts. While the assessment correctly identifies the tax implications for meal expenses, it incorrectly flags several issues related to customer information and reference numbers that aren't clearly mandated in the rules. The receipt actually contains all the mandatory elements specified in the compliance rules: transaction date, expense type description, total amount in local currency, and supplier business name.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The system flags missing customer name as an issue, but this is not clearly listed as mandatory in the compliance rules for restaurant receipts. The rules require \"Expense type description\" and \"Supplier business name\" which are present, but don't explicitly require customer name for meal receipts.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similarly, customer address is flagged as missing, but the compliance rules don't explicitly require this for restaurant receipts. The rules focus on supplier information (which is present) rather than customer information.\n\nISSUE_3_VALIDATION_SCORE: 50 - Invoice number is flagged as missing, but the receipt does include a receipt number (409456). The compliance rules don't specifically require an invoice number for restaurant receipts, only that expense type/description and total amount be visible.\n\nISSUE_4_VALIDATION_SCORE: 50 - Transaction reference is flagged as missing, but this isn't explicitly required in the compliance rules provided. The receipt includes a receipt number which could serve as a transaction reference.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue correctly identifies that meal expenses are not tax exempt and will be grossed up, which aligns with the compliance rule stating \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" Since this appears to be a one-time restaurant meal (not a regular allowance), it would be subject to gross-up.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The system appears to be applying stricter standards than what's explicitly stated in the compliance rules for restaurant receipts\n2. The receipt contains the mandatory elements specified in the rules: transaction date, expense type description, total amount, and supplier business name\n3. The system correctly identifies the tax implications for meal expenses\n\nSUMMARY: The compliance assessment appears to be overly strict in flagging missing fields that aren't explicitly required by the provided compliance rules for restaurant receipts. While the assessment correctly identifies the tax implications for meal expenses, it incorrectly flags several issues related to customer information and reference numbers that aren't clearly mandated in the rules. The receipt actually contains all the mandatory elements specified in the compliance rules: transaction date, expense type description, total amount in local currency, and supplier business name."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory customer name on the receipt, which is a compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory customer address on the receipt, which is a compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory invoice number on the receipt, which is a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory transaction reference on the receipt, which is a compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 85 - The assessment correctly identified that the meal expenses will be grossed up, as they are not tax exempt. However, the recommendation could be more specific, as meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is accurate overall, correctly identifying the key compliance issues with the receipt, including missing mandatory fields and the need to gross up the meal expenses. The recommendations provided are also generally appropriate, though the one for the meal expenses could be more specific."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer name is not a mandatory field for a restaurant receipt according to the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer address is not a mandatory field for a restaurant receipt according to the provided compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The invoice number is not a mandatory field for a restaurant receipt according to the provided compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The transaction reference is not a mandatory field for a restaurant receipt according to the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. Meal expenses are indeed subject to gross-up as per the compliance rules, unless they are regular allowances given at a fixed rate to all employees.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The assessment incorrectly identifies missing customer name, address, invoice number, and transaction reference as compliance issues.\n2. The assessment fails to check for actually required fields such as transaction date, expense type description, total amount, and supplier business name.\n3. The assessment does not mention the optional requirement for the worker's name on the receipt for larger expenses.\n4. The assessment does not address the need for additional information such as clear business purpose and currency conversion for foreign expenses.\n\nSUMMARY: The compliance assessment is largely inaccurate. It identifies several non-issues while missing actual compliance requirements. Only the gross-up issue for meal expenses is correctly identified. The assessment needs significant improvement to align with the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The system flags missing customer name as an issue, but this is not clearly listed as mandatory in the compliance rules for restaurant receipts. The rules require \"Expense type description\" and \"Supplier business name\" which are present, but don't explicitly require customer name for meal receipts.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Similarly, customer address is flagged as missing, but the compliance rules don't explicitly require this for restaurant receipts. The rules focus on supplier information (which is present) rather than customer information.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Invoice number is flagged as missing, but the receipt does include a receipt number (409456). The compliance rules don't specifically require an invoice number for restaurant receipts, only that expense type/description and total amount be visible.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Transaction reference is flagged as missing, but this isn't explicitly required in the compliance rules provided. The receipt includes a receipt number which could serve as a transaction reference.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue correctly identifies that meal expenses are not tax exempt and will be grossed up, which aligns with the compliance rule stating \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" Since this appears to be a one-time restaurant meal (not a regular allowance), it would be subject to gross-up.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7866666666666666,
+      "issues": [
+        "1. Issues 1-4 use the same generic knowledge base reference that doesn't directly support the specific requirements",
+        "2. Some identified issues may not be applicable to restaurant receipts (customer name",
+        "address)",
+        "3. The system doesn't acknowledge that the receipt has a receipt number which might satisfy the invoice number requirement",
+        "4. No issues were raised about missing business purpose which is required according to the compliance rules"
+      ],
+      "summary": "The system correctly identifies the tax gross-up requirement for meals but appears to apply generic document requirements that may not be appropriate for restaurant receipts. The knowledge base references don't directly support several of the identified issues, and some potentially important issues like missing business purpose are not flagged. The categorization is technically correct but lacks context-specific nuance for restaurant receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing customer name is correctly identified as a Standards & Compliance issue, but the receipt is a restaurant receipt where customer name is not typically required. The knowledge base reference about \"Expense type or description\" doesn't directly relate to customer name requirements. The recommendation is generic rather than specific to this context.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, customer address is not typically required on restaurant receipts. The issue is correctly categorized as Standards & Compliance, but the knowledge base reference doesn't directly support this requirement, and the recommendation is too generic.\n\nISSUE_3_VALIDATION_SCORE: 60 - The missing invoice number issue is correctly identified as a Standards & Compliance issue. However, the receipt does have a receipt number (409456), which often serves the same purpose for restaurant receipts. The knowledge base reference again doesn't directly support this specific requirement.\n\nISSUE_4_VALIDATION_SCORE: 40 - The transaction reference issue is correctly categorized as Standards & Compliance, but it's unclear what constitutes a \"transaction reference\" in this context when the receipt already has a receipt number. The knowledge base reference doesn't specifically mention transaction references.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue about meal expenses being grossed up is correctly categorized and references the appropriate knowledge base rule. The description accurately reflects the tax implications for meal expenses according to the compliance rules provided.\n\nCONFIDENCE: 58\n\nISSUES:\n1. Issues 1-4 use the same generic knowledge base reference that doesn't directly support the specific requirements\n2. Some identified issues may not be applicable to restaurant receipts (customer name, address)\n3. The system doesn't acknowledge that the receipt has a receipt number which might satisfy the invoice number requirement\n4. No issues were raised about missing business purpose which is required according to the compliance rules\n\nSUMMARY: The system correctly identifies the tax gross-up requirement for meals but appears to apply generic document requirements that may not be appropriate for restaurant receipts. The knowledge base references don't directly support several of the identified issues, and some potentially important issues like missing business purpose are not flagged. The categorization is technically correct but lacks context-specific nuance for restaurant receipts.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.58,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing customer name is correctly identified as a Standards & Compliance issue, but the receipt is a restaurant receipt where customer name is not typically required. The knowledge base reference about \"Expense type or description\" doesn't directly relate to customer name requirements. The recommendation is generic rather than specific to this context.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, customer address is not typically required on restaurant receipts. The issue is correctly categorized as Standards & Compliance, but the knowledge base reference doesn't directly support this requirement, and the recommendation is too generic.\n\nISSUE_3_VALIDATION_SCORE: 60 - The missing invoice number issue is correctly identified as a Standards & Compliance issue. However, the receipt does have a receipt number (409456), which often serves the same purpose for restaurant receipts. The knowledge base reference again doesn't directly support this specific requirement.\n\nISSUE_4_VALIDATION_SCORE: 40 - The transaction reference issue is correctly categorized as Standards & Compliance, but it's unclear what constitutes a \"transaction reference\" in this context when the receipt already has a receipt number. The knowledge base reference doesn't specifically mention transaction references.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue about meal expenses being grossed up is correctly categorized and references the appropriate knowledge base rule. The description accurately reflects the tax implications for meal expenses according to the compliance rules provided.\n\nCONFIDENCE: 58\n\nISSUES:\n1. Issues 1-4 use the same generic knowledge base reference that doesn't directly support the specific requirements\n2. Some identified issues may not be applicable to restaurant receipts (customer name, address)\n3. The system doesn't acknowledge that the receipt has a receipt number which might satisfy the invoice number requirement\n4. No issues were raised about missing business purpose which is required according to the compliance rules\n\nSUMMARY: The system correctly identifies the tax gross-up requirement for meals but appears to apply generic document requirements that may not be appropriate for restaurant receipts. The knowledge base references don't directly support several of the identified issues, and some potentially important issues like missing business purpose are not flagged. The categorization is technically correct but lacks context-specific nuance for restaurant receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue, as the missing customer name is a mandatory field required on the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue, as the missing customer address is a mandatory field required on the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue, as the missing invoice number is a mandatory field required on the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue, as the missing transaction reference is a mandatory field required on the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 85 - The issue is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue, as meal expenses are not tax-exempt in Malaysia. The description and recommendation provided are clear and actionable, though the knowledge base reference could be more specific to the Malaysian context.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issue categorization is accurate and follows the established taxonomy. The descriptions and recommendations provided are clear and actionable. The overall confidence in the issue categorization is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing customer name. The description is clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, this issue is properly categorized and correctly identifies the missing customer address. The description and recommendation are clear.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is accurately categorized and identifies the missing invoice number. The description and recommendation are appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue is correctly classified and identifies the missing transaction reference. The description and recommendation are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 80 - The issue is correctly identified as \"Standards & Compliance | Gross-up Identified\". However, the description could be more specific to the Malaysian context, as the rule about meal allowances being tax-exempt might not apply universally.\n\nCONFIDENCE: 88\n\nISSUES: \n1. Issue 5 could benefit from more specific information related to Malaysian tax regulations on meal expenses.\n2. The knowledge base reference for Issues 1-4 seems generic and could be more specific to each missing field.\n\nSUMMARY: Overall, the issues are well-categorized and follow the established taxonomy. The descriptions are clear and actionable for the most part. The first four issues accurately identify missing mandatory fields, while the fifth correctly addresses the tax implications of meal expenses. However, there's room for improvement in providing more country-specific information, especially for the tax-related issue. The knowledge base references could also be more tailored to each specific issue rather than using a generic reference for all."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue about missing customer name is correctly identified as a Standards & Compliance issue, but the receipt is a restaurant receipt where customer name is not typically required. The knowledge base reference about \"Expense type or description\" doesn't directly relate to customer name requirements. The recommendation is generic rather than specific to this context.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Similar to issue 1, customer address is not typically required on restaurant receipts. The issue is correctly categorized as Standards & Compliance, but the knowledge base reference doesn't directly support this requirement, and the recommendation is too generic.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The missing invoice number issue is correctly identified as a Standards & Compliance issue. However, the receipt does have a receipt number (409456), which often serves the same purpose for restaurant receipts. The knowledge base reference again doesn't directly support this specific requirement.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The transaction reference issue is correctly categorized as Standards & Compliance, but it's unclear what constitutes a \"transaction reference\" in this context when the receipt already has a receipt number. The knowledge base reference doesn't specifically mention transaction references.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue about meal expenses being grossed up is correctly categorized and references the appropriate knowledge base rule. The description accurately reflects the tax implications for meal expenses according to the compliance rules provided.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7933333333333333,
+      "issues": [
+        "- Recommendations for issues 1-4 are somewhat generic and don't fully account for the nature of restaurant receipts",
+        "- No specific alternative documentation methods are suggested for the missing information",
+        "- Doesn't acknowledge that the receipt does contain a receipt number (#409456) which could potentially address issue 3"
+      ],
+      "summary": "The recommendations are generally valid but lack specificity for the restaurant receipt context. The tax-related recommendation (issue 5) is excellent and directly references applicable rules. The other recommendations correctly identify compliance issues but could provide more practical guidance on how to address missing information that is typically not included on restaurant receipts. Overall, the recommendations are helpful but could be more tailored to this specific receipt type.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to address the missing customer name with the supplier is valid but somewhat generic. It correctly identifies the compliance issue but doesn't provide specific guidance on how to document the customer name when it's not included on a restaurant receipt, which is common for meal expenses.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the recommendation to address the missing customer address with the supplier is valid but generic. Restaurant receipts typically don't include customer addresses, so while the issue identification is correct per the standards, the recommendation could be more practical about alternative documentation methods.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation for the missing invoice number is valid but lacks specificity. Restaurant receipts often have receipt numbers (which this one does - #409456) rather than formal invoice numbers. The recommendation could acknowledge this distinction and suggest using the receipt number as an alternative.\n\nISSUE_4_VALIDATION_SCORE: 70 - The recommendation regarding the missing transaction reference is valid but generic. The receipt does contain a receipt number which could potentially serve as a transaction reference, but the recommendation doesn't suggest this alternative or explain what constitutes an acceptable transaction reference for restaurant receipts.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation regarding meal expenses being grossed up is highly valid and specific. It correctly references the applicable tax rule that \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" which matches the compliance rules provided.\n\nCONFIDENCE: 75\n\nISSUES:\n- Recommendations for issues 1-4 are somewhat generic and don't fully account for the nature of restaurant receipts\n- No specific alternative documentation methods are suggested for the missing information\n- Doesn't acknowledge that the receipt does contain a receipt number (#409456) which could potentially address issue 3\n\nSUMMARY: The recommendations are generally valid but lack specificity for the restaurant receipt context. The tax-related recommendation (issue 5) is excellent and directly references applicable rules. The other recommendations correctly identify compliance issues but could provide more practical guidance on how to address missing information that is typically not included on restaurant receipts. Overall, the recommendations are helpful but could be more tailored to this specific receipt type.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to address the missing customer name with the supplier is valid but somewhat generic. It correctly identifies the compliance issue but doesn't provide specific guidance on how to document the customer name when it's not included on a restaurant receipt, which is common for meal expenses.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, the recommendation to address the missing customer address with the supplier is valid but generic. Restaurant receipts typically don't include customer addresses, so while the issue identification is correct per the standards, the recommendation could be more practical about alternative documentation methods.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation for the missing invoice number is valid but lacks specificity. Restaurant receipts often have receipt numbers (which this one does - #409456) rather than formal invoice numbers. The recommendation could acknowledge this distinction and suggest using the receipt number as an alternative.\n\nISSUE_4_VALIDATION_SCORE: 70 - The recommendation regarding the missing transaction reference is valid but generic. The receipt does contain a receipt number which could potentially serve as a transaction reference, but the recommendation doesn't suggest this alternative or explain what constitutes an acceptable transaction reference for restaurant receipts.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation regarding meal expenses being grossed up is highly valid and specific. It correctly references the applicable tax rule that \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" which matches the compliance rules provided.\n\nCONFIDENCE: 75\n\nISSUES:\n- Recommendations for issues 1-4 are somewhat generic and don't fully account for the nature of restaurant receipts\n- No specific alternative documentation methods are suggested for the missing information\n- Doesn't acknowledge that the receipt does contain a receipt number (#409456) which could potentially address issue 3\n\nSUMMARY: The recommendations are generally valid but lack specificity for the restaurant receipt context. The tax-related recommendation (issue 5) is excellent and directly references applicable rules. The other recommendations correctly identify compliance issues but could provide more practical guidance on how to address missing information that is typically not included on restaurant receipts. Overall, the recommendations are helpful but could be more tailored to this specific receipt type."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier or provider is actionable and appropriate. This is a common compliance requirement that should be addressed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing customer address with the supplier or provider is also actionable and appropriate. Customer address is another common compliance requirement.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier or provider is valid. Invoice number is a mandatory field that needs to be present on the receipt.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction reference with the supplier or provider is appropriate. Transaction reference is another common compliance requirement.\n\nISSUE_5_VALIDATION_SCORE: 80 - The recommendation regarding the tax treatment of meal expenses is valid, but could be more detailed. While meal allowances are generally exempt from tax up to a reasonable amount, the recommendation could provide more specific guidance on how to properly handle this.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are overall very valid and useful. They address the key compliance issues identified on the receipt, providing actionable steps for the user to take. The only minor area for improvement is the recommendation regarding the tax treatment of meal expenses, which could be slightly more detailed. Otherwise, the recommendations are specific, feasible, and address the identified problems effectively."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.73,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to address the missing customer name with the supplier is valid, but could be more specific about how to obtain this information retroactively.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to issue 1, addressing the missing customer address with the supplier is valid advice, but lacks specificity on how to resolve this for an existing receipt.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation for the missing invoice number is valid but general. It could benefit from suggesting alternative ways to document the transaction if an invoice number cannot be obtained.\n\nISSUE_4_VALIDATION_SCORE: 70 - Addressing the missing transaction reference with the supplier is a valid suggestion, but like the previous issues, it lacks specific guidance on how to rectify this for an existing receipt.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation regarding meal expenses and tax implications is more specific and helpful. It provides clear guidance on when meal allowances can be tax-exempt, which is useful for future expense planning.\n\nCONFIDENCE: 73\n\nISSUES:\n- Recommendations for issues 1-4 are somewhat generic and could benefit from more specific, actionable advice.\n- No guidance is provided on how to handle the current receipt if the missing information cannot be obtained retroactively.\n- The recommendations don't address potential alternatives or workarounds if the supplier cannot provide the missing information.\n\nSUMMARY: The recommendations are generally valid but lack specificity for issues 1-4. They correctly identify the problems but don't offer detailed solutions for resolving them, especially for an existing receipt. The advice for issue 5 is more helpful and specific. Overall, while the recommendations are on the right track, they could be more comprehensive and actionable to be truly useful in resolving the identified issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid but somewhat generic. It correctly identifies the compliance issue but doesn't provide specific guidance on how to document the customer name when it's not included on a restaurant receipt, which is common for meal expenses.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to issue 1, the recommendation to address the missing customer address with the supplier is valid but generic. Restaurant receipts typically don't include customer addresses, so while the issue identification is correct per the standards, the recommendation could be more practical about alternative documentation methods.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation for the missing invoice number is valid but lacks specificity. Restaurant receipts often have receipt numbers (which this one does - #409456) rather than formal invoice numbers. The recommendation could acknowledge this distinction and suggest using the receipt number as an alternative.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation regarding the missing transaction reference is valid but generic. The receipt does contain a receipt number which could potentially serve as a transaction reference, but the recommendation doesn't suggest this alternative or explain what constitutes an acceptable transaction reference for restaurant receipts.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding meal expenses being grossed up is highly valid and specific. It correctly references the applicable tax rule that \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount\" which matches the compliance rules provided.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.7833333333333332,
+      "issues": [
+        "1. Issues 1-4 claim certain fields (customer name",
+        "customer address",
+        "invoice number",
+        "transaction reference) are mandatory",
+        "but these specific requirements aren't explicitly stated in the provided compliance rules for meal receipts.",
+        "2. The AI is referencing the same knowledge base reference (\"Expense type or description of goods/services must be visible on receipt\") for multiple different issues",
+        "which suggests it's stretching this rule to cover requirements not explicitly stated."
+      ],
+      "summary": "The AI response appears to have hallucinated several mandatory requirements that aren't explicitly stated in the provided compliance rules. While the receipt may be missing certain information, the AI incorrectly categorizes customer name, customer address, invoice number, and transaction reference as \"mandatory\" fields when the provided compliance rules don't specifically require these for meal receipts. The fifth issue about gross-up for meal expenses is more accurately aligned with the provided rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory customer name on the receipt\" is required, but the compliance rules don't explicitly state that customer name is mandatory for meal receipts. The rules only mention that \"For EOS, the workers name should be included on receipts/invoices for larger expenses\" but this is listed as \"Optional\" not \"Mandatory.\"\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory customer address on the receipt\" but the compliance rules don't explicitly state that customer address is mandatory for meal receipts. None of the rules specifically require customer address as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory invoice number on the receipt\" but the compliance rules don't explicitly state that invoice number is mandatory for meal receipts. The rules only mention date, expense type, total amount, and supplier name as mandatory.\n\nISSUE_4_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory transaction reference on the receipt\" but the compliance rules don't explicitly state that transaction reference is mandatory for meal receipts. This requirement doesn't appear in the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 80 - This issue about meal expenses being grossed up is generally aligned with the compliance rules which state \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" The recommendation accurately reflects this rule.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Issues 1-4 claim certain fields (customer name, customer address, invoice number, transaction reference) are mandatory, but these specific requirements aren't explicitly stated in the provided compliance rules for meal receipts.\n2. The AI is referencing the same knowledge base reference (\"Expense type or description of goods/services must be visible on receipt\") for multiple different issues, which suggests it's stretching this rule to cover requirements not explicitly stated.\n\nSUMMARY: The AI response appears to have hallucinated several mandatory requirements that aren't explicitly stated in the provided compliance rules. While the receipt may be missing certain information, the AI incorrectly categorizes customer name, customer address, invoice number, and transaction reference as \"mandatory\" fields when the provided compliance rules don't specifically require these for meal receipts. The fifth issue about gross-up for meal expenses is more accurately aligned with the provided rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory customer name on the receipt\" is required, but the compliance rules don't explicitly state that customer name is mandatory for meal receipts. The rules only mention that \"For EOS, the workers name should be included on receipts/invoices for larger expenses\" but this is listed as \"Optional\" not \"Mandatory.\"\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory customer address on the receipt\" but the compliance rules don't explicitly state that customer address is mandatory for meal receipts. None of the rules specifically require customer address as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory invoice number on the receipt\" but the compliance rules don't explicitly state that invoice number is mandatory for meal receipts. The rules only mention date, expense type, total amount, and supplier name as mandatory.\n\nISSUE_4_VALIDATION_SCORE: 50 - The issue claims \"Missing mandatory transaction reference on the receipt\" but the compliance rules don't explicitly state that transaction reference is mandatory for meal receipts. This requirement doesn't appear in the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 80 - This issue about meal expenses being grossed up is generally aligned with the compliance rules which state \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" The recommendation accurately reflects this rule.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Issues 1-4 claim certain fields (customer name, customer address, invoice number, transaction reference) are mandatory, but these specific requirements aren't explicitly stated in the provided compliance rules for meal receipts.\n2. The AI is referencing the same knowledge base reference (\"Expense type or description of goods/services must be visible on receipt\") for multiple different issues, which suggests it's stretching this rule to cover requirements not explicitly stated.\n\nSUMMARY: The AI response appears to have hallucinated several mandatory requirements that aren't explicitly stated in the provided compliance rules. While the receipt may be missing certain information, the AI incorrectly categorizes customer name, customer address, invoice number, and transaction reference as \"mandatory\" fields when the provided compliance rules don't specifically require these for meal receipts. The fifth issue about gross-up for meal expenses is more accurately aligned with the provided rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information about the missing customer name, customer address, invoice number, and transaction reference is present in the source data provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response appear to be valid and consistent with the ICP context of \"GoGlobal\".\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates provided in the AI response are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts. It clearly identifies the issues with the receipt and provides recommendations based on the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The information about the meal expenses being grossed up is present in the source data and is consistent with the compliance rules.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the information provided is consistent with the source data and the compliance rules for the given ICP context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the missing customer name in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies the missing customer address in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue accurately points out the missing invoice number in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies the missing transaction reference in the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue is based on the compliance rules provided, but the specific wording about \"reasonable amount\" is not directly stated in the rules. However, the overall concept is consistent with the provided information.\n\nCONFIDENCE: 95\n\nISSUES: \n- Minor potential hallucination in Issue 5 regarding the specific wording about \"reasonable amount\"\n\nSUMMARY: The AI response appears to be largely free from hallucinations. Issues 1-4 are directly verifiable from the extracted data. Issue 5 is based on the provided compliance rules, though it includes slightly more specific language than what's directly stated in the rules. Overall, the response demonstrates a high level of accuracy and adherence to the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue claims \"Missing mandatory customer name on the receipt\" is required, but the compliance rules don't explicitly state that customer name is mandatory for meal receipts. The rules only mention that \"For EOS, the workers name should be included on receipts/invoices for larger expenses\" but this is listed as \"Optional\" not \"Mandatory.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory customer address on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue claims \"Missing mandatory customer address on the receipt\" but the compliance rules don't explicitly state that customer address is mandatory for meal receipts. None of the rules specifically require customer address as mandatory.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue claims \"Missing mandatory invoice number on the receipt\" but the compliance rules don't explicitly state that invoice number is mandatory for meal receipts. The rules only mention date, expense type, total amount, and supplier name as mandatory.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory transaction reference on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue claims \"Missing mandatory transaction reference on the receipt\" but the compliance rules don't explicitly state that transaction reference is mandatory for meal receipts. This requirement doesn't appear in the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 80,
+          "judge_explanation": "This issue about meal expenses being grossed up is generally aligned with the compliance rules which state \"Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount.\" The recommendation accurately reflects this rule.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None identified. All issues mentioned in the AI response are factually grounded in the extracted data and compliance rules.",
+    "Improve knowledge base adherence: The AI response correctly identifies that meal expenses would be subject to gross-up taxation, but incorrectly flags several fields as mandatory that aren't specified as such in the compliance rules. The receipt contains the mandatory information required by the compliance rules: transaction date, expense type description, total amount, and supplier business name. The AI's knowledge base references don't support the issues identified for customer name, address, invoice number, and transaction reference.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly identifies several fields as mandatory that aren't specified as such in the compliance rules, 2. The knowledge base reference cited for issues 1-4 doesn't support the claims made, 3. The AI misinterprets the compliance rules regarding required receipt information, 4. The receipt actually contains sufficient information according to the mandatory requirements in the compliance rules",
+    "Improve compliance accuracy: The compliance assessment appears to be overly strict in flagging missing fields that aren't explicitly required by the provided compliance rules for restaurant receipts. While the assessment correctly identifies the tax implications for meal expenses, it incorrectly flags several issues related to customer information and reference numbers that aren't clearly mandated in the rules. The receipt actually contains all the mandatory elements specified in the compliance rules: transaction date, expense type description, total amount in local currency, and supplier business name.",
+    "Address issues in compliance accuracy: 1. The system appears to be applying stricter standards than what's explicitly stated in the compliance rules for restaurant receipts, 2. The receipt contains the mandatory elements specified in the rules: transaction date, expense type description, total amount, and supplier business name, 3. The system correctly identifies the tax implications for meal expenses",
+    "Address issues in issue categorization: 1. Issues 1-4 use the same generic knowledge base reference that doesn't directly support the specific requirements, 2. Some identified issues may not be applicable to restaurant receipts (customer name, address), 3. The system doesn't acknowledge that the receipt has a receipt number which might satisfy the invoice number requirement, 4. No issues were raised about missing business purpose which is required according to the compliance rules",
+    "Address issues in recommendation validity: - Recommendations for issues 1-4 are somewhat generic and don't fully account for the nature of restaurant receipts, - No specific alternative documentation methods are suggested for the missing information, - Doesn't acknowledge that the receipt does contain a receipt number (#409456) which could potentially address issue 3",
+    "Address issues in hallucination detection: 1. Issues 1-4 claim certain fields (customer name, customer address, invoice number, transaction reference) are mandatory, but these specific requirements aren't explicitly stated in the provided compliance rules for meal receipts., 2. The AI is referencing the same knowledge base reference (\"Expense type or description of goods/services must be visible on receipt\") for multiple different issues, which suggests it's stretching this rule to cover requirements not explicitly stated."
+  ],
+  "timestamp": "2025-09-10T10:35:42.861Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 73234,
+    "timing": {
+      "validation_start_time": "2025-09-10T10:34:29.627Z",
+      "validation_end_time": "2025-09-10T10:35:42.861Z",
+      "total_validation_time_seconds": "73.2",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-10T10:34:29.627Z",
+          "end_time": "2025-09-10T10:35:42.861Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "73.2",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.41",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 60.67,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 50,
+        "issue_categorization": 50,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory customer address on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 60.67,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 50,
+        "issue_categorization": 50,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 62,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 50,
+        "issue_categorization": 60,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Missing mandatory transaction reference on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 59.33,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 50,
+        "issue_categorization": 40,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 90.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 80
+      }
+    }
+  ]
+}

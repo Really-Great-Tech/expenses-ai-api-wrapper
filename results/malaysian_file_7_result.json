@@ -1,0 +1,390 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\malaysian_file_7.pdf_full_test_new_dataset_4_malaysian_file_7.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T10:38:13.377Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing or incomplete sections identified in the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Malaysia",
+    "expected_location": "Malaysia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. It details a completed payment for a ride service, making it a valid expense document.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including evidence of payment completed, actual amounts charged/paid, and payment confirmation. It meets the criteria for being classified as an expense."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Grab",
+    "supplier_email": "no-reply@grab.com",
+    "customer_name": "Natalie Ng Yen Wei",
+    "customer_email": "natngyenwei@gmail.com",
+    "transaction_date": "2025-04-21",
+    "transaction_time": "00:59",
+    "booking_id": "A-7PAQXU4WWEAEAV",
+    "currency": "MYR",
+    "total_amount": 79,
+    "fare_amount": 71,
+    "toll_amount": 8,
+    "payment_method": "GX",
+    "card_last_four": "4906",
+    "driver_name": "KHAIRULNIZAM BIN TUKIJA",
+    "driver_rating": 5,
+    "passenger_name": "Natalie",
+    "pickup_location": "KLIA",
+    "receipt_type": "Grab E-Receipt",
+    "document_type": "Receipt",
+    "special_notes": "Excellent Service",
+    "line_items": [
+      {
+        "description": "Fare",
+        "amount": 71
+      },
+      {
+        "description": "Toll",
+        "amount": 8
+      }
+    ]
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "expense_type_description",
+          "description": "Expense type or description of goods/services must be visible on receipt. The receipt does not specify the type of service (e.g., taxi, ride-hailing) clearly.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services must be visible on receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "vat_gst_amount",
+          "description": "VAT/GST amount is not listed clearly on the Invoice. While it is optional, it is recommended to include it for clarity.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount, listed clearly on the Invoice (if applicable)",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates. Travel report on the distance of travel (per km) required.",
+          "recommendation": "Please provide a travel report with the distance of travel (per km) for the mileage reimbursement.",
+          "knowledge_base_reference": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates. Travel report on the distance of travel (per km) required",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Submit expense claims with clear and legible copies of the receipts to Client line manager for approval preferably within the same month of the expense.",
+          "recommendation": "Please submit the expense claim with a clear and legible copy of the receipt to the Client line manager for approval.",
+          "knowledge_base_reference": "Submit expense claims with clear and legible copies of the receipts to Client line manager for approval preferably within the same month of the expense",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues that need to be addressed. The expense type description is not clear, the VAT/GST amount is missing, and additional documentation is required for mileage reimbursement and expense claim submission. These issues need to be resolved to ensure compliance with the country's standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Malaysia",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "pickup_date": {
+        "field_citation": {
+          "source_text": "Picked up on",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Hope you enjoyed your ride! Picked up on 21 April 2025 Booking ID: A-7PAQXU4WWEAEAV",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "21 April 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Hope you enjoyed your ride! Picked up on 21 April 2025 Booking ID: A-7PAQXU4WWEAEAV",
+          "match_type": "exact"
+        }
+      },
+      "booking_id": {
+        "field_citation": {
+          "source_text": "Booking ID:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Hope you enjoyed your ride! Picked up on 21 April 2025 Booking ID: A-7PAQXU4WWEAEAV",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A-7PAQXU4WWEAEAV",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Hope you enjoyed your ride! Picked up on 21 April 2025 Booking ID: A-7PAQXU4WWEAEAV",
+          "match_type": "exact"
+        }
+      },
+      "total_paid": {
+        "field_citation": {
+          "source_text": "Total Paid",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Paid RM 79.00 Receipt issued by the driver KHAIRULNIZAM BIN TUKIJA.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "79.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Paid RM 79.00 Receipt issued by the driver KHAIRULNIZAM BIN TUKIJA.",
+          "match_type": "exact"
+        }
+      },
+      "driver_name": {
+        "field_citation": {
+          "source_text": "Receipt issued by the driver",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Paid RM 79.00 Receipt issued by the driver KHAIRULNIZAM BIN TUKIJA.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "KHAIRULNIZAM BIN TUKIJA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Paid RM 79.00 Receipt issued by the driver KHAIRULNIZAM BIN TUKIJA.",
+          "match_type": "exact"
+        }
+      },
+      "fare": {
+        "field_citation": {
+          "source_text": "Fare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Breakdown Fare 71.00 Toll 8.00 Total Paid 79.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "71.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Breakdown Fare 71.00 Toll 8.00 Total Paid 79.00",
+          "match_type": "exact"
+        }
+      },
+      "toll": {
+        "field_citation": {
+          "source_text": "Toll",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Breakdown Fare 71.00 Toll 8.00 Total Paid 79.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "8.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Breakdown Fare 71.00 Toll 8.00 Total Paid 79.00",
+          "match_type": "exact"
+        }
+      },
+      "passenger_name": {
+        "field_citation": {
+          "source_text": "Paid by",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Passenger Paid by Natalie GX 4906 79.00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Natalie",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Passenger Paid by Natalie GX 4906 79.00",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 20,
+      "fields_with_field_citations": 20,
+      "fields_with_value_citations": 20,
+      "average_confidence": 0.9324999999999999
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "7.7",
+      "data_extraction_seconds": "3.3",
+      "file_classification_seconds": "3.6",
+      "image_quality_assessment_seconds": "6.0",
+      "issue_detection_seconds": "6.1",
+      "citation_generation_seconds": "19.8",
+      "llm_validation_seconds": "69.9"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T10:37:59.682Z",
+        "end_time": "2025-09-10T10:38:07.341Z",
+        "duration_seconds": "7.7",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T10:38:07.347Z",
+        "end_time": "2025-09-10T10:38:10.657Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T10:38:07.345Z",
+        "end_time": "2025-09-10T10:38:10.989Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T10:38:07.342Z",
+        "end_time": "2025-09-10T10:38:13.377Z",
+        "duration_seconds": "6.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T10:38:13.378Z",
+        "end_time": "2025-09-10T10:38:19.464Z",
+        "duration_seconds": "6.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T10:38:13.381Z",
+        "end_time": "2025-09-10T10:38:33.230Z",
+        "duration_seconds": "19.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T10:38:33.231Z",
+        "end_time": "2025-09-10T10:39:43.132Z",
+        "duration_seconds": "69.9",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "103.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "6.0",
+      "parallel_group_2_seconds": "19.9",
+      "total_parallel_time_seconds": "25.9"
+    }
+  },
+  "metadata": {
+    "filename": "malaysian_file_7.pdf",
+    "processing_time": 103454,
+    "country": "Malaysia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T10:39:43.137Z"
+  }
+}

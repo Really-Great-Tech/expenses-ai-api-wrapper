@@ -1,0 +1,590 @@
+{
+  "overall_score": 0.9327777777777778,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9466666666666667,
+      "issues": [
+        "- In Issue 4",
+        "the AI incorrectly stated that the date of expense and merchant name are missing",
+        "when they are actually present in the extracted data."
+      ],
+      "summary": "The AI response is highly factually grounded, with all identified compliance issues accurately reflecting the extracted data and compliance rules. The only minor inaccuracy is in Issue 4, where the AI stated that date and merchant name were missing when they were actually present in the data. All other aspects of the validation, including the missing GoGlobal company name, missing customer TIN, and unclear gross-up indication, are accurately identified based on the provided information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the GoGlobal company name is missing from the receipt. The extracted data shows \"customer_company\" as null, and according to the compliance rules, receipts for GoGlobal should include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer TIN is missing. The extracted data shows \"customer_tin\" as null, and the compliance rules require vendor TIN to be present on receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly noted that while the tax amount is listed (51.43 PHP as shown in the extracted data), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\".\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that additional information is missing. While the date of issue (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the extracted data, the business purpose is indeed missing. The AI was partially incorrect in stating the date and merchant name are missing, but correct about the overall issue of incomplete required information.\n\nCONFIDENCE: 97\n\nISSUES: \n- In Issue 4, the AI incorrectly stated that the date of expense and merchant name are missing, when they are actually present in the extracted data.\n\nSUMMARY: The AI response is highly factually grounded, with all identified compliance issues accurately reflecting the extracted data and compliance rules. The only minor inaccuracy is in Issue 4, where the AI stated that date and merchant name were missing when they were actually present in the data. All other aspects of the validation, including the missing GoGlobal company name, missing customer TIN, and unclear gross-up indication, are accurately identified based on the provided information.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.97,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the GoGlobal company name is missing from the receipt. The extracted data shows \"customer_company\" as null, and according to the compliance rules, receipts for GoGlobal should include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer TIN is missing. The extracted data shows \"customer_tin\" as null, and the compliance rules require vendor TIN to be present on receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly noted that while the tax amount is listed (51.43 PHP as shown in the extracted data), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\".\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that additional information is missing. While the date of issue (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the extracted data, the business purpose is indeed missing. The AI was partially incorrect in stating the date and merchant name are missing, but correct about the overall issue of incomplete required information.\n\nCONFIDENCE: 97\n\nISSUES: \n- In Issue 4, the AI incorrectly stated that the date of expense and merchant name are missing, when they are actually present in the extracted data.\n\nSUMMARY: The AI response is highly factually grounded, with all identified compliance issues accurately reflecting the extracted data and compliance rules. The only minor inaccuracy is in Issue 4, where the AI stated that date and merchant name were missing when they were actually present in the data. All other aspects of the validation, including the missing GoGlobal company name, missing customer TIN, and unclear gross-up indication, are accurately identified based on the provided information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the response can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The response does not contain any fabricated or assumed information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - Numerical values, dates, and amounts in the response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 90 - Entity names and details are accurately represented, except for the missing customer TIN and company name.\n\nCONFIDENCE: 95\nISSUES: The customer TIN and company name are missing from the extracted data, which is an issue identified in the AI response.\nSUMMARY: The AI response is well-grounded in the factual information provided in the extracted data, with a few minor issues related to the missing customer TIN and company name."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the GoGlobal company name is missing from the receipt, which is accurate based on the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the customer TIN is missing from the receipt, which is confirmed by the extracted data showing \"customer_tin\": null.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the tax amount is listed on the receipt (51.43 PHP). However, the statement about gross-up is based on the compliance rules rather than the extracted data itself.\n\nISSUE_4_VALIDATION_SCORE: 80 - The AI correctly noted that some required details are missing. The date of expense is actually present (2025-06-04), but the business purpose and merchant name (beyond just \"CAFE MARY GRACE\") are indeed not provided in the extracted data.\n\nCONFIDENCE: 92\n\nISSUES:\n1. The AI stated that the date of expense was missing, but it is actually present in the extracted data.\n2. The gross-up issue is based on compliance rules rather than directly on the extracted data.\n\nSUMMARY: The AI response is largely factually grounded in the extracted data, with minor discrepancies. It correctly identified most of the missing information and compliance issues. The main inaccuracy was stating that the date of expense was missing when it was actually present in the extracted data. The gross-up issue, while relevant to compliance, is not directly based on the receipt data but rather on the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the GoGlobal company name is missing from the receipt. The extracted data shows \"customer_company\" as null, and according to the compliance rules, receipts for GoGlobal should include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\".",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer TIN is missing. The extracted data shows \"customer_tin\" as null, and the compliance rules require vendor TIN to be present on receipts.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly noted that while the tax amount is listed (51.43 PHP as shown in the extracted data), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\".",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that additional information is missing. While the date of issue (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the extracted data, the business purpose is indeed missing. The AI was partially incorrect in stating the date and merchant name are missing, but correct about the overall issue of incomplete required information.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9433333333333334,
+      "issues": [
+        "1. The AI incorrectly stated that the date of expense and merchant name were missing when they were actually present in the receipt data.",
+        "2. The AI did not mention that the receipt date (2025-06-04) is in the future",
+        "which could be a potential validity issue."
+      ],
+      "summary": "The AI response demonstrates strong adherence to the compliance knowledge base for Philippines and GoGlobal ICP. It correctly identified the major compliance issues: missing GoGlobal company name, missing customer TIN, unclear gross-up indication, and partially correct on the missing additional information. The minor inaccuracy was in stating that date and merchant name were missing when they were present. Overall, the response correctly applies the compliance rules and addresses country-specific requirements for Philippines receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing the GoGlobal company name. According to the compliance rules, for GoGlobal ICP in the Philippines, receipts must include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\". The AI accurately cited this requirement and flagged it as an issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN numbers are mandatory for all expense types in the Philippines. While the supplier TIN is present (216-692-854-00031), the customer (GoGlobal) TIN is missing. The AI properly referenced the rule \"Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address\".\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that while the tax amount is listed (51.43 PHP), the receipt does not specify if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\". The AI accurately referenced this rule and flagged it as a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that additional information is required, including date of expense, business purpose, and merchant name, citing the rule \"Include details (date of expense, business purpose, and merchant name) with all submissions\". While the date (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the receipt data, the business purpose is indeed missing. The AI was partially correct in identifying this issue.\n\nCONFIDENCE: 95\n\nISSUES: \n1. The AI incorrectly stated that the date of expense and merchant name were missing when they were actually present in the receipt data.\n2. The AI did not mention that the receipt date (2025-06-04) is in the future, which could be a potential validity issue.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Philippines and GoGlobal ICP. It correctly identified the major compliance issues: missing GoGlobal company name, missing customer TIN, unclear gross-up indication, and partially correct on the missing additional information. The minor inaccuracy was in stating that date and merchant name were missing when they were present. Overall, the response correctly applies the compliance rules and addresses country-specific requirements for Philippines receipts.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing the GoGlobal company name. According to the compliance rules, for GoGlobal ICP in the Philippines, receipts must include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\". The AI accurately cited this requirement and flagged it as an issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN numbers are mandatory for all expense types in the Philippines. While the supplier TIN is present (216-692-854-00031), the customer (GoGlobal) TIN is missing. The AI properly referenced the rule \"Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address\".\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that while the tax amount is listed (51.43 PHP), the receipt does not specify if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\". The AI accurately referenced this rule and flagged it as a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that additional information is required, including date of expense, business purpose, and merchant name, citing the rule \"Include details (date of expense, business purpose, and merchant name) with all submissions\". While the date (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the receipt data, the business purpose is indeed missing. The AI was partially correct in identifying this issue.\n\nCONFIDENCE: 95\n\nISSUES: \n1. The AI incorrectly stated that the date of expense and merchant name were missing when they were actually present in the receipt data.\n2. The AI did not mention that the receipt date (2025-06-04) is in the future, which could be a potential validity issue.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Philippines and GoGlobal ICP. It correctly identified the major compliance issues: missing GoGlobal company name, missing customer TIN, unclear gross-up indication, and partially correct on the missing additional information. The minor inaccuracy was in stating that date and merchant name were missing when they were present. Overall, the response correctly applies the compliance rules and addresses country-specific requirements for Philippines receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the GoGlobal company name is missing from the receipt, which is a mandatory requirement as per the compliance knowledge base. The recommendation to address this issue with the supplier or provider is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately notes that the customer TIN is missing from the receipt, which is also a mandatory requirement according to the compliance rules. The recommendation to address this issue with the supplier or provider is suitable.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly identifies that the tax amount is listed on the receipt, but it is unclear if the expense will be grossed up as per the compliance policies. The recommendation to indicate in the reporting of expenses if the user would like to gross up any items is relevant.\n\nISSUE_4_VALIDATION_SCORE: 85 - The AI response accurately points out that the receipt does not include the required details such as date of expense, business purpose, and merchant name. The recommendation to include these details with all submissions is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The AI response demonstrates a strong understanding of the compliance rules and knowledge base for the Philippines, particularly for the GoGlobal ICP. It correctly identifies the key issues with the receipt, such as missing company name, customer TIN, unclear gross-up indication, and insufficient additional information. The recommendations provided are relevant and in line with the established compliance guidelines. Overall, the response adheres well to the knowledge base and provides a comprehensive assessment of the receipt's compliance."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the GoGlobal company name is missing from the receipt, which is a mandatory requirement according to the compliance rules for GoGlobal in the Philippines.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the customer TIN is missing, which aligns with the compliance rule stating that the vendor's TIN should be present on BIR registered documents.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly identified the need for clarification on gross-up for tax amounts. This adheres to the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items.\" However, it could have more explicitly linked this to the specific gross-up rules for meals/restaurants in the Philippines.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately pointed out the missing additional information (date of expense, business purpose, and merchant name) as required by the compliance rules for GoGlobal.\n\nCONFIDENCE: 98\n\nISSUES:\n- Minor improvement could be made in explicitly linking the gross-up issue to specific rules for meal expenses in the Philippines.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for the Philippines and GoGlobal ICP. It correctly identified all major compliance issues including the missing GoGlobal company name, missing customer TIN, unclear gross-up indication, and insufficient additional information. The recommendations provided are directly in line with the compliance rules and knowledge base. The only minor area for improvement is in more explicitly connecting the gross-up issue to specific rules for meal expenses in the Philippines, but this does not significantly impact the overall accuracy of the compliance assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt is missing the GoGlobal company name. According to the compliance rules, for GoGlobal ICP in the Philippines, receipts must include \"GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000 22/F Mega Tower, EDSA corner J. Vargas Avenue, Brgy. WackWack-Greenhills, Mandaluyong City\". The AI accurately cited this requirement and flagged it as an issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN numbers are mandatory for all expense types in the Philippines. While the supplier TIN is present (216-692-854-00031), the customer (GoGlobal) TIN is missing. The AI properly referenced the rule \"Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address\".",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that while the tax amount is listed (51.43 PHP), the receipt does not specify if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items\". The AI accurately referenced this rule and flagged it as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that additional information is required, including date of expense, business purpose, and merchant name, citing the rule \"Include details (date of expense, business purpose, and merchant name) with all submissions\". While the date (2025-06-04) and merchant name (CAFE MARY GRACE) are actually present in the receipt data, the business purpose is indeed missing. The AI was partially correct in identifying this issue.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9466666666666667,
+      "issues": [
+        "The assessment is highly accurate but could have been more specific about which additional information elements were already present (merchant name and date) versus which were missing (primarily business purpose)."
+      ],
+      "summary": "The compliance assessment is very accurate, correctly identifying all four compliance issues with the receipt: missing GoGlobal company information, missing customer TIN, unclear gross-up indication, and insufficient additional information (particularly business purpose). The recommendations provided align with the compliance rules, and the references to specific knowledge base items are appropriate. The only minor improvement would be to more precisely identify which additional information elements were present versus missing.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the GoGlobal company name (GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000) is missing from the receipt. This is a mandatory requirement according to the compliance rules for GoGlobal ICP in the Philippines, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN is required, but for GoGlobal expenses, the customer should be the GoGlobal entity with its TIN information. The recommendation to address this with the supplier is correct.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identified that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. According to the compliance policies, the submitter needs to indicate if they want to gross up any items, especially since the rules state that business expenses may be subject to the 30% corporate income tax rate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified that additional required information is missing. The compliance rules specifically require date of expense, business purpose, and merchant name with all submissions. While the receipt does show the merchant name (CAFE MARY GRACE) and date (2025-06-04), it's missing the business purpose. The assessment could have been more specific about which elements were present versus missing.\n\nCONFIDENCE: 98\n\nISSUES: The assessment is highly accurate but could have been more specific about which additional information elements were already present (merchant name and date) versus which were missing (primarily business purpose).\n\nSUMMARY: The compliance assessment is very accurate, correctly identifying all four compliance issues with the receipt: missing GoGlobal company information, missing customer TIN, unclear gross-up indication, and insufficient additional information (particularly business purpose). The recommendations provided align with the compliance rules, and the references to specific knowledge base items are appropriate. The only minor improvement would be to more precisely identify which additional information elements were present versus missing.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the GoGlobal company name (GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000) is missing from the receipt. This is a mandatory requirement according to the compliance rules for GoGlobal ICP in the Philippines, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN is required, but for GoGlobal expenses, the customer should be the GoGlobal entity with its TIN information. The recommendation to address this with the supplier is correct.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identified that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. According to the compliance policies, the submitter needs to indicate if they want to gross up any items, especially since the rules state that business expenses may be subject to the 30% corporate income tax rate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified that additional required information is missing. The compliance rules specifically require date of expense, business purpose, and merchant name with all submissions. While the receipt does show the merchant name (CAFE MARY GRACE) and date (2025-06-04), it's missing the business purpose. The assessment could have been more specific about which elements were present versus missing.\n\nCONFIDENCE: 98\n\nISSUES: The assessment is highly accurate but could have been more specific about which additional information elements were already present (merchant name and date) versus which were missing (primarily business purpose).\n\nSUMMARY: The compliance assessment is very accurate, correctly identifying all four compliance issues with the receipt: missing GoGlobal company information, missing customer TIN, unclear gross-up indication, and insufficient additional information (particularly business purpose). The recommendations provided align with the compliance rules, and the references to specific knowledge base items are appropriate. The only minor improvement would be to more precisely identify which additional information elements were present versus missing."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing GoGlobal company name on the receipt as a compliance issue, which is a mandatory requirement for the GoGlobal ICP. The recommended solution to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment accurately detected the missing customer TIN on the receipt, which is a mandatory compliance requirement. The recommendation to address this with the supplier is relevant.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly flagged the unclear indication of whether the tax amount should be grossed up. However, the recommendation could be more specific in terms of how to properly indicate the gross-up preference.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment accurately identified the lack of additional details like date of expense, business purpose, and merchant name on the receipt, which are mandatory requirements. The recommendation to include these details is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The compliance assessment is generally accurate, with a high degree of confidence. The assessment correctly identified the key compliance issues with the receipt, including missing mandatory information like the GoGlobal company name, customer TIN, and additional details. The recommendations provided are relevant and aligned with the compliance rules. Overall, the assessment demonstrates a thorough understanding of the applicable standards and policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.96,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the GoGlobal company name is missing from the receipt, which is a mandatory requirement according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately points out that the customer TIN is missing, which is required as per the compliance rules stating that the vendor's TIN should be present on BIR registered documents.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the tax amount is listed but doesn't specify if it will be grossed up. However, it could be more specific about the fact that this is a meals receipt, which falls under the travel expense category that requires gross-up according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment accurately notes the missing additional information such as date of expense, business purpose, and merchant name. These are indeed required as per the compliance rules for GoGlobal. The slight deduction is because the merchant name is actually present on the receipt (CAFE MARY GRACE), though other required details are missing.\n\nCONFIDENCE: 96\n\nISSUES:\n1. The assessment doesn't mention that the receipt is dated in the future (2025-06-04), which could be a potential compliance issue.\n2. The assessment doesn't address the currency conversion rule for foreign expenses, though this may not be applicable if the expense is in PHP.\n\nSUMMARY: The compliance assessment is highly accurate, correctly identifying key issues such as missing GoGlobal company name, customer TIN, and additional required information. It also correctly notes the need for clarification on gross-up for the tax amount. However, it misses mentioning the future date on the receipt, which could be a potential compliance issue. Overall, the assessment demonstrates a strong understanding and application of the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that the GoGlobal company name (GOGLOBAL PHILIPPINES, INC. TIN: 010-281-166-000) is missing from the receipt. This is a mandatory requirement according to the compliance rules for GoGlobal ICP in the Philippines, and the recommendation to address this with the supplier is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment accurately identified that the customer TIN is missing on the receipt. According to the compliance rules, vendor TIN is required, but for GoGlobal expenses, the customer should be the GoGlobal entity with its TIN information. The recommendation to address this with the supplier is correct.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. According to the compliance policies, the submitter needs to indicate if they want to gross up any items, especially since the rules state that business expenses may be subject to the 30% corporate income tax rate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identified that additional required information is missing. The compliance rules specifically require date of expense, business purpose, and merchant name with all submissions. While the receipt does show the merchant name (CAFE MARY GRACE) and date (2025-06-04), it's missing the business purpose. The assessment could have been more specific about which elements were present versus missing.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9,
+      "issues": [
+        "Issue #4 incorrectly states that the date of expense and merchant name are missing when they are clearly present in the receipt data. This reduces the accuracy of the issue categorization."
+      ],
+      "summary": "Three of the four issues are accurately categorized with clear descriptions and appropriate recommendations. Issue #4 contains factual inaccuracies about missing information that is actually present in the receipt, which reduces its validation score. Overall, the system demonstrates strong issue categorization capabilities but should improve accuracy in verifying which specific elements are actually missing from receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing GoGlobal company name on the receipt. The description clearly states the problem, references the specific ICP rule, and provides the exact company name and TIN information needed. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - This issue is properly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing customer TIN. The description is clear and concise, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement for BIR registered documents with TIN information.\n\nISSUE_3_VALIDATION_SCORE: 90 - The \"Standards & Compliance | Gross-up Identified\" categorization is accurate as the receipt shows tax amounts but doesn't indicate if expenses will be grossed up. The description correctly identifies the issue and the recommendation aligns with the compliance policy requiring indication of gross-up items. The confidence score of 0.85 is appropriate given this is a procedural rather than a document deficiency issue.\n\nISSUE_4_VALIDATION_SCORE: 75 - While the \"Standards & Compliance | Follow-up Action Identified\" category is appropriate, the description is partially inaccurate. The receipt does include the date of expense (2025-06-04) and merchant name (CAFE MARY GRACE), but is missing the business purpose. The issue description incorrectly states all three elements are missing when only one is actually missing.\n\nCONFIDENCE: 89\n\nISSUES: Issue #4 incorrectly states that the date of expense and merchant name are missing when they are clearly present in the receipt data. This reduces the accuracy of the issue categorization.\n\nSUMMARY: Three of the four issues are accurately categorized with clear descriptions and appropriate recommendations. Issue #4 contains factual inaccuracies about missing information that is actually present in the receipt, which reduces its validation score. Overall, the system demonstrates strong issue categorization capabilities but should improve accuracy in verifying which specific elements are actually missing from receipts.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "claude-3-5-sonnet-20241022"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.89,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing GoGlobal company name on the receipt. The description clearly states the problem, references the specific ICP rule, and provides the exact company name and TIN information needed. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - This issue is properly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing customer TIN. The description is clear and concise, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement for BIR registered documents with TIN information.\n\nISSUE_3_VALIDATION_SCORE: 90 - The \"Standards & Compliance | Gross-up Identified\" categorization is accurate as the receipt shows tax amounts but doesn't indicate if expenses will be grossed up. The description correctly identifies the issue and the recommendation aligns with the compliance policy requiring indication of gross-up items. The confidence score of 0.85 is appropriate given this is a procedural rather than a document deficiency issue.\n\nISSUE_4_VALIDATION_SCORE: 75 - While the \"Standards & Compliance | Follow-up Action Identified\" category is appropriate, the description is partially inaccurate. The receipt does include the date of expense (2025-06-04) and merchant name (CAFE MARY GRACE), but is missing the business purpose. The issue description incorrectly states all three elements are missing when only one is actually missing.\n\nCONFIDENCE: 89\n\nISSUES: Issue #4 incorrectly states that the date of expense and merchant name are missing when they are clearly present in the receipt data. This reduces the accuracy of the issue categorization.\n\nSUMMARY: Three of the four issues are accurately categorized with clear descriptions and appropriate recommendations. Issue #4 contains factual inaccuracies about missing information that is actually present in the receipt, which reduces its validation score. Overall, the system demonstrates strong issue categorization capabilities but should improve accuracy in verifying which specific elements are actually missing from receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the receipt is missing the required GoGlobal company name. The description and recommendation provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the customer TIN is missing on the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue, as the tax amount is listed but it is unclear if the expense will be grossed up. The description and recommendation provided are generally clear, but could be slightly more specific.\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as the receipt is missing required details such as date of expense, business purpose, and merchant name. The description and recommendation provided are clear and actionable.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues identified are correctly categorized according to the established taxonomy. The descriptions and recommendations provided for each issue are clear and actionable, guiding the user on how to address the compliance problems. Overall, the issue categorization is accurate and comprehensive."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.91,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The missing GoGlobal company name issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description is clear, includes the specific ICP requirement, and provides the exact company details needed. The high confidence score of 0.9 is appropriate given the clear violation of a mandatory requirement.\n\nISSUE_2_VALIDATION_SCORE: 95 - The missing customer TIN issue is accurately categorized as \"Standards & Compliance | Fix Identified\". The description clearly identifies the compliance gap, and the recommendation aligns with BIR requirements. The 0.9 confidence score is appropriate given this is a clear documentary requirement.\n\nISSUE_3_VALIDATION_SCORE: 85 - The tax amount gross-up issue is properly categorized as \"Standards & Compliance | Gross-up Identified\". While the description correctly identifies the compliance concern, it could be more specific about the 30% corporate income tax rate mentioned in the compliance rules. The 0.85 confidence score reflects this minor limitation.\n\nISSUE_4_VALIDATION_SCORE: 90 - The missing additional information issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description accurately lists the specific missing elements required by GoGlobal's policies. The 0.85 confidence score is appropriate given the clear policy requirement.\n\nCONFIDENCE: 91\n\nISSUES:\n- No major categorization problems identified\n- Minor opportunity to enhance Issue 3's description with specific tax rate information\n- All issues align with provided compliance rules\n- Appropriate use of confidence scores reflecting certainty levels\n\nSUMMARY: The issue categorization demonstrates high accuracy with appropriate classification types, clear descriptions, and actionable recommendations. The validation scores reflect strong alignment with compliance rules while acknowledging minor areas for potential enhancement in description specificity."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing GoGlobal company name on the receipt. The description clearly states the problem, references the specific ICP rule, and provides the exact company name and TIN information needed. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is properly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing customer TIN. The description is clear and concise, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement for BIR registered documents with TIN information.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The \"Standards & Compliance | Gross-up Identified\" categorization is accurate as the receipt shows tax amounts but doesn't indicate if expenses will be grossed up. The description correctly identifies the issue and the recommendation aligns with the compliance policy requiring indication of gross-up items. The confidence score of 0.85 is appropriate given this is a procedural rather than a document deficiency issue.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 75,
+          "judge_explanation": "While the \"Standards & Compliance | Follow-up Action Identified\" category is appropriate, the description is partially inaccurate. The receipt does include the date of expense (2025-06-04) and merchant name (CAFE MARY GRACE), but is missing the business purpose. The issue description incorrectly states all three elements are missing when only one is actually missing.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8866666666666667,
+      "issues": [
+        "The recommendations could be slightly more specific about the exact process for addressing these issues (e.g.",
+        "specific forms to use",
+        "who to contact at the supplier",
+        "or how exactly to indicate gross-up preferences in the reporting system)."
+      ],
+      "summary": "The recommendations provided are generally valid, actionable, and directly address the compliance issues identified. They correctly reference the relevant compliance rules and provide clear guidance on what needs to be fixed. Minor improvements could be made to provide more specific procedural details on how to implement the recommendations, but overall they provide useful guidance for resolving the compliance issues with this receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing GoGlobal company name is valid and actionable. The knowledge base reference correctly cites the required company name and TIN that should appear on the receipt. This is a clear compliance requirement for GoGlobal in the Philippines.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, the recommendation to address the missing customer TIN with the supplier is valid and directly addresses the compliance requirement. The knowledge base reference correctly states that documents must reflect the vendor's TIN, business name, and address.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to \"indicate in the reporting of expenses if you would like to gross up any items\" is valid and matches the compliance policy. This provides clear guidance on what action the user needs to take, though it could be slightly more specific about how exactly to indicate this in their expense reporting system.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to include details (date of expense, business purpose, and merchant name) with all submissions is valid and directly addresses the compliance requirement. While the receipt does contain the merchant name and date, it appears the business purpose is missing, making this recommendation appropriate.\n\nCONFIDENCE: 88\n\nISSUES: The recommendations could be slightly more specific about the exact process for addressing these issues (e.g., specific forms to use, who to contact at the supplier, or how exactly to indicate gross-up preferences in the reporting system).\n\nSUMMARY: The recommendations provided are generally valid, actionable, and directly address the compliance issues identified. They correctly reference the relevant compliance rules and provide clear guidance on what needs to be fixed. Minor improvements could be made to provide more specific procedural details on how to implement the recommendations, but overall they provide useful guidance for resolving the compliance issues with this receipt.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing GoGlobal company name is valid and actionable. The knowledge base reference correctly cites the required company name and TIN that should appear on the receipt. This is a clear compliance requirement for GoGlobal in the Philippines.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, the recommendation to address the missing customer TIN with the supplier is valid and directly addresses the compliance requirement. The knowledge base reference correctly states that documents must reflect the vendor's TIN, business name, and address.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to \"indicate in the reporting of expenses if you would like to gross up any items\" is valid and matches the compliance policy. This provides clear guidance on what action the user needs to take, though it could be slightly more specific about how exactly to indicate this in their expense reporting system.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to include details (date of expense, business purpose, and merchant name) with all submissions is valid and directly addresses the compliance requirement. While the receipt does contain the merchant name and date, it appears the business purpose is missing, making this recommendation appropriate.\n\nCONFIDENCE: 88\n\nISSUES: The recommendations could be slightly more specific about the exact process for addressing these issues (e.g., specific forms to use, who to contact at the supplier, or how exactly to indicate gross-up preferences in the reporting system).\n\nSUMMARY: The recommendations provided are generally valid, actionable, and directly address the compliance issues identified. They correctly reference the relevant compliance rules and provide clear guidance on what needs to be fixed. Minor improvements could be made to provide more specific procedural details on how to implement the recommendations, but overall they provide useful guidance for resolving the compliance issues with this receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing GoGlobal company name on the receipt is valid and actionable. It provides a specific reference to the required company name and address, which the supplier can use to update the receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing customer TIN is valid and actionable. It provides clear guidance to ensure the submitted documents reflect the required vendor information, including the TIN.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to indicate if the expense should be grossed up is valid, but it could be more specific. It would be helpful to provide more details on the gross-up process and requirements.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to include additional details like date of expense, business purpose, and merchant name is valid and actionable. However, it could be further strengthened by providing more specific guidance on the required information.\n\nCONFIDENCE: 88 - The provided recommendations are generally valid and useful, addressing the identified compliance issues. They offer actionable steps that can be taken to improve the receipt's compliance. Some minor improvements could be made to provide more comprehensive guidance.\n\nISSUES: None.\n\nSUMMARY: The recommendations provided are largely valid and helpful, addressing the key compliance issues identified in the receipt. They offer specific guidance on addressing missing information and ensuring the receipt meets the required standards. With a few minor improvements, the recommendations can be considered highly useful for improving the receipt's compliance."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing GoGlobal company name with the supplier is valid and actionable. It directly addresses the compliance issue and provides the specific information needed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing customer TIN with the supplier is valid, specific, and directly addresses the compliance issue identified.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to indicate if expenses should be grossed up in the reporting is valid and addresses the issue. However, it could be more specific about how and where to indicate this information.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to include additional details (date, business purpose, merchant name) is highly valid, specific, and directly addresses the compliance issue identified.\n\nCONFIDENCE: 90\n\nISSUES:\n- The recommendation for Issue 3 could be more specific about how to indicate gross-up preferences in expense reporting.\n\nSUMMARY: Overall, the recommendations provided are highly valid, actionable, and directly address the identified compliance issues. They are feasible and practical to implement. The advice for including the GoGlobal company name, customer TIN, and additional details are particularly strong. The recommendation regarding gross-up indication could be slightly more specific, but it still provides useful guidance. There are no contradictory or harmful recommendations given."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing GoGlobal company name is valid and actionable. The knowledge base reference correctly cites the required company name and TIN that should appear on the receipt. This is a clear compliance requirement for GoGlobal in the Philippines.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "Similar to Issue 1, the recommendation to address the missing customer TIN with the supplier is valid and directly addresses the compliance requirement. The knowledge base reference correctly states that documents must reflect the vendor's TIN, business name, and address.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to \"indicate in the reporting of expenses if you would like to gross up any items\" is valid and matches the compliance policy. This provides clear guidance on what action the user needs to take, though it could be slightly more specific about how exactly to indicate this in their expense reporting system.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to include details (date of expense, business purpose, and merchant name) with all submissions is valid and directly addresses the compliance requirement. While the receipt does contain the merchant name and date, it appears the business purpose is missing, making this recommendation appropriate.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9733333333333333,
+      "issues": [
+        "Minor inaccuracy in Issue 4 where it claims merchant name is missing when it's actually present in the extracted data as supplier_name."
+      ],
+      "summary": "The AI response is largely accurate and free from hallucinations. It correctly identifies compliance issues based on the provided rules and extracted data. The only minor inaccuracy is in Issue 4, where it states the merchant name is missing when it's actually present in the extracted data. All other identified issues are valid and supported by the compliance rules and extracted data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the GoGlobal company name is missing from the receipt, which is required according to the compliance rules. The knowledge base reference matches exactly with the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that the customer TIN is missing on the receipt. The extracted data shows customer_tin as null, and the compliance rules require vendor TIN information.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The fourth issue identifies missing required details. While the date of issue (2025-06-04) is present in the extracted data, the business purpose is indeed missing. The merchant name (CAFE MARY GRACE) is actually present in the extracted data as supplier_name, so this part is slightly inaccurate, but the overall issue of missing required information is valid.\n\nCONFIDENCE: 97\n\nISSUES: Minor inaccuracy in Issue 4 where it claims merchant name is missing when it's actually present in the extracted data as supplier_name.\n\nSUMMARY: The AI response is largely accurate and free from hallucinations. It correctly identifies compliance issues based on the provided rules and extracted data. The only minor inaccuracy is in Issue 4, where it states the merchant name is missing when it's actually present in the extracted data. All other identified issues are valid and supported by the compliance rules and extracted data.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.97,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the GoGlobal company name is missing from the receipt, which is required according to the compliance rules. The knowledge base reference matches exactly with the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that the customer TIN is missing on the receipt. The extracted data shows customer_tin as null, and the compliance rules require vendor TIN information.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The fourth issue identifies missing required details. While the date of issue (2025-06-04) is present in the extracted data, the business purpose is indeed missing. The merchant name (CAFE MARY GRACE) is actually present in the extracted data as supplier_name, so this part is slightly inaccurate, but the overall issue of missing required information is valid.\n\nCONFIDENCE: 97\n\nISSUES: Minor inaccuracy in Issue 4 where it claims merchant name is missing when it's actually present in the extracted data as supplier_name.\n\nSUMMARY: The AI response is largely accurate and free from hallucinations. It correctly identifies compliance issues based on the provided rules and extracted data. The only minor inaccuracy is in Issue 4, where it states the merchant name is missing when it's actually present in the extracted data. All other identified issues are valid and supported by the compliance rules and extracted data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response matches the source data and does not appear to contain any hallucinated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response are consistent with the provided compliance policy information and do not appear to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the AI response are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts and is consistent with the provided information.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not appear to contain any hallucinated or fabricated information. All the details provided are present in the source data, and the compliance rules and requirements mentioned are consistent with the provided compliance policy information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rules provided, which state that the GoGlobal company name should be on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the customer TIN is missing, which is a requirement according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance policy regarding gross-up, which is mentioned in the provided rules.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue mostly aligns with the compliance rules, but the specific mention of \"merchant name\" is not explicitly stated in the rules provided, though it's a reasonable inference.\n\nCONFIDENCE: 95\n\nISSUES: \n- Minor potential hallucination in Issue 4 regarding the explicit mention of \"merchant name\" as a required detail.\n\nSUMMARY: The AI response appears to be largely free from hallucinations, with all issues closely aligned with the provided compliance rules and receipt data. There is a slight potential for minor inference in Issue 4, but it doesn't significantly impact the overall accuracy of the response. The high confidence score reflects that the response is well-grounded in the provided information and compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that the GoGlobal company name is missing from the receipt, which is required according to the compliance rules. The knowledge base reference matches exactly with the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The customer TIN is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue correctly identifies that the customer TIN is missing on the receipt. The extracted data shows customer_tin as null, and the compliance rules require vendor TIN information.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue correctly identifies that while tax amount is listed (51.43 PHP), there's no indication if the expense will be grossed up. This aligns with the compliance policy that states \"Indicate in the reporting of expenses if you would like to gross up any items.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The fourth issue identifies missing required details. While the date of issue (2025-06-04) is present in the extracted data, the business purpose is indeed missing. The merchant name (CAFE MARY GRACE) is actually present in the extracted data as supplier_name, so this part is slightly inaccurate, but the overall issue of missing required information is valid.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: - In Issue 4, the AI incorrectly stated that the date of expense and merchant name are missing, when they are actually present in the extracted data.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly stated that the date of expense and merchant name were missing when they were actually present in the receipt data., 2. The AI did not mention that the receipt date (2025-06-04) is in the future, which could be a potential validity issue.",
+    "Address issues in compliance accuracy: The assessment is highly accurate but could have been more specific about which additional information elements were already present (merchant name and date) versus which were missing (primarily business purpose).",
+    "Address issues in issue categorization: Issue #4 incorrectly states that the date of expense and merchant name are missing when they are clearly present in the receipt data. This reduces the accuracy of the issue categorization.",
+    "Address issues in recommendation validity: The recommendations could be slightly more specific about the exact process for addressing these issues (e.g., specific forms to use, who to contact at the supplier, or how exactly to indicate gross-up preferences in the reporting system).",
+    "Address issues in hallucination detection: Minor inaccuracy in Issue 4 where it claims merchant name is missing when it's actually present in the extracted data as supplier_name."
+  ],
+  "timestamp": "2025-09-10T10:57:03.709Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 72139,
+    "timing": {
+      "validation_start_time": "2025-09-10T10:55:51.569Z",
+      "validation_end_time": "2025-09-10T10:57:03.708Z",
+      "total_validation_time_seconds": "72.1",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "claude-3-5-sonnet-20241022"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-10T10:55:51.569Z",
+          "end_time": "2025-09-10T10:57:03.708Z",
+          "duration_seconds": "72.1",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "72.1",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.42",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 4
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not include the GoGlobal company name as required by the ICP-specific rule.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The customer TIN is missing on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The tax amount is listed, but the receipt does not specify if the expense will be grossed up as per the compliance policies.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 97,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "The receipt does not include the required details such as date of expense, business purpose, and merchant name.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 87.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 75,
+        "recommendation_validity": 85,
+        "hallucination_detection": 90
+      }
+    }
+  ]
+}
