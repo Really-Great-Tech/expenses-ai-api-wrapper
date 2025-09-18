@@ -263,48 +263,6 @@ erDiagram
     }
 ```
 
-## Event-Driven Processing Implementation
-
-### **Message-Based Scraping Architecture**
-
-```mermaid
-classDiagram
-    class ScrapingMessage {
-        +string messageId
-        +string datasourceId
-        +string country
-        +ScrapingOptions options
-        +validateMessage()
-        +extractPayload()
-    }
-    
-    class ScrapingOptions {
-        +number maxTraversalDepth
-        +number timeoutSeconds
-        +number qualityThreshold
-        +boolean bypassQualityCheck
-    }
-    
-    class ScrapingStatusMessage {
-        +string messageId
-        +string datasourceId
-        +string status
-        +number progress
-        +number nodesProcessed
-        +number totalNodes
-        +ErrorInfo error
-        +publishStatus()
-    }
-    
-    class ErrorInfo {
-        +string type
-        +string message
-        +object details
-    }
-    
-    ScrapingMessage --> ScrapingOptions
-    ScrapingStatusMessage --> ErrorInfo
-```
 
 ### **Queue Architecture Flow**
 
