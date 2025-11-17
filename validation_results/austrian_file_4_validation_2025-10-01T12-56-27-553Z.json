@@ -1,0 +1,586 @@
+{
+  "overall_score": 0.9122222222222223,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 1,
+      "issues": [
+        "None. All issues identified in the AI response are factually grounded in the provided data."
+      ],
+      "summary": "The AI response is completely factually grounded. All four issues identified (missing customer name, missing invoice number, need for travel report template, and missing tax rate) are directly supported by the extracted data and compliance rules. The response accurately identifies compliance gaps without fabricating or assuming information beyond what's provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue about missing customer name is factually grounded. The extracted data shows \"customer_name\": null, and the compliance rules clearly state that \"Employee name as guest/traveler\" is mandatory for travel expenses like flights, with the rule \"Hotel/flights invoices should indicate the name of the worker not the end client\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about missing invoice number is factually grounded. The extracted data shows \"invoice_number\": null, which confirms this information is missing from the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about submitting travel expenses using the travel report template is factually grounded. The compliance rules specifically state \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about missing tax rate is factually grounded. The extracted data shows \"tax_rate\": null, confirming this information is missing from the receipt.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified in the AI response are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded. All four issues identified (missing customer name, missing invoice number, need for travel report template, and missing tax rate) are directly supported by the extracted data and compliance rules. The response accurately identifies compliance gaps without fabricating or assuming information beyond what's provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue about missing customer name is factually grounded. The extracted data shows \"customer_name\": null, and the compliance rules clearly state that \"Employee name as guest/traveler\" is mandatory for travel expenses like flights, with the rule \"Hotel/flights invoices should indicate the name of the worker not the end client\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about missing invoice number is factually grounded. The extracted data shows \"invoice_number\": null, which confirms this information is missing from the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about submitting travel expenses using the travel report template is factually grounded. The compliance rules specifically state \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about missing tax rate is factually grounded. The extracted data shows \"tax_rate\": null, confirming this information is missing from the receipt.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified in the AI response are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded. All four issues identified (missing customer name, missing invoice number, need for travel report template, and missing tax rate) are directly supported by the extracted data and compliance rules. The response accurately identifies compliance gaps without fabricating or assuming information beyond what's provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response does not assume or fabricate any information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 100\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims can be traced back to the data, no information is fabricated or assumed, and the numerical values, dates, and entity details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer_name field is null in the extracted data. According to the compliance rules, for travel expenses like flights, \"Hotel/flights invoices should indicate the name of the worker not the end client\" is listed as mandatory. This issue is fully grounded in the data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice_number field is null in the extracted data. While there is a receipt_number present (2202219875680), the specific invoice_number field is indeed missing, which appears to be a compliance requirement.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the requirement for travel expenses to be submitted using a travel report template. This is directly stated in the compliance policies: \"Travel expenses must be submitted using the travel report template\" for Restaurant, Hotel, and Flight expense types.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the tax_rate field is null in the extracted data. While there is a tax_amount of 10.75 EUR listed, the specific tax rate percentage is not provided in the receipt data.\n\nCONFIDENCE: 100\n\nISSUES: None. All issues identified by the AI are factually grounded in the provided data and compliance rules.\n\nSUMMARY: The AI response is completely factually grounded. All four issues identified (missing employee name, missing invoice number, requirement for travel report template, and missing tax rate) are directly supported by the extracted data showing these fields as null or missing, and the compliance rules explicitly requiring this information for flight receipts in Austria."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about missing customer name is factually grounded. The extracted data shows \"customer_name\": null, and the compliance rules clearly state that \"Employee name as guest/traveler\" is mandatory for travel expenses like flights, with the rule \"Hotel/flights invoices should indicate the name of the worker not the end client\".",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about missing invoice number is factually grounded. The extracted data shows \"invoice_number\": null, which confirms this information is missing from the receipt.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about submitting travel expenses using the travel report template is factually grounded. The compliance rules specifically state \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about missing tax rate is factually grounded. The extracted data shows \"tax_rate\": null, confirming this information is missing from the receipt.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9433333333333334,
+      "issues": [
+        "No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules specific to flight receipts in Austria for Global People."
+      ],
+      "summary": "The AI response demonstrates excellent adherence to the compliance knowledge base. It correctly identified all mandatory requirements for flight receipts in Austria, including the need for the employee name as traveler, invoice number, tax rate, and submission using the travel report template. The issues identified align with both the explicit rules in the knowledge base and standard documentation requirements. The recommendations provided are appropriate and actionable.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name as guest/traveler is missing on the flight receipt. This aligns perfectly with the compliance rule stating \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is listed as mandatory for travel expenses related to flights.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing on the receipt. While this specific requirement isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper documentation, and the AI's recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that travel expenses must be submitted using the travel report template. This directly matches the compliance rule stating \"Travel expenses must be submitted using the travel report template\" which is listed as an additional information requirement for flight expenses.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI identified that the tax rate is missing on the receipt. While this isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper tax documentation. However, the confidence score of 0.8 appropriately reflects that this is slightly less certain than the other issues.\n\nCONFIDENCE: 98\n\nISSUES: No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules specific to flight receipts in Austria for Global People.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base. It correctly identified all mandatory requirements for flight receipts in Austria, including the need for the employee name as traveler, invoice number, tax rate, and submission using the travel report template. The issues identified align with both the explicit rules in the knowledge base and standard documentation requirements. The recommendations provided are appropriate and actionable.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name as guest/traveler is missing on the flight receipt. This aligns perfectly with the compliance rule stating \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is listed as mandatory for travel expenses related to flights.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing on the receipt. While this specific requirement isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper documentation, and the AI's recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that travel expenses must be submitted using the travel report template. This directly matches the compliance rule stating \"Travel expenses must be submitted using the travel report template\" which is listed as an additional information requirement for flight expenses.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI identified that the tax rate is missing on the receipt. While this isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper tax documentation. However, the confidence score of 0.8 appropriately reflects that this is slightly less certain than the other issues.\n\nCONFIDENCE: 98\n\nISSUES: No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules specific to flight receipts in Austria for Global People.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base. It correctly identified all mandatory requirements for flight receipts in Austria, including the need for the employee name as traveler, invoice number, tax rate, and submission using the travel report template. The issues identified align with both the explicit rules in the knowledge base and standard documentation requirements. The recommendations provided are appropriate and actionable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the customer name as guest/traveler is missing, which is a mandatory requirement for flight receipts according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the invoice number is missing, which is a mandatory requirement for all receipts according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the travel expenses need to be submitted using the travel report template, which is a mandatory requirement for travel expenses according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 80 - The AI correctly identified that the tax rate is missing on the receipt, which is a mandatory requirement. However, the compliance rules do not explicitly state that the tax rate must be shown on the receipt, only that the \"tax amount\" must be shown. So this issue is not as severe as the others.\n\nCONFIDENCE: 90\nISSUES: \n1. Missing customer name as guest/traveler\n2. Missing invoice number\n3. Need to submit travel expenses using travel report template\n4. Tax rate missing on receipt\n\nSUMMARY: The AI response accurately identifies the key compliance issues with the Austria flight receipt, including missing mandatory fields and the requirement to submit travel expenses using a specific template. The response aligns well with the provided compliance knowledge base, with only a minor issue around the tax rate requirement. Overall, the AI demonstrates a strong understanding of the applicable compliance rules and regulations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that employee name as guest/traveler is missing on the receipt. This aligns perfectly with the compliance rule stating \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is marked as mandatory for travel expenses like flights.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. Although this specific requirement isn't explicitly listed in the provided compliance rules, it's a standard requirement for proper documentation and the AI's recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that travel expenses must be submitted using the travel report template. This directly matches the compliance rule that states \"Travel expenses must be submitted using the travel report template\" for Restaurant, Hotel, and Flight expenses.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI identified that the tax rate is missing on the receipt. While this isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper documentation. The confidence is slightly lower because it's not directly stated in the compliance rules provided, but it's still a valid compliance concern.\n\nCONFIDENCE: 95\n\nISSUES: No significant knowledge base adherence issues identified. All issues raised by the AI are valid according to the compliance rules provided or represent standard documentation requirements.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Austria. It correctly identified key missing elements required for flight receipts, including the employee name as traveler (mandatory for travel expenses), invoice number, tax rate, and the need for submitting travel expenses using the travel report template. All identified issues are valid and align with the provided compliance rules or represent standard documentation requirements. The recommendations provided are appropriate and actionable."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the employee name as guest/traveler is missing on the flight receipt. This aligns perfectly with the compliance rule stating \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is listed as mandatory for travel expenses related to flights.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing on the receipt. While this specific requirement isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper documentation, and the AI's recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that travel expenses must be submitted using the travel report template. This directly matches the compliance rule stating \"Travel expenses must be submitted using the travel report template\" which is listed as an additional information requirement for flight expenses.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI identified that the tax rate is missing on the receipt. While this isn't explicitly mentioned in the provided compliance rules, it's a standard requirement for proper tax documentation. However, the confidence score of 0.8 appropriately reflects that this is slightly less certain than the other issues.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9666666666666667,
+      "issues": [
+        "None identified. All compliance issues were accurately assessed."
+      ],
+      "summary": "The compliance assessment is highly accurate. It correctly identified all four issues: missing employee name as traveler, missing invoice number, need for travel report template submission, and missing tax rate. These issues align perfectly with the compliance rules provided for Austria and flight receipts. The validation results are well-supported by the extracted data and applicable compliance policies.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer_name (employee name as guest/traveler) is missing from the receipt. According to the compliance rules, this is a mandatory field for flight receipts. The extracted data shows customer_name as null, confirming this issue is valid.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice_number is missing from the receipt. While the receipt does have a receipt_number (2202219875680), it lacks a specific invoice number. This is a valid compliance concern for proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that travel expenses must be submitted using the travel report template. This aligns with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights, hotels, and restaurants.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly identifies that the tax rate is missing on the receipt. While the tax_amount (10.75 EUR) is present, the tax_rate field is null in the extracted data. This is a valid compliance concern as tax documentation is important for expense processing.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All compliance issues were accurately assessed.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identified all four issues: missing employee name as traveler, missing invoice number, need for travel report template submission, and missing tax rate. These issues align perfectly with the compliance rules provided for Austria and flight receipts. The validation results are well-supported by the extracted data and applicable compliance policies.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the customer_name (employee name as guest/traveler) is missing from the receipt. According to the compliance rules, this is a mandatory field for flight receipts. The extracted data shows customer_name as null, confirming this issue is valid.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the invoice_number is missing from the receipt. While the receipt does have a receipt_number (2202219875680), it lacks a specific invoice number. This is a valid compliance concern for proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that travel expenses must be submitted using the travel report template. This aligns with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights, hotels, and restaurants.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly identifies that the tax rate is missing on the receipt. While the tax_amount (10.75 EUR) is present, the tax_rate field is null in the extracted data. This is a valid compliance concern as tax documentation is important for expense processing.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All compliance issues were accurately assessed.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identified all four issues: missing employee name as traveler, missing invoice number, need for travel report template submission, and missing tax rate. These issues align perfectly with the compliance rules provided for Austria and flight receipts. The validation results are well-supported by the extracted data and applicable compliance policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing employee name as a compliance issue for a hotel/flight receipt. This is in line with the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing invoice number as a compliance issue. This is a mandatory requirement as per the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies the need to submit travel expenses using the travel report template as a compliance issue. This is a standard requirement for travel expenses.\n\nISSUE_4_VALIDATION_SCORE: 80 - The assessment correctly identifies the missing tax rate as a compliance issue. However, the confidence score could be slightly lower as the compliance rules do not explicitly state that the tax rate must be shown on the receipt, only that the tax amount must be provided.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate and in line with the provided compliance rules. All the identified issues are valid and the recommended actions are appropriate. The overall confidence in the accuracy of the compliance determination is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the customer/traveler name is missing from the receipt. According to the compliance rules, \"Hotel/flights invoices should indicate the name of the worker not the end client\" and this is marked as mandatory for travel expenses. The extracted data confirms the customer_name field is null, making this a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified that the invoice number is missing. While there is a receipt_number field populated (2202219875680), there is no specific invoice_number field populated in the extracted data. This is a valid compliance concern as proper documentation typically requires an invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identified that travel expenses must be submitted using the travel report template. This aligns with the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for Restaurant, Hotel, and Flight expenses. This is a procedural requirement that is accurately flagged.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified that the tax rate is missing on the receipt. While the tax amount (10.75 EUR) is present, the actual tax rate percentage is not specified in the extracted data (tax_rate: null). This is a valid compliance concern as tax documentation typically requires the rate to be specified.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All compliance issues were accurately assessed according to the provided rules and extracted data.\n\nSUMMARY: The compliance assessment is highly accurate. It correctly identified four valid compliance issues: missing traveler name, missing invoice number, requirement for travel report template submission, and missing tax rate. All issues align with the provided compliance rules and are supported by the extracted data. The validation result correctly determined the receipt is not valid due to these compliance issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the customer_name (employee name as guest/traveler) is missing from the receipt. According to the compliance rules, this is a mandatory field for flight receipts. The extracted data shows customer_name as null, confirming this issue is valid.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the invoice_number is missing from the receipt. While the receipt does have a receipt_number (2202219875680), it lacks a specific invoice number. This is a valid compliance concern for proper documentation.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that travel expenses must be submitted using the travel report template. This aligns with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights, hotels, and restaurants.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the tax rate is missing on the receipt. While the tax_amount (10.75 EUR) is present, the tax_rate field is null in the extracted data. This is a valid compliance concern as tax documentation is important for expense processing.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.93,
+      "issues": [
+        "The categorization is generally accurate",
+        "though the tax rate requirement isn't explicitly mentioned in the provided compliance rules. However",
+        "it's a standard requirement for financial documentation."
+      ],
+      "summary": "The issue categorization is highly accurate, with all issues properly classified according to their type and severity. The descriptions are clear and actionable, providing specific recommendations for resolution. The categorization follows the established taxonomy of \"Standards & Compliance\" with appropriate subcategories. No significant issues appear to be missed or incorrectly classified based on the provided compliance rules and receipt data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing employee name as guest/traveler is correctly categorized as \"Standards & Compliance | Fix Identified\". This aligns with the compliance rule that states \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is marked as mandatory for travel expenses like flights. The description is clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\". While not explicitly mentioned in the provided compliance rules, invoice numbers are standard requirements for proper documentation. The description clearly identifies what's missing and provides appropriate recommendation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding travel report template is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". This directly corresponds to the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights. The recommendation is clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue regarding missing tax rate is categorized as \"Standards & Compliance | Follow-up Action Identified\". While tax information is generally required for proper documentation, the specific requirement for tax rate isn't explicitly mentioned in the provided compliance rules. However, the issue is still valid as tax information is a standard requirement for financial documentation.\n\nCONFIDENCE: 95\n\nISSUES: The categorization is generally accurate, though the tax rate requirement isn't explicitly mentioned in the provided compliance rules. However, it's a standard requirement for financial documentation.\n\nSUMMARY: The issue categorization is highly accurate, with all issues properly classified according to their type and severity. The descriptions are clear and actionable, providing specific recommendations for resolution. The categorization follows the established taxonomy of \"Standards & Compliance\" with appropriate subcategories. No significant issues appear to be missed or incorrectly classified based on the provided compliance rules and receipt data.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing employee name as guest/traveler is correctly categorized as \"Standards & Compliance | Fix Identified\". This aligns with the compliance rule that states \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is marked as mandatory for travel expenses like flights. The description is clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\". While not explicitly mentioned in the provided compliance rules, invoice numbers are standard requirements for proper documentation. The description clearly identifies what's missing and provides appropriate recommendation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding travel report template is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". This directly corresponds to the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights. The recommendation is clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue regarding missing tax rate is categorized as \"Standards & Compliance | Follow-up Action Identified\". While tax information is generally required for proper documentation, the specific requirement for tax rate isn't explicitly mentioned in the provided compliance rules. However, the issue is still valid as tax information is a standard requirement for financial documentation.\n\nCONFIDENCE: 95\n\nISSUES: The categorization is generally accurate, though the tax rate requirement isn't explicitly mentioned in the provided compliance rules. However, it's a standard requirement for financial documentation.\n\nSUMMARY: The issue categorization is highly accurate, with all issues properly classified according to their type and severity. The descriptions are clear and actionable, providing specific recommendations for resolution. The categorization follows the established taxonomy of \"Standards & Compliance\" with appropriate subcategories. No significant issues appear to be missed or incorrectly classified based on the provided compliance rules and receipt data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing mandatory employee name as the guest/traveler on the receipt, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing mandatory invoice number, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description clearly states that the travel expenses must be submitted using the travel report template, and the recommendation to do so is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 80 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description correctly identifies the missing tax rate on the receipt, and the recommendation to provide the tax rate is appropriate. However, the confidence score could be higher if the recommendation provided more specific guidance on how to obtain the missing tax rate information.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are generally well-categorized, with clear descriptions and appropriate recommendations. The categorization follows the established taxonomy, and no major issues were missed or incorrectly classified. The overall confidence in the issue categorization is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue regarding missing employee name as guest/traveler is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately identifies the missing mandatory field, and the recommendation to address this with the supplier aligns with the compliance rule stating \"Hotel/flights invoices should indicate the name of the worker not the end client.\" The knowledge base reference correctly cites this rule.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\". The description clearly identifies the missing mandatory field, and the recommendation to address this with the supplier is appropriate. The knowledge base reference \"Document must show invoice number\" is accurate, though this specific rule isn't explicitly listed in the provided compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding travel report template submission is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description and recommendation clearly state the requirement to submit travel expenses using the travel report template. The knowledge base reference directly matches the compliance rule that states \"Travel expenses must be submitted using the travel report template.\"\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue regarding missing tax rate is categorized as \"Standards & Compliance | Follow-up Action Identified\". While tax information is generally important for compliance, the specific requirement for tax rate isn't explicitly mentioned in the provided compliance rules. However, it's reasonable to expect tax information on receipts, so the categorization is acceptable though not directly tied to the provided rules.\n\nCONFIDENCE: 94\n\nISSUES: The tax rate issue (Issue 4) references a rule that isn't explicitly mentioned in the provided compliance rules, though it's a reasonable expectation for proper documentation.\n\nSUMMARY: The issue categorization is highly accurate, with three issues directly tied to compliance rules and one that represents a reasonable documentation expectation. All issues are properly classified with appropriate issue types, clear descriptions, and actionable recommendations. The knowledge base references are accurate and support the identified issues. The categorization follows the established taxonomy of Standards & Compliance issues with appropriate Fix Identified or Follow-up Action Identified subtypes."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing employee name as guest/traveler is correctly categorized as \"Standards & Compliance | Fix Identified\". This aligns with the compliance rule that states \"Hotel/flights invoices should indicate the name of the worker not the end client\" which is marked as mandatory for travel expenses like flights. The description is clear and actionable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\". While not explicitly mentioned in the provided compliance rules, invoice numbers are standard requirements for proper documentation. The description clearly identifies what's missing and provides appropriate recommendation.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding travel report template is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". This directly corresponds to the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for travel expenses including flights. The recommendation is clear and actionable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing tax rate is categorized as \"Standards & Compliance | Follow-up Action Identified\". While tax information is generally required for proper documentation, the specific requirement for tax rate isn't explicitly mentioned in the provided compliance rules. However, the issue is still valid as tax information is a standard requirement for financial documentation.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8833333333333333,
+      "issues": [
+        "The recommendation for issue 4 could be more specific about how to obtain or document the missing tax rate."
+      ],
+      "summary": "The recommendations provided are generally valid, actionable, and directly address the compliance issues identified in the flight receipt. They align well with the compliance rules provided for Austria and Global People ICP. The recommendations for obtaining proper documentation with employee name and invoice number, using the required travel report template, and addressing the missing tax rate are all appropriate steps to ensure compliance. The only minor improvement would be providing more specific guidance on how to address the missing tax rate.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid and directly addresses the compliance requirement that \"Hotel/flights invoices should indicate the name of the worker not the end client.\" This is actionable advice since the user can contact Lufthansa to request a corrected receipt that includes the traveler's name.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and specific. The compliance rules indicate that proper documentation is required, and the recommendation correctly identifies that the user should contact the supplier (Lufthansa) to obtain a document with a proper invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to submit travel expenses using the travel report template is directly aligned with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights. This is a clear, actionable instruction that directly addresses the compliance requirement.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide the tax rate on the receipt is valid, though it could be more specific about how to obtain this information. While the receipt shows a tax amount (10.75 EUR), the tax rate percentage is indeed missing. The recommendation correctly identifies this issue but could provide more guidance on how to address it (e.g., whether to request an updated receipt or if there's an alternative way to document the tax rate).\n\nCONFIDENCE: 90\n\nISSUES: The recommendation for issue 4 could be more specific about how to obtain or document the missing tax rate.\n\nSUMMARY: The recommendations provided are generally valid, actionable, and directly address the compliance issues identified in the flight receipt. They align well with the compliance rules provided for Austria and Global People ICP. The recommendations for obtaining proper documentation with employee name and invoice number, using the required travel report template, and addressing the missing tax rate are all appropriate steps to ensure compliance. The only minor improvement would be providing more specific guidance on how to address the missing tax rate.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid and directly addresses the compliance requirement that \"Hotel/flights invoices should indicate the name of the worker not the end client.\" This is actionable advice since the user can contact Lufthansa to request a corrected receipt that includes the traveler's name.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and specific. The compliance rules indicate that proper documentation is required, and the recommendation correctly identifies that the user should contact the supplier (Lufthansa) to obtain a document with a proper invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to submit travel expenses using the travel report template is directly aligned with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights. This is a clear, actionable instruction that directly addresses the compliance requirement.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide the tax rate on the receipt is valid, though it could be more specific about how to obtain this information. While the receipt shows a tax amount (10.75 EUR), the tax rate percentage is indeed missing. The recommendation correctly identifies this issue but could provide more guidance on how to address it (e.g., whether to request an updated receipt or if there's an alternative way to document the tax rate).\n\nCONFIDENCE: 90\n\nISSUES: The recommendation for issue 4 could be more specific about how to obtain or document the missing tax rate.\n\nSUMMARY: The recommendations provided are generally valid, actionable, and directly address the compliance issues identified in the flight receipt. They align well with the compliance rules provided for Austria and Global People ICP. The recommendations for obtaining proper documentation with employee name and invoice number, using the required travel report template, and addressing the missing tax rate are all appropriate steps to ensure compliance. The only minor improvement would be providing more specific guidance on how to address the missing tax rate."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name as guest/traveler on the receipt is valid and actionable. It provides a clear explanation of the issue and a recommendation to work with the supplier to ensure this mandatory information is included.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number on the receipt is valid and actionable. It clearly identifies the issue and provides a recommendation to work with the supplier to ensure the invoice number is included.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to submit the travel expenses using the travel report template is valid and addresses the issue. However, it could be more specific by providing details on the required template or where to access it.\n\nISSUE_4_VALIDATION_SCORE: 80 - The recommendation to provide the tax rate on the receipt is valid and addresses the issue. However, it could be more detailed by explaining the importance of the tax rate information and any specific requirements.\n\nCONFIDENCE: 85\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They clearly identify the issues with the receipt and provide actionable steps to address them. The recommendations are feasible and practical, and there are no contradictory or harmful suggestions. Some recommendations could be slightly more detailed, but overall the advice is sound and should help the user improve the compliance of the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing employee name with the supplier is valid and directly addresses the compliance rule that \"Hotel/flights invoices should indicate the name of the worker not the end client.\" This is actionable advice that would help bring the receipt into compliance.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and specific. The compliance rules indicate that proper documentation is required, and an invoice number is a standard requirement for proper financial documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to submit travel expenses using the travel report template is highly valid and directly aligns with the compliance rule that states \"Travel expenses must be submitted using the travel report template\" for flights. This is a clear, actionable, and specific recommendation.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide the tax rate on the receipt is valid, though it's not explicitly listed in the provided compliance rules. However, proper tax documentation is generally required for expense reporting, and the recommendation to include the tax rate is reasonable and actionable.\n\nCONFIDENCE: 90\n\nISSUES: None significant. All recommendations are valid, actionable, and aligned with the compliance rules.\n\nSUMMARY: The recommendations provided for the flight receipt from Austria are valid and useful. They correctly identify missing mandatory information (employee name, invoice number, tax rate) and provide clear guidance on the need to use the travel report template as required by policy. All suggestions are actionable and directly address the compliance issues identified in the receipt."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing employee name with the supplier is valid and directly addresses the compliance requirement that \"Hotel/flights invoices should indicate the name of the worker not the end client.\" This is actionable advice since the user can contact Lufthansa to request a corrected receipt that includes the traveler's name.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and specific. The compliance rules indicate that proper documentation is required, and the recommendation correctly identifies that the user should contact the supplier (Lufthansa) to obtain a document with a proper invoice number.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to submit travel expenses using the travel report template is directly aligned with the compliance policy that states \"Travel expenses must be submitted using the travel report template\" for flights. This is a clear, actionable instruction that directly addresses the compliance requirement.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to provide the tax rate on the receipt is valid, though it could be more specific about how to obtain this information. While the receipt shows a tax amount (10.75 EUR), the tax rate percentage is indeed missing. The recommendation correctly identifies this issue but could provide more guidance on how to address it (e.g., whether to request an updated receipt or if there's an alternative way to document the tax rate).",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.75,
+      "issues": [
+        "1. Issue 4 references a compliance rule \"Document must show tax rate\" that does not exist in the provided compliance rules.",
+        "2. The knowledge base reference for issue 4 is fabricated as there is no explicit rule requiring tax rates to be shown on receipts in the provided compliance information."
+      ],
+      "summary": "The AI response is mostly accurate, with 3 out of 4 issues being correctly identified based on the provided compliance rules and extracted data. However, issue 4 contains hallucinated information by referencing a non-existent compliance rule about tax rates being required on receipts. This fabrication reduces the overall confidence in the response's accuracy.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the employee name as guest/traveler is missing from the receipt. This is a valid compliance requirement based on the provided compliance rules which state \"Hotel/flights invoices should indicate the name of the worker not the end client\" and the extracted data shows customer_name as null.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows invoice_number as null, which is a valid concern for proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly states that travel expenses must be submitted using the travel report template, which aligns with the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for flights.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue claims that \"Document must show tax rate\" is a knowledge base reference, but this specific requirement is not present in the provided compliance rules. While the tax_rate is indeed null in the extracted data, presenting this as a compliance requirement is a hallucination.\n\nCONFIDENCE: 75\n\nISSUES: \n1. Issue 4 references a compliance rule \"Document must show tax rate\" that does not exist in the provided compliance rules.\n2. The knowledge base reference for issue 4 is fabricated as there is no explicit rule requiring tax rates to be shown on receipts in the provided compliance information.\n\nSUMMARY: The AI response is mostly accurate, with 3 out of 4 issues being correctly identified based on the provided compliance rules and extracted data. However, issue 4 contains hallucinated information by referencing a non-existent compliance rule about tax rates being required on receipts. This fabrication reduces the overall confidence in the response's accuracy.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the employee name as guest/traveler is missing from the receipt. This is a valid compliance requirement based on the provided compliance rules which state \"Hotel/flights invoices should indicate the name of the worker not the end client\" and the extracted data shows customer_name as null.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows invoice_number as null, which is a valid concern for proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly states that travel expenses must be submitted using the travel report template, which aligns with the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for flights.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue claims that \"Document must show tax rate\" is a knowledge base reference, but this specific requirement is not present in the provided compliance rules. While the tax_rate is indeed null in the extracted data, presenting this as a compliance requirement is a hallucination.\n\nCONFIDENCE: 75\n\nISSUES: \n1. Issue 4 references a compliance rule \"Document must show tax rate\" that does not exist in the provided compliance rules.\n2. The knowledge base reference for issue 4 is fabricated as there is no explicit rule requiring tax rates to be shown on receipts in the provided compliance information.\n\nSUMMARY: The AI response is mostly accurate, with 3 out of 4 issues being correctly identified based on the provided compliance rules and extracted data. However, issue 4 contains hallucinated information by referencing a non-existent compliance rule about tax rates being required on receipts. This fabrication reduces the overall confidence in the response's accuracy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The information in the AI response is present in the source data, including the supplier name, address, receipt details, and line items.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements provided in the response appear to be valid and consistent with the ICP context of \"Global People IT-Services GmbH\".\n\nISSUE_3_VALIDATION_SCORE: 0 - The entity names, amounts, and dates provided in the response match the information extracted from the source data.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response does not present any assumptions as facts. It clearly identifies the issues found in the receipt and provides recommendations based on the compliance rules.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided are accurately extracted from the source data, and the compliance rules and requirements are valid and consistent with the ICP context."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the customer/employee name is missing from the receipt. This is a valid issue based on the compliance rules which state \"Employee name as guest/traveler\" is mandatory for travel expenses like flights.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims an invoice number is missing and references a rule that \"Document must show invoice number.\" However, this rule is not present in the provided compliance rules. The receipt does have a receipt number (2202219875680), but there's no explicit requirement for an invoice number in the compliance rules provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that travel expenses must be submitted using the travel report template, which is explicitly mentioned in the compliance rules for flight expenses.\n\nISSUE_4_VALIDATION_SCORE: 0 - The fourth issue claims that tax rate is missing and references a rule that \"Document must show tax rate.\" However, this rule is not present in the provided compliance rules. While the receipt does show tax amount (10.75), there's no explicit requirement for a tax rate in the compliance rules provided.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Issue 2 references a non-existent rule about invoice numbers being mandatory\n2. Issue 4 references a non-existent rule about tax rates being mandatory\n\nSUMMARY: The AI response contains two hallucinated compliance issues (2 and 4) that reference rules not present in the provided compliance documentation. While the receipt may indeed be missing an invoice number and tax rate, claiming these are compliance violations based on non-existent rules constitutes hallucination. The other two issues (1 and 3) are correctly identified based on the actual compliance rules provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the employee name as guest/traveler is missing from the receipt. This is a valid compliance requirement based on the provided compliance rules which state \"Hotel/flights invoices should indicate the name of the worker not the end client\" and the extracted data shows customer_name as null.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the invoice number is missing from the receipt. The extracted data shows invoice_number as null, which is a valid concern for proper documentation.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Travel expenses must be submitted using the travel report template",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly states that travel expenses must be submitted using the travel report template, which aligns with the compliance rule stating \"Travel expenses must be submitted using the travel report template\" for flights.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax rate is missing on the receipt",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims that \"Document must show tax rate\" is a knowledge base reference, but this specific requirement is not present in the provided compliance rules. While the tax_rate is indeed null in the extracted data, presenting this as a compliance requirement is a hallucination.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None. All issues identified in the AI response are factually grounded in the provided data.",
+    "Address issues in knowledge base adherence: No significant knowledge base adherence issues identified. The AI has correctly applied the compliance rules specific to flight receipts in Austria for Global People.",
+    "Address issues in compliance accuracy: None identified. All compliance issues were accurately assessed.",
+    "Address issues in issue categorization: The categorization is generally accurate, though the tax rate requirement isn't explicitly mentioned in the provided compliance rules. However, it's a standard requirement for financial documentation.",
+    "Address issues in recommendation validity: The recommendation for issue 4 could be more specific about how to obtain or document the missing tax rate.",
+    "Address issues in hallucination detection: 1. Issue 4 references a compliance rule \"Document must show tax rate\" that does not exist in the provided compliance rules., 2. The knowledge base reference for issue 4 is fabricated as there is no explicit rule requiring tax rates to be shown on receipts in the provided compliance information."
+  ],
+  "timestamp": "2025-10-01T12:56:27.553Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 61573,
+    "timing": {
+      "validation_start_time": "2025-10-01T12:55:25.979Z",
+      "validation_end_time": "2025-10-01T12:56:27.552Z",
+      "total_validation_time_seconds": "61.6",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T12:55:25.979Z",
+          "end_time": "2025-10-01T12:56:27.552Z",
+          "duration_seconds": "61.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "61.6",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.49",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 4
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory employee name as guest/traveler on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Travel expenses must be submitted using the travel report template",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Tax rate is missing on the receipt",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 77.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

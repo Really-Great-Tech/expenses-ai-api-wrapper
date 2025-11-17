@@ -1,0 +1,690 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758889163358_752430930_south_korean_file_14.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:24:01.876Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded document portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete content.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions, shadows, or other elements blocking content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Korean",
+    "language_confidence": 95,
+    "document_location": "South Korea",
+    "expected_location": "South_Korea",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. The presence of fare details, total fare, and payment method confirms it as a travel-related expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, confirming it as an expense document. The missing fields (icpRequirements and taxInformation) do not negate the expense classification."
+    }
+  },
+  "extraction": {
+    "country": "South Korea",
+    "supplier_name": "NEXT",
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "서수빈",
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "KRW",
+    "total_amount": 25300,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-14",
+    "transaction_time": "20:06",
+    "payment_method": "현대 5411 Personal",
+    "card_last_four": "5411",
+    "line_items": [
+      {
+        "description": "Fare",
+        "quantity": 1,
+        "unit_price": 25300,
+        "total_price": 25300,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Receipt",
+    "pickup_location": {
+      "address": "서울 강남구 대치동 892 포스코센터",
+      "time": "20:06"
+    },
+    "dropoff_location": {
+      "address": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+      "time": "20:41"
+    },
+    "driver_name": "문희석",
+    "driver_license_plate": "서울38자8165",
+    "driver_rating": 92,
+    "driver_trips": 1000,
+    "driver_license_type": "Deluxe",
+    "special_notes": "Surge pricing 1.14x",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Supplier address is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Total amount of the expense must be clearly displayed on the receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Receipt number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Total amount of the expense must be clearly displayed on the receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Tax amount is missing on the receipt",
+          "recommendation": "Tax amount should be listed clearly on the receipt if applicable",
+          "knowledge_base_reference": "VAT amount must be listed clearly on the invoice if applicable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for mileage reimbursement",
+          "recommendation": "For mileage reimbursements, include To and From locations, distance travelled and per diem rates",
+          "knowledge_base_reference": "For mileage reimbursements, include To and From locations, distance travelled and per diem rates",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including supplier address, invoice number, and receipt number. Additionally, the tax amount is missing, and further documentation is required for mileage reimbursement. These issues need to be addressed to ensure compliance with South Korean regulations and GoGlobal ICP requirements."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South_Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "processing_time": {
+        "field_citation": {
+          "source_text": "Processing Time:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Processing Time: 13.60 seconds",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13.60 seconds",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Processing Time: 13.60 seconds",
+          "match_type": "exact"
+        }
+      },
+      "pages": {
+        "field_citation": {
+          "source_text": "Pages:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pages: 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pages: 1",
+          "match_type": "exact"
+        }
+      },
+      "input_tokens": {
+        "field_citation": {
+          "source_text": "Input Tokens:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Input Tokens: 1765",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1765",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Input Tokens: 1765",
+          "match_type": "exact"
+        }
+      },
+      "output_tokens": {
+        "field_citation": {
+          "source_text": "Output Tokens:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Output Tokens: 224",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "224",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Output Tokens: 224",
+          "match_type": "exact"
+        }
+      },
+      "pickup_time": {
+        "field_citation": {
+          "source_text": "20:06",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:06 ☐ 서울 강남구 대치동 892 포스코센터",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "20:06",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:06 ☐ 서울 강남구 대치동 892 포스코센터",
+          "match_type": "exact"
+        }
+      },
+      "pickup_location": {
+        "field_citation": {
+          "source_text": "서울 강남구 대치동 892 포스코센터",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:06 ☐ 서울 강남구 대치동 892 포스코센터",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "서울 강남구 대치동 892 포스코센터",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:06 ☐ 서울 강남구 대치동 892 포스코센터",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_time": {
+        "field_citation": {
+          "source_text": "20:41",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:41 ■ Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "20:41",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:41 ■ Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "exact"
+        }
+      },
+      "dropoff_location": {
+        "field_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:41 ■ Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "20:41 ■ Seoul Seodaemun-gu Hyeonjeo-dong 200 Dongnimmun Geukdong Apartment 112dong",
+          "match_type": "exact"
+        }
+      },
+      "driver_name": {
+        "field_citation": {
+          "source_text": "Driver 문희석",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Driver 문희석",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "문희석",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Driver 문희석",
+          "match_type": "exact"
+        }
+      },
+      "driver_license_plate": {
+        "field_citation": {
+          "source_text": "서울38자8165",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "### Driver 문희석\n서울38자8165\nMy rating: Not rated",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "서울38자8165",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "### Driver 문희석\n서울38자8165\nMy rating: Not rated",
+          "match_type": "exact"
+        }
+      },
+      "driver_rating": {
+        "field_citation": {
+          "source_text": "Rating",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "driver_details": {
+        "field_citation": {
+          "source_text": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "fare": {
+        "field_citation": {
+          "source_text": "Fare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Fare | ₩25,300 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "₩25,300",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Fare | ₩25,300 |",
+          "match_type": "exact"
+        }
+      },
+      "total_fare": {
+        "field_citation": {
+          "source_text": "Total fare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Total fare | ₩25,300 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "₩25,300",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Total fare | ₩25,300 |",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment method",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Payment method | 현대 **5411 Personal |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "현대 **5411 Personal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| Payment method | 현대 **5411 Personal |",
+          "match_type": "exact"
+        }
+      },
+      "driver_qualifications": {
+        "field_citation": {
+          "source_text": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "Wed, May 14, 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Wed, May 14, 2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Wed, May 14, 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Wed, May 14, 2025",
+          "match_type": "exact"
+        }
+      },
+      "vehicle_license_plate": {
+        "field_citation": {
+          "source_text": "서울38자8165",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "서울38자8165",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "서울38자8165",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "서울38자8165",
+          "match_type": "exact"
+        }
+      },
+      "rating": {
+        "field_citation": {
+          "source_text": "My rating:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "My rating: Not rated",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Not rated",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "My rating: Not rated",
+          "match_type": "exact"
+        }
+      },
+      "prime_driver": {
+        "field_citation": {
+          "source_text": "Prime Driver",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Prime Driver",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "charter": {
+        "field_citation": {
+          "source_text": "Charter",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Charter",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "trips": {
+        "field_citation": {
+          "source_text": "1000+ trips",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1000+ trips",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "license_type": {
+        "field_citation": {
+          "source_text": "Deluxe License",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Deluxe License",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Prime Driver | Charter | Rating 92% | 1000+ trips | Deluxe License",
+          "match_type": "exact"
+        }
+      },
+      "surge_pricing": {
+        "field_citation": {
+          "source_text": "Surge pricing",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "| | *Surge pricing 1.14x |",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "1.14x",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "| | *Surge pricing 1.14x |",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 64,
+      "fields_with_field_citations": 64,
+      "fields_with_value_citations": 64,
+      "average_confidence": 0.9353125
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "13.6",
+      "file_classification_seconds": "3.4",
+      "data_extraction_seconds": "3.7",
+      "image_quality_assessment_seconds": "4.5",
+      "issue_detection_seconds": "6.8",
+      "citation_generation_seconds": "67.8",
+      "llm_validation_seconds": "64.2"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:23:43.731Z",
+        "end_time": "2025-09-26T12:23:57.341Z",
+        "duration_seconds": "13.6",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:23:57.344Z",
+        "end_time": "2025-09-26T12:24:00.713Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:23:57.347Z",
+        "end_time": "2025-09-26T12:24:01.048Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:23:57.342Z",
+        "end_time": "2025-09-26T12:24:01.876Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:24:01.877Z",
+        "end_time": "2025-09-26T12:24:08.659Z",
+        "duration_seconds": "6.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:24:01.880Z",
+        "end_time": "2025-09-26T12:25:09.686Z",
+        "duration_seconds": "67.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:25:09.687Z",
+        "end_time": "2025-09-26T12:26:13.883Z",
+        "duration_seconds": "64.2",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "150.2",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.5",
+      "parallel_group_2_seconds": "67.8",
+      "total_parallel_time_seconds": "72.3"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_14.pdf",
+    "processing_time": 150156,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:26:13.887Z"
+  }
+}

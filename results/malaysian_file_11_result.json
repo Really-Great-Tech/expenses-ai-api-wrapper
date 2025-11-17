@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\malaysian_file_11.pdf_full_test_new_dataset_4_malaysian_file_11.pdf",
+    "image_path": "uploads/test_mvp_1/job_1759399269269_181654264_malaysian_file_11.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-09-10T10:39:55.921Z",
+    "timestamp": "2025-10-02T10:01:37.410Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
@@ -13,7 +13,7 @@
       "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action needed."
+      "recommendation": "No action required."
     },
     "contrast_assessment": {
       "detected": false,
@@ -21,7 +21,7 @@
       "confidence_score": 0.95,
       "quantitative_measure": 1,
       "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action needed."
+      "recommendation": "No action required."
     },
     "glare_identification": {
       "detected": false,
@@ -29,7 +29,7 @@
       "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No glare or bright spots detected that obscure text.",
-      "recommendation": "No action needed."
+      "recommendation": "No action required."
     },
     "water_stains": {
       "detected": false,
@@ -37,23 +37,23 @@
       "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No water stains or discolorations affecting document readability.",
-      "recommendation": "No action needed."
+      "recommendation": "No action required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, folds, or wrinkles.",
-      "recommendation": "No action needed."
+      "description": "No visible tears, creases, folds, or wrinkles on the document.",
+      "recommendation": "No action required."
     },
     "cut_off_detection": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all necessary portions.",
-      "recommendation": "No action needed."
+      "description": "No document edges are cut off, and the image frame includes all relevant portions.",
+      "recommendation": "No action required."
     },
     "missing_sections": {
       "detected": false,
@@ -61,61 +61,58 @@
       "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No missing sections or incomplete parts of the receipt/invoice.",
-      "recommendation": "No action needed."
+      "recommendation": "No action required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No obstructions, such as objects or shadows, blocking document content.",
-      "recommendation": "No action needed."
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action required."
     },
     "overall_quality_score": 10
   },
   "classification": {
     "is_expense": true,
     "expense_type": "meals",
-    "language": "English",
+    "language": "Chinese",
     "language_confidence": 95,
-    "document_location": "Malaysia",
+    "document_location": "Taiwan",
     "expected_location": "Malaysia",
-    "location_match": true,
-    "error_type": null,
-    "error_message": null,
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location is Taiwan, which does not match the expected location of Malaysia.",
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, payment method, and item description. The presence of these fields, along with the confirmation of payment, indicates that this is an expense document. The expense type is classified as 'meals' based on the description '1 COFFEE CLUB'.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, and payment method. It is classified as a meal expense due to the nature of the establishment (Coffee Club).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
         "transactionAmount",
         "transactionDate",
+        "invoiceReceiptNumber",
         "paymentMethod",
         "itemDescriptionLineItems"
       ],
       "fields_missing": [
         "consumerRecipient",
         "icpRequirements",
-        "invoiceReceiptNumber",
         "taxInformation"
       ],
-      "total_fields_found": 5,
-      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, confirming it as an expense document. The fields found include supplier (Mega International Commercial Bank), transaction amount (NT$ 130), transaction date (2025/04/18 15:20:02), payment method (mastercard), and item description (1 COFFEE CLUB)."
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 schema fields, including supplier, transaction amount, transaction date, invoice receipt number, payment method, and item description line items. This meets the criteria for being classified as an expense."
     }
   },
   "extraction": {
-    "supplier_name": "Mega International Commercial Bank",
-    "supplier_address": null,
-    "supplier_vat_number": null,
-    "supplier_phone": "017764385010001",
-    "supplier_email": null,
-    "supplier_website": null,
+    "supplier_name": "咖啡俱樂部 COFFEE CLUB",
+    "supplier_code": "0177643850100001",
+    "terminal_code": "00011001",
     "customer_name": null,
     "customer_address": null,
-    "invoice_number": null,
-    "receipt_number": "00011001",
-    "transaction_reference": "000012",
-    "currency": "NT$",
+    "invoice_number": "000012",
+    "receipt_number": "510855202065",
+    "transaction_reference": "000027",
+    "currency": "TWD",
     "total_amount": 130,
     "subtotal": null,
     "tax_amount": null,
@@ -126,17 +123,9 @@
     "transaction_time": "15:20:02",
     "payment_method": "Credit Card",
     "card_type": "mastercard",
-    "card_last_four": "537992",
-    "authorization_code": "000027",
-    "line_items": [
-      {
-        "description": "COFFEE CLUB",
-        "quantity": null,
-        "unit_price": null,
-        "total_price": 130,
-        "category": null
-      }
-    ],
+    "card_last_four": "6100",
+    "authorization_code": "241935",
+    "line_items": [],
     "receipt_type": "Restaurant Receipt",
     "document_type": null,
     "table_number": null,
@@ -154,55 +143,55 @@
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_address",
-          "description": "Supplier address is missing on the receipt.",
+          "field": "currency",
+          "description": "The currency on the receipt is TWD, which is not the local currency for Malaysia. The total amount should be in MYR.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Name of the vendor/merchant must be visible on receipt",
+          "knowledge_base_reference": "Total amount of the expense must be visible on receipt in local currency.",
           "confidence_score": 0.9
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_vat_number",
-          "description": "Supplier VAT number is missing on the receipt.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "VAT amount, listed clearly on the Invoice (if applicable)",
-          "confidence_score": 0.85
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "customer_name",
-          "description": "Customer name is missing on the receipt.",
+          "description": "The customer name is not present on the receipt, which is a mandatory field for receipts in Malaysia.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Name of the vendor/merchant must be visible on receipt",
+          "knowledge_base_reference": "Name of the vendor/merchant must be visible on receipt.",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "invoice_number",
-          "description": "Invoice number is missing on the receipt.",
+          "field": "tax_amount",
+          "description": "The tax amount is not present on the receipt, which is a mandatory field for receipts in Malaysia.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Alphanumeric identifier on document, Description: Usually present somewhere.",
-          "confidence_score": 0.9
+          "knowledge_base_reference": "VAT amount, listed clearly on the Invoice (if applicable).",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "location_city",
+          "description": "The location city is not present on the receipt, which is a mandatory field for receipts in Malaysia.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Location details should be included on the receipt.",
+          "confidence_score": 0.85
         },
         {
           "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "tax_amount",
-          "description": "Tax amount is missing on the receipt.",
+          "field": "total_amount",
+          "description": "The total amount of the expense will be grossed up as it is not tax-free.",
           "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free. Expenses that fall under taxable income will be treated as per the local regulations.",
           "knowledge_base_reference": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
-          "confidence_score": 0.85
+          "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
           "field": "additional_info",
-          "description": "Additional information required for foreign currency expenses is missing.",
-          "recommendation": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses.",
-          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "description": "Additional information is required to establish the clear business purpose of the expense and to convert the amount in local currency.",
+          "recommendation": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses. Submit expense claims with clear and legible copies of the receipts to Client line manager for approval preferably within the same month of the expense.",
+          "knowledge_base_reference": "Establish clear business purpose of all incurred expenses. Convert amount in local currency and include currency & exchange rate used for foreign currency expenses.",
           "confidence_score": 0.85
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has several compliance issues including missing supplier address, VAT number, customer name, and invoice number. Additionally, the tax amount is missing, and there is no additional information for foreign currency expenses. These issues need to be addressed for full compliance."
+      "compliance_summary": "The receipt has several compliance issues including incorrect currency, missing customer name, missing tax amount, missing location city, and requires gross-up and additional information for compliance."
     },
     "technical_details": {
       "content_type": "expense_receipt",
@@ -214,250 +203,250 @@
   },
   "citations": {
     "citations": {
-      "bank_name": {
+      "store_code": {
         "field_citation": {
-          "source_text": "Mega International Commercial Bank",
-          "confidence": 0.95,
+          "source_text": "商店代號:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The bank name appears as a header in the document.",
+          "context": "商店代號: 0177643850100001",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Mega International Commercial Bank",
-          "confidence": 0.95,
+          "source_text": "0177643850100001",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The bank name appears as a header in the document.",
+          "context": "商店代號: 0177643850100001",
+          "match_type": "exact"
+        }
+      },
+      "terminal_code": {
+        "field_citation": {
+          "source_text": "端末機代號:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "端末機代號: 00011001",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "00011001",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "端末機代號: 00011001",
           "match_type": "exact"
         }
       },
       "card_type": {
         "field_citation": {
-          "source_text": "(Card Type)",
-          "confidence": 0.9,
+          "source_text": "卡別(Card Type):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The card type is indicated in parentheses before the card type name.",
+          "context": "卡別(Card Type): mastercard",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "mastercard",
-          "confidence": 0.9,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The card type name appears immediately after the card type label.",
+          "context": "卡別(Card Type): mastercard",
           "match_type": "exact"
         }
       },
       "card_number": {
         "field_citation": {
-          "source_text": "(Card No.)",
-          "confidence": 0.9,
+          "source_text": "卡號(Card No.):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The card number is indicated in parentheses before the card number.",
+          "context": "卡號(Card No.): 537992******6100(W)",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "537992",
-          "confidence": 0.85,
+          "source_text": "537992******6100(W)",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The card number appears immediately after the card number label.",
+          "context": "卡號(Card No.): 537992******6100(W)",
           "match_type": "exact"
         }
       },
       "transaction_type": {
         "field_citation": {
-          "source_text": "11 SALE",
-          "confidence": 0.85,
+          "source_text": "交易類別(Trans. Type):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The transaction type appears in the document.",
+          "context": "交易類別(Trans. Type): 銷售 SALE",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "11 SALE",
-          "confidence": 0.85,
+          "source_text": "銷售 SALE",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The transaction type appears in the document.",
+          "context": "交易類別(Trans. Type): 銷售 SALE",
           "match_type": "exact"
         }
       },
-      "amount": {
+      "batch_number": {
         "field_citation": {
-          "source_text": "(Amount):",
-          "confidence": 0.9,
+          "source_text": "批次號碼(Batch No.):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The amount is indicated in parentheses before the amount value.",
+          "context": "批次號碼(Batch No.): 000027",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "NT$ 130",
-          "confidence": 0.9,
+          "source_text": "000027",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The amount value appears immediately after the amount label.",
-          "match_type": "exact"
-        }
-      },
-      "merchant_name": {
-        "field_citation": {
-          "source_text": "1 COFFEE CLUB",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "The merchant name appears after the bank name in the document.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "1 COFFEE CLUB",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "The merchant name appears after the bank name in the document.",
-          "match_type": "exact"
-        }
-      },
-      "transaction_id": {
-        "field_citation": {
-          "source_text": "017764385010001",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "The transaction ID appears in the middle of the document.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "017764385010001",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "The transaction ID appears in the middle of the document.",
-          "match_type": "exact"
-        }
-      },
-      "terminal_id": {
-        "field_citation": {
-          "source_text": "00011001",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "The terminal ID appears in the document.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "00011001",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "The terminal ID appears in the document.",
+          "context": "批次號碼(Batch No.): 000027",
           "match_type": "exact"
         }
       },
       "authorization_code": {
         "field_citation": {
-          "source_text": "(Auth Code)",
-          "confidence": 0.9,
+          "source_text": "授權碼(Auth Code):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The authorization code label appears in the document.",
+          "context": "授權碼(Auth Code): 241935",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "000027",
-          "confidence": 0.9,
+          "source_text": "241935",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The authorization code value appears after the label.",
+          "context": "授權碼(Auth Code): 241935",
+          "match_type": "exact"
+        }
+      },
+      "date_time": {
+        "field_citation": {
+          "source_text": "日期/時間(Date/Time):",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "日期/時間(Date/Time): 2025/04/18 15:20:02",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/04/18 15:20:02",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "日期/時間(Date/Time): 2025/04/18 15:20:02",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "調閱編號(Inv No.):",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "調閱編號(Inv No.): 000012",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "000012",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "調閱編號(Inv No.): 000012",
           "match_type": "exact"
         }
       },
       "reference_number": {
         "field_citation": {
-          "source_text": "(Ref. No.)",
-          "confidence": 0.9,
+          "source_text": "序號(Ref. No.):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The reference number label appears in the document.",
+          "context": "序號(Ref. No.): 510855202065",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "000012",
-          "confidence": 0.9,
+          "source_text": "510855202065",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The reference number value appears after the label.",
+          "context": "序號(Ref. No.): 510855202065",
           "match_type": "exact"
         }
       },
-      "transaction_number": {
+      "amount": {
         "field_citation": {
-          "source_text": "017764385010001",
-          "confidence": 0.85,
+          "source_text": "金額(Amount):",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The transaction number appears as a sequence of digits in the document.",
+          "context": "金額(Amount): NT$ 130",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "017764385010001",
-          "confidence": 0.85,
+          "source_text": "NT$ 130",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The transaction number appears as a sequence of digits in the document.",
+          "context": "金額(Amount): NT$ 130",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 35,
-      "fields_with_field_citations": 35,
-      "fields_with_value_citations": 35,
-      "average_confidence": 0.8961371428571429
+      "total_fields_analyzed": 42,
+      "fields_with_field_citations": 42,
+      "fields_with_value_citations": 42,
+      "average_confidence": 1
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "7.4",
-      "data_extraction_seconds": "3.8",
-      "file_classification_seconds": "4.6",
-      "image_quality_assessment_seconds": "5.3",
-      "issue_detection_seconds": "7.2",
-      "citation_generation_seconds": "30.6",
-      "llm_validation_seconds": "70.1"
+      "markdown_extraction_seconds": "23.6",
+      "data_extraction_seconds": "2.5",
+      "file_classification_seconds": "4.3",
+      "image_quality_assessment_seconds": "4.5",
+      "issue_detection_seconds": "9.4",
+      "citation_generation_seconds": "47.9",
+      "llm_validation_seconds": "83.9"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-09-10T10:39:43.250Z",
-        "end_time": "2025-09-10T10:39:50.620Z",
-        "duration_seconds": "7.4",
-        "document_reader_used": "textract"
+        "start_time": "2025-10-02T10:01:09.309Z",
+        "end_time": "2025-10-02T10:01:32.891Z",
+        "duration_seconds": "23.6",
+        "document_reader_used": "zerox"
       },
       "data_extraction": {
-        "start_time": "2025-09-10T10:39:50.625Z",
-        "end_time": "2025-09-10T10:39:54.392Z",
-        "duration_seconds": "3.8",
+        "start_time": "2025-10-02T10:01:32.898Z",
+        "end_time": "2025-10-02T10:01:35.434Z",
+        "duration_seconds": "2.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "file_classification": {
-        "start_time": "2025-09-10T10:39:50.623Z",
-        "end_time": "2025-09-10T10:39:55.259Z",
-        "duration_seconds": "4.6",
+        "start_time": "2025-10-02T10:01:32.895Z",
+        "end_time": "2025-10-02T10:01:37.201Z",
+        "duration_seconds": "4.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-09-10T10:39:50.621Z",
-        "end_time": "2025-09-10T10:39:55.921Z",
-        "duration_seconds": "5.3",
+        "start_time": "2025-10-02T10:01:32.893Z",
+        "end_time": "2025-10-02T10:01:37.410Z",
+        "duration_seconds": "4.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-09-10T10:39:55.922Z",
-        "end_time": "2025-09-10T10:40:03.075Z",
-        "duration_seconds": "7.2",
+        "start_time": "2025-10-02T10:01:37.412Z",
+        "end_time": "2025-10-02T10:01:46.839Z",
+        "duration_seconds": "9.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-09-10T10:39:55.924Z",
-        "end_time": "2025-09-10T10:40:26.489Z",
-        "duration_seconds": "30.6",
+        "start_time": "2025-10-02T10:01:37.414Z",
+        "end_time": "2025-10-02T10:02:25.297Z",
+        "duration_seconds": "47.9",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "llm_validation": {
-        "start_time": "2025-09-10T10:40:26.490Z",
-        "end_time": "2025-09-10T10:41:36.608Z",
-        "duration_seconds": "70.1",
+        "start_time": "2025-10-02T10:02:25.298Z",
+        "end_time": "2025-10-02T10:03:49.232Z",
+        "duration_seconds": "83.9",
         "judge_models_used": [
           "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
           "eu.anthropic.claude-3-haiku-20240307-v1:0",
-          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
         ],
         "execution_mode": "parallel",
         "parallel_metrics": {},
@@ -465,18 +454,18 @@
         "parallel_enabled": true
       }
     },
-    "total_processing_time_seconds": "113.4",
+    "total_processing_time_seconds": "159.9",
     "performance_metrics": {
-      "parallel_group_1_seconds": "5.3",
-      "parallel_group_2_seconds": "30.6",
-      "total_parallel_time_seconds": "35.9"
+      "parallel_group_1_seconds": "4.5",
+      "parallel_group_2_seconds": "47.9",
+      "total_parallel_time_seconds": "52.4"
     }
   },
   "metadata": {
     "filename": "malaysian_file_11.pdf",
-    "processing_time": 113363,
+    "processing_time": 159928,
     "country": "Malaysia",
     "icp": "GoGlobal",
-    "processed_at": "2025-09-10T10:41:36.614Z"
+    "processed_at": "2025-10-02T10:03:49.237Z"
   }
 }

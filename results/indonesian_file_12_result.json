@@ -1,0 +1,443 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759338135020_961570193_indonesian_file_12.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T17:14:25.605Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no signs of motion blur or camera shake.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No bright spots, reflections, or glare detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No signs of water damage, discoloration, or staining.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "All parts of the receipt/invoice are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Japanese",
+    "language_confidence": 95,
+    "document_location": "Japan",
+    "expected_location": "Indonesia",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, paymentMethod, and itemDescriptionLineItems. The presence of these fields confirms it as an expense document. The document is a receipt from a restaurant, classifying the expense type as 'meals'. The location extracted from the document is Japan, which does not match the expected location of Indonesia.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, confirming this as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "一風堂 成田空港店",
+    "supplier_address": "千葉県成田市成田国際空港 第1ターミナル 中央ビル3F",
+    "supplier_phone": "0570-031-206",
+    "supplier_registration_number": "T6290001064472",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "095882",
+    "transaction_reference": "10",
+    "currency": "JPY",
+    "total_amount": 3780,
+    "subtotal": 3780,
+    "tax_amount": 343,
+    "tax_rate": 10,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-06-01",
+    "transaction_time": "15:49",
+    "payment_method": "クレジット支払",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "極・からか麺",
+        "quantity": 2,
+        "unit_price": 1590,
+        "total_price": 3180,
+        "category": "Food"
+      },
+      {
+        "description": "PET)生茶",
+        "quantity": 2,
+        "unit_price": 300,
+        "total_price": 600,
+        "category": "Beverage"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "領収書",
+    "table_number": null,
+    "server_name": "担:07",
+    "location_city": "成田市",
+    "location_country": "日本",
+    "special_notes": "二次元コードを読み取って一風堂アプリポイントを獲得！",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show purchase date when transaction occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Personal meals during business trip are taxable BIK - subject to gross-up",
+          "recommendation": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "knowledge_base_reference": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "recommendation": "Please provide the name of clients/vendor in the expense report for business meal with clients/vendor",
+          "knowledge_base_reference": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Expense submissions must have an itemized report along with clear receipts - properly labeled receipts for identification",
+          "recommendation": "Please ensure that expense submissions include an itemized report along with clear, properly labeled receipts for identification",
+          "knowledge_base_reference": "Expense submissions must have an itemized report along with clear receipts - properly labeled receipts for identification",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing mandatory fields such as customer name and invoice number. Additionally, personal meals during business trips are subject to gross-up. Further documentation is required to establish the business purpose and include the name of clients/vendor for business meals. Properly labeled receipts are also necessary for identification."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "store_name": {
+        "field_citation": {
+          "source_text": "一風堂 成田空港店",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n0570-031-206(店舗番号1096)\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "一風堂 成田空港店",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n登録番号:T6290001064472\nTEL:0570-031-206\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        }
+      },
+      "store_address": {
+        "field_citation": {
+          "source_text": "千葉県成田市成田国際空港 第1ターミナル 中央ビル3F",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n0570-031-206(店舗番号1096)\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "千葉県成田市成田国際空港 第1ターミナル 中央ビル3F",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n登録番号:T6290001064472\nTEL:0570-031-206\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "合 計",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "合 計\n(内消費税等\n¥343)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥3,780",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "合 計\n(内消費税等\n¥343)",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "内消費税等",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "(内消費税等\n¥343)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥343",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "(内消費税等\n¥343)",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "クレジット支払",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "クレジット支払\n¥3,780",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥3,780",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "クレジット支払\n¥3,780",
+          "match_type": "exact"
+        }
+      },
+      "store_phone": {
+        "field_citation": {
+          "source_text": "TEL:0570-031-206",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n登録番号:T6290001064472\nTEL:0570-031-206\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0570-031-206",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "一風堂 成田空港店\n0570-031-206(店舗番号1096)\n千葉県成田市成田国際空港\n第1ターミナル 中央ビル3F",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "2025/06/01 15:49",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "2025/06/01 15:49        担:07",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/06/01 15:49",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "2025/06/01 15:49        担:07",
+          "match_type": "exact"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "レシートNo.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "レシートNo.095882",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "095882",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "レシートNo.095882",
+          "match_type": "exact"
+        }
+      },
+      "change": {
+        "field_citation": {
+          "source_text": "お釣",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "お釣\n¥0",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥0",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "お釣\n¥0",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 22,
+      "fields_with_field_citations": 22,
+      "fields_with_value_citations": 22,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "16.4",
+      "file_classification_seconds": "3.6",
+      "data_extraction_seconds": "3.9",
+      "image_quality_assessment_seconds": "4.9",
+      "issue_detection_seconds": "7.3",
+      "citation_generation_seconds": "26.0",
+      "llm_validation_seconds": "65.1"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T17:14:04.249Z",
+        "end_time": "2025-10-01T17:14:20.682Z",
+        "duration_seconds": "16.4",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T17:14:20.685Z",
+        "end_time": "2025-10-01T17:14:24.309Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T17:14:20.687Z",
+        "end_time": "2025-10-01T17:14:24.540Z",
+        "duration_seconds": "3.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T17:14:20.683Z",
+        "end_time": "2025-10-01T17:14:25.605Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T17:14:25.607Z",
+        "end_time": "2025-10-01T17:14:32.911Z",
+        "duration_seconds": "7.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T17:14:25.610Z",
+        "end_time": "2025-10-01T17:14:51.599Z",
+        "duration_seconds": "26.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T17:14:51.600Z",
+        "end_time": "2025-10-01T17:15:56.697Z",
+        "duration_seconds": "65.1",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "112.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.9",
+      "parallel_group_2_seconds": "26.0",
+      "total_parallel_time_seconds": "30.9"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_12.png",
+    "processing_time": 112500,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-01T17:15:56.750Z"
+  }
+}

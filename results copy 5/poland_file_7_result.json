@@ -1,0 +1,559 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\poland_file_7.pdf_full_test_new_dataset_4_poland_file_7.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T11:40:45.921Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or missing portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows affecting the document.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Polish",
+    "language_confidence": 95,
+    "document_location": "Poland",
+    "expected_location": "Poland",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, paymentMethod, and itemDescriptionLineItems. The presence of these fields, along with the clear indication of payment completion, confirms it as an expense document.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, including evidence of payment completion, actual amounts charged, and payment confirmation. Therefore, it is classified as an expense."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Indian Taste & Sheesha Lounge",
+    "supplier_address": "Niepolomicka, Gdansk, 80-180",
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "739 M8C",
+    "transaction_reference": null,
+    "currency": "PLN",
+    "total_amount": 92,
+    "subtotal": 92,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2023-04-17",
+    "transaction_time": "20:53:00",
+    "payment_method": "Card",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Paneer Tikka Masala",
+        "quantity": 2,
+        "unit_price": 37,
+        "total_price": 74,
+        "category": "Dania wegetarianskie"
+      },
+      {
+        "description": "Naan",
+        "quantity": 2,
+        "unit_price": 9,
+        "total_price": 18,
+        "category": "Indian Extra"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Delivery Receipt",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Gdansk",
+    "location_country": "Poland",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "The supplier VAT number is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "The customer name is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The worker's name should generally be used on invoices and supporting documents",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "The invoice number is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must show the date when the purchase/transaction occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The total amount of the meal expense is PLN 92, which may exceed the per diem rate and will be subject to tax.",
+          "recommendation": "Domestic travel: The current rate is 45 PLN per day. Any portion of the per diem amount that exceeds the set Government rate will be taxable.",
+          "knowledge_base_reference": "Domestic travel: The current rate is 45 PLN per day. Duration of Trip up to 8 hours = 0%, between 8 – 12 hours 50%, More than 12 hours 100%. It is possible to increase the daily per diem rate. However, any portion of the per diem amount that exceeds the set Government rate will be taxable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for the meal expense.",
+          "recommendation": "Receipts and invoices must be submitted with expenses. Online copies are sufficient. Documents must be actual tax receipts or invoices; booking confirmations will not suffice",
+          "knowledge_base_reference": "Receipts and invoices must be submitted with expenses. Online copies are sufficient. Documents must be actual tax receipts or invoices; booking confirmations will not suffice",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including missing supplier VAT number, customer name, and invoice number. Additionally, the total amount of the meal expense may exceed the per diem rate and will be subject to tax. Further documentation is required to comply with the regulations."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Poland",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "delivery_due": {
+        "field_citation": {
+          "source_text": "DELIVERY",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "DELIVERY\nDue: 17 Apr, ASAP (22:44)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "17 Apr, ASAP (22:44)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "DELIVERY\nDue: 17 Apr, ASAP (22:44)",
+          "match_type": "exact"
+        }
+      },
+      "order_number": {
+        "field_citation": {
+          "source_text": "# 739 M8C",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Indian Taste & Sheesha Lounge\n# 739 M8C",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "739 M8C",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Indian Taste & Sheesha Lounge\n# 739 M8C",
+          "match_type": "exact"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "PLN",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dania wegetarianskie\n2 x # Paneer Tikka Masala\n74.00\nPLN",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "PLN",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dania wegetarianskie\n2 x # Paneer Tikka Masala\n74.00\nPLN",
+          "match_type": "exact"
+        }
+      },
+      "item_name_1": {
+        "field_citation": {
+          "source_text": "2 x # Paneer Tikka Masala",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "2 x # Paneer Tikka Masala",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Paneer Tikka Masala",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "2 x # Paneer Tikka Masala",
+          "match_type": "exact"
+        }
+      },
+      "item_price_1": {
+        "field_citation": {
+          "source_text": "74.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "74.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "74.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "74.00",
+          "match_type": "exact"
+        }
+      },
+      "item_name_2": {
+        "field_citation": {
+          "source_text": "2x# Naan",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "2x# Naan",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Naan",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "2x# Naan",
+          "match_type": "exact"
+        }
+      },
+      "item_price_2": {
+        "field_citation": {
+          "source_text": "18.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "18.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "18.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "18.00",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Subtotal\n92.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Subtotal\n92.00",
+          "match_type": "exact"
+        }
+      },
+      "order_total": {
+        "field_citation": {
+          "source_text": "Order total",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order total\n92.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order total\n92.00",
+          "match_type": "exact"
+        }
+      },
+      "total_due": {
+        "field_citation": {
+          "source_text": "Total Due",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Total Due\n92.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Total Due\n92.00",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Paid by:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Paid by:\nCard\n92.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Card",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Paid by:\nCard\n92.00",
+          "match_type": "exact"
+        }
+      },
+      "payment_amount": {
+        "field_citation": {
+          "source_text": "92.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "92.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "92.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "92.00",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "Niepolomicka\nGdansk\n80-180",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Niepolomicka\nGdansk\n80-180",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Niepolomicka\nGdansk\n80-180",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Niepolomicka\nGdansk\n80-180",
+          "match_type": "exact"
+        }
+      },
+      "order_placed_at": {
+        "field_citation": {
+          "source_text": "Order placed at",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order placed at\n20:53 17 Apr",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20:53 17 Apr",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order placed at\n20:53 17 Apr",
+          "match_type": "exact"
+        }
+      },
+      "order_accepted_at": {
+        "field_citation": {
+          "source_text": "Order accepted at",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order accepted at\n20:55 17 Apr",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20:55 17 Apr",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Order accepted at\n20:55 17 Apr",
+          "match_type": "exact"
+        }
+      },
+      "items": {
+        "field_citation": {
+          "source_text": "Dania wegetarianskie",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Dania wegetarianskie\n2 x # Paneer Tikka Masala\n74.00\nchiebek butter naan 1 SZL.\nIndian Extra\n2x# Naan\n18.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2 x # Paneer Tikka Masala\n74.00\nchiebek butter naan 1 SZL.\nIndian Extra\n2x# Naan\n18.00",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Dania wegetarianskie\n2 x # Paneer Tikka Masala\n74.00\nchiebek butter naan 1 SZL.\nIndian Extra\n2x# Naan\n18.00",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 47,
+      "fields_with_field_citations": 47,
+      "fields_with_value_citations": 47,
+      "average_confidence": 0.916595744680851
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "14.3",
+      "data_extraction_seconds": "6.2",
+      "image_quality_assessment_seconds": "6.3",
+      "file_classification_seconds": "7.6",
+      "issue_detection_seconds": "10.0",
+      "citation_generation_seconds": "46.6",
+      "llm_validation_seconds": "78.8"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T11:40:25.264Z",
+        "end_time": "2025-09-10T11:40:39.587Z",
+        "duration_seconds": "14.3",
+        "document_reader_used": "textract"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T11:40:39.593Z",
+        "end_time": "2025-09-10T11:40:45.830Z",
+        "duration_seconds": "6.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T11:40:39.589Z",
+        "end_time": "2025-09-10T11:40:45.921Z",
+        "duration_seconds": "6.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T11:40:39.592Z",
+        "end_time": "2025-09-10T11:40:47.232Z",
+        "duration_seconds": "7.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T11:40:47.233Z",
+        "end_time": "2025-09-10T11:40:57.231Z",
+        "duration_seconds": "10.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T11:40:47.235Z",
+        "end_time": "2025-09-10T11:41:33.827Z",
+        "duration_seconds": "46.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T11:41:33.828Z",
+        "end_time": "2025-09-10T11:42:52.653Z",
+        "duration_seconds": "78.8",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "147.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "7.6",
+      "parallel_group_2_seconds": "46.6",
+      "total_parallel_time_seconds": "54.2"
+    }
+  },
+  "metadata": {
+    "filename": "poland_file_7.pdf",
+    "processing_time": 147395,
+    "country": "Poland",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T11:42:52.659Z"
+  }
+}

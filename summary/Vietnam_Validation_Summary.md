@@ -1,0 +1,11 @@
+# Vietnam Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on Vietnamese expense files and found significant issues with receipt type recognition and rule application.
+
+**Strengths Found by Judges:** The expense validation agent correctly identified some compliance requirements, particularly regarding local employer details for GoGlobal Vietnam Company Limited on VAT/Red invoices. When applicable, it properly cited specific company information requirements including "GOGLOBAL VIETNAM COMPANY LIMITED, Tax Code: 0315261446" and the complete address format. The agent also demonstrated knowledge of Vietnam's complex receipt classification system with different rules for white receipts vs. VAT/Red invoices.
+
+**Weaknesses Found by Judges:** The agent showed severe receipt type misclassification issues - it incorrectly identified a VAT invoice as a white receipt requiring seller signatures, and completely misclassified a Grab ride receipt as a flight expense requiring boarding passes and flight tickets. Judges found the agent incorrectly applied the 200,000 VND threshold rule to a 36,000 VND receipt, and failed to recognize that customer details (CÔNG TY TNHH GOGLOBAL VIET NAM) were already present on the receipt. Most critically, the agent ignored clear transportation service indicators (origin/destination points) and applied irrelevant flight documentation requirements to ground transportation.
+
+**Overall Assessment:** The Vietnamese expense validation agent achieved only medium reliability with significant critical issues in receipt type recognition. Judges emphasized that the agent needs fundamental improvement in distinguishing between white receipts and VAT invoices, properly classifying transportation types (ground vs. air), and recognizing when receipts already contain required information. The agent's poor contextual understanding led to applying completely irrelevant compliance rules to valid receipts.

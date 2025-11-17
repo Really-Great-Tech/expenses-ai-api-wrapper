@@ -1,0 +1,663 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758890927875_23122941_taiwan_file_8.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:57:06.975Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The image is sharp with clear text and well-defined edges.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.85,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No parts of the receipt/invoice are missing or incomplete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Japanese",
+    "language_confidence": 95,
+    "document_location": "Japan",
+    "expected_location": "Taiwan",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location (Japan) does not match the expected location (Taiwan).",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. It includes details such as the supplier, transaction amount, transaction date, payment method, and item description. The document is a receipt for a taxi service, which classifies it under the 'travel' expense type.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems",
+        "taxInformation"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "invoiceReceiptNumber"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 schema fields, including critical fields like transaction amount, payment method, and item description, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "country": "Japan",
+    "supplier_name": "kmグループ 東京太陽株式会社",
+    "supplier_address": "東京都葛飾区四つ木5-5-18",
+    "supplier_phone": "03-5670-6778",
+    "supplier_customer_service": "0120-717-039",
+    "supplier_registration_number": "T20118010139863",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": "A45-5344-0370",
+    "currency": "JPY",
+    "total_amount": 1600,
+    "subtotal": 1455,
+    "tax_amount": 145,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-19",
+    "transaction_time": null,
+    "payment_method": "現金支払",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "基本運賃",
+        "quantity": 1,
+        "unit_price": 1100,
+        "total_price": 1100,
+        "category": "Transport"
+      },
+      {
+        "description": "迎車料金",
+        "quantity": 1,
+        "unit_price": 500,
+        "total_price": 500,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Taxi Receipt",
+    "document_type": "領収書",
+    "vehicle_number": "7321",
+    "location_city": "Tokyo",
+    "location_country": "Japan",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null,
+    "operational_count": 8195
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 6,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "country",
+          "description": "The receipt is from Japan, but the compliance analysis is for Taiwan.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the date when the expense was incurred",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the total cost of the expense",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Missing mandatory receipt number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the total cost of the expense",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for mileage reimbursement",
+          "recommendation": "Please provide mileage logbook with complete route details and odometer readings",
+          "knowledge_base_reference": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields and incorrect country information. Additional documentation is required for mileage reimbursement."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 6
+    }
+  },
+  "citations": {
+    "citations": {
+      "date": {
+        "field_citation": {
+          "source_text": "日付",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "日付 2025年05月19日",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025年05月19日",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "日付 2025年05月19日",
+          "match_type": "exact"
+        }
+      },
+      "vehicle_number": {
+        "field_citation": {
+          "source_text": "車番",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車番 7321",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "7321",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車番 7321",
+          "match_type": "exact"
+        }
+      },
+      "base_fare": {
+        "field_citation": {
+          "source_text": "基本運賃",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "基本運賃 ¥1100-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1100-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "基本運賃 ¥1100-",
+          "match_type": "exact"
+        }
+      },
+      "pickup_charge": {
+        "field_citation": {
+          "source_text": "迎車料金",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "迎車料金 ¥500-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥500-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "迎車料金 ¥500-",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "合計",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "合計 ¥1600-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1600-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "合計 ¥1600-",
+          "match_type": "exact"
+        }
+      },
+      "tax": {
+        "field_citation": {
+          "source_text": "内消費税等",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(内消費税等 ¥145-)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥145-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(内消費税等 ¥145-)",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "現金支払",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "現金支払 ¥1600-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1600-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "現金支払 ¥1600-",
+          "match_type": "exact"
+        }
+      },
+      "registration_number": {
+        "field_citation": {
+          "source_text": "登録番号",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "登録番号：T20118010139863",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "T20118010139863",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "登録番号：T20118010139863",
+          "match_type": "exact"
+        }
+      },
+      "company_name": {
+        "field_citation": {
+          "source_text": "kmグループ 東京太陽株式会社",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "kmグループ 東京太陽株式会社",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "kmグループ 東京太陽株式会社",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "kmグループ 東京太陽株式会社",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "東京都葛飾区四つ木5-5-18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "東京都葛飾区四つ木5-5-18",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "東京都葛飾区四つ木5-5-18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "東京都葛飾区四つ木5-5-18",
+          "match_type": "exact"
+        }
+      },
+      "lost_and_found_contact": {
+        "field_citation": {
+          "source_text": "忘れ物、領収書問合せ",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "忘れ物、領収書問合せ 03-5670-6778",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "03-5670-6778",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "忘れ物、領収書問合せ 03-5670-6778",
+          "match_type": "exact"
+        }
+      },
+      "customer_service": {
+        "field_citation": {
+          "source_text": "お客さま相談室",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0120-717-039",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        }
+      },
+      "app_download_qr_code": {
+        "field_citation": {
+          "source_text": "ダウンロード用QRコード",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "[QR Code Image]",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "[QR Code Image]",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "[QR Code Image]",
+          "match_type": "exact"
+        }
+      },
+      "navi_code": {
+        "field_citation": {
+          "source_text": "<ナビコード>",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<ナビコード>\nA45-5344-0370",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A45-5344-0370",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<ナビコード>\nA45-5344-0370",
+          "match_type": "exact"
+        }
+      },
+      "operation_count": {
+        "field_citation": {
+          "source_text": "(営業回数",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(営業回数8195)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "8195",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(営業回数8195)",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "合計",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "合計 ¥1600-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1600-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "合計 ¥1600-",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "内消費税等",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(内消費税等 ¥145-)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥145-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "(内消費税等 ¥145-)",
+          "match_type": "exact"
+        }
+      },
+      "contact_number": {
+        "field_citation": {
+          "source_text": "忘れ物、領収書問合せ",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "忘れ物、領収書問合せ 03-5670-6778",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "03-5670-6778",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "忘れ物、領収書問合せ 03-5670-6778",
+          "match_type": "exact"
+        }
+      },
+      "customer_service_number": {
+        "field_citation": {
+          "source_text": "お客さま相談室",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0120-717-039",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        }
+      },
+      "navigation_code": {
+        "field_citation": {
+          "source_text": "<ナビコード>",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<ナビコード>\nA45-5344-0370",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A45-5344-0370",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<ナビコード>\nA45-5344-0370",
+          "match_type": "exact"
+        }
+      },
+      "pickup_fee": {
+        "field_citation": {
+          "source_text": "迎車料金",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "迎車料金 ¥500-",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥500-",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "迎車料金 ¥500-",
+          "match_type": "exact"
+        }
+      },
+      "customer_service_contact": {
+        "field_citation": {
+          "source_text": "お客さま相談室",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0120-717-039",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お客さま相談室 0120-717-039",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 49,
+      "fields_with_field_citations": 49,
+      "fields_with_value_citations": 49,
+      "average_confidence": 0.9500000000000001
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "14.3",
+      "data_extraction_seconds": "3.4",
+      "file_classification_seconds": "3.8",
+      "image_quality_assessment_seconds": "3.8",
+      "issue_detection_seconds": "10.1",
+      "citation_generation_seconds": "40.1",
+      "llm_validation_seconds": "67.1"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:56:48.889Z",
+        "end_time": "2025-09-26T12:57:03.187Z",
+        "duration_seconds": "14.3",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:57:03.192Z",
+        "end_time": "2025-09-26T12:57:06.566Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:57:03.190Z",
+        "end_time": "2025-09-26T12:57:06.949Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:57:03.188Z",
+        "end_time": "2025-09-26T12:57:06.975Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:57:06.977Z",
+        "end_time": "2025-09-26T12:57:17.076Z",
+        "duration_seconds": "10.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:57:06.980Z",
+        "end_time": "2025-09-26T12:57:47.069Z",
+        "duration_seconds": "40.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:57:47.070Z",
+        "end_time": "2025-09-26T12:58:54.200Z",
+        "duration_seconds": "67.1",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "125.3",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "3.8",
+      "parallel_group_2_seconds": "40.1",
+      "total_parallel_time_seconds": "43.9"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_8.jpg",
+    "processing_time": 125315,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:58:54.204Z"
+  }
+}

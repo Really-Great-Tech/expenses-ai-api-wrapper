@@ -1,0 +1,498 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\philippines_file_11.pdf_full_test_new_dataset_4_philippines_file_11.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T11:05:13.511Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are present that obscure the text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are visible on the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, folds, or wrinkles are present on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No edges of the document are cut off, and the entire document is captured.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No sections of the receipt/invoice are missing or incomplete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements are obstructing the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Philippines",
+    "expected_location": "Philippines",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, tax information, payment method, and item description line items. It also shows evidence of payment completed with actual amounts charged and a payment confirmation.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, clearly indicating it is an expense document. The fields found include supplier (NMI CAFE are Owned and Operated By MMH CAFE DPC), transaction amount (650.00), transaction date (Wed 4 Jun 2025), invoice receipt number (Sales Invoice No.: 027224), tax information (VAT AMOUNT 69.64), payment method (Card), and item description line items (LATTE #160x1, LONGGANISA @270x1, PANDAN LATTE #220x1)."
+    }
+  },
+  "extraction": {
+    "supplier_name": "NMI CAFE",
+    "supplier_address": "UNIT 1 G/F DELA ROSA CARPARK 1 LEGASPI VILLAGE, SAN LORENZO 1223 CITY OF MAKATI NCR, FOURTH DISTRICT PHILIPPINES",
+    "supplier_vat_number": "010-733-182-000",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": "027224",
+    "transaction_reference": "Utak# 1749023520",
+    "currency": "PHP",
+    "total_amount": 650,
+    "subtotal": 650,
+    "tax_amount": 69.64,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-06-04",
+    "transaction_time": "15:52",
+    "payment_method": "Cash",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "LATTE",
+        "quantity": 1,
+        "unit_price": 160,
+        "total_price": 160,
+        "category": "Food"
+      },
+      {
+        "description": "LONGGANISA",
+        "quantity": 1,
+        "unit_price": 270,
+        "total_price": 270,
+        "category": "Food"
+      },
+      {
+        "description": "PANDAN LATTE",
+        "quantity": 1,
+        "unit_price": 220,
+        "total_price": 220,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Sales Invoice",
+    "table_number": null,
+    "server_name": "MAGINEL LLAET",
+    "location_city": "CITY OF MAKATI",
+    "location_country": "PHILIPPINES",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Under the Local Partner Procloz, the receipt and supporting documents should be in the name of the worker",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Tax rate is not specified on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount should be listed clearly on the Invoice if applicable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for foreign currency expenses",
+          "recommendation": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "confidence_score": 0.8
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the mandatory customer name and the tax rate is not specified. Additionally, for foreign currency expenses, the amount should be converted to local currency and the currency & exchange rate used should be included."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Philippines",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "Supplier Name": {
+        "field_citation": {
+          "source_text": "Owned and Operated By",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "Owned and Operated By MMH CAFE DPC",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "MMH CAFE DPC",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Owned and Operated By MMH CAFE DPC",
+          "match_type": "exact"
+        }
+      },
+      "Address": {
+        "field_citation": {
+          "source_text": "UNIT 1 G/F DELA ROSA CARPARK 1 LEGASPI VILLAGE SAN LORENZO 1223 CITY OF MAKATI NCR FOURTH DISTRICT PHILIPPINES",
+          "confidence": 0.8,
+          "source_location": "markdown",
+          "context": "UNIT 1 G/F DELA ROSA CARPARK 1 LEGASPI VILLAGE SAN LORENZO 1223 CITY OF MAKATI NCR FOURTH DISTRICT PHILIPPINES",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "UNIT 1 G/F DELA ROSA CARPARK 1 LEGASPI VILLAGE SAN LORENZO 1223 CITY OF MAKATI NCR FOURTH DISTRICT PHILIPPINES",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "UNIT 1 G/F DELA ROSA CARPARK 1 LEGASPI VILLAGE SAN LORENZO 1223 CITY OF MAKATI NCR FOURTH DISTRICT PHILIPPINES",
+          "match_type": "exact"
+        }
+      },
+      "VAT REG TIN": {
+        "field_citation": {
+          "source_text": "VAT REG TIN:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT REG TIN: 010-733-182-000",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "010-733-182-000",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT REG TIN: 010-733-182-000",
+          "match_type": "exact"
+        }
+      },
+      "MIN": {
+        "field_citation": {
+          "source_text": "MIN:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "MIN: 24072509414168656",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "24072509414168656",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "MIN: 24072509414168656",
+          "match_type": "exact"
+        }
+      },
+      "S/N": {
+        "field_citation": {
+          "source_text": "S/N:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "S/N: MD4504XG3325C0124",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MD4504XG3325C0124",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "S/N: MD4504XG3325C0124",
+          "match_type": "exact"
+        }
+      },
+      "Sales Invoice No.": {
+        "field_citation": {
+          "source_text": "Sales Invoice No.:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Sales Invoice No.: 027224",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "027224",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Sales Invoice No.: 027224",
+          "match_type": "exact"
+        }
+      },
+      "Utak#": {
+        "field_citation": {
+          "source_text": "Utak#:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Utak# 1749023520",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1749023520",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Utak# 1749023520",
+          "match_type": "exact"
+        }
+      },
+      "Subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Subtotal 650.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "650.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Subtotal 650.00",
+          "match_type": "exact"
+        }
+      },
+      "VATABLE SALES": {
+        "field_citation": {
+          "source_text": "VATABLE SALES",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VATABLE SALES 580.36",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "580.36",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VATABLE SALES 580.36",
+          "match_type": "exact"
+        }
+      },
+      "VAT EXEMPT SALES": {
+        "field_citation": {
+          "source_text": "VAT EXEMPT SALES",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT EXEMPT SALES 0.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT EXEMPT SALES 0.00",
+          "match_type": "exact"
+        }
+      },
+      "ZERO RATED SALES": {
+        "field_citation": {
+          "source_text": "ZERO RATED SALES",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "ZERO RATED SALES 0.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "ZERO RATED SALES 0.00",
+          "match_type": "exact"
+        }
+      },
+      "VAT AMOUNT": {
+        "field_citation": {
+          "source_text": "VAT AMOUNT",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT AMOUNT 69.64",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "69.64",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT AMOUNT 69.64",
+          "match_type": "exact"
+        }
+      },
+      "TOTAL": {
+        "field_citation": {
+          "source_text": "TOTAL",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "TOTAL 650.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "650.00",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "TOTAL 650.00",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 54,
+      "fields_with_field_citations": 54,
+      "fields_with_value_citations": 54,
+      "average_confidence": 0.9146296296296297
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "6.9",
+      "file_classification_seconds": "4.1",
+      "data_extraction_seconds": "4.4",
+      "image_quality_assessment_seconds": "5.2",
+      "issue_detection_seconds": "4.7",
+      "citation_generation_seconds": "46.5",
+      "llm_validation_seconds": "69.8"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T11:05:01.363Z",
+        "end_time": "2025-09-10T11:05:08.305Z",
+        "duration_seconds": "6.9",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T11:05:08.308Z",
+        "end_time": "2025-09-10T11:05:12.454Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T11:05:08.309Z",
+        "end_time": "2025-09-10T11:05:12.677Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T11:05:08.306Z",
+        "end_time": "2025-09-10T11:05:13.511Z",
+        "duration_seconds": "5.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T11:05:13.512Z",
+        "end_time": "2025-09-10T11:05:18.183Z",
+        "duration_seconds": "4.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T11:05:13.515Z",
+        "end_time": "2025-09-10T11:06:00.052Z",
+        "duration_seconds": "46.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T11:06:00.053Z",
+        "end_time": "2025-09-10T11:07:09.833Z",
+        "duration_seconds": "69.8",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "128.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.2",
+      "parallel_group_2_seconds": "46.5",
+      "total_parallel_time_seconds": "51.7"
+    }
+  },
+  "metadata": {
+    "filename": "philippines_file_11.pdf",
+    "processing_time": 128475,
+    "country": "Philippines",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T11:07:09.838Z"
+  }
+}

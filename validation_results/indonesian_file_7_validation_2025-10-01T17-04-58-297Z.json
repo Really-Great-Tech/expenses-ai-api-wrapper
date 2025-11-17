@@ -1,0 +1,661 @@
+{
+  "overall_score": 0.8338888888888888,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7566666666666665,
+      "issues": [
+        "1. The AI incorrectly flagged missing customer name as an issue when it's not required for meal receipts.",
+        "2. The AI didn't recognize that receipt_number and transaction_reference could satisfy the unique identifier requirement.",
+        "3. The AI response doesn't acknowledge that this appears to be a receipt from the USA (Honolulu) while the context specifies Indonesia."
+      ],
+      "summary": "The AI response is partially factually grounded. Issues 3, 4, and 5 are well-supported by the data and compliance rules. However, issue 1 is incorrect as customer name is not required for meal receipts according to the compliance rules. Issue 2 is partially correct as there are alternative identifiers present. Additionally, the AI failed to note the geographical discrepancy between the receipt (from USA) and the specified country context (Indonesia).",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims there is a missing customer name, but this is incorrect. The receipt is for a meal purchase, and for this type of transaction, the customer name is not typically required on the receipt. The compliance rules do not specifically state that customer name is required for meal receipts. The rule about employee name only applies to hotel and flight expenses, not meals.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI claims there is a missing invoice number, which is partially correct. While there is no \"invoice_number\" field populated, the receipt does contain a \"receipt_number\" (DX6OTNNLSBZT6) and a \"transaction_reference\" (2296-2718-2031). The compliance rules require a \"unique identifier for the transaction\" which these numbers could satisfy.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the tax rate is missing. The extracted data shows tax_amount (0.22) and subtotal (4.69), but no explicit tax_rate field is populated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that personal meals during business trips are taxable BIK subject to gross-up according to the compliance policies provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that business purpose must be established clearly. The extracted data does not show any clear business purpose for the meal expense, and the compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI incorrectly flagged missing customer name as an issue when it's not required for meal receipts.\n2. The AI didn't recognize that receipt_number and transaction_reference could satisfy the unique identifier requirement.\n3. The AI response doesn't acknowledge that this appears to be a receipt from the USA (Honolulu) while the context specifies Indonesia.\n\nSUMMARY: The AI response is partially factually grounded. Issues 3, 4, and 5 are well-supported by the data and compliance rules. However, issue 1 is incorrect as customer name is not required for meal receipts according to the compliance rules. Issue 2 is partially correct as there are alternative identifiers present. Additionally, the AI failed to note the geographical discrepancy between the receipt (from USA) and the specified country context (Indonesia).",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims there is a missing customer name, but this is incorrect. The receipt is for a meal purchase, and for this type of transaction, the customer name is not typically required on the receipt. The compliance rules do not specifically state that customer name is required for meal receipts. The rule about employee name only applies to hotel and flight expenses, not meals.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI claims there is a missing invoice number, which is partially correct. While there is no \"invoice_number\" field populated, the receipt does contain a \"receipt_number\" (DX6OTNNLSBZT6) and a \"transaction_reference\" (2296-2718-2031). The compliance rules require a \"unique identifier for the transaction\" which these numbers could satisfy.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the tax rate is missing. The extracted data shows tax_amount (0.22) and subtotal (4.69), but no explicit tax_rate field is populated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that personal meals during business trips are taxable BIK subject to gross-up according to the compliance policies provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that business purpose must be established clearly. The extracted data does not show any clear business purpose for the meal expense, and the compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI incorrectly flagged missing customer name as an issue when it's not required for meal receipts.\n2. The AI didn't recognize that receipt_number and transaction_reference could satisfy the unique identifier requirement.\n3. The AI response doesn't acknowledge that this appears to be a receipt from the USA (Honolulu) while the context specifies Indonesia.\n\nSUMMARY: The AI response is partially factually grounded. Issues 3, 4, and 5 are well-supported by the data and compliance rules. However, issue 1 is incorrect as customer name is not required for meal receipts according to the compliance rules. Issue 2 is partially correct as there are alternative identifiers present. Additionally, the AI failed to note the geographical discrepancy between the receipt (from USA) and the specified country context (Indonesia)."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The claim about the missing customer name on the receipt is well supported by the extracted data, which shows the \"customer_name\" field as null.\n\nISSUE_2_VALIDATION_SCORE: 90 - The claim about the missing invoice number on the receipt is well supported by the extracted data, which shows the \"invoice_number\" field as null.\n\nISSUE_3_VALIDATION_SCORE: 80 - The claim about the missing tax rate on the receipt is supported by the extracted data, which shows the \"tax_rate\" field as null. However, the extracted data does include the \"tax_amount\" field, which could be used to infer the tax rate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The claim about personal meals during business trips being taxable BIK is well supported by the compliance policy rules provided.\n\nISSUE_5_VALIDATION_SCORE: 85 - The claim about the need to establish clear business purpose is supported by the compliance policy rules, but the extracted data does not provide enough information to determine if the business purpose is clearly established.\n\nCONFIDENCE: 87\n\nISSUES: The main factual grounding issue is the limited information provided in the extracted data, which makes it difficult to fully validate some of the claims in the AI response.\n\nSUMMARY: The AI response is generally well-grounded in the provided information, with the majority of the claims being supported by the extracted data and compliance policy rules. However, the limited data available means that some of the details cannot be fully validated, leading to a slightly lower overall confidence score."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims there is a missing customer name, but this is not applicable for a meal receipt. The compliance rules do not specify that customer name is mandatory for meal receipts - it's only mandatory for hotel and flight expenses for travel-related expenses. This is an incorrect application of the rules.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI claims there is a missing invoice number, which is technically true as the \"invoice_number\" field is null. However, the receipt does have a \"receipt_number\" (DX6OTNNLSBZT6) and \"transaction_reference\" (2296-2718-2031), which could serve the purpose of a unique identifier. The compliance rules don't specifically state that an \"invoice number\" is required - they only mention \"unique identifier for the transaction.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the tax rate is missing. The extracted data shows tax_amount (0.22) but no tax_rate, and the compliance rules state that \"VAT amount should be listed clearly on the invoice if applicable.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that personal meals during business trips are taxable BIK subject to gross-up, which aligns with the compliance policy that states \"Personal meals during business trip are taxable BIK - subject to gross-up.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that business purpose must be established clearly, which aligns with the compliance policy that states \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI incorrectly claims customer name is mandatory for meal receipts\n2. The AI claims invoice number is missing but doesn't acknowledge that receipt_number and transaction_reference could serve as unique identifiers\n\nSUMMARY: The AI response is partially grounded in the extracted data and compliance rules. While it correctly identifies issues related to missing tax rate, the need for gross-up for personal meals, and the requirement for establishing business purpose, it incorrectly applies the customer name requirement to meal receipts and fails to acknowledge that other identifiers in the receipt might satisfy the unique identifier requirement. The response demonstrates good understanding of tax implications but misapplies some of the document requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims there is a missing customer name, but this is incorrect. The receipt is for a meal purchase, and for this type of transaction, the customer name is not typically required on the receipt. The compliance rules do not specifically state that customer name is required for meal receipts. The rule about employee name only applies to hotel and flight expenses, not meals.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims there is a missing invoice number, which is partially correct. While there is no \"invoice_number\" field populated, the receipt does contain a \"receipt_number\" (DX6OTNNLSBZT6) and a \"transaction_reference\" (2296-2718-2031). The compliance rules require a \"unique identifier for the transaction\" which these numbers could satisfy.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that the tax rate is missing. The extracted data shows tax_amount (0.22) and subtotal (4.69), but no explicit tax_rate field is populated.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that personal meals during business trips are taxable BIK subject to gross-up according to the compliance policies provided.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly notes that business purpose must be established clearly. The extracted data does not show any clear business purpose for the meal expense, and the compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8066666666666666,
+      "issues": [
+        "1. The AI incorrectly flagged customer name as mandatory for meal receipts",
+        "2. The AI incorrectly flagged invoice number as mandatory",
+        "3. The AI correctly identified tax rate as missing but overemphasized its importance as it's optional",
+        "4. The receipt appears to be from the USA (Honolulu) but is being processed for Indonesia",
+        "which raises questions about its relevance to Indonesian compliance rules"
+      ],
+      "summary": "The AI response correctly identified some compliance issues (need for business purpose, personal meals being subject to gross-up) but incorrectly flagged customer name and invoice number as mandatory fields for meal receipts when they aren't required according to the knowledge base. Additionally, while the tax rate is missing, this is listed as optional in the knowledge base. The receipt appears to be from the USA rather than Indonesia, which raises questions about applying Indonesian compliance rules to this receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly identified \"customer_name\" as a mandatory field. According to the knowledge base, the required fields for meals/restaurant receipts are supplier name, transaction date, total amount, and item description. Customer name is only mandatory for Hotel and Flight expenses as per the rules, not for meals.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI incorrectly identified \"invoice_number\" as a mandatory field. The knowledge base doesn't explicitly list invoice number as mandatory for meal receipts. The receipt does have a receipt number (DX6OTNNLSBZT6) and transaction reference (2296-2718-2031) which should be sufficient.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly noted that tax rate is missing. According to the knowledge base, \"VAT amount should be listed clearly on the invoice if applicable.\" While the tax amount (0.22) is present, the tax rate is indeed missing, though this is listed as \"Optional\" in the knowledge base, not mandatory.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that personal meals during business trips are taxable BIK subject to gross-up. This aligns with the compliance policy: \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for clear business purpose establishment. This aligns with the compliance policy: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly flagged customer name as mandatory for meal receipts\n2. The AI incorrectly flagged invoice number as mandatory\n3. The AI correctly identified tax rate as missing but overemphasized its importance as it's optional\n4. The receipt appears to be from the USA (Honolulu) but is being processed for Indonesia, which raises questions about its relevance to Indonesian compliance rules\n\nSUMMARY: The AI response correctly identified some compliance issues (need for business purpose, personal meals being subject to gross-up) but incorrectly flagged customer name and invoice number as mandatory fields for meal receipts when they aren't required according to the knowledge base. Additionally, while the tax rate is missing, this is listed as optional in the knowledge base. The receipt appears to be from the USA rather than Indonesia, which raises questions about applying Indonesian compliance rules to this receipt.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly identified \"customer_name\" as a mandatory field. According to the knowledge base, the required fields for meals/restaurant receipts are supplier name, transaction date, total amount, and item description. Customer name is only mandatory for Hotel and Flight expenses as per the rules, not for meals.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI incorrectly identified \"invoice_number\" as a mandatory field. The knowledge base doesn't explicitly list invoice number as mandatory for meal receipts. The receipt does have a receipt number (DX6OTNNLSBZT6) and transaction reference (2296-2718-2031) which should be sufficient.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly noted that tax rate is missing. According to the knowledge base, \"VAT amount should be listed clearly on the invoice if applicable.\" While the tax amount (0.22) is present, the tax rate is indeed missing, though this is listed as \"Optional\" in the knowledge base, not mandatory.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that personal meals during business trips are taxable BIK subject to gross-up. This aligns with the compliance policy: \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for clear business purpose establishment. This aligns with the compliance policy: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly flagged customer name as mandatory for meal receipts\n2. The AI incorrectly flagged invoice number as mandatory\n3. The AI correctly identified tax rate as missing but overemphasized its importance as it's optional\n4. The receipt appears to be from the USA (Honolulu) but is being processed for Indonesia, which raises questions about its relevance to Indonesian compliance rules\n\nSUMMARY: The AI response correctly identified some compliance issues (need for business purpose, personal meals being subject to gross-up) but incorrectly flagged customer name and invoice number as mandatory fields for meal receipts when they aren't required according to the knowledge base. Additionally, while the tax rate is missing, this is listed as optional in the knowledge base. The receipt appears to be from the USA rather than Indonesia, which raises questions about applying Indonesian compliance rules to this receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing customer name as a compliance issue, as the supplier name or merchant name is a mandatory field on the receipt according to the knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing invoice number as a compliance issue, as a unique identifier for the transaction is required on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI response correctly identifies the missing tax rate as a compliance issue. However, the knowledge base states that the VAT amount should be listed clearly on the invoice if applicable, rather than the tax rate specifically.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies that personal meals during a business trip are subject to gross-up according to the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 85 - The AI response correctly identifies the need to establish a clear business purpose for the expense, which is a requirement in the knowledge base. However, the recommendation could be more specific on the information required to establish the business purpose.\n\nCONFIDENCE: 87\nISSUES: \n1. The knowledge base refers to VAT amount rather than tax rate specifically.\n2. The recommendation for establishing business purpose could be more specific.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base for Indonesia, correctly identifying the key compliance issues with the receipt. However, there are minor discrepancies in the interpretation of the knowledge base requirements, and the recommendations could be more detailed in some areas."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that vendor/merchant name is mandatory according to the knowledge base. However, the receipt actually does contain a supplier name \"HMS\" in the extracted data, so this issue is incorrectly flagged. The knowledge base rule \"Document must show vendor name or merchant name that provided goods/services\" is being applied correctly, but the factual assessment of the receipt is wrong.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI correctly identified that an invoice number is required based on the knowledge base. While the receipt doesn't have an explicit \"invoice number,\" it does have a \"receipt_number\" (DX6OTNNLSBZT6) and \"transaction_reference\" (2296-2718-2031) which could potentially satisfy the requirement for a \"unique identifier for the transaction.\" The AI's interpretation is somewhat strict but generally aligned with compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the tax rate is missing on the receipt. According to the knowledge base, \"VAT amount should be listed clearly on the invoice if applicable.\" While the tax amount (0.22) is present, the tax rate is indeed missing from the extracted data. This is correctly flagged as an issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly applied the rule that \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\" Since this is a personal meal (water bottle) during what appears to be a business trip, the gross-up identification is accurate according to the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI correctly identified the need for establishing a clear business purpose, which is a requirement stated in the knowledge base: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt doesn't provide a clear business purpose, so this is a valid issue.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI incorrectly flagged missing supplier name when \"HMS\" is present in the extracted data\n2. The AI may be too strict about invoice number when receipt number and transaction reference are present\n3. The AI didn't address the currency mismatch (USD instead of IDR) for an Indonesia expense\n4. The AI didn't question why a receipt from Hawaii (USA) is being submitted for an Indonesia expense\n\nSUMMARY: The AI response generally adheres to the compliance knowledge base for Indonesia, correctly identifying issues related to tax rate, gross-up requirements for personal meals, and the need for business purpose documentation. However, it incorrectly flagged a missing supplier name when one was present, and may have been overly strict about the invoice number requirement. Additionally, the AI missed an opportunity to question why a receipt from Hawaii in USD currency was submitted for an Indonesia expense, which could be a significant compliance concern. Overall, while most issues identified are valid according to the knowledge base, there are some factual assessment errors and missed contextual concerns."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI incorrectly identified \"customer_name\" as a mandatory field. According to the knowledge base, the required fields for meals/restaurant receipts are supplier name, transaction date, total amount, and item description. Customer name is only mandatory for Hotel and Flight expenses as per the rules, not for meals.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI incorrectly identified \"invoice_number\" as a mandatory field. The knowledge base doesn't explicitly list invoice number as mandatory for meal receipts. The receipt does have a receipt number (DX6OTNNLSBZT6) and transaction reference (2296-2718-2031) which should be sufficient.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly noted that tax rate is missing. According to the knowledge base, \"VAT amount should be listed clearly on the invoice if applicable.\" While the tax amount (0.22) is present, the tax rate is indeed missing, though this is listed as \"Optional\" in the knowledge base, not mandatory.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that personal meals during business trips are taxable BIK subject to gross-up. This aligns with the compliance policy: \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for clear business purpose establishment. This aligns with the compliance policy: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7233333333333333,
+      "issues": [
+        "1. Two major issues were incorrectly flagged as compliance problems (customer name and invoice number) when they are not required for meal receipts according to the provided compliance rules.",
+        "2. The receipt is from the USA (Honolulu) but is being evaluated against Indonesia compliance rules",
+        "which creates a mismatch in the assessment context.",
+        "3. The receipt shows a purchase of bottled water which is categorized as a \"meals\" expense type",
+        "but may be more accurately classified as a beverage/incidental expense."
+      ],
+      "summary": "The compliance assessment correctly identified issues related to missing tax rate, the need for gross-up for personal meals during business travel, and the requirement to establish business purpose. However, it incorrectly flagged missing customer name and invoice number as compliance issues when these are not mandatory requirements for meal receipts according to the provided rules. Additionally, there's a geographical mismatch as the receipt is from the USA but being evaluated against Indonesian compliance standards. The overall assessment is partially accurate but contains significant errors in the application of compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue regarding \"Missing mandatory customer name on the receipt\" is inaccurate. According to the compliance rules provided, customer name is only mandatory for travel expenses like hotels and flights, not for meals. The rules state \"Workers name and details should generally be used on invoices where required\" specifically for \"Hotel, Flight\" expense types. For meals/restaurant receipts, there is no explicit requirement for customer name to appear on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue regarding \"Missing mandatory invoice number on the receipt\" is inaccurate. The compliance rules provided do not explicitly state that an invoice number is mandatory for meal receipts. The receipt does contain a receipt number \"DX6OTNNLSBZT6\" and transaction reference \"2296-2718-2031\" which should be sufficient for identification purposes.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding \"Missing tax rate on the receipt\" is accurate. The receipt shows a tax amount of 0.22 but no tax rate. According to the compliance rules, \"VAT amount should be listed clearly on the invoice if applicable\" is listed as optional, but it's reasonable to flag this as an issue for awareness.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding \"Personal meals during business trip are taxable BIK\" is accurate. The compliance rules clearly state \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\" Since this appears to be a personal meal (bottled water) during travel, it would be subject to gross-up.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding \"Business purpose must be established clearly\" is accurate. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt doesn't indicate any business purpose for the purchase.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two major issues were incorrectly flagged as compliance problems (customer name and invoice number) when they are not required for meal receipts according to the provided compliance rules.\n2. The receipt is from the USA (Honolulu) but is being evaluated against Indonesia compliance rules, which creates a mismatch in the assessment context.\n3. The receipt shows a purchase of bottled water which is categorized as a \"meals\" expense type, but may be more accurately classified as a beverage/incidental expense.\n\nSUMMARY: The compliance assessment correctly identified issues related to missing tax rate, the need for gross-up for personal meals during business travel, and the requirement to establish business purpose. However, it incorrectly flagged missing customer name and invoice number as compliance issues when these are not mandatory requirements for meal receipts according to the provided rules. Additionally, there's a geographical mismatch as the receipt is from the USA but being evaluated against Indonesian compliance standards. The overall assessment is partially accurate but contains significant errors in the application of compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue regarding \"Missing mandatory customer name on the receipt\" is inaccurate. According to the compliance rules provided, customer name is only mandatory for travel expenses like hotels and flights, not for meals. The rules state \"Workers name and details should generally be used on invoices where required\" specifically for \"Hotel, Flight\" expense types. For meals/restaurant receipts, there is no explicit requirement for customer name to appear on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue regarding \"Missing mandatory invoice number on the receipt\" is inaccurate. The compliance rules provided do not explicitly state that an invoice number is mandatory for meal receipts. The receipt does contain a receipt number \"DX6OTNNLSBZT6\" and transaction reference \"2296-2718-2031\" which should be sufficient for identification purposes.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding \"Missing tax rate on the receipt\" is accurate. The receipt shows a tax amount of 0.22 but no tax rate. According to the compliance rules, \"VAT amount should be listed clearly on the invoice if applicable\" is listed as optional, but it's reasonable to flag this as an issue for awareness.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding \"Personal meals during business trip are taxable BIK\" is accurate. The compliance rules clearly state \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\" Since this appears to be a personal meal (bottled water) during travel, it would be subject to gross-up.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding \"Business purpose must be established clearly\" is accurate. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt doesn't indicate any business purpose for the purchase.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two major issues were incorrectly flagged as compliance problems (customer name and invoice number) when they are not required for meal receipts according to the provided compliance rules.\n2. The receipt is from the USA (Honolulu) but is being evaluated against Indonesia compliance rules, which creates a mismatch in the assessment context.\n3. The receipt shows a purchase of bottled water which is categorized as a \"meals\" expense type, but may be more accurately classified as a beverage/incidental expense.\n\nSUMMARY: The compliance assessment correctly identified issues related to missing tax rate, the need for gross-up for personal meals during business travel, and the requirement to establish business purpose. However, it incorrectly flagged missing customer name and invoice number as compliance issues when these are not mandatory requirements for meal receipts according to the provided rules. Additionally, there's a geographical mismatch as the receipt is from the USA but being evaluated against Indonesian compliance standards. The overall assessment is partially accurate but contains significant errors in the application of compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The missing customer name on the receipt is correctly identified as a compliance issue, as the supplier or merchant name is a mandatory field per the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing invoice number on the receipt is also correctly identified as a compliance issue, as a unique transaction identifier is required.\n\nISSUE_3_VALIDATION_SCORE: 80 - The missing tax rate on the receipt is correctly identified as a compliance issue. However, the compliance rules state that the tax amount should be listed clearly, rather than the tax rate specifically.\n\nISSUE_4_VALIDATION_SCORE: 90 - The personal meals during a business trip being subject to gross-up is correctly identified as a compliance issue, in line with the applicable gross-up rules.\n\nISSUE_5_VALIDATION_SCORE: 85 - The need to establish a clear business purpose is correctly identified as a compliance issue. However, the recommendation could be more specific, such as requesting details on the business meeting or purpose of the meal.\n\nCONFIDENCE: 87\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate, correctly identifying the key issues with the receipt, such as missing mandatory fields, tax-related requirements, and the need to establish a clear business purpose. The assessment aligns well with the provided compliance rules, with minor room for improvement in the specific recommendations for the tax rate and business purpose details."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - This issue is inaccurate. The supplier name \"HMS\" is clearly present in the extracted data. According to the compliance rules, \"Document must show vendor name or merchant name that provided goods/services\" is a mandatory requirement, and this requirement is met. The system incorrectly flagged this as missing customer name, which is not the same as supplier/vendor name.\n\nISSUE_2_VALIDATION_SCORE: 40 - This issue is partially accurate. While there's no specific \"invoice_number\" field, the receipt does contain a \"receipt_number\" (DX6OTNNLSBZT6) and a \"transaction_reference\" (2296-2718-2031), which could serve as unique identifiers for the transaction. The compliance rule requires \"Document must show unique identifier for the transaction\" which appears to be satisfied by these alternative fields.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is accurate. The tax amount (0.22) is present, but the tax rate is indeed missing from the extracted data. The compliance rule states \"VAT amount should be listed clearly on the invoice if applicable\" and while the amount is listed, the rate is not provided.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue is accurate. According to the compliance rules, \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\" Since this appears to be a personal meal (bottled water) during a business trip, it would be subject to gross-up as correctly identified.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is accurate. The compliance rules clearly state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt data does not provide any clear business purpose for the expense.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The system incorrectly flagged missing customer name when it should be looking for vendor/supplier name, which is present\n2. The system didn't recognize that receipt_number and transaction_reference could satisfy the unique identifier requirement\n3. The system correctly identified issues related to tax rate, gross-up requirements, and business purpose documentation\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identified issues related to missing tax rate, the need for gross-up for personal meals during business trips, and the requirement to establish clear business purpose. However, it incorrectly flagged missing customer name when the supplier name is present, and it failed to recognize that the receipt_number and transaction_reference could satisfy the unique identifier requirement. The receipt is indeed non-compliant, but for fewer reasons than indicated in the assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue regarding \"Missing mandatory customer name on the receipt\" is inaccurate. According to the compliance rules provided, customer name is only mandatory for travel expenses like hotels and flights, not for meals. The rules state \"Workers name and details should generally be used on invoices where required\" specifically for \"Hotel, Flight\" expense types. For meals/restaurant receipts, there is no explicit requirement for customer name to appear on the receipt.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue regarding \"Missing mandatory invoice number on the receipt\" is inaccurate. The compliance rules provided do not explicitly state that an invoice number is mandatory for meal receipts. The receipt does contain a receipt number \"DX6OTNNLSBZT6\" and transaction reference \"2296-2718-2031\" which should be sufficient for identification purposes.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding \"Missing tax rate on the receipt\" is accurate. The receipt shows a tax amount of 0.22 but no tax rate. According to the compliance rules, \"VAT amount should be listed clearly on the invoice if applicable\" is listed as optional, but it's reasonable to flag this as an issue for awareness.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding \"Personal meals during business trip are taxable BIK\" is accurate. The compliance rules clearly state \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\" Since this appears to be a personal meal (bottled water) during travel, it would be subject to gross-up.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding \"Business purpose must be established clearly\" is accurate. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The receipt doesn't indicate any business purpose for the purchase.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9,
+      "issues": [
+        "1. There may be some confusion in Issue 1 between supplier name (which is present) and customer name (which is missing but may not be required in this context).",
+        "2. The receipt appears to be from the USA (Honolulu) rather than Indonesia",
+        "which raises questions about the application of Indonesian tax rules to this expense."
+      ],
+      "summary": "The issue categorization is generally accurate and follows the established taxonomy. The issues identified are relevant to the receipt type and ICP context. Each issue has a clear description, appropriate recommendation, and relevant knowledge base reference. The confidence scores assigned to each issue seem reasonable based on their severity and impact on compliance. The main concern is that the receipt appears to be from the USA rather than Indonesia, which may affect how some of the compliance rules should be applied.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate reference to the compliance rule that \"Document must show vendor name or merchant name that provided goods/services.\" The recommendation to address this with the supplier is appropriate. However, the issue might be slightly mischaracterized as the rule seems to refer to supplier name (which is present as \"HMS\") rather than customer name.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description accurately identifies the missing mandatory field, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly notes that a unique transaction identifier is required.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue regarding missing tax rate is correctly categorized as \"Standards & Compliance | Fix Identified.\" While the tax amount is present ($0.22), the tax rate percentage is indeed missing. The knowledge base reference correctly notes that VAT amounts should be clearly listed. The confidence score of 0.8 appropriately reflects that this is important but less critical than other issues.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue regarding personal meals being taxable BIK is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" The description and recommendation accurately reflect the compliance policy that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This is a proper application of the gross-up rules for Indonesia.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding business purpose is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation accurately reflect the compliance policy that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is particularly important for meal expenses to determine if they are personal or business-related.\n\nCONFIDENCE: 93\n\nISSUES: \n1. There may be some confusion in Issue 1 between supplier name (which is present) and customer name (which is missing but may not be required in this context).\n2. The receipt appears to be from the USA (Honolulu) rather than Indonesia, which raises questions about the application of Indonesian tax rules to this expense.\n\nSUMMARY: The issue categorization is generally accurate and follows the established taxonomy. The issues identified are relevant to the receipt type and ICP context. Each issue has a clear description, appropriate recommendation, and relevant knowledge base reference. The confidence scores assigned to each issue seem reasonable based on their severity and impact on compliance. The main concern is that the receipt appears to be from the USA rather than Indonesia, which may affect how some of the compliance rules should be applied.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate reference to the compliance rule that \"Document must show vendor name or merchant name that provided goods/services.\" The recommendation to address this with the supplier is appropriate. However, the issue might be slightly mischaracterized as the rule seems to refer to supplier name (which is present as \"HMS\") rather than customer name.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description accurately identifies the missing mandatory field, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly notes that a unique transaction identifier is required.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue regarding missing tax rate is correctly categorized as \"Standards & Compliance | Fix Identified.\" While the tax amount is present ($0.22), the tax rate percentage is indeed missing. The knowledge base reference correctly notes that VAT amounts should be clearly listed. The confidence score of 0.8 appropriately reflects that this is important but less critical than other issues.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue regarding personal meals being taxable BIK is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" The description and recommendation accurately reflect the compliance policy that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This is a proper application of the gross-up rules for Indonesia.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding business purpose is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation accurately reflect the compliance policy that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is particularly important for meal expenses to determine if they are personal or business-related.\n\nCONFIDENCE: 93\n\nISSUES: \n1. There may be some confusion in Issue 1 between supplier name (which is present) and customer name (which is missing but may not be required in this context).\n2. The receipt appears to be from the USA (Honolulu) rather than Indonesia, which raises questions about the application of Indonesian tax rules to this expense.\n\nSUMMARY: The issue categorization is generally accurate and follows the established taxonomy. The issues identified are relevant to the receipt type and ICP context. Each issue has a clear description, appropriate recommendation, and relevant knowledge base reference. The confidence scores assigned to each issue seem reasonable based on their severity and impact on compliance. The main concern is that the receipt appears to be from the USA rather than Indonesia, which may affect how some of the compliance rules should be applied."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing mandatory customer name on the receipt, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing mandatory invoice number on the receipt, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description correctly identifies the missing tax rate on the receipt. However, the recommendation could be more specific, such as suggesting the supplier provide the tax rate on the receipt.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue. The description accurately identifies that personal meals during a business trip are taxable BIK and subject to gross-up, which is the appropriate recommendation.\n\nISSUE_5_VALIDATION_SCORE: 85 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description accurately states that the business purpose must be established clearly, and the recommendation to provide a clear business purpose is appropriate.\n\nCONFIDENCE: 87\nISSUES: None\nSUMMARY: The issues are generally well-categorized, with clear descriptions and appropriate recommendations. The categorization follows the established taxonomy, and no issues appear to be missed or incorrectly classified. The overall confidence in the issue categorization is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" and references the appropriate compliance rule that \"Document must show vendor name or merchant name that provided goods/services.\" The description and recommendation are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing invoice number issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description identifies a mandatory field that's missing, and the recommendation to address this with the supplier is appropriate. The knowledge base reference about requiring a unique transaction identifier is accurate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The missing tax rate issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" While the receipt does show a tax amount (0.22), it doesn't specify the tax rate percentage, which aligns with the compliance rule that \"VAT amount should be listed clearly on the invoice if applicable.\" However, this field is marked as \"Optional\" in the compliance rules, so the confidence score of 0.8 is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - The gross-up issue is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" The description accurately reflects the compliance policy that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This is particularly relevant for a meals receipt in Indonesia under the GoGlobal ICP.\n\nISSUE_5_VALIDATION_SCORE: 95 - The business purpose issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" This aligns with the compliance policy that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The recommendation to provide clear business purpose is appropriate.\n\nCONFIDENCE: 90\n\nISSUES: \n1. The system didn't flag that the receipt appears to be from the USA (Honolulu, Hawaii) rather than Indonesia, which is a significant geographical mismatch that should have been identified.\n2. The receipt is in USD currency rather than Indonesian Rupiah (IDR), which should have been flagged as an issue for an Indonesia-based expense.\n\nSUMMARY: The system has correctly identified and categorized five legitimate compliance issues with appropriate descriptions, recommendations, and knowledge base references. However, it missed flagging the geographical mismatch between the stated country (Indonesia) and the actual receipt location (USA/Hawaii), as well as the currency mismatch. These are significant oversights that could impact compliance evaluation. Otherwise, the categorization of the identified issues follows the established taxonomy with clear and actionable descriptions."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate reference to the compliance rule that \"Document must show vendor name or merchant name that provided goods/services.\" The recommendation to address this with the supplier is appropriate. However, the issue might be slightly mischaracterized as the rule seems to refer to supplier name (which is present as \"HMS\") rather than customer name.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description accurately identifies the missing mandatory field, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly notes that a unique transaction identifier is required.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The issue regarding missing tax rate is correctly categorized as \"Standards & Compliance | Fix Identified.\" While the tax amount is present ($0.22), the tax rate percentage is indeed missing. The knowledge base reference correctly notes that VAT amounts should be clearly listed. The confidence score of 0.8 appropriately reflects that this is important but less critical than other issues.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue regarding personal meals being taxable BIK is correctly categorized as \"Standards & Compliance | Gross-up Identified.\" The description and recommendation accurately reflect the compliance policy that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This is a proper application of the gross-up rules for Indonesia.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding business purpose is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation accurately reflect the compliance policy that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is particularly important for meal expenses to determine if they are personal or business-related.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8666666666666667,
+      "issues": [
+        "- Recommendations for issues 1-3 could be more specific about how to obtain corrected documentation",
+        "- No guidance is provided on what constitutes acceptable documentation if original receipts cannot be corrected",
+        "- No mention of the fact that the receipt appears to be from the USA (Honolulu) rather than Indonesia",
+        "which creates a jurisdiction mismatch with the stated country"
+      ],
+      "summary": "The recommendations are generally valid and address the identified compliance issues. The strongest recommendations relate to establishing business purpose and identifying the gross-up requirement for personal meals. The recommendations for missing documentation elements (customer name, invoice number, tax rate) are valid but could be more specific about remediation steps. A notable omission is addressing the apparent jurisdiction mismatch between the receipt (from USA) and the stated country (Indonesia).",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 85 - The recommendation to address the missing customer name with the supplier is valid and actionable. However, it could be more specific about what information needs to be included (e.g., the company name for GoGlobal) and how to obtain a corrected receipt.\n\nISSUE_2_VALIDATION_SCORE: 85 - Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on what constitutes an acceptable invoice number and how to obtain a corrected receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation regarding the missing tax rate is valid, but could be more specific to Indonesia's tax requirements. While the receipt shows a tax amount ($0.22), the recommendation correctly identifies that the tax rate itself is missing, which is required for proper compliance.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation about personal meals during business trips being subject to gross-up is accurate and aligns with the compliance rules. It correctly identifies the tax implications and is specific to the receipt type (meals).\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to provide a clear business purpose is highly valid, specific, and directly addresses a key compliance requirement. This is an actionable recommendation that the user can immediately implement.\n\nCONFIDENCE: 87\n\nISSUES: \n- Recommendations for issues 1-3 could be more specific about how to obtain corrected documentation\n- No guidance is provided on what constitutes acceptable documentation if original receipts cannot be corrected\n- No mention of the fact that the receipt appears to be from the USA (Honolulu) rather than Indonesia, which creates a jurisdiction mismatch with the stated country\n\nSUMMARY: The recommendations are generally valid and address the identified compliance issues. The strongest recommendations relate to establishing business purpose and identifying the gross-up requirement for personal meals. The recommendations for missing documentation elements (customer name, invoice number, tax rate) are valid but could be more specific about remediation steps. A notable omission is addressing the apparent jurisdiction mismatch between the receipt (from USA) and the stated country (Indonesia).",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 85 - The recommendation to address the missing customer name with the supplier is valid and actionable. However, it could be more specific about what information needs to be included (e.g., the company name for GoGlobal) and how to obtain a corrected receipt.\n\nISSUE_2_VALIDATION_SCORE: 85 - Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on what constitutes an acceptable invoice number and how to obtain a corrected receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation regarding the missing tax rate is valid, but could be more specific to Indonesia's tax requirements. While the receipt shows a tax amount ($0.22), the recommendation correctly identifies that the tax rate itself is missing, which is required for proper compliance.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation about personal meals during business trips being subject to gross-up is accurate and aligns with the compliance rules. It correctly identifies the tax implications and is specific to the receipt type (meals).\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to provide a clear business purpose is highly valid, specific, and directly addresses a key compliance requirement. This is an actionable recommendation that the user can immediately implement.\n\nCONFIDENCE: 87\n\nISSUES: \n- Recommendations for issues 1-3 could be more specific about how to obtain corrected documentation\n- No guidance is provided on what constitutes acceptable documentation if original receipts cannot be corrected\n- No mention of the fact that the receipt appears to be from the USA (Honolulu) rather than Indonesia, which creates a jurisdiction mismatch with the stated country\n\nSUMMARY: The recommendations are generally valid and address the identified compliance issues. The strongest recommendations relate to establishing business purpose and identifying the gross-up requirement for personal meals. The recommendations for missing documentation elements (customer name, invoice number, tax rate) are valid but could be more specific about remediation steps. A notable omission is addressing the apparent jurisdiction mismatch between the receipt (from USA) and the stated country (Indonesia)."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name on the receipt is valid and actionable. It provides a clear suggestion to work with the supplier or provider to ensure this mandatory field is included on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number on the receipt is valid and actionable. It provides a clear suggestion to work with the supplier or provider to ensure this mandatory field is included on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to address the missing tax rate on the receipt is valid and actionable. It provides a clear suggestion to work with the supplier or provider to ensure this information is included on the receipt. However, the recommendation could be more specific on how to obtain the tax rate information.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to treat personal meals during business trips as taxable BIK (Benefit in Kind) and subject to gross-up is valid and in line with the compliance policy. This is a clear and actionable recommendation.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation to provide a clear business purpose for the expense is valid and actionable. However, the recommendation could be more specific on the type of information or documentation that should be provided to establish the business purpose.\n\nCONFIDENCE: 87\nISSUES: None\nSUMMARY: The recommendations provided are generally valid and useful, addressing the key compliance issues identified on the receipt. The recommendations are actionable and align with the compliance policies. Some minor improvements could be made to provide more specific guidance on obtaining the tax rate information and documenting the business purpose, but overall the recommendations are practical and feasible."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.86,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing customer name is valid but could be more specific. While it correctly identifies the compliance requirement from the knowledge base, it doesn't provide alternative solutions if the supplier cannot reissue the receipt (such as submitting additional documentation to establish the customer's identity).\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to Issue 1, the recommendation to address the missing invoice number with the supplier is valid but somewhat generic. It correctly identifies the compliance requirement but doesn't offer alternative solutions if getting a new receipt isn't possible.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation regarding the missing tax rate is appropriate and aligns with the compliance rules. The knowledge base reference is correctly cited, and the recommendation is reasonable. The tax amount is present (0.22) but the tax rate percentage is missing, which is accurately identified.\n\nISSUE_4_VALIDATION_SCORE: 95 - This recommendation is highly valid and specific. It correctly identifies that personal meals during business trips are taxable benefits-in-kind requiring gross-up according to Indonesia's regulations. The recommendation directly references the appropriate compliance policy and provides clear guidance.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to \"provide clear business purpose for the expense\" is specific, actionable, and directly addresses the compliance requirement. It correctly references the knowledge base rule that business purpose must be clearly established to avoid rejection.\n\nCONFIDENCE: 86\n\nISSUES:\n- Recommendations for issues 1 and 2 could provide more specific alternative actions if the supplier cannot provide updated documentation\n- No guidance is provided on how to document the business purpose (issue 5) in a compliant manner\n\nSUMMARY: The recommendations are generally valid and helpful, particularly for issues 4 and 5 which provide clear guidance aligned with compliance policies. The recommendations for issues 1-3 correctly identify the compliance requirements but could offer more specific alternative solutions when the original document cannot be replaced. Overall, the recommendations address the identified compliance issues and provide actionable guidance, though some could be more detailed in their implementation steps."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid and actionable. However, it could be more specific about what information needs to be included (e.g., the company name for GoGlobal) and how to obtain a corrected receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on what constitutes an acceptable invoice number and how to obtain a corrected receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation regarding the missing tax rate is valid, but could be more specific to Indonesia's tax requirements. While the receipt shows a tax amount ($0.22), the recommendation correctly identifies that the tax rate itself is missing, which is required for proper compliance.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation about personal meals during business trips being subject to gross-up is accurate and aligns with the compliance rules. It correctly identifies the tax implications and is specific to the receipt type (meals).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to provide a clear business purpose is highly valid, specific, and directly addresses a key compliance requirement. This is an actionable recommendation that the user can immediately implement.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9500000000000001,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the receipt data and compliance rules provided. All five issues identified are supported by the data and rules, with no hallucinations or fabricated information present. The response correctly identifies missing fields (customer name, invoice number, tax rate) and applies appropriate compliance policies regarding gross-up requirements for meals and the need for clear business purpose documentation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue correctly identifies that the customer name is missing from the receipt data. The extracted data shows \"customer_name\": null, and the compliance rules state that vendor/merchant name is required.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue correctly identifies that the invoice number is missing from the receipt data. The extracted data shows \"invoice_number\": null, though there is a receipt number present.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue correctly identifies that the tax rate is missing from the receipt data. The extracted data shows \"tax_rate\": null, though the tax amount (0.22) is present.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue correctly applies the compliance rule that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This matches the compliance policy for restaurant expenses during travel.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue correctly applies the compliance rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is stated in the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the receipt data and compliance rules provided. All five issues identified are supported by the data and rules, with no hallucinations or fabricated information present. The response correctly identifies missing fields (customer name, invoice number, tax rate) and applies appropriate compliance policies regarding gross-up requirements for meals and the need for clear business purpose documentation.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue correctly identifies that the customer name is missing from the receipt data. The extracted data shows \"customer_name\": null, and the compliance rules state that vendor/merchant name is required.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue correctly identifies that the invoice number is missing from the receipt data. The extracted data shows \"invoice_number\": null, though there is a receipt number present.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue correctly identifies that the tax rate is missing from the receipt data. The extracted data shows \"tax_rate\": null, though the tax amount (0.22) is present.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue correctly applies the compliance rule that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This matches the compliance policy for restaurant expenses during travel.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue correctly applies the compliance rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is stated in the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the receipt data and compliance rules provided. All five issues identified are supported by the data and rules, with no hallucinations or fabricated information present. The response correctly identifies missing fields (customer name, invoice number, tax rate) and applies appropriate compliance policies regarding gross-up requirements for meals and the need for clear business purpose documentation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The customer name, invoice number, and tax rate information is missing from the receipt, as correctly identified by the AI response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements provided in the AI response appear to be legitimate and not fabricated. They match the expected standards for expense receipts in Indonesia.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates provided in the extracted data appear to be legitimate and not fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts. It correctly identifies the missing information and compliance issues.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response does not contain any fabricated information. It accurately summarizes the compliance issues found in the receipt.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. It accurately identifies the compliance issues in the expense receipt, such as missing mandatory fields and the need for clear business purpose. The compliance rules and requirements provided also appear to be legitimate. Overall, the AI response is free from hallucinations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue about missing customer name is valid based on the compliance rules stating \"Document must show vendor name or merchant name that provided goods/services.\" The receipt does show a supplier name (HMS) but no customer name, which aligns with the issue identified.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue about missing invoice number is reasonable based on the extracted data showing \"invoice_number: null\" and the compliance rules implying that a unique identifier is needed, though this specific requirement isn't explicitly listed in the provided compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue about missing tax rate is valid. The extracted data shows \"tax_amount: 0.22\" but \"tax_rate: null\", and the compliance rules state \"VAT amount should be listed clearly on the invoice if applicable.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The gross-up issue for personal meals during business trips is directly supported by the compliance rules: \"Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable.\"\n\nISSUE_5_VALIDATION_SCORE: 90 - The need for clear business purpose is directly supported by the compliance rules: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 85\n\nISSUES: The AI response doesn't contain significant hallucinations. All identified issues are reasonably grounded in either the extracted receipt data or the compliance rules. The only slight concern is that the \"unique identifier\" requirement for invoice numbers isn't explicitly listed in the provided compliance rules, though it's a standard requirement.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the receipt data and compliance rules. The issues raised match the missing information in the receipt and align with the compliance requirements for Indonesia under the GoGlobal ICP context. No significant hallucinations or fabricated information were detected."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the customer name is missing from the receipt data. The extracted data shows \"customer_name\": null, and the compliance rules state that vendor/merchant name is required.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the invoice number is missing from the receipt data. The extracted data shows \"invoice_number\": null, though there is a receipt number present.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the tax rate is missing from the receipt data. The extracted data shows \"tax_rate\": null, though the tax amount (0.22) is present.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Personal meals during business trip are taxable BIK",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly applies the compliance rule that \"Personal meals during business trip are taxable BIK - subject to gross-up.\" This matches the compliance policy for restaurant expenses during travel.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Business purpose must be established clearly",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly applies the compliance rule that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" This is stated in the compliance policies.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI incorrectly flagged missing customer name as an issue when it's not required for meal receipts., 2. The AI didn't recognize that receipt_number and transaction_reference could satisfy the unique identifier requirement., 3. The AI response doesn't acknowledge that this appears to be a receipt from the USA (Honolulu) while the context specifies Indonesia.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly flagged customer name as mandatory for meal receipts, 2. The AI incorrectly flagged invoice number as mandatory, 3. The AI correctly identified tax rate as missing but overemphasized its importance as it's optional, 4. The receipt appears to be from the USA (Honolulu) but is being processed for Indonesia, which raises questions about its relevance to Indonesian compliance rules",
+    "Address issues in compliance accuracy: 1. Two major issues were incorrectly flagged as compliance problems (customer name and invoice number) when they are not required for meal receipts according to the provided compliance rules., 2. The receipt is from the USA (Honolulu) but is being evaluated against Indonesia compliance rules, which creates a mismatch in the assessment context., 3. The receipt shows a purchase of bottled water which is categorized as a \"meals\" expense type, but may be more accurately classified as a beverage/incidental expense.",
+    "Address issues in issue categorization: 1. There may be some confusion in Issue 1 between supplier name (which is present) and customer name (which is missing but may not be required in this context)., 2. The receipt appears to be from the USA (Honolulu) rather than Indonesia, which raises questions about the application of Indonesian tax rules to this expense.",
+    "Address issues in recommendation validity: - Recommendations for issues 1-3 could be more specific about how to obtain corrected documentation, - No guidance is provided on what constitutes acceptable documentation if original receipts cannot be corrected, - No mention of the fact that the receipt appears to be from the USA (Honolulu) rather than Indonesia, which creates a jurisdiction mismatch with the stated country",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-10-01T17:04:58.296Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 75549,
+    "timing": {
+      "validation_start_time": "2025-10-01T17:03:42.747Z",
+      "validation_end_time": "2025-10-01T17:04:58.296Z",
+      "total_validation_time_seconds": "75.5",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T17:03:42.747Z",
+          "end_time": "2025-10-01T17:04:58.296Z",
+          "duration_seconds": "75.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "75.5",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.40",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 27.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 0,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 39.89,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 0,
+        "issue_categorization": 95,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing tax rate on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 76.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 80,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Personal meals during business trip are taxable BIK",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 79.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Business purpose must be established clearly",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 81.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 95,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

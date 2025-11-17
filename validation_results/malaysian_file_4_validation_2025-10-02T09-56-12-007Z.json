@@ -1,0 +1,569 @@
+{
+  "overall_score": 0.4794444444444445,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.4666666666666666,
+      "issues": [
+        "1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data.",
+        "2. The AI incorrectly claims expense type description is not visible when the receipt is clearly identified as an airline receipt with detailed line items.",
+        "3. The AI makes assumptions about the legibility of receipt copies without evidence.",
+        "4. The AI ignores substantial evidence in the extracted data that contradicts its findings."
+      ],
+      "summary": "The AI response is poorly grounded in the provided data. Two of the three issues identified by the AI directly contradict information clearly present in the extracted data. The receipt contains transaction dates (booking date and payment dates) and clearly identifies the expense type (airline receipt with detailed flight-related expenses). Only the third issue about submission of legible copies has some validity as this cannot be fully assessed from the extracted data alone.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows booking_date as \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". Transaction dates are clearly present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and includes detailed line items for the flight-related expenses.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about \"clear and legible copies of the receipts\" is somewhat subjective and cannot be fully verified from the extracted data alone. We don't know if the actual receipt images were clear and legible or if they were properly submitted to the Client line manager.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data.\n2. The AI incorrectly claims expense type description is not visible when the receipt is clearly identified as an airline receipt with detailed line items.\n3. The AI makes assumptions about the legibility of receipt copies without evidence.\n4. The AI ignores substantial evidence in the extracted data that contradicts its findings.\n\nSUMMARY: The AI response is poorly grounded in the provided data. Two of the three issues identified by the AI directly contradict information clearly present in the extracted data. The receipt contains transaction dates (booking date and payment dates) and clearly identifies the expense type (airline receipt with detailed flight-related expenses). Only the third issue about submission of legible copies has some validity as this cannot be fully assessed from the extracted data alone.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows booking_date as \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". Transaction dates are clearly present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and includes detailed line items for the flight-related expenses.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about \"clear and legible copies of the receipts\" is somewhat subjective and cannot be fully verified from the extracted data alone. We don't know if the actual receipt images were clear and legible or if they were properly submitted to the Client line manager.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data.\n2. The AI incorrectly claims expense type description is not visible when the receipt is clearly identified as an airline receipt with detailed line items.\n3. The AI makes assumptions about the legibility of receipt copies without evidence.\n4. The AI ignores substantial evidence in the extracted data that contradicts its findings.\n\nSUMMARY: The AI response is poorly grounded in the provided data. Two of the three issues identified by the AI directly contradict information clearly present in the extracted data. The receipt contains transaction dates (booking date and payment dates) and clearly identifies the expense type (airline receipt with detailed flight-related expenses). Only the third issue about submission of legible copies has some validity as this cannot be fully assessed from the extracted data alone."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims made in the AI response can be traced back to the provided extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - No information is fabricated or assumed beyond what's provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - Numerical values, dates, and amounts match the extracted data.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, and entity details are accurately represented and can be traced back to the information given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows a booking date of \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". This issue is not factually grounded at all since transaction dates are present in the data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and detailed line items including Malaysia Departure Levy, Fuel Surcharge, etc. The data clearly indicates this is for flight services.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about \"clear and legible copies of the receipts\" is partially valid as we can't determine the legibility of the actual receipt from the extracted data alone. However, the data seems comprehensive and detailed, suggesting the receipt was likely legible enough to extract this information.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data\n2. The AI incorrectly claims expense type/description is not visible when the data clearly shows this is an airline receipt with detailed line items\n3. The AI makes assumptions about the legibility of the receipt that cannot be verified from the extracted data alone\n\nSUMMARY: The AI response is poorly grounded in the extracted data. Two of the three identified issues directly contradict information clearly present in the data. The receipt contains transaction dates (booking date and payment dates) and clearly identifies the expense type as an airline receipt with detailed line items. Only the third issue about receipt legibility is partially valid, as this cannot be fully assessed from the extracted data alone."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows booking_date as \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". Transaction dates are clearly present in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and includes detailed line items for the flight-related expenses.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue about \"clear and legible copies of the receipts\" is somewhat subjective and cannot be fully verified from the extracted data alone. We don't know if the actual receipt images were clear and legible or if they were properly submitted to the Client line manager.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.47666666666666674,
+      "issues": [
+        "1. Incorrectly flagged missing transaction date when dates are present",
+        "2. Incorrectly flagged missing expense type description when it's clearly an airline receipt",
+        "3. Mischaracterized a procedural requirement as a receipt content issue",
+        "4. Failed to validate that the receipt contains the employee name as traveler (Natalie Yen Wei Ng)",
+        "which satisfies a mandatory requirement for flight expenses"
+      ],
+      "summary": "The AI response shows poor adherence to the knowledge base by incorrectly flagging issues that don't exist in the receipt data. The receipt contains transaction dates, clearly identifies as a flight expense, and includes the employee name as traveler. The only partially valid issue relates to the submission process rather than the receipt content itself. This suggests the AI either didn't properly analyze the extracted data or misinterpreted the compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly flagged that the transaction date is not visible on the receipt. According to the extracted data, the booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13) are clearly present in the receipt. This directly contradicts the compliance rule stating \"Date of the expense must be visible on receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged that the expense type description is not clearly visible. The extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and contains detailed line items including departure levy, baggage fees, etc. The compliance rule requires \"Expense type or description of goods/services must be visible on receipt,\" which is satisfied in this case.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI correctly identified the need for \"clear and legible copies of the receipts to be submitted to the Client line manager for approval\" based on the GoGlobal compliance policy. However, this is a procedural requirement rather than a receipt content issue, and the AI should have clarified that the receipt itself appears to contain the required information, but the submission process needs to follow company policy.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Incorrectly flagged missing transaction date when dates are present\n2. Incorrectly flagged missing expense type description when it's clearly an airline receipt\n3. Mischaracterized a procedural requirement as a receipt content issue\n4. Failed to validate that the receipt contains the employee name as traveler (Natalie Yen Wei Ng), which satisfies a mandatory requirement for flight expenses\n\nSUMMARY: The AI response shows poor adherence to the knowledge base by incorrectly flagging issues that don't exist in the receipt data. The receipt contains transaction dates, clearly identifies as a flight expense, and includes the employee name as traveler. The only partially valid issue relates to the submission process rather than the receipt content itself. This suggests the AI either didn't properly analyze the extracted data or misinterpreted the compliance requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly flagged that the transaction date is not visible on the receipt. According to the extracted data, the booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13) are clearly present in the receipt. This directly contradicts the compliance rule stating \"Date of the expense must be visible on receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged that the expense type description is not clearly visible. The extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and contains detailed line items including departure levy, baggage fees, etc. The compliance rule requires \"Expense type or description of goods/services must be visible on receipt,\" which is satisfied in this case.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI correctly identified the need for \"clear and legible copies of the receipts to be submitted to the Client line manager for approval\" based on the GoGlobal compliance policy. However, this is a procedural requirement rather than a receipt content issue, and the AI should have clarified that the receipt itself appears to contain the required information, but the submission process needs to follow company policy.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Incorrectly flagged missing transaction date when dates are present\n2. Incorrectly flagged missing expense type description when it's clearly an airline receipt\n3. Mischaracterized a procedural requirement as a receipt content issue\n4. Failed to validate that the receipt contains the employee name as traveler (Natalie Yen Wei Ng), which satisfies a mandatory requirement for flight expenses\n\nSUMMARY: The AI response shows poor adherence to the knowledge base by incorrectly flagging issues that don't exist in the receipt data. The receipt contains transaction dates, clearly identifies as a flight expense, and includes the employee name as traveler. The only partially valid issue relates to the submission process rather than the receipt content itself. This suggests the AI either didn't properly analyze the extracted data or misinterpreted the compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the transaction date is missing from the receipt, which is a mandatory requirement as per the compliance knowledge base. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identifies that the expense type or description of goods/services is not clearly visible on the receipt, which is also a mandatory requirement. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI response correctly identifies that the receipt does not include clear and legible copies for submission to the client line manager for approval. However, the recommendation to submit the expense claims within the same month of the expense is not explicitly stated in the compliance knowledge base, although it is a reasonable best practice.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Malaysia, considering the country-specific regulations and the requirements for the flight receipt type. The identified issues are in line with the mandatory compliance requirements, and the recommendations provided are appropriate. The overall adherence to the knowledge base is high, with only a minor deviation in the recommendation for timely submission of expense claims."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.33,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"Transaction date\" as missing. The extracted data shows both booking_date (2025-04-04) and payment dates (2025-04-03, 2025-04-13). According to the compliance rules, \"Date of the expense must be visible on receipt\" which is satisfied by these dates.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"Expense type description\" as not clearly visible. The extracted data clearly shows this is a flight receipt (receipt_type: \"Airline Receipt\") with detailed line items including Malaysia Departure Levy, Fuel Surcharge, etc. The compliance rule requires \"Expense type or description of goods/services must be visible on receipt\" which is satisfied.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for \"Additional documentation\" based on the compliance rule that states \"Submit expense claims with clear and legible copies of the receipts to Client line manager for approval preferably within the same month of the expense.\" This is a procedural requirement that applies regardless of the receipt content.\n\nCONFIDENCE: 33\n\nISSUES:\n1. The AI incorrectly flagged transaction date as missing when dates are clearly present in the extracted data\n2. The AI incorrectly flagged expense type description as unclear when the receipt clearly shows it's for flights with detailed line items\n3. The AI missed validating that the employee name (Natalie Yen Wei Ng) is present on the receipt, which satisfies the mandatory rule for flights that \"Flight ticket should be supported with itinerary with the employee's name\"\n\nSUMMARY: The AI response shows poor adherence to the compliance knowledge base by incorrectly flagging two issues that are actually satisfied by the receipt data. Only one issue (regarding submission of clear copies for approval) was correctly identified. The AI also failed to acknowledge that the receipt satisfies the mandatory requirement of having the employee name as the traveler for flight expenses."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged that the transaction date is not visible on the receipt. According to the extracted data, the booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13) are clearly present in the receipt. This directly contradicts the compliance rule stating \"Date of the expense must be visible on receipt.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged that the expense type description is not clearly visible. The extracted data shows this is clearly a flight receipt with \"receipt_type\": \"Airline Receipt\" and contains detailed line items including departure levy, baggage fees, etc. The compliance rule requires \"Expense type or description of goods/services must be visible on receipt,\" which is satisfied in this case.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly identified the need for \"clear and legible copies of the receipts to be submitted to the Client line manager for approval\" based on the GoGlobal compliance policy. However, this is a procedural requirement rather than a receipt content issue, and the AI should have clarified that the receipt itself appears to contain the required information, but the submission process needs to follow company policy.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.43333333333333335,
+      "issues": [
+        "1. The system incorrectly flagged missing transaction date when dates are clearly present",
+        "2. The system incorrectly flagged missing expense type when it's clearly a flight receipt",
+        "3. The receipt contains all mandatory information required by compliance rules including supplier name",
+        "total amount",
+        "and customer name as traveler",
+        "4. The system failed to recognize that this is a valid flight receipt with appropriate details"
+      ],
+      "summary": "The compliance assessment is largely inaccurate. The receipt appears to contain all required information for a flight expense under GoGlobal ICP requirements, including transaction dates, clear expense type (flights), total amount, supplier details, and traveler information. The only potentially valid issue is regarding submission of clear copies to management, but this cannot be determined from the receipt data alone.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date requirement is satisfied by these dates.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly shows this is for flights with detailed line items including departure levy, fuel surcharge, passenger service charge, and baggage fees. The expense type is clearly identifiable as an airline receipt/flight expense.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially accurate. While the rule about submitting clear and legible copies exists, we cannot determine from the data provided whether the receipt is clear and legible or if it has been properly submitted to the Client line manager for approval.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The system incorrectly flagged missing transaction date when dates are clearly present\n2. The system incorrectly flagged missing expense type when it's clearly a flight receipt\n3. The receipt contains all mandatory information required by compliance rules including supplier name, total amount, and customer name as traveler\n4. The system failed to recognize that this is a valid flight receipt with appropriate details\n\nSUMMARY: The compliance assessment is largely inaccurate. The receipt appears to contain all required information for a flight expense under GoGlobal ICP requirements, including transaction dates, clear expense type (flights), total amount, supplier details, and traveler information. The only potentially valid issue is regarding submission of clear copies to management, but this cannot be determined from the receipt data alone.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date requirement is satisfied by these dates.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly shows this is for flights with detailed line items including departure levy, fuel surcharge, passenger service charge, and baggage fees. The expense type is clearly identifiable as an airline receipt/flight expense.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially accurate. While the rule about submitting clear and legible copies exists, we cannot determine from the data provided whether the receipt is clear and legible or if it has been properly submitted to the Client line manager for approval.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The system incorrectly flagged missing transaction date when dates are clearly present\n2. The system incorrectly flagged missing expense type when it's clearly a flight receipt\n3. The receipt contains all mandatory information required by compliance rules including supplier name, total amount, and customer name as traveler\n4. The system failed to recognize that this is a valid flight receipt with appropriate details\n\nSUMMARY: The compliance assessment is largely inaccurate. The receipt appears to contain all required information for a flight expense under GoGlobal ICP requirements, including transaction dates, clear expense type (flights), total amount, supplier details, and traveler information. The only potentially valid issue is regarding submission of clear copies to management, but this cannot be determined from the receipt data alone."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified that the transaction date is missing from the receipt, which is a mandatory requirement for compliance. This is a valid issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified that the expense type or description of goods/services is not clearly visible on the receipt, which is also a mandatory requirement for compliance. This is a valid issue that needs to be addressed.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identified that the receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval, which is a recommended practice for compliance. This is a valid issue that needs to be addressed.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The compliance assessment is accurate and correctly identifies the key issues with the receipt. The missing transaction date, unclear expense type description, and lack of clear and legible copies for approval are all valid compliance concerns that need to be addressed. Overall, the assessment provides a comprehensive and accurate evaluation of the receipt's compliance status."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date is visible on the receipt, so this should not be flagged as an issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt clearly indicates it's for flights with detailed information including airline receipt type, booking number, and itemized charges related to air travel (departure levy, fuel surcharge, passenger service charge). The expense type is clearly visible.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially accurate. While the receipt itself appears to be legible and contains required information, the rule requires submission to the Client line manager for approval. Since we can't determine from the receipt alone whether it was properly submitted to the line manager, this could be a valid concern, but it's not an issue with the receipt itself but rather with the submission process.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The system incorrectly flagged missing transaction date when dates are clearly present\n2. The system incorrectly flagged missing expense type when it's clearly a flight receipt\n3. The legibility issue seems to be a process concern rather than a receipt content issue\n4. The system failed to validate that the employee name (Natalie Yen Wei Ng) is present on the receipt, which satisfies the mandatory requirement for flight receipts\n\nSUMMARY: The compliance assessment is largely inaccurate. The receipt contains transaction dates, clearly indicates it's for flights, and includes the employee's name as the traveler. The only potentially valid issue relates to the submission process to the line manager, but this can't be determined from the receipt itself. The receipt appears to meet the mandatory requirements for flight receipts according to the compliance rules provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date requirement is satisfied by these dates.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The receipt clearly shows this is for flights with detailed line items including departure levy, fuel surcharge, passenger service charge, and baggage fees. The expense type is clearly identifiable as an airline receipt/flight expense.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "This issue is partially accurate. While the rule about submitting clear and legible copies exists, we cannot determine from the data provided whether the receipt is clear and legible or if it has been properly submitted to the Client line manager for approval.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.45,
+      "issues": [
+        "1. Two major issues (transaction date and expense type) are incorrectly flagged when the information is clearly present in the receipt",
+        "2. The third issue focuses on submission process rather than receipt content",
+        "3. The system failed to recognize basic flight receipt information despite having detailed data"
+      ],
+      "summary": "The issue categorization is largely inaccurate. The system incorrectly flagged missing transaction date and expense type when both are clearly present in the receipt data. The receipt contains comprehensive flight information including booking details, passenger information, payment methods, and itemized charges. The only partially valid issue relates to submission procedures rather than receipt content deficiencies.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date is visible on the receipt, so this should not be flagged as an issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt clearly indicates it's for flights with detailed line items including airline charges (Malaysia Departure Levy, Fuel Surcharge, Passenger Service Charge) and add-ons like baggage and in-flight meals. The expense type is clearly visible as an airline receipt.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially correctly categorized. While the rule about submitting \"clear and legible copies of the receipts to Client line manager for approval\" is valid according to the compliance rules, the receipt itself appears to contain all necessary information. The issue is more about the submission process rather than the receipt content itself.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Two major issues (transaction date and expense type) are incorrectly flagged when the information is clearly present in the receipt\n2. The third issue focuses on submission process rather than receipt content\n3. The system failed to recognize basic flight receipt information despite having detailed data\n\nSUMMARY: The issue categorization is largely inaccurate. The system incorrectly flagged missing transaction date and expense type when both are clearly present in the receipt data. The receipt contains comprehensive flight information including booking details, passenger information, payment methods, and itemized charges. The only partially valid issue relates to submission procedures rather than receipt content deficiencies.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date is visible on the receipt, so this should not be flagged as an issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt clearly indicates it's for flights with detailed line items including airline charges (Malaysia Departure Levy, Fuel Surcharge, Passenger Service Charge) and add-ons like baggage and in-flight meals. The expense type is clearly visible as an airline receipt.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially correctly categorized. While the rule about submitting \"clear and legible copies of the receipts to Client line manager for approval\" is valid according to the compliance rules, the receipt itself appears to contain all necessary information. The issue is more about the submission process rather than the receipt content itself.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Two major issues (transaction date and expense type) are incorrectly flagged when the information is clearly present in the receipt\n2. The third issue focuses on submission process rather than receipt content\n3. The system failed to recognize basic flight receipt information despite having detailed data\n\nSUMMARY: The issue categorization is largely inaccurate. The system incorrectly flagged missing transaction date and expense type when both are clearly present in the receipt data. The receipt contains comprehensive flight information including booking details, passenger information, payment methods, and itemized charges. The only partially valid issue relates to submission procedures rather than receipt content deficiencies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue around the missing transaction date is accurately categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly explains the problem and provides a relevant recommendation to address it with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue regarding the unclear expense type description is also correctly classified as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation provided are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue about the lack of clear and legible copies of the receipts for approval is accurately categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation provided are clear and actionable.\n\nCONFIDENCE: 90\nISSUES: No major issues with the categorization of the identified problems.\nSUMMARY: The issues identified are accurately categorized according to the established taxonomy. The descriptions and recommendations provided are clear and appropriate, addressing the key compliance concerns with the receipt. Overall, the issue categorization is well done and follows the expected standards."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.25,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue claims \"The date of the expense is not visible on the receipt\" but the extracted data shows both a booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). This appears to be an incorrect categorization as transaction dates are clearly present in the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 20 - The issue claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is clearly a flight booking with detailed line items including departure levy, baggage fees, and meal purchases. The receipt_type is even explicitly labeled as \"Airline Receipt\" in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 70 - This issue about \"Additional documentation\" and the need to \"submit expense claims with clear and legible copies\" is somewhat valid as a general compliance reminder, though it's not clear if the actual receipt is illegible since we only see the extracted data, not the original image quality.\n\nCONFIDENCE: 25\n\nISSUES:\n1. Two of the three identified issues appear to contradict the data extracted from the receipt\n2. The system incorrectly flags missing transaction date when multiple dates are present\n3. The system incorrectly flags missing expense type description when \"Airline Receipt\" and flight details are clearly present\n4. The legibility issue may be valid but cannot be fully assessed without seeing the original receipt image\n\nSUMMARY: The issue categorization appears largely inaccurate, with 2 of 3 issues incorrectly identified. The receipt contains transaction dates and clearly indicates it's for flight expenses, contradicting the main compliance issues raised. Only the documentation submission reminder may be valid, though its applicability cannot be fully verified without seeing the original receipt quality."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly categorized. The receipt clearly shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13). The transaction date is visible on the receipt, so this should not be flagged as an issue.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly categorized. The receipt clearly indicates it's for flights with detailed line items including airline charges (Malaysia Departure Levy, Fuel Surcharge, Passenger Service Charge) and add-ons like baggage and in-flight meals. The expense type is clearly visible as an airline receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "This issue is partially correctly categorized. While the rule about submitting \"clear and legible copies of the receipts to Client line manager for approval\" is valid according to the compliance rules, the receipt itself appears to contain all necessary information. The issue is more about the submission process rather than the receipt content itself.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7166666666666668,
+      "issues": [
+        "1. Issue 2 incorrectly states that expense type is not visible when the receipt appears to be clearly for flights",
+        "2. Issue 1 recommendation could be more specific about which date should be used as the transaction date",
+        "3. The validation doesn't acknowledge that some required information (customer name",
+        "total amount",
+        "supplier name) is actually present in the receipt"
+      ],
+      "summary": "The recommendations are partially valid but have some shortcomings. Issue 3's recommendation is highly valid and follows policy exactly. Issue 1's recommendation is somewhat valid but lacks specificity about which date should be considered the transaction date. Issue 2's recommendation is less valid as the receipt does appear to contain information indicating it's for flights. Overall, the recommendations would benefit from being more specific and acknowledging the information that is already present in the receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing transaction date is somewhat valid but not fully actionable. While the receipt shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13), it's unclear if these satisfy the transaction date requirement. A more specific recommendation would be to request an updated receipt that clearly indicates the transaction date or to clarify if the booking date can serve as the transaction date.\n\nISSUE_2_VALIDATION_SCORE: 50 - The recommendation to \"address this issue with the supplier or provider\" regarding unclear expense type is not fully valid. The receipt actually does contain information indicating it's for flights (booking number, departure levy, passenger service charge), and the extracted data shows \"receipt_type: Airline Receipt\". A better recommendation would be to ensure the flight details (route, flight numbers, dates) are clearly visible on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to \"submit expense claims with clear and legible copies of the receipts to the Client line manager for approval preferably within the same month of the expense\" is valid, actionable and directly addresses the compliance requirement. This follows the exact policy stated in the compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 2 incorrectly states that expense type is not visible when the receipt appears to be clearly for flights\n2. Issue 1 recommendation could be more specific about which date should be used as the transaction date\n3. The validation doesn't acknowledge that some required information (customer name, total amount, supplier name) is actually present in the receipt\n\nSUMMARY: The recommendations are partially valid but have some shortcomings. Issue 3's recommendation is highly valid and follows policy exactly. Issue 1's recommendation is somewhat valid but lacks specificity about which date should be considered the transaction date. Issue 2's recommendation is less valid as the receipt does appear to contain information indicating it's for flights. Overall, the recommendations would benefit from being more specific and acknowledging the information that is already present in the receipt.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing transaction date is somewhat valid but not fully actionable. While the receipt shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13), it's unclear if these satisfy the transaction date requirement. A more specific recommendation would be to request an updated receipt that clearly indicates the transaction date or to clarify if the booking date can serve as the transaction date.\n\nISSUE_2_VALIDATION_SCORE: 50 - The recommendation to \"address this issue with the supplier or provider\" regarding unclear expense type is not fully valid. The receipt actually does contain information indicating it's for flights (booking number, departure levy, passenger service charge), and the extracted data shows \"receipt_type: Airline Receipt\". A better recommendation would be to ensure the flight details (route, flight numbers, dates) are clearly visible on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to \"submit expense claims with clear and legible copies of the receipts to the Client line manager for approval preferably within the same month of the expense\" is valid, actionable and directly addresses the compliance requirement. This follows the exact policy stated in the compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 2 incorrectly states that expense type is not visible when the receipt appears to be clearly for flights\n2. Issue 1 recommendation could be more specific about which date should be used as the transaction date\n3. The validation doesn't acknowledge that some required information (customer name, total amount, supplier name) is actually present in the receipt\n\nSUMMARY: The recommendations are partially valid but have some shortcomings. Issue 3's recommendation is highly valid and follows policy exactly. Issue 1's recommendation is somewhat valid but lacks specificity about which date should be considered the transaction date. Issue 2's recommendation is less valid as the receipt does appear to contain information indicating it's for flights. Overall, the recommendations would benefit from being more specific and acknowledging the information that is already present in the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction date with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the unclear expense type description with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to submit expense claims with clear and legible copies of the receipts to the Client line manager for approval is actionable and specific. However, the timeline of \"preferably within the same month of the expense\" may not always be practical, so the recommendation could be slightly more flexible.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They directly address the identified issues, are actionable and specific, and are feasible and practical steps to take. The recommendation for the third issue could be slightly more flexible, but overall the recommendations are strong and should help resolve the compliance problems with the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.55,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing transaction date is somewhat valid but not specific enough. The receipt actually contains booking dates (2025-04-04) and payment dates (2025-04-03 and 2025-04-13), but may be missing the specific flight date. A more helpful recommendation would be to request the flight itinerary showing the actual travel dates.\n\nISSUE_2_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" regarding unclear expense type is not very helpful. The receipt clearly shows this is a flight booking with Move Travel Sdn Bhd, including details about airline charges, baggage fees, and food purchases. The receipt type is correctly identified as \"flights\" in the input. A better recommendation would be to ensure the flight itinerary with route information is attached.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to \"submit expense claims with clear and legible copies of the receipts to the Client line manager for approval preferably within the same month of the expense\" is valid and directly addresses the compliance requirement. It provides clear, actionable guidance on what needs to be done.\n\nCONFIDENCE: 55\n\nISSUES:\n1. Issue 1 recommendation is generic and doesn't acknowledge the booking/payment dates already present\n2. Issue 2 recommendation is unnecessary as the receipt clearly shows it's for flight expenses\n3. The validation incorrectly claims expense type is not visible when the receipt shows airline-related charges\n\nSUMMARY: The validation system has correctly identified the need for proper submission of receipts to the client line manager, but has incorrectly flagged issues with transaction date and expense type description that are actually present in the receipt data. The recommendations for these issues are generic and not tailored to the specific content of this receipt, reducing their usefulness."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing transaction date is somewhat valid but not fully actionable. While the receipt shows booking date (2025-04-04) and payment dates (2025-04-03 and 2025-04-13), it's unclear if these satisfy the transaction date requirement. A more specific recommendation would be to request an updated receipt that clearly indicates the transaction date or to clarify if the booking date can serve as the transaction date.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding unclear expense type is not fully valid. The receipt actually does contain information indicating it's for flights (booking number, departure levy, passenger service charge), and the extracted data shows \"receipt_type: Airline Receipt\". A better recommendation would be to ensure the flight details (route, flight numbers, dates) are clearly visible on the receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"submit expense claims with clear and legible copies of the receipts to the Client line manager for approval preferably within the same month of the expense\" is valid, actionable and directly addresses the compliance requirement. This follows the exact policy stated in the compliance rules.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.3333333333333333,
+      "issues": [
+        "1. False claim that transaction date is not visible when booking date and payment dates are clearly present",
+        "2. False claim that expense type/description is not visible when it's clearly a flight receipt with detailed line items",
+        "3. Questionable claim about legibility when detailed data extraction was possible",
+        "4. The AI incorrectly validated the receipt as non-compliant when the extracted data shows it meets the mandatory requirements"
+      ],
+      "summary": "The AI response contains significant hallucinations by claiming information is missing when it's clearly present in the extracted data. The receipt appears to contain all required information according to the compliance rules (transaction date, expense type, total amount, supplier name, and employee name as traveler), yet the AI incorrectly flagged it as non-compliant based on fabricated issues.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows a booking date of \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". This is a clear hallucination as transaction dates are present in the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is a flight booking with detailed line items including \"Malaysia Departure Levy\", \"Fuel Surcharge\", \"Passenger Service Charge\", etc. The receipt_type is clearly marked as \"Airline Receipt\" and the context specifies it's for \"flights\". This is a complete hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - The third issue about \"clear and legible copies\" might be partially valid if we're only seeing extracted data rather than the actual receipt image. However, since we have detailed information extracted, including specific line items and amounts, it suggests the receipt was legible enough for data extraction. Without seeing the actual receipt image, this is potentially a partial hallucination.\n\nCONFIDENCE: 0\n\nISSUES:\n1. False claim that transaction date is not visible when booking date and payment dates are clearly present\n2. False claim that expense type/description is not visible when it's clearly a flight receipt with detailed line items\n3. Questionable claim about legibility when detailed data extraction was possible\n4. The AI incorrectly validated the receipt as non-compliant when the extracted data shows it meets the mandatory requirements\n\nSUMMARY: The AI response contains significant hallucinations by claiming information is missing when it's clearly present in the extracted data. The receipt appears to contain all required information according to the compliance rules (transaction date, expense type, total amount, supplier name, and employee name as traveler), yet the AI incorrectly flagged it as non-compliant based on fabricated issues.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows a booking date of \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". This is a clear hallucination as transaction dates are present in the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is a flight booking with detailed line items including \"Malaysia Departure Levy\", \"Fuel Surcharge\", \"Passenger Service Charge\", etc. The receipt_type is clearly marked as \"Airline Receipt\" and the context specifies it's for \"flights\". This is a complete hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - The third issue about \"clear and legible copies\" might be partially valid if we're only seeing extracted data rather than the actual receipt image. However, since we have detailed information extracted, including specific line items and amounts, it suggests the receipt was legible enough for data extraction. Without seeing the actual receipt image, this is potentially a partial hallucination.\n\nCONFIDENCE: 0\n\nISSUES:\n1. False claim that transaction date is not visible when booking date and payment dates are clearly present\n2. False claim that expense type/description is not visible when it's clearly a flight receipt with detailed line items\n3. Questionable claim about legibility when detailed data extraction was possible\n4. The AI incorrectly validated the receipt as non-compliant when the extracted data shows it meets the mandatory requirements\n\nSUMMARY: The AI response contains significant hallucinations by claiming information is missing when it's clearly present in the extracted data. The receipt appears to contain all required information according to the compliance rules (transaction date, expense type, total amount, supplier name, and employee name as traveler), yet the AI incorrectly flagged it as non-compliant based on fabricated issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The extracted data appears to be directly derived from the source receipt information provided, with no signs of fabricated or hallucinated data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements referenced in the AI response are consistent with the provided ICP context of \"GoGlobal\" and do not appear to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates extracted from the receipt data seem to be accurate and not fabricated.\n\nCONFIDENCE: 100\nISSUES: No hallucinations or fabricated information detected.\nSUMMARY: The AI response appears to accurately extract and summarize the relevant information from the provided receipt and compliance rules, without any signs of hallucinated or fabricated data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows a booking date of \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". This is a clear hallucination as the transaction dates are present in the data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is a flight booking with detailed line items including Malaysia Departure Levy, Fuel Surcharge, Passenger Service Charge, etc. The receipt_type is explicitly labeled as \"Airline Receipt\" and there's a booking number \"MBNZ5G\". This is a complete hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - The third issue about \"clear and legible copies of the receipts\" is partially valid as we don't have information about whether clear copies were submitted to the Client line manager. However, the AI assumes this wasn't done without evidence, making this partially hallucinated.\n\nCONFIDENCE: 0\n\nISSUES:\n1. Falsely claims transaction date is missing when multiple dates are present in the data\n2. Falsely claims expense type/description is missing when it's clearly an airline receipt with detailed line items\n3. Makes an unfounded assumption about submission of legible copies without evidence\n4. The AI response incorrectly validates a clearly detailed flight receipt as invalid\n\nSUMMARY: The AI response contains significant hallucinations by claiming essential information (transaction date and expense type) is missing when it's clearly present in the extracted data. The response incorrectly invalidates a receipt that appears to contain all required information according to the compliance rules. This demonstrates a complete failure to accurately analyze the provided data against the compliance requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The date of the expense is not visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue claims \"The date of the expense is not visible on the receipt\" but the extracted data clearly shows a booking date of \"2025-04-04\" and payment dates of \"2025-04-03\" and \"2025-04-13\". This is a clear hallucination as transaction dates are present in the receipt data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The second issue claims \"The expense type or description of goods/services is not clearly visible on the receipt\" but the extracted data shows this is a flight booking with detailed line items including \"Malaysia Departure Levy\", \"Fuel Surcharge\", \"Passenger Service Charge\", etc. The receipt_type is clearly marked as \"Airline Receipt\" and the context specifies it's for \"flights\". This is a complete hallucination.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The third issue about \"clear and legible copies\" might be partially valid if we're only seeing extracted data rather than the actual receipt image. However, since we have detailed information extracted, including specific line items and amounts, it suggests the receipt was legible enough for data extraction. Without seeing the actual receipt image, this is potentially a partial hallucination.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [
+    "1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data.",
+    "2. The AI incorrectly claims expense type description is not visible when the receipt is clearly identified as an airline receipt with detailed line items.",
+    "3. The AI makes assumptions about the legibility of receipt copies without evidence.",
+    "4. The AI ignores substantial evidence in the extracted data that contradicts its findings.",
+    "1. Incorrectly flagged missing transaction date when dates are present",
+    "2. Incorrectly flagged missing expense type description when it's clearly an airline receipt",
+    "3. Mischaracterized a procedural requirement as a receipt content issue",
+    "4. Failed to validate that the receipt contains the employee name as traveler (Natalie Yen Wei Ng)",
+    "which satisfies a mandatory requirement for flight expenses",
+    "1. The system incorrectly flagged missing transaction date when dates are clearly present",
+    "2. The system incorrectly flagged missing expense type when it's clearly a flight receipt",
+    "3. The receipt contains all mandatory information required by compliance rules including supplier name",
+    "total amount",
+    "and customer name as traveler",
+    "4. The system failed to recognize that this is a valid flight receipt with appropriate details",
+    "1. Two major issues (transaction date and expense type) are incorrectly flagged when the information is clearly present in the receipt",
+    "2. The third issue focuses on submission process rather than receipt content",
+    "3. The system failed to recognize basic flight receipt information despite having detailed data",
+    "1. False claim that transaction date is not visible when booking date and payment dates are clearly present",
+    "2. False claim that expense type/description is not visible when it's clearly a flight receipt with detailed line items",
+    "3. Questionable claim about legibility when detailed data extraction was possible",
+    "4. The AI incorrectly validated the receipt as non-compliant when the extracted data shows it meets the mandatory requirements"
+  ],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Improve factual grounding: The AI response is poorly grounded in the provided data. Two of the three issues identified by the AI directly contradict information clearly present in the extracted data. The receipt contains transaction dates (booking date and payment dates) and clearly identifies the expense type (airline receipt with detailed flight-related expenses). Only the third issue about submission of legible copies has some validity as this cannot be fully assessed from the extracted data alone.",
+    "Address issues in factual grounding: 1. The AI incorrectly claims transaction dates are missing when they are clearly present in the extracted data., 2. The AI incorrectly claims expense type description is not visible when the receipt is clearly identified as an airline receipt with detailed line items., 3. The AI makes assumptions about the legibility of receipt copies without evidence., 4. The AI ignores substantial evidence in the extracted data that contradicts its findings.",
+    "Improve knowledge base adherence: The AI response shows poor adherence to the knowledge base by incorrectly flagging issues that don't exist in the receipt data. The receipt contains transaction dates, clearly identifies as a flight expense, and includes the employee name as traveler. The only partially valid issue relates to the submission process rather than the receipt content itself. This suggests the AI either didn't properly analyze the extracted data or misinterpreted the compliance requirements.",
+    "Address issues in knowledge base adherence: 1. Incorrectly flagged missing transaction date when dates are present, 2. Incorrectly flagged missing expense type description when it's clearly an airline receipt, 3. Mischaracterized a procedural requirement as a receipt content issue, 4. Failed to validate that the receipt contains the employee name as traveler (Natalie Yen Wei Ng), which satisfies a mandatory requirement for flight expenses",
+    "Improve compliance accuracy: The compliance assessment is largely inaccurate. The receipt appears to contain all required information for a flight expense under GoGlobal ICP requirements, including transaction dates, clear expense type (flights), total amount, supplier details, and traveler information. The only potentially valid issue is regarding submission of clear copies to management, but this cannot be determined from the receipt data alone.",
+    "Address issues in compliance accuracy: 1. The system incorrectly flagged missing transaction date when dates are clearly present, 2. The system incorrectly flagged missing expense type when it's clearly a flight receipt, 3. The receipt contains all mandatory information required by compliance rules including supplier name, total amount, and customer name as traveler, 4. The system failed to recognize that this is a valid flight receipt with appropriate details",
+    "Improve issue categorization: The issue categorization is largely inaccurate. The system incorrectly flagged missing transaction date and expense type when both are clearly present in the receipt data. The receipt contains comprehensive flight information including booking details, passenger information, payment methods, and itemized charges. The only partially valid issue relates to submission procedures rather than receipt content deficiencies.",
+    "Address issues in issue categorization: 1. Two major issues (transaction date and expense type) are incorrectly flagged when the information is clearly present in the receipt, 2. The third issue focuses on submission process rather than receipt content, 3. The system failed to recognize basic flight receipt information despite having detailed data",
+    "Address issues in recommendation validity: 1. Issue 2 incorrectly states that expense type is not visible when the receipt appears to be clearly for flights, 2. Issue 1 recommendation could be more specific about which date should be used as the transaction date, 3. The validation doesn't acknowledge that some required information (customer name, total amount, supplier name) is actually present in the receipt",
+    "Improve hallucination detection: The AI response contains significant hallucinations by claiming information is missing when it's clearly present in the extracted data. The receipt appears to contain all required information according to the compliance rules (transaction date, expense type, total amount, supplier name, and employee name as traveler), yet the AI incorrectly flagged it as non-compliant based on fabricated issues.",
+    "Address issues in hallucination detection: 1. False claim that transaction date is not visible when booking date and payment dates are clearly present, 2. False claim that expense type/description is not visible when it's clearly a flight receipt with detailed line items, 3. Questionable claim about legibility when detailed data extraction was possible, 4. The AI incorrectly validated the receipt as non-compliant when the extracted data shows it meets the mandatory requirements"
+  ],
+  "timestamp": "2025-10-02T09:56:12.006Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 67602,
+    "timing": {
+      "validation_start_time": "2025-10-02T09:55:04.404Z",
+      "validation_end_time": "2025-10-02T09:56:12.006Z",
+      "total_validation_time_seconds": "67.6",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T09:55:04.404Z",
+          "end_time": "2025-10-02T09:56:12.006Z",
+          "duration_seconds": "67.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "67.6",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.44",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The date of the expense is not visible on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 7.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 70,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The expense type or description of goods/services is not clearly visible on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 5.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 50,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 54.44,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 50,
+        "issue_categorization": 50,
+        "recommendation_validity": 90,
+        "hallucination_detection": 50
+      }
+    }
+  ]
+}

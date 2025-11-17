@@ -1,0 +1,659 @@
+{
+  "overall_score": 0.7444444444444445,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Issue 3 about restaurant expenses is completely fabricated as there are no restaurant expenses in the data.",
+        "2. Issue 4 about mileage expenses is completely fabricated as there are no mileage expenses in the data."
+      ],
+      "summary": "The AI response is partially grounded in the extracted data. Issues 1, 2, and 5 are correctly identified based on the compliance rules and the missing information in the receipt data. However, issues 3 and 4 are completely unfounded as they refer to restaurant and mileage expenses that don't exist in the extracted data. These fabricated issues significantly reduce the overall factual grounding of the response.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt. The extracted data does not show any supplier business names for the line items, which is required according to the compliance rules that state \"Receipts and invoices must be submitted alongside expense items\" with supplier business name being mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly noted that the ICP company details are missing from the invoice. According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The extracted data does not show any ICP company details on the hotel invoice (line item 4).\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI claimed that \"restaurant expenses exceed the tax-free limits,\" but there are no restaurant expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI claimed that \"A logbook and map with the relevant route are required for mileage expenses,\" but there are no mileage expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly noted that \"Workers should submit a separate report per each business trip.\" This aligns with the compliance rules, and the extracted data shows a single report covering multiple dates (Oct 12-17, 2024) for a trip to Berlin, which should have been separated.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 about restaurant expenses is completely fabricated as there are no restaurant expenses in the data.\n2. Issue 4 about mileage expenses is completely fabricated as there are no mileage expenses in the data.\n\nSUMMARY: The AI response is partially grounded in the extracted data. Issues 1, 2, and 5 are correctly identified based on the compliance rules and the missing information in the receipt data. However, issues 3 and 4 are completely unfounded as they refer to restaurant and mileage expenses that don't exist in the extracted data. These fabricated issues significantly reduce the overall factual grounding of the response.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt. The extracted data does not show any supplier business names for the line items, which is required according to the compliance rules that state \"Receipts and invoices must be submitted alongside expense items\" with supplier business name being mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly noted that the ICP company details are missing from the invoice. According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The extracted data does not show any ICP company details on the hotel invoice (line item 4).\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI claimed that \"restaurant expenses exceed the tax-free limits,\" but there are no restaurant expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI claimed that \"A logbook and map with the relevant route are required for mileage expenses,\" but there are no mileage expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly noted that \"Workers should submit a separate report per each business trip.\" This aligns with the compliance rules, and the extracted data shows a single report covering multiple dates (Oct 12-17, 2024) for a trip to Berlin, which should have been separated.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 about restaurant expenses is completely fabricated as there are no restaurant expenses in the data.\n2. Issue 4 about mileage expenses is completely fabricated as there are no mileage expenses in the data.\n\nSUMMARY: The AI response is partially grounded in the extracted data. Issues 1, 2, and 5 are correctly identified based on the compliance rules and the missing information in the receipt data. However, issues 3 and 4 are completely unfounded as they refer to restaurant and mileage expenses that don't exist in the extracted data. These fabricated issues significantly reduce the overall factual grounding of the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims about the missing supplier business name and ICP company details can be traced back to the extracted compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The claim about the restaurant expenses exceeding the tax-free limits is accurately represented in the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The requirement for a logbook and map with the relevant route for mileage expenses is clearly stated in the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement to submit a separate report per each business trip is accurately represented in the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - All the information provided in the AI response can be traced back to the extracted data and compliance rules.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance rules. All claims made in the response can be traced back to the information given, and no fabrication or assumptions beyond the data are present."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier business name is factually grounded. The extracted data does not include any supplier business names for the expenses listed, which is required according to the compliance rules that state \"Receipts and invoices must be submitted alongside expense items\" with supplier business name being mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing ICP company details is factually grounded. The compliance rules state \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings\" and the extracted data does not show any ICP company details on the hotel invoice or other expenses.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is not factually grounded in the provided data. The AI claims restaurant expenses exceed tax-free limits, but the extracted data does not contain any restaurant expenses. The line items only show train tickets, taxi rides, and hotel accommodations, not meals or restaurant charges.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is not factually grounded. The AI claims there are mileage expenses requiring a logbook and map, but the extracted data does not show any mileage expenses. The transportation expenses listed are for train tickets and taxis, not personal vehicle usage.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding submitting separate reports per business trip is factually grounded. The compliance rules state \"Workers should submit a separate report per each business trip\" and the extracted data shows this is a travel expense report covering multiple days (October 12-17, 2024) that includes multiple purposes (World Health Summit and UNITE Conference).\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 incorrectly identifies restaurant expenses that don't exist in the data\n2. Issue 4 incorrectly identifies mileage expenses that don't exist in the data\n\nSUMMARY: The AI response is partially factually grounded. Issues 1, 2, and 5 are correctly identified based on the extracted data and compliance rules. However, issues 3 and 4 are fabricated concerns about restaurant and mileage expenses that don't appear anywhere in the extracted data. The AI appears to have generated generic compliance issues without verifying their relevance to the actual receipt data provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier business name is missing from the receipt. The extracted data does not show any supplier business names for the line items, which is required according to the compliance rules that state \"Receipts and invoices must be submitted alongside expense items\" with supplier business name being mandatory.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly noted that the ICP company details are missing from the invoice. According to the compliance rules, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The extracted data does not show any ICP company details on the hotel invoice (line item 4).",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claimed that \"restaurant expenses exceed the tax-free limits,\" but there are no restaurant expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claimed that \"A logbook and map with the relevant route are required for mileage expenses,\" but there are no mileage expenses listed in the extracted data. The line items only show train tickets, taxi rides, and hotel expenses. This issue is completely unfounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly noted that \"Workers should submit a separate report per each business trip.\" This aligns with the compliance rules, and the extracted data shows a single report covering multiple dates (Oct 12-17, 2024) for a trip to Berlin, which should have been separated.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "1. The AI identified issues related to restaurant expenses exceeding tax-free limits and mileage expenses requiring additional documentation",
+        "but these specific expense types don't appear to be present in the extracted receipt data.",
+        "2. The AI correctly identified missing supplier business name and ICP company details",
+        "which are valid compliance issues.",
+        "3. The recommendation about submitting a separate report per business trip is valid based on the knowledge base."
+      ],
+      "summary": "The AI response correctly identified compliance issues related to missing supplier business name and ICP company details, which are mandatory according to the knowledge base. It also correctly noted the requirement for separate reports per business trip. However, it flagged issues about restaurant expenses exceeding tax-free limits and mileage documentation requirements, which don't appear to be relevant to this specific receipt as these expense types aren't clearly present in the extracted data. Overall, the response demonstrates good adherence to the knowledge base but includes some potentially irrelevant issues.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt, which is a mandatory requirement according to the knowledge base: \"Receipts and invoices must be submitted alongside expense items\" and supplier business name is listed as mandatory data for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the ICP company details are missing from the invoice. According to the knowledge base, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which is part of this travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI identified that restaurant expenses exceed tax-free limits, which is based on the rule: \"Domestic and International: Breakfast CHF 15.00, Lunch CHF 35.00, Dinner CHF 40.00 tax-free. Any portion of per diem amount that exceeds the set rate will be taxable and must have a receipt provided.\" However, the extracted data doesn't explicitly show restaurant expenses exceeding these limits, so this issue may not be applicable to this specific receipt.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that mileage expenses require a logbook and map with the relevant route, which aligns with the knowledge base rules: \"A logbook is required for each used car\" and \"Worker will need to share a map with the relevant route (google maps is sufficient).\" However, the receipt doesn't actually contain mileage expenses, so this issue isn't relevant to this specific receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per each business trip, which is a requirement in the knowledge base for travel expenses including hotel, flight, restaurant, and taxi.\n\nCONFIDENCE: 85\n\nISSUES:\n1. The AI identified issues related to restaurant expenses exceeding tax-free limits and mileage expenses requiring additional documentation, but these specific expense types don't appear to be present in the extracted receipt data.\n2. The AI correctly identified missing supplier business name and ICP company details, which are valid compliance issues.\n3. The recommendation about submitting a separate report per business trip is valid based on the knowledge base.\n\nSUMMARY: The AI response correctly identified compliance issues related to missing supplier business name and ICP company details, which are mandatory according to the knowledge base. It also correctly noted the requirement for separate reports per business trip. However, it flagged issues about restaurant expenses exceeding tax-free limits and mileage documentation requirements, which don't appear to be relevant to this specific receipt as these expense types aren't clearly present in the extracted data. Overall, the response demonstrates good adherence to the knowledge base but includes some potentially irrelevant issues.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt, which is a mandatory requirement according to the knowledge base: \"Receipts and invoices must be submitted alongside expense items\" and supplier business name is listed as mandatory data for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the ICP company details are missing from the invoice. According to the knowledge base, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which is part of this travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI identified that restaurant expenses exceed tax-free limits, which is based on the rule: \"Domestic and International: Breakfast CHF 15.00, Lunch CHF 35.00, Dinner CHF 40.00 tax-free. Any portion of per diem amount that exceeds the set rate will be taxable and must have a receipt provided.\" However, the extracted data doesn't explicitly show restaurant expenses exceeding these limits, so this issue may not be applicable to this specific receipt.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that mileage expenses require a logbook and map with the relevant route, which aligns with the knowledge base rules: \"A logbook is required for each used car\" and \"Worker will need to share a map with the relevant route (google maps is sufficient).\" However, the receipt doesn't actually contain mileage expenses, so this issue isn't relevant to this specific receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per each business trip, which is a requirement in the knowledge base for travel expenses including hotel, flight, restaurant, and taxi.\n\nCONFIDENCE: 85\n\nISSUES:\n1. The AI identified issues related to restaurant expenses exceeding tax-free limits and mileage expenses requiring additional documentation, but these specific expense types don't appear to be present in the extracted receipt data.\n2. The AI correctly identified missing supplier business name and ICP company details, which are valid compliance issues.\n3. The recommendation about submitting a separate report per business trip is valid based on the knowledge base.\n\nSUMMARY: The AI response correctly identified compliance issues related to missing supplier business name and ICP company details, which are mandatory according to the knowledge base. It also correctly noted the requirement for separate reports per business trip. However, it flagged issues about restaurant expenses exceeding tax-free limits and mileage documentation requirements, which don't appear to be relevant to this specific receipt as these expense types aren't clearly present in the extracted data. Overall, the response demonstrates good adherence to the knowledge base but includes some potentially irrelevant issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement as per the compliance knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies that the ICP company details are missing from the invoice, which is a mandatory requirement as per the compliance knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies that the restaurant expenses exceed the tax-free limits and will be subject to tax. However, the knowledge base could have provided more specific guidance on the maximum tax-free limits for each meal type (breakfast, lunch, dinner).\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies that a logbook and map with the relevant route are required for mileage expenses. However, the knowledge base could have provided more details on the specific information required in the logbook (e.g., odometer readings, start/end locations).\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response correctly identifies that workers should submit a separate report per each business trip, as per the compliance knowledge base.\n\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance knowledge base for Switzerland, considering country-specific regulations and the travel receipt type. The only minor issue is the lack of more specific guidance on the maximum tax-free limits for restaurant expenses and the logbook requirements for mileage expenses. Overall, the response demonstrates a strong adherence to the compliance knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier business name is missing from the receipt, which violates the mandatory rule \"Receipts and invoices must be submitted alongside expense items\" that requires supplier business name for both travel and non-travel expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that ICP company details are missing from the invoice. According to the knowledge base, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" Since this includes hotel expenses (item #4), the company details should be present.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly flagged restaurant expenses exceeding tax-free limits. The receipt doesn't show any restaurant expenses - only train tickets, taxis, and hotel costs. The rule about \"Breakfast CHF 15.00, Lunch CHF 35.00, Dinner CHF 40.00 tax-free\" is not relevant to the expenses shown in this receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI incorrectly flagged mileage expenses. There are no mileage expenses in this receipt - only train tickets, taxis, and hotel costs. The rule about requiring a logbook and map with relevant route is not applicable here.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that workers should submit a separate report per each business trip, which is a valid compliance requirement for travel expenses including hotel stays according to the knowledge base.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The AI incorrectly identified restaurant expenses exceeding tax-free limits when no restaurant expenses were present in the receipt.\n2. The AI incorrectly identified mileage expenses requiring a logbook when no mileage expenses were present in the receipt.\n3. The AI missed flagging that the receipts should be reported in local currency with FX rate calculations, which is mentioned in the receipt (conversion from EUR to CHF).\n4. The AI did not address the requirement that \"Online copies of invoices and receipts are sufficient, a hard copy is not required.\"\n\nSUMMARY: The AI correctly identified issues related to missing supplier business name, missing ICP company details, and the requirement for separate reports per business trip. However, it incorrectly flagged non-existent restaurant and mileage expenses, demonstrating poor application of the knowledge base to the actual receipt contents. The response also missed some relevant compliance requirements related to currency conversion and receipt format. Overall, while some issues were correctly identified, the significant errors in applying irrelevant rules reduces confidence in the response's adherence to the knowledge base."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier business name is missing from the receipt, which is a mandatory requirement according to the knowledge base: \"Receipts and invoices must be submitted alongside expense items\" and supplier business name is listed as mandatory data for both travel and non-travel expenses.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the ICP company details are missing from the invoice. According to the knowledge base, \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which is part of this travel receipt.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 80,
+          "judge_explanation": "The AI identified that restaurant expenses exceed tax-free limits, which is based on the rule: \"Domestic and International: Breakfast CHF 15.00, Lunch CHF 35.00, Dinner CHF 40.00 tax-free. Any portion of per diem amount that exceeds the set rate will be taxable and must have a receipt provided.\" However, the extracted data doesn't explicitly show restaurant expenses exceeding these limits, so this issue may not be applicable to this specific receipt.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that mileage expenses require a logbook and map with the relevant route, which aligns with the knowledge base rules: \"A logbook is required for each used car\" and \"Worker will need to share a map with the relevant route (google maps is sufficient).\" However, the receipt doesn't actually contain mileage expenses, so this issue isn't relevant to this specific receipt.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that workers should submit a separate report per each business trip, which is a requirement in the knowledge base for travel expenses including hotel, flight, restaurant, and taxi.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Two issues (3 and 4) were incorrectly identified as non-compliant when they don't apply to this receipt at all.",
+        "2. The assessment incorrectly flagged restaurant expenses exceeding tax-free limits when no restaurant expenses were present.",
+        "3. The assessment incorrectly flagged mileage documentation requirements when no mileage expenses were present."
+      ],
+      "summary": "The compliance assessment correctly identified issues related to missing supplier business names, missing ICP company details, and the requirement for separate reports per business trip. However, it incorrectly identified issues related to restaurant expenses and mileage documentation when these expense types weren't present in the receipt. This suggests the assessment system may be applying rules too broadly without properly checking if the expense type exists in the receipt data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that supplier business names are missing from the receipt. According to the compliance rules, supplier business names are mandatory for both travel and non-travel expenses, and the rule states \"Receipts and invoices must be submitted alongside expense items.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that ICP company details are missing from the invoice. The compliance rules state that \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which are included in this travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt doesn't show any restaurant expenses that exceed tax-free limits. The line items only show train tickets, taxi rides, and hotel accommodation. There are no restaurant expenses listed in the extracted data that could be evaluated against the CHF 15/35/40 limits for breakfast/lunch/dinner.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt doesn't include any mileage expenses. The transportation expenses listed are train tickets and taxi rides, not personal vehicle mileage that would require a logbook and route map.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that workers should submit a separate report per business trip. The compliance rules state this requirement for travel expenses including hotel, flight, restaurant, and taxi expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (3 and 4) were incorrectly identified as non-compliant when they don't apply to this receipt at all.\n2. The assessment incorrectly flagged restaurant expenses exceeding tax-free limits when no restaurant expenses were present.\n3. The assessment incorrectly flagged mileage documentation requirements when no mileage expenses were present.\n\nSUMMARY: The compliance assessment correctly identified issues related to missing supplier business names, missing ICP company details, and the requirement for separate reports per business trip. However, it incorrectly identified issues related to restaurant expenses and mileage documentation when these expense types weren't present in the receipt. This suggests the assessment system may be applying rules too broadly without properly checking if the expense type exists in the receipt data.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that supplier business names are missing from the receipt. According to the compliance rules, supplier business names are mandatory for both travel and non-travel expenses, and the rule states \"Receipts and invoices must be submitted alongside expense items.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that ICP company details are missing from the invoice. The compliance rules state that \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which are included in this travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt doesn't show any restaurant expenses that exceed tax-free limits. The line items only show train tickets, taxi rides, and hotel accommodation. There are no restaurant expenses listed in the extracted data that could be evaluated against the CHF 15/35/40 limits for breakfast/lunch/dinner.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt doesn't include any mileage expenses. The transportation expenses listed are train tickets and taxi rides, not personal vehicle mileage that would require a logbook and route map.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that workers should submit a separate report per business trip. The compliance rules state this requirement for travel expenses including hotel, flight, restaurant, and taxi expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (3 and 4) were incorrectly identified as non-compliant when they don't apply to this receipt at all.\n2. The assessment incorrectly flagged restaurant expenses exceeding tax-free limits when no restaurant expenses were present.\n3. The assessment incorrectly flagged mileage documentation requirements when no mileage expenses were present.\n\nSUMMARY: The compliance assessment correctly identified issues related to missing supplier business names, missing ICP company details, and the requirement for separate reports per business trip. However, it incorrectly identified issues related to restaurant expenses and mileage documentation when these expense types weren't present in the receipt. This suggests the assessment system may be applying rules too broadly without properly checking if the expense type exists in the receipt data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the supplier business name is missing from the receipt, which is a mandatory requirement as per the compliance policy.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified that the ICP company details are missing from the invoice, which is a mandatory requirement as per the compliance policy.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identified that the restaurant expenses exceed the tax-free limits and will be subject to tax, which is in line with the compliance policy.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified that a logbook and map with the relevant route are required for mileage expenses, which is a mandatory requirement as per the compliance policy.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified that a separate report per each business trip should be submitted, which is a mandatory requirement as per the compliance policy.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The compliance assessment is accurate and all the issues identified are in line with the provided compliance rules and policies. The assessment correctly determines the non-compliant status of the expense receipt and provides appropriate recommendations to address the identified issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The validation correctly identifies that the supplier business name is missing from the receipt. According to the compliance rules, this is a mandatory field for both travel and non-travel expenses. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The validation correctly identifies that the ICP company details are missing from the invoice. The rule states \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" Since this is a hotel expense (line item 4), the company details should be present.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The receipt doesn't show any restaurant expenses that exceed tax-free limits. The line items include train tickets, taxi rides, and hotel stays, but no restaurant expenses are listed in the extracted data. This issue should not have been flagged.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. There are no mileage expenses in the receipt data. The travel expenses listed are train tickets, taxi rides, and hotel stays. The requirement for a logbook and map is not applicable to this receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The validation correctly identifies that workers should submit a separate report per each business trip. The receipt shows hotel expenses related to a business trip, and the compliance rule clearly states this requirement.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (3 and 4) were incorrectly identified as non-compliant when they weren't applicable to this receipt.\n2. The system flagged restaurant expenses and mileage expenses that don't exist in the receipt data.\n3. The system correctly identified issues 1, 2, and 5.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identified three valid issues: missing supplier business name, missing ICP company details, and the requirement for separate reports per business trip. However, it incorrectly flagged two issues related to restaurant expenses and mileage expenses that don't appear in the receipt data. These false positives significantly reduce the overall accuracy of the compliance assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that supplier business names are missing from the receipt. According to the compliance rules, supplier business names are mandatory for both travel and non-travel expenses, and the rule states \"Receipts and invoices must be submitted alongside expense items.\"",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that ICP company details are missing from the invoice. The compliance rules state that \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" This applies to hotel expenses, which are included in this travel receipt.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The receipt doesn't show any restaurant expenses that exceed tax-free limits. The line items only show train tickets, taxi rides, and hotel accommodation. There are no restaurant expenses listed in the extracted data that could be evaluated against the CHF 15/35/40 limits for breakfast/lunch/dinner.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The receipt doesn't include any mileage expenses. The transportation expenses listed are train tickets and taxi rides, not personal vehicle mileage that would require a logbook and route map.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that workers should submit a separate report per business trip. The compliance rules state this requirement for travel expenses including hotel, flight, restaurant, and taxi expenses.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7333333333333333,
+      "issues": [
+        "1. Two issues (3 and 4) are completely incorrect as they flag expense types (restaurant and mileage) that don't exist in the receipt data.",
+        "2. The system appears to be applying generic rules without properly analyzing the actual content of the receipt.",
+        "3. The system correctly identified issues related to missing supplier information and ICP company details",
+        "as well as the requirement for separate reports per business trip."
+      ],
+      "summary": "The validation system correctly identified issues related to missing supplier information, ICP company details, and the requirement for separate reports per business trip. However, it incorrectly flagged non-existent restaurant and mileage expenses, suggesting the system may be applying rules generically rather than based on the actual receipt content. This significantly reduces the overall confidence in the issue categorization accuracy.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a missing supplier business name on the receipt, which is a mandatory requirement according to the compliance rules. The description clearly states the problem, and the recommendation appropriately suggests addressing this with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding missing ICP company details on the invoice. This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The hotel expense in the receipt would require these details.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. There are no restaurant expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged restaurant expenses exceeding tax-free limits when no such expenses exist in the receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. There are no mileage expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged mileage expenses requiring a logbook when no such expenses exist in the receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the requirement to submit separate reports per business trip. This aligns with the compliance rule for travel expenses, and the recommendation appropriately suggests submitting separate reports.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (3 and 4) are completely incorrect as they flag expense types (restaurant and mileage) that don't exist in the receipt data.\n2. The system appears to be applying generic rules without properly analyzing the actual content of the receipt.\n3. The system correctly identified issues related to missing supplier information and ICP company details, as well as the requirement for separate reports per business trip.\n\nSUMMARY: The validation system correctly identified issues related to missing supplier information, ICP company details, and the requirement for separate reports per business trip. However, it incorrectly flagged non-existent restaurant and mileage expenses, suggesting the system may be applying rules generically rather than based on the actual receipt content. This significantly reduces the overall confidence in the issue categorization accuracy.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a missing supplier business name on the receipt, which is a mandatory requirement according to the compliance rules. The description clearly states the problem, and the recommendation appropriately suggests addressing this with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding missing ICP company details on the invoice. This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The hotel expense in the receipt would require these details.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. There are no restaurant expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged restaurant expenses exceeding tax-free limits when no such expenses exist in the receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. There are no mileage expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged mileage expenses requiring a logbook when no such expenses exist in the receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the requirement to submit separate reports per business trip. This aligns with the compliance rule for travel expenses, and the recommendation appropriately suggests submitting separate reports.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (3 and 4) are completely incorrect as they flag expense types (restaurant and mileage) that don't exist in the receipt data.\n2. The system appears to be applying generic rules without properly analyzing the actual content of the receipt.\n3. The system correctly identified issues related to missing supplier information and ICP company details, as well as the requirement for separate reports per business trip.\n\nSUMMARY: The validation system correctly identified issues related to missing supplier information, ICP company details, and the requirement for separate reports per business trip. However, it incorrectly flagged non-existent restaurant and mileage expenses, suggesting the system may be applying rules generically rather than based on the actual receipt content. This significantly reduces the overall confidence in the issue categorization accuracy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the supplier business name is missing from the receipt. The description and recommendation are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the ICP company details are missing from the invoice. The description and recommendation are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue, as the restaurant expenses exceed the tax-free limits. The description and recommendation are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as a logbook and map with the relevant route are required for mileage expenses. The description and recommendation are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as workers should submit a separate report per each business trip. The description and recommendation are clear and actionable.\n\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The issues are correctly categorized according to the established taxonomy. The descriptions and recommendations are clear and actionable, providing the necessary guidance to address the compliance concerns."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue about missing supplier business name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a required receipt element that's missing. The description clearly identifies what's missing, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference is accurate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue about missing ICP company details is correctly categorized as \"Standards & Compliance | Fix Identified.\" The description clearly states what's missing, and the recommendation is appropriate. The knowledge base reference accurately cites the rule that the Local Employer's name should appear on invoices.\n\nISSUE_3_VALIDATION_SCORE: 60 - While the issue type \"Standards & Compliance | Gross-up Identified\" is appropriate for tax-related issues, there's a problem with the issue itself. The receipt doesn't actually show restaurant expenses exceeding tax-free limits - it shows train tickets, taxis, and hotel expenses. This appears to be an incorrectly identified issue.\n\nISSUE_4_VALIDATION_SCORE: 40 - This issue about mileage expenses is incorrectly categorized. The receipt doesn't contain any mileage expenses - only train tickets, taxis, and hotel expenses. The issue is not relevant to the actual receipt content.\n\nISSUE_5_VALIDATION_SCORE: 85 - The issue about hotel expenses requiring separate reports per business trip is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The description and recommendation are clear and actionable. This is a valid issue since the receipt shows hotel expenses for a business trip.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 3 incorrectly identifies restaurant expenses when none are present in the receipt\n2. Issue 4 incorrectly identifies mileage expenses when none are present in the receipt\n3. The system missed potential issues with the taxi receipts and train tickets lacking detailed supplier information\n\nSUMMARY: While two issues are correctly identified and categorized (missing supplier business name and ICP company details), two other issues (restaurant expenses and mileage expenses) are completely irrelevant to this receipt. The system appears to have applied rules without properly analyzing the actual content of the receipt. The hotel-related issue is correctly identified. Overall, the categorization system needs improvement in accurately matching compliance rules to the actual receipt content."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since it identifies a missing supplier business name on the receipt, which is a mandatory requirement according to the compliance rules. The description clearly states the problem, and the recommendation appropriately suggests addressing this with the supplier.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding missing ICP company details on the invoice. This aligns with the compliance rule stating \"The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.\" The hotel expense in the receipt would require these details.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly categorized. There are no restaurant expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged restaurant expenses exceeding tax-free limits when no such expenses exist in the receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly categorized. There are no mileage expenses in the extracted data, only train tickets, taxis, and hotel expenses. The validation system incorrectly flagged mileage expenses requiring a logbook when no such expenses exist in the receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding the requirement to submit separate reports per business trip. This aligns with the compliance rule for travel expenses, and the recommendation appropriately suggests submitting separate reports.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Issue 3 incorrectly identifies restaurant expenses when none are present in the receipt",
+        "2. Issue 4 incorrectly identifies mileage expenses when none are present in the receipt",
+        "3. The system appears to be generating some generic recommendations not specific to the actual receipt content"
+      ],
+      "summary": "While recommendations 1, 2, and 5 are valid and helpful, recommendations 3 and 4 appear to be completely irrelevant to the actual receipt content, suggesting the system may be generating some generic compliance recommendations rather than analyzing the specific receipt details. This significantly reduces the overall validity and usefulness of the recommendations provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name with the supplier is valid and actionable. The compliance rules clearly state that supplier business names are mandatory for both travel and non-travel expenses, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding missing ICP company details is valid and aligned with the compliance rule that states \"The Local Employer's name and details should appear on invoices, except where this won't be possible.\" The recommendation correctly advises addressing this with the supplier.\n\nISSUE_3_VALIDATION_SCORE: 20 - This recommendation appears to be invalid for this receipt. The receipt shows hotel and transportation expenses, but no restaurant expenses are listed in the extracted data. The recommendation about restaurant expenses exceeding tax-free limits doesn't match the actual content of the receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This recommendation is completely invalid for this receipt. There are no mileage expenses listed in the extracted data, only train tickets and taxi fares. The recommendation for providing a logbook and map for mileage expenses is irrelevant to this receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - This recommendation is valid and directly applicable. The compliance rules clearly state that \"Workers should submit a separate report per each business trip,\" and the recommendation correctly advises the employee to follow this requirement.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 incorrectly identifies restaurant expenses when none are present in the receipt\n2. Issue 4 incorrectly identifies mileage expenses when none are present in the receipt\n3. The system appears to be generating some generic recommendations not specific to the actual receipt content\n\nSUMMARY: While recommendations 1, 2, and 5 are valid and helpful, recommendations 3 and 4 appear to be completely irrelevant to the actual receipt content, suggesting the system may be generating some generic compliance recommendations rather than analyzing the specific receipt details. This significantly reduces the overall validity and usefulness of the recommendations provided.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name with the supplier is valid and actionable. The compliance rules clearly state that supplier business names are mandatory for both travel and non-travel expenses, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding missing ICP company details is valid and aligned with the compliance rule that states \"The Local Employer's name and details should appear on invoices, except where this won't be possible.\" The recommendation correctly advises addressing this with the supplier.\n\nISSUE_3_VALIDATION_SCORE: 20 - This recommendation appears to be invalid for this receipt. The receipt shows hotel and transportation expenses, but no restaurant expenses are listed in the extracted data. The recommendation about restaurant expenses exceeding tax-free limits doesn't match the actual content of the receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This recommendation is completely invalid for this receipt. There are no mileage expenses listed in the extracted data, only train tickets and taxi fares. The recommendation for providing a logbook and map for mileage expenses is irrelevant to this receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - This recommendation is valid and directly applicable. The compliance rules clearly state that \"Workers should submit a separate report per each business trip,\" and the recommendation correctly advises the employee to follow this requirement.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 incorrectly identifies restaurant expenses when none are present in the receipt\n2. Issue 4 incorrectly identifies mileage expenses when none are present in the receipt\n3. The system appears to be generating some generic recommendations not specific to the actual receipt content\n\nSUMMARY: While recommendations 1, 2, and 5 are valid and helpful, recommendations 3 and 4 appear to be completely irrelevant to the actual receipt content, suggesting the system may be generating some generic compliance recommendations rather than analyzing the specific receipt details. This significantly reduces the overall validity and usefulness of the recommendations provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name on the receipt is valid and actionable. It provides a clear direction for the user to work with the supplier to obtain the required information.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company details on the invoice is valid and actionable. It provides a clear direction for the user to work with the supplier to include the required information.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to address the restaurant expenses exceeding the tax-free limits is valid and actionable. However, the recommendation could be more specific in terms of how to handle the portion of the expenses that exceed the limits (e.g., reporting the excess as taxable income).\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide a logbook and map with the relevant route for the mileage expenses is valid and actionable. It clearly identifies the additional information required to comply with the policy.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to submit a separate report for each business trip is valid and actionable. It addresses the issue of having all the expenses consolidated in a single report.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are generally valid, actionable, and address the identified issues. They provide clear guidance on the steps the user should take to address the compliance concerns. The only minor area for improvement is the recommendation for the restaurant expenses, which could be more specific in terms of how to handle the portion that exceeds the tax-free limits."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name with the supplier is valid and actionable. The compliance rules clearly state that supplier business names are mandatory for both travel and non-travel receipts. The recommendation correctly identifies this as an issue that needs to be addressed with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding missing ICP company details is valid and aligned with the compliance rules. For travel expenses like hotels, the rules state that \"The Local Employer's name and details should appear on invoices, except where this won't be possible.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 50 - While the issue correctly identifies that restaurant expenses exceeding tax-free limits are subject to taxation, the recommendation is somewhat misaligned. The receipt data doesn't clearly show restaurant expenses exceeding the limits (Breakfast CHF 15.00, Lunch CHF 35.00, Dinner CHF 40.00). The receipt shows taxi and hotel expenses, but no specific restaurant charges are itemized in the provided data.\n\nISSUE_4_VALIDATION_SCORE: 20 - This recommendation about mileage expenses is not valid for this receipt. The extracted data shows train tickets, taxis, and hotel expenses, but no mileage claims. The recommendation to provide a logbook and map is irrelevant to the actual expenses being claimed.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation that workers should submit separate reports per business trip is valid and directly supported by the compliance rules. The receipt shows a multi-day trip with different purposes, so this recommendation is appropriate and actionable.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 3 recommendation is partially misaligned as no specific restaurant expenses are itemized in the receipt\n2. Issue 4 recommendation is invalid as there are no mileage expenses in this receipt\n3. Some recommendations are generic rather than tailored to the specific receipt details\n\nSUMMARY: Most recommendations are valid and supported by the compliance rules, but there are two significant issues. The system incorrectly flagged restaurant expense limits when no restaurant expenses appear in the data, and it incorrectly flagged mileage documentation requirements when no mileage expenses were claimed. These errors suggest the system may be applying rules too broadly without verifying their relevance to the specific receipt contents."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing supplier business name with the supplier is valid and actionable. The compliance rules clearly state that supplier business names are mandatory for both travel and non-travel expenses, and the recommendation correctly identifies this as an issue that needs to be resolved with the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding missing ICP company details is valid and aligned with the compliance rule that states \"The Local Employer's name and details should appear on invoices, except where this won't be possible.\" The recommendation correctly advises addressing this with the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 20,
+          "judge_explanation": "This recommendation appears to be invalid for this receipt. The receipt shows hotel and transportation expenses, but no restaurant expenses are listed in the extracted data. The recommendation about restaurant expenses exceeding tax-free limits doesn't match the actual content of the receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This recommendation is completely invalid for this receipt. There are no mileage expenses listed in the extracted data, only train tickets and taxi fares. The recommendation for providing a logbook and map for mileage expenses is irrelevant to this receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This recommendation is valid and directly applicable. The compliance rules clearly state that \"Workers should submit a separate report per each business trip,\" and the recommendation correctly advises the employee to follow this requirement.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Issue 3 falsely claims there are restaurant expenses that exceed tax-free limits when no restaurant expenses are present in the data.",
+        "2. Issue 4 falsely claims there are mileage expenses requiring a logbook and map when no mileage expenses are present in the data."
+      ],
+      "summary": "The AI response contains significant hallucinations related to expense types that don't exist in the source data. While it correctly identified issues with missing supplier business name, ICP company details, and the requirement for separate reports per business trip, it fabricated issues related to restaurant and mileage expenses that aren't present in the receipt data. These hallucinations significantly reduce the reliability of the compliance assessment.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the ICP company details are missing from the invoice, which is required according to the compliance rules for travel expenses, specifically hotel expenses.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is a hallucination. There are no restaurant expenses mentioned in the extracted data, only train tickets, taxis, and hotel expenses. The AI incorrectly applied the restaurant expense rule to this travel receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is a hallucination. There are no mileage expenses mentioned in the extracted data. The travel expenses are for train tickets, taxis, and hotel accommodations.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that workers should submit a separate report per each business trip, which is a valid requirement according to the compliance rules for travel expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 falsely claims there are restaurant expenses that exceed tax-free limits when no restaurant expenses are present in the data.\n2. Issue 4 falsely claims there are mileage expenses requiring a logbook and map when no mileage expenses are present in the data.\n\nSUMMARY: The AI response contains significant hallucinations related to expense types that don't exist in the source data. While it correctly identified issues with missing supplier business name, ICP company details, and the requirement for separate reports per business trip, it fabricated issues related to restaurant and mileage expenses that aren't present in the receipt data. These hallucinations significantly reduce the reliability of the compliance assessment.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that the ICP company details are missing from the invoice, which is required according to the compliance rules for travel expenses, specifically hotel expenses.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is a hallucination. There are no restaurant expenses mentioned in the extracted data, only train tickets, taxis, and hotel expenses. The AI incorrectly applied the restaurant expense rule to this travel receipt.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is a hallucination. There are no mileage expenses mentioned in the extracted data. The travel expenses are for train tickets, taxis, and hotel accommodations.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that workers should submit a separate report per each business trip, which is a valid requirement according to the compliance rules for travel expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 falsely claims there are restaurant expenses that exceed tax-free limits when no restaurant expenses are present in the data.\n2. Issue 4 falsely claims there are mileage expenses requiring a logbook and map when no mileage expenses are present in the data.\n\nSUMMARY: The AI response contains significant hallucinations related to expense types that don't exist in the source data. While it correctly identified issues with missing supplier business name, ICP company details, and the requirement for separate reports per business trip, it fabricated issues related to restaurant and mileage expenses that aren't present in the receipt data. These hallucinations significantly reduce the reliability of the compliance assessment."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response matches the source data and does not contain any hallucinated or fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response are consistent with the information provided in the \"Compliance Rules\" section and do not appear to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the AI response are all present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not make any assumptions presented as facts that are not supported by the source data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response does not contain any other issues that could be considered hallucinated or fabricated information.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided in the response are consistent with the source data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the supplier business name is missing from the receipt, which is a valid compliance requirement based on the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that ICP company details are missing from the invoice, which is required according to the compliance rules for travel receipts, specifically for hotel expenses.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is hallucinated. There is no restaurant expense in the extracted data that would exceed tax-free limits. The receipt shows taxi fares, train tickets, and hotel accommodations, but no restaurant expenses.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is hallucinated. There are no mileage expenses in the extracted data. The travel expenses listed are for train tickets, taxis, and hotel accommodations, not mileage.\n\nISSUE_5_VALIDATION_SCORE: 100 - The fifth issue correctly identifies that workers should submit a separate report per each business trip, which is a valid compliance requirement based on the provided rules.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 falsely claims restaurant expenses exceed tax-free limits when no restaurant expenses appear in the receipt data.\n2. Issue 4 falsely claims mileage expenses require a logbook and map when no mileage expenses appear in the receipt data.\n\nSUMMARY: The AI response contains significant hallucinations in two of the five identified issues. It incorrectly claims the receipt contains restaurant and mileage expenses that exceed limits or require additional documentation, when the extracted data shows no such expenses exist. The other three issues correctly identify compliance requirements based on the provided rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is missing from the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement according to the compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The ICP company details are missing from the invoice.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the ICP company details are missing from the invoice, which is required according to the compliance rules for travel expenses, specifically hotel expenses.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The restaurant expenses exceed the tax-free limits.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is a hallucination. There are no restaurant expenses mentioned in the extracted data, only train tickets, taxis, and hotel expenses. The AI incorrectly applied the restaurant expense rule to this travel receipt.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is a hallucination. There are no mileage expenses mentioned in the extracted data. The travel expenses are for train tickets, taxis, and hotel accommodations.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Workers should submit a separate report per each business trip.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that workers should submit a separate report per each business trip, which is a valid requirement according to the compliance rules for travel expenses.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. Issue 3 about restaurant expenses is completely fabricated as there are no restaurant expenses in the data., 2. Issue 4 about mileage expenses is completely fabricated as there are no mileage expenses in the data.",
+    "Address issues in knowledge base adherence: 1. The AI identified issues related to restaurant expenses exceeding tax-free limits and mileage expenses requiring additional documentation, but these specific expense types don't appear to be present in the extracted receipt data., 2. The AI correctly identified missing supplier business name and ICP company details, which are valid compliance issues., 3. The recommendation about submitting a separate report per business trip is valid based on the knowledge base.",
+    "Address issues in compliance accuracy: 1. Two issues (3 and 4) were incorrectly identified as non-compliant when they don't apply to this receipt at all., 2. The assessment incorrectly flagged restaurant expenses exceeding tax-free limits when no restaurant expenses were present., 3. The assessment incorrectly flagged mileage documentation requirements when no mileage expenses were present.",
+    "Address issues in issue categorization: 1. Two issues (3 and 4) are completely incorrect as they flag expense types (restaurant and mileage) that don't exist in the receipt data., 2. The system appears to be applying generic rules without properly analyzing the actual content of the receipt., 3. The system correctly identified issues related to missing supplier information and ICP company details, as well as the requirement for separate reports per business trip.",
+    "Address issues in recommendation validity: 1. Issue 3 incorrectly identifies restaurant expenses when none are present in the receipt, 2. Issue 4 incorrectly identifies mileage expenses when none are present in the receipt, 3. The system appears to be generating some generic recommendations not specific to the actual receipt content",
+    "Address issues in hallucination detection: 1. Issue 3 falsely claims there are restaurant expenses that exceed tax-free limits when no restaurant expenses are present in the data., 2. Issue 4 falsely claims there are mileage expenses requiring a logbook and map when no mileage expenses are present in the data."
+  ],
+  "timestamp": "2025-10-01T16:18:28.894Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 67491,
+    "timing": {
+      "validation_start_time": "2025-10-01T16:17:21.403Z",
+      "validation_end_time": "2025-10-01T16:18:28.894Z",
+      "total_validation_time_seconds": "67.5",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T16:17:21.403Z",
+          "end_time": "2025-10-01T16:18:28.894Z",
+          "duration_seconds": "67.5",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "67.5",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.44",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The supplier business name is missing from the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The ICP company details are missing from the invoice.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The restaurant expenses exceed the tax-free limits.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 14.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 80,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "A logbook and map with the relevant route are required for mileage expenses.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 15.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 0,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Workers should submit a separate report per each business trip.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

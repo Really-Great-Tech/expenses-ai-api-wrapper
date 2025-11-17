@@ -1,0 +1,11 @@
+# Switzerland Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on Swiss expense files and found strong performance with excellent geographic mismatch detection capabilities.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated excellent geographic awareness, correctly identifying country mismatches such as "The receipt is for accommodation in Poland, but the compliance analysis is for Switzerland." It properly applied Swiss ICP requirements, accurately noting when customer names didn't match requirements for "Global PPL CH GmbH" to appear on invoices instead of individual worker names. The agent correctly identified hotel expense gross-up requirements, accurately citing "Overnight expenses such as hotels and transport should be reimbursed as expenses against receipts and invoices - all approved expenses will be paid as NET to employee and grossed up if they are not tax free." It also properly applied currency reporting requirements, correctly identifying the need for "receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense."
+
+**Weaknesses Found by Judges:** The main weakness was in recommendation specificity for geographic mismatches - judges noted the agent's recommendation to "address this with the supplier" was not entirely actionable for country mismatch issues, suggesting instead that "the receipt needs to be resubmitted under the correct country context or if the compliance analysis needs to be redone for Poland instead of Switzerland." Some judges also identified minor hallucination issues where the agent incorrectly interpreted compliance rules about employer names on invoices, overstating requirements beyond what was actually specified.
+
+**Overall Assessment:** The Swiss expense validation agent achieved strong performance with an 89% reliability score, demonstrating excellent geographic and cross-border expense awareness. Judges praised the agent's ability to identify fundamental country mismatches and properly apply Swiss hotel expense regulations, while noting it needs improvement in providing more specific procedural guidance for resolving geographic compliance issues.

@@ -1,0 +1,531 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758889985185_707677179_taiwan_file_3.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:38:49.818Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.85,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or shadows blocking the document.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Chinese",
+    "language_confidence": 95,
+    "document_location": "Taiwan",
+    "expected_location": "Taiwan",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice/receipt number, and item description. The presence of these fields confirms it as an expense document.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, confirming it as an expense document. The fields found include supplier, transaction amount, transaction date, invoice/receipt number, item description, and payment method."
+    }
+  },
+  "extraction": {
+    "country": "Taiwan",
+    "supplier_name": "CHENG MENG GLOBAL LTD.",
+    "supplier_store_code": "140720107/0",
+    "supplier_terminal_code": "23604080",
+    "supplier_address": "TAOYUAN CITY",
+    "customer_name": null,
+    "customer_address": null,
+    "card_type": "VISA",
+    "card_number": "415442******5666",
+    "check_number": "58655",
+    "transaction_type": "一般交易 SALE",
+    "batch_number": "002",
+    "authorization_code": "875818",
+    "date_of_issue": "2025-05-18",
+    "transaction_time": "12:43",
+    "reference_number": "904080002056",
+    "invoice_number": "000056",
+    "store_id": "14007PH72701300",
+    "currency": "TWD",
+    "total_amount": 320,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "payment_method": "Credit Card",
+    "card_last_four": "5666",
+    "line_items": [],
+    "receipt_type": "Credit Card Receipt",
+    "document_type": "Receipt",
+    "location_city": "Taoyuan",
+    "location_country": "Taiwan",
+    "special_notes": "I AGREE TO PAY TOTAL AMOUNT ACCORDING TO CARD ISSUER AGREEMENT",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_amount",
+          "description": "Tax amount is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount, listed clearly on the Invoice (if applicable)",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Tax rate is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Tax amount, listed clearly on the Invoice (if applicable)",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "knowledge_base_reference": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several mandatory field violations including missing customer name, customer address, tax amount, and tax rate. Additionally, the meal expense exceeds the tax-exempt limit and will be subject to gross-up."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "store_name": {
+        "field_citation": {
+          "source_text": "CHENG MENG GLOBAL LTD.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the name of the store at the top of the document.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHENG MENG GLOBAL LTD.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the name of the store at the top of the document.",
+          "match_type": "exact"
+        }
+      },
+      "store_code": {
+        "field_citation": {
+          "source_text": "商店代號:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the store code.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "140720107/0",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the store code label.",
+          "match_type": "exact"
+        }
+      },
+      "terminal_code": {
+        "field_citation": {
+          "source_text": "端末機代號:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the terminal code.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "23604080",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the terminal code label.",
+          "match_type": "exact"
+        }
+      },
+      "card_type": {
+        "field_citation": {
+          "source_text": "卡別(Card Type):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the card type.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VISA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the card type label.",
+          "match_type": "exact"
+        }
+      },
+      "card_number": {
+        "field_citation": {
+          "source_text": "卡號(Card No.):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the card number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "415442******5666(T)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the card number label.",
+          "match_type": "exact"
+        }
+      },
+      "check_number": {
+        "field_citation": {
+          "source_text": "檢查碼(Check No.):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the check number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "58655",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the check number label.",
+          "match_type": "exact"
+        }
+      },
+      "host_trans_type": {
+        "field_citation": {
+          "source_text": "主機別/交易類別(Host/Trans. Type):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the host/transaction type.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NCCC 00 一般交易 SALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the host/transaction type label.",
+          "match_type": "exact"
+        }
+      },
+      "batch_number": {
+        "field_citation": {
+          "source_text": "批次號碼(Batch No.):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the batch number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "002",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the batch number label.",
+          "match_type": "exact"
+        }
+      },
+      "auth_code": {
+        "field_citation": {
+          "source_text": "授權碼(Auth Code):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the authorization code.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "875818",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the authorization code label.",
+          "match_type": "exact"
+        }
+      },
+      "date_time": {
+        "field_citation": {
+          "source_text": "日期/時間(Date/Time):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the date and time.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/05/18 12:43",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the date and time label.",
+          "match_type": "exact"
+        }
+      },
+      "ref_number": {
+        "field_citation": {
+          "source_text": "序號(Ref. No.):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the reference number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "904080002056",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the reference number label.",
+          "match_type": "exact"
+        }
+      },
+      "inv_number": {
+        "field_citation": {
+          "source_text": "調閱編號(Inv. No.):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the invoice number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "000056",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the invoice number label.",
+          "match_type": "exact"
+        }
+      },
+      "store_id": {
+        "field_citation": {
+          "source_text": "櫃號(Store ID):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the store ID.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "14007PH72701300",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the store ID label.",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "總計(Total):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the total amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NT$320",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears immediately after the total amount label.",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "總計(Total):",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label for the total amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NT$320",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the total amount label.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 77,
+      "fields_with_field_citations": 77,
+      "fields_with_value_citations": 77,
+      "average_confidence": 0.9437662337662338
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "14.3",
+      "data_extraction_seconds": "3.6",
+      "file_classification_seconds": "3.8",
+      "image_quality_assessment_seconds": "4.7",
+      "issue_detection_seconds": "9.8",
+      "citation_generation_seconds": "58.2",
+      "llm_validation_seconds": "65.8"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:38:30.734Z",
+        "end_time": "2025-09-26T12:38:45.072Z",
+        "duration_seconds": "14.3",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:38:45.080Z",
+        "end_time": "2025-09-26T12:38:48.665Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:38:45.076Z",
+        "end_time": "2025-09-26T12:38:48.905Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:38:45.074Z",
+        "end_time": "2025-09-26T12:38:49.818Z",
+        "duration_seconds": "4.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:38:49.819Z",
+        "end_time": "2025-09-26T12:38:59.649Z",
+        "duration_seconds": "9.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:38:49.821Z",
+        "end_time": "2025-09-26T12:39:48.056Z",
+        "duration_seconds": "58.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:39:48.056Z",
+        "end_time": "2025-09-26T12:40:53.890Z",
+        "duration_seconds": "65.8",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "143.2",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.7",
+      "parallel_group_2_seconds": "58.2",
+      "total_parallel_time_seconds": "63.0"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_3.jpg",
+    "processing_time": 143159,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:40:53.894Z"
+  }
+}

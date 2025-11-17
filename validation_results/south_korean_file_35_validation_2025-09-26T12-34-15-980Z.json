@@ -1,0 +1,662 @@
+{
+  "overall_score": 0.8472222222222223,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7833333333333333,
+      "issues": [
+        "- Minor misalignment in issues 4 and 5 where the AI refers to \"mileage reimbursement\" when dealing with a taxi receipt",
+        "though the underlying compliance concerns are valid."
+      ],
+      "summary": "The AI response is well-grounded in the extracted data and compliance rules. It correctly identified missing required fields (supplier address, invoice number, receipt number) and appropriately applied the compliance policies regarding gross-up requirements and additional documentation needs for transportation expenses. The only minor issue is the terminology used in referring to the expense as \"mileage reimbursement\" rather than taxi transportation, though the compliance implications identified are still valid.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing. The \"receipt_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly applied the compliance rule about mileage reimbursement being subject to gross-up. While the receipt is for a taxi ride (not personal vehicle mileage), the compliance policy states that transportation expenses related to travel are subject to gross-up, which aligns with the AI's assessment. The reference to \"mileage reimbursement\" is slightly imprecise since this is a taxi receipt, but the gross-up identification is valid according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 85 - The AI correctly identified that additional documentation is required based on the compliance policies. However, it specifically mentions \"mileage reimbursement\" documentation needs, when this is a taxi receipt. While the compliance rule about including \"To and From locations\" is relevant to transportation expenses generally, the specific reference to mileage is slightly misaligned with the receipt type.\n\nCONFIDENCE: 95\n\nISSUES: \n- Minor misalignment in issues 4 and 5 where the AI refers to \"mileage reimbursement\" when dealing with a taxi receipt, though the underlying compliance concerns are valid.\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identified missing required fields (supplier address, invoice number, receipt number) and appropriately applied the compliance policies regarding gross-up requirements and additional documentation needs for transportation expenses. The only minor issue is the terminology used in referring to the expense as \"mileage reimbursement\" rather than taxi transportation, though the compliance implications identified are still valid.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing. The \"receipt_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly applied the compliance rule about mileage reimbursement being subject to gross-up. While the receipt is for a taxi ride (not personal vehicle mileage), the compliance policy states that transportation expenses related to travel are subject to gross-up, which aligns with the AI's assessment. The reference to \"mileage reimbursement\" is slightly imprecise since this is a taxi receipt, but the gross-up identification is valid according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 85 - The AI correctly identified that additional documentation is required based on the compliance policies. However, it specifically mentions \"mileage reimbursement\" documentation needs, when this is a taxi receipt. While the compliance rule about including \"To and From locations\" is relevant to transportation expenses generally, the specific reference to mileage is slightly misaligned with the receipt type.\n\nCONFIDENCE: 95\n\nISSUES: \n- Minor misalignment in issues 4 and 5 where the AI refers to \"mileage reimbursement\" when dealing with a taxi receipt, though the underlying compliance concerns are valid.\n\nSUMMARY: The AI response is well-grounded in the extracted data and compliance rules. It correctly identified missing required fields (supplier address, invoice number, receipt number) and appropriately applied the compliance policies regarding gross-up requirements and additional documentation needs for transportation expenses. The only minor issue is the terminology used in referring to the expense as \"mileage reimbursement\" rather than taxi transportation, though the compliance implications identified are still valid."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims related to the missing supplier address, invoice number, and receipt number can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The claim about the total amount being grossed up as per the company's policy for mileage reimbursement is supported by the compliance policy information provided.\n\nISSUE_3_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - All entity names and details are accurately represented.\n\nISSUE_5_VALIDATION_SCORE: 100 - The claim about the additional documentation required for mileage reimbursement is supported by the compliance policy information.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance policy information. All claims can be traced back to the data, and no information is fabricated or assumed beyond what's provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier address is missing, but the extracted data shows no supplier address field at all, so this issue is not factually grounded in the provided data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identifies that the invoice number is missing, which is consistent with the extracted data showing a null value for invoice_number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that the receipt number is missing, which is consistent with the extracted data showing a null value for receipt_number.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI mentions mileage reimbursement, but the extracted data shows this is a taxi receipt, not a mileage claim. This issue is not factually grounded in the provided data.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI again mentions mileage reimbursement documentation, but this is not relevant to the taxi receipt shown in the extracted data.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly assumes this is a mileage reimbursement when it's clearly a taxi receipt.\n2. The AI mentions a missing supplier address, but this field isn't present in the extracted data structure.\n3. The gross-up issue and additional documentation requests are not relevant to the type of receipt provided.\n\nSUMMARY: The AI response is partially grounded in the extracted data, correctly identifying missing invoice and receipt numbers. However, it makes unfounded assumptions about mileage reimbursement and supplier address, which are not supported by the provided data. The response fails to accurately interpret the nature of the receipt (taxi) and provides irrelevant recommendations as a result."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing in the extracted data. The \"supplier_address\" field is explicitly shown as null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing. The \"invoice_number\" field is explicitly shown as null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt number is missing. The \"receipt_number\" field is explicitly shown as null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly applied the compliance rule about mileage reimbursement being subject to gross-up. While the receipt is for a taxi ride (not personal vehicle mileage), the compliance policy states that transportation expenses related to travel are subject to gross-up, which aligns with the AI's assessment. The reference to \"mileage reimbursement\" is slightly imprecise since this is a taxi receipt, but the gross-up identification is valid according to the compliance rules.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified that additional documentation is required based on the compliance policies. However, it specifically mentions \"mileage reimbursement\" documentation needs, when this is a taxi receipt. While the compliance rule about including \"To and From locations\" is relevant to transportation expenses generally, the specific reference to mileage is slightly misaligned with the receipt type.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9,
+      "issues": [
+        "1. Issues 2 and 3 incorrectly treat optional compliance items (invoice number and receipt number) as mandatory requirements.",
+        "2. The AI didn't explicitly mention that this is a taxi receipt (which is correctly identified in the extracted data)",
+        "not a personal mileage claim",
+        "which might affect how the mileage reimbursement rules apply.",
+        "3. The AI didn't mention the requirement for \"Business purpose must be established and clearly documented for all expenses\" which is listed as required additional information."
+      ],
+      "summary": "The AI response generally adheres to the compliance knowledge base, especially regarding mileage reimbursement rules and the need for additional documentation. However, it incorrectly treats some optional requirements as mandatory (invoice/receipt numbers) and doesn't distinguish clearly between a taxi receipt and personal mileage claim. The response would be more accurate if it recognized the receipt type correctly and focused on mandatory rather than optional requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the supplier address is missing on the receipt, which aligns with the compliance rule that \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (유플러스(주)) is present, the address is indeed missing. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI flagged missing invoice number, citing the rule \"Receipt in the name of the employer wherever possible. Name of local entity of GoGlobal that employs the worker.\" However, this rule is listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The AI's interpretation is somewhat misaligned with the knowledge base, which doesn't explicitly require an invoice number as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to Issue 2, the AI flagged missing receipt number citing the same rule about employer name on receipt. This is also listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The knowledge base doesn't explicitly require a receipt number as mandatory.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that mileage reimbursement requires gross-up according to the compliance policy. The cited rule \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance\" matches exactly with the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursement, citing the exact rule from the knowledge base: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issues 2 and 3 incorrectly treat optional compliance items (invoice number and receipt number) as mandatory requirements.\n2. The AI didn't explicitly mention that this is a taxi receipt (which is correctly identified in the extracted data), not a personal mileage claim, which might affect how the mileage reimbursement rules apply.\n3. The AI didn't mention the requirement for \"Business purpose must be established and clearly documented for all expenses\" which is listed as required additional information.\n\nSUMMARY: The AI response generally adheres to the compliance knowledge base, especially regarding mileage reimbursement rules and the need for additional documentation. However, it incorrectly treats some optional requirements as mandatory (invoice/receipt numbers) and doesn't distinguish clearly between a taxi receipt and personal mileage claim. The response would be more accurate if it recognized the receipt type correctly and focused on mandatory rather than optional requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that the supplier address is missing on the receipt, which aligns with the compliance rule that \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (유플러스(주)) is present, the address is indeed missing. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI flagged missing invoice number, citing the rule \"Receipt in the name of the employer wherever possible. Name of local entity of GoGlobal that employs the worker.\" However, this rule is listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The AI's interpretation is somewhat misaligned with the knowledge base, which doesn't explicitly require an invoice number as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to Issue 2, the AI flagged missing receipt number citing the same rule about employer name on receipt. This is also listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The knowledge base doesn't explicitly require a receipt number as mandatory.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that mileage reimbursement requires gross-up according to the compliance policy. The cited rule \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance\" matches exactly with the knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursement, citing the exact rule from the knowledge base: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issues 2 and 3 incorrectly treat optional compliance items (invoice number and receipt number) as mandatory requirements.\n2. The AI didn't explicitly mention that this is a taxi receipt (which is correctly identified in the extracted data), not a personal mileage claim, which might affect how the mileage reimbursement rules apply.\n3. The AI didn't mention the requirement for \"Business purpose must be established and clearly documented for all expenses\" which is listed as required additional information.\n\nSUMMARY: The AI response generally adheres to the compliance knowledge base, especially regarding mileage reimbursement rules and the need for additional documentation. However, it incorrectly treats some optional requirements as mandatory (invoice/receipt numbers) and doesn't distinguish clearly between a taxi receipt and personal mileage claim. The response would be more accurate if it recognized the receipt type correctly and focused on mandatory rather than optional requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The compliance rule regarding supplier address being mandatory for all expense types is correctly identified and applied. The AI response correctly flags the missing supplier address as an issue.\n\nISSUE_2_VALIDATION_SCORE: 85 - The compliance rule requiring the invoice number to be present on the receipt is correctly identified and applied. The AI response correctly flags the missing invoice number as an issue.\n\nISSUE_3_VALIDATION_SCORE: 85 - The compliance rule requiring the receipt number to be present on the receipt is correctly identified and applied. The AI response correctly flags the missing receipt number as an issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The compliance policy regarding gross-up for mileage reimbursement is correctly identified and applied. The AI response correctly states that the total amount will be grossed up as per the company's policy.\n\nISSUE_5_VALIDATION_SCORE: 90 - The compliance policy requiring additional documentation for mileage reimbursement is correctly identified and applied. The AI response correctly flags the need for additional documentation such as to and from locations, distance traveled, and per diem rates.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for South Korea. It correctly identifies the missing mandatory fields on the receipt, the need for gross-up on the mileage reimbursement, and the requirement for additional documentation. The response demonstrates a strong understanding of the country-specific regulations and the ICP's compliance policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which aligns with the compliance rule stating \"Name of the vendor or merchant must be visible on the receipt\". The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly noted the missing invoice number, which is related to the rule \"Invoice in the name of the employer wherever possible\". However, this rule is marked as \"Optional\" in the compliance guidelines, so the severity of this issue might be slightly overstated.\n\nISSUE_3_VALIDATION_SCORE: 90 - Similar to Issue 2, the missing receipt number is correctly identified, but its importance might be slightly overstated given the \"Optional\" nature of the related rule in the compliance guidelines.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately applied the gross-up rule for mileage reimbursement, which aligns perfectly with the compliance policy stating \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance\".\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for mileage reimbursement, which aligns with the compliance rule \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates\".\n\nCONFIDENCE: 95\n\nISSUES:\n1. The importance of invoice and receipt numbers (Issues 2 and 3) might be slightly overstated given their \"Optional\" status in the compliance guidelines.\n2. The AI response did not explicitly mention the need for documenting the business purpose of the expense, which is a requirement according to the compliance rules.\n\nSUMMARY: The AI response demonstrates a high level of adherence to the compliance knowledge base for South Korea. It correctly identifies most of the key issues related to the receipt, including missing information, gross-up requirements, and the need for additional documentation. The slight overemphasis on optional elements and the omission of the business purpose requirement are minor issues in an otherwise thorough and accurate application of the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing on the receipt, which aligns with the compliance rule that \"Name of the vendor or merchant must be visible on the receipt.\" While the supplier name (유플러스(주)) is present, the address is indeed missing. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI flagged missing invoice number, citing the rule \"Receipt in the name of the employer wherever possible. Name of local entity of GoGlobal that employs the worker.\" However, this rule is listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The AI's interpretation is somewhat misaligned with the knowledge base, which doesn't explicitly require an invoice number as mandatory.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to Issue 2, the AI flagged missing receipt number citing the same rule about employer name on receipt. This is also listed as \"Optional\" in the compliance rules, not \"Mandatory.\" The knowledge base doesn't explicitly require a receipt number as mandatory.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that mileage reimbursement requires gross-up according to the compliance policy. The cited rule \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance\" matches exactly with the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that additional documentation is required for mileage reimbursement, citing the exact rule from the knowledge base: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7400000000000001,
+      "issues": [
+        "1. The knowledge base references for issues 2 and 3 (invoice number and receipt number) could be more specific to those requirements rather than using a general rule about employer names on receipts.",
+        "2. The receipt is classified as a \"Taxi Receipt\" which is accurate",
+        "but it should be noted that taxi receipts fall under the \"Transportation\" expense type in the compliance rules",
+        "not specifically \"Mileage\". The system correctly applied mileage-related rules",
+        "but this distinction could be clarified."
+      ],
+      "summary": "The compliance assessment is generally accurate, correctly identifying missing mandatory fields and applying appropriate business rules. The system properly identified that the receipt lacks supplier address, invoice number, and receipt number, and correctly applied the gross-up policy for transportation expenses. The additional documentation requirement for mileage/transportation is also correctly identified. Minor improvements could be made to the knowledge base references for invoice and receipt numbers, and clarification between transportation and mileage categories could be beneficial.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the supplier address is missing on the receipt, which is a mandatory field according to the compliance rules. The rule \"Name of the vendor or merchant must be visible on the receipt\" is correctly referenced, and while the supplier name is present (유플러스(주)), the address is indeed missing.\n\nISSUE_2_VALIDATION_SCORE: 80 - The assessment correctly identified that the invoice number is missing. However, the knowledge base reference used (\"Receipt in the name of the employer wherever possible...\") is not directly related to invoice numbers. A more appropriate reference would be about invoice numbers specifically. The rule is still valid, but the reference is not perfectly aligned.\n\nISSUE_3_VALIDATION_SCORE: 80 - Similar to issue 2, the assessment correctly identified that the receipt number is missing, but the knowledge base reference used is not directly related to receipt numbers specifically. The recommendation is appropriate, but the reference could be more specific to receipt numbers.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified that the total amount for mileage reimbursement will be grossed up as per company policy. The knowledge base reference used is directly from the compliance rules and accurately states the policy for mileage reimbursements.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified that additional documentation is required for mileage reimbursement. The knowledge base reference used is directly from the compliance rules and accurately states the requirement for including To and From locations, distance travelled, and per diem rates.\n\nCONFIDENCE: 92\n\nISSUES:\n1. The knowledge base references for issues 2 and 3 (invoice number and receipt number) could be more specific to those requirements rather than using a general rule about employer names on receipts.\n2. The receipt is classified as a \"Taxi Receipt\" which is accurate, but it should be noted that taxi receipts fall under the \"Transportation\" expense type in the compliance rules, not specifically \"Mileage\". The system correctly applied mileage-related rules, but this distinction could be clarified.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying missing mandatory fields and applying appropriate business rules. The system properly identified that the receipt lacks supplier address, invoice number, and receipt number, and correctly applied the gross-up policy for transportation expenses. The additional documentation requirement for mileage/transportation is also correctly identified. Minor improvements could be made to the knowledge base references for invoice and receipt numbers, and clarification between transportation and mileage categories could be beneficial.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified that the supplier address is missing on the receipt, which is a mandatory field according to the compliance rules. The rule \"Name of the vendor or merchant must be visible on the receipt\" is correctly referenced, and while the supplier name is present (유플러스(주)), the address is indeed missing.\n\nISSUE_2_VALIDATION_SCORE: 80 - The assessment correctly identified that the invoice number is missing. However, the knowledge base reference used (\"Receipt in the name of the employer wherever possible...\") is not directly related to invoice numbers. A more appropriate reference would be about invoice numbers specifically. The rule is still valid, but the reference is not perfectly aligned.\n\nISSUE_3_VALIDATION_SCORE: 80 - Similar to issue 2, the assessment correctly identified that the receipt number is missing, but the knowledge base reference used is not directly related to receipt numbers specifically. The recommendation is appropriate, but the reference could be more specific to receipt numbers.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified that the total amount for mileage reimbursement will be grossed up as per company policy. The knowledge base reference used is directly from the compliance rules and accurately states the policy for mileage reimbursements.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified that additional documentation is required for mileage reimbursement. The knowledge base reference used is directly from the compliance rules and accurately states the requirement for including To and From locations, distance travelled, and per diem rates.\n\nCONFIDENCE: 92\n\nISSUES:\n1. The knowledge base references for issues 2 and 3 (invoice number and receipt number) could be more specific to those requirements rather than using a general rule about employer names on receipts.\n2. The receipt is classified as a \"Taxi Receipt\" which is accurate, but it should be noted that taxi receipts fall under the \"Transportation\" expense type in the compliance rules, not specifically \"Mileage\". The system correctly applied mileage-related rules, but this distinction could be clarified.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying missing mandatory fields and applying appropriate business rules. The system properly identified that the receipt lacks supplier address, invoice number, and receipt number, and correctly applied the gross-up policy for transportation expenses. The additional documentation requirement for mileage/transportation is also correctly identified. Minor improvements could be made to the knowledge base references for invoice and receipt numbers, and clarification between transportation and mileage categories could be beneficial."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified that the supplier address is missing on the receipt, which is a compliance requirement for GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 85 - The assessment correctly identified that the invoice number is missing on the receipt, which is a compliance requirement for GoGlobal. However, the recommendation could be more specific, such as advising the employee to request a revised receipt from the supplier that includes the invoice number.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identified that the receipt number is missing on the receipt, which is a compliance requirement for GoGlobal. However, the recommendation could be more specific, such as advising the employee to request a revised receipt from the supplier that includes the receipt number.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment correctly identified that the total amount of the expense will be grossed up as per the company's policy for mileage reimbursement. The recommendation provided is accurate and relevant.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identified that additional documentation is required for mileage reimbursement, and the recommendation provided is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is accurate overall, with a few areas where the recommendations could be more specific. The assessment correctly identifies the key compliance issues and applies the relevant business rules and policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The assessment incorrectly states that the supplier address is missing. The receipt actually does include the supplier name (유플러스(주)), which is sufficient according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice number is missing, which is a required field according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt number is missing, which is a required field according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 0 - The assessment incorrectly applies a gross-up rule for mileage reimbursement. This is a taxi receipt, not a mileage claim, so this rule should not be applied.\n\nISSUE_5_VALIDATION_SCORE: 0 - The assessment incorrectly requests additional documentation for mileage reimbursement. As this is a taxi receipt, not a mileage claim, this requirement is not applicable.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Incorrect identification of missing supplier address\n2. Misapplication of mileage reimbursement rules to a taxi receipt\n3. Failure to identify missing required fields (e.g., VAT amount for non-travel expenses)\n4. Failure to note the presence of required fields (e.g., transaction date, expense type description, total amount)\n\nSUMMARY: The compliance assessment has significant inaccuracies. It incorrectly flags issues related to supplier address and mileage reimbursement, which are not applicable to this taxi receipt. It also fails to recognize the presence of several required fields that are actually included in the receipt. While it correctly identifies some missing required fields, the overall assessment does not accurately reflect the compliance status of this receipt according to the provided rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that the supplier address is missing on the receipt, which is a mandatory field according to the compliance rules. The rule \"Name of the vendor or merchant must be visible on the receipt\" is correctly referenced, and while the supplier name is present (유플러스(주)), the address is indeed missing.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The assessment correctly identified that the invoice number is missing. However, the knowledge base reference used (\"Receipt in the name of the employer wherever possible...\") is not directly related to invoice numbers. A more appropriate reference would be about invoice numbers specifically. The rule is still valid, but the reference is not perfectly aligned.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "Similar to issue 2, the assessment correctly identified that the receipt number is missing, but the knowledge base reference used is not directly related to receipt numbers specifically. The recommendation is appropriate, but the reference could be more specific to receipt numbers.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that the total amount for mileage reimbursement will be grossed up as per company policy. The knowledge base reference used is directly from the compliance rules and accurately states the policy for mileage reimbursements.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified that additional documentation is required for mileage reimbursement. The knowledge base reference used is directly from the compliance rules and accurately states the requirement for including To and From locations, distance travelled, and per diem rates.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8733333333333334,
+      "issues": [
+        "1. Issues 2 and 3 use knowledge base references that don't directly relate to invoice/receipt numbers.",
+        "2. There's a potential missed issue regarding the need for business purpose documentation",
+        "which is required according to the compliance rules.",
+        "3. The receipt is categorized as a \"Taxi Receipt\" but the validation refers to \"mileage reimbursement\" rules",
+        "which may not be entirely appropriate for a taxi service."
+      ],
+      "summary": "Most issues are correctly categorized with appropriate descriptions and recommendations. The gross-up and additional documentation issues are particularly well-categorized with direct references to relevant rules. However, some knowledge base references don't align perfectly with the issues they support, and there may be a missed issue regarding business purpose documentation. There's also some confusion between taxi receipt validation and mileage reimbursement rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a required field according to the compliance rules. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue about missing invoice number is categorized as \"Standards & Compliance | Fix Identified,\" which is appropriate. However, the knowledge base reference (\"Receipt in the name of the employer wherever possible...\") doesn't directly relate to invoice numbers. A more appropriate reference would be one specifically about invoice number requirements.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to Issue 2, the missing receipt number issue is correctly categorized but uses the same inappropriate knowledge base reference. The issue type and recommendation are appropriate, but the reference should be more specific to receipt number requirements.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue about gross-up for mileage reimbursement is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The knowledge base reference directly quotes the relevant rule: \"Mileage reimbursement rates between 50 to 80 cents per mile is common...\" which perfectly matches the compliance policies for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue regarding additional documentation for mileage reimbursement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The knowledge base reference directly quotes the relevant rule: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates,\" which aligns perfectly with the compliance policies.\n\nCONFIDENCE: 84\n\nISSUES:\n1. Issues 2 and 3 use knowledge base references that don't directly relate to invoice/receipt numbers.\n2. There's a potential missed issue regarding the need for business purpose documentation, which is required according to the compliance rules.\n3. The receipt is categorized as a \"Taxi Receipt\" but the validation refers to \"mileage reimbursement\" rules, which may not be entirely appropriate for a taxi service.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations. The gross-up and additional documentation issues are particularly well-categorized with direct references to relevant rules. However, some knowledge base references don't align perfectly with the issues they support, and there may be a missed issue regarding business purpose documentation. There's also some confusion between taxi receipt validation and mileage reimbursement rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.84,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a required field according to the compliance rules. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue about missing invoice number is categorized as \"Standards & Compliance | Fix Identified,\" which is appropriate. However, the knowledge base reference (\"Receipt in the name of the employer wherever possible...\") doesn't directly relate to invoice numbers. A more appropriate reference would be one specifically about invoice number requirements.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to Issue 2, the missing receipt number issue is correctly categorized but uses the same inappropriate knowledge base reference. The issue type and recommendation are appropriate, but the reference should be more specific to receipt number requirements.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue about gross-up for mileage reimbursement is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The knowledge base reference directly quotes the relevant rule: \"Mileage reimbursement rates between 50 to 80 cents per mile is common...\" which perfectly matches the compliance policies for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue regarding additional documentation for mileage reimbursement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The knowledge base reference directly quotes the relevant rule: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates,\" which aligns perfectly with the compliance policies.\n\nCONFIDENCE: 84\n\nISSUES:\n1. Issues 2 and 3 use knowledge base references that don't directly relate to invoice/receipt numbers.\n2. There's a potential missed issue regarding the need for business purpose documentation, which is required according to the compliance rules.\n3. The receipt is categorized as a \"Taxi Receipt\" but the validation refers to \"mileage reimbursement\" rules, which may not be entirely appropriate for a taxi service.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations. The gross-up and additional documentation issues are particularly well-categorized with direct references to relevant rules. However, some knowledge base references don't align perfectly with the issues they support, and there may be a missed issue regarding business purpose documentation. There's also some confusion between taxi receipt validation and mileage reimbursement rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of missing supplier address is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue of missing invoice number is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate, although the knowledge base reference could be more specific.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue of missing receipt number is similarly categorized correctly as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate, although the knowledge base reference could be more specific.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue of the total amount being subject to gross-up is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description, recommendation, and knowledge base reference are all clear and relevant.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue of requiring additional documentation for mileage reimbursement is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and actionable.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issue categorization is overall accurate and follows the established taxonomy. The descriptions and recommendations provided are clear and actionable. No major issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly identified as a Standards & Compliance issue with a fix identified. The description accurately points out the missing supplier address, which is a required field according to the compliance rules. The recommendation and knowledge base reference are appropriate.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue is correctly categorized as a Standards & Compliance issue with a fix identified. However, the description about the missing invoice number is not entirely accurate for this receipt type. Taxi receipts may not always have invoice numbers, so this might be overly strict.\n\nISSUE_3_VALIDATION_SCORE: 80 - Similar to Issue 2, this is correctly categorized as a Standards & Compliance issue, but the requirement for a receipt number on a taxi receipt may be too stringent. The categorization is correct, but the applicability to this specific receipt type is questionable.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is very well categorized as a Standards & Compliance issue with a Gross-up Identified. The description and recommendation accurately reflect the compliance rules for mileage reimbursement. The knowledge base reference is directly quoted from the provided rules.\n\nISSUE_5_VALIDATION_SCORE: 95 - This issue is correctly categorized as a Standards & Compliance issue with a Follow-up Action Identified. The need for additional documentation for mileage reimbursement is accurately pointed out, and the recommendation directly aligns with the compliance rules.\n\nCONFIDENCE: 88\n\nISSUES:\n1. Issues 2 and 3 may be overly strict for a taxi receipt, which typically doesn't include invoice or receipt numbers.\n2. The system did not identify the missing VAT amount as an issue, although it's listed as optional in the compliance rules for non-travel expenses.\n\nSUMMARY: Overall, the issue categorization is quite accurate and follows the established taxonomy. The system correctly identifies most of the key compliance issues and provides appropriate recommendations. However, there's a slight overemphasis on standard invoice elements for a taxi receipt, and a minor oversight regarding the VAT amount. The categorization of gross-up and additional documentation requirements is particularly well done, directly aligning with the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing supplier address is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a required field according to the compliance rules. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites that \"Name of the vendor or merchant must be visible on the receipt.\"",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue about missing invoice number is categorized as \"Standards & Compliance | Fix Identified,\" which is appropriate. However, the knowledge base reference (\"Receipt in the name of the employer wherever possible...\") doesn't directly relate to invoice numbers. A more appropriate reference would be one specifically about invoice number requirements.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to Issue 2, the missing receipt number issue is correctly categorized but uses the same inappropriate knowledge base reference. The issue type and recommendation are appropriate, but the reference should be more specific to receipt number requirements.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue about gross-up for mileage reimbursement is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The knowledge base reference directly quotes the relevant rule: \"Mileage reimbursement rates between 50 to 80 cents per mile is common...\" which perfectly matches the compliance policies for mileage expenses.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue regarding additional documentation for mileage reimbursement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" The knowledge base reference directly quotes the relevant rule: \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates,\" which aligns perfectly with the compliance policies.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8533333333333334,
+      "issues": [
+        "- Issues 2 and 3 cite knowledge base references that don't perfectly align with the specific issues identified",
+        "- Some recommendations could be more specific about how to address the issues",
+        "- The receipt appears to be a taxi receipt rather than a mileage reimbursement",
+        "so some recommendations may not be fully applicable"
+      ],
+      "summary": "Most recommendations are valid and actionable, particularly those related to additional documentation requirements and gross-up policies. However, there's some misalignment between the knowledge base references and the specific issues for invoice/receipt numbers. Additionally, since this appears to be a taxi receipt rather than a personal vehicle mileage claim, some of the mileage-specific recommendations may not be fully applicable to this particular expense type.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing supplier address with the provider is valid and actionable. However, it could be more specific about how to obtain this information (e.g., requesting a more detailed receipt or contacting the taxi service provider directly).\n\nISSUE_2_VALIDATION_SCORE: 70 - The recommendation about the missing invoice number is valid but somewhat misaligned. The rule cited refers to having GoGlobal's name on the invoice, not specifically about invoice numbers. While addressing this with the supplier is reasonable, the knowledge base reference doesn't fully support this specific issue.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to issue 2, the recommendation about the missing receipt number cites a rule about having GoGlobal's name on the receipt, not specifically about receipt numbers. The recommendation to address this with the supplier is reasonable but the knowledge base reference is not perfectly aligned.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation correctly identifies that mileage reimbursement will be subject to gross-up according to company policy. The knowledge base reference directly supports this recommendation and provides clear guidance on taxation implications.\n\nISSUE_5_VALIDATION_SCORE: 95 - This recommendation is highly valid and directly supported by the compliance rules. It clearly states what additional documentation is needed for mileage reimbursement (To/From locations, distance traveled, and per diem rates), which aligns perfectly with the cited knowledge base reference.\n\nCONFIDENCE: 81\n\nISSUES:\n- Issues 2 and 3 cite knowledge base references that don't perfectly align with the specific issues identified\n- Some recommendations could be more specific about how to address the issues\n- The receipt appears to be a taxi receipt rather than a mileage reimbursement, so some recommendations may not be fully applicable\n\nSUMMARY: Most recommendations are valid and actionable, particularly those related to additional documentation requirements and gross-up policies. However, there's some misalignment between the knowledge base references and the specific issues for invoice/receipt numbers. Additionally, since this appears to be a taxi receipt rather than a personal vehicle mileage claim, some of the mileage-specific recommendations may not be fully applicable to this particular expense type.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.81,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing supplier address with the provider is valid and actionable. However, it could be more specific about how to obtain this information (e.g., requesting a more detailed receipt or contacting the taxi service provider directly).\n\nISSUE_2_VALIDATION_SCORE: 70 - The recommendation about the missing invoice number is valid but somewhat misaligned. The rule cited refers to having GoGlobal's name on the invoice, not specifically about invoice numbers. While addressing this with the supplier is reasonable, the knowledge base reference doesn't fully support this specific issue.\n\nISSUE_3_VALIDATION_SCORE: 70 - Similar to issue 2, the recommendation about the missing receipt number cites a rule about having GoGlobal's name on the receipt, not specifically about receipt numbers. The recommendation to address this with the supplier is reasonable but the knowledge base reference is not perfectly aligned.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation correctly identifies that mileage reimbursement will be subject to gross-up according to company policy. The knowledge base reference directly supports this recommendation and provides clear guidance on taxation implications.\n\nISSUE_5_VALIDATION_SCORE: 95 - This recommendation is highly valid and directly supported by the compliance rules. It clearly states what additional documentation is needed for mileage reimbursement (To/From locations, distance traveled, and per diem rates), which aligns perfectly with the cited knowledge base reference.\n\nCONFIDENCE: 81\n\nISSUES:\n- Issues 2 and 3 cite knowledge base references that don't perfectly align with the specific issues identified\n- Some recommendations could be more specific about how to address the issues\n- The receipt appears to be a taxi receipt rather than a mileage reimbursement, so some recommendations may not be fully applicable\n\nSUMMARY: Most recommendations are valid and actionable, particularly those related to additional documentation requirements and gross-up policies. However, there's some misalignment between the knowledge base references and the specific issues for invoice/receipt numbers. Additionally, since this appears to be a taxi receipt rather than a personal vehicle mileage claim, some of the mileage-specific recommendations may not be fully applicable to this particular expense type."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing receipt number with the supplier or provider is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation regarding the gross-up of the total amount due to the company's policy for mileage reimbursement is appropriate and in line with the compliance rules provided. It provides clear guidance on the tax treatment of mileage reimbursements.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to provide additional documentation for the mileage reimbursement, including details like the to and from locations, distance travelled, and per diem rates, is actionable and specific. It directly addresses the identified issue and is a feasible and practical step to take.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are valid and useful. They are actionable, specific, and address the identified issues in a feasible and practical manner. The recommendations are also in line with the compliance rules provided for the GoGlobal ICP. Overall, the recommendations can be considered reliable and helpful for addressing the compliance concerns with the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing supplier address with the supplier is valid and actionable. However, it could be more specific on how to obtain this information.\n\nISSUE_2_VALIDATION_SCORE: 80 - Recommending to address the missing invoice number with the supplier is valid. It's actionable but could provide more guidance on alternative ways to document the transaction if an invoice number isn't available.\n\nISSUE_3_VALIDATION_SCORE: 80 - Similar to issue 2, the recommendation to address the missing receipt number is valid and actionable, but could offer more alternatives if a receipt number can't be obtained.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation regarding gross-up for mileage reimbursement is highly valid and specific. It provides clear guidance on tax implications based on different scenarios.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation for additional documentation for mileage reimbursement is very specific and actionable, clearly stating what information needs to be included.\n\nCONFIDENCE: 85\n\nISSUES:\n- Recommendations for issues 1-3 could be more specific on alternative solutions if the supplier cannot provide the requested information.\n- No major contradictions or harmful advice found.\n\nSUMMARY: The recommendations are generally valid and helpful, addressing the identified issues with actionable suggestions. They are particularly strong for mileage reimbursement documentation and tax implications. However, the recommendations for addressing missing supplier information could be more comprehensive in providing alternative solutions. Overall, the advice is practical and aligns well with compliance requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to address the missing supplier address with the provider is valid and actionable. However, it could be more specific about how to obtain this information (e.g., requesting a more detailed receipt or contacting the taxi service provider directly).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation about the missing invoice number is valid but somewhat misaligned. The rule cited refers to having GoGlobal's name on the invoice, not specifically about invoice numbers. While addressing this with the supplier is reasonable, the knowledge base reference doesn't fully support this specific issue.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to issue 2, the recommendation about the missing receipt number cites a rule about having GoGlobal's name on the receipt, not specifically about receipt numbers. The recommendation to address this with the supplier is reasonable but the knowledge base reference is not perfectly aligned.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation correctly identifies that mileage reimbursement will be subject to gross-up according to company policy. The knowledge base reference directly supports this recommendation and provides clear guidance on taxation implications.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "This recommendation is highly valid and directly supported by the compliance rules. It clearly states what additional documentation is needed for mileage reimbursement (To/From locations, distance traveled, and per diem rates), which aligns perfectly with the cited knowledge base reference.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "None detected. All issues identified in the AI response are supported by the extracted data and compliance rules."
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the extracted data and provided compliance rules. There are no hallucinations or fabricated information in the identified issues. The response correctly flags missing information (supplier address, invoice number, receipt number) and identifies appropriate compliance requirements for mileage reimbursement documentation and tax treatment.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules state that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and while not explicitly stated in the rules as mandatory, it's reasonable to flag this for a travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding missing receipt number is valid. The extracted data shows receipt_number as null, which could be important for record-keeping.\n\nISSUE_4_VALIDATION_SCORE: 100 - The gross-up issue is correctly identified based on the compliance rule that states \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The additional documentation requirement is correctly identified based on the compliance rule that states \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the extracted data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted data and provided compliance rules. There are no hallucinations or fabricated information in the identified issues. The response correctly flags missing information (supplier address, invoice number, receipt number) and identifies appropriate compliance requirements for mileage reimbursement documentation and tax treatment.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules state that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and while not explicitly stated in the rules as mandatory, it's reasonable to flag this for a travel receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue regarding missing receipt number is valid. The extracted data shows receipt_number as null, which could be important for record-keeping.\n\nISSUE_4_VALIDATION_SCORE: 100 - The gross-up issue is correctly identified based on the compliance rule that states \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The additional documentation requirement is correctly identified based on the compliance rule that states \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the extracted data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted data and provided compliance rules. There are no hallucinations or fabricated information in the identified issues. The response correctly flags missing information (supplier address, invoice number, receipt number) and identifies appropriate compliance requirements for mileage reimbursement documentation and tax treatment."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The supplier address, invoice number, and receipt number are indeed missing from the receipt, as mentioned in the AI response. This is not a hallucination.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements mentioned in the AI response appear to be legitimate and aligned with the ICP context of \"GoGlobal\". This is not a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 0 - The entity names, amounts, and dates mentioned in the extracted data and compliance rules appear to be based on the provided source data. There is no evidence of fabricated information.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response does not present any assumptions as facts. It clearly identifies the missing information and provides appropriate recommendations.\n\nISSUE_5_VALIDATION_SCORE: 0 - The additional documentation requirement for mileage reimbursement is a valid compliance rule and not a hallucination.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the issues and recommendations mentioned are based on the provided source data and compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects that the supplier address is missing from the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The invoice number is indeed missing from the receipt data, so this issue is valid.\n\nISSUE_3_VALIDATION_SCORE: 100 - The receipt number is not present in the extracted data, making this issue accurate.\n\nISSUE_4_VALIDATION_SCORE: 50 - While the gross-up policy for mileage reimbursement is mentioned in the compliance rules, applying it to this specific taxi receipt may be an overreach, as it's not clear if this is a mileage claim.\n\nISSUE_5_VALIDATION_SCORE: 50 - The recommendation for additional documentation for mileage reimbursement is based on the compliance rules, but it may not be directly applicable to this taxi receipt.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The application of mileage reimbursement rules to a taxi receipt may be inappropriate.\n2. The suggestion for additional mileage documentation for a taxi receipt could be misleading.\n\nSUMMARY: The AI response is largely accurate in identifying missing information from the receipt. However, it appears to have incorrectly applied mileage reimbursement rules to a taxi receipt, which could be considered a mild form of hallucination or misapplication of rules. The core data and most compliance checks are accurate, but the mileage-related issues reduce the overall confidence in the response's freedom from hallucinations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Supplier address is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing supplier address is valid. The extracted data shows supplier_address as null, and the compliance rules state that \"Name of the vendor or merchant must be visible on the receipt.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Invoice number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing invoice number is valid. The extracted data shows invoice_number as null, and while not explicitly stated in the rules as mandatory, it's reasonable to flag this for a travel receipt.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt number is missing on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing receipt number is valid. The extracted data shows receipt_number as null, which could be important for record-keeping.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The gross-up issue is correctly identified based on the compliance rule that states \"Mileage reimbursement rates between 50 to 80 cents per mile is common. If employee uses own vehicle and submits receipts only, entire amount is non-taxable. If employee claims both receipts and mileage reimbursement, the mileage reimbursement is fully subject to taxation as an allowance.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for mileage reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The additional documentation requirement is correctly identified based on the compliance rule that states \"For mileage reimbursements, include To and From locations, distance travelled and per diem rates.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: - Minor misalignment in issues 4 and 5 where the AI refers to \"mileage reimbursement\" when dealing with a taxi receipt, though the underlying compliance concerns are valid.",
+    "Address issues in knowledge base adherence: 1. Issues 2 and 3 incorrectly treat optional compliance items (invoice number and receipt number) as mandatory requirements., 2. The AI didn't explicitly mention that this is a taxi receipt (which is correctly identified in the extracted data), not a personal mileage claim, which might affect how the mileage reimbursement rules apply., 3. The AI didn't mention the requirement for \"Business purpose must be established and clearly documented for all expenses\" which is listed as required additional information.",
+    "Address issues in compliance accuracy: 1. The knowledge base references for issues 2 and 3 (invoice number and receipt number) could be more specific to those requirements rather than using a general rule about employer names on receipts., 2. The receipt is classified as a \"Taxi Receipt\" which is accurate, but it should be noted that taxi receipts fall under the \"Transportation\" expense type in the compliance rules, not specifically \"Mileage\". The system correctly applied mileage-related rules, but this distinction could be clarified.",
+    "Address issues in issue categorization: 1. Issues 2 and 3 use knowledge base references that don't directly relate to invoice/receipt numbers., 2. There's a potential missed issue regarding the need for business purpose documentation, which is required according to the compliance rules., 3. The receipt is categorized as a \"Taxi Receipt\" but the validation refers to \"mileage reimbursement\" rules, which may not be entirely appropriate for a taxi service.",
+    "Address issues in recommendation validity: - Issues 2 and 3 cite knowledge base references that don't perfectly align with the specific issues identified, - Some recommendations could be more specific about how to address the issues, - The receipt appears to be a taxi receipt rather than a mileage reimbursement, so some recommendations may not be fully applicable",
+    "Address issues in hallucination detection: None detected. All issues identified in the AI response are supported by the extracted data and compliance rules."
+  ],
+  "timestamp": "2025-09-26T12:34:15.979Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 67962,
+    "timing": {
+      "validation_start_time": "2025-09-26T12:33:08.017Z",
+      "validation_end_time": "2025-09-26T12:34:15.979Z",
+      "total_validation_time_seconds": "68.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-26T12:33:08.017Z",
+          "end_time": "2025-09-26T12:34:15.979Z",
+          "duration_seconds": "68.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "68.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.44",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Supplier address is missing on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 94.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Invoice number is missing on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 83.56,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 80,
+        "issue_categorization": 70,
+        "recommendation_validity": 70,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Receipt number is missing on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 83.56,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 80,
+        "issue_categorization": 70,
+        "recommendation_validity": 70,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "The total amount of the expense will be grossed up as per the company's policy",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 95.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Additional documentation is required for mileage reimbursement",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 95.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 85,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

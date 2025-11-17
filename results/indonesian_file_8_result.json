@@ -1,0 +1,460 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759338070138_56049828_indonesian_file_8.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T17:05:20.411Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.98,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration affecting the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, or folds on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No edges of the document are cut off or excluded from the image.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the receipt appear to be captured in the image.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Indonesia",
+    "expected_location": "Indonesia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that indicate it is an expense document. It includes the supplier (ClubAvolta), consumer (implied by the credit card payment), transaction amount (123.120 IDR), transaction date (26 May'25), item description (Take-Out, Cappuccino M), and payment method (Credit Card). The presence of these fields confirms it is an expense document, specifically categorized under 'meals'.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, confirming it is an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Djournal Coffee",
+    "supplier_address": "Soekarno-Hatta Airport",
+    "supplier_vat_number": "66.518.796.9-019.000",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "CHK 661798",
+    "transaction_reference": "WS#: 100005",
+    "currency": "IDR",
+    "total_amount": 123.12,
+    "subtotal": 103.636,
+    "tax_amount": 11.193,
+    "tax_rate": 10,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-26",
+    "transaction_time": "04:56",
+    "payment_method": "Credit Card",
+    "card_last_four": "1234",
+    "line_items": [
+      {
+        "description": "T/A Cappuccino M",
+        "quantity": 2,
+        "unit_price": 51818,
+        "total_price": 103636,
+        "category": "Take-Out"
+      },
+      {
+        "description": "Bar Message",
+        "quantity": 1,
+        "unit_price": 0,
+        "total_price": 0,
+        "category": "Take-Out"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Receipt",
+    "table_number": "TBL 1/3",
+    "server_name": "kiki",
+    "location_city": null,
+    "location_country": null,
+    "special_notes": "Thank you for visiting us! Follow us on Instagram @autogrill.id Share your comments & feedback to feelgood.apachhnshost.net",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show purchase date when transaction occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Personal meals during business trip are taxable BIK - subject to gross-up",
+          "recommendation": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "knowledge_base_reference": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "recommendation": "Please provide the name of clients/vendor in the expense report for business meal with clients/vendor",
+          "knowledge_base_reference": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Expense submissions must have an itemized report along with clear receipts - properly labeled receipts for identification",
+          "recommendation": "Please ensure that expense submissions include an itemized report along with clear, properly labeled receipts for identification",
+          "knowledge_base_reference": "Expense submissions must have an itemized report along with clear receipts - properly labeled receipts for identification",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including missing mandatory fields (customer name and invoice number), tax implications for personal meals during business trips, and missing additional information required for business meals and proper receipt labeling. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Djournal Coffee",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Soekarno-Hatta Airport\nDjournal Coffee\n620400703 Tomas\nWS#: 100005",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Djournal Coffee",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Soekarno-Hatta Airport\nDjournal Coffee\n620400703 Tomas\nWS#: 100005",
+          "match_type": "exact"
+        }
+      },
+      "ws_number": {
+        "field_citation": {
+          "source_text": "WS#:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Soekarno-Hatta Airport\nDjournal Coffee\n620400703 Tomas\nWS#: 100005",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "100005",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Soekarno-Hatta Airport\nDjournal Coffee\n620400703 Tomas\nWS#: 100005",
+          "match_type": "exact"
+        }
+      },
+      "check_number": {
+        "field_citation": {
+          "source_text": "CHK",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "661798",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        }
+      },
+      "table_number": {
+        "field_citation": {
+          "source_text": "TBL",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1/3",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "26 May'25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "26 May'25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "---------------------------------\nCHK 661798                TBL 1/3\n26 May'25\n-------------------------------",
+          "match_type": "exact"
+        }
+      },
+      "items": {
+        "field_citation": {
+          "source_text": "Take-Out",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Take-Out\n2 T/A Cappuccino M         103636\n1 Bar Message                    0\nkiki\nCredit Card             123.120 IDR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2 T/A Cappuccino M         103636\n1 Bar Message                    0",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Take-Out\n2 T/A Cappuccino M         103636\n1 Bar Message                    0\nkiki\nCredit Card             123.120 IDR",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "103.636 IDR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        }
+      },
+      "tax": {
+        "field_citation": {
+          "source_text": "TAX 10%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "11.193 IDR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        }
+      },
+      "payment": {
+        "field_citation": {
+          "source_text": "Payment",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "123.120 IDR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        }
+      },
+      "change_due": {
+        "field_citation": {
+          "source_text": "Change Due",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0 IDR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal               103.636 IDR\nACBK Djournal Coffee     8.291 IDR\nTAX 10%                 11.193 IDR\nPayment                123.120 IDR\nChange Due                   0 IDR",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 38,
+      "fields_with_field_citations": 38,
+      "fields_with_value_citations": 38,
+      "average_confidence": 0.9394736842105263
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "17.5",
+      "file_classification_seconds": "3.6",
+      "data_extraction_seconds": "3.6",
+      "image_quality_assessment_seconds": "4.6",
+      "issue_detection_seconds": "7.0",
+      "citation_generation_seconds": "45.5",
+      "llm_validation_seconds": "70.8"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T17:04:58.352Z",
+        "end_time": "2025-10-01T17:05:15.817Z",
+        "duration_seconds": "17.5",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T17:05:15.821Z",
+        "end_time": "2025-10-01T17:05:19.413Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T17:05:15.822Z",
+        "end_time": "2025-10-01T17:05:19.439Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T17:05:15.818Z",
+        "end_time": "2025-10-01T17:05:20.411Z",
+        "duration_seconds": "4.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T17:05:20.412Z",
+        "end_time": "2025-10-01T17:05:27.439Z",
+        "duration_seconds": "7.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T17:05:20.416Z",
+        "end_time": "2025-10-01T17:06:05.939Z",
+        "duration_seconds": "45.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T17:06:05.940Z",
+        "end_time": "2025-10-01T17:07:16.747Z",
+        "duration_seconds": "70.8",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "138.5",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.6",
+      "parallel_group_2_seconds": "45.5",
+      "total_parallel_time_seconds": "50.1"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_8.png",
+    "processing_time": 138521,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-01T17:07:16.874Z"
+  }
+}

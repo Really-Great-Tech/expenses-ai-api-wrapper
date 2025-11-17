@@ -1,0 +1,429 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759338056662_125276214_indonesian_file_7.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T17:03:04.057Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are present that obscure the text.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are present on the document.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles on the document.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "All edges of the document are fully captured with no cut-off areas.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "The document appears complete with no missing sections.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Honolulu, HI, USA",
+    "expected_location": "Indonesia",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, item description, and payment method. The presence of these fields confirms it is an expense document. The expense type is classified as 'meals' based on the item description 'WTR Dasani 20', which indicates a water purchase likely from a restaurant or similar establishment. The location extracted from the document is Honolulu, HI, USA, which does not match the expected location of Indonesia.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "HMS",
+    "supplier_address": "300 Rodenburg Blvd, Honolulu, HI 96819",
+    "supplier_phone": "88-555",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "DX6OTNNLSBZT6",
+    "transaction_reference": "2296-2718-2031",
+    "currency": "USD",
+    "total_amount": 4.91,
+    "subtotal": 4.69,
+    "tax_amount": 0.22,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-26",
+    "transaction_time": "10:26:55",
+    "payment_method": "VISA",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "WTR Dasani 20",
+        "quantity": 1,
+        "unit_price": 4.69,
+        "total_price": 4.69,
+        "category": "Beverage"
+      }
+    ],
+    "receipt_type": "Retail Receipt",
+    "document_type": "Receipt",
+    "location_city": "Honolulu",
+    "location_country": "USA",
+    "special_notes": "Thank You For Using Masign",
+    "terms_conditions": null,
+    "business_registration_number": null,
+    "auth_number": "4939",
+    "card_entry_method": "Contactless",
+    "aid": "A0000000031010",
+    "tvr": "0000008000",
+    "iad": "06000000000000000000000000000000",
+    "arqc": "8A1B9E7E43D0F13",
+    "atc": "00",
+    "app_label": "VISA PURCHASE",
+    "app_preferred_name": "VISA",
+    "visa_details": "5.4560/2/439"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show unique identifier for the transaction",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Missing tax rate on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount should be listed clearly on the invoice if applicable",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Personal meals during business trip are taxable BIK",
+          "recommendation": "Personal meals during business trip are taxable BIK - subject to gross-up",
+          "knowledge_base_reference": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "special_notes",
+          "description": "Business purpose must be established clearly",
+          "recommendation": "Please provide clear business purpose for the expense",
+          "knowledge_base_reference": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including missing mandatory fields (customer name, invoice number), missing tax rate, and the need for clear business purpose establishment. Additionally, personal meals during business trips are subject to gross-up. These issues need to be addressed to ensure compliance."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "item": {
+        "field_citation": {
+          "source_text": "Item",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Item\nWTR Dasani 20",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "WTR Dasani 20",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Item\nWTR Dasani 20",
+          "match_type": "exact"
+        }
+      },
+      "price": {
+        "field_citation": {
+          "source_text": "Price",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Price\n$4.69",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$4.69",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Price\n$4.69",
+          "match_type": "exact"
+        }
+      },
+      "sub_total": {
+        "field_citation": {
+          "source_text": "Sub Total",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$4.69",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        }
+      },
+      "taxes": {
+        "field_citation": {
+          "source_text": "Taxes",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$0.22",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "Total",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$4.91",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sub Total\nTaxes\nTotal\n\n$4.69\n$0.22\n$4.91",
+          "match_type": "exact"
+        }
+      },
+      "card_type": {
+        "field_citation": {
+          "source_text": "Card Type:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "APPROVED\nCard Type: VISA ETCAID\nAuth #: ***4939\nCard Entry: Contactless\nAID: A0000000031010\nTVR: 0000008000\nIAD: 06000000000000000000000000000000\nARQC: 8A1B9E7E43D0F13\nATC: 00\nApp Label: VISA PURCHASE\nApp Preferred Name: VISA\nVISA: 5.4560/2/439",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VISA ETCAID",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "APPROVED\nCard Type: VISA ETCAID\nAuth #: ***4939\nCard Entry: Contactless\nAID: A0000000031010\nTVR: 0000008000\nIAD: 06000000000000000000000000000000\nARQC: 8A1B9E7E43D0F13\nATC: 00\nApp Label: VISA PURCHASE\nApp Preferred Name: VISA\nVISA: 5.4560/2/439",
+          "match_type": "exact"
+        }
+      },
+      "auth_number": {
+        "field_citation": {
+          "source_text": "Auth #:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "APPROVED\nCard Type: VISA ETCAID\nAuth #: ***4939\nCard Entry: Contactless\nAID: A0000000031010\nTVR: 0000008000\nIAD: 06000000000000000000000000000000\nARQC: 8A1B9E7E43D0F13\nATC: 00\nApp Label: VISA PURCHASE\nApp Preferred Name: VISA\nVISA: 5.4560/2/439",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "***4939",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "APPROVED\nCard Type: VISA ETCAID\nAuth #: ***4939\nCard Entry: Contactless\nAID: A0000000031010\nTVR: 0000008000\nIAD: 06000000000000000000000000000000\nARQC: 8A1B9E7E43D0F13\nATC: 00\nApp Label: VISA PURCHASE\nApp Preferred Name: VISA\nVISA: 5.4560/2/439",
+          "match_type": "exact"
+        }
+      },
+      "card_entry": {
+        "field_citation": {
+          "source_text": "Card Entry:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Card Entry: Contactless",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Contactless",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Card Entry: Contactless",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 31,
+      "fields_with_field_citations": 31,
+      "fields_with_value_citations": 31,
+      "average_confidence": 0.9677419354838709
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "14.9",
+      "file_classification_seconds": "3.3",
+      "data_extraction_seconds": "4.9",
+      "image_quality_assessment_seconds": "5.3",
+      "issue_detection_seconds": "6.3",
+      "citation_generation_seconds": "38.7",
+      "llm_validation_seconds": "75.6"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T17:02:43.865Z",
+        "end_time": "2025-10-01T17:02:58.785Z",
+        "duration_seconds": "14.9",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T17:02:58.789Z",
+        "end_time": "2025-10-01T17:03:02.087Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T17:02:58.791Z",
+        "end_time": "2025-10-01T17:03:03.697Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T17:02:58.786Z",
+        "end_time": "2025-10-01T17:03:04.057Z",
+        "duration_seconds": "5.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T17:03:04.058Z",
+        "end_time": "2025-10-01T17:03:10.363Z",
+        "duration_seconds": "6.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T17:03:04.061Z",
+        "end_time": "2025-10-01T17:03:42.742Z",
+        "duration_seconds": "38.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T17:03:42.743Z",
+        "end_time": "2025-10-01T17:04:58.297Z",
+        "duration_seconds": "75.6",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "134.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.3",
+      "parallel_group_2_seconds": "38.7",
+      "total_parallel_time_seconds": "44.0"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_7.png",
+    "processing_time": 134435,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-01T17:04:58.300Z"
+  }
+}

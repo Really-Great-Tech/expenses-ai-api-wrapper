@@ -1,0 +1,842 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\malaysian_file_3.pdf_full_test_new_dataset_4_malaysian_file_3.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T10:33:25.836Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements blocking or obscuring document content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Malaysia",
+    "expected_location": "Malaysia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, item description, and tax information. It represents a completed payment for meals at a bar.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "paymentMethod"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including evidence of payment, actual amounts charged, and a receipt of transaction. It meets the criteria for being classified as an expense."
+    }
+  },
+  "extraction": {
+    "supplier_name": "THT TRENDS SDN BHD",
+    "supplier_address": "NO:29, JLN MESUI, BUKIT BINTANG, 50200 KUALA LUMPUR",
+    "supplier_vat_number": "W10-1808-31008682",
+    "supplier_phone": "+603-2142 2900",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "409456",
+    "transaction_reference": null,
+    "currency": "MYR",
+    "total_amount": 164.9,
+    "subtotal": 154,
+    "tax_amount": 10.92,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-04-29",
+    "transaction_time": "21:36:18",
+    "payment_method": "Cash",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Pisco Sour",
+        "quantity": 1,
+        "unit_price": 40,
+        "total_price": 40,
+        "category": "Drink"
+      },
+      {
+        "description": "Cuzco",
+        "quantity": 1,
+        "unit_price": 44,
+        "total_price": 44,
+        "category": "Drink"
+      },
+      {
+        "description": "Seafood Ceviche(S)",
+        "quantity": 1,
+        "unit_price": 38,
+        "total_price": 38,
+        "category": "Food"
+      },
+      {
+        "description": "Tacos Spicy Cream Chick",
+        "quantity": 1,
+        "unit_price": 32,
+        "total_price": 32,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "GUEST CHECK",
+    "table_number": "A4B",
+    "server_name": "Tina 2024",
+    "location_city": "KUALA LUMPUR",
+    "location_country": "Malaysia",
+    "special_notes": "Thank You, Please Come Again",
+    "terms_conditions": null,
+    "business_registration_number": "201201030577 (1015064-W)"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services must be visible on receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services must be visible on receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services must be visible on receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "transaction_reference",
+          "description": "Missing mandatory transaction reference on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Expense type or description of goods/services must be visible on receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount",
+          "knowledge_base_reference": "Meal allowances received by an employee regularly (daily or monthly), given at a fixed same rate to all employees are exempt from tax, up to a reasonable amount",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name, customer address, invoice number, and transaction reference. Additionally, the meal expenses will be grossed up as they are not tax exempt."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Malaysia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "NRN": {
+        "field_citation": {
+          "source_text": "NRN: 201201030577 (1015064-W)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "NRN: 201201030577 (1015064-W)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "201201030577 (1015064-W)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "NRN: 201201030577 (1015064-W)",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "match_type": "exact"
+        }
+      },
+      "telephone": {
+        "field_citation": {
+          "source_text": "TEL : +603-2142 2900",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "+603-2142 2900",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        }
+      },
+      "SST_No": {
+        "field_citation": {
+          "source_text": "SST No:W10-1808-31008682",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST No:W10-1808-31008682",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "W10-1808-31008682",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST No:W10-1808-31008682",
+          "match_type": "exact"
+        }
+      },
+      "table_number": {
+        "field_citation": {
+          "source_text": "Table A4B",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Table A4B",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A4B",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Table A4B",
+          "match_type": "exact"
+        }
+      },
+      "order_number": {
+        "field_citation": {
+          "source_text": "ORD No.: 409456",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "409456",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        }
+      },
+      "pax": {
+        "field_citation": {
+          "source_text": "Pax(s): 1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        }
+      },
+      "date": {
+        "field_citation": {
+          "source_text": "Date : 29-04-2025 21:36:18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Date : 29-04-2025 21:36:18",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29-04-2025 21:36:18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Date : 29-04-2025 21:36:18",
+          "match_type": "exact"
+        }
+      },
+      "cashier": {
+        "field_citation": {
+          "source_text": "Cashier: Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Cashier: Tina 2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Cashier: Tina 2024",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal: 154.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "154.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal: 154.00",
+          "match_type": "exact"
+        }
+      },
+      "SST": {
+        "field_citation": {
+          "source_text": "SST:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST: 10.92",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10.92",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST: 10.92",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "Total:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total: 164.92",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "164.92",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total: 164.92",
+          "match_type": "exact"
+        }
+      },
+      "rounding_adj": {
+        "field_citation": {
+          "source_text": "Rounding Adj:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rounding Adj: -0.02",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "-0.02",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rounding Adj: -0.02",
+          "match_type": "exact"
+        }
+      },
+      "final_total": {
+        "field_citation": {
+          "source_text": "TOTAL:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL: 164.90",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "164.90",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL: 164.90",
+          "match_type": "exact"
+        }
+      },
+      "closed": {
+        "field_citation": {
+          "source_text": "Closed:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Closed: 29-04-2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29-04-2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Closed: 29-04-2025",
+          "match_type": "exact"
+        }
+      },
+      "server": {
+        "field_citation": {
+          "source_text": "Server: Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Server: Tina 2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Server: Tina 2024",
+          "match_type": "exact"
+        }
+      },
+      "Address": {
+        "field_citation": {
+          "source_text": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "NO:29, JLN MESUI, BUKIT BINTANG 50200 KUALA LUMPUR",
+          "match_type": "exact"
+        }
+      },
+      "Telephone": {
+        "field_citation": {
+          "source_text": "TEL",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "+603-2142 2900",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        }
+      },
+      "SST No": {
+        "field_citation": {
+          "source_text": "SST No:W10-1808-31008682",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST No:W10-1808-31008682",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "W10-1808-31008682",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SST No:W10-1808-31008682",
+          "match_type": "exact"
+        }
+      },
+      "Table": {
+        "field_citation": {
+          "source_text": "Table A4B",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Table A4B",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A4B",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Table A4B",
+          "match_type": "exact"
+        }
+      },
+      "ORD No": {
+        "field_citation": {
+          "source_text": "ORD No.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "409456",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        }
+      },
+      "Pax": {
+        "field_citation": {
+          "source_text": "Pax(s)",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        }
+      },
+      "Date": {
+        "field_citation": {
+          "source_text": "Date : 29-04-2025 21:36:18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Date : 29-04-2025 21:36:18",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29-04-2025 21:36:18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Date : 29-04-2025 21:36:18",
+          "match_type": "exact"
+        }
+      },
+      "Cashier": {
+        "field_citation": {
+          "source_text": "Cashier: Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Cashier: Tina 2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Cashier: Tina 2024",
+          "match_type": "exact"
+        }
+      },
+      "Subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal: 154.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "154.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal: 154.00",
+          "match_type": "exact"
+        }
+      },
+      "Total": {
+        "field_citation": {
+          "source_text": "Total:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total: 164.92",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "164.92",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total: 164.92",
+          "match_type": "exact"
+        }
+      },
+      "Rounding Adj": {
+        "field_citation": {
+          "source_text": "Rounding Adj:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rounding Adj: -0.02",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "-0.02",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rounding Adj: -0.02",
+          "match_type": "exact"
+        }
+      },
+      "TOTAL": {
+        "field_citation": {
+          "source_text": "TOTAL:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL: 164.90",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "164.90",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTAL: 164.90",
+          "match_type": "exact"
+        }
+      },
+      "Closed": {
+        "field_citation": {
+          "source_text": "Closed:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Closed: 29-04-2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29-04-2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Closed: 29-04-2025",
+          "match_type": "exact"
+        }
+      },
+      "Server": {
+        "field_citation": {
+          "source_text": "Server: Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Server: Tina 2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Tina 2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Server: Tina 2024",
+          "match_type": "exact"
+        }
+      },
+      "TEL": {
+        "field_citation": {
+          "source_text": "TEL : +603-2142 2900",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "+603-2142 2900",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TEL : +603-2142 2900",
+          "match_type": "exact"
+        }
+      },
+      "ORD No.": {
+        "field_citation": {
+          "source_text": "ORD No.: 409456",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "409456",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ORD No.: 409456",
+          "match_type": "exact"
+        }
+      },
+      "Pax(s)": {
+        "field_citation": {
+          "source_text": "Pax(s): 1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pax(s): 1",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 69,
+      "fields_with_field_citations": 69,
+      "fields_with_value_citations": 69,
+      "average_confidence": 0.9376811594202897
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "9.8",
+      "file_classification_seconds": "3.4",
+      "data_extraction_seconds": "4.0",
+      "image_quality_assessment_seconds": "5.3",
+      "issue_detection_seconds": "6.1",
+      "citation_generation_seconds": "63.8",
+      "llm_validation_seconds": "73.2"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T10:33:10.707Z",
+        "end_time": "2025-09-10T10:33:20.557Z",
+        "duration_seconds": "9.8",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T10:33:20.560Z",
+        "end_time": "2025-09-10T10:33:23.922Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T10:33:20.562Z",
+        "end_time": "2025-09-10T10:33:24.570Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T10:33:20.558Z",
+        "end_time": "2025-09-10T10:33:25.836Z",
+        "duration_seconds": "5.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T10:33:25.837Z",
+        "end_time": "2025-09-10T10:33:31.981Z",
+        "duration_seconds": "6.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T10:33:25.839Z",
+        "end_time": "2025-09-10T10:34:29.622Z",
+        "duration_seconds": "63.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T10:34:29.623Z",
+        "end_time": "2025-09-10T10:35:42.862Z",
+        "duration_seconds": "73.2",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "152.2",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.3",
+      "parallel_group_2_seconds": "63.8",
+      "total_parallel_time_seconds": "69.1"
+    }
+  },
+  "metadata": {
+    "filename": "malaysian_file_3.pdf",
+    "processing_time": 152161,
+    "country": "Malaysia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T10:35:42.868Z"
+  }
+}

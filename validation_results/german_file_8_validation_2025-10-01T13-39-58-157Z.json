@@ -1,0 +1,692 @@
+{
+  "overall_score": 0.49499999999999994,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.3666666666666667,
+      "issues": [
+        "1. The AI incorrectly claims the supplier name is missing when it's clearly present",
+        "2. The AI incorrectly claims the VAT number format is incorrect without specifying what format is required",
+        "3. The AI incorrectly claims the total amount is missing when it's clearly present",
+        "4. The AI incorrectly claims the customer/employee name is missing when it's clearly present",
+        "5. The receipt is from a UK hotel (Darlington) with a UK VAT number",
+        "not a German hotel",
+        "which raises questions about the applicability of German rules"
+      ],
+      "summary": "The AI response is largely factually ungrounded, with 4 out of 5 issues being completely incorrect based on the extracted data. The only partially correct issue is about the additional documentation requirement. The AI appears to have ignored or misread most of the clearly provided information in the extracted data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing or incomplete, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is factually incorrect.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the VAT number is not in the required format, but the extracted data shows \"GB 456215301\" as the supplier VAT number, which appears to be a valid UK VAT number format. The AI doesn't explain what format is required for Germany.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI claims the total amount in local currency is missing, but the extracted data shows a total_balance_due of 0 with line items totaling 239 GBP, and a VAT breakdown showing a gross amount of 239 GBP. The total amount is clearly present.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is factually incorrect.\n\nISSUE_5_VALIDATION_SCORE: 50 - The AI correctly notes that additional documentation (travel expense report template) is required according to the compliance rules for Global People. This is factually grounded in the compliance rules which state: \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx.\"\n\nCONFIDENCE: 10\n\nISSUES:\n1. The AI incorrectly claims the supplier name is missing when it's clearly present\n2. The AI incorrectly claims the VAT number format is incorrect without specifying what format is required\n3. The AI incorrectly claims the total amount is missing when it's clearly present\n4. The AI incorrectly claims the customer/employee name is missing when it's clearly present\n5. The receipt is from a UK hotel (Darlington) with a UK VAT number, not a German hotel, which raises questions about the applicability of German rules\n\nSUMMARY: The AI response is largely factually ungrounded, with 4 out of 5 issues being completely incorrect based on the extracted data. The only partially correct issue is about the additional documentation requirement. The AI appears to have ignored or misread most of the clearly provided information in the extracted data.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing or incomplete, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is factually incorrect.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the VAT number is not in the required format, but the extracted data shows \"GB 456215301\" as the supplier VAT number, which appears to be a valid UK VAT number format. The AI doesn't explain what format is required for Germany.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI claims the total amount in local currency is missing, but the extracted data shows a total_balance_due of 0 with line items totaling 239 GBP, and a VAT breakdown showing a gross amount of 239 GBP. The total amount is clearly present.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is factually incorrect.\n\nISSUE_5_VALIDATION_SCORE: 50 - The AI correctly notes that additional documentation (travel expense report template) is required according to the compliance rules for Global People. This is factually grounded in the compliance rules which state: \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx.\"\n\nCONFIDENCE: 10\n\nISSUES:\n1. The AI incorrectly claims the supplier name is missing when it's clearly present\n2. The AI incorrectly claims the VAT number format is incorrect without specifying what format is required\n3. The AI incorrectly claims the total amount is missing when it's clearly present\n4. The AI incorrectly claims the customer/employee name is missing when it's clearly present\n5. The receipt is from a UK hotel (Darlington) with a UK VAT number, not a German hotel, which raises questions about the applicability of German rules\n\nSUMMARY: The AI response is largely factually ungrounded, with 4 out of 5 issues being completely incorrect based on the extracted data. The only partially correct issue is about the additional documentation requirement. The AI appears to have ignored or misread most of the clearly provided information in the extracted data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The supplier name \"Mercure HOTELS\" is accurately represented in the extracted data.\nISSUE_2_VALIDATION_SCORE: 80 - The supplier VAT number \"GB 456215301\" is provided in the extracted data, but the format is not in the required format mentioned in the compliance rules.\nISSUE_3_VALIDATION_SCORE: 80 - The total balance due amount is missing from the extracted data, which is identified as a compliance issue in the AI response.\nISSUE_4_VALIDATION_SCORE: 100 - The customer name \"Mr. Timo Marc Olef\" is accurately represented in the extracted data.\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for a travel expense report template is identified as a compliance issue in the AI response, which is not present in the extracted data.\n\nCONFIDENCE: 90\nISSUES:\n1. The supplier VAT number format does not match the required format.\n2. The total balance due amount is missing from the extracted data.\n3. The travel expense report template is not present in the extracted data.\n\nSUMMARY: The AI response is generally well-grounded in the provided extracted data, with a few minor issues related to the supplier VAT number format, the missing total balance due amount, and the lack of the required travel expense report template. Overall, the response accurately represents the key details and compliance issues identified in the data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the supplier name is missing or incomplete, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is a factually incorrect assessment.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the VAT number is not in the required format, but the extracted data shows \"GB 456215301\" as the supplier VAT number, which appears to be a valid UK VAT number format. Since this is a UK hotel (as shown by the address), the VAT number format is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI claims the total amount in local currency is missing, but the extracted data clearly shows a total_balance_due of 0 GBP, with line items and VAT breakdown that total to 239 GBP (which was paid as a deposit at check-in).\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name.\n\nISSUE_5_VALIDATION_SCORE: 50 - The AI correctly identifies that a travel expense report template is required for accommodation expenses according to the compliance rules for Global People. This is factually grounded in the compliance rules provided.\n\nCONFIDENCE: 10\n\nISSUES:\n1. The AI incorrectly claims the supplier name is missing when it's clearly present\n2. The AI incorrectly claims the VAT number format is incorrect when it appears valid\n3. The AI incorrectly claims the total amount is missing when it's clearly documented\n4. The AI incorrectly claims the employee name is missing when it's clearly present\n5. The hotel is in the UK (Darlington), not Germany, despite the country being specified as Germany\n\nSUMMARY: The AI response contains multiple factually incorrect assessments. Four of the five issues identified are contradicted by the extracted data. The receipt clearly shows the supplier name (Mercure HOTELS), a valid VAT number format, the total amount (239 GBP paid as deposit), and the customer name (Mr. Timo Marc Olef). Only the requirement for a travel expense report template is factually grounded. Additionally, there's a geographical inconsistency - the receipt is from a UK hotel but the country is specified as Germany."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the supplier name is missing or incomplete, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is factually incorrect.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the VAT number is not in the required format, but the extracted data shows \"GB 456215301\" as the supplier VAT number, which appears to be a valid UK VAT number format. The AI doesn't explain what format is required for Germany.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the total amount in local currency is missing, but the extracted data shows a total_balance_due of 0 with line items totaling 239 GBP, and a VAT breakdown showing a gross amount of 239 GBP. The total amount is clearly present.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is factually incorrect.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly notes that additional documentation (travel expense report template) is required according to the compliance rules for Global People. This is factually grounded in the compliance rules which state: \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.5,
+      "issues": [
+        "1. The AI incorrectly identified missing supplier name when it's clearly present",
+        "2. The AI incorrectly flagged the VAT number format as an issue when it's appropriate for a UK hotel",
+        "3. The AI incorrectly claimed the total amount is missing when it's clearly documented",
+        "4. The AI contradicted itself by identifying missing employee name as an issue while the extracted data shows it's present",
+        "5. The AI response contains multiple factual errors about the receipt content"
+      ],
+      "summary": "The AI response shows poor adherence to the knowledge base with multiple incorrect issue identifications. While it correctly identified the need for a travel expense report template (issue 5), it incorrectly flagged three non-existent issues (supplier name, VAT format, and total amount). The receipt actually complies with most requirements - it has a clear supplier name, proper VAT format for its jurisdiction, visible total amount, and the employee name as guest. The only valid compliance issue is the need for the additional travel expense report template as required by Global People's policies.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly identified a missing supplier name issue. The extracted data clearly shows \"Mercure HOTELS\" as the supplier name, which is complete and valid. This contradicts the knowledge base requirement for \"Clear and readable receipts and invoices must be submitted with expenses\" where the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged the VAT number format as an issue. The extracted data shows \"GB 456215301\" which is a valid UK VAT number format. Since this is a UK hotel receipt (Darlington address), the UK VAT format is appropriate. The knowledge base doesn't specify format requirements for foreign VAT numbers.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly claimed the total amount is missing. The extracted data clearly shows a total balance due of 0 (zero) with line items totaling 239 GBP, which was paid as a deposit at check-in. This contradicts the knowledge base requirement that \"Document must show total amount\" - the amount is present.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name as guest/traveler is present. The extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which satisfies the knowledge base requirement that \"Hotel/flights etc invoices should indicate the name of the worker not the company.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required. According to the knowledge base, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly identified missing supplier name when it's clearly present\n2. The AI incorrectly flagged the VAT number format as an issue when it's appropriate for a UK hotel\n3. The AI incorrectly claimed the total amount is missing when it's clearly documented\n4. The AI contradicted itself by identifying missing employee name as an issue while the extracted data shows it's present\n5. The AI response contains multiple factual errors about the receipt content\n\nSUMMARY: The AI response shows poor adherence to the knowledge base with multiple incorrect issue identifications. While it correctly identified the need for a travel expense report template (issue 5), it incorrectly flagged three non-existent issues (supplier name, VAT format, and total amount). The receipt actually complies with most requirements - it has a clear supplier name, proper VAT format for its jurisdiction, visible total amount, and the employee name as guest. The only valid compliance issue is the need for the additional travel expense report template as required by Global People's policies.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly identified a missing supplier name issue. The extracted data clearly shows \"Mercure HOTELS\" as the supplier name, which is complete and valid. This contradicts the knowledge base requirement for \"Clear and readable receipts and invoices must be submitted with expenses\" where the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged the VAT number format as an issue. The extracted data shows \"GB 456215301\" which is a valid UK VAT number format. Since this is a UK hotel receipt (Darlington address), the UK VAT format is appropriate. The knowledge base doesn't specify format requirements for foreign VAT numbers.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly claimed the total amount is missing. The extracted data clearly shows a total balance due of 0 (zero) with line items totaling 239 GBP, which was paid as a deposit at check-in. This contradicts the knowledge base requirement that \"Document must show total amount\" - the amount is present.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the employee name as guest/traveler is present. The extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which satisfies the knowledge base requirement that \"Hotel/flights etc invoices should indicate the name of the worker not the company.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required. According to the knowledge base, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly identified missing supplier name when it's clearly present\n2. The AI incorrectly flagged the VAT number format as an issue when it's appropriate for a UK hotel\n3. The AI incorrectly claimed the total amount is missing when it's clearly documented\n4. The AI contradicted itself by identifying missing employee name as an issue while the extracted data shows it's present\n5. The AI response contains multiple factual errors about the receipt content\n\nSUMMARY: The AI response shows poor adherence to the knowledge base with multiple incorrect issue identifications. While it correctly identified the need for a travel expense report template (issue 5), it incorrectly flagged three non-existent issues (supplier name, VAT format, and total amount). The receipt actually complies with most requirements - it has a clear supplier name, proper VAT format for its jurisdiction, visible total amount, and the employee name as guest. The only valid compliance issue is the need for the additional travel expense report template as required by Global People's policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identified that the supplier name is missing or incomplete, which is a compliance issue as per the knowledge base requirement for \"Supplier business name\" to be clearly provided on receipts and invoices.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identified that the VAT number on the receipt is not in the required format, which is a compliance issue as per the knowledge base requirement for VAT numbers to be in the correct format.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identified that the total amount in local currency is missing or not clearly visible, which is a compliance issue as per the knowledge base requirement for \"Total amount in local currency\" to be clearly shown on receipts and invoices.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identified that the employee name as guest/traveler is missing, which is a compliance issue as per the knowledge base requirement for \"Employee name as guest/traveler\" to be provided on hotel and flight invoices.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identified that additional documentation is required for this expense type, specifically the travel expense report template, which is a compliance requirement as per the knowledge base.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately identifies and addresses the key compliance issues for the provided Germany accommodation receipt, demonstrating a strong adherence to the established knowledge base. All the identified issues are valid and properly contextualized within the compliance rules and requirements for Germany. The overall confidence in the response's knowledge base adherence is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly identified a missing supplier name issue. The extracted data clearly shows \"Mercure HOTELS\" as the supplier name, which is complete and sufficient according to the knowledge base requirement that \"Supplier business name\" must be present.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged the VAT number format as an issue. The receipt shows a UK VAT number (GB 456215301) which is properly formatted for a UK business. Since this is a UK hotel receipt (Darlington, UK), the VAT number format is appropriate. The compliance rules don't specify any requirement for German VAT numbers on foreign accommodation receipts.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI incorrectly stated the total amount is missing. The extracted data shows a total balance due of 0 (because it was paid) with line items clearly showing accommodation charges of £85, £85, and £69, with a payment of £239, and VAT breakdown showing a gross amount of £239. This satisfies the requirement that \"Document must show total amount.\"\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI incorrectly claimed the employee name as guest/traveler is missing. The extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer name, which satisfies the requirement that \"Hotel/flights etc invoices should indicate the name of the worker not the company.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required. According to the knowledge base: \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.\n\nCONFIDENCE: 20\n\nISSUES:\n1. The AI incorrectly flagged four compliance issues that don't exist in the receipt\n2. The receipt actually contains all required information (supplier name, proper VAT format, total amount, and employee name)\n3. Only the requirement for the additional travel expense report template is valid\n\nSUMMARY: The AI response shows poor adherence to the knowledge base by incorrectly identifying four non-existent compliance issues. The receipt contains a clear supplier name (Mercure HOTELS), properly formatted UK VAT number appropriate for a UK hotel, visible total amount (£239), and the employee name (Mr. Timo Marc Olef). The only valid issue is the requirement for submitting the travel expense report template, which is correctly identified. This demonstrates significant misapplication of the compliance rules to a receipt that is largely compliant."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly identified a missing supplier name issue. The extracted data clearly shows \"Mercure HOTELS\" as the supplier name, which is complete and valid. This contradicts the knowledge base requirement for \"Clear and readable receipts and invoices must be submitted with expenses\" where the supplier name is present.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged the VAT number format as an issue. The extracted data shows \"GB 456215301\" which is a valid UK VAT number format. Since this is a UK hotel receipt (Darlington address), the UK VAT format is appropriate. The knowledge base doesn't specify format requirements for foreign VAT numbers.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly claimed the total amount is missing. The extracted data clearly shows a total balance due of 0 (zero) with line items totaling 239 GBP, which was paid as a deposit at check-in. This contradicts the knowledge base requirement that \"Document must show total amount\" - the amount is present.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the employee name as guest/traveler is present. The extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which satisfies the knowledge base requirement that \"Hotel/flights etc invoices should indicate the name of the worker not the company.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that additional documentation is required. According to the knowledge base, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.4266666666666667,
+      "issues": [
+        "1. Four out of five identified compliance issues are false positives",
+        "2. The system failed to recognize that this is a UK hotel receipt (Darlington) despite being submitted for a German employee",
+        "3. The system incorrectly applied German compliance standards to a UK receipt",
+        "4. The system failed to recognize that supplier information",
+        "VAT number",
+        "total amount",
+        "and customer name were all present in the extracted data"
+      ],
+      "summary": "The compliance assessment is largely inaccurate. While the requirement for a travel expense report template is valid, the other four issues are false positives as the receipt clearly contains the supplier name (Mercure HOTELS), a valid VAT number format for the UK (GB 456215301), the total amount (£239), and the employee name (Mr. Timo Marc Olef). The system appears to have failed to recognize that this is a UK hotel receipt for a German employee's business travel, and incorrectly applied German document standards to a UK receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The supplier name \"Mercure HOTELS\" is clearly present in the extracted data. This is a false positive compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The VAT number \"GB 456215301\" is present in the extracted data and appears to be in a valid format for a UK business. The receipt is from a UK hotel (Darlington), so a UK VAT number is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The total balance due is clearly shown as £239 in the extracted data (sum of line items and also shown in VAT breakdown).\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer name \"Mr. Timo Marc Olef\" is clearly present in the extracted data, meeting the requirement for employee name as guest/traveler.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Four out of five identified compliance issues are false positives\n2. The system failed to recognize that this is a UK hotel receipt (Darlington) despite being submitted for a German employee\n3. The system incorrectly applied German compliance standards to a UK receipt\n4. The system failed to recognize that supplier information, VAT number, total amount, and customer name were all present in the extracted data\n\nSUMMARY: The compliance assessment is largely inaccurate. While the requirement for a travel expense report template is valid, the other four issues are false positives as the receipt clearly contains the supplier name (Mercure HOTELS), a valid VAT number format for the UK (GB 456215301), the total amount (£239), and the employee name (Mr. Timo Marc Olef). The system appears to have failed to recognize that this is a UK hotel receipt for a German employee's business travel, and incorrectly applied German document standards to a UK receipt.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The supplier name \"Mercure HOTELS\" is clearly present in the extracted data. This is a false positive compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The VAT number \"GB 456215301\" is present in the extracted data and appears to be in a valid format for a UK business. The receipt is from a UK hotel (Darlington), so a UK VAT number is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The total balance due is clearly shown as £239 in the extracted data (sum of line items and also shown in VAT breakdown).\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer name \"Mr. Timo Marc Olef\" is clearly present in the extracted data, meeting the requirement for employee name as guest/traveler.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Four out of five identified compliance issues are false positives\n2. The system failed to recognize that this is a UK hotel receipt (Darlington) despite being submitted for a German employee\n3. The system incorrectly applied German compliance standards to a UK receipt\n4. The system failed to recognize that supplier information, VAT number, total amount, and customer name were all present in the extracted data\n\nSUMMARY: The compliance assessment is largely inaccurate. While the requirement for a travel expense report template is valid, the other four issues are false positives as the receipt clearly contains the supplier name (Mercure HOTELS), a valid VAT number format for the UK (GB 456215301), the total amount (£239), and the employee name (Mr. Timo Marc Olef). The system appears to have failed to recognize that this is a UK hotel receipt for a German employee's business travel, and incorrectly applied German document standards to a UK receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The supplier name is missing, which is a mandatory requirement for all expense types as per the compliance rules. The assessment correctly identified this as a compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 80 - The VAT number format is not in the required format, which is a compliance issue. However, the assessment could have provided more specific details on the expected format.\n\nISSUE_3_VALIDATION_SCORE: 90 - The total amount in local currency is missing, which is a mandatory requirement for all expense types. The assessment correctly identified this as a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 90 - The employee name as guest/traveler is missing, which is a mandatory requirement for travel-related expenses. The assessment correctly identified this as a compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - The additional documentation (travel expense report template) is required for this expense type, which the assessment correctly identified as a compliance issue.\n\nCONFIDENCE: 88\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate, with the key compliance issues correctly identified. The assessment could be improved by providing more specific details on the expected format for the VAT number."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The supplier name \"Mercure HOTELS\" is clearly present in the extracted data. This is a false positive compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The VAT number \"GB 456215301\" is present in the extracted data and appears to be in a valid format for a UK VAT number. This is a false positive compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The total balance due is clearly indicated as 0 GBP in the extracted data, with itemized charges and payments that balance out to zero. This is a false positive compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The customer name \"Mr. Timo Marc Olef\" is clearly present in the extracted data. This is a false positive compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP. This additional documentation requirement is valid.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Four out of five identified compliance issues are false positives, as the required information is present in the extracted data.\n2. The receipt appears to be from the UK (Darlington), not Germany, despite the country being listed as Germany.\n3. The validation fails to recognize that the receipt contains all the required information for a valid accommodation receipt.\n4. The system incorrectly flags standard information that is clearly present in the extracted data.\n5. Only the requirement for the travel expense report template is a valid compliance issue.\n\nSUMMARY: The compliance assessment is largely inaccurate, with 4 out of 5 identified issues being false positives. The receipt contains the supplier name, VAT number, total amount, and customer name, all of which were incorrectly flagged as missing. Only the requirement for an additional travel expense report template is a valid compliance issue. Additionally, there's a discrepancy between the stated country (Germany) and the actual location of the hotel (United Kingdom), which wasn't addressed in the compliance assessment."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The supplier name \"Mercure HOTELS\" is clearly present in the extracted data. This is a false positive compliance issue.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The VAT number \"GB 456215301\" is present in the extracted data and appears to be in a valid format for a UK business. The receipt is from a UK hotel (Darlington), so a UK VAT number is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The total balance due is clearly shown as £239 in the extracted data (sum of line items and also shown in VAT breakdown).",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The customer name \"Mr. Timo Marc Olef\" is clearly present in the extracted data, meeting the requirement for employee name as guest/traveler.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People ICP.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.5499999999999999,
+      "issues": [
+        "1. Multiple issues incorrectly claim information is missing when it's clearly present in the extracted data",
+        "2. The system fails to recognize that this is a UK hotel receipt (Darlington) for a German employee",
+        "which creates confusion about applicable VAT rules",
+        "3. The validation doesn't acknowledge that the receipt shows a zero balance because it was fully paid (239 GBP deposit transfer at check-in)",
+        "4. The system incorrectly claims the customer name is missing when it's clearly present"
+      ],
+      "summary": "The issue categorization has significant problems with accuracy. Four out of five issues are either completely incorrect or partially mischaracterized, as they claim information is missing when it's actually present in the extracted data. Only the requirement for a travel expense report template is correctly identified. The system appears to have failed to properly analyze the extracted data before generating compliance issues.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue claims the supplier name is missing, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is incorrectly categorized as a missing field when the data is actually present.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue claims the VAT number format is incorrect, but the extracted data shows \"GB 456215301\" which appears to be a valid UK VAT format. However, since this is a German receipt context but shows a UK VAT number, there might be a legitimate compliance concern, but it's not clearly articulated.\n\nISSUE_3_VALIDATION_SCORE: 40 - The issue claims the total amount is missing, but the extracted data shows a total_balance_due of 0 and line items totaling 239 GBP. The receipt appears to show a zero balance because it was paid in full, but the total amount is actually documented.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is completely incorrect.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue correctly identifies that a travel expense report template is required for accommodation expenses according to the compliance rules for Global People. This is accurately categorized.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Multiple issues incorrectly claim information is missing when it's clearly present in the extracted data\n2. The system fails to recognize that this is a UK hotel receipt (Darlington) for a German employee, which creates confusion about applicable VAT rules\n3. The validation doesn't acknowledge that the receipt shows a zero balance because it was fully paid (239 GBP deposit transfer at check-in)\n4. The system incorrectly claims the customer name is missing when it's clearly present\n\nSUMMARY: The issue categorization has significant problems with accuracy. Four out of five issues are either completely incorrect or partially mischaracterized, as they claim information is missing when it's actually present in the extracted data. Only the requirement for a travel expense report template is correctly identified. The system appears to have failed to properly analyze the extracted data before generating compliance issues.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue claims the supplier name is missing, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is incorrectly categorized as a missing field when the data is actually present.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue claims the VAT number format is incorrect, but the extracted data shows \"GB 456215301\" which appears to be a valid UK VAT format. However, since this is a German receipt context but shows a UK VAT number, there might be a legitimate compliance concern, but it's not clearly articulated.\n\nISSUE_3_VALIDATION_SCORE: 40 - The issue claims the total amount is missing, but the extracted data shows a total_balance_due of 0 and line items totaling 239 GBP. The receipt appears to show a zero balance because it was paid in full, but the total amount is actually documented.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is completely incorrect.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue correctly identifies that a travel expense report template is required for accommodation expenses according to the compliance rules for Global People. This is accurately categorized.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Multiple issues incorrectly claim information is missing when it's clearly present in the extracted data\n2. The system fails to recognize that this is a UK hotel receipt (Darlington) for a German employee, which creates confusion about applicable VAT rules\n3. The validation doesn't acknowledge that the receipt shows a zero balance because it was fully paid (239 GBP deposit transfer at check-in)\n4. The system incorrectly claims the customer name is missing when it's clearly present\n\nSUMMARY: The issue categorization has significant problems with accuracy. Four out of five issues are either completely incorrect or partially mischaracterized, as they claim information is missing when it's actually present in the extracted data. Only the requirement for a travel expense report template is correctly identified. The system appears to have failed to properly analyze the extracted data before generating compliance issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" and the description \"The supplier name is missing or incomplete\" are accurate and actionable. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" and the description \"The VAT number is not in the required format\" are accurate. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Fix Identified\" and the description \"The total amount in local currency is missing or not clearly visible\" are accurate and actionable. The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Follow-up Action Identified\" and the description \"The employee name as guest/traveler is missing\" are accurate. The recommendation to provide the employee name is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue type \"Standards & Compliance | Follow-up Action Identified\" and the description \"Additional documentation is required for this expense type\" are accurate. The recommendation to submit the required travel expense report template is appropriate.\n\nCONFIDENCE: 90\n\nISSUES: None identified. The issue categorization appears to be accurate and follows the established taxonomy.\n\nSUMMARY: The issues are correctly categorized in terms of type, severity, and descriptions. The recommendations provided are clear and actionable. The categorization aligns with the established taxonomy and no issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.35,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The system incorrectly flagged \"supplier_name\" as missing when the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is an incorrect categorization as the data is present in the receipt.\n\nISSUE_2_VALIDATION_SCORE: 30 - The system incorrectly flagged the VAT number format as incorrect. The extracted data shows \"GB 456215301\" which is a valid UK VAT number format. This appears to be a confusion because the receipt is from the UK (Darlington) while the expense is being submitted in Germany.\n\nISSUE_3_VALIDATION_SCORE: 20 - The system incorrectly flagged \"total_balance_due\" as missing when the extracted data shows a total balance due of 0 (zero) with line items and VAT breakdown that total to 239 GBP. The receipt clearly shows the total amount.\n\nISSUE_4_VALIDATION_SCORE: 0 - The system incorrectly flagged \"customer_name\" as missing when the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer name. This is a completely incorrect categorization.\n\nISSUE_5_VALIDATION_SCORE: 90 - This issue is correctly identified. For Global People in Germany, travel expenses must be submitted using the Travel Expense Report template as specified in the compliance rules.\n\nCONFIDENCE: 35\n\nISSUES:\n1. Four out of five issues are incorrectly categorized or flagged\n2. The system appears to be ignoring the extracted data that clearly contains the information being flagged as missing\n3. The system may be confused by the fact that this is a UK hotel receipt being submitted for a German employee\n4. Only the requirement for the travel expense report template is correctly identified\n\nSUMMARY: The issue categorization accuracy is poor, with 4 out of 5 issues being incorrectly flagged. The system failed to recognize clearly extracted data including the supplier name, VAT number, total amount, and customer name. Only the requirement for the additional travel expense report template was correctly identified. The system needs significant improvement in reconciling extracted data with compliance requirements before flagging issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The issue claims the supplier name is missing, but the extracted data clearly shows \"Mercure HOTELS\" as the supplier name. This is incorrectly categorized as a missing field when the data is actually present.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue claims the VAT number format is incorrect, but the extracted data shows \"GB 456215301\" which appears to be a valid UK VAT format. However, since this is a German receipt context but shows a UK VAT number, there might be a legitimate compliance concern, but it's not clearly articulated.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The issue claims the total amount is missing, but the extracted data shows a total_balance_due of 0 and line items totaling 239 GBP. The receipt appears to show a zero balance because it was paid in full, but the total amount is actually documented.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue claims the employee name as guest/traveler is missing, but the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer_name. This is completely incorrect.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue correctly identifies that a travel expense report template is required for accommodation expenses according to the compliance rules for Global People. This is accurately categorized.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.6266666666666666,
+      "issues": [
+        "1. Two issues (supplier name and customer name) appear to be incorrectly identified as they are present in the extracted data",
+        "2. Recommendations for issues 1-3 are too generic and not actionable enough",
+        "3. The system doesn't address the mismatch between a UK hotel receipt (with UK VAT) being submitted for a German expense claim"
+      ],
+      "summary": "The recommendations vary significantly in quality. The recommendation for submitting the required travel expense report template is excellent and directly addresses compliance requirements. The recommendation regarding the employee name as guest is generally good. However, the recommendations for the supplier name, VAT number format, and total amount issues are too generic and don't provide specific actionable guidance. Additionally, some issues appear to be incorrectly identified since the data is present in the extracted information. The system should better address the core issue of submitting a UK hotel receipt for a German expense claim.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" is vague and not actionable. The supplier name \"Mercure HOTELS\" is actually present in the extracted data, so the issue itself is incorrectly identified. A better recommendation would be to ensure the supplier name is clearly visible on the receipt or to confirm the existing supplier name is sufficient.\n\nISSUE_2_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" is generic and not helpful. The VAT number \"GB 456215301\" is present in the extracted data, but the issue is that this is a UK VAT number while the expense is claimed in Germany. A better recommendation would be to explain that a German VAT number is required for German expenses, or to clarify why the UK receipt is being submitted for a German expense claim.\n\nISSUE_3_VALIDATION_SCORE: 40 - The recommendation is generic, but the issue is valid. The total balance due is shown as 0 in the extracted data, which is problematic for an expense claim. A better recommendation would be to provide the actual amount paid (239 GBP according to the line items) and ensure this is clearly indicated as the expense amount.\n\nISSUE_4_VALIDATION_SCORE: 80 - This recommendation is valid and specific. The customer name \"Mr. Timo Marc Olef\" is present in the extracted data, so the issue may be incorrectly identified, but the recommendation correctly emphasizes the importance of having the employee name as the guest/traveler on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - This recommendation is specific, actionable, and directly addresses the compliance requirement. It correctly identifies that for Global People in Germany, travel expenses must be submitted using the Travel Expense Report template as specified in the compliance rules.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (supplier name and customer name) appear to be incorrectly identified as they are present in the extracted data\n2. Recommendations for issues 1-3 are too generic and not actionable enough\n3. The system doesn't address the mismatch between a UK hotel receipt (with UK VAT) being submitted for a German expense claim\n\nSUMMARY: The recommendations vary significantly in quality. The recommendation for submitting the required travel expense report template is excellent and directly addresses compliance requirements. The recommendation regarding the employee name as guest is generally good. However, the recommendations for the supplier name, VAT number format, and total amount issues are too generic and don't provide specific actionable guidance. Additionally, some issues appear to be incorrectly identified since the data is present in the extracted information. The system should better address the core issue of submitting a UK hotel receipt for a German expense claim.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" is vague and not actionable. The supplier name \"Mercure HOTELS\" is actually present in the extracted data, so the issue itself is incorrectly identified. A better recommendation would be to ensure the supplier name is clearly visible on the receipt or to confirm the existing supplier name is sufficient.\n\nISSUE_2_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" is generic and not helpful. The VAT number \"GB 456215301\" is present in the extracted data, but the issue is that this is a UK VAT number while the expense is claimed in Germany. A better recommendation would be to explain that a German VAT number is required for German expenses, or to clarify why the UK receipt is being submitted for a German expense claim.\n\nISSUE_3_VALIDATION_SCORE: 40 - The recommendation is generic, but the issue is valid. The total balance due is shown as 0 in the extracted data, which is problematic for an expense claim. A better recommendation would be to provide the actual amount paid (239 GBP according to the line items) and ensure this is clearly indicated as the expense amount.\n\nISSUE_4_VALIDATION_SCORE: 80 - This recommendation is valid and specific. The customer name \"Mr. Timo Marc Olef\" is present in the extracted data, so the issue may be incorrectly identified, but the recommendation correctly emphasizes the importance of having the employee name as the guest/traveler on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - This recommendation is specific, actionable, and directly addresses the compliance requirement. It correctly identifies that for Global People in Germany, travel expenses must be submitted using the Travel Expense Report template as specified in the compliance rules.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two issues (supplier name and customer name) appear to be incorrectly identified as they are present in the extracted data\n2. Recommendations for issues 1-3 are too generic and not actionable enough\n3. The system doesn't address the mismatch between a UK hotel receipt (with UK VAT) being submitted for a German expense claim\n\nSUMMARY: The recommendations vary significantly in quality. The recommendation for submitting the required travel expense report template is excellent and directly addresses compliance requirements. The recommendation regarding the employee name as guest is generally good. However, the recommendations for the supplier name, VAT number format, and total amount issues are too generic and don't provide specific actionable guidance. Additionally, some issues appear to be incorrectly identified since the data is present in the extracted information. The system should better address the core issue of submitting a UK hotel receipt for a German expense claim."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier name with the supplier or provider is valid and actionable. This is a common compliance issue that needs to be resolved.\n\nISSUE_2_VALIDATION_SCORE: 80 - The recommendation to address the incorrect VAT number format with the supplier or provider is valid. However, it could be more specific by providing guidance on the required VAT number format.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing total amount in local currency is valid and straightforward. This is a key piece of information that needs to be clearly displayed on the receipt.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide the employee name as guest/traveler is valid and addresses the identified issue. This is a common requirement for travel-related expenses.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to submit the required travel expense report template is valid and directly addresses the missing documentation issue. This is a necessary step to ensure compliance.\n\nCONFIDENCE: 88\n\nISSUES: None\n\nSUMMARY: The provided recommendations are generally valid and useful, addressing the key compliance issues identified with the expense receipt. The recommendations are actionable, feasible, and align with the stated compliance rules. A few recommendations could be slightly more detailed, but overall the advice given is sound and should help resolve the compliance problems."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation to \"address this issue with the supplier or provider\" for the missing supplier name is not very helpful or actionable. The extracted data actually shows \"Mercure HOTELS\" as the supplier name, so the issue appears to be incorrectly identified. A better recommendation would be to verify if \"Mercure HOTELS\" is sufficient as a supplier name or if more specific information is needed.\n\nISSUE_2_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" for the incorrect VAT number format is vague and not actionable. The extracted data shows \"GB 456215301\" as the supplier VAT number, which appears to be a valid UK VAT number format. Since this is a UK hotel receipt for a German employee, the system should clarify if a German VAT format is required or if the UK format is acceptable for accommodation expenses incurred abroad.\n\nISSUE_3_VALIDATION_SCORE: 40 - The recommendation regarding the missing total amount is somewhat valid but incomplete. The extracted data shows a total balance due of 0, with line items showing charges of 239 GBP and a payment of 239 GBP. A better recommendation would be to verify if the zero balance is correct and ensure the receipt shows both the total charged amount and payment details clearly.\n\nISSUE_4_VALIDATION_SCORE: 10 - The recommendation regarding the missing employee name is incorrect. The extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer name, so this issue is incorrectly identified. No action is needed since the employee name is already present on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to \"submit the required travel expense report template for this country\" is valid, specific and actionable. According to the compliance rules, \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" for Global People in Germany.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Multiple issues are incorrectly identified when the data is actually present in the receipt\n2. Recommendations for issues 1-3 are vague and not sufficiently actionable\n3. The system fails to recognize existing information in the receipt (supplier name, customer name, total amount details)\n4. Recommendations don't account for the fact that this is a UK hotel receipt for a German employee\n\nSUMMARY: The validation results contain several incorrect assessments, as the receipt actually includes most of the information flagged as missing. Only the recommendation regarding the required travel expense report template is truly valid and helpful. The system needs to better analyze the extracted data before generating compliance issues and should provide more specific, actionable recommendations rather than generic suggestions to \"address issues with suppliers.\""
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" is vague and not actionable. The supplier name \"Mercure HOTELS\" is actually present in the extracted data, so the issue itself is incorrectly identified. A better recommendation would be to ensure the supplier name is clearly visible on the receipt or to confirm the existing supplier name is sufficient.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" is generic and not helpful. The VAT number \"GB 456215301\" is present in the extracted data, but the issue is that this is a UK VAT number while the expense is claimed in Germany. A better recommendation would be to explain that a German VAT number is required for German expenses, or to clarify why the UK receipt is being submitted for a German expense claim.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The recommendation is generic, but the issue is valid. The total balance due is shown as 0 in the extracted data, which is problematic for an expense claim. A better recommendation would be to provide the actual amount paid (239 GBP according to the line items) and ensure this is clearly indicated as the expense amount.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 80,
+          "judge_explanation": "This recommendation is valid and specific. The customer name \"Mr. Timo Marc Olef\" is present in the extracted data, so the issue may be incorrectly identified, but the recommendation correctly emphasizes the importance of having the employee name as the guest/traveler on the receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This recommendation is specific, actionable, and directly addresses the compliance requirement. It correctly identifies that for Global People in Germany, travel expenses must be submitted using the Travel Expense Report template as specified in the compliance rules.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.5,
+      "issues": [
+        "1. Falsely claims supplier name is missing when \"Mercure HOTELS\" is clearly present",
+        "2. Falsely claims VAT number format is incorrect when \"GB 456215301\" is provided",
+        "3. Falsely claims total amount is missing when the receipt shows charges and payments totaling 239 GBP",
+        "4. Incorrectly flags customer name as missing when \"Mr. Timo Marc Olef\" is present in the data"
+      ],
+      "summary": "The AI response contains significant hallucinations in 3 of the 5 issues it identified. It falsely claims that supplier name, VAT number format, and total amount are missing or incorrect when all these elements are clearly present in the extracted data. Only issues 4 and 5 appear to be legitimate compliance concerns based on the provided rules. The response demonstrates poor accuracy in validating the receipt against the compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue about missing supplier name is a hallucination. The receipt clearly shows \"Mercure HOTELS\" as the supplier name in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue about incorrect VAT number format is a hallucination. The receipt shows \"GB 456215301\" as the supplier VAT number, which is a valid UK VAT number format.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue about missing total amount is a hallucination. The extracted data shows a total_balance_due of 0 with line items that clearly show charges totaling 239 GBP and payments of 239 GBP.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is valid. The compliance rules require the employee name as guest/traveler, and the extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which fulfills this requirement.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is valid. The compliance rules state \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" which is a legitimate requirement for Global People ICP.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims supplier name is missing when \"Mercure HOTELS\" is clearly present\n2. Falsely claims VAT number format is incorrect when \"GB 456215301\" is provided\n3. Falsely claims total amount is missing when the receipt shows charges and payments totaling 239 GBP\n4. Incorrectly flags customer name as missing when \"Mr. Timo Marc Olef\" is present in the data\n\nSUMMARY: The AI response contains significant hallucinations in 3 of the 5 issues it identified. It falsely claims that supplier name, VAT number format, and total amount are missing or incorrect when all these elements are clearly present in the extracted data. Only issues 4 and 5 appear to be legitimate compliance concerns based on the provided rules. The response demonstrates poor accuracy in validating the receipt against the compliance requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue about missing supplier name is a hallucination. The receipt clearly shows \"Mercure HOTELS\" as the supplier name in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue about incorrect VAT number format is a hallucination. The receipt shows \"GB 456215301\" as the supplier VAT number, which is a valid UK VAT number format.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue about missing total amount is a hallucination. The extracted data shows a total_balance_due of 0 with line items that clearly show charges totaling 239 GBP and payments of 239 GBP.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is valid. The compliance rules require the employee name as guest/traveler, and the extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which fulfills this requirement.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is valid. The compliance rules state \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" which is a legitimate requirement for Global People ICP.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims supplier name is missing when \"Mercure HOTELS\" is clearly present\n2. Falsely claims VAT number format is incorrect when \"GB 456215301\" is provided\n3. Falsely claims total amount is missing when the receipt shows charges and payments totaling 239 GBP\n4. Incorrectly flags customer name as missing when \"Mr. Timo Marc Olef\" is present in the data\n\nSUMMARY: The AI response contains significant hallucinations in 3 of the 5 issues it identified. It falsely claims that supplier name, VAT number format, and total amount are missing or incorrect when all these elements are clearly present in the extracted data. Only issues 4 and 5 appear to be legitimate compliance concerns based on the provided rules. The response demonstrates poor accuracy in validating the receipt against the compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The information provided in the AI response, such as the supplier name, address, VAT number, and other details, is present in the source data and does not appear to be hallucinated.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements mentioned in the AI response are consistent with the provided compliance policy information and do not seem to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 0 - The entity names, amounts, and dates provided in the AI response are present in the source data and do not appear to be made up.\n\nISSUE_4_VALIDATION_SCORE: 0 - The information presented in the AI response does not contain any obvious assumptions presented as facts.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI response does not contain any additional information beyond what is present in the source data.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response appears to be free from hallucinations and fabricated information. All the details provided are consistent with the source data, and no issues were identified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue states \"The supplier name is missing or incomplete.\" This is a hallucination because the receipt clearly shows \"Mercure HOTELS\" as the supplier name in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue states \"The VAT number is not in the required format.\" This is a hallucination because the receipt shows a valid VAT number format \"GB 456215301\" which is appropriate for a UK-based hotel.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue states \"The total amount in local currency is missing or not clearly visible.\" This is a hallucination because the extracted data shows a total balance due of 0 GBP, with line items and VAT breakdown clearly indicating a total of 239 GBP that was paid as a deposit at check-in.\n\nISSUE_4_VALIDATION_SCORE: 0 - The fourth issue states \"The employee name as guest/traveler is missing.\" This is a hallucination because the extracted data clearly shows \"Mr. Timo Marc Olef\" as the customer name.\n\nISSUE_5_VALIDATION_SCORE: 50 - The fifth issue regarding \"Additional documentation is required\" and requesting a travel expense report template may be valid based on the compliance rules which state \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx.\" However, flagging this as an issue with the receipt itself is misleading as this is a secondary requirement, not a problem with the receipt.\n\nCONFIDENCE: 10\n\nISSUES:\n1. Falsely claims supplier name is missing when \"Mercure HOTELS\" is clearly present\n2. Falsely claims VAT number format is incorrect when \"GB 456215301\" is appropriate for UK businesses\n3. Falsely claims total amount is missing when the receipt shows payment of 239 GBP as deposit\n4. Falsely claims employee/guest name is missing when \"Mr. Timo Marc Olef\" is clearly shown\n5. Mischaracterizes the need for additional documentation as a receipt issue rather than a procedural requirement\n\nSUMMARY: The AI response contains significant hallucinations by claiming information is missing from the receipt when it is clearly present in the extracted data. The response incorrectly flags the supplier name, VAT number format, total amount, and customer name as missing or invalid when all these elements are present and properly formatted. Only the fifth issue regarding additional documentation requirements has some validity, but it's not a problem with the receipt itself. The response demonstrates a severe disconnect between the actual receipt data and the validation results provided."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier name is missing or incomplete.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about missing supplier name is a hallucination. The receipt clearly shows \"Mercure HOTELS\" as the supplier name in the extracted data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The VAT number is not in the required format.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about incorrect VAT number format is a hallucination. The receipt shows \"GB 456215301\" as the supplier VAT number, which is a valid UK VAT number format.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The total amount in local currency is missing or not clearly visible.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about missing total amount is a hallucination. The extracted data shows a total_balance_due of 0 with line items that clearly show charges totaling 239 GBP and payments of 239 GBP.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The employee name as guest/traveler is missing.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is valid. The compliance rules require the employee name as guest/traveler, and the extracted data shows \"Mr. Timo Marc Olef\" as the customer name, which fulfills this requirement.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation is required for this expense type.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is valid. The compliance rules state \"Business travel expenses must be submitted using this report: Travel Expense Report.xlsx. All travel related expenses must be reported using this template\" which is a legitimate requirement for Global People ICP.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [
+    "1. The AI incorrectly claims the supplier name is missing when it's clearly present",
+    "2. The AI incorrectly claims the VAT number format is incorrect without specifying what format is required",
+    "3. The AI incorrectly claims the total amount is missing when it's clearly present",
+    "4. The AI incorrectly claims the customer/employee name is missing when it's clearly present",
+    "5. The receipt is from a UK hotel (Darlington) with a UK VAT number",
+    "not a German hotel",
+    "which raises questions about the applicability of German rules",
+    "1. Four out of five identified compliance issues are false positives",
+    "2. The system failed to recognize that this is a UK hotel receipt (Darlington) despite being submitted for a German employee",
+    "3. The system incorrectly applied German compliance standards to a UK receipt",
+    "4. The system failed to recognize that supplier information",
+    "VAT number",
+    "total amount",
+    "and customer name were all present in the extracted data"
+  ],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Improve factual grounding: The AI response is largely factually ungrounded, with 4 out of 5 issues being completely incorrect based on the extracted data. The only partially correct issue is about the additional documentation requirement. The AI appears to have ignored or misread most of the clearly provided information in the extracted data.",
+    "Address issues in factual grounding: 1. The AI incorrectly claims the supplier name is missing when it's clearly present, 2. The AI incorrectly claims the VAT number format is incorrect without specifying what format is required, 3. The AI incorrectly claims the total amount is missing when it's clearly present, 4. The AI incorrectly claims the customer/employee name is missing when it's clearly present, 5. The receipt is from a UK hotel (Darlington) with a UK VAT number, not a German hotel, which raises questions about the applicability of German rules",
+    "Improve knowledge base adherence: The AI response shows poor adherence to the knowledge base with multiple incorrect issue identifications. While it correctly identified the need for a travel expense report template (issue 5), it incorrectly flagged three non-existent issues (supplier name, VAT format, and total amount). The receipt actually complies with most requirements - it has a clear supplier name, proper VAT format for its jurisdiction, visible total amount, and the employee name as guest. The only valid compliance issue is the need for the additional travel expense report template as required by Global People's policies.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly identified missing supplier name when it's clearly present, 2. The AI incorrectly flagged the VAT number format as an issue when it's appropriate for a UK hotel, 3. The AI incorrectly claimed the total amount is missing when it's clearly documented, 4. The AI contradicted itself by identifying missing employee name as an issue while the extracted data shows it's present, 5. The AI response contains multiple factual errors about the receipt content",
+    "Improve compliance accuracy: The compliance assessment is largely inaccurate. While the requirement for a travel expense report template is valid, the other four issues are false positives as the receipt clearly contains the supplier name (Mercure HOTELS), a valid VAT number format for the UK (GB 456215301), the total amount (£239), and the employee name (Mr. Timo Marc Olef). The system appears to have failed to recognize that this is a UK hotel receipt for a German employee's business travel, and incorrectly applied German document standards to a UK receipt.",
+    "Address issues in compliance accuracy: 1. Four out of five identified compliance issues are false positives, 2. The system failed to recognize that this is a UK hotel receipt (Darlington) despite being submitted for a German employee, 3. The system incorrectly applied German compliance standards to a UK receipt, 4. The system failed to recognize that supplier information, VAT number, total amount, and customer name were all present in the extracted data",
+    "Improve issue categorization: The issue categorization has significant problems with accuracy. Four out of five issues are either completely incorrect or partially mischaracterized, as they claim information is missing when it's actually present in the extracted data. Only the requirement for a travel expense report template is correctly identified. The system appears to have failed to properly analyze the extracted data before generating compliance issues.",
+    "Address issues in issue categorization: 1. Multiple issues incorrectly claim information is missing when it's clearly present in the extracted data, 2. The system fails to recognize that this is a UK hotel receipt (Darlington) for a German employee, which creates confusion about applicable VAT rules, 3. The validation doesn't acknowledge that the receipt shows a zero balance because it was fully paid (239 GBP deposit transfer at check-in), 4. The system incorrectly claims the customer name is missing when it's clearly present",
+    "Improve recommendation validity: The recommendations vary significantly in quality. The recommendation for submitting the required travel expense report template is excellent and directly addresses compliance requirements. The recommendation regarding the employee name as guest is generally good. However, the recommendations for the supplier name, VAT number format, and total amount issues are too generic and don't provide specific actionable guidance. Additionally, some issues appear to be incorrectly identified since the data is present in the extracted information. The system should better address the core issue of submitting a UK hotel receipt for a German expense claim.",
+    "Address issues in recommendation validity: 1. Two issues (supplier name and customer name) appear to be incorrectly identified as they are present in the extracted data, 2. Recommendations for issues 1-3 are too generic and not actionable enough, 3. The system doesn't address the mismatch between a UK hotel receipt (with UK VAT) being submitted for a German expense claim",
+    "Improve hallucination detection: The AI response contains significant hallucinations in 3 of the 5 issues it identified. It falsely claims that supplier name, VAT number format, and total amount are missing or incorrect when all these elements are clearly present in the extracted data. Only issues 4 and 5 appear to be legitimate compliance concerns based on the provided rules. The response demonstrates poor accuracy in validating the receipt against the compliance requirements.",
+    "Address issues in hallucination detection: 1. Falsely claims supplier name is missing when \"Mercure HOTELS\" is clearly present, 2. Falsely claims VAT number format is incorrect when \"GB 456215301\" is provided, 3. Falsely claims total amount is missing when the receipt shows charges and payments totaling 239 GBP, 4. Incorrectly flags customer name as missing when \"Mr. Timo Marc Olef\" is present in the data"
+  ],
+  "timestamp": "2025-10-01T13:39:58.157Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 81968,
+    "timing": {
+      "validation_start_time": "2025-10-01T13:38:36.188Z",
+      "validation_end_time": "2025-10-01T13:39:58.156Z",
+      "total_validation_time_seconds": "82.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T13:38:36.188Z",
+          "end_time": "2025-10-01T13:39:58.156Z",
+          "duration_seconds": "82.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "82.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.37",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The supplier name is missing or incomplete.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 6.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 30,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The VAT number is not in the required format.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 10,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 50,
+        "recommendation_validity": 30,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The total amount in local currency is missing or not clearly visible.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 9.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 40,
+        "recommendation_validity": 40,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "The employee name as guest/traveler is missing.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 42.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Additional documentation is required for this expense type.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 88.67,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

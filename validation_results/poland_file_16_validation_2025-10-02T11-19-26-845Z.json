@@ -1,0 +1,722 @@
+{
+  "overall_score": 0.9055555555555556,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8433333333333333,
+      "issues": [
+        "1. The AI incorrectly claims line items are missing descriptions when the extracted data shows detailed information.",
+        "2. The AI may be applying standard receipt requirements to a mileage record form",
+        "which has different formatting expectations.",
+        "3. The AI doesn't acknowledge that while there's no dedicated total_amount field",
+        "there is a sum (437 PLN) in the last line item."
+      ],
+      "summary": "The AI response is partially factually grounded. It correctly identifies issues related to mileage documentation requirements and gross-up rules according to Polish regulations. However, it incorrectly claims missing line item descriptions when the data shows detailed route information, kilometers, and purpose. It also applies standard receipt requirements (customer name, invoice number) to a mileage record form, which may have different documentation standards. The response would be more accurate if it recognized the document type and adjusted expectations accordingly.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing mandatory customer name on the receipt.\" While the extracted data does show null for customer_name, the document appears to be a mileage record form from GoGlobal (supplier_name is listed as \"GOGLOBAL GEO POLAND Sp. z o.o.\") with an employee signature (\"Pietras\"). For a mileage record, it's not clear if a separate customer name is actually required beyond the company name that's already present.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing mandatory invoice number on the receipt.\" The extracted data does show null for invoice_number and receipt_number, but this is a mileage record form, not a traditional receipt or invoice, so it's questionable whether an invoice number would be required for this document type.\n\nISSUE_3_VALIDATION_SCORE: 70 - The AI claims there is a \"Missing mandatory total amount on the receipt.\" While there is no single total_amount field populated in the extracted data, the line_items section does show a total of 437 PLN (sum of 212.75 + 224.25) in the last line item, which appears to be a total. The AI is technically correct that a formal total_amount field is missing.\n\nISSUE_4_VALIDATION_SCORE: 30 - The AI claims there are \"Missing mandatory item description for line items on the receipt.\" This is not accurate as the extracted data shows detailed line items with dates, routes (\"Lublin-Warsaw\", \"Warsaw-Lublin\"), purpose (\"Business trip\"), kilometers driven (185, 195), rates (1.15), and amounts (212.75, 224.25).\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies that \"Additional documentation required for mileage expenses\" and recommends submitting a mileage logbook with complete details. This aligns with the compliance rules that state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identifies that \"Gross-up required for mileage expenses\" and accurately quotes the compliance rule about passenger car rates in Poland. The extracted data shows a rate of 1.15 PLN per kilometer being used, which matches one of the rates mentioned in the compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI incorrectly claims line items are missing descriptions when the extracted data shows detailed information.\n2. The AI may be applying standard receipt requirements to a mileage record form, which has different formatting expectations.\n3. The AI doesn't acknowledge that while there's no dedicated total_amount field, there is a sum (437 PLN) in the last line item.\n\nSUMMARY: The AI response is partially factually grounded. It correctly identifies issues related to mileage documentation requirements and gross-up rules according to Polish regulations. However, it incorrectly claims missing line item descriptions when the data shows detailed route information, kilometers, and purpose. It also applies standard receipt requirements (customer name, invoice number) to a mileage record form, which may have different documentation standards. The response would be more accurate if it recognized the document type and adjusted expectations accordingly.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing mandatory customer name on the receipt.\" While the extracted data does show null for customer_name, the document appears to be a mileage record form from GoGlobal (supplier_name is listed as \"GOGLOBAL GEO POLAND Sp. z o.o.\") with an employee signature (\"Pietras\"). For a mileage record, it's not clear if a separate customer name is actually required beyond the company name that's already present.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI claims there is a \"Missing mandatory invoice number on the receipt.\" The extracted data does show null for invoice_number and receipt_number, but this is a mileage record form, not a traditional receipt or invoice, so it's questionable whether an invoice number would be required for this document type.\n\nISSUE_3_VALIDATION_SCORE: 70 - The AI claims there is a \"Missing mandatory total amount on the receipt.\" While there is no single total_amount field populated in the extracted data, the line_items section does show a total of 437 PLN (sum of 212.75 + 224.25) in the last line item, which appears to be a total. The AI is technically correct that a formal total_amount field is missing.\n\nISSUE_4_VALIDATION_SCORE: 30 - The AI claims there are \"Missing mandatory item description for line items on the receipt.\" This is not accurate as the extracted data shows detailed line items with dates, routes (\"Lublin-Warsaw\", \"Warsaw-Lublin\"), purpose (\"Business trip\"), kilometers driven (185, 195), rates (1.15), and amounts (212.75, 224.25).\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies that \"Additional documentation required for mileage expenses\" and recommends submitting a mileage logbook with complete details. This aligns with the compliance rules that state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identifies that \"Gross-up required for mileage expenses\" and accurately quotes the compliance rule about passenger car rates in Poland. The extracted data shows a rate of 1.15 PLN per kilometer being used, which matches one of the rates mentioned in the compliance rules.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI incorrectly claims line items are missing descriptions when the extracted data shows detailed information.\n2. The AI may be applying standard receipt requirements to a mileage record form, which has different formatting expectations.\n3. The AI doesn't acknowledge that while there's no dedicated total_amount field, there is a sum (437 PLN) in the last line item.\n\nSUMMARY: The AI response is partially factually grounded. It correctly identifies issues related to mileage documentation requirements and gross-up rules according to Polish regulations. However, it incorrectly claims missing line item descriptions when the data shows detailed route information, kilometers, and purpose. It also applies standard receipt requirements (customer name, invoice number) to a mileage record form, which may have different documentation standards. The response would be more accurate if it recognized the document type and adjusted expectations accordingly."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response accurately represents the missing customer name field from the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response accurately represents the missing invoice number field from the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response accurately represents the missing total amount field from the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response accurately represents the missing item descriptions for the line items in the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response accurately references the need for a mileage logbook, which is consistent with the extracted data.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI response accurately describes the gross-up requirements for mileage expenses, which is consistent with the compliance rules provided.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance rules. All claims made in the response can be traced back to the information given, and no fabrication or assumptions beyond the data are present. The numerical values, dates, and entity details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.83,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that the customer name is missing from the receipt, which is accurate as the extracted data shows \"customer_name\": null. However, the supplier name \"GOGLOBAL GEO POLAND Sp. z o.o.\" is present in the extracted data, which the AI doesn't acknowledge.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing from the receipt, which is confirmed by the extracted data showing \"invoice_number\": null and \"receipt_number\": null.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims the total amount is missing, which is partially true. While there's no single \"total_amount\" field populated, the extracted data does show line items with amounts (212.75 and 224.25) and a total sum (437) in the last line item. The AI failed to recognize this partial information.\n\nISSUE_4_VALIDATION_SCORE: 70 - The AI claims missing item descriptions for line items, which is partially accurate. The extracted data does show some line items with descriptions (routes \"Lublin-Warsaw\" and \"Warsaw-Lublin\" with \"Business trip\" purposes), but lacks complete details for all items.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies the need for a mileage logbook with complete details. While the extracted data shows some mileage information, it's incomplete compared to the compliance requirements specified in the rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly cites the exact gross-up rule for mileage expenses in Poland, which matches precisely with the compliance rules provided.\n\nCONFIDENCE: 83\n\nISSUES:\n1. The AI didn't acknowledge that some supplier information is present\n2. The AI didn't recognize that there is partial total amount information (437) in the line items\n3. The AI didn't acknowledge that some line items do have descriptions (routes and purposes)\n\nSUMMARY: The AI response is mostly factually grounded, accurately identifying most compliance issues based on the extracted data and compliance rules. It correctly identified missing customer name, invoice number, and the need for additional documentation for mileage expenses. The gross-up requirement is perfectly cited from the compliance rules. However, it failed to acknowledge that some information was partially present, such as line item descriptions for two trips and a total amount of 437 in the last line item. The supplier information was available but not acknowledged by the AI."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims there is a \"Missing mandatory customer name on the receipt.\" While the extracted data does show null for customer_name, the document appears to be a mileage record form from GoGlobal (supplier_name is listed as \"GOGLOBAL GEO POLAND Sp. z o.o.\") with an employee signature (\"Pietras\"). For a mileage record, it's not clear if a separate customer name is actually required beyond the company name that's already present.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims there is a \"Missing mandatory invoice number on the receipt.\" The extracted data does show null for invoice_number and receipt_number, but this is a mileage record form, not a traditional receipt or invoice, so it's questionable whether an invoice number would be required for this document type.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI claims there is a \"Missing mandatory total amount on the receipt.\" While there is no single total_amount field populated in the extracted data, the line_items section does show a total of 437 PLN (sum of 212.75 + 224.25) in the last line item, which appears to be a total. The AI is technically correct that a formal total_amount field is missing.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The AI claims there are \"Missing mandatory item description for line items on the receipt.\" This is not accurate as the extracted data shows detailed line items with dates, routes (\"Lublin-Warsaw\", \"Warsaw-Lublin\"), purpose (\"Business trip\"), kilometers driven (185, 195), rates (1.15), and amounts (212.75, 224.25).",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that \"Additional documentation required for mileage expenses\" and recommends submitting a mileage logbook with complete details. This aligns with the compliance rules that state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that \"Gross-up required for mileage expenses\" and accurately quotes the compliance rule about passenger car rates in Poland. The extracted data shows a rate of 1.15 PLN per kilometer being used, which matches one of the rates mentioned in the compliance rules.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8833333333333333,
+      "issues": [
+        "1. Some issues identified don't fully align with the document type (mileage log vs. standard receipt)",
+        "2. The AI mischaracterized some information that appears to be present in the extracted data",
+        "3. Knowledge base references don't always match the issues being described",
+        "4. The AI didn't acknowledge that some of the \"missing\" information may not be applicable to a mileage log format"
+      ],
+      "summary": "The AI response correctly identified key compliance issues related to mileage expenses in Poland, particularly regarding the need for a complete logbook and the gross-up requirements with specific rates. However, it applied some standard receipt requirements too rigidly to a mileage log format, resulting in some mischaracterized issues. While the core compliance concerns for mileage in Poland were accurately identified, the overall assessment would benefit from better distinguishing between requirements for standard receipts versus mileage documentation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, the issue is partially mischaracterized since the document appears to be a mileage log with an employee signature (\"Pietras\"), which could be considered the customer name in this context. The knowledge base reference is correct, but the application to this specific document type could be more nuanced.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI identified a missing invoice number as an issue, but the knowledge base reference used (\"Receipt must show the date when the purchase/transaction occurred\") doesn't match the issue described. For a mileage log, an invoice number may not be strictly required in the same way as a traditional receipt. The document does include dates for the mileage entries.\n\nISSUE_3_VALIDATION_SCORE: 60 - The AI correctly noted the missing total amount as a mandatory field. However, the document does show individual amounts for each mileage entry (212.75 and 224.25) and a total (437), so this issue may be overstated. The knowledge base reference is correct, but the application to this document is questionable.\n\nISSUE_4_VALIDATION_SCORE: 40 - The AI claims missing line item descriptions, but the extracted data shows clear descriptions including routes (Lublin-Warsaw, Warsaw-Lublin), purpose (\"Business trip\"), kilometers driven, and rates. This issue appears to be incorrectly identified when compared to the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for a complete mileage logbook with additional details as required by Polish regulations. The recommendation and knowledge base reference are accurate and directly applicable to this document type.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified the gross-up requirement for mileage expenses in Poland. The recommendation accurately cites the specific rates for different engine capacities and the tax implications. This perfectly aligns with the knowledge base.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Some issues identified don't fully align with the document type (mileage log vs. standard receipt)\n2. The AI mischaracterized some information that appears to be present in the extracted data\n3. Knowledge base references don't always match the issues being described\n4. The AI didn't acknowledge that some of the \"missing\" information may not be applicable to a mileage log format\n\nSUMMARY: The AI response correctly identified key compliance issues related to mileage expenses in Poland, particularly regarding the need for a complete logbook and the gross-up requirements with specific rates. However, it applied some standard receipt requirements too rigidly to a mileage log format, resulting in some mischaracterized issues. While the core compliance concerns for mileage in Poland were accurately identified, the overall assessment would benefit from better distinguishing between requirements for standard receipts versus mileage documentation.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, the issue is partially mischaracterized since the document appears to be a mileage log with an employee signature (\"Pietras\"), which could be considered the customer name in this context. The knowledge base reference is correct, but the application to this specific document type could be more nuanced.\n\nISSUE_2_VALIDATION_SCORE: 50 - The AI identified a missing invoice number as an issue, but the knowledge base reference used (\"Receipt must show the date when the purchase/transaction occurred\") doesn't match the issue described. For a mileage log, an invoice number may not be strictly required in the same way as a traditional receipt. The document does include dates for the mileage entries.\n\nISSUE_3_VALIDATION_SCORE: 60 - The AI correctly noted the missing total amount as a mandatory field. However, the document does show individual amounts for each mileage entry (212.75 and 224.25) and a total (437), so this issue may be overstated. The knowledge base reference is correct, but the application to this document is questionable.\n\nISSUE_4_VALIDATION_SCORE: 40 - The AI claims missing line item descriptions, but the extracted data shows clear descriptions including routes (Lublin-Warsaw, Warsaw-Lublin), purpose (\"Business trip\"), kilometers driven, and rates. This issue appears to be incorrectly identified when compared to the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for a complete mileage logbook with additional details as required by Polish regulations. The recommendation and knowledge base reference are accurate and directly applicable to this document type.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified the gross-up requirement for mileage expenses in Poland. The recommendation accurately cites the specific rates for different engine capacities and the tax implications. This perfectly aligns with the knowledge base.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Some issues identified don't fully align with the document type (mileage log vs. standard receipt)\n2. The AI mischaracterized some information that appears to be present in the extracted data\n3. Knowledge base references don't always match the issues being described\n4. The AI didn't acknowledge that some of the \"missing\" information may not be applicable to a mileage log format\n\nSUMMARY: The AI response correctly identified key compliance issues related to mileage expenses in Poland, particularly regarding the need for a complete logbook and the gross-up requirements with specific rates. However, it applied some standard receipt requirements too rigidly to a mileage log format, resulting in some mischaracterized issues. While the core compliance concerns for mileage in Poland were accurately identified, the overall assessment would benefit from better distinguishing between requirements for standard receipts versus mileage documentation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing customer name as a compliance issue based on the knowledge base requirement that \"Document must show the name of the vendor/merchant that provided the goods or services\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing invoice number as a compliance issue based on the knowledge base requirement that \"Receipt must show the date when the purchase/transaction occurred\".\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing total amount as a compliance issue based on the knowledge base requirement that \"Receipt must display the final cost including all taxes and fees\".\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing item descriptions for line items as a compliance issue based on the knowledge base requirement that \"Receipt must specify the goods or services purchased with clear description\".\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response correctly identifies the requirement for a mileage logbook as an additional documentation requirement based on the knowledge base stating that \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval. This has to be documented in the vehicle mileage log kept by the employee\".\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI response correctly identifies the requirement for a gross-up on mileage expenses based on the knowledge base stating that \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3. For tax-deductible purposes: PLN 0.5214 per kilometre for engine capacity up to 900 cm3 or PLN 0.8358 per kilometre for engine capacity exceeding 900 cm3. Expenses over the limit constitute revenue for the employee\".\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response accurately identifies and addresses all compliance issues based on the provided knowledge base for Poland. It correctly interprets the country-specific regulations, receipt type requirements, and established compliance guidelines without any contradictions. The response demonstrates a thorough understanding and application of the compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. According to the compliance rules, for GoGlobal, the receipt should include \"GOGLOBAL GEO POLAND Sp. z o.o. Kamila Macierzyńska ul. Towarowa 28 00-839 Warszawa\" as stated in the mandatory rule for \"GoGlobal company name on receipt\". While the supplier name shows \"GOGLOBAL GEO POLAND Sp. z o.o.\", there is no customer name identified in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified the missing invoice number as an issue. According to the compliance rules, transaction date information is mandatory, and this would typically be associated with an invoice number or receipt number for proper documentation. The extracted data shows no invoice_number or receipt_number fields populated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the total amount is missing on the receipt. According to the compliance rules, \"Receipt must display the final cost including all taxes and fees\" is mandatory. While individual line items show amounts (212.75 and 224.25 PLN) and there's a total kilometers driven (380) with an amount (437 PLN), the total_amount field in the extracted data is null.\n\nISSUE_4_VALIDATION_SCORE: 80 - The AI identified missing item descriptions for line items. This is partially accurate since the extracted data does show some line item information (routes, kilometers, purpose of trip), but may not be complete according to standards. The compliance rules state \"Receipt must specify the goods or services purchased with clear description,\" and while some information is present, it may not be comprehensive enough.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage expenses. The compliance rule states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval. This has to be documented in the vehicle mileage log kept by the employee.\" While there is some information about routes and kilometers, a complete logbook with all required details is needed.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified the gross-up requirement for mileage expenses and accurately cited the specific rates for Poland: \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3. For tax-deductible purposes: PLN 0.5214 per kilometre for engine capacity up to 900 cm3 or PLN 0.8358 per kilometre for engine capacity exceeding 900 cm3. Expenses over the limit constitute revenue for the employee.\" This matches exactly with the compliance rules.\n\nCONFIDENCE: 95\n\nISSUES: \n1. Issue 4 is slightly overstated as some line item information is present, though it may not be complete according to standards.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for Poland regarding mileage receipts. It correctly identifies all major compliance issues including missing customer name, invoice number, total amount, the need for additional documentation (mileage logbook), and gross-up requirements with accurate rate information. The response correctly applies the country-specific regulations for Poland and properly addresses the requirements for mileage receipt types. The only minor concern is that Issue 4 might slightly overstate the problem since some line item information is present, though perhaps not in the required format or completeness. Overall, the response is highly aligned with the established compliance guidelines."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, the issue is partially mischaracterized since the document appears to be a mileage log with an employee signature (\"Pietras\"), which could be considered the customer name in this context. The knowledge base reference is correct, but the application to this specific document type could be more nuanced.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI identified a missing invoice number as an issue, but the knowledge base reference used (\"Receipt must show the date when the purchase/transaction occurred\") doesn't match the issue described. For a mileage log, an invoice number may not be strictly required in the same way as a traditional receipt. The document does include dates for the mileage entries.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The AI correctly noted the missing total amount as a mandatory field. However, the document does show individual amounts for each mileage entry (212.75 and 224.25) and a total (437), so this issue may be overstated. The knowledge base reference is correct, but the application to this document is questionable.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI claims missing line item descriptions, but the extracted data shows clear descriptions including routes (Lublin-Warsaw, Warsaw-Lublin), purpose (\"Business trip\"), kilometers driven, and rates. This issue appears to be incorrectly identified when compared to the extracted data.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for a complete mileage logbook with additional details as required by Polish regulations. The recommendation and knowledge base reference are accurate and directly applicable to this document type.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the gross-up requirement for mileage expenses in Poland. The recommendation accurately cites the specific rates for different engine capacities and the tax implications. This perfectly aligns with the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9500000000000001,
+      "issues": [
+        "1. The assessment could have acknowledged that there is a total amount (437 PLN) shown in the last line item",
+        "even though it's not properly formatted as a receipt total.",
+        "2. The assessment could have noted that while there is some route information and purpose of travel",
+        "it's not comprehensive enough to meet compliance requirements."
+      ],
+      "summary": "The compliance assessment is highly accurate in identifying the key issues with this mileage receipt. It correctly identifies all six mandatory compliance issues: missing customer name, missing invoice number, missing properly formatted total amount, incomplete line item descriptions, need for additional mileage documentation, and gross-up requirements for mileage expenses. The assessment properly applies the GoGlobal compliance rules for Poland and mileage expenses. The only minor improvement would be acknowledging the partial information that is present while still correctly determining the document is non-compliant.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified the missing customer name as a compliance issue. According to the compliance rules, the employee name should be on the receipt, and while there is an employee signature (\"Pietras\"), the full customer name is not clearly provided, which is mandatory for GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified the missing invoice number as a compliance issue. The receipt does not contain any invoice or receipt number, which is required to properly document the transaction according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 80 - The assessment correctly noted that the total amount is missing as a mandatory field. However, the extracted data does show a total amount of 437 PLN in the last line item, which represents the sum of the two mileage entries (212.75 + 224.25 = 437). The issue is valid but could have acknowledged this partial information.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified that line item descriptions are missing. While the mileage log does include routes (Lublin-Warsaw, Warsaw-Lublin) and purpose (\"Business trip\"), it lacks complete details required for proper documentation according to compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified the need for additional documentation for mileage expenses. According to the compliance rules, \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document is missing some of these required elements, particularly start/end times and proper approval documentation.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identified the gross-up requirement for mileage expenses. The compliance rules specifically state the rates for passenger cars and the tax implications, which matches exactly with the issue raised.\n\nCONFIDENCE: 95\n\nISSUES: \n1. The assessment could have acknowledged that there is a total amount (437 PLN) shown in the last line item, even though it's not properly formatted as a receipt total.\n2. The assessment could have noted that while there is some route information and purpose of travel, it's not comprehensive enough to meet compliance requirements.\n\nSUMMARY: The compliance assessment is highly accurate in identifying the key issues with this mileage receipt. It correctly identifies all six mandatory compliance issues: missing customer name, missing invoice number, missing properly formatted total amount, incomplete line item descriptions, need for additional mileage documentation, and gross-up requirements for mileage expenses. The assessment properly applies the GoGlobal compliance rules for Poland and mileage expenses. The only minor improvement would be acknowledging the partial information that is present while still correctly determining the document is non-compliant.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified the missing customer name as a compliance issue. According to the compliance rules, the employee name should be on the receipt, and while there is an employee signature (\"Pietras\"), the full customer name is not clearly provided, which is mandatory for GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified the missing invoice number as a compliance issue. The receipt does not contain any invoice or receipt number, which is required to properly document the transaction according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 80 - The assessment correctly noted that the total amount is missing as a mandatory field. However, the extracted data does show a total amount of 437 PLN in the last line item, which represents the sum of the two mileage entries (212.75 + 224.25 = 437). The issue is valid but could have acknowledged this partial information.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified that line item descriptions are missing. While the mileage log does include routes (Lublin-Warsaw, Warsaw-Lublin) and purpose (\"Business trip\"), it lacks complete details required for proper documentation according to compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified the need for additional documentation for mileage expenses. According to the compliance rules, \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document is missing some of these required elements, particularly start/end times and proper approval documentation.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identified the gross-up requirement for mileage expenses. The compliance rules specifically state the rates for passenger cars and the tax implications, which matches exactly with the issue raised.\n\nCONFIDENCE: 95\n\nISSUES: \n1. The assessment could have acknowledged that there is a total amount (437 PLN) shown in the last line item, even though it's not properly formatted as a receipt total.\n2. The assessment could have noted that while there is some route information and purpose of travel, it's not comprehensive enough to meet compliance requirements.\n\nSUMMARY: The compliance assessment is highly accurate in identifying the key issues with this mileage receipt. It correctly identifies all six mandatory compliance issues: missing customer name, missing invoice number, missing properly formatted total amount, incomplete line item descriptions, need for additional mileage documentation, and gross-up requirements for mileage expenses. The assessment properly applies the GoGlobal compliance rules for Poland and mileage expenses. The only minor improvement would be acknowledging the partial information that is present while still correctly determining the document is non-compliant."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing customer name as a compliance issue, which is a mandatory field for expense receipts in Poland.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing invoice number as a compliance issue, which is a mandatory field for expense receipts in Poland.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing total amount as a compliance issue, which is a mandatory field for expense receipts in Poland.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing item descriptions for the line items as a compliance issue, which is a mandatory requirement for expense receipts in Poland.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement for a mileage logbook with additional details as a compliance issue for mileage expenses in Poland.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement for a gross-up calculation for the mileage expenses based on the applicable rates in Poland.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The compliance assessment is accurate and covers all the key compliance requirements for an expense receipt in Poland, including mandatory fields, mileage logbook, and gross-up calculations. The assessment correctly identifies all the compliance issues with the provided receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the customer name is missing from the receipt. According to the compliance rules, for GoGlobal, the receipt must have the employee's name, which is not present in the extracted data. The issue is correctly identified and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice number is missing. This is a mandatory field according to the compliance rules that state \"Receipt must show the date when the purchase/transaction occurred.\" While the date is present (2025-03-07), there is no invoice/receipt number, which is a valid compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 50 - The assessment flags missing total amount as an issue, which is partially correct. While there's no explicit \"total_amount\" field, the line items do show a sum of 437 PLN (212.75 + 224.25) in the last line item. The system should recognize this as the total amount rather than marking it as completely missing.\n\nISSUE_4_VALIDATION_SCORE: 75 - The assessment correctly identifies that line item descriptions are not fully detailed. While the mileage record does include routes (Lublin-Warsaw, Warsaw-Lublin) and purpose (\"Business trip\"), it could benefit from more detailed descriptions. The issue is valid but somewhat overstated.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional documentation is required for mileage expenses. According to the compliance rules, \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" While some of this information is present, the document is missing complete details like specific times and proper approval documentation.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies that gross-up is required for mileage expenses and accurately cites the relevant rule: \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3.\" The document shows a rate of 1.15 PLN per kilometer, which aligns with the higher rate, but the gross-up calculation is still required.\n\nCONFIDENCE: 90\n\nISSUES:\n1. The assessment may be overly strict about the total amount issue since there is a total amount (437 PLN) shown in the line items, even if not explicitly labeled as \"total_amount\".\n2. The line item description issue is somewhat overstated since the document does contain basic route and purpose information, though it could be more detailed.\n\nSUMMARY: The compliance assessment is generally accurate, correctly identifying most of the key compliance issues with this mileage receipt. The document is missing several required elements including customer name, invoice number, and complete mileage documentation. The assessment correctly identifies that gross-up calculations are needed based on Polish regulations. The only areas where the assessment could be improved are in recognizing that a total amount is present (though not explicitly labeled) and acknowledging that some basic line item descriptions do exist. Overall, the non-compliant determination is correct, and the identified issues are valid based on the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified the missing customer name as a compliance issue. According to the compliance rules, the employee name should be on the receipt, and while there is an employee signature (\"Pietras\"), the full customer name is not clearly provided, which is mandatory for GoGlobal.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified the missing invoice number as a compliance issue. The receipt does not contain any invoice or receipt number, which is required to properly document the transaction according to the compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The assessment correctly noted that the total amount is missing as a mandatory field. However, the extracted data does show a total amount of 437 PLN in the last line item, which represents the sum of the two mileage entries (212.75 + 224.25 = 437). The issue is valid but could have acknowledged this partial information.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identified that line item descriptions are missing. While the mileage log does include routes (Lublin-Warsaw, Warsaw-Lublin) and purpose (\"Business trip\"), it lacks complete details required for proper documentation according to compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified the need for additional documentation for mileage expenses. According to the compliance rules, \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document is missing some of these required elements, particularly start/end times and proper approval documentation.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identified the gross-up requirement for mileage expenses. The compliance rules specifically state the rates for passenger cars and the tax implications, which matches exactly with the issue raised.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8666666666666666,
+      "issues": [
+        "1. Issue #4 overemphasizes missing \"line item descriptions\" when the document does contain route information and purpose of travel",
+        "though perhaps not in the expected format.",
+        "2. Issue #3 doesn't acknowledge that there appears to be a total amount (437) in the extracted data",
+        "though it may not be properly formatted or labeled."
+      ],
+      "summary": "The issue categorization is generally accurate and well-aligned with compliance requirements. Most issues are correctly identified with appropriate classifications, descriptions, and recommendations. The system properly identifies the need for additional documentation (mileage logbook) and gross-up requirements specific to Poland. Minor improvements could be made in recognizing that some required information (like route descriptions and a possible total) is present but perhaps not in the expected format. Overall, the categorization follows the established taxonomy and provides actionable guidance.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue correctly identifies the missing customer name as a compliance problem with the \"Standards & Compliance | Fix Identified\" classification. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement. However, the document does show \"Pietras\" as an employee signature, which might be the customer name, but this isn't clearly labeled as such on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies the missing invoice number as a compliance problem with appropriate classification. The description, recommendation, and knowledge base reference are all accurate and aligned with compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue correctly identifies the missing total amount as a compliance problem. While the extracted data shows a total amount of 437 in the line items section, it's not clearly labeled as a total on the receipt. The classification and recommendation are appropriate, but the system should acknowledge that there appears to be a sum (437) that might represent the total.\n\nISSUE_4_VALIDATION_SCORE: 70 - While technically correct that formal line item descriptions might be missing, this is a mileage record which does contain route information (e.g., \"Lublin-Warsaw\"), purpose (\"Business trip\"), and kilometers driven. The issue is somewhat mischaracterized as these elements do constitute descriptions appropriate for a mileage record.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" and correctly identifies the need for a complete mileage logbook. The recommendation is detailed and aligns with the knowledge base reference.\n\nISSUE_6_VALIDATION_SCORE: 100 - The gross-up requirement is correctly identified and categorized. The description provides detailed information about the rates for different engine capacities and tax implications, which perfectly matches the knowledge base reference.\n\nCONFIDENCE: 90\n\nISSUES: \n1. Issue #4 overemphasizes missing \"line item descriptions\" when the document does contain route information and purpose of travel, though perhaps not in the expected format.\n2. Issue #3 doesn't acknowledge that there appears to be a total amount (437) in the extracted data, though it may not be properly formatted or labeled.\n\nSUMMARY: The issue categorization is generally accurate and well-aligned with compliance requirements. Most issues are correctly identified with appropriate classifications, descriptions, and recommendations. The system properly identifies the need for additional documentation (mileage logbook) and gross-up requirements specific to Poland. Minor improvements could be made in recognizing that some required information (like route descriptions and a possible total) is present but perhaps not in the expected format. Overall, the categorization follows the established taxonomy and provides actionable guidance.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue correctly identifies the missing customer name as a compliance problem with the \"Standards & Compliance | Fix Identified\" classification. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement. However, the document does show \"Pietras\" as an employee signature, which might be the customer name, but this isn't clearly labeled as such on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies the missing invoice number as a compliance problem with appropriate classification. The description, recommendation, and knowledge base reference are all accurate and aligned with compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue correctly identifies the missing total amount as a compliance problem. While the extracted data shows a total amount of 437 in the line items section, it's not clearly labeled as a total on the receipt. The classification and recommendation are appropriate, but the system should acknowledge that there appears to be a sum (437) that might represent the total.\n\nISSUE_4_VALIDATION_SCORE: 70 - While technically correct that formal line item descriptions might be missing, this is a mileage record which does contain route information (e.g., \"Lublin-Warsaw\"), purpose (\"Business trip\"), and kilometers driven. The issue is somewhat mischaracterized as these elements do constitute descriptions appropriate for a mileage record.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" and correctly identifies the need for a complete mileage logbook. The recommendation is detailed and aligns with the knowledge base reference.\n\nISSUE_6_VALIDATION_SCORE: 100 - The gross-up requirement is correctly identified and categorized. The description provides detailed information about the rates for different engine capacities and tax implications, which perfectly matches the knowledge base reference.\n\nCONFIDENCE: 90\n\nISSUES: \n1. Issue #4 overemphasizes missing \"line item descriptions\" when the document does contain route information and purpose of travel, though perhaps not in the expected format.\n2. Issue #3 doesn't acknowledge that there appears to be a total amount (437) in the extracted data, though it may not be properly formatted or labeled.\n\nSUMMARY: The issue categorization is generally accurate and well-aligned with compliance requirements. Most issues are correctly identified with appropriate classifications, descriptions, and recommendations. The system properly identifies the need for additional documentation (mileage logbook) and gross-up requirements specific to Poland. Minor improvements could be made in recognizing that some required information (like route descriptions and a possible total) is present but perhaps not in the expected format. Overall, the categorization follows the established taxonomy and provides actionable guidance."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the customer name is a mandatory field that is missing from the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the invoice number is a mandatory field that is missing from the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the total amount is a mandatory field that is missing from the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the item descriptions for the line items are mandatory fields that are missing from the receipt. The description and recommendation provided are clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as additional documentation in the form of a mileage logbook is required for the mileage expenses. The description and recommendation provided are clear and actionable.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue, as the mileage expenses need to be grossed up according to the applicable rates. The description and recommendation provided are clear and actionable.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The issues are all correctly categorized, with clear and actionable descriptions and recommendations. The categorization follows the established taxonomy, and no issues are missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that the customer name is missing, which is a valid compliance concern. However, the categorization is partially inaccurate because the document appears to be a mileage log/record with an employee signature (Pietras), not a traditional receipt. The knowledge base reference is correct, but the issue type should acknowledge the document's nature.\n\nISSUE_2_VALIDATION_SCORE: 60 - The issue correctly identifies that an invoice number is missing, but this is less relevant for a mileage log which typically doesn't require an invoice number in the same way a standard receipt does. The knowledge base reference about transaction date is misaligned with the issue description about invoice number, showing inconsistency in categorization.\n\nISSUE_3_VALIDATION_SCORE: 50 - While technically correct that a single total amount field is not explicitly labeled, the extracted data shows a total amount of 437 PLN (sum of the line items). The issue fails to recognize that the document format inherently includes this information through the itemized listing and final sum.\n\nISSUE_4_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The line items in the mileage log clearly contain descriptions (routes, purpose of trip, kilometers driven, etc.). The system fails to recognize that mileage logs have different item description requirements than standard receipts.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is perfectly categorized. It correctly identifies the need for additional documentation for mileage expenses according to the compliance rules. The recommendation accurately reflects the requirement for a complete mileage logbook with all necessary details.\n\nISSUE_6_VALIDATION_SCORE: 100 - This issue is correctly categorized. It accurately identifies the gross-up requirement for mileage expenses in Poland and provides the exact rates based on engine capacity. The knowledge base reference matches perfectly with the issue description.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Some issues don't account for the document being a mileage log rather than a standard receipt\n2. Issue #4 fails to recognize that the document already contains appropriate line item descriptions for a mileage log\n3. Issue #3 doesn't acknowledge that the total amount is present in the document (437 PLN)\n4. Knowledge base reference in issue #2 doesn't align with the issue description\n\nSUMMARY: The system correctly identifies some legitimate compliance issues, particularly those specific to mileage expenses (issues #5 and #6). However, it struggles to properly categorize issues for this document type, applying standard receipt requirements to a mileage log. The system needs improvement in recognizing different document formats and their specific requirements rather than applying a one-size-fits-all approach to validation."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue correctly identifies the missing customer name as a compliance problem with the \"Standards & Compliance | Fix Identified\" classification. The description is clear, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the requirement. However, the document does show \"Pietras\" as an employee signature, which might be the customer name, but this isn't clearly labeled as such on the receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies the missing invoice number as a compliance problem with appropriate classification. The description, recommendation, and knowledge base reference are all accurate and aligned with compliance requirements.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue correctly identifies the missing total amount as a compliance problem. While the extracted data shows a total amount of 437 in the line items section, it's not clearly labeled as a total on the receipt. The classification and recommendation are appropriate, but the system should acknowledge that there appears to be a sum (437) that might represent the total.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "While technically correct that formal line item descriptions might be missing, this is a mileage record which does contain route information (e.g., \"Lublin-Warsaw\"), purpose (\"Business trip\"), and kilometers driven. The issue is somewhat mischaracterized as these elements do constitute descriptions appropriate for a mileage record.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" and correctly identifies the need for a complete mileage logbook. The recommendation is detailed and aligns with the knowledge base reference.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The gross-up requirement is correctly identified and categorized. The description provides detailed information about the rates for different engine capacities and tax implications, which perfectly matches the knowledge base reference.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9233333333333333,
+      "issues": [
+        "The recommendation for issue 4 could be more specific about what additional description details are needed beyond what's already provided in the mileage log."
+      ],
+      "summary": "The recommendations are generally valid, actionable, and directly address the compliance issues identified in the mileage receipt. They correctly reference the applicable rules for Poland and GoGlobal, particularly regarding documentation requirements for mileage expenses and the specific reimbursement rates. The recommendations for submitting a complete mileage logbook and applying the correct gross-up calculations are especially valuable. Minor improvement could be made to clarify what specific additional descriptions are needed for the line items beyond the route and purpose information already provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. The compliance rules clearly state that for GoGlobal, the customer name is mandatory on receipts. The extracted data shows this field is null, confirming the issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. Transaction reference documentation is required according to compliance rules, and the extracted data confirms this field is null.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing total amount with the supplier is valid and actionable. The compliance rules explicitly state that receipts must display the final cost including all taxes and fees. While individual line items show amounts, the total_amount field is null in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 75 - The recommendation regarding missing item descriptions is partially valid. While the compliance rules require clear descriptions of goods/services purchased, the mileage log does contain some descriptive information (routes, purpose of trip). However, more detailed descriptions could be beneficial.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit a mileage logbook with complete details is highly valid and specific. It directly addresses the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document lacks some of these required elements.\n\nISSUE_6_VALIDATION_SCORE: 100 - The recommendation regarding gross-up for mileage expenses is highly valid and specific. It directly quotes the applicable rule for Poland regarding mileage reimbursement rates and tax implications, which is essential for proper expense processing.\n\nCONFIDENCE: 90\n\nISSUES: The recommendation for issue 4 could be more specific about what additional description details are needed beyond what's already provided in the mileage log.\n\nSUMMARY: The recommendations are generally valid, actionable, and directly address the compliance issues identified in the mileage receipt. They correctly reference the applicable rules for Poland and GoGlobal, particularly regarding documentation requirements for mileage expenses and the specific reimbursement rates. The recommendations for submitting a complete mileage logbook and applying the correct gross-up calculations are especially valuable. Minor improvement could be made to clarify what specific additional descriptions are needed for the line items beyond the route and purpose information already provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. The compliance rules clearly state that for GoGlobal, the customer name is mandatory on receipts. The extracted data shows this field is null, confirming the issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. Transaction reference documentation is required according to compliance rules, and the extracted data confirms this field is null.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing total amount with the supplier is valid and actionable. The compliance rules explicitly state that receipts must display the final cost including all taxes and fees. While individual line items show amounts, the total_amount field is null in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 75 - The recommendation regarding missing item descriptions is partially valid. While the compliance rules require clear descriptions of goods/services purchased, the mileage log does contain some descriptive information (routes, purpose of trip). However, more detailed descriptions could be beneficial.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit a mileage logbook with complete details is highly valid and specific. It directly addresses the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document lacks some of these required elements.\n\nISSUE_6_VALIDATION_SCORE: 100 - The recommendation regarding gross-up for mileage expenses is highly valid and specific. It directly quotes the applicable rule for Poland regarding mileage reimbursement rates and tax implications, which is essential for proper expense processing.\n\nCONFIDENCE: 90\n\nISSUES: The recommendation for issue 4 could be more specific about what additional description details are needed beyond what's already provided in the mileage log.\n\nSUMMARY: The recommendations are generally valid, actionable, and directly address the compliance issues identified in the mileage receipt. They correctly reference the applicable rules for Poland and GoGlobal, particularly regarding documentation requirements for mileage expenses and the specific reimbursement rates. The recommendations for submitting a complete mileage logbook and applying the correct gross-up calculations are especially valuable. Minor improvement could be made to clarify what specific additional descriptions are needed for the line items beyond the route and purpose information already provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The recommendation to address the missing customer name with the supplier or provider is valid and actionable. Providing the customer name is a mandatory requirement, so this needs to be corrected.\n\nISSUE_2_VALIDATION_SCORE: 100 - The recommendation to address the missing invoice number with the supplier or provider is valid and actionable. The invoice number is a mandatory field, so this needs to be corrected.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to address the missing total amount with the supplier or provider is valid and actionable. The total amount is a mandatory field, so this needs to be corrected.\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation to address the missing item descriptions for the line items with the supplier or provider is valid and actionable. Providing clear item descriptions is a mandatory requirement, so this needs to be corrected.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit a mileage logbook with complete route details, start/end dates, purpose of travel, and approval is valid and actionable. This additional documentation is required for mileage expenses.\n\nISSUE_6_VALIDATION_SCORE: 100 - The recommendation to apply the correct gross-up rates for mileage expenses is valid and actionable. The provided knowledge base reference clearly outlines the applicable rates and treatment of expenses over the limit.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The provided recommendations are valid, actionable, and address all the identified compliance issues. The recommendations are feasible and practical, and there are no contradictory or harmful suggestions. Overall, the recommendations are comprehensive and should help ensure compliance with the relevant standards and policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier is valid, as this is a mandatory field according to the compliance rules. However, the recommendation could be more specific about what customer name should appear (employee name or company name) based on GoGlobal's requirements.\n\nISSUE_2_VALIDATION_SCORE: 80 - The recommendation to address the missing invoice number with the supplier is valid and actionable. For a mileage record, there should be some form of tracking number or reference, and the recommendation correctly identifies this as a compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation regarding the missing total amount is valid and necessary. While individual trip amounts are shown (212.75 and 224.25 PLN), there is a total (437 PLN) but it's not clearly labeled as the final total amount, which is a mandatory field according to compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 70 - While the recommendation about missing item descriptions is technically correct according to general receipt standards, the mileage record does contain route information (Lublin-Warsaw, Warsaw-Lublin) and purpose (Business trip). The recommendation could be more specific about what additional details are needed for mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to submit a mileage logbook with complete details is highly valid and directly addresses the compliance requirement. It specifically mentions all required elements (start/end dates, purpose of travel, route details, and approval) which aligns perfectly with the compliance rule for mileage expenses.\n\nISSUE_6_VALIDATION_SCORE: 100 - The gross-up recommendation is highly valid and provides specific, actionable information. It correctly cites the exact rates for different engine capacities and explains the tax implications of expenses exceeding the limits, which directly addresses the compliance requirement.\n\nCONFIDENCE: 87\n\nISSUES:\n- Recommendation for Issue 1 could specify whether employee name or company name is required\n- Recommendation for Issue 4 could better acknowledge the existing route information while specifying what additional details are needed\n\nSUMMARY: The recommendations are generally valid and helpful, particularly for the mileage logbook requirement and gross-up calculations which provide specific, actionable guidance. The recommendations for missing mandatory fields correctly identify compliance issues, though some could be more tailored to the mileage receipt context. Overall, the recommendations address the key compliance requirements and provide practical steps to resolve the issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid and actionable. The compliance rules clearly state that for GoGlobal, the customer name is mandatory on receipts. The extracted data shows this field is null, confirming the issue.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and actionable. Transaction reference documentation is required according to compliance rules, and the extracted data confirms this field is null.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing total amount with the supplier is valid and actionable. The compliance rules explicitly state that receipts must display the final cost including all taxes and fees. While individual line items show amounts, the total_amount field is null in the extracted data.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 75,
+          "judge_explanation": "The recommendation regarding missing item descriptions is partially valid. While the compliance rules require clear descriptions of goods/services purchased, the mileage log does contain some descriptive information (routes, purpose of trip). However, more detailed descriptions could be beneficial.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to submit a mileage logbook with complete details is highly valid and specific. It directly addresses the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\" The current document lacks some of these required elements.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation regarding gross-up for mileage expenses is highly valid and specific. It directly quotes the applicable rule for Poland regarding mileage reimbursement rates and tax implications, which is essential for proper expense processing.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9666666666666667,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies compliance issues with the mileage receipt based on the provided compliance rules. All six issues raised are valid concerns that align with the compliance requirements for GoGlobal in Poland. The response correctly cites the specific rules for mileage documentation and reimbursement rates in Poland without fabricating or hallucinating any information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue correctly identifies that the customer name is missing from the receipt. This is a valid compliance issue as the compliance rules state that employee or company name on receipt is mandatory for GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue correctly identifies that the invoice number is missing. According to the compliance rules, transaction date is mandatory, and an invoice number would be part of proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue correctly identifies that the total amount is missing as a standalone field. While individual line items show amounts (437 PLN total), there is no explicit total amount field, which is required according to compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue correctly identifies that line item descriptions are required. While the mileage log has some information, it doesn't have complete item descriptions as required by compliance standards.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue correctly states that additional documentation is required for mileage expenses. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nISSUE_6_VALIDATION_SCORE: 0 - The issue correctly cites the gross-up rule for mileage expenses in Poland. This exactly matches the compliance policy provided: \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3. For tax-deductible purposes: PLN 0.5214 per kilometre for engine capacity up to 900 cm3 or PLN 0.8358 per kilometre for engine capacity exceeding 900 cm3. Expenses over the limit constitute revenue for the employee\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues with the mileage receipt based on the provided compliance rules. All six issues raised are valid concerns that align with the compliance requirements for GoGlobal in Poland. The response correctly cites the specific rules for mileage documentation and reimbursement rates in Poland without fabricating or hallucinating any information.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue correctly identifies that the customer name is missing from the receipt. This is a valid compliance issue as the compliance rules state that employee or company name on receipt is mandatory for GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue correctly identifies that the invoice number is missing. According to the compliance rules, transaction date is mandatory, and an invoice number would be part of proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue correctly identifies that the total amount is missing as a standalone field. While individual line items show amounts (437 PLN total), there is no explicit total amount field, which is required according to compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue correctly identifies that line item descriptions are required. While the mileage log has some information, it doesn't have complete item descriptions as required by compliance standards.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue correctly states that additional documentation is required for mileage expenses. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nISSUE_6_VALIDATION_SCORE: 0 - The issue correctly cites the gross-up rule for mileage expenses in Poland. This exactly matches the compliance policy provided: \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3. For tax-deductible purposes: PLN 0.5214 per kilometre for engine capacity up to 900 cm3 or PLN 0.8358 per kilometre for engine capacity exceeding 900 cm3. Expenses over the limit constitute revenue for the employee\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues with the mileage receipt based on the provided compliance rules. All six issues raised are valid concerns that align with the compliance requirements for GoGlobal in Poland. The response correctly cites the specific rules for mileage documentation and reimbursement rates in Poland without fabricating or hallucinating any information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The customer name, invoice number, total amount, and line item descriptions are all missing from the extracted data, which matches the issues identified in the AI response.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements mentioned in the AI response appear to be valid and match the information provided in the \"Compliance Rules\" section.\n\nISSUE_3_VALIDATION_SCORE: 0 - The entity names, amounts, and dates present in the extracted data and the AI response appear to be accurate and not fabricated.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response does not present any assumptions as facts. It clearly identifies the issues and provides recommendations based on the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI response does not contain any fabricated information or hallucinations.\n\nISSUE_6_VALIDATION_SCORE: 0 - The AI response does not contain any fabricated information or hallucinations.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response accurately identifies the compliance issues with the provided receipt and provides appropriate recommendations based on the compliance rules. There is no evidence of hallucinated or fabricated information in the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue correctly identifies that the customer name is missing from the receipt. The extracted data shows customer_name as null, which confirms this is not a hallucination.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue correctly identifies that the invoice number is missing. The extracted data shows invoice_number as null, confirming this is not a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue states that the total amount is missing, which is partially correct. While there's no specific \"total_amount\" field populated, the line items section does show a total of 437 in the last row, which appears to be the sum of the previous amounts (212.75 + 224.25 = 437). This is a partial hallucination as it fails to recognize this total.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue correctly identifies that line item descriptions are missing or incomplete. The extracted data shows minimal information in the line items, confirming this is not a hallucination.\n\nISSUE_5_VALIDATION_SCORE: 0 - This issue correctly identifies that additional documentation is required for mileage expenses. This aligns with the compliance rules that state \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"\n\nISSUE_6_VALIDATION_SCORE: 0 - The issue correctly identifies the gross-up requirement for mileage expenses. The information provided matches exactly with the compliance rules provided, so this is not a hallucination.\n\nCONFIDENCE: 90\n\nISSUES: \n- Issue 3 partially misrepresents the data by claiming the total amount is missing when there appears to be a total amount of 437 in the last line item row.\n\nSUMMARY: The AI response is largely accurate with minimal hallucination. It correctly identifies most compliance issues with the mileage receipt. The only partial hallucination is in Issue 3, where it fails to recognize that while there's no dedicated \"total_amount\" field, there is a total amount of 437 shown in the last line item. All other issues accurately reflect the missing information in the receipt and correctly cite the relevant compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the customer name is missing from the receipt. This is a valid compliance issue as the compliance rules state that employee or company name on receipt is mandatory for GoGlobal.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the invoice number is missing. According to the compliance rules, transaction date is mandatory, and an invoice number would be part of proper documentation.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory total amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that the total amount is missing as a standalone field. While individual line items show amounts (437 PLN total), there is no explicit total amount field, which is required according to compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory item description for line items on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly identifies that line item descriptions are required. While the mileage log has some information, it doesn't have complete item descriptions as required by compliance standards.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Additional documentation required for mileage expenses",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly states that additional documentation is required for mileage expenses. This matches the compliance rule that states \"For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Gross-up required for mileage expenses",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue correctly cites the gross-up rule for mileage expenses in Poland. This exactly matches the compliance policy provided: \"Passenger cars PLN 0.89 per kilometer with an engine capacity of up to 900 cm3 or PLN 1.15 per kilometer with an engine capacity above 900 cm3. For tax-deductible purposes: PLN 0.5214 per kilometre for engine capacity up to 900 cm3 or PLN 0.8358 per kilometre for engine capacity exceeding 900 cm3. Expenses over the limit constitute revenue for the employee\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI incorrectly claims line items are missing descriptions when the extracted data shows detailed information., 2. The AI may be applying standard receipt requirements to a mileage record form, which has different formatting expectations., 3. The AI doesn't acknowledge that while there's no dedicated total_amount field, there is a sum (437 PLN) in the last line item.",
+    "Address issues in knowledge base adherence: 1. Some issues identified don't fully align with the document type (mileage log vs. standard receipt), 2. The AI mischaracterized some information that appears to be present in the extracted data, 3. Knowledge base references don't always match the issues being described, 4. The AI didn't acknowledge that some of the \"missing\" information may not be applicable to a mileage log format",
+    "Address issues in compliance accuracy: 1. The assessment could have acknowledged that there is a total amount (437 PLN) shown in the last line item, even though it's not properly formatted as a receipt total., 2. The assessment could have noted that while there is some route information and purpose of travel, it's not comprehensive enough to meet compliance requirements.",
+    "Address issues in issue categorization: 1. Issue #4 overemphasizes missing \"line item descriptions\" when the document does contain route information and purpose of travel, though perhaps not in the expected format., 2. Issue #3 doesn't acknowledge that there appears to be a total amount (437) in the extracted data, though it may not be properly formatted or labeled.",
+    "Address issues in recommendation validity: The recommendation for issue 4 could be more specific about what additional description details are needed beyond what's already provided in the mileage log.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-10-02T11:19:26.845Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 86685,
+    "timing": {
+      "validation_start_time": "2025-10-02T11:18:00.159Z",
+      "validation_end_time": "2025-10-02T11:19:26.844Z",
+      "total_validation_time_seconds": "86.7",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T11:18:00.159Z",
+          "end_time": "2025-10-02T11:19:26.844Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "86.7",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.35",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 6
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 65.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 63.33,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing mandatory total amount on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 61.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 70,
+        "knowledge_base_adherence": 60,
+        "compliance_accuracy": 80,
+        "issue_categorization": 80,
+        "recommendation_validity": 90,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Missing mandatory item description for line items on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 49.89,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 30,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 90,
+        "issue_categorization": 70,
+        "recommendation_validity": 75,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Additional documentation required for mileage expenses",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 82.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 5,
+      "issue_description": "Gross-up required for mileage expenses",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 82.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

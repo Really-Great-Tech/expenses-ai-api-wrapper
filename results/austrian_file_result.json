@@ -1,0 +1,359 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759321578967_135736232_austrian_file.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T12:27:03.434Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image frame.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "flights",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Slovakia",
+    "expected_location": "Austria",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod (indicated on the next page). The presence of these fields confirms it as an expense document. The expense type is classified as 'flights' based on the detailed flight data provided. The language is identified as German with high confidence. However, the document location is Slovakia, which does not match the expected location of Austria.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Austrian Airlines AG",
+    "supplier_address": "Office Park 2, A-1300 Vienna-Airport",
+    "supplier_vat_number": "ATU15416707",
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "FORISEK / MICHAL DR MR",
+    "customer_address": "Michal Forisek, Lubovnianska 14, 85107 Bratislava, Slovakia",
+    "invoice_number": "213000508057",
+    "receipt_number": null,
+    "transaction_reference": "6GHMCV",
+    "currency": null,
+    "total_amount": null,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2013-08-31",
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Flight OS561",
+        "quantity": 1,
+        "unit_price": null,
+        "total_price": null,
+        "category": "Transport"
+      },
+      {
+        "description": "Flight OS568",
+        "quantity": 1,
+        "unit_price": null,
+        "total_price": null,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Passenger Receipt / Invoice / Rechnung",
+    "document_type": "Rechnung",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Vienna",
+    "location_country": "Austria",
+    "special_notes": "Please print this receipt and retain it throughout your journey.",
+    "terms_conditions": null,
+    "business_registration_number": "111000k"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "total_amount",
+          "description": "The total amount in local currency is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Document must show total amount",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "currency",
+          "description": "The currency is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Document must show total amount",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Travel expenses must be submitted using the travel report template.",
+          "recommendation": "Please submit the travel expenses using the travel report template.",
+          "knowledge_base_reference": "Travel expenses must be submitted using the travel report template",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "The receipt must show the name of the worker, not the end client.",
+          "recommendation": "Please ensure that the receipt shows the name of the worker, not the end client.",
+          "knowledge_base_reference": "Hotel/flights invoices should indicate the name of the worker not the end client",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing the total amount and currency, and does not comply with the requirement to show the name of the worker. Additionally, travel expenses must be submitted using the travel report template."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Austria",
+      "icp": "Global People",
+      "receipt_type": "flights",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "name": {
+        "field_citation": {
+          "source_text": "**Name / Name:**",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Name / Name:** FORISEK / MICHAL DR MR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "FORISEK / MICHAL DR MR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Name / Name:** FORISEK / MICHAL DR MR",
+          "match_type": "exact"
+        }
+      },
+      "booking_code": {
+        "field_citation": {
+          "source_text": "**Booking code / Buchungscode:**",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Booking code / Buchungscode:** 6GHMCV",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "6GHMCV",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Booking code / Buchungscode:** 6GHMCV",
+          "match_type": "exact"
+        }
+      },
+      "ticket_number": {
+        "field_citation": {
+          "source_text": "**Ticket number / Ticketnummer:**",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Ticket number / Ticketnummer:** 257-2135783831",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "257-2135783831",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Ticket number / Ticketnummer:** 257-2135783831",
+          "match_type": "exact"
+        }
+      },
+      "billing_address": {
+        "field_citation": {
+          "source_text": "**Billing address / Rechnungsadresse:**",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Billing address / Rechnungsadresse:** Michal Forisek\nLubovnianska 14\n85107 Bratislava\nSlovakia",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Michal Forisek\nLubovnianska 14\n85107 Bratislava\nSlovakia",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "**Billing address / Rechnungsadresse:** Michal Forisek\nLubovnianska 14\n85107 Bratislava\nSlovakia",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 16,
+      "fields_with_field_citations": 16,
+      "fields_with_value_citations": 16,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "39.9",
+      "file_classification_seconds": "4.3",
+      "image_quality_assessment_seconds": "4.4",
+      "data_extraction_seconds": "4.5",
+      "issue_detection_seconds": "6.5",
+      "citation_generation_seconds": "24.4",
+      "llm_validation_seconds": "59.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T12:26:19.141Z",
+        "end_time": "2025-10-01T12:26:59.064Z",
+        "duration_seconds": "39.9",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T12:26:59.067Z",
+        "end_time": "2025-10-01T12:27:03.365Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T12:26:59.065Z",
+        "end_time": "2025-10-01T12:27:03.434Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T12:26:59.069Z",
+        "end_time": "2025-10-01T12:27:03.606Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T12:27:03.608Z",
+        "end_time": "2025-10-01T12:27:10.088Z",
+        "duration_seconds": "6.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T12:27:03.611Z",
+        "end_time": "2025-10-01T12:27:27.994Z",
+        "duration_seconds": "24.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T12:27:27.996Z",
+        "end_time": "2025-10-01T12:28:27.682Z",
+        "duration_seconds": "59.7",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "128.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.5",
+      "parallel_group_2_seconds": "24.4",
+      "total_parallel_time_seconds": "28.9"
+    }
+  },
+  "metadata": {
+    "filename": "austrian_file.png",
+    "processing_time": 128579,
+    "country": "Austria",
+    "icp": "Global People",
+    "processed_at": "2025-10-01T12:28:27.727Z"
+  }
+}

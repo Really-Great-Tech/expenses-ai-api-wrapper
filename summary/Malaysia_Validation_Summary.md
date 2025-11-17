@@ -1,0 +1,11 @@
+# Malaysia Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance across 10 Malaysian expense files and identified consistent patterns in both strengths and weaknesses.
+
+**Strengths Found by Judges:** The expense validation agent excelled at factual accuracy, correctly identifying missing mandatory fields like supplier names, transaction dates, and tax amounts directly from the extracted data. The agent consistently applied Malaysian tax regulations, particularly gross-up policies for meal expenses, and accurately flagged foreign currency issues requiring MYR conversion. It also demonstrated strong adherence to GoGlobal ICP-specific requirements, properly identifying when company names were missing from receipts and when additional documentation was needed for currency conversion and business purpose establishment.
+
+**Weaknesses Found by Judges:** The primary weakness was the agent's tendency to be overly strict, treating optional fields (like VAT/GST numbers and customer addresses) as mandatory compliance issues. Judges found the agent frequently misinterpreted receipt types, applying generic compliance rules inappropriately - such as flagging missing receipt numbers on telecommunications invoices where invoice numbers were present, or applying mileage reimbursement rules to ride-hailing receipts. The agent also showed poor contextual understanding, failing to recognize industry-specific practices like Grab being a known ride-hailing service, and often used incorrect knowledge base references that didn't support the specific issues identified.
+
+**Overall Assessment:** While the expense validation agent achieved an average reliability score of 87%, judges noted it needs refinement in distinguishing between mandatory and optional compliance requirements, better recognition of different receipt types and industry contexts, and more accurate alignment between identified issues and the actual compliance rules provided.

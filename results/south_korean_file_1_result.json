@@ -1,0 +1,468 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758888090655_734352086_south_korean_file_1.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:04:20.978Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded portions.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or blocked content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "telecommunications",
+    "language": "Korean",
+    "language_confidence": 95,
+    "document_location": "South Korea",
+    "expected_location": "South Korea",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer recipient, transaction amount, transaction date, invoice receipt number, tax information, payment method, and item description line items. It is a detailed telecommunications bill from KT, a South Korean service provider.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "country": "South Korea",
+    "supplier_name": "KT",
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "정병철",
+    "customer_address": "경기 고양시 일산서구 주엽로 161 802동 801호 (주엽동, 문촌마을8단지아파트)",
+    "invoice_number": "920361088889",
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "KRW",
+    "total_amount": 24750,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-07",
+    "transaction_time": null,
+    "payment_method": "Credit Card",
+    "card_last_four": "513708*********4",
+    "line_items": [
+      {
+        "description": "통신요금",
+        "quantity": null,
+        "unit_price": null,
+        "total_price": 24750,
+        "category": "Communication"
+      },
+      {
+        "description": "부가이용요금",
+        "quantity": null,
+        "unit_price": null,
+        "total_price": 0,
+        "category": "Additional Usage"
+      },
+      {
+        "description": "통신기기비",
+        "quantity": null,
+        "unit_price": null,
+        "total_price": 0,
+        "category": "Communication Device"
+      },
+      {
+        "description": "미납요금",
+        "quantity": null,
+        "unit_price": null,
+        "total_price": 0,
+        "category": "Unpaid Charges"
+      }
+    ],
+    "receipt_type": "Utility Bill",
+    "document_type": "Invoice",
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": "요금구분은 다음 페이지 '청구 4개월 요금내역'의 상세를 참조해 주시기 바랍니다.",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Supplier address is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "Supplier VAT number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount must be listed clearly on the invoice if applicable",
+          "confidence_score": 0.85
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Receipt number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Unique identifier for the transaction",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business purpose must be established and clearly documented for all expenses",
+          "recommendation": "Please provide clear documentation of the business purpose for this expense",
+          "knowledge_base_reference": "Business purpose must be established and clearly documented for all expenses",
+          "confidence_score": 0.95
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including supplier address, supplier VAT number, and receipt number. Additionally, clear documentation of the business purpose is required. These issues need to be addressed to ensure compliance with South Korean regulations and GoGlobal ICP requirements."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "South Korea",
+      "icp": "GoGlobal",
+      "receipt_type": "telecommunications",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "total_payment_amount": {
+        "field_citation": {
+          "source_text": "5월 총납부금액:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "5월 총납부금액: 24,750 원",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "24,750 원",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "5월 총납부금액: 24,750 원",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "고객명",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 고객명 | 정병철 님 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "정병철",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 고객명 | 정병철 |",
+          "match_type": "exact"
+        }
+      },
+      "service_number": {
+        "field_citation": {
+          "source_text": "대표서비스번호",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 대표서비스번호 | z68163541*** |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "z68163541***",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 대표서비스번호 | z68163541*** |",
+          "match_type": "exact"
+        }
+      },
+      "usage_period": {
+        "field_citation": {
+          "source_text": "이용기간",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 이용기간 | 4월 1일 ~ 4월 30일 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "4월 1일 ~ 4월 30일",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 이용기간 | 4월 1일 ~ 4월 30일 |",
+          "match_type": "exact"
+        }
+      },
+      "due_date": {
+        "field_citation": {
+          "source_text": "납기일",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 납기일 | 2025년 6월 2일 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025년 6월 2일",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 납기일 | 2025년 6월 2일 |",
+          "match_type": "exact"
+        }
+      },
+      "billing_amount": {
+        "field_citation": {
+          "source_text": "금액",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 금액 | 24,750 원 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "24,750 원",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 금액 | 24,750 원 |",
+          "match_type": "exact"
+        }
+      },
+      "billing_number": {
+        "field_citation": {
+          "source_text": "명세서번호",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "920361088889",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        }
+      },
+      "statement_number": {
+        "field_citation": {
+          "source_text": "명세서번호",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "920361088889",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "명세서번호",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "920361088889",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 항목 | 내용 |\n|------|------|\n| 명세서번호 | 920361088889 |",
+          "match_type": "exact"
+        }
+      },
+      "membership_level": {
+        "field_citation": {
+          "source_text": "고객등급",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 고객등급 |\n|----------|\n| VVIP |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "VVIP",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 고객등급 |\n|----------|\n| VVIP |",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 31,
+      "fields_with_field_citations": 31,
+      "fields_with_value_citations": 31,
+      "average_confidence": 0.9499999999999998
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "43.5",
+      "file_classification_seconds": "3.3",
+      "image_quality_assessment_seconds": "4.3",
+      "data_extraction_seconds": "6.5",
+      "issue_detection_seconds": "6.9",
+      "citation_generation_seconds": "49.6",
+      "llm_validation_seconds": "57.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:03:33.232Z",
+        "end_time": "2025-09-26T12:04:16.723Z",
+        "duration_seconds": "43.5",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:04:16.727Z",
+        "end_time": "2025-09-26T12:04:20.073Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:04:16.724Z",
+        "end_time": "2025-09-26T12:04:20.978Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:04:16.728Z",
+        "end_time": "2025-09-26T12:04:23.220Z",
+        "duration_seconds": "6.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:04:23.222Z",
+        "end_time": "2025-09-26T12:04:30.146Z",
+        "duration_seconds": "6.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:04:23.224Z",
+        "end_time": "2025-09-26T12:05:12.856Z",
+        "duration_seconds": "49.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:05:12.857Z",
+        "end_time": "2025-09-26T12:06:09.899Z",
+        "duration_seconds": "57.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "156.7",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "6.5",
+      "parallel_group_2_seconds": "49.6",
+      "total_parallel_time_seconds": "56.1"
+    }
+  },
+  "metadata": {
+    "filename": "south_korean_file_1.pdf",
+    "processing_time": 156671,
+    "country": "South_Korea",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:06:09.903Z"
+  }
+}

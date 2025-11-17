@@ -1,16 +1,16 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\philippines_file_5.pdf_full_test_new_dataset_4_philippines_file_5.pdf",
+    "image_path": "uploads/test_mvp_1/job_1759400414410_789303155_philippines_file_5.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-09-10T11:12:03.021Z",
+    "timestamp": "2025-10-02T10:35:53.159Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
     "blur_detection": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "The text is sharp and clearly defined with no visible blur.",
       "recommendation": "No action needed."
@@ -18,7 +18,7 @@
     "contrast_assessment": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 1,
       "description": "Excellent contrast between text and background, ensuring clear text recognition.",
       "recommendation": "No action needed."
@@ -52,7 +52,7 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No edges of the document are cut off or excluded from the image.",
+      "description": "No document edges are cut off, and the entire document is captured.",
       "recommendation": "No action needed."
     },
     "missing_sections": {
@@ -60,7 +60,7 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "All sections of the receipt are present and complete.",
+      "description": "All sections of the receipt/invoice are present and complete.",
       "recommendation": "No action needed."
     },
     "obstructions": {
@@ -84,10 +84,11 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description/line items. The presence of these fields confirms it as an expense document.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, paymentMethod, and itemDescriptionLineItems. The presence of these fields, along with the detailed breakdown of the purchase, confirms it as an expense document.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
+        "consumerRecipient",
         "transactionAmount",
         "transactionDate",
         "invoiceReceiptNumber",
@@ -95,62 +96,57 @@
         "paymentMethod",
         "itemDescriptionLineItems"
       ],
-      "fields_missing": [
-        "consumerRecipient",
-        "icpRequirements"
-      ],
-      "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, confirming it as an expense document."
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document details a completed transaction with payment confirmation."
     }
   },
   "extraction": {
     "supplier_name": "The Coffee Academics BGC",
-    "supplier_address": "Lobby, High Street South Corporate Plaza Tower One, 26th Street Corner 9th Avenue, BGC, Taguig Metro Manila 1630",
-    "supplier_phone": "0271177127",
-    "supplier_vat_number": "244810731006",
+    "supplier_address": "Lobby, High Street South Corporate Plaza, 9 Tower One, 26th St., West Corner 9th Avenue, BGC, Taguig Metro Manila 1630",
+    "supplier_phone": "09171971747",
+    "supplier_vat_number": "244810731606",
     "customer_name": null,
     "customer_address": null,
-    "receipt_date": "2025-05-30",
-    "transaction_time": "13:07:38",
-    "transaction_number": "00000081622",
-    "or_number": "00000081618",
-    "min": "21090110422968624",
-    "serial_number": "DMPWMEUNJFBM",
-    "cashier": "Staff Cashier",
-    "register_number": "1",
-    "order_number": "135",
+    "customer_vat_number": null,
+    "invoice_number": null,
+    "receipt_number": "0000001810",
+    "transaction_reference": "0000081622",
     "currency": "PHP",
-    "subtotal": 169.64,
-    "vat_rate": 12,
-    "vat_amount": 20.36,
     "total_amount": 190,
-    "payment_method": "CREDIT CARD",
-    "vat_table_sales": 169.64,
-    "vat_exempt_sales": 0,
-    "zero_rated_sales": 0,
+    "subtotal": 169.64,
+    "tax_amount": 20.36,
+    "tax_rate": 12,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2024-06-30",
+    "transaction_time": "13:07:58",
+    "payment_method": "Credit Card",
+    "card_last_four": null,
     "line_items": [
       {
-        "item_name": "Latte",
-        "item_description": "Iced, Normal Milk, To Go",
+        "description": "Latte",
+        "attributes": "Iced, Normal Milk, To Go",
         "quantity": 1,
         "unit_price": 190,
-        "total_price": 190
+        "total_price": 190,
+        "category": "Beverage"
       }
     ],
-    "store_name": "StoreHub Philippines Inc",
-    "store_address": "502 Pacific Center Building, 33 San Miguel Avenue, Ortigas Center, San Antonio Pasig City",
-    "store_vat_number": "010-036-922-300",
-    "store_accr_number": "043-0100-36922-201905-1090",
-    "store_ptu_number": "FP092021-044-0299325-00006",
-    "date_issued": "2021-09-02",
-    "receipt_type": "OFFICIAL RECEIPT",
+    "receipt_type": "Official Receipt",
     "document_type": "Receipt",
-    "special_notes": "Thank you for shopping at our store"
+    "table_number": null,
+    "server_name": "Staff Cashier",
+    "location_city": "Taguig",
+    "location_country": "Philippines",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 3,
+      "issues_count": 4,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
@@ -165,186 +161,178 @@
           "field": "customer_address",
           "description": "Missing mandatory customer address on the receipt",
           "recommendation": "It is recommended to address this issue with the supplier or provider",
-          "knowledge_base_reference": "Under the Local Partner Procloz, the receipt and supporting documents should be in the name of the worker",
+          "knowledge_base_reference": "Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_vat_number",
+          "description": "Missing mandatory customer VAT number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Ensure the submitted documents are BIR registered and reflect the vendor's TIN, business name, and address",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
           "field": "additional_documentation",
-          "description": "Receipt does not include details such as date of expense, business purpose, and merchant name",
-          "recommendation": "Include details (date of expense, business purpose, and merchant name) with all submissions",
+          "description": "Missing mandatory additional documentation details",
+          "recommendation": "Please include details (date of expense, business purpose, and merchant name) with all submissions",
           "knowledge_base_reference": "Include details (date of expense, business purpose, and merchant name) with all submissions",
           "confidence_score": 0.85
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is missing mandatory customer name and address fields. Additionally, the receipt lacks detailed information such as date of expense, business purpose, and merchant name. These issues need to be addressed to comply with the specified standards and policies."
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name, customer address, and customer VAT number. Additionally, the receipt lacks the required additional documentation details such as date of expense, business purpose, and merchant name. These issues need to be addressed to ensure compliance with the specified standards and policies."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Philippines",
       "icp": "GoGlobal",
       "receipt_type": "meals",
-      "issues_count": 3
+      "issues_count": 4
     }
   },
   "citations": {
     "citations": {
-      "Supplier Name": {
-        "field_citation": {
-          "source_text": "The Coffee Academics BGC",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "The Coffee Academics BGC\nAddress: Lobby, High Street South Corporate Plaz\na Tower One, 26th Street Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "The Coffee Academics BGC",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "The Coffee Academics BGC\nAddress: Lobby, High Street South Corporate Plaz\na Tower One, 26th Street Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
-          "match_type": "exact"
-        }
-      },
       "Address": {
         "field_citation": {
           "source_text": "Address:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Address: Lobby, High Street South Corporate Plaz\na Tower One, 26th Street Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
+          "context": "Address: Lobby, High Street South Corporate Plaza\n9 Tower One, 26th St., West Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Lobby, High Street South Corporate Plaz\na Tower One, 26th Street Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
-          "confidence": 0.95,
+          "source_text": "Lobby, High Street South Corporate Plaza\n9 Tower One, 26th St., West Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Address: Lobby, High Street South Corporate Plaz\na Tower One, 26th Street Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
+          "context": "Address: Lobby, High Street South Corporate Plaza\n9 Tower One, 26th St., West Corner 9th Avenue, BGC\nTaguig Metro Manila 1630",
           "match_type": "exact"
         }
       },
       "Phone": {
         "field_citation": {
           "source_text": "Phone:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Phone: 0271177127",
+          "context": "Phone: 09171971747",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "0271177127",
-          "confidence": 0.95,
+          "source_text": "09171971747",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Phone: 0271177127",
+          "context": "Phone: 09171971747",
           "match_type": "exact"
         }
       },
       "VAT REG TIN": {
         "field_citation": {
           "source_text": "VAT REG TIN:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT REG TIN: 244810731006",
+          "context": "VAT REG TIN: 244810731606",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "244810731006",
-          "confidence": 0.95,
+          "source_text": "244810731606",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT REG TIN: 244810731006",
+          "context": "VAT REG TIN: 244810731606",
           "match_type": "exact"
         }
       },
       "Receipt Date": {
         "field_citation": {
           "source_text": "Receipt Date:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Receipt Date: 2025.05.30 13:07:38",
+          "context": "Receipt Date: 2024-06-30 13:07:58",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "2025.05.30 13:07:38",
-          "confidence": 0.95,
+          "source_text": "2024-06-30 13:07:58",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Receipt Date: 2025.05.30 13:07:38",
+          "context": "Receipt Date: 2024-06-30 13:07:58",
           "match_type": "exact"
         }
       },
       "Transaction #": {
         "field_citation": {
           "source_text": "Transaction #:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Transaction #: 00000081622",
+          "context": "Transaction #: 0000081622",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "00000081622",
-          "confidence": 0.95,
+          "source_text": "0000081622",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Transaction #: 00000081622",
+          "context": "Transaction #: 0000081622",
           "match_type": "exact"
         }
       },
       "OR #": {
         "field_citation": {
           "source_text": "OR #:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "OR #: 00000081618",
+          "context": "OR #: 0000001810",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "00000081618",
-          "confidence": 0.95,
+          "source_text": "0000001810",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "OR #: 00000081618",
+          "context": "OR #: 0000001810",
           "match_type": "exact"
         }
       },
       "MIN": {
         "field_citation": {
           "source_text": "MIN :",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "MIN : 21090110422968624",
+          "context": "MIN : 21080110422966524",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "21090110422968624",
-          "confidence": 0.95,
+          "source_text": "21080110422966524",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "MIN : 21090110422968624",
+          "context": "MIN : 21080110422966524",
           "match_type": "exact"
         }
       },
       "Serial #": {
         "field_citation": {
           "source_text": "Serial #:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Serial #: DMPWMEUNJFBM",
+          "context": "Serial #: OMWMEJNJEM",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "DMPWMEUNJFBM",
-          "confidence": 0.95,
+          "source_text": "OMWMEJNJEM",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Serial #: DMPWMEUNJFBM",
+          "context": "Serial #: OMWMEJNJEM",
           "match_type": "exact"
         }
       },
       "Cashier": {
         "field_citation": {
           "source_text": "Cashier:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
           "context": "Cashier: Staff Cashier",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Staff Cashier",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
           "context": "Cashier: Staff Cashier",
           "match_type": "exact"
@@ -353,14 +341,14 @@
       "Register #": {
         "field_citation": {
           "source_text": "Register #:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
           "context": "Register #: 1",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "1",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
           "context": "Register #: 1",
           "match_type": "exact"
@@ -369,295 +357,279 @@
       "ORDER #": {
         "field_citation": {
           "source_text": "ORDER #:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "ORDER #:\n135",
+          "context": "ORDER #: 135",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "135",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "ORDER #:\n135",
+          "context": "ORDER #: 135",
           "match_type": "exact"
         }
       },
       "Item": {
         "field_citation": {
           "source_text": "Item",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Item | Price | Qty | Total |\n| --- | --- | --- | --- |",
+          "context": "| Item | Price | Qty | Total |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Latte",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Latte | 190.00 | 1 | 190.00 |",
+          "context": "| Latte | Iced, Normal Milk, To Go | 1 | 190.00 |",
           "match_type": "exact"
         }
       },
       "Price": {
         "field_citation": {
           "source_text": "Price",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Item | Price | Qty | Total |\n| --- | --- | --- | --- |",
+          "context": "| Item | Price | Qty | Total |",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "190.00",
-          "confidence": 0.95,
+          "source_text": "Iced, Normal Milk, To Go",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Latte | 190.00 | 1 | 190.00 |",
+          "context": "| Latte | Iced, Normal Milk, To Go | 1 | 190.00 |",
           "match_type": "exact"
         }
       },
       "Qty": {
         "field_citation": {
           "source_text": "Qty",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Item | Price | Qty | Total |\n| --- | --- | --- | --- |",
+          "context": "| Item | Price | Qty | Total |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "1",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Latte | 190.00 | 1 | 190.00 |",
+          "context": "| Latte | Iced, Normal Milk, To Go | 1 | 190.00 |",
           "match_type": "exact"
         }
       },
       "Total": {
         "field_citation": {
           "source_text": "Total",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Item | Price | Qty | Total |\n| --- | --- | --- | --- |",
+          "context": "| Item | Price | Qty | Total |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "190.00",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "| Latte | 190.00 | 1 | 190.00 |",
+          "context": "| Latte | Iced, Normal Milk, To Go | 1 | 190.00 |",
           "match_type": "exact"
         }
       },
       "SUBTOTAL": {
         "field_citation": {
           "source_text": "SUBTOTAL:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "SUBTOTAL: 169.64",
+          "context": "|      |       | SUBTOTAL: | 169.64 |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "169.64",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "SUBTOTAL: 169.64",
+          "context": "|      |       | SUBTOTAL: | 169.64 |",
           "match_type": "exact"
         }
       },
       "12% VAT": {
         "field_citation": {
           "source_text": "12% VAT:",
-          "confidence": 0.9,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "12% VAT: 20.36",
+          "context": "|      |       | 12% VAT: | 20.36 |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "20.36",
-          "confidence": 0.9,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "12% VAT: 20.36",
+          "context": "|      |       | 12% VAT: | 20.36 |",
           "match_type": "exact"
         }
       },
       "TOTAL": {
         "field_citation": {
           "source_text": "TOTAL:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "TOTAL: 190.00",
+          "context": "|      |       | TOTAL: | 190.00 |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "190.00",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "TOTAL: 190.00",
+          "context": "|      |       | TOTAL: | 190.00 |",
           "match_type": "exact"
         }
       },
       "CREDIT CARD": {
         "field_citation": {
           "source_text": "CREDIT CARD:",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "CREDIT CARD: 190.00",
+          "context": "|      |       | CREDIT CARD: | 190.00 |",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "190.00",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "CREDIT CARD: 190.00",
+          "context": "|      |       | CREDIT CARD: | 190.00 |",
           "match_type": "exact"
         }
       },
       "VATable Sales": {
         "field_citation": {
-          "source_text": "VATable Sales",
-          "confidence": 0.95,
+          "source_text": "VATable Sales:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VATable Sales\n169.64",
+          "context": "VATable Sales: 169.64",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "169.64",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VATable Sales\n169.64",
+          "context": "VATable Sales: 169.64",
           "match_type": "exact"
         }
       },
       "VAT Amount": {
         "field_citation": {
-          "source_text": "VAT Amount",
-          "confidence": 0.95,
+          "source_text": "VAT Amount:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT Amount\n20.36",
+          "context": "VAT Amount: 20.36",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "20.36",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT Amount\n20.36",
+          "context": "VAT Amount: 20.36",
           "match_type": "exact"
         }
       },
       "VAT Exempt Sales": {
         "field_citation": {
-          "source_text": "VAT Exempt Sales",
-          "confidence": 0.95,
+          "source_text": "VAT Exempt Sales:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT Exempt Sales\n0,00",
+          "context": "VAT Exempt Sales: 0.00",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "0,00",
-          "confidence": 0.95,
+          "source_text": "0.00",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "VAT Exempt Sales\n0,00",
+          "context": "VAT Exempt Sales: 0.00",
           "match_type": "exact"
         }
       },
       "Zero Rated Sales": {
         "field_citation": {
-          "source_text": "Zero Rated Sales",
-          "confidence": 0.95,
+          "source_text": "Zero Rated Sales:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Zero Rated Sales\n0.00",
+          "context": "Zero Rated Sales: 0.00",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "0.00",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Zero Rated Sales\n0.00",
-          "match_type": "exact"
-        }
-      },
-      "VAT": {
-        "field_citation": {
-          "source_text": "12% VAT:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "12% VAT: 20.36",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "20.36",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "12% VAT: 20.36",
+          "context": "Zero Rated Sales: 0.00",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 117,
-      "fields_with_field_citations": 117,
-      "fields_with_value_citations": 117,
-      "average_confidence": 0.943162393162393
+      "total_fields_analyzed": 91,
+      "fields_with_field_citations": 91,
+      "fields_with_value_citations": 91,
+      "average_confidence": 0.9631868131868131
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "6.1",
-      "file_classification_seconds": "4.3",
-      "image_quality_assessment_seconds": "4.5",
-      "data_extraction_seconds": "6.2",
-      "issue_detection_seconds": "6.3",
-      "citation_generation_seconds": "120.0",
-      "llm_validation_seconds": "68.1"
+      "markdown_extraction_seconds": "34.7",
+      "data_extraction_seconds": "3.9",
+      "file_classification_seconds": "4.7",
+      "image_quality_assessment_seconds": "5.2",
+      "issue_detection_seconds": "5.7",
+      "citation_generation_seconds": "89.6",
+      "llm_validation_seconds": "64.4"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-09-10T11:11:52.415Z",
-        "end_time": "2025-09-10T11:11:58.527Z",
-        "duration_seconds": "6.1",
-        "document_reader_used": "textract"
+        "start_time": "2025-10-02T10:35:13.270Z",
+        "end_time": "2025-10-02T10:35:47.993Z",
+        "duration_seconds": "34.7",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-02T10:35:47.998Z",
+        "end_time": "2025-10-02T10:35:51.942Z",
+        "duration_seconds": "3.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
       },
       "file_classification": {
-        "start_time": "2025-09-10T11:11:58.530Z",
-        "end_time": "2025-09-10T11:12:02.830Z",
-        "duration_seconds": "4.3",
+        "start_time": "2025-10-02T10:35:47.996Z",
+        "end_time": "2025-10-02T10:35:52.744Z",
+        "duration_seconds": "4.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-09-10T11:11:58.528Z",
-        "end_time": "2025-09-10T11:12:03.021Z",
-        "duration_seconds": "4.5",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "data_extraction": {
-        "start_time": "2025-09-10T11:11:58.531Z",
-        "end_time": "2025-09-10T11:12:04.721Z",
-        "duration_seconds": "6.2",
+        "start_time": "2025-10-02T10:35:47.994Z",
+        "end_time": "2025-10-02T10:35:53.159Z",
+        "duration_seconds": "5.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-09-10T11:12:04.722Z",
-        "end_time": "2025-09-10T11:12:11.019Z",
-        "duration_seconds": "6.3",
+        "start_time": "2025-10-02T10:35:53.160Z",
+        "end_time": "2025-10-02T10:35:58.837Z",
+        "duration_seconds": "5.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-09-10T11:12:04.724Z",
-        "end_time": "2025-09-10T11:14:04.678Z",
-        "duration_seconds": "120.0",
+        "start_time": "2025-10-02T10:35:53.163Z",
+        "end_time": "2025-10-02T10:37:22.788Z",
+        "duration_seconds": "89.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "llm_validation": {
-        "start_time": "2025-09-10T11:14:04.679Z",
-        "end_time": "2025-09-10T11:15:12.822Z",
-        "duration_seconds": "68.1",
+        "start_time": "2025-10-02T10:37:22.789Z",
+        "end_time": "2025-10-02T10:38:27.220Z",
+        "duration_seconds": "64.4",
         "judge_models_used": [
           "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
           "eu.anthropic.claude-3-haiku-20240307-v1:0",
-          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
         ],
         "execution_mode": "parallel",
         "parallel_metrics": {},
@@ -665,18 +637,18 @@
         "parallel_enabled": true
       }
     },
-    "total_processing_time_seconds": "200.4",
+    "total_processing_time_seconds": "194.0",
     "performance_metrics": {
-      "parallel_group_1_seconds": "6.2",
-      "parallel_group_2_seconds": "120.0",
-      "total_parallel_time_seconds": "126.1"
+      "parallel_group_1_seconds": "5.2",
+      "parallel_group_2_seconds": "89.6",
+      "total_parallel_time_seconds": "94.8"
     }
   },
   "metadata": {
     "filename": "philippines_file_5.pdf",
-    "processing_time": 200430,
+    "processing_time": 193973,
     "country": "Philippines",
     "icp": "GoGlobal",
-    "processed_at": "2025-09-10T11:15:12.849Z"
+    "processed_at": "2025-10-02T10:38:27.243Z"
   }
 }

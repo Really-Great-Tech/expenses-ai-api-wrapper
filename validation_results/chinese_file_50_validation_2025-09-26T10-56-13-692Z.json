@@ -1,0 +1,661 @@
+{
+  "overall_score": 0.8694444444444445,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9,
+      "issues": [
+        "None identified. All issues raised by the AI are factually grounded in the provided data."
+      ],
+      "summary": "The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are directly supported by the extracted data and compliance rules. The AI correctly applied the relevant compliance policies to the receipt type and accurately identified the missing mandatory fields.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" confirming this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the currency is missing from the receipt. The extracted data shows \"currency: null\" confirming this is a valid issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the tax amount is missing from the receipt. The extracted data shows \"tax_amount: null\" confirming this is a valid issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the tax rate is missing from the receipt. The extracted data shows \"tax_rate: null\" confirming this is a valid issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are subject to gross-up according to the compliance rules. The extracted data shows a meal expense (巧克力/chocolate) for 38 RMB, and the compliance rules state that meal expenses during business trips are subject to specific limits and tax treatment.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are directly supported by the extracted data and compliance rules. The AI correctly applied the relevant compliance policies to the receipt type and accurately identified the missing mandatory fields.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" confirming this is a valid issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the currency is missing from the receipt. The extracted data shows \"currency: null\" confirming this is a valid issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the tax amount is missing from the receipt. The extracted data shows \"tax_amount: null\" confirming this is a valid issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the tax rate is missing from the receipt. The extracted data shows \"tax_rate: null\" confirming this is a valid issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are subject to gross-up according to the compliance rules. The extracted data shows a meal expense (巧克力/chocolate) for 38 RMB, and the compliance rules state that meal expenses during business trips are subject to specific limits and tax treatment.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are directly supported by the extracted data and compliance rules. The AI correctly applied the relevant compliance policies to the receipt type and accurately identified the missing mandatory fields."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response accurately represents the missing customer name field from the extracted receipt data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately represents the missing currency field from the extracted receipt data.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response accurately represents the missing tax amount field from the extracted receipt data.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response accurately represents the missing tax rate field from the extracted receipt data.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI response accurately identifies that the meal expense exceeds the tax-exempt limit and will be subject to gross-up, based on the compliance rules provided.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response is well-grounded in the factual information provided in the extracted receipt data and compliance rules. All claims made in the response can be traced back to the provided data, and no information appears to be fabricated or assumed beyond what is given. The numerical values, dates, and amounts match the extracted data, and the entity names and details are accurately represented. Overall, the response demonstrates a high level of factual grounding."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.78,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue of missing customer name is accurately identified based on the extracted data, which shows \"customer_name\": null.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue of missing currency is incorrectly identified. The extracted data shows \"currency\": null, but the total amount is given in a numerical value (38), which implies the use of the local currency (RMB/CNY) given the context of the receipt being from China.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue of missing tax amount is accurately identified based on the extracted data, which shows \"tax_amount\": null.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue of missing tax rate is accurately identified based on the extracted data, which shows \"tax_rate\": null.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue regarding meal expenses is generally accurate. The extracted data shows a total amount of 38, which could be subject to gross-up based on the compliance rules. However, the AI doesn't specify the exact amount, which would have made the response more precise.\n\nCONFIDENCE: 78\n\nISSUES:\n1. The AI incorrectly identified missing currency as an issue when the context implies the use of local currency.\n2. The AI didn't specify the exact amount for the meal expense in relation to the gross-up rule.\n\nSUMMARY: The AI response is mostly factually grounded, accurately identifying issues related to missing customer name, tax amount, and tax rate. However, it incorrectly flagged missing currency as an issue and didn't provide specific details about the meal expense amount in relation to the gross-up rule. The overall assessment of compliance issues is generally accurate based on the extracted data and provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" confirming this is a valid issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the currency is missing from the receipt. The extracted data shows \"currency: null\" confirming this is a valid issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the tax amount is missing from the receipt. The extracted data shows \"tax_amount: null\" confirming this is a valid issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the tax rate is missing from the receipt. The extracted data shows \"tax_rate: null\" confirming this is a valid issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that meal expenses are subject to gross-up according to the compliance rules. The extracted data shows a meal expense (巧克力/chocolate) for 38 RMB, and the compliance rules state that meal expenses during business trips are subject to specific limits and tax treatment.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9199999999999999,
+      "issues": [
+        "1. The AI mischaracterized the \"customer name\" issue - for a restaurant receipt",
+        "the supplier name (which is present) is what's required",
+        "not the customer name.",
+        "2. The AI didn't mention that the receipt is missing \"What",
+        "Where",
+        "When\" information which is a mandatory requirement according to the knowledge base.",
+        "3. The AI didn't address the need for business purpose documentation (Why and Who information) which is required according to the additional info rules."
+      ],
+      "summary": "The AI response generally adheres well to the compliance knowledge base, particularly regarding tax implications and gross-up requirements for meal expenses in China. The identification of missing tax information and currency is accurate. However, there's some confusion regarding the customer name requirement, and the AI missed mentioning some additional required information like business purpose and complete \"What, Where, When\" documentation. Overall, the response correctly applies most of the relevant compliance rules but has a few gaps in comprehensive application of the knowledge base.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the issue is somewhat mischaracterized as \"customer name\" when for a meal receipt in China, what's actually required is the supplier's business name (which is present as \"HMS HOST\"). The recommendation to address this with the supplier is appropriate, but the underlying requirement interpretation is slightly off.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that currency is missing from the receipt, which is indeed a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees\" which includes currency specification. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that tax amount is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that tax rate is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI correctly identified that meal expenses in China are subject to gross-up if they exceed certain limits. The knowledge base reference accurately cites the rule about personal meals during business trips not exceeding specific amounts based on city tier (150 RMB/day/person generally). The recommendation is accurate and well-aligned with the compliance rules.\n\nCONFIDENCE: 85\n\nISSUES:\n1. The AI mischaracterized the \"customer name\" issue - for a restaurant receipt, the supplier name (which is present) is what's required, not the customer name.\n2. The AI didn't mention that the receipt is missing \"What, Where, When\" information which is a mandatory requirement according to the knowledge base.\n3. The AI didn't address the need for business purpose documentation (Why and Who information) which is required according to the additional info rules.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, particularly regarding tax implications and gross-up requirements for meal expenses in China. The identification of missing tax information and currency is accurate. However, there's some confusion regarding the customer name requirement, and the AI missed mentioning some additional required information like business purpose and complete \"What, Where, When\" documentation. Overall, the response correctly applies most of the relevant compliance rules but has a few gaps in comprehensive application of the knowledge base.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the issue is somewhat mischaracterized as \"customer name\" when for a meal receipt in China, what's actually required is the supplier's business name (which is present as \"HMS HOST\"). The recommendation to address this with the supplier is appropriate, but the underlying requirement interpretation is slightly off.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that currency is missing from the receipt, which is indeed a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees\" which includes currency specification. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that tax amount is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that tax rate is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI correctly identified that meal expenses in China are subject to gross-up if they exceed certain limits. The knowledge base reference accurately cites the rule about personal meals during business trips not exceeding specific amounts based on city tier (150 RMB/day/person generally). The recommendation is accurate and well-aligned with the compliance rules.\n\nCONFIDENCE: 85\n\nISSUES:\n1. The AI mischaracterized the \"customer name\" issue - for a restaurant receipt, the supplier name (which is present) is what's required, not the customer name.\n2. The AI didn't mention that the receipt is missing \"What, Where, When\" information which is a mandatory requirement according to the knowledge base.\n3. The AI didn't address the need for business purpose documentation (Why and Who information) which is required according to the additional info rules.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, particularly regarding tax implications and gross-up requirements for meal expenses in China. The identification of missing tax information and currency is accurate. However, there's some confusion regarding the customer name requirement, and the AI missed mentioning some additional required information like business purpose and complete \"What, Where, When\" documentation. Overall, the response correctly applies most of the relevant compliance rules but has a few gaps in comprehensive application of the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The receipt is missing the mandatory customer name, which is a key compliance requirement for China. The AI response correctly identifies this as an issue and provides an appropriate recommendation to address it with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The receipt is missing the mandatory currency information, which is also a key compliance requirement in China. The AI response accurately flags this as an issue and suggests addressing it with the supplier.\n\nISSUE_3_VALIDATION_SCORE: 90 - The receipt lacks the mandatory tax amount, which is required to be displayed on receipts in China. The AI response correctly identifies this as a compliance problem and provides the appropriate recommendation.\n\nISSUE_4_VALIDATION_SCORE: 90 - The tax rate is also missing from the receipt, which is a mandatory field according to the compliance rules. The AI response accurately highlights this issue and suggests resolving it with the supplier.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI response correctly identifies that the meal expense exceeds the tax-exempt limit in China and will need to be grossed up. The recommendation provided aligns with the compliance knowledge base.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for China. It correctly identifies the key issues with the receipt, such as missing mandatory fields like customer name, currency, tax amount, and tax rate. The response also properly addresses the meal expense exceeding the tax-exempt limit and provides the appropriate recommendation. Overall, the response demonstrates a strong adherence to the compliance guidelines for China."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.99,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified the missing customer name as a compliance issue, which aligns with the knowledge base rule stating \"Receipt must show the business name of the supplier/vendor providing the goods or services\".\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately flagged the missing currency as a compliance issue, adhering to the knowledge base rule \"Receipt must display the total cost including all taxes and fees\".\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the missing tax amount as a compliance issue, which is in line with the knowledge base rule \"Receipt must display the total cost including all taxes and fees\".\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately flagged the missing tax rate as a compliance issue, adhering to the knowledge base rule \"Receipt must display the total cost including all taxes and fees\".\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI correctly identified that meal expenses are subject to gross-up and provided accurate information about the tax-exempt limits for different city tiers. This aligns well with the knowledge base rule for meal expenses during business trips. However, it could have been more specific about the exact tier of the city where the expense occurred.\n\nCONFIDENCE: 99\n\nISSUES:\n- No significant issues in knowledge base adherence were identified.\n- Minor improvement could be made in Issue 5 by specifying the city tier for more precise application of the rule.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for China. It correctly identifies and addresses key compliance issues related to missing mandatory information on the receipt and accurately applies the gross-up rule for meal expenses. The response shows a thorough understanding of country-specific regulations and receipt type requirements for meals in China. There are no contradictions with established compliance guidelines, and the issues raised are all relevant and well-supported by the knowledge base."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the issue is somewhat mischaracterized as \"customer name\" when for a meal receipt in China, what's actually required is the supplier's business name (which is present as \"HMS HOST\"). The recommendation to address this with the supplier is appropriate, but the underlying requirement interpretation is slightly off.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that currency is missing from the receipt, which is indeed a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees\" which includes currency specification. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that tax amount is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that tax rate is missing from the receipt, which is a mandatory field according to the knowledge base rule \"Receipt must display the total cost including all taxes and fees.\" The recommendation to address this with the supplier is appropriate.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that meal expenses in China are subject to gross-up if they exceed certain limits. The knowledge base reference accurately cites the rule about personal meals during business trips not exceeding specific amounts based on city tier (150 RMB/day/person generally). The recommendation is accurate and well-aligned with the compliance rules.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9066666666666666,
+      "issues": [
+        "1. The customer name issue is incorrectly flagged as mandatory for meal receipts in China",
+        "2. The system correctly identified currency",
+        "tax amount",
+        "and tax rate issues",
+        "3. The gross-up rule for meals is correctly identified",
+        "though the amount (38 RMB) is actually below the threshold that would trigger actual gross-up",
+        "4. The system did not flag the lack of business purpose documentation which is required according to the \"Why and Who information\" rule"
+      ],
+      "summary": "The compliance assessment is mostly accurate, correctly identifying issues with missing currency, tax amount, and tax rate. The system also correctly identified that meal expenses are subject to gross-up rules, though the specific amount (38 RMB) is below the threshold that would trigger actual gross-up. However, it incorrectly flagged customer name as mandatory for meal receipts in China, and it failed to note the missing business purpose documentation that would be required according to the compliance rules. Overall, the assessment provides valuable compliance insights but has room for improvement in accurately applying all relevant rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue identifies a missing customer name as mandatory, but for a meal receipt in China, the customer name is not actually a mandatory field according to the compliance rules provided. The rules require supplier business name, transaction date, total amount, and item description, but do not explicitly require customer name for restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing currency issue is valid. While the total amount (38) is present, the currency is not specified, which violates the rule that \"Receipt must display the total cost including all taxes and fees\" in local currency. In China, this would be expected to be in RMB/CNY.\n\nISSUE_3_VALIDATION_SCORE: 90 - The missing tax amount issue is valid. Chinese receipts should include tax information, and this is missing from the receipt data. This aligns with the rule requiring the \"total cost including all taxes and fees.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The missing tax rate issue is valid. Similar to the tax amount, the tax rate should be included on Chinese receipts for proper compliance with tax regulations.\n\nISSUE_5_VALIDATION_SCORE: 95 - The gross-up identification for meal expenses is accurate. According to the compliance rules, \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and amounts exceeding this limit will be subject to gross-up. While the amount here (38 RMB) is actually below the limit, the system correctly identifies that meal expenses are subject to gross-up rules (even if this particular one might not need to be grossed up due to being under the limit).\n\nCONFIDENCE: 85\n\nISSUES:\n1. The customer name issue is incorrectly flagged as mandatory for meal receipts in China\n2. The system correctly identified currency, tax amount, and tax rate issues\n3. The gross-up rule for meals is correctly identified, though the amount (38 RMB) is actually below the threshold that would trigger actual gross-up\n4. The system did not flag the lack of business purpose documentation which is required according to the \"Why and Who information\" rule\n\nSUMMARY: The compliance assessment is mostly accurate, correctly identifying issues with missing currency, tax amount, and tax rate. The system also correctly identified that meal expenses are subject to gross-up rules, though the specific amount (38 RMB) is below the threshold that would trigger actual gross-up. However, it incorrectly flagged customer name as mandatory for meal receipts in China, and it failed to note the missing business purpose documentation that would be required according to the compliance rules. Overall, the assessment provides valuable compliance insights but has room for improvement in accurately applying all relevant rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue identifies a missing customer name as mandatory, but for a meal receipt in China, the customer name is not actually a mandatory field according to the compliance rules provided. The rules require supplier business name, transaction date, total amount, and item description, but do not explicitly require customer name for restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing currency issue is valid. While the total amount (38) is present, the currency is not specified, which violates the rule that \"Receipt must display the total cost including all taxes and fees\" in local currency. In China, this would be expected to be in RMB/CNY.\n\nISSUE_3_VALIDATION_SCORE: 90 - The missing tax amount issue is valid. Chinese receipts should include tax information, and this is missing from the receipt data. This aligns with the rule requiring the \"total cost including all taxes and fees.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The missing tax rate issue is valid. Similar to the tax amount, the tax rate should be included on Chinese receipts for proper compliance with tax regulations.\n\nISSUE_5_VALIDATION_SCORE: 95 - The gross-up identification for meal expenses is accurate. According to the compliance rules, \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and amounts exceeding this limit will be subject to gross-up. While the amount here (38 RMB) is actually below the limit, the system correctly identifies that meal expenses are subject to gross-up rules (even if this particular one might not need to be grossed up due to being under the limit).\n\nCONFIDENCE: 85\n\nISSUES:\n1. The customer name issue is incorrectly flagged as mandatory for meal receipts in China\n2. The system correctly identified currency, tax amount, and tax rate issues\n3. The gross-up rule for meals is correctly identified, though the amount (38 RMB) is actually below the threshold that would trigger actual gross-up\n4. The system did not flag the lack of business purpose documentation which is required according to the \"Why and Who information\" rule\n\nSUMMARY: The compliance assessment is mostly accurate, correctly identifying issues with missing currency, tax amount, and tax rate. The system also correctly identified that meal expenses are subject to gross-up rules, though the specific amount (38 RMB) is below the threshold that would trigger actual gross-up. However, it incorrectly flagged customer name as mandatory for meal receipts in China, and it failed to note the missing business purpose documentation that would be required according to the compliance rules. Overall, the assessment provides valuable compliance insights but has room for improvement in accurately applying all relevant rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing customer name as a compliance issue. This is a mandatory field as per the receipt standards for China.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing currency as a compliance issue. This is a mandatory field as per the receipt standards for China.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing tax amount as a compliance issue. This is a mandatory field as per the receipt standards for China.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identifies the missing tax rate as a compliance issue. This is a mandatory field as per the receipt standards for China.\n\nISSUE_5_VALIDATION_SCORE: 95 - The assessment correctly identifies that the meal expense exceeds the tax-exempt limit and will be subject to gross-up. The recommended treatment is in line with the compliance policies for China.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The compliance assessment is accurate overall. All the identified issues are valid and the recommended actions are appropriate based on the receipt standards and gross-up policies for China. The assessment demonstrates a thorough understanding of the compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing customer name as a compliance issue. This is accurate based on the compliance rules stating that the supplier business name is mandatory for all expense types.\n\nISSUE_2_VALIDATION_SCORE: 100 - The missing currency is accurately flagged as a compliance issue. The rules state that the total amount in local currency is mandatory for most expense types, including meals.\n\nISSUE_3_VALIDATION_SCORE: 100 - The missing tax amount is correctly identified as a compliance issue. The rules require that receipts must display the total cost including all taxes and fees.\n\nISSUE_4_VALIDATION_SCORE: 100 - The missing tax rate is accurately flagged as a compliance issue, aligning with the requirement for receipts to show the total cost including all taxes and fees.\n\nISSUE_5_VALIDATION_SCORE: 95 - The assessment correctly identifies that meal expenses are subject to gross-up and provides accurate information about the tax-exempt limits. However, it doesn't specify if this particular meal expense (38 RMB) exceeds the limit, which depends on the city tier.\n\nCONFIDENCE: 95\n\nISSUES:\n1. The assessment doesn't specify whether the 38 RMB meal expense exceeds the tax-exempt limit, which depends on the city tier.\n2. The assessment doesn't mention the missing \"What, Where, When\" information, which is listed as mandatory in the compliance rules.\n\nSUMMARY: The compliance assessment is highly accurate, correctly identifying major issues such as missing customer name, currency, tax amount, and tax rate. It also correctly applies the gross-up rule for meal expenses. However, it could be improved by specifying whether the meal expense exceeds the tax-exempt limit and by noting the missing \"What, Where, When\" information. Overall, the assessment demonstrates a strong understanding and application of the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue identifies a missing customer name as mandatory, but for a meal receipt in China, the customer name is not actually a mandatory field according to the compliance rules provided. The rules require supplier business name, transaction date, total amount, and item description, but do not explicitly require customer name for restaurant receipts.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing currency issue is valid. While the total amount (38) is present, the currency is not specified, which violates the rule that \"Receipt must display the total cost including all taxes and fees\" in local currency. In China, this would be expected to be in RMB/CNY.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing tax amount issue is valid. Chinese receipts should include tax information, and this is missing from the receipt data. This aligns with the rule requiring the \"total cost including all taxes and fees.\"",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing tax rate issue is valid. Similar to the tax amount, the tax rate should be included on Chinese receipts for proper compliance with tax regulations.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The gross-up identification for meal expenses is accurate. According to the compliance rules, \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and amounts exceeding this limit will be subject to gross-up. While the amount here (38 RMB) is actually below the limit, the system correctly identifies that meal expenses are subject to gross-up rules (even if this particular one might not need to be grossed up due to being under the limit).",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.93,
+      "issues": [
+        "No significant issues with categorization. All identified problems are properly classified according to the established taxonomy. The system correctly distinguishes between fix-required compliance issues (missing fields) and tax implications (gross-up requirements)."
+      ],
+      "summary": "The issue categorization is highly accurate, with all five issues properly classified according to Chinese receipt compliance standards. The system correctly identifies missing mandatory fields (customer name, currency, tax amount, tax rate) as fix-required compliance issues, while appropriately flagging the meal expense as requiring gross-up treatment according to Chinese tax regulations. Each issue includes clear descriptions, appropriate recommendations, and relevant knowledge base references that align with the compliance rules provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Chinese receipt standards. The description clearly identifies the missing field, references the appropriate knowledge base rule, and provides a recommendation for resolution.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing currency issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" as currency is a mandatory field according to receipt standards in China. The description, recommendation, and knowledge base reference are all appropriate and aligned with compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 90 - The missing tax amount issue is properly categorized as \"Standards & Compliance | Fix Identified\" since tax information is required on Chinese receipts. The issue description is clear, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The missing tax rate issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the same reasons as issue 3. Tax information is mandatory on Chinese receipts, and the categorization reflects this compliance requirement.\n\nISSUE_5_VALIDATION_SCORE: 95 - The meal expense gross-up issue is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The description correctly identifies that meal expenses are subject to tax implications, and the recommendation provides detailed information about the specific tax exemption limits in China based on city tiers. The knowledge base reference is comprehensive and directly applicable.\n\nCONFIDENCE: 91\n\nISSUES: No significant issues with categorization. All identified problems are properly classified according to the established taxonomy. The system correctly distinguishes between fix-required compliance issues (missing fields) and tax implications (gross-up requirements).\n\nSUMMARY: The issue categorization is highly accurate, with all five issues properly classified according to Chinese receipt compliance standards. The system correctly identifies missing mandatory fields (customer name, currency, tax amount, tax rate) as fix-required compliance issues, while appropriately flagging the meal expense as requiring gross-up treatment according to Chinese tax regulations. Each issue includes clear descriptions, appropriate recommendations, and relevant knowledge base references that align with the compliance rules provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.91,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Chinese receipt standards. The description clearly identifies the missing field, references the appropriate knowledge base rule, and provides a recommendation for resolution.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing currency issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" as currency is a mandatory field according to receipt standards in China. The description, recommendation, and knowledge base reference are all appropriate and aligned with compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 90 - The missing tax amount issue is properly categorized as \"Standards & Compliance | Fix Identified\" since tax information is required on Chinese receipts. The issue description is clear, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The missing tax rate issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the same reasons as issue 3. Tax information is mandatory on Chinese receipts, and the categorization reflects this compliance requirement.\n\nISSUE_5_VALIDATION_SCORE: 95 - The meal expense gross-up issue is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The description correctly identifies that meal expenses are subject to tax implications, and the recommendation provides detailed information about the specific tax exemption limits in China based on city tiers. The knowledge base reference is comprehensive and directly applicable.\n\nCONFIDENCE: 91\n\nISSUES: No significant issues with categorization. All identified problems are properly classified according to the established taxonomy. The system correctly distinguishes between fix-required compliance issues (missing fields) and tax implications (gross-up requirements).\n\nSUMMARY: The issue categorization is highly accurate, with all five issues properly classified according to Chinese receipt compliance standards. The system correctly identifies missing mandatory fields (customer name, currency, tax amount, tax rate) as fix-required compliance issues, while appropriately flagging the meal expense as requiring gross-up treatment according to Chinese tax regulations. Each issue includes clear descriptions, appropriate recommendations, and relevant knowledge base references that align with the compliance rules provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue related to the missing customer name is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue related to the missing currency is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue related to the missing tax amount is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue related to the missing tax rate is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are appropriate.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue related to the meal expense exceeding the tax-exempt limit is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description and recommendation are clear and follow the established compliance rules.\n\nCONFIDENCE: 92\nISSUES: None identified.\nSUMMARY: The issue categorization is accurate and follows the established taxonomy. The descriptions are clear and the recommendations are appropriate. Overall, the issues are well-identified and categorized."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.96,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing customer name as a mandatory field. The description is clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 95 - This issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing currency as a mandatory field. The description is clear and actionable.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue is properly categorized as \"Standards & Compliance | Fix Identified\" and correctly identifies the missing tax amount as a mandatory field. The description is clear and actionable.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is accurately categorized as \"Standards & Compliance | Fix Identified\" and correctly identifies the missing tax rate as a mandatory field. The description is clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately identifies that meal expenses exceeding the tax-exempt limit will be subject to gross-up. The description is clear, actionable, and provides specific policy details.\n\nCONFIDENCE: 96\n\nISSUES: No significant issues with categorization were identified. All issues are properly classified and described.\n\nSUMMARY: The issue categorization is highly accurate and follows the established taxonomy. Each issue is correctly classified as either \"Standards & Compliance | Fix Identified\" or \"Standards & Compliance | Gross-up Identified\". The descriptions are clear, actionable, and directly relate to the compliance rules provided. No issues appear to be missed or incorrectly classified based on the given information and compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Chinese receipt standards. The description clearly identifies the missing field, references the appropriate knowledge base rule, and provides a recommendation for resolution.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing currency issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" as currency is a mandatory field according to receipt standards in China. The description, recommendation, and knowledge base reference are all appropriate and aligned with compliance requirements.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing tax amount issue is properly categorized as \"Standards & Compliance | Fix Identified\" since tax information is required on Chinese receipts. The issue description is clear, and the recommendation to address this with the supplier is appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing tax rate issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the same reasons as issue 3. Tax information is mandatory on Chinese receipts, and the categorization reflects this compliance requirement.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The meal expense gross-up issue is very accurately categorized as \"Standards & Compliance | Gross-up Identified.\" The description correctly identifies that meal expenses are subject to tax implications, and the recommendation provides detailed information about the specific tax exemption limits in China based on city tiers. The knowledge base reference is comprehensive and directly applicable.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.91,
+      "issues": [
+        "None significant. The recommendations are generally valid",
+        "actionable",
+        "and aligned with the compliance rules provided. Each recommendation addresses the specific issue identified and provides a clear path forward."
+      ],
+      "summary": "The validation assessment shows that all recommendations are valid and useful. The recommendations for Issues 1-4 appropriately suggest addressing the missing information with the supplier, which is a practical approach. The recommendation for Issue 5 regarding meal expenses being subject to gross-up is particularly strong as it directly references the specific compliance policy with accurate details about tax exemption limits. All recommendations are actionable, specific to the issues identified, and align with the compliance rules provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 85 - The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, the receipt must show the business name of the supplier/vendor, which is present (HMS HOST), but the customer name is indeed missing. Addressing this with the supplier is a practical solution.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to address the missing currency with the supplier is valid. While the amount (38) is shown, the currency designation is missing, which is required according to the compliance rules stating \"Receipt must display the total cost including all taxes and fees\" in local currency. Addressing this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the missing tax amount with the supplier is valid and aligns with compliance rules requiring that \"Receipt must display the total cost including all taxes and fees.\" The receipt shows a total amount but no breakdown of taxes, making this recommendation appropriate.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to address the missing tax rate with the supplier is valid for the same reason as Issue 3. The compliance rules require tax information to be displayed, and addressing this with the supplier is an appropriate recommendation.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation regarding meal expenses being grossed up is highly valid and directly references the specific compliance policy. The explanation correctly cites the relevant rule about meal expenses during business trips and the tax exemption limits (150 RMB/day/person), with amounts exceeding this limit being subject to tax treatment. This is accurate according to the provided compliance rules.\n\nCONFIDENCE: 90\n\nISSUES: None significant. The recommendations are generally valid, actionable, and aligned with the compliance rules provided. Each recommendation addresses the specific issue identified and provides a clear path forward.\n\nSUMMARY: The validation assessment shows that all recommendations are valid and useful. The recommendations for Issues 1-4 appropriately suggest addressing the missing information with the supplier, which is a practical approach. The recommendation for Issue 5 regarding meal expenses being subject to gross-up is particularly strong as it directly references the specific compliance policy with accurate details about tax exemption limits. All recommendations are actionable, specific to the issues identified, and align with the compliance rules provided.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 85 - The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, the receipt must show the business name of the supplier/vendor, which is present (HMS HOST), but the customer name is indeed missing. Addressing this with the supplier is a practical solution.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation to address the missing currency with the supplier is valid. While the amount (38) is shown, the currency designation is missing, which is required according to the compliance rules stating \"Receipt must display the total cost including all taxes and fees\" in local currency. Addressing this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the missing tax amount with the supplier is valid and aligns with compliance rules requiring that \"Receipt must display the total cost including all taxes and fees.\" The receipt shows a total amount but no breakdown of taxes, making this recommendation appropriate.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to address the missing tax rate with the supplier is valid for the same reason as Issue 3. The compliance rules require tax information to be displayed, and addressing this with the supplier is an appropriate recommendation.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation regarding meal expenses being grossed up is highly valid and directly references the specific compliance policy. The explanation correctly cites the relevant rule about meal expenses during business trips and the tax exemption limits (150 RMB/day/person), with amounts exceeding this limit being subject to tax treatment. This is accurate according to the provided compliance rules.\n\nCONFIDENCE: 90\n\nISSUES: None significant. The recommendations are generally valid, actionable, and aligned with the compliance rules provided. Each recommendation addresses the specific issue identified and provides a clear path forward.\n\nSUMMARY: The validation assessment shows that all recommendations are valid and useful. The recommendations for Issues 1-4 appropriately suggest addressing the missing information with the supplier, which is a practical approach. The recommendation for Issue 5 regarding meal expenses being subject to gross-up is particularly strong as it directly references the specific compliance policy with accurate details about tax exemption limits. All recommendations are actionable, specific to the issues identified, and align with the compliance rules provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name on the receipt is valid and actionable. It provides a clear guidance to the user to work with the supplier or provider to ensure this mandatory field is included on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing currency on the receipt is also valid and actionable. It directs the user to work with the supplier to ensure the total cost including all taxes and fees is displayed on the receipt, which should include the currency.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing tax amount on the receipt is valid and aligned with the requirement to display the total cost including all taxes and fees.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to address the missing tax rate on the receipt is valid and directly addresses the identified issue, aligning with the requirement to display the total cost including all taxes and fees.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to address the meal expense exceeding the tax-exempt limit is valid and provides clear guidance on the applicable rules and treatment. It outlines the specific tax-exempt limits and the consequences of exceeding those limits.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The provided recommendations are overall very valid and useful. They are actionable, address the identified compliance issues, and provide practical guidance to the user. The recommendations are feasible and do not contain any contradictory or harmful advice. The high confidence score reflects the comprehensive and well-aligned nature of the recommendations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.91,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. It directly addresses the compliance issue and is a feasible solution.\n\nISSUE_2_VALIDATION_SCORE: 90 - Recommending to address the missing currency with the supplier is valid and specific. It directly targets the identified issue and is a practical approach.\n\nISSUE_3_VALIDATION_SCORE: 90 - The suggestion to address the missing tax amount with the supplier is valid and actionable. It directly addresses the compliance issue and is a feasible solution.\n\nISSUE_4_VALIDATION_SCORE: 90 - Recommending to address the missing tax rate with the supplier is valid and specific. It directly targets the identified issue and is a practical approach.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation regarding the gross-up for meal expenses exceeding the tax-exempt limit is highly valid. It provides specific information about the tax-exempt limits for different city tiers and explains the consequences of exceeding these limits.\n\nCONFIDENCE: 91\n\nISSUES: No significant issues with the recommendations' validity were identified. All recommendations are actionable, specific, and address the identified issues directly.\n\nSUMMARY: The recommendations provided are highly valid and useful. They directly address each identified compliance issue with actionable and specific suggestions. The recommendations are feasible and practical, focusing on addressing missing information with the supplier and providing clear guidance on tax implications for meal expenses. The high level of detail in the meal expense recommendation, including specific tax-exempt limits for different city tiers, adds to its validity and usefulness. Overall, these recommendations offer clear and practical steps to resolve the identified compliance issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, the receipt must show the business name of the supplier/vendor, which is present (HMS HOST), but the customer name is indeed missing. Addressing this with the supplier is a practical solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing currency with the supplier is valid. While the amount (38) is shown, the currency designation is missing, which is required according to the compliance rules stating \"Receipt must display the total cost including all taxes and fees\" in local currency. Addressing this with the supplier is appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing tax amount with the supplier is valid and aligns with compliance rules requiring that \"Receipt must display the total cost including all taxes and fees.\" The receipt shows a total amount but no breakdown of taxes, making this recommendation appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing tax rate with the supplier is valid for the same reason as Issue 3. The compliance rules require tax information to be displayed, and addressing this with the supplier is an appropriate recommendation.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding meal expenses being grossed up is highly valid and directly references the specific compliance policy. The explanation correctly cites the relevant rule about meal expenses during business trips and the tax exemption limits (150 RMB/day/person), with amounts exceeding this limit being subject to tax treatment. This is accurate according to the provided compliance rules.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.65,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are legitimate concerns supported by the compliance documentation. The response correctly references the relevant compliance rules without fabricating or hallucinating information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory customer name on the receipt\" is valid and not hallucinated. The extracted data shows customer_name as null, and the compliance rules indicate supplier business name is mandatory.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory currency on the receipt\" is valid and not hallucinated. The extracted data shows currency as null, and the compliance rules state \"Total amount in local currency\" is mandatory.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory tax amount on the receipt\" is valid and not hallucinated. The extracted data shows tax_amount as null, and the compliance rules indicate receipts must display total cost including all taxes and fees.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory tax rate on the receipt\" is valid and not hallucinated. The extracted data shows tax_rate as null, which aligns with the compliance requirement for showing taxes.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue about \"Meal expenses are not tax exempt and will be grossed up\" is valid and not hallucinated. This directly references the compliance policy that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" with specific rates for different city tiers.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are legitimate concerns supported by the compliance documentation. The response correctly references the relevant compliance rules without fabricating or hallucinating information.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory customer name on the receipt\" is valid and not hallucinated. The extracted data shows customer_name as null, and the compliance rules indicate supplier business name is mandatory.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory currency on the receipt\" is valid and not hallucinated. The extracted data shows currency as null, and the compliance rules state \"Total amount in local currency\" is mandatory.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory tax amount on the receipt\" is valid and not hallucinated. The extracted data shows tax_amount as null, and the compliance rules indicate receipts must display total cost including all taxes and fees.\n\nISSUE_4_VALIDATION_SCORE: 0 - The issue about \"Missing mandatory tax rate on the receipt\" is valid and not hallucinated. The extracted data shows tax_rate as null, which aligns with the compliance requirement for showing taxes.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue about \"Meal expenses are not tax exempt and will be grossed up\" is valid and not hallucinated. This directly references the compliance policy that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" with specific rates for different city tiers.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are legitimate concerns supported by the compliance documentation. The response correctly references the relevant compliance rules without fabricating or hallucinating information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI response contains information about the customer name, currency, tax amount, and tax rate that is not present in the source data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The compliance rules and requirements mentioned in the AI response appear to be fabricated and not based on the provided ICP context of \"GoGlobal\".\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI response includes made-up entity names such as \"上海炎焰企业管理有限公司\" and amounts that are not present in the source data.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response presents assumptions about the compliance rules and gross-up requirements as facts, without any indication that they are assumptions.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI response includes additional information requirements that are not present in the source data.\n\nCONFIDENCE: 0\nISSUES: The AI response contains significant hallucinated and fabricated information, including missing mandatory fields, made-up compliance rules, and assumptions presented as facts.\nSUMMARY: The AI response is not reliable and contains a significant amount of hallucinated and fabricated information that is not based on the provided source data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing customer name is valid based on the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about missing currency is valid as the extracted data shows null for currency.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue concerning missing tax amount is valid as the extracted data shows null for tax_amount.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about missing tax rate is valid as the extracted data shows null for tax_rate.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue regarding meal expense gross-up is mostly valid, but the specific amount limits mentioned are not directly present in the extracted data. However, they align with the compliance rules provided.\n\nCONFIDENCE: 95\n\nISSUES: \n- The specific meal expense limits (e.g. 150 RMB/day/person, 200 yuan per day for 1st tier cities) are not directly present in the extracted receipt data, though they are mentioned in the compliance rules.\n\nSUMMARY: The AI response appears to be largely free from hallucinations. The issues identified are consistent with the extracted data and compliance rules provided. The only potential minor discrepancy is the inclusion of specific meal expense limits in the recommendation, which, while not present in the receipt data, are derived from the provided compliance rules. Overall, the response seems reliable and well-grounded in the given information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about \"Missing mandatory customer name on the receipt\" is valid and not hallucinated. The extracted data shows customer_name as null, and the compliance rules indicate supplier business name is mandatory.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory currency on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about \"Missing mandatory currency on the receipt\" is valid and not hallucinated. The extracted data shows currency as null, and the compliance rules state \"Total amount in local currency\" is mandatory.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Missing mandatory tax amount on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about \"Missing mandatory tax amount on the receipt\" is valid and not hallucinated. The extracted data shows tax_amount as null, and the compliance rules indicate receipts must display total cost including all taxes and fees.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Missing mandatory tax rate on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about \"Missing mandatory tax rate on the receipt\" is valid and not hallucinated. The extracted data shows tax_rate as null, which aligns with the compliance requirement for showing taxes.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue about \"Meal expenses are not tax exempt and will be grossed up\" is valid and not hallucinated. This directly references the compliance policy that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" with specific rates for different city tiers.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None identified. All issues raised by the AI are factually grounded in the provided data.",
+    "Address issues in knowledge base adherence: 1. The AI mischaracterized the \"customer name\" issue - for a restaurant receipt, the supplier name (which is present) is what's required, not the customer name., 2. The AI didn't mention that the receipt is missing \"What, Where, When\" information which is a mandatory requirement according to the knowledge base., 3. The AI didn't address the need for business purpose documentation (Why and Who information) which is required according to the additional info rules.",
+    "Address issues in compliance accuracy: 1. The customer name issue is incorrectly flagged as mandatory for meal receipts in China, 2. The system correctly identified currency, tax amount, and tax rate issues, 3. The gross-up rule for meals is correctly identified, though the amount (38 RMB) is actually below the threshold that would trigger actual gross-up, 4. The system did not flag the lack of business purpose documentation which is required according to the \"Why and Who information\" rule",
+    "Address issues in issue categorization: No significant issues with categorization. All identified problems are properly classified according to the established taxonomy. The system correctly distinguishes between fix-required compliance issues (missing fields) and tax implications (gross-up requirements).",
+    "Address issues in recommendation validity: None significant. The recommendations are generally valid, actionable, and aligned with the compliance rules provided. Each recommendation addresses the specific issue identified and provides a clear path forward.",
+    "Improve hallucination detection: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All five issues identified (missing customer name, currency, tax amount, tax rate, and meal expense gross-up requirement) are legitimate concerns supported by the compliance documentation. The response correctly references the relevant compliance rules without fabricating or hallucinating information.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-09-26T10:56:13.691Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 82403,
+    "timing": {
+      "validation_start_time": "2025-09-26T10:54:51.288Z",
+      "validation_end_time": "2025-09-26T10:56:13.691Z",
+      "total_validation_time_seconds": "82.4",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-26T10:54:51.288Z",
+          "end_time": "2025-09-26T10:56:13.691Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "82.4",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.36",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 63.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 50,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory currency on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 75.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Missing mandatory tax amount on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 75.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Missing mandatory tax rate on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 75.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 79.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 95,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

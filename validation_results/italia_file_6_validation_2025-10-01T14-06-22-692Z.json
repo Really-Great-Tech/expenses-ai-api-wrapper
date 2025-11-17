@@ -1,0 +1,537 @@
+{
+  "overall_score": 0.8083333333333332,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9500000000000001,
+      "issues": [
+        "- The AI correctly identified the issues based on the compliance rules",
+        "but the first issue about ICP company details might be slightly misapplied since the rules specify this requirement for \"Non-Travel\" expenses",
+        "while flights are clearly \"Travel\" expenses.",
+        "- The AI correctly calculated the total tax amount but didn't show the detailed calculation in the response."
+      ],
+      "summary": "The AI response is well-grounded in the provided data and compliance rules. It correctly identified three compliance issues based on the receipt data and rules. The only minor concern is that the first issue about ICP company details might not fully apply to flight receipts since they fall under the travel category, where different rules may apply regarding company details on receipts.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing ICP company details is factually grounded in the compliance rules. The receipt doesn't show either \"Global People s.r.l.\" or \"GoGlobal Consulting S.r.l\" details as required by the rules. The AI correctly identified this requirement from the compliance rules and noted its absence in the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 85 - The tax information issue is factually grounded. The extracted data shows multiple taxes totaling €55.32 (adding up all the tax amounts listed). The AI correctly identified these taxes and referenced the relevant compliance rule that \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 80 - The requirement for a separate report for each trip is factually grounded in the compliance rules which state \"Business Trip - submit a separate report for each trip\" for travel expenses including flights. The AI correctly identified this requirement based on the receipt type being \"flights\".\n\nCONFIDENCE: 85\n\nISSUES: \n- The AI correctly identified the issues based on the compliance rules, but the first issue about ICP company details might be slightly misapplied since the rules specify this requirement for \"Non-Travel\" expenses, while flights are clearly \"Travel\" expenses.\n- The AI correctly calculated the total tax amount but didn't show the detailed calculation in the response.\n\nSUMMARY: The AI response is well-grounded in the provided data and compliance rules. It correctly identified three compliance issues based on the receipt data and rules. The only minor concern is that the first issue about ICP company details might not fully apply to flight receipts since they fall under the travel category, where different rules may apply regarding company details on receipts.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing ICP company details is factually grounded in the compliance rules. The receipt doesn't show either \"Global People s.r.l.\" or \"GoGlobal Consulting S.r.l\" details as required by the rules. The AI correctly identified this requirement from the compliance rules and noted its absence in the receipt data.\n\nISSUE_2_VALIDATION_SCORE: 85 - The tax information issue is factually grounded. The extracted data shows multiple taxes totaling €55.32 (adding up all the tax amounts listed). The AI correctly identified these taxes and referenced the relevant compliance rule that \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 80 - The requirement for a separate report for each trip is factually grounded in the compliance rules which state \"Business Trip - submit a separate report for each trip\" for travel expenses including flights. The AI correctly identified this requirement based on the receipt type being \"flights\".\n\nCONFIDENCE: 85\n\nISSUES: \n- The AI correctly identified the issues based on the compliance rules, but the first issue about ICP company details might be slightly misapplied since the rules specify this requirement for \"Non-Travel\" expenses, while flights are clearly \"Travel\" expenses.\n- The AI correctly calculated the total tax amount but didn't show the detailed calculation in the response.\n\nSUMMARY: The AI response is well-grounded in the provided data and compliance rules. It correctly identified three compliance issues based on the receipt data and rules. The only minor concern is that the first issue about ICP company details might not fully apply to flight receipts since they fall under the travel category, where different rules may apply regarding company details on receipts."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the extracted data. No information appears to be fabricated or assumed beyond what is provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - Numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - Entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 100\n\nISSUES: None identified.\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details are accurately represented and can be traced back to the information extracted from the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt does not show the required ICP company details (Global People s.r.l. or GoGlobal Consulting S.r.l). The extracted data shows the customer name as \"Papadia Fabio Mr\" with no mention of the required company details. This aligns with the compliance rule stating \"Invoice must show Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately identified that the receipt contains various taxes totaling €55.32 (the sum of all tax amounts in the extracted data: 2.09+7.5+17.52+1.53+3.35+5.99+11.71+5.83+2.7+5.83+8.81=72.86, though the calculation appears off). The compliance policy states \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free,\" which the AI correctly referenced.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that for flight expenses, a separate report for each trip should be submitted, which is directly stated in the compliance policies: \"Business Trip - submit a separate report for each trip.\"\n\nCONFIDENCE: 100\n\nISSUES: The only minor issue is that the AI stated the total taxes as €55.32, while the sum of the individual tax amounts in the extracted data equals €72.86. However, this doesn't affect the validity of the compliance issue identified.\n\nSUMMARY: The AI response is extremely well-grounded in the provided data. All three identified issues directly correspond to compliance rules that are clearly violated based on the extracted receipt data. The AI accurately cited relevant compliance policies and made appropriate recommendations based on the factual evidence available in the receipt data and compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing ICP company details is factually grounded in the compliance rules. The receipt doesn't show either \"Global People s.r.l.\" or \"GoGlobal Consulting S.r.l\" details as required by the rules. The AI correctly identified this requirement from the compliance rules and noted its absence in the receipt data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The tax information issue is factually grounded. The extracted data shows multiple taxes totaling €55.32 (adding up all the tax amounts listed). The AI correctly identified these taxes and referenced the relevant compliance rule that \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 80,
+          "judge_explanation": "The requirement for a separate report for each trip is factually grounded in the compliance rules which state \"Business Trip - submit a separate report for each trip\" for travel expenses including flights. The AI correctly identified this requirement based on the receipt type being \"flights\".",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7666666666666666,
+      "issues": [
+        "1. The AI incorrectly applied the \"ICP company details on invoice\" requirement to a flight receipt",
+        "when this requirement explicitly doesn't apply to travel expenses like flights.",
+        "2. The AI didn't acknowledge that for flights",
+        "it's acceptable for the worker's name (not the ICP company) to appear on the receipt."
+      ],
+      "summary": "The AI response correctly identified two compliance issues (tax gross-up requirements and the need for separate reports per trip) but incorrectly flagged missing ICP company details as an issue for a flight receipt. The compliance rules clearly exempt travel documents like flight tickets from requiring the ICP company details, instead allowing the worker's name to appear. This misapplication of the rules reduces the overall confidence in the AI's compliance assessment.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly flagged missing ICP company details as an issue for a flight receipt. According to the compliance rules, the ICP company details requirement applies only to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" - not to flights. The rules specifically state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used the end client shouldn't not be mention.\" This exception clearly applies to flight receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that taxes on the receipt may be subject to gross-up. According to the rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI accurately referenced this rule and noted the total tax amount of €55.32 that may need to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for a separate report for each trip. This directly follows the rule: \"Business Trip - submit a separate report for each trip\" which applies to travel expenses including flights.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly applied the \"ICP company details on invoice\" requirement to a flight receipt, when this requirement explicitly doesn't apply to travel expenses like flights.\n2. The AI didn't acknowledge that for flights, it's acceptable for the worker's name (not the ICP company) to appear on the receipt.\n\nSUMMARY: The AI response correctly identified two compliance issues (tax gross-up requirements and the need for separate reports per trip) but incorrectly flagged missing ICP company details as an issue for a flight receipt. The compliance rules clearly exempt travel documents like flight tickets from requiring the ICP company details, instead allowing the worker's name to appear. This misapplication of the rules reduces the overall confidence in the AI's compliance assessment.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly flagged missing ICP company details as an issue for a flight receipt. According to the compliance rules, the ICP company details requirement applies only to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" - not to flights. The rules specifically state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used the end client shouldn't not be mention.\" This exception clearly applies to flight receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that taxes on the receipt may be subject to gross-up. According to the rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI accurately referenced this rule and noted the total tax amount of €55.32 that may need to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for a separate report for each trip. This directly follows the rule: \"Business Trip - submit a separate report for each trip\" which applies to travel expenses including flights.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly applied the \"ICP company details on invoice\" requirement to a flight receipt, when this requirement explicitly doesn't apply to travel expenses like flights.\n2. The AI didn't acknowledge that for flights, it's acceptable for the worker's name (not the ICP company) to appear on the receipt.\n\nSUMMARY: The AI response correctly identified two compliance issues (tax gross-up requirements and the need for separate reports per trip) but incorrectly flagged missing ICP company details as an issue for a flight receipt. The compliance rules clearly exempt travel documents like flight tickets from requiring the ICP company details, instead allowing the worker's name to appear. This misapplication of the rules reduces the overall confidence in the AI's compliance assessment."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the receipt is missing the ICP company details as required by the compliance rules for Italy. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI response accurately identifies the potential need to gross up the taxes based on the compliance rules for Italy. The recommendation to pay the expenses net to the employee and gross up if they are not tax-free is in line with the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI response correctly identifies the need for additional documentation, such as a separate report for each business trip, which is in accordance with the compliance rules for Italy. The recommendation to submit a separate report for each trip is appropriate.\n\nCONFIDENCE: 85\nISSUES: None\nSUMMARY: The AI response demonstrates a strong understanding of the compliance rules and knowledge base for Italy. It correctly identifies the key issues with the receipt, including missing ICP company details, potential tax gross-up requirements, and the need for additional documentation. The recommendations provided are in line with the established compliance guidelines. Overall, the response adheres well to the knowledge base and provides a comprehensive assessment of the compliance-related aspects of the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly applied a non-travel compliance rule to a flight receipt. According to the knowledge base, the ICP company details requirement applies specifically to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" - not to flights. The knowledge base explicitly states an exception: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" The AI failed to recognize this exception.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that taxes might need to be grossed up according to the rule \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" However, it could have been more specific about which taxes on flight receipts are subject to gross-up in Italy.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly applied the rule \"Business Trip - submit a separate report for each trip\" which is applicable to travel expenses including flights. This is an accurate interpretation of the knowledge base requirement for travel expenses.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Misapplication of ICP company details requirement to flight receipts when the knowledge base explicitly exempts flight tickets\n2. Lack of specificity regarding which flight taxes are subject to gross-up in Italy\n3. Confusion between requirements for travel vs. non-travel expenses\n\nSUMMARY: The AI response contains a significant error in applying non-travel compliance rules to a flight receipt, specifically regarding ICP company details. The knowledge base clearly exempts flight tickets from this requirement and allows the worker's name to be used. The other two issues identified (gross-up requirements and separate trip reports) are correctly applied according to the knowledge base. This mixed performance indicates a need for better distinction between travel and non-travel expense requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI incorrectly flagged missing ICP company details as an issue for a flight receipt. According to the compliance rules, the ICP company details requirement applies only to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" - not to flights. The rules specifically state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used the end client shouldn't not be mention.\" This exception clearly applies to flight receipts.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that taxes on the receipt may be subject to gross-up. According to the rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI accurately referenced this rule and noted the total tax amount of €55.32 that may need to be grossed up.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for a separate report for each trip. This directly follows the rule: \"Business Trip - submit a separate report for each trip\" which applies to travel expenses including flights.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.75,
+      "issues": [
+        "1. The first issue incorrectly applies non-travel invoice requirements to a flight receipt",
+        "which is explicitly exempted from this requirement.",
+        "2. The assessment fails to recognize that for flight tickets",
+        "the worker's name should be used instead of the ICP company details.",
+        "3. The assessment correctly identifies the gross-up requirements and the need for a separate trip report."
+      ],
+      "summary": "The compliance assessment is partially accurate. It correctly identifies two issues (gross-up requirements and the need for a separate trip report), but incorrectly flags the absence of ICP company details on the flight receipt as an issue when the rules explicitly exempt flight tickets from this requirement and actually require the worker's name to be used instead.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The rule about ICP company details on invoice specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are categorized as \"Travel\" expenses and are explicitly exempted from this requirement. The rules state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This flight receipt correctly shows the employee's name (Papadia Fabio Mr) as the traveler.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly identified. According to the compliance rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The receipt shows various taxes totaling €55.32, which may need to be grossed up. The assessment correctly identifies this requirement, though it could have been more specific about which tax components are subject to gross-up.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The compliance rules clearly state for travel expenses including flights: \"Business Trip - submit a separate report for each trip.\" The assessment correctly flags the need for additional documentation in the form of a separate report for this trip.\n\nCONFIDENCE: 65\n\nISSUES:\n1. The first issue incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted from this requirement.\n2. The assessment fails to recognize that for flight tickets, the worker's name should be used instead of the ICP company details.\n3. The assessment correctly identifies the gross-up requirements and the need for a separate trip report.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies two issues (gross-up requirements and the need for a separate trip report), but incorrectly flags the absence of ICP company details on the flight receipt as an issue when the rules explicitly exempt flight tickets from this requirement and actually require the worker's name to be used instead.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The rule about ICP company details on invoice specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are categorized as \"Travel\" expenses and are explicitly exempted from this requirement. The rules state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This flight receipt correctly shows the employee's name (Papadia Fabio Mr) as the traveler.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly identified. According to the compliance rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The receipt shows various taxes totaling €55.32, which may need to be grossed up. The assessment correctly identifies this requirement, though it could have been more specific about which tax components are subject to gross-up.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The compliance rules clearly state for travel expenses including flights: \"Business Trip - submit a separate report for each trip.\" The assessment correctly flags the need for additional documentation in the form of a separate report for this trip.\n\nCONFIDENCE: 65\n\nISSUES:\n1. The first issue incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted from this requirement.\n2. The assessment fails to recognize that for flight tickets, the worker's name should be used instead of the ICP company details.\n3. The assessment correctly identifies the gross-up requirements and the need for a separate trip report.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies two issues (gross-up requirements and the need for a separate trip report), but incorrectly flags the absence of ICP company details on the flight receipt as an issue when the rules explicitly exempt flight tickets from this requirement and actually require the worker's name to be used instead."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt is missing the required ICP company details, which is a compliance issue. The recommended action to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The assessment correctly identifies that the taxes on the receipt may be subject to gross-up, and provides the appropriate recommendation that approved expenses will be paid net to the employee and grossed up if not tax-free. The confidence score of 0.85 seems reasonable.\n\nISSUE_3_VALIDATION_SCORE: 80 - The assessment correctly identifies the need for additional documentation for the business trip, such as a separate report for each trip. The recommendation is appropriate, but the confidence score of 0.8 could be slightly higher given the clear requirement.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is overall very accurate, with clear identification of the key issues and appropriate recommendations. The validation scores for each issue are reasonable, and the overall confidence in the assessment is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The issue about missing ICP company details is incorrectly identified for a flight receipt. According to the compliance rules, the ICP company details requirement applies only to \"Non-Travel\" expense types like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" - not to flights. The rule specifically mentions an exception: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used the end client shouldn't not be mention\". This is a flight receipt with the employee's name correctly shown.\n\nISSUE_2_VALIDATION_SCORE: 90 - The tax gross-up issue is correctly identified. According to the rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" Flight expenses are subject to tax considerations as mentioned in the compliance rules, and the receipt does show various taxes totaling €55.32 that may need to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 100 - The requirement for a separate report for each business trip is correctly identified. The compliance rules clearly state: \"Business Trip - submit a separate report for each trip\" for travel expenses including flights.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The system incorrectly flagged the flight receipt as missing ICP company details, when this requirement doesn't apply to flight receipts.\n2. The system correctly identified the tax gross-up requirement.\n3. The system correctly identified the need for a separate report for each trip.\n\nSUMMARY: The compliance assessment is partially accurate. While it correctly identifies the need for tax gross-up consideration and the requirement for separate reports for business trips, it incorrectly flags the flight receipt for missing ICP company details. This requirement explicitly doesn't apply to flight receipts according to the compliance rules, which specifically exempt travel documents like flight tickets from needing the Local Employer's name and details."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The rule about ICP company details on invoice specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are categorized as \"Travel\" expenses and are explicitly exempted from this requirement. The rules state: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This flight receipt correctly shows the employee's name (Papadia Fabio Mr) as the traveler.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules, \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The receipt shows various taxes totaling €55.32, which may need to be grossed up. The assessment correctly identifies this requirement, though it could have been more specific about which tax components are subject to gross-up.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. The compliance rules clearly state for travel expenses including flights: \"Business Trip - submit a separate report for each trip.\" The assessment correctly flags the need for additional documentation in the form of a separate report for this trip.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7999999999999999,
+      "issues": [
+        "1. Issue #1 incorrectly applies a non-travel invoice requirement to a flight receipt",
+        "which is explicitly exempted in the compliance rules.",
+        "2. No issue was raised about payment method validation",
+        "which is a mandatory requirement for travel expenses according to the rules.",
+        "3. The validation system correctly identified the gross-up and additional documentation requirements."
+      ],
+      "summary": "The validation system correctly identified two out of three issues. The major error was applying non-travel invoice requirements to a flight receipt, which contradicts the explicit exception in the compliance rules for travel documents. The system correctly identified the gross-up implications and the need for separate reporting for business trips. The validation would be more accurate if it recognized the distinction between travel and non-travel documentation requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The rule about ICP company details on invoices specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are explicitly categorized as \"Travel\" expenses, and the rules acknowledge an exception for travel documents: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" The issue should not have been raised for a flight receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as a gross-up related issue. The description accurately identifies that taxes on the receipt (totaling €55.32) may be subject to gross-up. The recommendation aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The only minor improvement could be more specific guidance on which tax components are exempt vs. taxable.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as requiring additional information. The description accurately identifies that for business trips, a separate report should be submitted for each trip, which directly aligns with the compliance rule: \"Business Trip - submit a separate report for each trip.\" The recommendation is clear and actionable.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue #1 incorrectly applies a non-travel invoice requirement to a flight receipt, which is explicitly exempted in the compliance rules.\n2. No issue was raised about payment method validation, which is a mandatory requirement for travel expenses according to the rules.\n3. The validation system correctly identified the gross-up and additional documentation requirements.\n\nSUMMARY: The validation system correctly identified two out of three issues. The major error was applying non-travel invoice requirements to a flight receipt, which contradicts the explicit exception in the compliance rules for travel documents. The system correctly identified the gross-up implications and the need for separate reporting for business trips. The validation would be more accurate if it recognized the distinction between travel and non-travel documentation requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The rule about ICP company details on invoices specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are explicitly categorized as \"Travel\" expenses, and the rules acknowledge an exception for travel documents: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" The issue should not have been raised for a flight receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as a gross-up related issue. The description accurately identifies that taxes on the receipt (totaling €55.32) may be subject to gross-up. The recommendation aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The only minor improvement could be more specific guidance on which tax components are exempt vs. taxable.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as requiring additional information. The description accurately identifies that for business trips, a separate report should be submitted for each trip, which directly aligns with the compliance rule: \"Business Trip - submit a separate report for each trip.\" The recommendation is clear and actionable.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue #1 incorrectly applies a non-travel invoice requirement to a flight receipt, which is explicitly exempted in the compliance rules.\n2. No issue was raised about payment method validation, which is a mandatory requirement for travel expenses according to the rules.\n3. The validation system correctly identified the gross-up and additional documentation requirements.\n\nSUMMARY: The validation system correctly identified two out of three issues. The major error was applying non-travel invoice requirements to a flight receipt, which contradicts the explicit exception in the compliance rules for travel documents. The system correctly identified the gross-up implications and the need for separate reporting for business trips. The validation would be more accurate if it recognized the distinction between travel and non-travel documentation requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue related to the missing ICP company details on the invoice. The description is clear and actionable, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue related to the various taxes on the receipt that may need to be grossed up. The description and recommendation are clear and follow the established taxonomy.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue related to the need for additional documentation for the flight expense. The description and recommendation are clear and appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues are accurately categorized, with clear descriptions and appropriate recommendations. The categorization follows the established taxonomy, and no issues are missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The rule about ICP company details on invoices specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are categorized as \"Travel\" expenses and have a different rule that states \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" The validation incorrectly applies a non-travel rule to a travel expense.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as a gross-up issue. The compliance rules state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The receipt shows various taxes totaling €55.32, and the system correctly identifies that these may be subject to gross-up. The recommendation aligns with the policy.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as an additional information requirement. The compliance rules explicitly state \"Business Trip - submit a separate report for each trip\" for travel expenses including flights. The recommendation directly quotes this requirement, making it clear and actionable.\n\nCONFIDENCE: 75\n\nISSUES: The primary issue is with the first validation point, which incorrectly applies a non-travel invoice requirement to a flight receipt. Flight receipts are specifically exempted from needing the ICP company details according to the compliance rules, which state that worker's name can be used for flight tickets. The other two issues are correctly identified and categorized.\n\nSUMMARY: While two of the three issues are correctly categorized with appropriate recommendations, the first issue represents a significant misapplication of compliance rules by incorrectly requiring ICP company details on a flight receipt when the rules explicitly exempt flight tickets from this requirement. This misclassification could lead to unnecessary follow-up actions and confusion for the expense submitter."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 40,
+          "judge_explanation": "This issue is incorrectly categorized. The rule about ICP company details on invoices specifically applies to \"Non-Travel\" expenses like \"Office supplies, Software, Equipment, Training, Utilities, Professional services\" according to the compliance rules. Flight receipts are explicitly categorized as \"Travel\" expenses, and the rules acknowledge an exception for travel documents: \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" The issue should not have been raised for a flight receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly categorized as a gross-up related issue. The description accurately identifies that taxes on the receipt (totaling €55.32) may be subject to gross-up. The recommendation aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The only minor improvement could be more specific guidance on which tax components are exempt vs. taxable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as requiring additional information. The description accurately identifies that for business trips, a separate report should be submitted for each trip, which directly aligns with the compliance rule: \"Business Trip - submit a separate report for each trip.\" The recommendation is clear and actionable.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7666666666666666,
+      "issues": [
+        "1. Issue 1 incorrectly applies non-travel invoice requirements to a flight receipt",
+        "which is explicitly exempted in the compliance rules.",
+        "2. The system should have recognized that for travel expenses like flights",
+        "the worker's name is allowed to appear instead of the ICP company details."
+      ],
+      "summary": "The recommendations are partially valid. While issues 2 and 3 provide correct and actionable guidance aligned with compliance rules, issue 1 incorrectly applies non-travel invoice requirements to a flight receipt. The compliance rules explicitly exempt travel documents like flight tickets from requiring ICP company details. This misapplication reduces the overall validity of the recommendations.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The recommendation \"It is recommended to address this issue with the supplier or provider\" is vague and not actionable. The issue correctly identifies that ICP company details are missing, but the recommendation doesn't explain that flight receipts are an exception to this rule. According to the compliance rules, for travel expenses like flights, \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This issue shouldn't have been flagged at all for a flight receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation about gross-up is valid and aligns with the compliance rules that state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The recommendation correctly identifies that taxes on the flight receipt may be subject to gross-up. This is actionable information for the expense processor.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to \"submit a separate report for each trip\" is directly aligned with the compliance rule that states \"Business Trip - submit a separate report for each trip.\" This is clear, specific, and actionable guidance.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 1 incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted in the compliance rules.\n2. The system should have recognized that for travel expenses like flights, the worker's name is allowed to appear instead of the ICP company details.\n\nSUMMARY: The recommendations are partially valid. While issues 2 and 3 provide correct and actionable guidance aligned with compliance rules, issue 1 incorrectly applies non-travel invoice requirements to a flight receipt. The compliance rules explicitly exempt travel documents like flight tickets from requiring ICP company details. This misapplication reduces the overall validity of the recommendations.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The recommendation \"It is recommended to address this issue with the supplier or provider\" is vague and not actionable. The issue correctly identifies that ICP company details are missing, but the recommendation doesn't explain that flight receipts are an exception to this rule. According to the compliance rules, for travel expenses like flights, \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This issue shouldn't have been flagged at all for a flight receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation about gross-up is valid and aligns with the compliance rules that state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The recommendation correctly identifies that taxes on the flight receipt may be subject to gross-up. This is actionable information for the expense processor.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to \"submit a separate report for each trip\" is directly aligned with the compliance rule that states \"Business Trip - submit a separate report for each trip.\" This is clear, specific, and actionable guidance.\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 1 incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted in the compliance rules.\n2. The system should have recognized that for travel expenses like flights, the worker's name is allowed to appear instead of the ICP company details.\n\nSUMMARY: The recommendations are partially valid. While issues 2 and 3 provide correct and actionable guidance aligned with compliance rules, issue 1 incorrectly applies non-travel invoice requirements to a flight receipt. The compliance rules explicitly exempt travel documents like flight tickets from requiring ICP company details. This misapplication reduces the overall validity of the recommendations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company details on the invoice is valid and specific. It clearly identifies the required information that should be included on the invoice, which is the ICP company name, address, VAT number, and tax ID. This is a standard compliance requirement that the expense provider should be able to easily address.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to gross up the expense for the total tax amount of €55.32 is valid. It correctly identifies that the taxes may need to be grossed up if they are not tax-exempt. The recommendation to pay the approved expenses net to the employee and gross up if they are not tax-free is a standard and appropriate approach.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to submit a separate report for each business trip is valid and addresses the need for additional documentation. However, the recommendation could be more specific in terms of the required information or format for the separate trip reports.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They clearly identify the issues with the expense receipt and provide appropriate, actionable suggestions to address them. The recommendations cover the key compliance requirements around ICP company details, tax gross-up, and additional documentation for business trips. Overall, the recommendations are feasible and practical for the expense provider to implement."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The recommendation \"It is recommended to address this issue with the supplier or provider\" is vague and not very actionable. While the issue correctly identifies that ICP company details are missing, this recommendation fails to recognize that flight receipts are an exception to the rule requiring ICP company details. According to the compliance rules, \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This issue should not have been flagged at all for a flight receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding tax gross-up is valid and aligns with the compliance rules. The statement \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free\" directly quotes the applicable rule. The identification of €55.32 in taxes that may need to be grossed up is specific and actionable information.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to \"submit a separate report for each trip\" is directly from the compliance rules and is specific, actionable, and appropriate for flight expenses. This correctly applies the rule \"Business Trip - submit a separate report for each trip.\"\n\nCONFIDENCE: 70\n\nISSUES:\n1. Issue 1 incorrectly applies a non-travel expense rule to a flight receipt, which is explicitly exempted from requiring ICP company details.\n2. The system failed to recognize that flight receipts are a specific exception where worker details should be used instead of ICP company details.\n\nSUMMARY: The recommendations are mixed in quality. Issue 1's recommendation is invalid as it misapplies a rule to flight receipts that are specifically exempted from requiring ICP company details. Issues 2 and 3 provide valid, actionable recommendations that correctly apply the relevant compliance rules for tax gross-up and separate trip reporting. The system needs to better distinguish between expense types when applying rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The recommendation \"It is recommended to address this issue with the supplier or provider\" is vague and not actionable. The issue correctly identifies that ICP company details are missing, but the recommendation doesn't explain that flight receipts are an exception to this rule. According to the compliance rules, for travel expenses like flights, \"Exception where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, in which case the workers name and details should be used.\" This issue shouldn't have been flagged at all for a flight receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation about gross-up is valid and aligns with the compliance rules that state \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The recommendation correctly identifies that taxes on the flight receipt may be subject to gross-up. This is actionable information for the expense processor.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation to \"submit a separate report for each trip\" is directly aligned with the compliance rule that states \"Business Trip - submit a separate report for each trip.\" This is clear, specific, and actionable guidance.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.8166666666666668,
+      "issues": [
+        "None detected. All three issues identified by the AI are supported by the provided receipt data and compliance rules."
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. It correctly notes the missing ICP company details, identifies the tax implications requiring gross-up, and mentions the need for separate reports for business trips. All issues are backed by specific compliance rules provided in the context, and no hallucinations or fabricated information were detected.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the receipt doesn't show the required ICP company details (either Global People s.r.l. or GoGlobal Consulting S.r.l). This matches the compliance rules provided, which state that invoices must show specific company details. The recommendation and knowledge base reference are directly from the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The second issue correctly identifies that there are taxes on the receipt (totaling €55.32) which may be subject to gross-up. This aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI has accurately calculated the total taxes from the itemized tax amounts in the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that a separate report for each trip should be submitted, which directly matches the compliance rule \"Business Trip - submit a separate report for each trip\" for travel expenses including flights.\n\nCONFIDENCE: 95\n\nISSUES: None detected. All three issues identified by the AI are supported by the provided receipt data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. It correctly notes the missing ICP company details, identifies the tax implications requiring gross-up, and mentions the need for separate reports for business trips. All issues are backed by specific compliance rules provided in the context, and no hallucinations or fabricated information were detected.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the receipt doesn't show the required ICP company details (either Global People s.r.l. or GoGlobal Consulting S.r.l). This matches the compliance rules provided, which state that invoices must show specific company details. The recommendation and knowledge base reference are directly from the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The second issue correctly identifies that there are taxes on the receipt (totaling €55.32) which may be subject to gross-up. This aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI has accurately calculated the total taxes from the itemized tax amounts in the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that a separate report for each trip should be submitted, which directly matches the compliance rule \"Business Trip - submit a separate report for each trip\" for travel expenses including flights.\n\nCONFIDENCE: 95\n\nISSUES: None detected. All three issues identified by the AI are supported by the provided receipt data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. It correctly notes the missing ICP company details, identifies the tax implications requiring gross-up, and mentions the need for separate reports for business trips. All issues are backed by specific compliance rules provided in the context, and no hallucinations or fabricated information were detected."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the AI response is consistent with the source data. All details such as the supplier name, ticket number, payment amount, taxes, and fare calculation are present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the response appear to be legitimate and based on the ICP context of \"Global People\". The rules cover various expense types, gross-up policies, and additional information requirements, which are common in expense management practices.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the response are all present in the source data. There are no fabricated or made-up information detected.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the details provided are consistent with the source data, and the compliance rules and requirements appear to be legitimate based on the ICP context. The response is comprehensive and accurately reflects the information extracted from the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue regarding ICP company details is not a hallucination. The compliance rules clearly state that invoices must show specific ICP company details (either Global People s.r.l. or GoGlobal Consulting S.r.l details). The receipt doesn't contain these details, which is accurately identified as an issue. However, this rule applies to \"Non-Travel\" expenses according to the compliance rules, while flights are \"Travel\" expenses, so applying this rule to a flight receipt is incorrect.\n\nISSUE_2_VALIDATION_SCORE: 50 - The second issue about tax gross-up is partially accurate. The compliance rules do state that \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" However, the AI correctly identifies the taxes on the receipt (totaling €55.32) but doesn't properly apply the specific flight-related gross-up rule which states \"Car Rental up to 15 days is tax exempt. Car Rental longer than 15 days will be subjected to taxes\" - this rule doesn't clearly apply to flights.\n\nISSUE_3_VALIDATION_SCORE: 0 - The third issue about requiring a separate report for each trip is not a hallucination. This is directly stated in the compliance rules: \"Business Trip - submit a separate report for each trip\" for travel expenses including flights.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly applied a non-travel expense rule (requiring ICP company details on invoice) to a travel expense (flight).\n2. The AI didn't properly apply the specific flight-related gross-up rules and instead used a general rule.\n\nSUMMARY: The AI response contains some misapplications of rules rather than outright hallucinations. It correctly identified compliance requirements from the provided rules but incorrectly applied a non-travel rule to a travel expense. The information about taxes and the need for separate reports for business trips is accurate according to the compliance rules, though the application of gross-up rules was not specific enough to the expense type."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that the receipt doesn't show the required ICP company details (either Global People s.r.l. or GoGlobal Consulting S.r.l). This matches the compliance rules provided, which state that invoices must show specific company details. The recommendation and knowledge base reference are directly from the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The second issue correctly identifies that there are taxes on the receipt (totaling €55.32) which may be subject to gross-up. This aligns with the compliance rule stating \"All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.\" The AI has accurately calculated the total taxes from the itemized tax amounts in the receipt.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue correctly states that a separate report for each trip should be submitted, which directly matches the compliance rule \"Business Trip - submit a separate report for each trip\" for travel expenses including flights.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: - The AI correctly identified the issues based on the compliance rules, but the first issue about ICP company details might be slightly misapplied since the rules specify this requirement for \"Non-Travel\" expenses, while flights are clearly \"Travel\" expenses., - The AI correctly calculated the total tax amount but didn't show the detailed calculation in the response.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly applied the \"ICP company details on invoice\" requirement to a flight receipt, when this requirement explicitly doesn't apply to travel expenses like flights., 2. The AI didn't acknowledge that for flights, it's acceptable for the worker's name (not the ICP company) to appear on the receipt.",
+    "Address issues in compliance accuracy: 1. The first issue incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted from this requirement., 2. The assessment fails to recognize that for flight tickets, the worker's name should be used instead of the ICP company details., 3. The assessment correctly identifies the gross-up requirements and the need for a separate trip report.",
+    "Address issues in issue categorization: 1. Issue #1 incorrectly applies a non-travel invoice requirement to a flight receipt, which is explicitly exempted in the compliance rules., 2. No issue was raised about payment method validation, which is a mandatory requirement for travel expenses according to the rules., 3. The validation system correctly identified the gross-up and additional documentation requirements.",
+    "Address issues in recommendation validity: 1. Issue 1 incorrectly applies non-travel invoice requirements to a flight receipt, which is explicitly exempted in the compliance rules., 2. The system should have recognized that for travel expenses like flights, the worker's name is allowed to appear instead of the ICP company details.",
+    "Address issues in hallucination detection: None detected. All three issues identified by the AI are supported by the provided receipt data and compliance rules."
+  ],
+  "timestamp": "2025-10-01T14:06:22.691Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 73225,
+    "timing": {
+      "validation_start_time": "2025-10-01T14:05:09.466Z",
+      "validation_end_time": "2025-10-01T14:06:22.691Z",
+      "total_validation_time_seconds": "73.2",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T14:05:09.466Z",
+          "end_time": "2025-10-01T14:06:22.691Z",
+          "duration_seconds": "73.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "73.2",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.41",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not show the ICP company details as required. It should show either 'Global People s.r.l., Via Venti Settembre 3, Torino (TO) CAP 10121, Italy VAT: IT12455930011 C.F: 12455930011' or 'GoGlobal Consulting S.r.l Via Uberto Visconti Di Modrone 38 20122 Milano, Italia P.IVA 12205930964'.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 50.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 0,
+        "issue_categorization": 40,
+        "recommendation_validity": 30,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The receipt indicates various taxes, which may be subject to gross-up depending on the specific tax type and amount. The total amount of taxes is €55.32, which may need to be grossed up if not tax-exempt.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 85,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 90
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Additional documentation may be required for the flight expense. Specifically, a separate report for each trip should be submitted.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 95.33,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# France Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on French expense files and found excellent performance with sophisticated application of French meal expense regulations.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated excellent knowledge of France's complex meal expense tax regulations, correctly applying detailed rules like "Domestic business travel: meals treated as non-taxable income up to government set subsistence costs. International travel: per diem reductions apply - if hotel paid on receipt reduction by 65%, if one meal reimbursed on receipt reduction by 17.5%, if two meals reimbursed on receipt reduction by 35%." It accurately identified missing mandatory fields including supplier addresses and customer names, properly citing "Invoice in the name of the employee or GoGlobal France" requirements. The agent also correctly applied VAT documentation requirements, accurately referencing "VAT amount must be listed clearly on the invoice if applicable" and properly identified business purpose documentation needs.
+
+**Weaknesses Found by Judges:** The primary weakness was in recommendation specificity - while the agent correctly identified all compliance issues, judges noted recommendations could be "more specific about the exact actions needed to correct the issues, particularly for the supplier address issue" and could "include guidance on how to handle situations where obtaining a new receipt isn't possible." Some judges noted minor issues with VAT amount identification, where the agent didn't fully acknowledge that a tax amount was present in the data, though not explicitly labeled as VAT.
+
+**Overall Assessment:** The French expense validation agent achieved excellent performance with a 95% reliability score, demonstrating sophisticated understanding of France's detailed meal expense tax regulations and VAT requirements. Judges found no hallucinations, excellent knowledge base adherence, and highly accurate compliance rule application, with only minor improvements needed in providing more specific procedural guidance for resolving compliance issues with suppliers.

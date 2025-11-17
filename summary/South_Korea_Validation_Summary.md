@@ -1,0 +1,11 @@
+# South Korea Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on South Korean expense files and found excellent performance with strong adherence to GoGlobal ICP requirements.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated perfect factual accuracy in identifying missing mandatory fields, correctly spotting null values for supplier name, supplier address, invoice number, and currency specification. It properly applied South Korean compliance requirements, accurately citing "Name of the vendor or merchant must be visible on the receipt" as a mandatory requirement and correctly identifying currency specification needs for proper financial documentation. The agent also excellently applied GoGlobal-specific procedural requirements, accurately referencing "Business purpose must be established and clearly documented for all expenses" and "Client line manager approval required before payroll cutoff date" with clear, actionable recommendations.
+
+**Weaknesses Found by Judges:** The main weakness was slight over-emphasis on optional requirements - judges noted the agent "may have slightly overemphasized the supplier address issue, as the knowledge base states addresses don't need to be provided" though having this information would still improve documentation quality. The agent also didn't acknowledge that the receipt had a receipt number (92036108889) which might serve as a transaction identifier, and missed flagging that the receipt date (2025-04-14) was in the future, potentially indicating data entry errors. Additionally, some recommendations could be more specific about implementation processes.
+
+**Overall Assessment:** The South Korean expense validation agent achieved excellent performance with a 96% reliability score, demonstrating strong understanding of South Korean compliance requirements and GoGlobal ICP-specific procedural needs. Judges found no hallucinations, perfect factual grounding, and highly accurate compliance rule application, with only minor improvements needed in distinguishing between mandatory and optional requirements and providing more specific procedural guidance.

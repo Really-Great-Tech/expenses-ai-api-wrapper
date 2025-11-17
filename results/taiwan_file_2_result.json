@@ -1,0 +1,656 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758889973805_169567839_taiwan_file_2.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:36:10.106Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no visible blur.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, folds, or wrinkles detected.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete content observed.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions, shadows, or other elements blocking the document content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "Chinese",
+    "language_confidence": 95,
+    "document_location": "Taiwan",
+    "expected_location": "Taiwan",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, item description, and payment confirmation. It is classified as a travel expense due to the nature of the service (taxi ride).",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "invoiceReceiptNumber"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including supplier (駕駛姓名：韓曉弘翔), transaction amount (車資 (Total,$)：1390), transaction date (上車 (Start)：2025/05/24 18:54:30, 下車 (End)：2025/05/24 19:30:16), item description (里程 (Dist.,km)：44.5, 通行費 (Toll,$)：30), and invoice receipt number (序號 (No.)：010521). This meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "桃園國際機場",
+    "supplier_phone": "03-383-4499",
+    "driver_name": "韓曉弘翔",
+    "driver_phone": "0910285625",
+    "receipt_number": "010521",
+    "vehicle_plate": "TDX5229",
+    "pickup_datetime": "2025-05-24 18:54:30",
+    "dropoff_datetime": "2025-05-24 19:30:16",
+    "total_amount": 1390,
+    "currency": "TWD",
+    "fare_amount": 1360,
+    "toll_amount": 30,
+    "distance_km": 44.5,
+    "waiting_time_hhmmss": "00:03:01",
+    "fare_rate_per_km": 1.2,
+    "fare_version": "104.09.04",
+    "enter_interchange": "機場系統",
+    "exit_interchange": "圓山",
+    "meter_version": "JHH4",
+    "meter_serial_number": "08820",
+    "complaint_phone": "03-3341999",
+    "receipt_type": "Taxi Receipt",
+    "location_city": "桃園",
+    "location_country": "Taiwan"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 4,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Date of the expense",
+          "description": "Receipt does not explicitly show the date when the expense was incurred.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must show the date when the expense was incurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Expense type/Description",
+          "description": "Receipt does not specify the type of expense or detailed description of goods/services purchased.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "Additional documentation requirements",
+          "description": "Receipt lacks additional documentation requirements for mileage reimbursements.",
+          "recommendation": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.",
+          "knowledge_base_reference": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "Additional documentation requirements",
+          "description": "Receipt lacks additional documentation requirements for domestic and international travel.",
+          "recommendation": "Go Global requires a expense report with the accompanying receipts and invoices.",
+          "knowledge_base_reference": "Go Global requires a expense report with the accompanying receipts and invoices",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing mandatory fields such as the date of the expense and the type of expense or detailed description. Additionally, there are missing additional documentation requirements for mileage reimbursements and domestic and international travel. These issues need to be addressed to ensure compliance with Taiwan's receipt standards and GoGlobal's ICP-specific rules."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 4
+    }
+  },
+  "citations": {
+    "citations": {
+      "processing_time": {
+        "field_citation": {
+          "source_text": "Processing Time:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Processing Time:** 17.88 seconds",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "17.88 seconds",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Processing Time:** 17.88 seconds",
+          "match_type": "exact"
+        }
+      },
+      "pages": {
+        "field_citation": {
+          "source_text": "Pages:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Pages:** 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Pages:** 1",
+          "match_type": "exact"
+        }
+      },
+      "input_tokens": {
+        "field_citation": {
+          "source_text": "Input Tokens:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Input Tokens:** 935",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "935",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Input Tokens:** 935",
+          "match_type": "exact"
+        }
+      },
+      "output_tokens": {
+        "field_citation": {
+          "source_text": "Output Tokens:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Output Tokens:** 353",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "353",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "**Output Tokens:** 353",
+          "match_type": "exact"
+        }
+      },
+      "桃園國際機場": {
+        "field_citation": {
+          "source_text": "桃園國際機場：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "桃園國際機場：083",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "083",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "桃園國際機場：083",
+          "match_type": "exact"
+        }
+      },
+      "駕駛姓名": {
+        "field_citation": {
+          "source_text": "駕駛姓名：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "駕駛姓名：韓曉弘翔",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "韓曉弘翔",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "駕駛姓名：韓曉弘翔",
+          "match_type": "exact"
+        }
+      },
+      "行動電話": {
+        "field_citation": {
+          "source_text": "行動電話：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "行動電話：0910285625",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0910285625",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "行動電話：0910285625",
+          "match_type": "exact"
+        }
+      },
+      "申訴電話": {
+        "field_citation": {
+          "source_text": "申訴電話 (Service#)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "申訴電話 (Service#)：\n03-3341999",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "03-3341999",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "申訴電話 (Service#)：\n03-3341999",
+          "match_type": "exact"
+        }
+      },
+      "序號": {
+        "field_citation": {
+          "source_text": "序號 (No.)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "序號 (No.)：010521",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "010521",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "序號 (No.)：010521",
+          "match_type": "exact"
+        }
+      },
+      "車號": {
+        "field_citation": {
+          "source_text": "車號 (Plate)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車號 (Plate)：TDX5229",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "TDX5229",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車號 (Plate)：TDX5229",
+          "match_type": "exact"
+        }
+      },
+      "上車": {
+        "field_citation": {
+          "source_text": "上車 (Start)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "上車 (Start)：\n2025/05/24 18:54:30",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/05/24 18:54:30",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "上車 (Start)：\n2025/05/24 18:54:30",
+          "match_type": "exact"
+        }
+      },
+      "下車": {
+        "field_citation": {
+          "source_text": "下車 (End)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "下車 (End)：\n2025/05/24 19:30:16",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/05/24 19:30:16",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "下車 (End)：\n2025/05/24 19:30:16",
+          "match_type": "exact"
+        }
+      },
+      "車資": {
+        "field_citation": {
+          "source_text": "車資 (Total,$)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車資 (Total,$)：1390",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1390",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "車資 (Total,$)：1390",
+          "match_type": "exact"
+        }
+      },
+      "費率版本": {
+        "field_citation": {
+          "source_text": "費率版本 (Fare Ver.)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "費率版本 (Fare Ver.)：\n桃機場108-12",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "桃機場108-12",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "費率版本 (Fare Ver.)：\n桃機場108-12",
+          "match_type": "exact"
+        }
+      },
+      "里程": {
+        "field_citation": {
+          "source_text": "里程 (Dist.,km)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "里程 (Dist.,km)：44.5",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "44.5",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "里程 (Dist.,km)：44.5",
+          "match_type": "exact"
+        }
+      },
+      "停等時間": {
+        "field_citation": {
+          "source_text": "停等時間 (Wait,h:m:s)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "停等時間 (Wait,h:m:s)\n00:03:01",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "00:03:01",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "停等時間 (Wait,h:m:s)\n00:03:01",
+          "match_type": "exact"
+        }
+      },
+      "跳表金額": {
+        "field_citation": {
+          "source_text": "跳表金額 (Fare,$)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "跳表金額 (Fare,$)：\n1360",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1360",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "跳表金額 (Fare,$)：\n1360",
+          "match_type": "exact"
+        }
+      },
+      "通行費費率": {
+        "field_citation": {
+          "source_text": "通行費費率 (Rate,$/km)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "通行費費率 (Rate,$/km)：1.2",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.2",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "通行費費率 (Rate,$/km)：1.2",
+          "match_type": "exact"
+        }
+      },
+      "計費門架版本": {
+        "field_citation": {
+          "source_text": "計費門架版本 (Ver.)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費門架版本 (Ver.)：104.09.04",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "104.09.04",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費門架版本 (Ver.)：104.09.04",
+          "match_type": "exact"
+        }
+      },
+      "進入交流道": {
+        "field_citation": {
+          "source_text": "進入交流道 (In)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "進入交流道 (In)：\n機場系統",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "機場系統",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "進入交流道 (In)：\n機場系統",
+          "match_type": "exact"
+        }
+      },
+      "離開交流道": {
+        "field_citation": {
+          "source_text": "離開交流道 (Out)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "離開交流道 (Out)：\n圓山",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "圓山",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "離開交流道 (Out)：\n圓山",
+          "match_type": "exact"
+        }
+      },
+      "通行費": {
+        "field_citation": {
+          "source_text": "通行費 (Toll,$)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "通行費 (Toll,$)：30",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "30",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "通行費 (Toll,$)：30",
+          "match_type": "exact"
+        }
+      },
+      "計費表版牌": {
+        "field_citation": {
+          "source_text": "計費表版牌 (Meter)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費表版牌 (Meter)：JHH4",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JHH4",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費表版牌 (Meter)：JHH4",
+          "match_type": "exact"
+        }
+      },
+      "計費表精機": {
+        "field_citation": {
+          "source_text": "計費表精機 (Meter S/N)：",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費表精機 (Meter S/N)：08820",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "08820",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "計費表精機 (Meter S/N)：08820",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 78,
+      "fields_with_field_citations": 78,
+      "fields_with_value_citations": 78,
+      "average_confidence": 0.95
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "17.9",
+      "data_extraction_seconds": "3.6",
+      "image_quality_assessment_seconds": "4.4",
+      "file_classification_seconds": "5.1",
+      "issue_detection_seconds": "9.1",
+      "citation_generation_seconds": "78.3",
+      "llm_validation_seconds": "61.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:35:47.850Z",
+        "end_time": "2025-09-26T12:36:05.739Z",
+        "duration_seconds": "17.9",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:36:05.744Z",
+        "end_time": "2025-09-26T12:36:09.392Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:36:05.740Z",
+        "end_time": "2025-09-26T12:36:10.106Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:36:05.742Z",
+        "end_time": "2025-09-26T12:36:10.833Z",
+        "duration_seconds": "5.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:36:10.835Z",
+        "end_time": "2025-09-26T12:36:19.977Z",
+        "duration_seconds": "9.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:36:10.839Z",
+        "end_time": "2025-09-26T12:37:29.176Z",
+        "duration_seconds": "78.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:37:29.178Z",
+        "end_time": "2025-09-26T12:38:30.670Z",
+        "duration_seconds": "61.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "162.8",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.1",
+      "parallel_group_2_seconds": "78.3",
+      "total_parallel_time_seconds": "83.4"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_2.jpg",
+    "processing_time": 162826,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:38:30.676Z"
+  }
+}

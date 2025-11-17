@@ -1,0 +1,529 @@
+{
+  "overall_score": 0.9322222222222222,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.96,
+      "issues": [
+        "- Issue 1 correctly identifies the missing company name but applies a rule that should only be relevant for expenses over IDR 5 million",
+        "while this expense is IDR 871",
+        "350."
+      ],
+      "summary": "The AI response is largely factually grounded in the provided data. It correctly identifies that the telecommunications expense is subject to gross-up and that business purpose information is missing. The first issue about the missing company name is technically correct but may not be applicable since the expense amount is below the IDR 5 million threshold mentioned in the rule.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue regarding missing ICP company name is factually grounded. The receipt shows the customer name is \"Anthonius Kiki Halim\" (an individual) rather than a company name. The compliance rule states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\" The receipt amount is IDR 871,350, which is below IDR 5 million, so technically this rule shouldn't apply. However, the identification of the missing company name is accurate.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is completely factually grounded. The extracted data confirms this is a telecommunications expense (Telkomsel/Indihome internet service), and the compliance rule clearly states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is factually grounded. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data doesn't include any business purpose information.\n\nCONFIDENCE: 93\n\nISSUES: \n- Issue 1 correctly identifies the missing company name but applies a rule that should only be relevant for expenses over IDR 5 million, while this expense is IDR 871,350.\n\nSUMMARY: The AI response is largely factually grounded in the provided data. It correctly identifies that the telecommunications expense is subject to gross-up and that business purpose information is missing. The first issue about the missing company name is technically correct but may not be applicable since the expense amount is below the IDR 5 million threshold mentioned in the rule.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue regarding missing ICP company name is factually grounded. The receipt shows the customer name is \"Anthonius Kiki Halim\" (an individual) rather than a company name. The compliance rule states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\" The receipt amount is IDR 871,350, which is below IDR 5 million, so technically this rule shouldn't apply. However, the identification of the missing company name is accurate.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is completely factually grounded. The extracted data confirms this is a telecommunications expense (Telkomsel/Indihome internet service), and the compliance rule clearly states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is factually grounded. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data doesn't include any business purpose information.\n\nCONFIDENCE: 93\n\nISSUES: \n- Issue 1 correctly identifies the missing company name but applies a rule that should only be relevant for expenses over IDR 5 million, while this expense is IDR 871,350.\n\nSUMMARY: The AI response is largely factually grounded in the provided data. It correctly identifies that the telecommunications expense is subject to gross-up and that business purpose information is missing. The first issue about the missing company name is technically correct but may not be applicable since the expense amount is below the IDR 5 million threshold mentioned in the rule."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the provided extracted data. No information is fabricated or assumed beyond what's in the data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data accurately.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names and details, such as the supplier name, address, VAT number, customer name and address, invoice number, account number, and other details are accurately represented in the AI response.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details are accurately represented and can be traced back to the data. There are no issues with the factual grounding of the response."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue about missing ICP company name is factually grounded. The extracted data shows the invoice is in the name of \"Anthonius Kiki Halim\" (an individual) rather than a company name. The amount (IDR 871,350) exceeds IDR 5 million, which triggers the requirement. However, the actual threshold isn't explicitly mentioned in the extracted data, only in the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is fully factually grounded. The receipt is clearly for telecommunications services (Telkomsel/Indihome internet service) as shown in the extracted data, and the compliance rules explicitly state that \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is fully factually grounded. The compliance rules clearly state that \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data doesn't contain any information about the business purpose of this telecommunications expense.\n\nCONFIDENCE: 95\n\nISSUES: The first issue makes a factual claim about the IDR 5 million threshold that isn't directly visible in the extracted receipt data, though it is mentioned in the compliance rules.\n\nSUMMARY: The AI response is well-grounded in the provided data. It correctly identifies that the telecommunications receipt is in an individual's name rather than the company's name, accurately notes that telecommunications expenses are subject to gross-up per policy, and correctly identifies the need for business purpose documentation. The only slight concern is that the 5 million IDR threshold mentioned in issue #1 isn't directly visible in the receipt data itself, but is stated in the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue regarding missing ICP company name is factually grounded. The receipt shows the customer name is \"Anthonius Kiki Halim\" (an individual) rather than a company name. The compliance rule states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\" The receipt amount is IDR 871,350, which is below IDR 5 million, so technically this rule shouldn't apply. However, the identification of the missing company name is accurate.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is completely factually grounded. The extracted data confirms this is a telecommunications expense (Telkomsel/Indihome internet service), and the compliance rule clearly states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is factually grounded. The compliance rules state \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\" The extracted data doesn't include any business purpose information.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9166666666666666,
+      "issues": [
+        "1. Issue 1 incorrectly applies the IDR 5 million threshold rule to an expense that is below the threshold.",
+        "2. The AI did not mention that the receipt includes proper VAT information",
+        "which is a positive compliance aspect."
+      ],
+      "summary": "The AI response generally adheres well to the compliance knowledge base, correctly identifying telecommunications expenses as subject to gross-up and the need for a clear business purpose. However, it incorrectly flagged the missing ICP company name as an issue when the expense amount (IDR 871,350) is below the IDR 5 million threshold specified in the compliance rules. The response could have also acknowledged the proper inclusion of VAT information on the receipt as a positive compliance aspect.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 85 - The AI correctly identified that for expenses over IDR 5 million, the receipt should include the ICP company name. The invoice amount is IDR 871,350, which is below the IDR 5 million threshold mentioned in the rule. However, the AI still flagged this as an issue, which is not entirely accurate based on the compliance rule that states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that telecommunications expenses (mobile phone bills/credit and internet billing) are taxable BIK and subject to gross-up according to the compliance rules. This is accurately referenced from the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that business purpose must be established clearly for all expenses, which is a requirement according to the compliance rules. The recommendation to provide a clear business purpose for the telecommunications expense is appropriate and aligns with the knowledge base.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly applies the IDR 5 million threshold rule to an expense that is below the threshold.\n2. The AI did not mention that the receipt includes proper VAT information, which is a positive compliance aspect.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, correctly identifying telecommunications expenses as subject to gross-up and the need for a clear business purpose. However, it incorrectly flagged the missing ICP company name as an issue when the expense amount (IDR 871,350) is below the IDR 5 million threshold specified in the compliance rules. The response could have also acknowledged the proper inclusion of VAT information on the receipt as a positive compliance aspect.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 85 - The AI correctly identified that for expenses over IDR 5 million, the receipt should include the ICP company name. The invoice amount is IDR 871,350, which is below the IDR 5 million threshold mentioned in the rule. However, the AI still flagged this as an issue, which is not entirely accurate based on the compliance rule that states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\"\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that telecommunications expenses (mobile phone bills/credit and internet billing) are taxable BIK and subject to gross-up according to the compliance rules. This is accurately referenced from the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that business purpose must be established clearly for all expenses, which is a requirement according to the compliance rules. The recommendation to provide a clear business purpose for the telecommunications expense is appropriate and aligns with the knowledge base.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly applies the IDR 5 million threshold rule to an expense that is below the threshold.\n2. The AI did not mention that the receipt includes proper VAT information, which is a positive compliance aspect.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, correctly identifying telecommunications expenses as subject to gross-up and the need for a clear business purpose. However, it incorrectly flagged the missing ICP company name as an issue when the expense amount (IDR 871,350) is below the IDR 5 million threshold specified in the compliance rules. The response could have also acknowledged the proper inclusion of VAT information on the receipt as a positive compliance aspect."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the receipt is missing the ICP company name, which is required for expenses over IDR 5 million in Indonesia. This adheres well to the compliance knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identifies that the telecommunications expenses are subject to gross-up as per the compliance knowledge base for Indonesia.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response correctly states that the business purpose for the telecommunications expense must be clearly established, which is in line with the compliance knowledge base. However, the recommendation could be more specific on the information required.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The AI response demonstrates a strong understanding of the compliance requirements for Indonesia, particularly around the ICP company name, tax implications for telecommunications expenses, and the need to establish business purpose. The response accurately interprets and applies the relevant compliance rules and knowledge base, with only minor room for improvement in the recommendation for additional information required."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified that for expenses over IDR 5 million, the ICP company name must be included on the invoice. Since the total amount is IDR 871,350, which is under IDR 5 million, this issue is technically not applicable. However, the AI's reference to the knowledge base is accurate, even though the threshold wasn't reached in this case.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly applied the compliance rule that \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\" This matches exactly with the compliance policies in the knowledge base for telecommunications expenses, which applies to both travel and non-travel expenses under GoGlobal ICP.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for establishing a clear business purpose, which is a mandatory requirement according to the compliance policies. The recommendation to provide additional information aligns perfectly with the knowledge base rule: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 95\n\nISSUES:\n1. Issue 1 (ICP company name) is technically not applicable since the expense amount (IDR 871,350) is below the IDR 5 million threshold mentioned in the rule.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for Indonesia, particularly regarding telecommunications expenses. It correctly identifies that telecommunications expenses are subject to gross-up as taxable BIK and that a clear business purpose must be established. The only minor issue is flagging the missing ICP company name requirement, which only applies to expenses over IDR 5 million, while this expense is below that threshold. Overall, the response correctly applies the relevant compliance rules for Indonesia and the GoGlobal ICP context."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified that for expenses over IDR 5 million, the receipt should include the ICP company name. The invoice amount is IDR 871,350, which is below the IDR 5 million threshold mentioned in the rule. However, the AI still flagged this as an issue, which is not entirely accurate based on the compliance rule that states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that telecommunications expenses (mobile phone bills/credit and internet billing) are taxable BIK and subject to gross-up according to the compliance rules. This is accurately referenced from the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that business purpose must be established clearly for all expenses, which is a requirement according to the compliance rules. The recommendation to provide a clear business purpose for the telecommunications expense is appropriate and aligns with the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9,
+      "issues": [
+        "1. Issue 1 incorrectly applies an EoS-specific rule to a GoGlobal ICP and fails to consider the expense amount threshold.",
+        "2. The validation correctly determines that the receipt is non-compliant overall.",
+        "3. Issues 2 and 3 are accurately identified and properly applied to the telecommunications receipt."
+      ],
+      "summary": "The compliance assessment is generally accurate in determining the receipt is non-compliant, with two of the three issues correctly identified. The telecommunications expense is properly flagged as requiring gross-up treatment, and the need for business purpose documentation is correctly noted. However, the first issue incorrectly applies an EoS-specific rule about company name requirements to a GoGlobal ICP, and also fails to consider that the expense amount (IDR 871,350) is well below the IDR 5 million threshold mentioned in the rule.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that the receipt lacks an ICP company name, which is required for expenses over IDR 5 million. However, there's an inaccuracy in applying this rule to GoGlobal ICP. According to the compliance rules provided, this requirement is specifically listed for \"EoS\" ICP, not \"GoGlobal\" ICP. The receipt amount of IDR 871,350 is also well below the IDR 5 million threshold mentioned in the rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that telecommunications expenses (mobile phone bills/internet billing) are taxable BIK subject to gross-up. This aligns perfectly with the compliance policy that states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up\" which applies to both EoS and GoGlobal ICPs.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional information establishing business purpose is required. This matches the compliance policy stating \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed\" which applies to both EoS and GoGlobal ICPs.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly applies an EoS-specific rule to a GoGlobal ICP and fails to consider the expense amount threshold.\n2. The validation correctly determines that the receipt is non-compliant overall.\n3. Issues 2 and 3 are accurately identified and properly applied to the telecommunications receipt.\n\nSUMMARY: The compliance assessment is generally accurate in determining the receipt is non-compliant, with two of the three issues correctly identified. The telecommunications expense is properly flagged as requiring gross-up treatment, and the need for business purpose documentation is correctly noted. However, the first issue incorrectly applies an EoS-specific rule about company name requirements to a GoGlobal ICP, and also fails to consider that the expense amount (IDR 871,350) is well below the IDR 5 million threshold mentioned in the rule.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that the receipt lacks an ICP company name, which is required for expenses over IDR 5 million. However, there's an inaccuracy in applying this rule to GoGlobal ICP. According to the compliance rules provided, this requirement is specifically listed for \"EoS\" ICP, not \"GoGlobal\" ICP. The receipt amount of IDR 871,350 is also well below the IDR 5 million threshold mentioned in the rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that telecommunications expenses (mobile phone bills/internet billing) are taxable BIK subject to gross-up. This aligns perfectly with the compliance policy that states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up\" which applies to both EoS and GoGlobal ICPs.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that additional information establishing business purpose is required. This matches the compliance policy stating \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed\" which applies to both EoS and GoGlobal ICPs.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly applies an EoS-specific rule to a GoGlobal ICP and fails to consider the expense amount threshold.\n2. The validation correctly determines that the receipt is non-compliant overall.\n3. Issues 2 and 3 are accurately identified and properly applied to the telecommunications receipt.\n\nSUMMARY: The compliance assessment is generally accurate in determining the receipt is non-compliant, with two of the three issues correctly identified. The telecommunications expense is properly flagged as requiring gross-up treatment, and the need for business purpose documentation is correctly noted. However, the first issue incorrectly applies an EoS-specific rule about company name requirements to a GoGlobal ICP, and also fails to consider that the expense amount (IDR 871,350) is well below the IDR 5 million threshold mentioned in the rule."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified that the receipt is missing the ICP company name, which is a mandatory requirement for expenses over IDR 5 million in Indonesia. This is a valid compliance issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified that the telecommunications expenses, including mobile phone bills and internet billing, are taxable benefits-in-kind (BIK) and subject to gross-up. This is a valid compliance requirement.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identified that the business purpose for the telecommunications expense must be clearly established, as any expense without a clear business purpose will be rejected or postponed. However, the recommendation could be more specific on the type of information needed to establish the business purpose.\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The compliance assessment is accurate and comprehensive. It correctly identified the key compliance issues with the receipt, including the missing ICP company name, the tax implications for telecommunications expenses, and the need to establish a clear business purpose. The recommendations provided are also appropriate and in line with the compliance requirements. Overall, the compliance assessment is thorough and accurate."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 75 - The issue correctly identifies that the receipt lacks an ICP company name, which is required for expenses over IDR 5 million. However, there's a discrepancy in applying this rule. The compliance rules state this requirement is specific to \"EoS\" ICP, but the context indicates this is a \"GoGlobal\" ICP. Additionally, while the amount (IDR 871,350) is well below the IDR 5 million threshold mentioned in the rule, making this issue technically irrelevant.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identifies that telecommunications expenses (mobile phone bills/internet billing) are taxable BIK subject to gross-up according to the compliance rules. The rule specifically states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up\" and applies to both EoS and GoGlobal ICPs.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment accurately identifies that business purpose must be established clearly for all expense types across both ICPs. This is a valid requirement according to the compliance rules, and the recommendation to provide a clear business purpose for the telecommunications expense is appropriate.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly applies an EoS-specific rule to a GoGlobal ICP and fails to consider the amount threshold (IDR 5 million).\n2. The validation doesn't mention that the receipt contains all other mandatory information (supplier name, transaction date, amount, and item description).\n\nSUMMARY: The compliance assessment is generally accurate, particularly regarding the telecommunications expense being subject to gross-up and the need for a clear business purpose. However, it incorrectly applies the ICP company name requirement, which is specific to EoS and only applies to expenses over IDR 5 million. The receipt appears to contain all other mandatory information required by the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue correctly identifies that the receipt lacks an ICP company name, which is required for expenses over IDR 5 million. However, there's an inaccuracy in applying this rule to GoGlobal ICP. According to the compliance rules provided, this requirement is specifically listed for \"EoS\" ICP, not \"GoGlobal\" ICP. The receipt amount of IDR 871,350 is also well below the IDR 5 million threshold mentioned in the rule.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that telecommunications expenses (mobile phone bills/internet billing) are taxable BIK subject to gross-up. This aligns perfectly with the compliance policy that states \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up\" which applies to both EoS and GoGlobal ICPs.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that additional information establishing business purpose is required. This matches the compliance policy stating \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed\" which applies to both EoS and GoGlobal ICPs.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9166666666666666,
+      "issues": [
+        "No significant issues with categorization. All three identified issues align with the compliance rules provided and are appropriately categorized according to their nature (missing information",
+        "tax implications",
+        "and additional information requirements)."
+      ],
+      "summary": "The issue categorization is highly accurate. All three issues are correctly identified based on the receipt data and compliance rules. The first issue correctly identifies the missing ICP company name requirement for expenses over IDR 5 million. The second issue accurately flags the telecommunications expense as requiring gross-up per policy. The third issue appropriately notes the need for business purpose documentation. The categorization taxonomy is consistently applied, and the descriptions and recommendations are clear and actionable.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing ICP company name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a specific compliance standard. The description accurately notes that expenses over IDR 5 million require the ICP company name, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the relevant rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - The telecommunications expense gross-up issue is perfectly categorized as \"Standards & Compliance | Gross-up Identified\". The description, recommendation, and knowledge base reference all correctly state that mobile phone bills/internet billing are taxable BIK subject to gross-up, which aligns exactly with the compliance policies provided.\n\nISSUE_3_VALIDATION_SCORE: 95 - The additional information requirement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description accurately notes that business purpose must be established clearly, and the recommendation to provide this information is appropriate. The knowledge base reference matches the compliance policy exactly.\n\nCONFIDENCE: 95\n\nISSUES: No significant issues with categorization. All three identified issues align with the compliance rules provided and are appropriately categorized according to their nature (missing information, tax implications, and additional information requirements).\n\nSUMMARY: The issue categorization is highly accurate. All three issues are correctly identified based on the receipt data and compliance rules. The first issue correctly identifies the missing ICP company name requirement for expenses over IDR 5 million. The second issue accurately flags the telecommunications expense as requiring gross-up per policy. The third issue appropriately notes the need for business purpose documentation. The categorization taxonomy is consistently applied, and the descriptions and recommendations are clear and actionable.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing ICP company name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a specific compliance standard. The description accurately notes that expenses over IDR 5 million require the ICP company name, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the relevant rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - The telecommunications expense gross-up issue is perfectly categorized as \"Standards & Compliance | Gross-up Identified\". The description, recommendation, and knowledge base reference all correctly state that mobile phone bills/internet billing are taxable BIK subject to gross-up, which aligns exactly with the compliance policies provided.\n\nISSUE_3_VALIDATION_SCORE: 95 - The additional information requirement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description accurately notes that business purpose must be established clearly, and the recommendation to provide this information is appropriate. The knowledge base reference matches the compliance policy exactly.\n\nCONFIDENCE: 95\n\nISSUES: No significant issues with categorization. All three identified issues align with the compliance rules provided and are appropriately categorized according to their nature (missing information, tax implications, and additional information requirements).\n\nSUMMARY: The issue categorization is highly accurate. All three issues are correctly identified based on the receipt data and compliance rules. The first issue correctly identifies the missing ICP company name requirement for expenses over IDR 5 million. The second issue accurately flags the telecommunications expense as requiring gross-up per policy. The third issue appropriately notes the need for business purpose documentation. The categorization taxonomy is consistently applied, and the descriptions and recommendations are clear and actionable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue related to the missing ICP company name on the invoice is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and the recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue related to the tax implications of the telecommunications expenses is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description and recommendation accurately reflect the need to gross-up these types of expenses.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue related to the need to establish a clear business purpose for the telecommunications expense is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are appropriate, though the confidence score could be slightly higher if more context was provided.\n\nCONFIDENCE: 90\nISSUES: None identified.\nSUMMARY: The issues are well-categorized and follow the established taxonomy. The descriptions are clear and provide actionable recommendations. Overall, the issue categorization is accurate and comprehensive."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 85 - The issue regarding \"ICP company name on invoice\" is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately notes the missing ICP company name requirement for expenses over IDR 5 million. However, the issue might be slightly misapplied since the invoice is for telecommunications service in an individual's name, not a company procurement expense, so the categorization is somewhat overreaching.\n\nISSUE_2_VALIDATION_SCORE: 95 - The \"Standards & Compliance | Gross-up Identified\" categorization for telecommunications expenses is highly accurate. The system correctly identifies that mobile phone bills/internet billing are taxable BIK subject to gross-up according to Indonesian tax regulations. The description matches exactly with the compliance policy rule provided in the reference data.\n\nISSUE_3_VALIDATION_SCORE: 90 - The \"Standards & Compliance | Follow-up Action Identified\" categorization for additional business purpose information is correctly applied. The system accurately identifies that all expenses require a clear business purpose statement, which is missing from this telecommunications receipt. This follows the compliance policy that business purpose must be established clearly.\n\nCONFIDENCE: 90\n\nISSUES: The first issue about ICP company name may be slightly misapplied since this appears to be a personal telecommunications bill rather than a company procurement expense. The rule specifically mentions \"expenses over IDR 5 million\" requiring company name, but the context suggests this might be a personal reimbursement rather than a direct company expense.\n\nSUMMARY: Overall, the issue categorization is accurate and follows the established taxonomy. The system correctly identifies the telecommunications expense as requiring gross-up tax treatment and needing additional business purpose justification. The only minor concern is with the first issue, which might be slightly misapplied depending on the exact nature of the expense reimbursement scenario."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing ICP company name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a specific compliance standard. The description accurately notes that expenses over IDR 5 million require the ICP company name, and the recommendation to address this with the supplier is appropriate. The knowledge base reference correctly cites the relevant rule.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The telecommunications expense gross-up issue is perfectly categorized as \"Standards & Compliance | Gross-up Identified\". The description, recommendation, and knowledge base reference all correctly state that mobile phone bills/internet billing are taxable BIK subject to gross-up, which aligns exactly with the compliance policies provided.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The additional information requirement is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The description accurately notes that business purpose must be established clearly, and the recommendation to provide this information is appropriate. The knowledge base reference matches the compliance policy exactly.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9,
+      "issues": [
+        "The recommendations are generally valid and helpful",
+        "though the third recommendation could provide more specific guidance on what constitutes an acceptable business purpose for telecommunications expenses."
+      ],
+      "summary": "The validation results and recommendations are highly valid and accurately reflect Indonesian compliance requirements for telecommunications receipts. All three issues identified (missing ICP company name for expenses over IDR 5 million, telecommunications expenses being subject to gross-up as taxable BIK, and the need to establish a clear business purpose) are legitimate concerns based on the provided compliance rules. The recommendations are actionable and provide clear guidance on how to address these compliance issues.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company name with the supplier is valid and actionable. For expenses over IDR 5 million, the receipt should include the company name with a proper tax invoice according to Indonesian regulations. The recommendation correctly identifies this compliance issue and suggests an appropriate solution.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding telecommunications expenses being subject to gross-up is accurate and directly references the applicable rule. The validation correctly identifies that mobile phone bills/credit and internet billing are taxable Benefits in Kind (BIK) in Indonesia and subject to gross-up. This is a clear, factual statement of tax implications that the user needs to be aware of.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide a clear business purpose for the telecommunications expense is valid and necessary according to the compliance rules. The suggestion is actionable and addresses a legitimate requirement. However, it could be slightly more specific about what constitutes an acceptable business purpose for telecommunications expenses specifically.\n\nCONFIDENCE: 90\n\nISSUES: The recommendations are generally valid and helpful, though the third recommendation could provide more specific guidance on what constitutes an acceptable business purpose for telecommunications expenses.\n\nSUMMARY: The validation results and recommendations are highly valid and accurately reflect Indonesian compliance requirements for telecommunications receipts. All three issues identified (missing ICP company name for expenses over IDR 5 million, telecommunications expenses being subject to gross-up as taxable BIK, and the need to establish a clear business purpose) are legitimate concerns based on the provided compliance rules. The recommendations are actionable and provide clear guidance on how to address these compliance issues.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company name with the supplier is valid and actionable. For expenses over IDR 5 million, the receipt should include the company name with a proper tax invoice according to Indonesian regulations. The recommendation correctly identifies this compliance issue and suggests an appropriate solution.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding telecommunications expenses being subject to gross-up is accurate and directly references the applicable rule. The validation correctly identifies that mobile phone bills/credit and internet billing are taxable Benefits in Kind (BIK) in Indonesia and subject to gross-up. This is a clear, factual statement of tax implications that the user needs to be aware of.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide a clear business purpose for the telecommunications expense is valid and necessary according to the compliance rules. The suggestion is actionable and addresses a legitimate requirement. However, it could be slightly more specific about what constitutes an acceptable business purpose for telecommunications expenses specifically.\n\nCONFIDENCE: 90\n\nISSUES: The recommendations are generally valid and helpful, though the third recommendation could provide more specific guidance on what constitutes an acceptable business purpose for telecommunications expenses.\n\nSUMMARY: The validation results and recommendations are highly valid and accurately reflect Indonesian compliance requirements for telecommunications receipts. All three issues identified (missing ICP company name for expenses over IDR 5 million, telecommunications expenses being subject to gross-up as taxable BIK, and the need to establish a clear business purpose) are legitimate concerns based on the provided compliance rules. The recommendations are actionable and provide clear guidance on how to address these compliance issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing ICP company name on the invoice is specific and actionable. It clearly identifies the issue and provides a reasonable suggestion to work with the supplier or provider to correct this.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation regarding the tax implications for telecommunications expenses is valid and helpful. It clearly explains that mobile phone bills and internet billing are taxable benefits-in-kind (BIK) and subject to gross-up. This is important information for proper tax compliance.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to provide a clear business purpose for the telecommunications expense is reasonable. However, the recommendation could be more specific in terms of the type of information or documentation that should be provided to establish the business purpose.\n\nCONFIDENCE: 90\nISSUES: The recommendation for the third issue could be more specific in terms of the required information to establish the business purpose.\nSUMMARY: Overall, the recommendations provided are valid and useful. They clearly identify the key issues with the receipt and provide actionable suggestions to address them. The recommendations cover important aspects of compliance, such as missing ICP company name and tax implications, which are critical for proper expense reporting. With a minor improvement to the third recommendation, the overall advice can be considered highly valuable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation correctly identifies that for expenses over IDR 5 million, the ICP company name should be included on the invoice. The suggestion to address this with the supplier is actionable and appropriate. The recommendation aligns with the compliance rule that states \"On expenses over IDR 5 million the supporting documents must be in the company's name with a proper tax invoice.\"\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation accurately reflects the compliance policy that telecommunications expenses (mobile phone bills/credit and internet billing) are taxable BIK and subject to gross-up. The recommendation directly quotes the relevant policy rule, making it clear and unambiguous.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation appropriately identifies the need to establish a clear business purpose for the telecommunications expense, which aligns with the compliance policy. The suggestion to provide additional information is actionable and specific. However, it could have been slightly more detailed about what constitutes an acceptable business purpose for telecommunications expenses specifically.\n\nCONFIDENCE: 90\n\nISSUES: Minor improvement could be made to Issue 3's recommendation by providing examples of what constitutes an acceptable business purpose for telecommunications expenses.\n\nSUMMARY: The recommendations provided are valid, actionable, and directly address the compliance issues identified in the receipt. They accurately reflect the compliance policies for Indonesia and the GoGlobal ICP context. The recommendations provide clear guidance on what needs to be addressed: adding the company name to the invoice for expenses over IDR 5 million, acknowledging the tax implications of telecommunications expenses, and establishing a clear business purpose. All recommendations are practical and feasible to implement."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing ICP company name with the supplier is valid and actionable. For expenses over IDR 5 million, the receipt should include the company name with a proper tax invoice according to Indonesian regulations. The recommendation correctly identifies this compliance issue and suggests an appropriate solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding telecommunications expenses being subject to gross-up is accurate and directly references the applicable rule. The validation correctly identifies that mobile phone bills/credit and internet billing are taxable Benefits in Kind (BIK) in Indonesia and subject to gross-up. This is a clear, factual statement of tax implications that the user needs to be aware of.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to provide a clear business purpose for the telecommunications expense is valid and necessary according to the compliance rules. The suggestion is actionable and addresses a legitimate requirement. However, it could be slightly more specific about what constitutes an acceptable business purpose for telecommunications expenses specifically.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 1,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies three compliance issues based on the provided compliance rules and receipt data. All issues are properly supported by the compliance documentation provided, and no hallucinations or fabricated information were detected. The response correctly identifies that the telecommunications receipt lacks the company name (showing an individual's name instead), notes that telecommunications expenses are subject to tax gross-up, and requests business purpose documentation as required by the compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the receipt doesn't include the ICP company name, which is required for expenses over IDR 5 million according to the compliance rules. The receipt shows the customer name as \"Anthonius Kiki Halim\" (an individual) rather than a company name. The amount (IDR 871,350) is under 5 million, but the rule is still correctly referenced.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly states that mobile phone bills/credit and internet billing are taxable BIK (Benefits in Kind) subject to gross-up, which matches exactly with the compliance rule in the \"compliancePoliciesGrossUpRelated\" section for telecommunications expenses.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that business purpose must be established clearly for all expenses, which is a requirement listed in the \"compliancePoliciesAdditionalInfoRelated\" section. The recommendation to provide a clear business purpose is appropriate.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided compliance rules and receipt data. All issues are properly supported by the compliance documentation provided, and no hallucinations or fabricated information were detected. The response correctly identifies that the telecommunications receipt lacks the company name (showing an individual's name instead), notes that telecommunications expenses are subject to tax gross-up, and requests business purpose documentation as required by the compliance rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the receipt doesn't include the ICP company name, which is required for expenses over IDR 5 million according to the compliance rules. The receipt shows the customer name as \"Anthonius Kiki Halim\" (an individual) rather than a company name. The amount (IDR 871,350) is under 5 million, but the rule is still correctly referenced.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly states that mobile phone bills/credit and internet billing are taxable BIK (Benefits in Kind) subject to gross-up, which matches exactly with the compliance rule in the \"compliancePoliciesGrossUpRelated\" section for telecommunications expenses.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly identifies that business purpose must be established clearly for all expenses, which is a requirement listed in the \"compliancePoliciesAdditionalInfoRelated\" section. The recommendation to provide a clear business purpose is appropriate.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided compliance rules and receipt data. All issues are properly supported by the compliance documentation provided, and no hallucinations or fabricated information were detected. The response correctly identifies that the telecommunications receipt lacks the company name (showing an individual's name instead), notes that telecommunications expenses are subject to tax gross-up, and requests business purpose documentation as required by the compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information in the AI response matches the source data and does not appear to contain any hallucinated or fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements referenced in the AI response are consistent with the provided compliance policy information and do not appear to be fabricated.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates in the extracted data match the source receipt and do not appear to be fabricated.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response accurately extracts the relevant information from the source data and provides appropriate compliance analysis based on the provided rules and policies. There is no evidence of hallucinated or fabricated information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The first issue correctly identifies that the receipt does not include the ICP company name, which is required for expenses over IDR 5 million according to the provided compliance rules. The invoice shows the customer name as \"Anthonius Kiki Halim\" (an individual) rather than a company name. The rule is accurately cited from the compliance data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The second issue correctly identifies that telecommunications expenses (including internet billing) are taxable BIK subject to gross-up. This matches exactly with the compliance rule provided: \"Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.\" The receipt is clearly for an Indihome internet service.\n\nISSUE_3_VALIDATION_SCORE: 100 - The third issue correctly states that business purpose must be established clearly for the expense. This aligns with the compliance rule: \"Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.\"\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies three compliance issues based on the provided receipt data and compliance rules. All issues are properly supported by the information in the compliance rules document, and no hallucinations or fabricated information were detected. The response correctly identifies that the receipt lacks a company name (showing an individual's name instead), notes that telecommunications expenses are subject to gross-up, and highlights the need for establishing a clear business purpose."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The first issue correctly identifies that the receipt doesn't include the ICP company name, which is required for expenses over IDR 5 million according to the compliance rules. The receipt shows the customer name as \"Anthonius Kiki Halim\" (an individual) rather than a company name. The amount (IDR 871,350) is under 5 million, but the rule is still correctly referenced.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The second issue correctly states that mobile phone bills/credit and internet billing are taxable BIK (Benefits in Kind) subject to gross-up, which matches exactly with the compliance rule in the \"compliancePoliciesGrossUpRelated\" section for telecommunications expenses.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The third issue correctly identifies that business purpose must be established clearly for all expenses, which is a requirement listed in the \"compliancePoliciesAdditionalInfoRelated\" section. The recommendation to provide a clear business purpose is appropriate.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: - Issue 1 correctly identifies the missing company name but applies a rule that should only be relevant for expenses over IDR 5 million, while this expense is IDR 871, 350.",
+    "Address issues in knowledge base adherence: 1. Issue 1 incorrectly applies the IDR 5 million threshold rule to an expense that is below the threshold., 2. The AI did not mention that the receipt includes proper VAT information, which is a positive compliance aspect.",
+    "Address issues in compliance accuracy: 1. Issue 1 incorrectly applies an EoS-specific rule to a GoGlobal ICP and fails to consider the expense amount threshold., 2. The validation correctly determines that the receipt is non-compliant overall., 3. Issues 2 and 3 are accurately identified and properly applied to the telecommunications receipt.",
+    "Address issues in issue categorization: No significant issues with categorization. All three identified issues align with the compliance rules provided and are appropriately categorized according to their nature (missing information, tax implications, and additional information requirements).",
+    "Address issues in recommendation validity: The recommendations are generally valid and helpful, though the third recommendation could provide more specific guidance on what constitutes an acceptable business purpose for telecommunications expenses.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-10-01T16:49:44.812Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 56325,
+    "timing": {
+      "validation_start_time": "2025-10-01T16:48:48.487Z",
+      "validation_end_time": "2025-10-01T16:49:44.812Z",
+      "total_validation_time_seconds": "56.3",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T16:48:48.487Z",
+          "end_time": "2025-10-01T16:49:44.812Z",
+          "duration_seconds": "56.3",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "56.3",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.53",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not include the ICP company name, which is required for expenses over IDR 5 million.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 84.56,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 70,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Mobile phone bills/credit and internet billing are taxable BIK - subject to gross-up.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 99.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Business purpose must be established clearly - any expense where business purpose cannot be established will be rejected or postponed.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 97.67,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

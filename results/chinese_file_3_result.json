@@ -1,0 +1,516 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758882703226_843000853_chinese_file_3.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T10:32:10.463Z",
+    "quality_score": 60,
+    "quality_level": "good",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are moderately blurred, likely due to camera movement or out-of-focus capture.",
+      "recommendation": "Retake the image ensuring the camera is steady and the document is in focus."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure even lighting and avoid shadows when capturing the image."
+    },
+    "glare_identification": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.6,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present in the top-right corner, slightly affecting readability.",
+      "recommendation": "Adjust the angle of capture to minimize reflections and glare."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains are detected on the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No tears or folds are detected on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the bottom edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No missing sections are detected on the document.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No obstructions are detected on the document.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 6
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "other",
+    "language": "Chinese",
+    "language_confidence": 95,
+    "document_location": "IDN",
+    "expected_location": "China",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including transaction amount, transaction time, and transaction place. Although the location does not match the expected location, the document is classified as an expense due to the presence of sufficient schema fields.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "supplier",
+        "consumerRecipient",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 4,
+      "expense_identification_reasoning": "The document contains fields such as 'Transaction amount', 'Transaction time', 'Transaction card number', and 'Business summary', which align with the expense schema. Despite some fields being missing, the presence of key fields like 'Transaction amount' and 'Transaction time' confirms it as an expense document."
+    }
+  },
+  "extraction": {
+    "transaction_time": "2024-10-18 22:39",
+    "bookkeeping_date": "2024-10-18",
+    "transaction_card_number": "4505****8686",
+    "business_summary": "境外消费",
+    "country_region_abbreviation": "IDN",
+    "transaction_place": "Grab* A-7XEIJ8GWWF6H",
+    "transaction_amount": 20100,
+    "bookkeeping_amount": 1.29,
+    "bookkeeping_currency": "USD",
+    "balance": null,
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": null,
+    "customer_address": null,
+    "customer_vat_number": null,
+    "customer_phone": null,
+    "customer_email": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": null,
+    "total_amount": null,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": null,
+    "payment_method": "Credit Card",
+    "card_last_four": "8686",
+    "line_items": [],
+    "receipt_type": null,
+    "document_type": null,
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 12,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "transaction_date",
+          "description": "Receipt must show the date when the expense was incurred",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the date when the expense was incurred",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "total_amount",
+          "description": "Receipt must display the total cost including all taxes and fees",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the total cost including all taxes and fees",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "item_description",
+          "description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_company_name_on_fapiao",
+          "description": "Invoice title/header must be that of the Local Employer: Company Name 公司名称: 上海炎焰企业管理有限公司",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice title/header must be that of the Local Employer: Company Name 公司名称: 上海炎焰企业管理有限公司",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_tax_identification_number",
+          "description": "Must show Company Tax Code 纳税人识别号: 913101153123807359",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Must show Company Tax Code 纳税人识别号: 913101153123807359",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_company_address_and_phone",
+          "description": "Must show Company Address and Landline 地址电话: 中国(上海)自由贸易试验区临港新片区鸿音路3156弄8号4层121室 021-62365280",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Must show Company Address and Landline 地址电话: 中国(上海)自由贸易试验区临港新片区鸿音路3156弄8号4层121室 021-62365280",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_bank_details",
+          "description": "Must show Bank Name: 开户银行:中国工商银行股份有限公司上海漕河泾开发区支行 and Bank Account Number 银行账号: 100126630920 0329 328",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Must show Bank Name: 开户银行:中国工商银行股份有限公司上海漕河泾开发区支行 and Bank Account Number 银行账号: 100126630920 0329 328",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "employee_name_as_passenger_guest",
+          "description": "For flights: itinerary must show employee name. For hotels: detailed bill must show guest name. For trains: ticket must show employee name",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "For flights: itinerary must show employee name. For hotels: detailed bill must show guest name. For trains: ticket must show employee name",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "recommendation": "Submission of original invoice and deduction sheet to Local Employer's Dalian Branch is required",
+          "knowledge_base_reference": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "manager_approval",
+          "description": "Manager approval required. Submit expense reimbursement form to direct manager with Local Employer cc'd payroll.all@talentbankglobal.com, indicating total amount in email body",
+          "recommendation": "Manager approval and submission of expense reimbursement form is required",
+          "knowledge_base_reference": "Manager approval required. Submit expense reimbursement form to direct manager with Local Employer cc'd payroll.all@talentbankglobal.com, indicating total amount in email body",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "recommendation": "Ensure business expenses are submitted within 4 months from the date of issuance",
+          "knowledge_base_reference": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields such as supplier name, transaction date, total amount, item description, ICP company name, tax identification number, company address and phone, and bank details. Additionally, employee name as passenger/guest is missing. Follow-up actions required include submission of original invoice and deduction sheet, manager approval, and ensuring expenses are submitted within 4 months from the date of issuance."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "China",
+      "icp": "GoGlobal",
+      "receipt_type": "other",
+      "issues_count": 12
+    }
+  },
+  "citations": {
+    "citations": {
+      "Transaction time": {
+        "field_citation": {
+          "source_text": "Transaction time",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2024-10-18 22:39",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Transaction time'",
+          "match_type": "exact"
+        }
+      },
+      "Bookkeeping date": {
+        "field_citation": {
+          "source_text": "Bookkeeping date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2024-10-18",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Bookkeeping date'",
+          "match_type": "exact"
+        }
+      },
+      "Transaction card number": {
+        "field_citation": {
+          "source_text": "Transaction card number",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "4505****8686",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Transaction card number'",
+          "match_type": "exact"
+        }
+      },
+      "Business summary": {
+        "field_citation": {
+          "source_text": "Business summary",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "境外消费",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Business summary'",
+          "match_type": "exact"
+        }
+      },
+      "Country/region abbreviation of transaction": {
+        "field_citation": {
+          "source_text": "Country/region abbreviation of transaction",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "IDN",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Country/region abbreviation of transaction'",
+          "match_type": "exact"
+        }
+      },
+      "Transaction place": {
+        "field_citation": {
+          "source_text": "Transaction place",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Grab* A-7XEIJ8GWWF6H",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Transaction place'",
+          "match_type": "exact"
+        }
+      },
+      "Transaction amount": {
+        "field_citation": {
+          "source_text": "Transaction amount",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "20,100.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Transaction amount'",
+          "match_type": "exact"
+        }
+      },
+      "Bookkeeping amount": {
+        "field_citation": {
+          "source_text": "Bookkeeping amount",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1.29",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Bookkeeping amount'",
+          "match_type": "exact"
+        }
+      },
+      "Bookkeeping currency": {
+        "field_citation": {
+          "source_text": "Bookkeeping currency",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "USD",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Bookkeeping currency'",
+          "match_type": "exact"
+        }
+      },
+      "Balance of": {
+        "field_citation": {
+          "source_text": "Balance of",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Field label in table",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "[Redacted]",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Value in table under 'Balance of'",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 60,
+      "fields_with_field_citations": 60,
+      "fields_with_value_citations": 60,
+      "average_confidence": 0.95
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "19.5",
+      "file_classification_seconds": "4.3",
+      "data_extraction_seconds": "5.3",
+      "image_quality_assessment_seconds": "7.7",
+      "issue_detection_seconds": "30.7",
+      "citation_generation_seconds": "67.1",
+      "llm_validation_seconds": "100.8"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T10:31:43.300Z",
+        "end_time": "2025-09-26T10:32:02.811Z",
+        "duration_seconds": "19.5",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T10:32:02.817Z",
+        "end_time": "2025-09-26T10:32:07.161Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T10:32:02.820Z",
+        "end_time": "2025-09-26T10:32:08.074Z",
+        "duration_seconds": "5.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T10:32:02.813Z",
+        "end_time": "2025-09-26T10:32:10.463Z",
+        "duration_seconds": "7.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T10:32:10.464Z",
+        "end_time": "2025-09-26T10:32:41.183Z",
+        "duration_seconds": "30.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T10:32:10.470Z",
+        "end_time": "2025-09-26T10:33:17.551Z",
+        "duration_seconds": "67.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T10:33:17.552Z",
+        "end_time": "2025-09-26T10:34:58.307Z",
+        "duration_seconds": "100.8",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "195.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "7.7",
+      "parallel_group_2_seconds": "67.1",
+      "total_parallel_time_seconds": "74.7"
+    }
+  },
+  "metadata": {
+    "filename": "chinese_file_3.jpg",
+    "processing_time": 195042,
+    "country": "China",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T10:34:58.343Z"
+  }
+}

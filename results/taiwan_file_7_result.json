@@ -1,0 +1,407 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758890911500_201246735_taiwan_file_7.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:53:51.925Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are present that obscure the text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are detected.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds are visible.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No edges of the document are cut off or excluded from the image.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "All sections of the receipt are present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 1,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Japanese",
+    "language_confidence": 95,
+    "document_location": "Japan",
+    "expected_location": "Taiwan",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description line items. The document is clearly a receipt for a purchase, indicating it is an expense document.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document clearly indicates a completed transaction with payment details."
+    }
+  },
+  "extraction": {
+    "country": "Japan",
+    "supplier_name": "LAWSON",
+    "supplier_address": "東京都千代田区丸の内2-2-3",
+    "supplier_vat_number": "T8010001137238",
+    "supplier_phone": "03-3211-3963",
+    "supplier_store_code": "130292",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "19148",
+    "transaction_reference": null,
+    "currency": "JPY",
+    "total_amount": 624,
+    "subtotal": 578,
+    "tax_amount": 46,
+    "tax_rate": 8,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-19",
+    "transaction_time": "15:48",
+    "payment_method": "Credit Card",
+    "card_last_four": "5666",
+    "card_approval_number": "0059079",
+    "card_transaction_number": "74814",
+    "card_aid": "A0000000031010",
+    "card_apl": "Visa Debit",
+    "line_items": [
+      {
+        "description": "ネスレ キットカットバー 1ホン",
+        "quantity": 1,
+        "unit_price": 151,
+        "total_price": 151,
+        "category": "Food"
+      },
+      {
+        "description": "サーモンホグソドリチリソースナマハルマキ",
+        "quantity": 1,
+        "unit_price": 473,
+        "total_price": 473,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Retail Receipt",
+    "document_type": "クレジット売上票",
+    "location_city": "千代田区",
+    "location_country": "Japan",
+    "special_notes": "軽印は軽減税率対象商品です。",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 6,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "country",
+          "description": "The country on the receipt is Japan, but the compliance analysis is for Taiwan.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the date when the expense was incurred",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the business name of the supplier providing the goods or services",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the total cost of the expense",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The total amount of 624 JPY exceeds the tax-exempt limit for meal allowance in Taiwan",
+          "recommendation": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "knowledge_base_reference": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required to establish clear business purpose and obtain manager approval",
+          "recommendation": "Submit expense claims with clear and legible copies of receipts to Client line manager for approval preferably within the same month of the expense",
+          "knowledge_base_reference": "Submit expense claims with clear and legible copies of receipts to Client line manager for approval preferably within the same month of the expense",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including incorrect country, missing mandatory fields (customer name, customer address, invoice number), exceeding tax-exempt limit for meal allowance, and missing additional documentation for manager approval."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 6
+    }
+  },
+  "citations": {
+    "citations": {
+      "store_name": {
+        "field_citation": {
+          "source_text": "丸の内仲通りビル店",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "LAWSON\n\n丸の内仲通りビル店\n登録番号：T8010001137238\n東京都千代田区丸の内2-2-3\n電話：03-3211-3963 店コード：130292",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "丸の内仲通りビル店",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "LAWSON\n\n丸の内仲通りビル店\n登録番号：T8010001137238\n東京都千代田区丸の内2-2-3\n電話：03-3211-3963 店コード：130292",
+          "match_type": "exact"
+        }
+      },
+      "store_address": {
+        "field_citation": {
+          "source_text": "東京都千代田区丸の内2-2-3",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "LAWSON\n\n丸の内仲通りビル店\n登録番号：T8010001137238\n東京都千代田区丸の内2-2-3\n電話：03-3211-3963 店コード：130292",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "東京都千代田区丸の内2-2-3",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "LAWSON\n\n丸の内仲通りビル店\n登録番号：T8010001137238\n東京都千代田区丸の内2-2-3\n電話：03-3211-3963 店コード：130292",
+          "match_type": "exact"
+        }
+      },
+      "transaction_date": {
+        "field_citation": {
+          "source_text": "2025年 5月19日(月) 15:48",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "2025年 5月19日(月) 15:48\nレジ：#2 19148 責：高松",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025年 5月19日",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "お取扱日       2025年 5月19日",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "合計",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 商品                                   | 価格   |\n|----------------------------------------|--------|\n| ネスレ キットカットバー 1ホン          | 151軽  |\n| サーモンホグソドリチリソースナマハルマキ | 473軽  |\n| 合計                                   | ¥624   |\n| (内消費税等                            | ¥46)   |\n| ( 8%対象                               | ¥624)  |\n| (内消費税額                            | ¥46)   |\n| 点数                                   | 2個    |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥624",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 商品                                   | 価格   |\n|----------------------------------------|--------|\n| ネスレ キットカットバー 1ホン          | 151軽  |\n| サーモンホグソドリチリソースナマハルマキ | 473軽  |\n| 合計                                   | ¥624   |\n| (内消費税等                            | ¥46)   |\n| ( 8%対象                               | ¥624)  |\n| (内消費税額                            | ¥46)   |\n| 点数                                   | 2個    |",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "内消費税額",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "| 商品                                   | 価格   |\n|----------------------------------------|--------|\n| ネスレ キットカットバー 1ホン          | 151軽  |\n| サーモンホグソドリチリソースナマハルマキ | 473軽  |\n| 合計                                   | ¥624   |\n| (内消費税等                            | ¥46)   |\n| ( 8%対象                               | ¥624)  |\n| (内消費税額                            | ¥46)   |\n| 点数                                   | 2個    |",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥46",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "| 商品                                   | 価格   |\n|----------------------------------------|--------|\n| ネスレ キットカットバー 1ホン          | 151軽  |\n| サーモンホグソドリチリソースナマハルマキ | 473軽  |\n| 合計                                   | ¥624   |\n| (内消費税等                            | ¥46)   |\n| ( 8%対象                               | ¥624)  |\n| (内消費税額                            | ¥46)   |\n| 点数                                   | 2個    |",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "支払方法",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "| 項目               | 金額   |\n|--------------------|--------|\n| 買上金額           | ¥624   |\n| クレジット取扱合計 | ¥624   |\n\nCL VISA        有効期限****/\n会員No         ****-****-****-5666\nお取扱日       2025年 5月19日\n支払方法       一回\n承認番号       0059079\n処理通番       74814\nAID            A0000000031010\nAPL            Visa Debit",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "一回",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "支払方法       一回",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 6,
+      "fields_with_field_citations": 6,
+      "fields_with_value_citations": 6,
+      "average_confidence": 0.9383333333333334
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "20.3",
+      "file_classification_seconds": "3.6",
+      "data_extraction_seconds": "4.4",
+      "image_quality_assessment_seconds": "4.8",
+      "issue_detection_seconds": "13.3",
+      "citation_generation_seconds": "103.2",
+      "llm_validation_seconds": "73.7"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:53:26.844Z",
+        "end_time": "2025-09-26T12:53:47.101Z",
+        "duration_seconds": "20.3",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:53:47.104Z",
+        "end_time": "2025-09-26T12:53:50.679Z",
+        "duration_seconds": "3.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:53:47.106Z",
+        "end_time": "2025-09-26T12:53:51.503Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:53:47.102Z",
+        "end_time": "2025-09-26T12:53:51.925Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:53:51.926Z",
+        "end_time": "2025-09-26T12:54:05.178Z",
+        "duration_seconds": "13.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:53:51.930Z",
+        "end_time": "2025-09-26T12:55:35.147Z",
+        "duration_seconds": "103.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:55:35.148Z",
+        "end_time": "2025-09-26T12:56:48.828Z",
+        "duration_seconds": "73.7",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "202.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.8",
+      "parallel_group_2_seconds": "103.2",
+      "total_parallel_time_seconds": "108.0"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_7.jpg",
+    "processing_time": 201989,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:56:48.834Z"
+  }
+}

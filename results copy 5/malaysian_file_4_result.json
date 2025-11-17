@@ -1,0 +1,790 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads\\malaysian_file_4.pdf_full_test_new_dataset_4_malaysian_file_4.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-10T10:35:54.720Z",
+    "quality_score": 60,
+    "quality_level": "good",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are moderately blurred, likely due to camera movement or out-of-focus capture.",
+      "recommendation": "Re-capture the image with a steady camera and ensure it is in focus."
+    },
+    "contrast_assessment": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure proper lighting and avoid backlighting to enhance contrast."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are detected on the document.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration are present on the document.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No tears, folds, or creases are visible on the document.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the document's edges are slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No sections of the document appear to be missing.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No obstructions are present on the document.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 6
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "flights",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Malaysia",
+    "expected_location": "Malaysia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. Fields found include supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, paymentMethod, and itemDescriptionLineItems. The total amount paid and payment confirmation are present, aligning with expense criteria.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [],
+      "total_fields_found": 8,
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document shows evidence of payment completed, actual amounts charged/paid, and payment confirmation."
+    }
+  },
+  "extraction": {
+    "supplier_name": "AirAsia",
+    "customer_name": "Natalie Yen Wei Ng",
+    "customer_company": "Move Travel Sdn Bhd",
+    "customer_email": "natalie.ng@sentinelone.com",
+    "customer_phone": "601121726137",
+    "customer_address": "West Wing, Level 4, Stesen Sentral Kuala Lumpur, 50470 Kuala Lumpur, Malaysia",
+    "service_tax_number": "1808-32000018",
+    "booking_number": "MBNZ5G",
+    "booking_date": "2025-04-04",
+    "currency": "MYR",
+    "total_amount": 653,
+    "total_amount_paid": 653,
+    "payment_date": "2025-04-03",
+    "payment_method": "Agency Payment",
+    "additional_payment_date": "2025-04-13",
+    "additional_payment_method": "BigPay W",
+    "line_items": [
+      {
+        "description": "Base fare",
+        "amount": 228
+      },
+      {
+        "description": "Taxes, fees & surcharges",
+        "amount": 221
+      },
+      {
+        "description": "Malaysia Departure Levy",
+        "amount": 20
+      },
+      {
+        "description": "Regulatory Service Charge",
+        "amount": 1
+      },
+      {
+        "description": "Fuel Surcharge",
+        "amount": 150
+      },
+      {
+        "description": "Passenger Service Charge",
+        "amount": 50
+      },
+      {
+        "description": "Add-ons",
+        "amount": 204
+      },
+      {
+        "description": "Late Checked Baggage 20kg X 1",
+        "amount": 182
+      },
+      {
+        "description": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1",
+        "amount": 22
+      }
+    ],
+    "receipt_type": "Airline Receipt",
+    "document_type": "Receipt"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 3,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_company",
+          "description": "The customer company name 'Move Travel Sdn Bhd' does not match the ICP company name 'GoGlobal' as required by the compliance rules.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "ICP company name as billed party should be 'GoGlobal' for non-travel expenses.",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "The receipt does not include clear and legible copies of the receipts to be submitted to the Client line manager for approval.",
+          "recommendation": "Please submit expense claims with clear and legible copies of the receipts to the Client line manager for approval preferably within the same month of the expense.",
+          "knowledge_base_reference": "Submit expense claims with clear and legible copies of the receipts to Client line manager for approval preferably within the same month of the expense.",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "The receipt does not include the conversion amount in local currency and the currency & exchange rate used for foreign currency expenses.",
+          "recommendation": "Please convert the amount in local currency and include the currency & exchange rate used for foreign currency expenses.",
+          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses.",
+          "confidence_score": 0.85
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has issues with the customer company name not matching the ICP company name, missing submission of clear and legible copies of the receipts to the Client line manager, and missing conversion amount in local currency and currency & exchange rate used for foreign currency expenses."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Malaysia",
+      "icp": "GoGlobal",
+      "receipt_type": "flights",
+      "issues_count": 3
+    }
+  },
+  "citations": {
+    "citations": {
+      "booking_no": {
+        "field_citation": {
+          "source_text": "Booking no.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Booking no.\nBooking date",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MBNZ5G",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MBNZ5G\n04 Apr 2025",
+          "match_type": "exact"
+        }
+      },
+      "booking_date": {
+        "field_citation": {
+          "source_text": "Booking date",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Booking no.\nBooking date",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "04 Apr 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "MBNZ5G\n04 Apr 2025",
+          "match_type": "exact"
+        }
+      },
+      "airline": {
+        "field_citation": {
+          "source_text": "AirAsia",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "AirAsia",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Customer Details\nNatalie Yen Wei Ng",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Natalie Yen Wei Ng",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Natalie Yen Wei Ng\nMove Travel Sdn Bhd",
+          "match_type": "exact"
+        }
+      },
+      "company_name": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Customer Details\nNatalie Yen Wei Ng",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Move Travel Sdn Bhd",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Natalie Yen Wei Ng\nMove Travel Sdn Bhd",
+          "match_type": "exact"
+        }
+      },
+      "email": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Customer Details\nNatalie Yen Wei Ng",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "natalie.ng@sentinelone.com",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "natalie.ng@sentinelone.com\nWest Wing, Level 4, Stesen Sentral Kuala Lumpur",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Customer Details\nNatalie Yen Wei Ng",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "West Wing, Level 4, Stesen Sentral Kuala Lumpur\n601121726137\n50470 Kuala Lumpur, Malaysia",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "West Wing, Level 4, Stesen Sentral Kuala Lumpur\n601121726137\n50470 Kuala Lumpur, Malaysia",
+          "match_type": "exact"
+        }
+      },
+      "service_tax_number": {
+        "field_citation": {
+          "source_text": "Service TaxNumber",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Service TaxNumber : 1808-32000018",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1808-32000018",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Service TaxNumber : 1808-32000018",
+          "match_type": "exact"
+        }
+      },
+      "guests": {
+        "field_citation": {
+          "source_text": "Guests",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Guests\nNatalie Yen Wei Ng (Adult)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Natalie Yen Wei Ng (Adult)",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Natalie Yen Wei Ng (Adult)",
+          "match_type": "exact"
+        }
+      },
+      "base_fare": {
+        "field_citation": {
+          "source_text": "Base fare",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Base fare\nMYR 228.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 228.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Base fare\nMYR 228.00",
+          "match_type": "exact"
+        }
+      },
+      "taxes_fees_surcharges": {
+        "field_citation": {
+          "source_text": "Taxes, fees & surcharges",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Taxes, fees & surcharges\nMYR 221.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 221.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Taxes, fees & surcharges\nMYR 221.00",
+          "match_type": "exact"
+        }
+      },
+      "malaysia_departure_levy": {
+        "field_citation": {
+          "source_text": "Malaysia Departure Levy",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Malaysia Departure Levy\nMYR 20.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 20.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Malaysia Departure Levy\nMYR 20.00",
+          "match_type": "exact"
+        }
+      },
+      "regulatory_service_charge": {
+        "field_citation": {
+          "source_text": "Regulatory Service Charge",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Regulatory Service Charge\nMYR 1.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 1.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Regulatory Service Charge\nMYR 1.00",
+          "match_type": "exact"
+        }
+      },
+      "fuel_surcharge": {
+        "field_citation": {
+          "source_text": "Fuel Surcharge",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fuel Surcharge\nMYR 150.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 150.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fuel Surcharge\nMYR 150.00",
+          "match_type": "exact"
+        }
+      },
+      "passenger_service_charge": {
+        "field_citation": {
+          "source_text": "Passenger Service Charge",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Passenger Service Charge\nMYR 50.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 50.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Passenger Service Charge\nMYR 50.00",
+          "match_type": "exact"
+        }
+      },
+      "add_ons": {
+        "field_citation": {
+          "source_text": "Add-ons",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Add-ons\nMYR 204.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 204.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Add-ons\nMYR 204.00",
+          "match_type": "exact"
+        }
+      },
+      "late_checked_baggage": {
+        "field_citation": {
+          "source_text": "Late Checked Baggage 20kg X 1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Late Checked Baggage 20kg X 1\nMYR 182.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 182.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Late Checked Baggage 20kg X 1\nMYR 182.00",
+          "match_type": "exact"
+        }
+      },
+      "meal_and_beverage": {
+        "field_citation": {
+          "source_text": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1\nMYR 22.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 22.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1\nMYR 22.00",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total amount",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total amount\nMYR 653.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 653.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total amount\nMYR 653.00",
+          "match_type": "exact"
+        }
+      },
+      "total_amount_paid": {
+        "field_citation": {
+          "source_text": "Total amount paid",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total amount paid\nMYR 653.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 653.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total amount paid\nMYR 653.00",
+          "match_type": "exact"
+        }
+      },
+      "payment_date": {
+        "field_citation": {
+          "source_text": "Payment date",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment date\nThu, 03 Apr 2025 (UTC)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Thu, 03 Apr 2025 (UTC)",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Thu, 03 Apr 2025 (UTC)",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment method",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment method\nAgency Payment",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Agency Payment",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Agency Payment\nMYR 449.00",
+          "match_type": "exact"
+        }
+      },
+      "agency_payment": {
+        "field_citation": {
+          "source_text": "Agency Payment",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment method\nAgency Payment",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 449.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Agency Payment\nMYR 449.00",
+          "match_type": "exact"
+        }
+      },
+      "bigpay_payment": {
+        "field_citation": {
+          "source_text": "BigPay W",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Sun, 13 Apr 2025 (UTC)\nBigPay W",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 204.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "BigPay W\nMYR 204.00",
+          "match_type": "exact"
+        }
+      },
+      "customer_company": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia\nPayment details\nCustomer Details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Move Travel Sdn Bhd",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Natalie Yen Wei Ng\nMove Travel Sdn Bhd",
+          "match_type": "exact"
+        }
+      },
+      "customer_email": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia\nPayment details\nCustomer Details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "natalie.ng@sentinelone.com",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "natalie.ng@sentinelone.com\nWest Wing, Level 4, Stesen Sentral Kuala Lumpur",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia\nPayment details\nCustomer Details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "West Wing, Level 4, Stesen Sentral Kuala Lumpur",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "natalie.ng@sentinelone.com\nWest Wing, Level 4, Stesen Sentral Kuala Lumpur",
+          "match_type": "exact"
+        }
+      },
+      "customer_phone": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia\nPayment details\nCustomer Details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "601121726137",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "West Wing, Level 4, Stesen Sentral Kuala Lumpur\n601121726137",
+          "match_type": "exact"
+        }
+      },
+      "customer_location": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "AirAsia\nPayment details\nCustomer Details",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "50470 Kuala Lumpur, Malaysia",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "601121726137\n50470 Kuala Lumpur, Malaysia",
+          "match_type": "exact"
+        }
+      },
+      "roasted_chicken_with_black_pepper_sauce_express_plus_americano_x_1": {
+        "field_citation": {
+          "source_text": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Late Checked Baggage 20kg X 1\nMYR 182.00\nRoasted Chicken with Black Pepper Sauce Express + Americano X 1",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MYR 22.00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Roasted Chicken with Black Pepper Sauce Express + Americano X 1\nMYR 22.00",
+          "match_type": "exact"
+        }
+      },
+      "phone": {
+        "field_citation": {
+          "source_text": "Customer Details",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Customer Details\nNatalie Yen Wei Ng",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "601121726137",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "West Wing, Level 4, Stesen Sentral Kuala Lumpur\n601121726137\n50470 Kuala Lumpur, Malaysia",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 73,
+      "fields_with_field_citations": 73,
+      "fields_with_value_citations": 73,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "7.1",
+      "file_classification_seconds": "4.0",
+      "data_extraction_seconds": "4.2",
+      "image_quality_assessment_seconds": "4.7",
+      "issue_detection_seconds": "6.9",
+      "citation_generation_seconds": "69.0",
+      "llm_validation_seconds": "55.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-10T10:35:42.926Z",
+        "end_time": "2025-09-10T10:35:50.016Z",
+        "duration_seconds": "7.1",
+        "document_reader_used": "textract"
+      },
+      "file_classification": {
+        "start_time": "2025-09-10T10:35:50.018Z",
+        "end_time": "2025-09-10T10:35:54.061Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-10T10:35:50.020Z",
+        "end_time": "2025-09-10T10:35:54.239Z",
+        "duration_seconds": "4.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-10T10:35:50.017Z",
+        "end_time": "2025-09-10T10:35:54.720Z",
+        "duration_seconds": "4.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-10T10:35:54.721Z",
+        "end_time": "2025-09-10T10:36:01.635Z",
+        "duration_seconds": "6.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-10T10:35:54.723Z",
+        "end_time": "2025-09-10T10:37:03.744Z",
+        "duration_seconds": "69.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-10T10:37:03.745Z",
+        "end_time": "2025-09-10T10:37:59.291Z",
+        "duration_seconds": "55.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "136.4",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.7",
+      "parallel_group_2_seconds": "69.0",
+      "total_parallel_time_seconds": "73.7"
+    }
+  },
+  "metadata": {
+    "filename": "malaysian_file_4.pdf",
+    "processing_time": 136370,
+    "country": "Malaysia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-10T10:37:59.297Z"
+  }
+}

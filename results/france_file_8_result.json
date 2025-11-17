@@ -1,0 +1,396 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759394754870_430721524_france_file_8.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-02T08:51:45.443Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure the text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting the document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, or folds that distort the text.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "France",
+    "expected_location": "France",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple expense-related fields such as transaction amounts, dates, and descriptions of expenses. It fits the criteria for being classified as a travel expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "supplier",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 4,
+      "expense_identification_reasoning": "The document contains transaction amounts, dates, and descriptions of expenses, which are sufficient to classify it as an expense document."
+    }
+  },
+  "extraction": {
+    "employee_name": "Liliia Abdulina",
+    "date_of_report": "2025-06-26",
+    "direct_manager": "Simon Ogorodnik",
+    "currency": "EUR",
+    "total_expense_reclaim": 436.75,
+    "line_items": [
+      {
+        "date": "2025-06-10",
+        "expense_type": "Taxi from home to the airport",
+        "comments": "",
+        "total_expense": 63.2,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-10",
+        "expense_type": "Taxi from the airport to the hotel",
+        "comments": "",
+        "total_expense": 102.63,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-10",
+        "expense_type": "Per diem",
+        "comments": "",
+        "total_expense": 57.4,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-11",
+        "expense_type": "Per diem",
+        "comments": "",
+        "total_expense": 47.36,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-12",
+        "expense_type": "Per diem",
+        "comments": "",
+        "total_expense": 47.36,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-13",
+        "expense_type": "Per diem",
+        "comments": "",
+        "total_expense": 57.4,
+        "exchange_rate": 1
+      },
+      {
+        "date": "2025-06-13",
+        "expense_type": "Taxi from the airport to home",
+        "comments": "",
+        "total_expense": 61.4,
+        "exchange_rate": 1
+      }
+    ],
+    "employee_signature": null,
+    "employee_date": "2025-06-26",
+    "manager_signature": null,
+    "manager_date": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier business name",
+          "description": "The supplier business name is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Name of the vendor or merchant must be visible on the receipt",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "VAT amount",
+          "description": "The VAT amount is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "VAT amount must be listed clearly on the invoice if applicable",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "worker name on invoice",
+          "description": "The worker name is missing on the invoice.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoice in the name of the employee or GoGlobal France. All invoices, if applicable must be set with information of the concerned worker where possible",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional documentation",
+          "description": "The receipt does not include the required additional documentation for mileage claims.",
+          "recommendation": "Please provide detailed mileage log reports justifying business mileage including dates, purpose of trips, destinations, and kilometers traveled for each business journey.",
+          "knowledge_base_reference": "Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "manager approval",
+          "description": "The receipt does not include manager approval.",
+          "recommendation": "Employee's line manager approval required before payroll cutoff date.",
+          "knowledge_base_reference": "Employee's line manager approval required before payroll cutoff date",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is missing several mandatory fields including the supplier business name, VAT amount, and worker name on the invoice. Additionally, the receipt lacks the required additional documentation for mileage claims and manager approval. These issues need to be addressed to ensure compliance with the specified standards and policies."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "France",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "employee_name": {
+        "field_citation": {
+          "source_text": "Employee Name:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Employee Name: Liliia Abdulina                                Date of report: 26/06/2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Liliia Abdulina",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Employee Name: Liliia Abdulina                                Date of report: 26/06/2025",
+          "match_type": "exact"
+        }
+      },
+      "date_of_report": {
+        "field_citation": {
+          "source_text": "Date of report:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Employee Name: Liliia Abdulina                                Date of report: 26/06/2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "26/06/2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Employee Name: Liliia Abdulina                                Date of report: 26/06/2025",
+          "match_type": "exact"
+        }
+      },
+      "direct_manager": {
+        "field_citation": {
+          "source_text": "Direct Manager:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Direct Manager: Simon Ogorodnik",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Simon Ogorodnik",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Direct Manager: Simon Ogorodnik",
+          "match_type": "exact"
+        }
+      },
+      "total_expense_reclaim": {
+        "field_citation": {
+          "source_text": "<td colspan=\"6\">Total Expense Reclaim</td>",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<tr>\n    <td colspan=\"6\">Total Expense Reclaim</td>\n    <td>€ 436.75</td>\n  </tr>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "€ 436.75",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<tr>\n    <td colspan=\"6\">Total Expense Reclaim</td>\n    <td>€ 436.75</td>\n  </tr>",
+          "match_type": "exact"
+        }
+      },
+      "expenses": {
+        "field_citation": {
+          "source_text": "<table>\n  <tr>\n    <th>Date</th>\n    <th>Expense Type*</th>",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Employee Use\n\n<table>\n  <tr>\n    <th>Date</th>\n    <th>Expense Type*</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "<tr>\n    <td>10/06/2025</td>\n    <td>Taxi from home to the airport</td>\n    <td></td>\n    <td>63.20</td>\n    <td>EUR</td>\n    <td>1</td>\n    <td>€ 63.20</td>\n  </tr>",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "<table>\n  <tr>\n    <th>Date</th>\n    <th>Expense Type*</th>",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 9,
+      "fields_with_field_citations": 9,
+      "fields_with_value_citations": 9,
+      "average_confidence": 0.9500000000000001
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "21.3",
+      "file_classification_seconds": "2.8",
+      "data_extraction_seconds": "3.3",
+      "image_quality_assessment_seconds": "4.6",
+      "issue_detection_seconds": "7.7",
+      "citation_generation_seconds": "11.6",
+      "llm_validation_seconds": "87.1"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-02T08:51:19.610Z",
+        "end_time": "2025-10-02T08:51:40.868Z",
+        "duration_seconds": "21.3",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-02T08:51:40.872Z",
+        "end_time": "2025-10-02T08:51:43.667Z",
+        "duration_seconds": "2.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-02T08:51:40.874Z",
+        "end_time": "2025-10-02T08:51:44.219Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-02T08:51:40.869Z",
+        "end_time": "2025-10-02T08:51:45.443Z",
+        "duration_seconds": "4.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-02T08:51:45.444Z",
+        "end_time": "2025-10-02T08:51:53.177Z",
+        "duration_seconds": "7.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-02T08:51:45.448Z",
+        "end_time": "2025-10-02T08:51:57.036Z",
+        "duration_seconds": "11.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-02T08:51:57.037Z",
+        "end_time": "2025-10-02T08:53:24.167Z",
+        "duration_seconds": "87.1",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "124.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.6",
+      "parallel_group_2_seconds": "11.6",
+      "total_parallel_time_seconds": "16.2"
+    }
+  },
+  "metadata": {
+    "filename": "france_file_8.pdf",
+    "processing_time": 124561,
+    "country": "France",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-02T08:53:24.171Z"
+  }
+}

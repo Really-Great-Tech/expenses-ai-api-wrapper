@@ -1,0 +1,595 @@
+{
+  "overall_score": 0.888888888888889,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9833333333333334,
+      "issues": [
+        "None identified. All issues raised by the AI are factually grounded in the provided data."
+      ],
+      "summary": "The AI response is completely factually grounded in the provided data. All four issues identified (missing invoice number, missing receipt number, meal expense gross-up requirements, and need for business purpose documentation and manager approval) are directly supported by the extracted data and compliance rules. The numerical values, compliance requirements, and recommendations are all accurately represented.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is not present in the extracted data. The \"invoice_number\" field in the extracted data is explicitly marked as null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is not present in the extracted data. The \"receipt_number\" field in the extracted data is explicitly marked as null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules, and the receipt shows a total amount of 30,000 KRW, which is relevant to this rule. The compliance policy states that meal expenses will be grossed up, which matches the AI's assessment.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for business purpose documentation and client line manager approval based on the compliance rules. This matches the \"compliancePoliciesAdditionalInfoRelated\" section which states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All four issues identified (missing invoice number, missing receipt number, meal expense gross-up requirements, and need for business purpose documentation and manager approval) are directly supported by the extracted data and compliance rules. The numerical values, compliance requirements, and recommendations are all accurately represented.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is not present in the extracted data. The \"invoice_number\" field in the extracted data is explicitly marked as null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is not present in the extracted data. The \"receipt_number\" field in the extracted data is explicitly marked as null.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules, and the receipt shows a total amount of 30,000 KRW, which is relevant to this rule. The compliance policy states that meal expenses will be grossed up, which matches the AI's assessment.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for business purpose documentation and client line manager approval based on the compliance rules. This matches the \"compliancePoliciesAdditionalInfoRelated\" section which states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues raised by the AI are factually grounded in the provided data.\n\nSUMMARY: The AI response is completely factually grounded in the provided data. All four issues identified (missing invoice number, missing receipt number, meal expense gross-up requirements, and need for business purpose documentation and manager approval) are directly supported by the extracted data and compliance rules. The numerical values, compliance requirements, and recommendations are all accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response does not contain any fabricated or assumed information beyond what is provided in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 100\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details are accurately represented and can be traced back to the information given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is not present in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the receipt number is missing from the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the meal expense (30,000 KRW) exceeds the non-taxable limit of 200,000 KRW per month. However, it's worth noting that we don't have information about other meal expenses in the month, so the full context isn't available.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately states that additional documentation (business purpose and client line manager approval) is required, which is in line with the compliance rules provided.\n\nCONFIDENCE: 95\n\nISSUES:\n1. The AI response mentions \"supplier or provider\" which isn't explicitly mentioned in the extracted data or compliance rules.\n2. The AI doesn't mention the transaction reference number (54780250) which is present in the extracted data and could potentially serve as an identifier.\n\nSUMMARY: The AI response is highly factually grounded, accurately identifying missing information and compliance issues based on the extracted data and provided rules. It correctly notes the absence of invoice and receipt numbers, identifies the need for gross-up based on the meal expense amount, and highlights the requirement for additional documentation. The minor issues noted do not significantly impact the overall accuracy of the response."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is not present in the extracted data. The \"invoice_number\" field in the extracted data is explicitly marked as null.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt number is not present in the extracted data. The \"receipt_number\" field in the extracted data is explicitly marked as null.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules, and the receipt shows a total amount of 30,000 KRW, which is relevant to this rule. The compliance policy states that meal expenses will be grossed up, which matches the AI's assessment.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for business purpose documentation and client line manager approval based on the compliance rules. This matches the \"compliancePoliciesAdditionalInfoRelated\" section which states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8066666666666666,
+      "issues": [
+        "1. The AI incorrectly claims invoice number and receipt number are mandatory fields when they are not explicitly listed as such in the knowledge base.",
+        "2. The AI correctly applies the meal expense tax exemption limit and gross-up requirement.",
+        "3. The AI correctly identifies the need for business purpose documentation and client line manager approval."
+      ],
+      "summary": "The AI response is mostly aligned with the compliance knowledge base, particularly regarding meal expense tax exemption limits and additional documentation requirements. However, it incorrectly claims that invoice number and receipt number are mandatory fields, which is not explicitly stated in the provided knowledge base. The overall response provides useful compliance guidance but contains some inaccuracies regarding mandatory receipt fields.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but the knowledge base doesn't specifically list invoice number as a mandatory field. The required fields listed are transaction date, expense type description, total amount, and supplier business name. There's no explicit mention of invoice number being mandatory.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, the AI claims that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but this is not explicitly stated in the provided knowledge base. The receipt standards do not specifically list receipt number as a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month and amounts exceeding this limit will be grossed up. This aligns with the compliancePoliciesGrossUpRelated section which states: \"There are no set government per diem rates but employer can set their own to be used to cover meals, which will be treated as non-taxable income up to 200,000 KRW per month.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that business purpose and client line manager approval are required, which aligns with the compliancePoliciesAdditionalInfoRelated section that states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly claims invoice number and receipt number are mandatory fields when they are not explicitly listed as such in the knowledge base.\n2. The AI correctly applies the meal expense tax exemption limit and gross-up requirement.\n3. The AI correctly identifies the need for business purpose documentation and client line manager approval.\n\nSUMMARY: The AI response is mostly aligned with the compliance knowledge base, particularly regarding meal expense tax exemption limits and additional documentation requirements. However, it incorrectly claims that invoice number and receipt number are mandatory fields, which is not explicitly stated in the provided knowledge base. The overall response provides useful compliance guidance but contains some inaccuracies regarding mandatory receipt fields.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but the knowledge base doesn't specifically list invoice number as a mandatory field. The required fields listed are transaction date, expense type description, total amount, and supplier business name. There's no explicit mention of invoice number being mandatory.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, the AI claims that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but this is not explicitly stated in the provided knowledge base. The receipt standards do not specifically list receipt number as a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month and amounts exceeding this limit will be grossed up. This aligns with the compliancePoliciesGrossUpRelated section which states: \"There are no set government per diem rates but employer can set their own to be used to cover meals, which will be treated as non-taxable income up to 200,000 KRW per month.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that business purpose and client line manager approval are required, which aligns with the compliancePoliciesAdditionalInfoRelated section that states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"\n\nCONFIDENCE: 75\n\nISSUES:\n1. The AI incorrectly claims invoice number and receipt number are mandatory fields when they are not explicitly listed as such in the knowledge base.\n2. The AI correctly applies the meal expense tax exemption limit and gross-up requirement.\n3. The AI correctly identifies the need for business purpose documentation and client line manager approval.\n\nSUMMARY: The AI response is mostly aligned with the compliance knowledge base, particularly regarding meal expense tax exemption limits and additional documentation requirements. However, it incorrectly claims that invoice number and receipt number are mandatory fields, which is not explicitly stated in the provided knowledge base. The overall response provides useful compliance guidance but contains some inaccuracies regarding mandatory receipt fields."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the invoice number and receipt number are missing, which are mandatory fields as per the GoGlobal ICP standards. The recommendation to address this issue with the supplier or provider is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - The AI response accurately applies the compliance policy for GoGlobal ICP, which states that meal expenses are non-taxable up to 200,000 KRW per month. The recommendation to gross up the amount exceeding this limit is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies the requirement for business purpose documentation and client line manager approval as per the GoGlobal ICP compliance policies. The recommendation to provide this additional information is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response accurately addresses the missing mandatory fields (invoice number and receipt number) as per the GoGlobal ICP receipt standards.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for South Korea under the GoGlobal ICP. It correctly identifies the missing mandatory fields, the need to gross up the meal expense amount exceeding the non-taxable limit, and the requirement for additional documentation. The recommendations provided are appropriate and in line with the established compliance guidelines."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identifies the missing invoice number as an issue, which aligns with the knowledge base requirement for mandatory fields. However, the knowledge base doesn't explicitly list \"invoice number\" as a required field for meals receipts, so this may be an overapplication of general receipt standards.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to Issue 1, the AI correctly notes the missing receipt number, but the knowledge base doesn't explicitly require a receipt number for meal expenses. This appears to be an overapplication of general receipt standards.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI accurately applies the South Korean regulation regarding meal expenses, correctly stating that amounts exceeding 200,000 KRW per month are subject to gross-up. This aligns well with the compliance rules provided.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies the need for business purpose documentation and client line manager approval, which is in full compliance with the knowledge base requirements for additional information.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Overemphasis on invoice and receipt numbers for meal expenses\n2. No mention of other required fields that are present (e.g., date, total amount, supplier name)\n\nSUMMARY: The AI response demonstrates good adherence to the knowledge base in terms of gross-up rules and additional documentation requirements. However, it may be overly strict regarding invoice and receipt numbers for meal expenses, which are not explicitly required in the provided rules for this expense type. The response correctly applies South Korean regulations and accurately addresses the receipt type requirements for meals. There are no significant contradictions with established compliance guidelines, but the response could be improved by acknowledging the presence of other required fields that are actually included in the receipt data."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but the knowledge base doesn't specifically list invoice number as a mandatory field. The required fields listed are transaction date, expense type description, total amount, and supplier business name. There's no explicit mention of invoice number being mandatory.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Similar to issue 1, the AI claims that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP,\" but this is not explicitly stated in the provided knowledge base. The receipt standards do not specifically list receipt number as a mandatory field.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month and amounts exceeding this limit will be grossed up. This aligns with the compliancePoliciesGrossUpRelated section which states: \"There are no set government per diem rates but employer can set their own to be used to cover meals, which will be treated as non-taxable income up to 200,000 KRW per month.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that business purpose and client line manager approval are required, which aligns with the compliancePoliciesAdditionalInfoRelated section that states \"Business purpose must be established and clearly documented for all expenses\" and \"Client line manager approval required before payroll cutoff date.\"",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.8933333333333332,
+      "issues": [
+        "1. The assessment incorrectly identifies invoice_number and receipt_number as mandatory fields when they are not explicitly listed in the provided compliance rules.",
+        "2. The assessment correctly identifies the meal expense gross-up rule and additional documentation requirements."
+      ],
+      "summary": "The compliance assessment is partially accurate. It correctly identifies the meal expense gross-up requirements and additional documentation needs, but incorrectly flags missing invoice and receipt numbers as compliance issues when these aren't explicitly listed as mandatory fields in the provided rules. The assessment should focus on the fields that are actually required according to the receiptStandards section.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The assessment claims invoice number is mandatory, but the compliance rules don't explicitly list \"invoice_number\" as a required field in the receiptStandards. The rules mention required data like transaction date, expense type, total amount, and supplier name, but not specifically invoice number as mandatory.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, the assessment claims receipt number is mandatory, but this specific field is not explicitly listed as required in the provided receiptStandards. The compliance rules focus on other elements like transaction date and total amount.\n\nISSUE_3_VALIDATION_SCORE: 95 - This assessment is accurate. The compliance rules clearly state that meal expenses are non-taxable up to 200,000 KRW per month. The receipt shows a 30,000 KRW expense, which would contribute to this monthly limit. The gross-up rule is correctly identified from the compliancePoliciesGrossUpRelated section.\n\nISSUE_4_VALIDATION_SCORE: 100 - This assessment is completely accurate. The compliancePoliciesAdditionalInfoRelated section explicitly requires business purpose documentation and client line manager approval for all expense types, including meals.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The assessment incorrectly identifies invoice_number and receipt_number as mandatory fields when they are not explicitly listed in the provided compliance rules.\n2. The assessment correctly identifies the meal expense gross-up rule and additional documentation requirements.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies the meal expense gross-up requirements and additional documentation needs, but incorrectly flags missing invoice and receipt numbers as compliance issues when these aren't explicitly listed as mandatory fields in the provided rules. The assessment should focus on the fields that are actually required according to the receiptStandards section.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The assessment claims invoice number is mandatory, but the compliance rules don't explicitly list \"invoice_number\" as a required field in the receiptStandards. The rules mention required data like transaction date, expense type, total amount, and supplier name, but not specifically invoice number as mandatory.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to issue 1, the assessment claims receipt number is mandatory, but this specific field is not explicitly listed as required in the provided receiptStandards. The compliance rules focus on other elements like transaction date and total amount.\n\nISSUE_3_VALIDATION_SCORE: 95 - This assessment is accurate. The compliance rules clearly state that meal expenses are non-taxable up to 200,000 KRW per month. The receipt shows a 30,000 KRW expense, which would contribute to this monthly limit. The gross-up rule is correctly identified from the compliancePoliciesGrossUpRelated section.\n\nISSUE_4_VALIDATION_SCORE: 100 - This assessment is completely accurate. The compliancePoliciesAdditionalInfoRelated section explicitly requires business purpose documentation and client line manager approval for all expense types, including meals.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The assessment incorrectly identifies invoice_number and receipt_number as mandatory fields when they are not explicitly listed in the provided compliance rules.\n2. The assessment correctly identifies the meal expense gross-up rule and additional documentation requirements.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies the meal expense gross-up requirements and additional documentation needs, but incorrectly flags missing invoice and receipt numbers as compliance issues when these aren't explicitly listed as mandatory fields in the provided rules. The assessment should focus on the fields that are actually required according to the receiptStandards section."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the invoice number and receipt number are missing, which are mandatory fields as per the GoGlobal ICP standards.\n\nISSUE_2_VALIDATION_SCORE: 95 - The assessment accurately determines that the total amount of the meal expense exceeds the non-taxable limit of 200,000 KRW per month and will need to be grossed up.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that additional documentation, including business purpose and client line manager approval, is required as per the GoGlobal ICP compliance policies.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment accurately handles the edge case of the missing invoice number and receipt number, and provides appropriate recommendations to address these issues.\n\nCONFIDENCE: 95\nISSUES: None\nSUMMARY: The compliance assessment is highly accurate. It correctly identifies the key compliance issues with the receipt, including missing mandatory fields, the need for gross-up on the meal expense, and the requirement for additional documentation. The assessment provides clear and appropriate recommendations to address these issues. Overall, the compliance determination is accurate and in line with the GoGlobal ICP standards and policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the invoice number is missing, which is a mandatory field according to the receiptStandards for GoGlobal ICP.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately notes that the receipt number is absent, which is also a mandatory field as per the receiptStandards for GoGlobal ICP.\n\nISSUE_3_VALIDATION_SCORE: 95 - The assessment correctly identifies that meal expenses exceeding 200,000 KRW per month are subject to gross-up. However, it's worth noting that this single receipt (30,000 KRW) doesn't exceed the monthly limit on its own, so the gross-up may depend on other meal expenses for the month.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment accurately notes the requirement for business purpose documentation and client line manager approval, which aligns with the compliancePoliciesAdditionalInfoRelated rules for GoGlobal ICP.\n\nCONFIDENCE: 98\n\nISSUES:\n- The gross-up issue (Issue 3) is slightly overstated as a single receipt doesn't necessarily exceed the monthly limit.\n\nSUMMARY: The compliance assessment is highly accurate overall. It correctly identifies missing mandatory fields (invoice number and receipt number) and accurately notes the requirements for additional documentation. The gross-up issue is correctly identified in principle, though it may be slightly overstated for this single receipt. The assessment demonstrates a thorough understanding and application of the provided compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The assessment claims invoice number is mandatory, but the compliance rules don't explicitly list \"invoice_number\" as a required field in the receiptStandards. The rules mention required data like transaction date, expense type, total amount, and supplier name, but not specifically invoice number as mandatory.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Similar to issue 1, the assessment claims receipt number is mandatory, but this specific field is not explicitly listed as required in the provided receiptStandards. The compliance rules focus on other elements like transaction date and total amount.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This assessment is accurate. The compliance rules clearly state that meal expenses are non-taxable up to 200,000 KRW per month. The receipt shows a 30,000 KRW expense, which would contribute to this monthly limit. The gross-up rule is correctly identified from the compliancePoliciesGrossUpRelated section.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This assessment is completely accurate. The compliancePoliciesAdditionalInfoRelated section explicitly requires business purpose documentation and client line manager approval for all expense types, including meals.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.89,
+      "issues": [
+        "1. Issues 1 and 2 may be overly strict for a standard credit card receipt from a restaurant/café",
+        "as such receipts often don't contain formal invoice or receipt numbers.",
+        "2. The system doesn't acknowledge that the transaction reference number (54780250) could potentially satisfy the receipt identification requirement.",
+        "3. The validation doesn't recognize that this is a standard credit card slip from a café (Starbucks)",
+        "where certain formal invoice elements wouldn't typically be present."
+      ],
+      "summary": "The system correctly identifies compliance issues related to gross-up requirements and additional documentation needs. However, it appears overly strict regarding invoice and receipt numbers for what is essentially a café receipt. While the categorization types are appropriate, the application of receipt standards may not fully account for the nature of this specific document type (credit card slip from a café).",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing invoice number. However, the categorization is questionable because the receipt appears to be a credit card slip from Starbucks Korea, which typically wouldn't include an invoice number. The compliance rules do not explicitly list \"invoice_number\" as a mandatory field, making this categorization partially incorrect.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to Issue 1, this is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing receipt number. However, the transaction reference \"54780250\" is present, which could serve as a receipt identifier. The compliance rules don't explicitly list \"receipt_number\" as mandatory, making this categorization questionable.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the South Korean tax policy for meal expenses. The description correctly notes that meal expenses exceeding 200,000 KRW per month are subject to gross-up, which aligns with the compliance rules provided.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately references the need for business purpose documentation and client line manager approval. This directly corresponds to the compliance policies requiring business purpose documentation and approval before payroll cutoff.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issues 1 and 2 may be overly strict for a standard credit card receipt from a restaurant/café, as such receipts often don't contain formal invoice or receipt numbers.\n2. The system doesn't acknowledge that the transaction reference number (54780250) could potentially satisfy the receipt identification requirement.\n3. The validation doesn't recognize that this is a standard credit card slip from a café (Starbucks), where certain formal invoice elements wouldn't typically be present.\n\nSUMMARY: The system correctly identifies compliance issues related to gross-up requirements and additional documentation needs. However, it appears overly strict regarding invoice and receipt numbers for what is essentially a café receipt. While the categorization types are appropriate, the application of receipt standards may not fully account for the nature of this specific document type (credit card slip from a café).",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing invoice number. However, the categorization is questionable because the receipt appears to be a credit card slip from Starbucks Korea, which typically wouldn't include an invoice number. The compliance rules do not explicitly list \"invoice_number\" as a mandatory field, making this categorization partially incorrect.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to Issue 1, this is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing receipt number. However, the transaction reference \"54780250\" is present, which could serve as a receipt identifier. The compliance rules don't explicitly list \"receipt_number\" as mandatory, making this categorization questionable.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the South Korean tax policy for meal expenses. The description correctly notes that meal expenses exceeding 200,000 KRW per month are subject to gross-up, which aligns with the compliance rules provided.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately references the need for business purpose documentation and client line manager approval. This directly corresponds to the compliance policies requiring business purpose documentation and approval before payroll cutoff.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issues 1 and 2 may be overly strict for a standard credit card receipt from a restaurant/café, as such receipts often don't contain formal invoice or receipt numbers.\n2. The system doesn't acknowledge that the transaction reference number (54780250) could potentially satisfy the receipt identification requirement.\n3. The validation doesn't recognize that this is a standard credit card slip from a café (Starbucks), where certain formal invoice elements wouldn't typically be present.\n\nSUMMARY: The system correctly identifies compliance issues related to gross-up requirements and additional documentation needs. However, it appears overly strict regarding invoice and receipt numbers for what is essentially a café receipt. While the categorization types are appropriate, the application of receipt standards may not fully account for the nature of this specific document type (credit card slip from a café)."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of missing invoice number is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly explains the problem, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue of missing receipt number is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and relevant.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue of meal expense exceeding the non-taxable limit is accurately categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description explains the problem and the recommendation to gross up the excess amount is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The requirement for business purpose documentation and client line manager approval is correctly identified as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and aligned with the compliance policies.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The issues are categorized accurately according to the established taxonomy. The descriptions are clear and provide actionable recommendations to address the problems. No issues have been missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The description accurately points out the missing invoice number, which is a mandatory field according to the receipt standards. The recommendation and knowledge base reference are appropriate.\n\nISSUE_2_VALIDATION_SCORE: 95 - Similar to Issue 1, this issue is correctly categorized as \"Standards & Compliance | Fix Identified\". The missing receipt number is accurately identified as a mandatory field, with appropriate recommendation and knowledge base reference.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is perfectly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately explains the meal expense gross-up policy, referencing the correct threshold of 200,000 KRW per month. The recommendation and knowledge base reference are spot-on.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The requirement for business purpose and client line manager approval is accurately stated. However, it could be more specific about the type of documentation needed for the business purpose.\n\nCONFIDENCE: 95\n\nISSUES: \n- Issue 4 could be more specific about the required documentation for business purpose.\n\nSUMMARY: Overall, the issues are very well categorized. They accurately reflect the compliance rules and receipt standards provided. The categorizations follow the established taxonomy, using appropriate issue types. All major issues are identified and correctly classified. The descriptions are clear and actionable, with minor room for improvement in Issue 4's specificity. The high confidence score reflects the overall accuracy and completeness of the issue categorization."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing invoice number. However, the categorization is questionable because the receipt appears to be a credit card slip from Starbucks Korea, which typically wouldn't include an invoice number. The compliance rules do not explicitly list \"invoice_number\" as a mandatory field, making this categorization partially incorrect.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "Similar to Issue 1, this is correctly identified as a \"Standards & Compliance | Fix Identified\" type, noting the missing receipt number. However, the transaction reference \"54780250\" is present, which could serve as a receipt identifier. The compliance rules don't explicitly list \"receipt_number\" as mandatory, making this categorization questionable.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately references the South Korean tax policy for meal expenses. The description correctly notes that meal expenses exceeding 200,000 KRW per month are subject to gross-up, which aligns with the compliance rules provided.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately references the need for business purpose documentation and client line manager approval. This directly corresponds to the compliance policies requiring business purpose documentation and approval before payroll cutoff.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9,
+      "issues": [
+        "The recommendations for Issues 1 and 2 could be more comprehensive by suggesting alternative approaches if the supplier cannot provide the missing information",
+        "such as using the transaction reference number as a substitute or documenting attempts to obtain the required information."
+      ],
+      "summary": "The recommendations are generally valid and helpful, particularly for Issues 3 and 4 which provide specific guidance aligned with compliance requirements. The recommendations for Issues 1 and 2 are accurate but could offer more alternative solutions when dealing with suppliers who may not be able to provide the missing information. Overall, the recommendations address the compliance issues identified and provide actionable guidance to the user.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing invoice number is actionable but could be more specific. While it correctly identifies the compliance requirement, it doesn't provide alternative solutions if the supplier cannot provide an invoice number, such as using the transaction reference (54780250) that is present on the receipt as a substitute identifier.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to Issue 1, the recommendation to address the missing receipt number with the supplier is valid but limited. The receipt does contain a transaction reference number (54780250) which could potentially serve as a receipt number, but the recommendation doesn't mention this possibility or provide guidance on documenting this substitution.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding meal expense gross-up is highly valid and specific. It correctly identifies the South Korean tax regulation that meal expenses are non-taxable up to 200,000 KRW per month, and clearly states that amounts exceeding this limit will be grossed up. This aligns perfectly with the compliance policies provided.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide business purpose documentation and obtain client line manager approval is specific, actionable, and directly addresses the compliance requirement. It also helpfully mentions the timing requirement (before payroll cutoff date). This recommendation is comprehensive and practical.\n\nCONFIDENCE: 86\n\nISSUES: The recommendations for Issues 1 and 2 could be more comprehensive by suggesting alternative approaches if the supplier cannot provide the missing information, such as using the transaction reference number as a substitute or documenting attempts to obtain the required information.\n\nSUMMARY: The recommendations are generally valid and helpful, particularly for Issues 3 and 4 which provide specific guidance aligned with compliance requirements. The recommendations for Issues 1 and 2 are accurate but could offer more alternative solutions when dealing with suppliers who may not be able to provide the missing information. Overall, the recommendations address the compliance issues identified and provide actionable guidance to the user.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.86,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing invoice number is actionable but could be more specific. While it correctly identifies the compliance requirement, it doesn't provide alternative solutions if the supplier cannot provide an invoice number, such as using the transaction reference (54780250) that is present on the receipt as a substitute identifier.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to Issue 1, the recommendation to address the missing receipt number with the supplier is valid but limited. The receipt does contain a transaction reference number (54780250) which could potentially serve as a receipt number, but the recommendation doesn't mention this possibility or provide guidance on documenting this substitution.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding meal expense gross-up is highly valid and specific. It correctly identifies the South Korean tax regulation that meal expenses are non-taxable up to 200,000 KRW per month, and clearly states that amounts exceeding this limit will be grossed up. This aligns perfectly with the compliance policies provided.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide business purpose documentation and obtain client line manager approval is specific, actionable, and directly addresses the compliance requirement. It also helpfully mentions the timing requirement (before payroll cutoff date). This recommendation is comprehensive and practical.\n\nCONFIDENCE: 86\n\nISSUES: The recommendations for Issues 1 and 2 could be more comprehensive by suggesting alternative approaches if the supplier cannot provide the missing information, such as using the transaction reference number as a substitute or documenting attempts to obtain the required information.\n\nSUMMARY: The recommendations are generally valid and helpful, particularly for Issues 3 and 4 which provide specific guidance aligned with compliance requirements. The recommendations for Issues 1 and 2 are accurate but could offer more alternative solutions when dealing with suppliers who may not be able to provide the missing information. Overall, the recommendations address the compliance issues identified and provide actionable guidance to the user."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier or provider is actionable and specific. It directly addresses the identified issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing receipt number with the supplier or provider is actionable and specific. It directly addresses the identified issue.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation to gross up the meal expenses exceeding the non-taxable limit of 200,000 KRW per month is valid and practical. It aligns with the compliance policies.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide a clear business purpose for the expense and obtain client line manager approval is actionable and addresses the identified issue. It is a reasonable requirement as per the compliance policies.\n\nCONFIDENCE: 92\nISSUES: None\nSUMMARY: The provided recommendations are overall valid and useful. They directly address the identified issues, are actionable, and align with the applicable compliance policies. The recommendations are feasible and practical, and there are no contradictory or harmful suggestions."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and actionable. It directly addresses the identified issue and is a practical step to ensure compliance.\n\nISSUE_2_VALIDATION_SCORE: 90 - Similar to Issue 1, the recommendation to address the missing receipt number with the supplier is valid, specific, and addresses the issue directly. It's a feasible and practical suggestion.\n\nISSUE_3_VALIDATION_SCORE: 95 - The recommendation regarding the gross-up of meal expenses exceeding 200,000 KRW per month is highly valid. It provides specific information about the tax implications and aligns with the compliance policies provided.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to provide a clear business purpose and obtain client line manager approval is highly valid and specific. It directly addresses the compliance requirement and provides a clear, actionable step.\n\nCONFIDENCE: 92\n\nISSUES:\n- No major issues with the validity of recommendations. All suggestions are actionable, specific, and address the identified problems.\n\nSUMMARY: The recommendations provided are highly valid and useful. They directly address the compliance issues identified, offer specific and actionable steps, and align well with the provided compliance rules. The suggestions for addressing missing information with suppliers, understanding tax implications for meal expenses, and providing additional documentation are all practical and feasible. The high confidence score reflects the overall quality and applicability of the recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing invoice number is actionable but could be more specific. While it correctly identifies the compliance requirement, it doesn't provide alternative solutions if the supplier cannot provide an invoice number, such as using the transaction reference (54780250) that is present on the receipt as a substitute identifier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "Similar to Issue 1, the recommendation to address the missing receipt number with the supplier is valid but limited. The receipt does contain a transaction reference number (54780250) which could potentially serve as a receipt number, but the recommendation doesn't mention this possibility or provide guidance on documenting this substitution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding meal expense gross-up is highly valid and specific. It correctly identifies the South Korean tax regulation that meal expenses are non-taxable up to 200,000 KRW per month, and clearly states that amounts exceeding this limit will be grossed up. This aligns perfectly with the compliance policies provided.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to provide business purpose documentation and obtain client line manager approval is specific, actionable, and directly addresses the compliance requirement. It also helpfully mentions the timing requirement (before payroll cutoff date). This recommendation is comprehensive and practical.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.86,
+      "issues": [
+        "1. Fabricated mandatory requirement for invoice number",
+        "2. Fabricated mandatory requirement for receipt number",
+        "3. Potentially misleading statement about the meal expense exceeding non-taxable limit (30",
+        "000 KRW is below the 200",
+        "000 KRW monthly limit)"
+      ],
+      "summary": "The AI response contains several hallucinations related to mandatory receipt fields that aren't specified in the compliance rules. While the requirement for business purpose and manager approval is accurate, the system incorrectly claims invoice and receipt numbers are mandatory fields according to the standards. Additionally, the system may be incorrectly flagging the meal expense for gross-up since the individual receipt amount (30,000 KRW) is below the monthly non-taxable limit of 200,000 KRW, though this could be valid if considering cumulative monthly expenses.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue states \"Invoice number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention invoice number as a mandatory field.\n\nISSUE_2_VALIDATION_SCORE: 30 - Similarly, the issue states \"Receipt number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention receipt number as a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules. The expense amount of 30,000 KRW doesn't exceed this limit by itself, but the system might be assuming this is part of multiple meal expenses in a month that collectively exceed the limit.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue accurately reflects the compliance rules that require business purpose documentation and client line manager approval as stated in the compliancePoliciesAdditionalInfoRelated section.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Fabricated mandatory requirement for invoice number\n2. Fabricated mandatory requirement for receipt number\n3. Potentially misleading statement about the meal expense exceeding non-taxable limit (30,000 KRW is below the 200,000 KRW monthly limit)\n\nSUMMARY: The AI response contains several hallucinations related to mandatory receipt fields that aren't specified in the compliance rules. While the requirement for business purpose and manager approval is accurate, the system incorrectly claims invoice and receipt numbers are mandatory fields according to the standards. Additionally, the system may be incorrectly flagging the meal expense for gross-up since the individual receipt amount (30,000 KRW) is below the monthly non-taxable limit of 200,000 KRW, though this could be valid if considering cumulative monthly expenses.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue states \"Invoice number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention invoice number as a mandatory field.\n\nISSUE_2_VALIDATION_SCORE: 30 - Similarly, the issue states \"Receipt number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention receipt number as a mandatory field.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules. The expense amount of 30,000 KRW doesn't exceed this limit by itself, but the system might be assuming this is part of multiple meal expenses in a month that collectively exceed the limit.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue accurately reflects the compliance rules that require business purpose documentation and client line manager approval as stated in the compliancePoliciesAdditionalInfoRelated section.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Fabricated mandatory requirement for invoice number\n2. Fabricated mandatory requirement for receipt number\n3. Potentially misleading statement about the meal expense exceeding non-taxable limit (30,000 KRW is below the 200,000 KRW monthly limit)\n\nSUMMARY: The AI response contains several hallucinations related to mandatory receipt fields that aren't specified in the compliance rules. While the requirement for business purpose and manager approval is accurate, the system incorrectly claims invoice and receipt numbers are mandatory fields according to the standards. Additionally, the system may be incorrectly flagging the meal expense for gross-up since the individual receipt amount (30,000 KRW) is below the monthly non-taxable limit of 200,000 KRW, though this could be valid if considering cumulative monthly expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information present in the AI response is consistent with the source data provided. All the fields extracted, such as supplier name, address, VAT number, transaction details, and payment method, are directly from the receipt.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements mentioned in the AI response are directly from the provided \"Compliance Rules\" section, which is a part of the context. There is no evidence of fabricated compliance rules or requirements.\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates mentioned in the AI response are present in the source data and appear to be accurate. There is no indication of any made-up information.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts. It clearly identifies the issues with the receipt, such as missing mandatory fields and the need for additional documentation, based on the provided compliance rules.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response appears to be free from any hallucinations or fabricated information. All the data and compliance rules mentioned are directly derived from the provided source and context, without any signs of made-up or assumed information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the invoice number is missing from the receipt data, which is consistent with the provided information.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue accurately points out that the receipt number is not present in the extracted data, which aligns with the given information.\n\nISSUE_3_VALIDATION_SCORE: 95 - The gross-up rule mentioned is consistent with the compliance policies provided. The 200,000 KRW monthly limit for non-taxable meal expenses is accurately stated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for business purpose documentation and client line manager approval is directly stated in the compliance rules provided.\n\nCONFIDENCE: 98\n\nISSUES: No significant hallucinations detected. All information appears to be derived from or consistent with the provided data and compliance rules.\n\nSUMMARY: The AI response appears to be highly accurate and free from hallucinations. It correctly identifies missing information (invoice and receipt numbers), accurately applies the gross-up rule for meal expenses, and correctly states the requirement for additional documentation. The high confidence score reflects the close alignment between the response and the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Invoice number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The issue states \"Invoice number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Invoice number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention invoice number as a mandatory field.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt number is not present on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "Similarly, the issue states \"Receipt number is not present on the receipt\" which is accurate based on the extracted data. However, the claim that \"Receipt number is a mandatory field as per receiptStandards for GoGlobal ICP\" is not supported by the provided compliance rules. The receiptStandards list doesn't specifically mention receipt number as a mandatory field.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses will be grossed up as per country regulations",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue correctly identifies that meal expenses are non-taxable up to 200,000 KRW per month according to the compliance rules. The expense amount of 30,000 KRW doesn't exceed this limit by itself, but the system might be assuming this is part of multiple meal expenses in a month that collectively exceed the limit.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Business purpose and client line manager approval are required",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue accurately reflects the compliance rules that require business purpose documentation and client line manager approval as stated in the compliancePoliciesAdditionalInfoRelated section.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: None identified. All issues raised by the AI are factually grounded in the provided data.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly claims invoice number and receipt number are mandatory fields when they are not explicitly listed as such in the knowledge base., 2. The AI correctly applies the meal expense tax exemption limit and gross-up requirement., 3. The AI correctly identifies the need for business purpose documentation and client line manager approval.",
+    "Address issues in compliance accuracy: 1. The assessment incorrectly identifies invoice_number and receipt_number as mandatory fields when they are not explicitly listed in the provided compliance rules., 2. The assessment correctly identifies the meal expense gross-up rule and additional documentation requirements.",
+    "Address issues in issue categorization: 1. Issues 1 and 2 may be overly strict for a standard credit card receipt from a restaurant/café, as such receipts often don't contain formal invoice or receipt numbers., 2. The system doesn't acknowledge that the transaction reference number (54780250) could potentially satisfy the receipt identification requirement., 3. The validation doesn't recognize that this is a standard credit card slip from a café (Starbucks), where certain formal invoice elements wouldn't typically be present.",
+    "Address issues in recommendation validity: The recommendations for Issues 1 and 2 could be more comprehensive by suggesting alternative approaches if the supplier cannot provide the missing information, such as using the transaction reference number as a substitute or documenting attempts to obtain the required information.",
+    "Address issues in hallucination detection: 1. Fabricated mandatory requirement for invoice number, 2. Fabricated mandatory requirement for receipt number, 3. Potentially misleading statement about the meal expense exceeding non-taxable limit (30, 000 KRW is below the 200, 000 KRW monthly limit)"
+  ],
+  "timestamp": "2025-09-26T12:10:55.556Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 59645,
+    "timing": {
+      "validation_start_time": "2025-09-26T12:09:55.911Z",
+      "validation_end_time": "2025-09-26T12:10:55.556Z",
+      "total_validation_time_seconds": "59.6",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-26T12:09:55.911Z",
+          "end_time": "2025-09-26T12:10:55.556Z",
+          "duration_seconds": "59.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "59.6",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.50",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 4
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Invoice number is not present on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 62.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 50,
+        "issue_categorization": 70,
+        "recommendation_validity": 80,
+        "hallucination_detection": 30
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Receipt number is not present on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 62.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 50,
+        "issue_categorization": 70,
+        "recommendation_validity": 80,
+        "hallucination_detection": 30
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Meal expenses will be grossed up as per country regulations",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 93.33,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 95,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 80
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Business purpose and client line manager approval are required",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 95.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 90
+      }
+    }
+  ]
+}

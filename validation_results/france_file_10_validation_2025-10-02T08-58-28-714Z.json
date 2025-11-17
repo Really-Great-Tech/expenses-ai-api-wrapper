@@ -1,0 +1,671 @@
+{
+  "overall_score": 0.6322222222222221,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.6666666666666666,
+      "issues": [
+        "1. The AI incorrectly claims expense type description is missing when it's clearly present (Ride Receipt",
+        "Comfort)",
+        "2. The AI incorrectly claims supplier business name is missing when \"Uber\" is clearly identified",
+        "3. The AI correctly notes VAT amount is missing but incorrectly treats it as mandatory when it's optional for transportation expenses",
+        "4. The mileage log requirement is correctly identified based on compliance rules",
+        "5. The A1 certificate requirement is correctly identified based on compliance rules"
+      ],
+      "summary": "The AI response contains significant factual errors regarding the presence of expense type and supplier name, which are clearly present in the extracted data. It correctly identifies the missing VAT amount but incorrectly treats it as a mandatory issue when the compliance rules indicate it's optional for transportation expenses. The requirements for mileage logs and A1 certificates are correctly identified based on the compliance rules. Overall, the response is only partially grounded in the extracted data and compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"receipt_type\": \"Ride Receipt\" and \"ride_type\": \"Comfort\" which indicates the expense type is transportation/ride service. This issue is not factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"supplier_name\": \"Uber\". This issue is not factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims \"VAT amount is not listed on the receipt.\" This appears to be factually grounded as there is no VAT amount field in the extracted data. However, the compliance rules indicate VAT amount is optional for transportation expenses, not mandatory, so this shouldn't be flagged as an issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI claims \"Detailed mileage log reports justifying business mileage are required.\" This is factually grounded based on the compliance rules for travel/mileage expenses in France, which require detailed mileage logs.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI claims \"A1 certificate is required when travelling.\" This is factually grounded based on the compliance rules for travel expenses (Hotel, Flight) in GoGlobal France, which state \"A1 certificate is required when travelling.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly claims expense type description is missing when it's clearly present (Ride Receipt, Comfort)\n2. The AI incorrectly claims supplier business name is missing when \"Uber\" is clearly identified\n3. The AI correctly notes VAT amount is missing but incorrectly treats it as mandatory when it's optional for transportation expenses\n4. The mileage log requirement is correctly identified based on compliance rules\n5. The A1 certificate requirement is correctly identified based on compliance rules\n\nSUMMARY: The AI response contains significant factual errors regarding the presence of expense type and supplier name, which are clearly present in the extracted data. It correctly identifies the missing VAT amount but incorrectly treats it as a mandatory issue when the compliance rules indicate it's optional for transportation expenses. The requirements for mileage logs and A1 certificates are correctly identified based on the compliance rules. Overall, the response is only partially grounded in the extracted data and compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"receipt_type\": \"Ride Receipt\" and \"ride_type\": \"Comfort\" which indicates the expense type is transportation/ride service. This issue is not factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"supplier_name\": \"Uber\". This issue is not factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims \"VAT amount is not listed on the receipt.\" This appears to be factually grounded as there is no VAT amount field in the extracted data. However, the compliance rules indicate VAT amount is optional for transportation expenses, not mandatory, so this shouldn't be flagged as an issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI claims \"Detailed mileage log reports justifying business mileage are required.\" This is factually grounded based on the compliance rules for travel/mileage expenses in France, which require detailed mileage logs.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI claims \"A1 certificate is required when travelling.\" This is factually grounded based on the compliance rules for travel expenses (Hotel, Flight) in GoGlobal France, which state \"A1 certificate is required when travelling.\"\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly claims expense type description is missing when it's clearly present (Ride Receipt, Comfort)\n2. The AI incorrectly claims supplier business name is missing when \"Uber\" is clearly identified\n3. The AI correctly notes VAT amount is missing but incorrectly treats it as mandatory when it's optional for transportation expenses\n4. The mileage log requirement is correctly identified based on compliance rules\n5. The A1 certificate requirement is correctly identified based on compliance rules\n\nSUMMARY: The AI response contains significant factual errors regarding the presence of expense type and supplier name, which are clearly present in the extracted data. It correctly identifies the missing VAT amount but incorrectly treats it as a mandatory issue when the compliance rules indicate it's optional for transportation expenses. The requirements for mileage logs and A1 certificates are correctly identified based on the compliance rules. Overall, the response is only partially grounded in the extracted data and compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response accurately identifies the missing expense type description on the receipt, which matches the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies that the supplier business name is not clearly visible or missing on the receipt, which aligns with the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response accurately states that the VAT amount is not listed on the receipt, which is consistent with the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly identifies the need for detailed mileage log reports to justify the business mileage, which is required based on the compliance rules extracted.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response accurately states that an A1 certificate is required for international travel, which is in line with the compliance rules extracted.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data and compliance rules. All claims made in the response can be traced back to the information given, and no fabricated or assumed information is present. The numerical values, dates, and entity details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims the \"expense type description is missing on the receipt,\" but the extracted data clearly shows \"receipt_type: Ride Receipt\" and \"ride_type: Comfort\" which indicates the expense type is transportation/ride service.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims \"supplier business name is not clearly visible or missing,\" but the extracted data explicitly shows \"supplier_name: Uber\" which is clearly identified.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims \"VAT amount is not listed on the receipt.\" This might be accurate as the extracted data doesn't specifically mention VAT, but according to the compliance rules, VAT is listed as \"Optional\" for transportation expenses, not mandatory.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for \"detailed mileage log reports\" is correctly identified based on the compliance rules for travel expenses involving mileage in France.\n\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for an \"A1 certificate\" for international travel is correctly identified based on the compliance rules for GoGlobal France.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly claimed expense type description was missing when it was clearly present (Ride Receipt/Comfort)\n2. The AI incorrectly claimed supplier business name was missing when Uber was clearly identified\n3. The AI treated an optional VAT requirement as if it were mandatory\n4. Two of the issues identified are accurate but might not be applicable to this specific receipt type\n\nSUMMARY: The AI response has significant factual grounding issues. It incorrectly claimed that basic information (expense type and supplier name) was missing when it was clearly present in the extracted data. While the AI correctly identified requirements for mileage logs and A1 certificates based on compliance rules, these might not be directly applicable to an Uber receipt which already shows the journey details. The AI also treated an optional VAT requirement as if it were mandatory."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"receipt_type\": \"Ride Receipt\" and \"ride_type\": \"Comfort\" which indicates the expense type is transportation/ride service. This issue is not factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"supplier_name\": \"Uber\". This issue is not factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims \"VAT amount is not listed on the receipt.\" This appears to be factually grounded as there is no VAT amount field in the extracted data. However, the compliance rules indicate VAT amount is optional for transportation expenses, not mandatory, so this shouldn't be flagged as an issue.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI claims \"Detailed mileage log reports justifying business mileage are required.\" This is factually grounded based on the compliance rules for travel/mileage expenses in France, which require detailed mileage logs.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI claims \"A1 certificate is required when travelling.\" This is factually grounded based on the compliance rules for travel expenses (Hotel, Flight) in GoGlobal France, which state \"A1 certificate is required when travelling.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.65,
+      "issues": [
+        "1. The AI incorrectly flagged missing expense type when it's clearly present in the extracted data",
+        "2. The AI incorrectly flagged missing supplier name when \"Uber\" is clearly identified",
+        "3. The AI treated VAT amount as mandatory when it's optional for transportation expenses",
+        "4. The AI correctly identified the need for mileage documentation",
+        "5. The AI correctly identified the A1 certificate requirement for international travel"
+      ],
+      "summary": "The AI response shows significant misalignment with the knowledge base by incorrectly flagging issues with expense type description and supplier name that are clearly present in the extracted data. While it correctly identified requirements for mileage documentation and A1 certificate, it incorrectly treated VAT as mandatory when it's optional for transportation expenses in France. The response demonstrates inconsistent application of the compliance rules, with some accurate identifications but critical errors in basic receipt validation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - The AI incorrectly flagged \"expense type description is missing\" when the extracted data clearly shows \"Ride Receipt\" and \"Ride Type: Comfort\" which adequately describes the expense type. This contradicts the knowledge base requirement that \"Expense type or description of goods/services purchased must be shown on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"supplier business name is not clearly visible or missing\" when the extracted data explicitly shows \"Uber\" as the supplier name. This directly contradicts the knowledge base requirement that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_3_VALIDATION_SCORE: 70 - The VAT amount issue is partially valid as the extracted data doesn't show a specific VAT amount. However, the knowledge base indicates VAT amount is \"Optional\" for transportation expenses in France, not mandatory as implied by the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is correctly identified and aligns with the knowledge base which states \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The A1 certificate requirement is correctly identified and aligns with the knowledge base which states \"A1 certificate is required when travelling\" for travel expenses under GoGlobal France.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly flagged missing expense type when it's clearly present in the extracted data\n2. The AI incorrectly flagged missing supplier name when \"Uber\" is clearly identified\n3. The AI treated VAT amount as mandatory when it's optional for transportation expenses\n4. The AI correctly identified the need for mileage documentation\n5. The AI correctly identified the A1 certificate requirement for international travel\n\nSUMMARY: The AI response shows significant misalignment with the knowledge base by incorrectly flagging issues with expense type description and supplier name that are clearly present in the extracted data. While it correctly identified requirements for mileage documentation and A1 certificate, it incorrectly treated VAT as mandatory when it's optional for transportation expenses in France. The response demonstrates inconsistent application of the compliance rules, with some accurate identifications but critical errors in basic receipt validation.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The AI incorrectly flagged \"expense type description is missing\" when the extracted data clearly shows \"Ride Receipt\" and \"Ride Type: Comfort\" which adequately describes the expense type. This contradicts the knowledge base requirement that \"Expense type or description of goods/services purchased must be shown on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI incorrectly flagged \"supplier business name is not clearly visible or missing\" when the extracted data explicitly shows \"Uber\" as the supplier name. This directly contradicts the knowledge base requirement that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_3_VALIDATION_SCORE: 70 - The VAT amount issue is partially valid as the extracted data doesn't show a specific VAT amount. However, the knowledge base indicates VAT amount is \"Optional\" for transportation expenses in France, not mandatory as implied by the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is correctly identified and aligns with the knowledge base which states \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The A1 certificate requirement is correctly identified and aligns with the knowledge base which states \"A1 certificate is required when travelling\" for travel expenses under GoGlobal France.\n\nCONFIDENCE: 40\n\nISSUES:\n1. The AI incorrectly flagged missing expense type when it's clearly present in the extracted data\n2. The AI incorrectly flagged missing supplier name when \"Uber\" is clearly identified\n3. The AI treated VAT amount as mandatory when it's optional for transportation expenses\n4. The AI correctly identified the need for mileage documentation\n5. The AI correctly identified the A1 certificate requirement for international travel\n\nSUMMARY: The AI response shows significant misalignment with the knowledge base by incorrectly flagging issues with expense type description and supplier name that are clearly present in the extracted data. While it correctly identified requirements for mileage documentation and A1 certificate, it incorrectly treated VAT as mandatory when it's optional for transportation expenses in France. The response demonstrates inconsistent application of the compliance rules, with some accurate identifications but critical errors in basic receipt validation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the expense type description is missing on the receipt, which is a mandatory requirement for France per the compliance knowledge base. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identifies that the supplier business name is not clearly visible or missing on the receipt, which is a mandatory requirement for France. The recommendation to address this with the supplier is in line with the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 80 - The AI response correctly identifies that the VAT amount is not listed on the receipt, which is an optional requirement for France. However, the knowledge base indicates that the VAT amount must be listed clearly on the invoice if applicable, so this issue could be more severe.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response appropriately identifies the need for detailed mileage log reports to justify the business mileage, which is a mandatory requirement for France per the compliance knowledge base. The recommendation to provide the necessary documentation is in line with the guidelines.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies the requirement for an A1 certificate when travelling, which is a mandatory requirement for France. The recommendation to provide the A1 certificate aligns with the knowledge base.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately interprets and applies the compliance rules and knowledge base for France. It correctly identifies the missing mandatory fields on the receipt, as well as the additional documentation required for travel expenses. The recommendations provided are in line with the established guidelines. Overall, the response demonstrates a strong adherence to the compliance knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 40 - The AI incorrectly flagged \"expense type description is missing\" when the extracted data clearly shows \"Ride Receipt\" and \"Ride Type: Comfort\" which adequately describes the expense type. This contradicts the knowledge base requirement that \"Expense type or description of goods/services purchased must be shown on the receipt.\"\n\nISSUE_2_VALIDATION_SCORE: 20 - The AI incorrectly flagged \"supplier business name is not clearly visible or missing\" when the extracted data shows \"Uber\" as the supplier name. This directly contradicts the knowledge base requirement that \"Name of the vendor or merchant must be visible on the receipt.\"\n\nISSUE_3_VALIDATION_SCORE: 70 - The VAT amount issue is partially valid. While the knowledge base indicates VAT amount is \"Optional\" for transportation expenses in France (not \"Mandatory\"), it is still a relevant compliance consideration to note its absence.\n\nISSUE_4_VALIDATION_SCORE: 100 - The mileage log requirement is correctly identified based on the knowledge base rule: \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The A1 certificate requirement is correctly identified based on the knowledge base rule: \"A1 certificate is required when travelling.\"\n\nCONFIDENCE: 65\n\nISSUES:\n1. The AI incorrectly flagged missing expense type when it's clearly present in the receipt data\n2. The AI incorrectly flagged missing supplier name when \"Uber\" is clearly identified\n3. The AI treated VAT amount as mandatory when it's optional for transportation expenses\n4. The AI correctly identified the mileage log requirement\n5. The AI correctly identified the A1 certificate requirement\n\nSUMMARY: The AI response shows mixed adherence to the knowledge base. While it correctly identified requirements for mileage logs and A1 certificates for travel expenses, it incorrectly flagged missing information that was actually present in the receipt (expense type and supplier name). The VAT issue is partially valid but mischaracterized as mandatory rather than optional. The response demonstrates good knowledge of documentation requirements but fails to accurately assess the provided receipt data against the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The AI incorrectly flagged \"expense type description is missing\" when the extracted data clearly shows \"Ride Receipt\" and \"Ride Type: Comfort\" which adequately describes the expense type. This contradicts the knowledge base requirement that \"Expense type or description of goods/services purchased must be shown on the receipt.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly flagged \"supplier business name is not clearly visible or missing\" when the extracted data explicitly shows \"Uber\" as the supplier name. This directly contradicts the knowledge base requirement that \"Name of the vendor or merchant must be visible on the receipt.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The VAT amount issue is partially valid as the extracted data doesn't show a specific VAT amount. However, the knowledge base indicates VAT amount is \"Optional\" for transportation expenses in France, not mandatory as implied by the AI response.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The requirement for detailed mileage log reports is correctly identified and aligns with the knowledge base which states \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The A1 certificate requirement is correctly identified and aligns with the knowledge base which states \"A1 certificate is required when travelling\" for travel expenses under GoGlobal France.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.65,
+      "issues": [
+        "1. The system incorrectly flagged missing expense type and supplier name when both are clearly present in the extracted data",
+        "2. The system treated VAT amount as a critical issue when it's marked as optional in the compliance rules",
+        "3. The system correctly identified the need for mileage documentation and A1 certificate"
+      ],
+      "summary": "The compliance assessment is only partially accurate. While it correctly identified the need for additional documentation (mileage logs and A1 certificate), it incorrectly flagged missing expense type and supplier name that were clearly present in the extracted data. The VAT amount issue is technically correct but overemphasized since it's marked as optional in the compliance rules. The receipt should be considered partially compliant with follow-up documentation needed rather than fundamentally non-compliant.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The extracted data clearly shows \"Ride Receipt\" as the receipt type and \"Uber\" as the service provider. The expense type description (transportation/ride service) is evident from the receipt content.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The extracted data clearly shows \"Uber\" as the supplier business name, which is a well-known transportation service provider.\n\nISSUE_3_VALIDATION_SCORE: 50 - The VAT amount issue is partially accurate. While the VAT amount is not explicitly listed in the extracted data, the compliance rules indicate VAT amount is \"Optional\" for transportation expenses in France, not mandatory. The issue is correctly identified but overemphasized in importance.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, detailed mileage log reports are required for mileage expenses, including dates, purpose of trips, destinations, and kilometers traveled for each business journey.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules for GoGlobal France, an A1 certificate is required when traveling.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The system incorrectly flagged missing expense type and supplier name when both are clearly present in the extracted data\n2. The system treated VAT amount as a critical issue when it's marked as optional in the compliance rules\n3. The system correctly identified the need for mileage documentation and A1 certificate\n\nSUMMARY: The compliance assessment is only partially accurate. While it correctly identified the need for additional documentation (mileage logs and A1 certificate), it incorrectly flagged missing expense type and supplier name that were clearly present in the extracted data. The VAT amount issue is technically correct but overemphasized since it's marked as optional in the compliance rules. The receipt should be considered partially compliant with follow-up documentation needed rather than fundamentally non-compliant.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The extracted data clearly shows \"Ride Receipt\" as the receipt type and \"Uber\" as the service provider. The expense type description (transportation/ride service) is evident from the receipt content.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly identified. The extracted data clearly shows \"Uber\" as the supplier business name, which is a well-known transportation service provider.\n\nISSUE_3_VALIDATION_SCORE: 50 - The VAT amount issue is partially accurate. While the VAT amount is not explicitly listed in the extracted data, the compliance rules indicate VAT amount is \"Optional\" for transportation expenses in France, not mandatory. The issue is correctly identified but overemphasized in importance.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, detailed mileage log reports are required for mileage expenses, including dates, purpose of trips, destinations, and kilometers traveled for each business journey.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules for GoGlobal France, an A1 certificate is required when traveling.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The system incorrectly flagged missing expense type and supplier name when both are clearly present in the extracted data\n2. The system treated VAT amount as a critical issue when it's marked as optional in the compliance rules\n3. The system correctly identified the need for mileage documentation and A1 certificate\n\nSUMMARY: The compliance assessment is only partially accurate. While it correctly identified the need for additional documentation (mileage logs and A1 certificate), it incorrectly flagged missing expense type and supplier name that were clearly present in the extracted data. The VAT amount issue is technically correct but overemphasized since it's marked as optional in the compliance rules. The receipt should be considered partially compliant with follow-up documentation needed rather than fundamentally non-compliant."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the expense type description is missing on the receipt, which is a mandatory requirement for compliance in France. The recommendation to address this issue with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identifies that the supplier business name is not clearly visible or missing, which is also a mandatory requirement for compliance. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the VAT amount is not listed on the receipt, which is a mandatory requirement for compliance in France. The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identifies the need for detailed mileage log reports to justify the business mileage, which is a compliance requirement. The recommendation to provide the necessary documentation is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identifies the requirement for an A1 certificate for international travel, which is a compliance requirement. The recommendation to provide the necessary documentation is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is accurate and comprehensive. It correctly identifies all the mandatory compliance requirements that are missing or incomplete on the receipt, and provides appropriate recommendations to address each issue. The overall confidence in the accuracy of the compliance assessment is high."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.55,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The issue claiming \"Expense type description is missing on the receipt\" is incorrect. The extracted data clearly shows \"Ride Receipt\" as the receipt type and includes \"Comfort\" as the ride type. The receipt contains sufficient information about the expense type (Uber transportation service).\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claiming \"Supplier business name is not clearly visible or missing\" is incorrect. The extracted data shows \"Uber\" as the supplier name, which is a clearly identifiable transportation service provider.\n\nISSUE_3_VALIDATION_SCORE: 70 - The issue regarding VAT amount not being listed is potentially valid, as the extracted data doesn't show a specific VAT breakdown. However, the compliance rules indicate VAT amount is optional, not mandatory, for transportation expenses in France, so this should be flagged as an optional issue rather than a compliance violation.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding detailed mileage log reports is correctly identified. For transportation expenses in France, detailed mileage information is required according to the compliance rules. While the receipt shows distance (39.65), it doesn't provide the complete mileage log information required.\n\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for an A1 certificate when traveling is correctly identified based on the compliance rules for GoGlobal France.\n\nCONFIDENCE: 55\n\nISSUES:\n1. Two issues were incorrectly identified as non-compliant (expense type description and supplier business name) when the data clearly shows this information is present\n2. The VAT issue is correctly identified but incorrectly classified as mandatory when it's optional for transportation expenses\n3. The system correctly identified the need for mileage documentation and A1 certificate\n\nSUMMARY: The compliance assessment contains significant errors, incorrectly flagging the receipt as non-compliant for missing expense type and supplier name when both are clearly present in the extracted data. While the assessment correctly identifies the need for additional documentation (mileage logs and A1 certificate), it mischaracterizes the VAT requirement as mandatory when it's optional for transportation expenses according to the compliance rules. The receipt should be classified as conditionally compliant pending additional documentation rather than non-compliant due to missing basic information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The extracted data clearly shows \"Ride Receipt\" as the receipt type and \"Uber\" as the service provider. The expense type description (transportation/ride service) is evident from the receipt content.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is incorrectly identified. The extracted data clearly shows \"Uber\" as the supplier business name, which is a well-known transportation service provider.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The VAT amount issue is partially accurate. While the VAT amount is not explicitly listed in the extracted data, the compliance rules indicate VAT amount is \"Optional\" for transportation expenses in France, not mandatory. The issue is correctly identified but overemphasized in importance.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules, detailed mileage log reports are required for mileage expenses, including dates, purpose of trips, destinations, and kilometers traveled for each business journey.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules for GoGlobal France, an A1 certificate is required when traveling.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.6666666666666666,
+      "issues": [
+        "1. Two major issues (expense type and supplier name) were incorrectly flagged when the information was clearly present in the receipt",
+        "2. The VAT issue is correctly identified but its importance may be overstated as it's listed as optional in the compliance rules",
+        "3. The mileage log and A1 certificate requirements are correctly identified"
+      ],
+      "summary": "The validation system correctly identified some compliance requirements (mileage documentation and A1 certificate) but incorrectly flagged basic information as missing when it was clearly present in the receipt data. The system needs improvement in accurately reading the extracted data before flagging issues, particularly for expense type and supplier name which were both clearly present.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The receipt contains sufficient information about the service provided (transportation from Boulogne-Billancourt to CDG airport).\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier name. This is completely incorrect categorization.\n\nISSUE_3_VALIDATION_SCORE: 70 - The VAT amount issue is correctly identified as missing, though it's worth noting that according to the compliance rules, VAT amount is listed as \"Optional\" rather than \"Mandatory\" for transportation expenses in France.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is correctly identified based on the compliance rules for travel expenses in France. This is appropriate for a transportation receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The A1 certificate requirement for international travel is correctly identified based on the compliance rules for GoGlobal France.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two major issues (expense type and supplier name) were incorrectly flagged when the information was clearly present in the receipt\n2. The VAT issue is correctly identified but its importance may be overstated as it's listed as optional in the compliance rules\n3. The mileage log and A1 certificate requirements are correctly identified\n\nSUMMARY: The validation system correctly identified some compliance requirements (mileage documentation and A1 certificate) but incorrectly flagged basic information as missing when it was clearly present in the receipt data. The system needs improvement in accurately reading the extracted data before flagging issues, particularly for expense type and supplier name which were both clearly present.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The receipt contains sufficient information about the service provided (transportation from Boulogne-Billancourt to CDG airport).\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier name. This is completely incorrect categorization.\n\nISSUE_3_VALIDATION_SCORE: 70 - The VAT amount issue is correctly identified as missing, though it's worth noting that according to the compliance rules, VAT amount is listed as \"Optional\" rather than \"Mandatory\" for transportation expenses in France.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is correctly identified based on the compliance rules for travel expenses in France. This is appropriate for a transportation receipt.\n\nISSUE_5_VALIDATION_SCORE: 100 - The A1 certificate requirement for international travel is correctly identified based on the compliance rules for GoGlobal France.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Two major issues (expense type and supplier name) were incorrectly flagged when the information was clearly present in the receipt\n2. The VAT issue is correctly identified but its importance may be overstated as it's listed as optional in the compliance rules\n3. The mileage log and A1 certificate requirements are correctly identified\n\nSUMMARY: The validation system correctly identified some compliance requirements (mileage documentation and A1 certificate) but incorrectly flagged basic information as missing when it was clearly present in the receipt data. The system needs improvement in accurately reading the extracted data before flagging issues, particularly for expense type and supplier name which were both clearly present."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of missing expense type description is correctly identified as a Standards & Compliance issue that needs to be addressed with the supplier. The recommendation and knowledge base reference provided are clear and actionable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue of missing supplier business name is also correctly classified as a Standards & Compliance issue. The recommendation and knowledge base reference are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue of missing VAT amount is correctly identified as a Standards & Compliance issue. However, the recommendation could be more specific, for example, suggesting the employee contact the supplier to obtain a revised receipt with the VAT amount listed.\n\nISSUE_4_VALIDATION_SCORE: 90 - The requirement for detailed mileage log reports is correctly classified as a Follow-up Action Identified issue. The recommendation and knowledge base reference provide clear guidance on the necessary documentation.\n\nISSUE_5_VALIDATION_SCORE: 90 - The requirement for an A1 certificate for international travel is also correctly categorized as a Follow-up Action Identified issue. The recommendation and knowledge base reference are appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issues identified are generally well-categorized, with clear descriptions, recommendations, and knowledge base references. The categorization follows the established taxonomy, and no major issues were missed or incorrectly classified. Overall, the issue categorization is accurate and provides useful guidance for addressing the compliance concerns."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The receipt clearly shows \"Ride Receipt\" as the document type and includes details about an Uber ride, which qualifies as an expense type description. The receipt shows it's a \"Comfort\" ride from Boulogne-Billancourt to Charles de Gaulle Airport with distance, duration and other service details.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue is incorrectly categorized. The supplier business name \"Uber\" is clearly present in the extracted data, so claiming it's missing is inaccurate.\n\nISSUE_3_VALIDATION_SCORE: 50 - This issue is partially correctly categorized. While VAT amount is not explicitly listed in the extracted data, it's categorized as a mandatory field when the compliance rules show it's actually optional for transportation expenses in France (\"VAT amount\" is listed as \"Optional\" in the rules).\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue is correctly categorized. According to the compliance rules, detailed mileage log reports are required for mileage expenses, including dates, purpose of trips, destinations, and kilometers traveled for business journeys.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is correctly categorized. The compliance rules state that \"A1 certificate is required when travelling\" for Hotel and Flight expenses, and this is a travel receipt.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Issues 1 and 2 are completely incorrect - the receipt clearly shows both expense type and supplier name\n2. Issue 3 mischaracterizes an optional field (VAT) as a compliance issue\n3. Issues 4 and 5 are correctly identified as compliance requirements for travel expenses\n\nSUMMARY: The issue categorization is inconsistent and contains significant errors. Two issues are incorrectly flagged when the information is actually present in the receipt (expense type and supplier name). The VAT issue is partially incorrect as it's listed as optional in the compliance rules. Only the mileage log and A1 certificate requirements are correctly identified as compliance issues for travel expenses in France."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The receipt contains sufficient information about the service provided (transportation from Boulogne-Billancourt to CDG airport).",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier name. This is completely incorrect categorization.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The VAT amount issue is correctly identified as missing, though it's worth noting that according to the compliance rules, VAT amount is listed as \"Optional\" rather than \"Mandatory\" for transportation expenses in France.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The requirement for detailed mileage log reports is correctly identified based on the compliance rules for travel expenses in France. This is appropriate for a transportation receipt.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The A1 certificate requirement for international travel is correctly identified based on the compliance rules for GoGlobal France.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.6266666666666666,
+      "issues": [
+        "1. Two issues incorrectly identify missing information (expense type and supplier name) that is actually present in the extracted data",
+        "2. The VAT recommendation doesn't acknowledge that this field is optional",
+        "not mandatory",
+        "3. The mileage log recommendation may not be applicable to an Uber receipt",
+        "4. Recommendations for issues 1-3 are generic (\"address with supplier\") rather than specific actions the user can take"
+      ],
+      "summary": "The recommendations show mixed validity. Two issues incorrectly identify missing information that is actually present in the extracted data (expense type and supplier name). The VAT recommendation doesn't acknowledge this field is optional per the compliance rules. The mileage log recommendation may not apply to an Uber receipt. Only the A1 certificate recommendation is fully valid and actionable. Overall, the recommendations need more specificity and should accurately reflect both the receipt content and compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing expense type description is not very actionable. The extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The recommendation should acknowledge that the receipt already contains this information rather than suggesting contacting the supplier.\n\nISSUE_2_VALIDATION_SCORE: 20 - The recommendation regarding missing supplier business name is invalid since the extracted data clearly shows \"Uber\" as the supplier name. The recommendation to contact the supplier is unnecessary and not helpful when the information is already present.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation regarding VAT amount is somewhat valid as this information appears to be missing from the receipt. However, according to the compliance rules, VAT amount is listed as \"Optional\" for transportation expenses in France, not mandatory. The recommendation should reflect this optional status rather than implying it's required.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide detailed mileage log reports is valid and specific according to the compliance rules for travel expenses. However, this is an Uber receipt for a ride service, not a personal mileage claim, so this requirement may not be applicable in this specific case.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to provide an A1 certificate for international travel is valid and directly aligned with the compliance rules for GoGlobal France. This is actionable and specific.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Two issues incorrectly identify missing information (expense type and supplier name) that is actually present in the extracted data\n2. The VAT recommendation doesn't acknowledge that this field is optional, not mandatory\n3. The mileage log recommendation may not be applicable to an Uber receipt\n4. Recommendations for issues 1-3 are generic (\"address with supplier\") rather than specific actions the user can take\n\nSUMMARY: The recommendations show mixed validity. Two issues incorrectly identify missing information that is actually present in the extracted data (expense type and supplier name). The VAT recommendation doesn't acknowledge this field is optional per the compliance rules. The mileage log recommendation may not apply to an Uber receipt. Only the A1 certificate recommendation is fully valid and actionable. Overall, the recommendations need more specificity and should accurately reflect both the receipt content and compliance requirements.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 30 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing expense type description is not very actionable. The extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The recommendation should acknowledge that the receipt already contains this information rather than suggesting contacting the supplier.\n\nISSUE_2_VALIDATION_SCORE: 20 - The recommendation regarding missing supplier business name is invalid since the extracted data clearly shows \"Uber\" as the supplier name. The recommendation to contact the supplier is unnecessary and not helpful when the information is already present.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation regarding VAT amount is somewhat valid as this information appears to be missing from the receipt. However, according to the compliance rules, VAT amount is listed as \"Optional\" for transportation expenses in France, not mandatory. The recommendation should reflect this optional status rather than implying it's required.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide detailed mileage log reports is valid and specific according to the compliance rules for travel expenses. However, this is an Uber receipt for a ride service, not a personal mileage claim, so this requirement may not be applicable in this specific case.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to provide an A1 certificate for international travel is valid and directly aligned with the compliance rules for GoGlobal France. This is actionable and specific.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Two issues incorrectly identify missing information (expense type and supplier name) that is actually present in the extracted data\n2. The VAT recommendation doesn't acknowledge that this field is optional, not mandatory\n3. The mileage log recommendation may not be applicable to an Uber receipt\n4. Recommendations for issues 1-3 are generic (\"address with supplier\") rather than specific actions the user can take\n\nSUMMARY: The recommendations show mixed validity. Two issues incorrectly identify missing information that is actually present in the extracted data (expense type and supplier name). The VAT recommendation doesn't acknowledge this field is optional per the compliance rules. The mileage log recommendation may not apply to an Uber receipt. Only the A1 certificate recommendation is fully valid and actionable. Overall, the recommendations need more specificity and should accurately reflect both the receipt content and compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing expense type description with the supplier is actionable and specific. It directly addresses the identified issue and is a feasible step to take.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name with the supplier is actionable and specific. It directly addresses the identified issue and is a feasible step to take.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to address the missing VAT amount with the supplier is actionable and specific. It directly addresses the identified issue. However, since VAT is optional, the recommendation could be slightly less urgent.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide detailed mileage log reports is specific and directly addresses the identified issue. It is a reasonable requirement for compliance.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to provide the A1 certificate is specific and directly addresses the identified issue. It is a common requirement for international travel.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are generally valid and useful. They are actionable, address the identified issues, and are feasible to implement. The recommendations cover the key compliance requirements for expense receipts in France, including missing mandatory fields and additional documentation needed. Overall, the recommendations are comprehensive and should help resolve the compliance concerns."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.58,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation \"It is recommended to address this issue with the supplier or provider\" for the missing expense type description is not valid. The extracted data clearly shows \"Ride Receipt\" and \"Uber\" as the supplier, indicating this is a transportation expense. The recommendation is generic and not actionable when the information is actually present in the receipt.\n\nISSUE_2_VALIDATION_SCORE: 0 - The recommendation regarding missing supplier business name is completely invalid. The extracted data clearly shows \"Uber\" as the supplier name. The recommendation to \"address this issue with the supplier\" is unnecessary and misleading since the information is already present in the receipt.\n\nISSUE_3_VALIDATION_SCORE: 70 - The recommendation regarding VAT amount is somewhat valid. According to the compliance rules, VAT amount is listed as \"Optional\" for transportation expenses, not mandatory. However, suggesting to address this with the supplier is reasonable if the client wants this information for their records, though it should be noted this is not a mandatory requirement.\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation to provide detailed mileage log reports is valid and necessary according to the compliance rules. For transportation expenses in France, detailed documentation including dates, purpose, destinations, and kilometers traveled is required, which aligns with the extracted Uber receipt showing a ride to the airport.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to provide an A1 certificate is valid and necessary. The receipt shows travel to an airport (Charles de Gaulle), and the compliance rules specifically state \"A1 certificate is required when travelling\" for GoGlobal France.\n\nCONFIDENCE: 58\n\nISSUES:\n1. Two major issues were incorrectly identified (expense type and supplier name) when the information was clearly present in the receipt data.\n2. The VAT issue is marked as mandatory when the compliance rules indicate it's optional for transportation expenses.\n3. The recommendations for issues 1 and 2 are generic and not actionable (\"address with supplier\") when no action is actually needed.\n4. The system correctly identified the need for mileage documentation and A1 certificate.\n\nSUMMARY: The validation system correctly identified two legitimate compliance issues (mileage documentation and A1 certificate) but incorrectly flagged information that was already present in the receipt (expense type and supplier name). The recommendation about VAT is partially valid but mischaracterized as mandatory when it's optional. Overall, the recommendations are mixed in quality - some are necessary and actionable while others address non-existent issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 30,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing expense type description is not very actionable. The extracted data clearly shows this is an Uber ride receipt with \"Ride Receipt\" and \"Comfort\" ride type specified. The recommendation should acknowledge that the receipt already contains this information rather than suggesting contacting the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The recommendation regarding missing supplier business name is invalid since the extracted data clearly shows \"Uber\" as the supplier name. The recommendation to contact the supplier is unnecessary and not helpful when the information is already present.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation regarding VAT amount is somewhat valid as this information appears to be missing from the receipt. However, according to the compliance rules, VAT amount is listed as \"Optional\" for transportation expenses in France, not mandatory. The recommendation should reflect this optional status rather than implying it's required.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to provide detailed mileage log reports is valid and specific according to the compliance rules for travel expenses. However, this is an Uber receipt for a ride service, not a personal mileage claim, so this requirement may not be applicable in this specific case.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to provide an A1 certificate for international travel is valid and directly aligned with the compliance rules for GoGlobal France. This is actionable and specific.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.5333333333333333,
+      "issues": [
+        "1. Falsely claims expense type description is missing when \"Ride Receipt\" and \"Comfort\" ride type are clearly indicated",
+        "2. Falsely claims supplier business name is missing when \"Uber\" is clearly indicated as the supplier",
+        "3. The validation result incorrectly states the receipt is missing several mandatory fields that are actually present in the extracted data"
+      ],
+      "summary": "The AI response contains significant hallucinations regarding the presence of basic information in the receipt. It falsely claims that expense type description and supplier business name are missing when both are clearly present in the extracted data. While some compliance requirements mentioned (like A1 certificate and mileage logs) are valid based on the compliance rules, the fundamental assessment of the receipt's completeness is inaccurate.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"Ride Receipt\" as the receipt_type and includes details about an Uber ride with \"Comfort\" as the ride_type. This is a clear hallucination.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier_name. This is a complete fabrication.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue states \"VAT amount is not listed on the receipt.\" While the extracted data doesn't explicitly mention VAT, this could be a valid observation since French receipts typically should include VAT information. However, without seeing the actual receipt, it's unclear if this is truly missing or just not captured in the extraction.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue about mileage log reports is consistent with the compliance rules which state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for an A1 certificate is consistent with the compliance rules which state \"A1 certificate is required when travelling\" for GoGlobal France.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims expense type description is missing when \"Ride Receipt\" and \"Comfort\" ride type are clearly indicated\n2. Falsely claims supplier business name is missing when \"Uber\" is clearly indicated as the supplier\n3. The validation result incorrectly states the receipt is missing several mandatory fields that are actually present in the extracted data\n\nSUMMARY: The AI response contains significant hallucinations regarding the presence of basic information in the receipt. It falsely claims that expense type description and supplier business name are missing when both are clearly present in the extracted data. While some compliance requirements mentioned (like A1 certificate and mileage logs) are valid based on the compliance rules, the fundamental assessment of the receipt's completeness is inaccurate.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"Ride Receipt\" as the receipt_type and includes details about an Uber ride with \"Comfort\" as the ride_type. This is a clear hallucination.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier_name. This is a complete fabrication.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue states \"VAT amount is not listed on the receipt.\" While the extracted data doesn't explicitly mention VAT, this could be a valid observation since French receipts typically should include VAT information. However, without seeing the actual receipt, it's unclear if this is truly missing or just not captured in the extraction.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue about mileage log reports is consistent with the compliance rules which state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for an A1 certificate is consistent with the compliance rules which state \"A1 certificate is required when travelling\" for GoGlobal France.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims expense type description is missing when \"Ride Receipt\" and \"Comfort\" ride type are clearly indicated\n2. Falsely claims supplier business name is missing when \"Uber\" is clearly indicated as the supplier\n3. The validation result incorrectly states the receipt is missing several mandatory fields that are actually present in the extracted data\n\nSUMMARY: The AI response contains significant hallucinations regarding the presence of basic information in the receipt. It falsely claims that expense type description and supplier business name are missing when both are clearly present in the extracted data. While some compliance requirements mentioned (like A1 certificate and mileage logs) are valid based on the compliance rules, the fundamental assessment of the receipt's completeness is inaccurate."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The expense type description is missing from the receipt, which is consistent with the compliance rules provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - The supplier business name is not clearly visible on the receipt, which is also consistent with the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The VAT amount is not listed on the receipt, which matches the compliance rule requirement.\n\nISSUE_4_VALIDATION_SCORE: 100 - The requirement for detailed mileage log reports is present in the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The requirement for an A1 certificate for international travel is included in the compliance rules.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response accurately identifies the issues with the receipt based on the provided compliance rules. No hallucinated or fabricated information was detected."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"Ride Receipt\" and \"Uber\" ride service with details including \"Comfort\" ride type. The expense type is clearly a transportation/ride service.\n\nISSUE_2_VALIDATION_SCORE: 0 - This issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier name.\n\nISSUE_3_VALIDATION_SCORE: 50 - The issue about VAT amount not being listed could be valid, as the extracted data doesn't explicitly mention VAT. However, this might be appropriate for an Uber receipt which may not always itemize VAT separately in all countries.\n\nISSUE_4_VALIDATION_SCORE: 0 - This issue requiring \"detailed mileage log reports\" is inappropriate for an Uber ride receipt. This is a transportation service receipt, not a personal mileage claim. The receipt already contains precise distance (39.65), pickup and dropoff locations and times.\n\nISSUE_5_VALIDATION_SCORE: 50 - The requirement for an A1 certificate is mentioned in the compliance rules for hotel/flight travel, but this is an Uber ride. It's unclear if local transportation would require the same international travel documentation.\n\nCONFIDENCE: 20\n\nISSUES:\n1. Falsely claims expense type description is missing when it's clearly an Uber ride receipt\n2. Falsely claims supplier business name is missing when \"Uber\" is clearly identified\n3. Inappropriately applies mileage log requirements to a ride-sharing service receipt\n4. Potentially misapplies A1 certificate requirement to local transportation\n\nSUMMARY: The AI response contains multiple hallucinations by claiming information is missing that is clearly present in the extracted data. It incorrectly applies mileage log requirements to a ride-sharing service and may misapply international travel documentation requirements to what appears to be local transportation. The response demonstrates poor analysis of the actual receipt content."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Expense type description is missing on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"Expense type description is missing on the receipt\" but the extracted data clearly shows \"Ride Receipt\" as the receipt_type and includes details about an Uber ride with \"Comfort\" as the ride_type. This is a clear hallucination.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Supplier business name is not clearly visible or missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"Supplier business name is not clearly visible or missing\" but the extracted data explicitly shows \"Uber\" as the supplier_name. This is a complete fabrication.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "VAT amount is not listed on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue states \"VAT amount is not listed on the receipt.\" While the extracted data doesn't explicitly mention VAT, this could be a valid observation since French receipts typically should include VAT information. However, without seeing the actual receipt, it's unclear if this is truly missing or just not captured in the extraction.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue about mileage log reports is consistent with the compliance rules which state \"Detailed mileage log reports justifying business mileage required including dates, purpose of trips, destinations, and kilometers travelled for each business journey.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "A1 certificate is required when travelling.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The requirement for an A1 certificate is consistent with the compliance rules which state \"A1 certificate is required when travelling\" for GoGlobal France.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Improve factual grounding: The AI response contains significant factual errors regarding the presence of expense type and supplier name, which are clearly present in the extracted data. It correctly identifies the missing VAT amount but incorrectly treats it as a mandatory issue when the compliance rules indicate it's optional for transportation expenses. The requirements for mileage logs and A1 certificates are correctly identified based on the compliance rules. Overall, the response is only partially grounded in the extracted data and compliance rules.",
+    "Address issues in factual grounding: 1. The AI incorrectly claims expense type description is missing when it's clearly present (Ride Receipt, Comfort), 2. The AI incorrectly claims supplier business name is missing when \"Uber\" is clearly identified, 3. The AI correctly notes VAT amount is missing but incorrectly treats it as mandatory when it's optional for transportation expenses, 4. The mileage log requirement is correctly identified based on compliance rules, 5. The A1 certificate requirement is correctly identified based on compliance rules",
+    "Improve knowledge base adherence: The AI response shows significant misalignment with the knowledge base by incorrectly flagging issues with expense type description and supplier name that are clearly present in the extracted data. While it correctly identified requirements for mileage documentation and A1 certificate, it incorrectly treated VAT as mandatory when it's optional for transportation expenses in France. The response demonstrates inconsistent application of the compliance rules, with some accurate identifications but critical errors in basic receipt validation.",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly flagged missing expense type when it's clearly present in the extracted data, 2. The AI incorrectly flagged missing supplier name when \"Uber\" is clearly identified, 3. The AI treated VAT amount as mandatory when it's optional for transportation expenses, 4. The AI correctly identified the need for mileage documentation, 5. The AI correctly identified the A1 certificate requirement for international travel",
+    "Improve compliance accuracy: The compliance assessment is only partially accurate. While it correctly identified the need for additional documentation (mileage logs and A1 certificate), it incorrectly flagged missing expense type and supplier name that were clearly present in the extracted data. The VAT amount issue is technically correct but overemphasized since it's marked as optional in the compliance rules. The receipt should be considered partially compliant with follow-up documentation needed rather than fundamentally non-compliant.",
+    "Address issues in compliance accuracy: 1. The system incorrectly flagged missing expense type and supplier name when both are clearly present in the extracted data, 2. The system treated VAT amount as a critical issue when it's marked as optional in the compliance rules, 3. The system correctly identified the need for mileage documentation and A1 certificate",
+    "Improve issue categorization: The validation system correctly identified some compliance requirements (mileage documentation and A1 certificate) but incorrectly flagged basic information as missing when it was clearly present in the receipt data. The system needs improvement in accurately reading the extracted data before flagging issues, particularly for expense type and supplier name which were both clearly present.",
+    "Address issues in issue categorization: 1. Two major issues (expense type and supplier name) were incorrectly flagged when the information was clearly present in the receipt, 2. The VAT issue is correctly identified but its importance may be overstated as it's listed as optional in the compliance rules, 3. The mileage log and A1 certificate requirements are correctly identified",
+    "Improve recommendation validity: The recommendations show mixed validity. Two issues incorrectly identify missing information that is actually present in the extracted data (expense type and supplier name). The VAT recommendation doesn't acknowledge this field is optional per the compliance rules. The mileage log recommendation may not apply to an Uber receipt. Only the A1 certificate recommendation is fully valid and actionable. Overall, the recommendations need more specificity and should accurately reflect both the receipt content and compliance requirements.",
+    "Address issues in recommendation validity: 1. Two issues incorrectly identify missing information (expense type and supplier name) that is actually present in the extracted data, 2. The VAT recommendation doesn't acknowledge that this field is optional, not mandatory, 3. The mileage log recommendation may not be applicable to an Uber receipt, 4. Recommendations for issues 1-3 are generic (\"address with supplier\") rather than specific actions the user can take",
+    "Improve hallucination detection: The AI response contains significant hallucinations regarding the presence of basic information in the receipt. It falsely claims that expense type description and supplier business name are missing when both are clearly present in the extracted data. While some compliance requirements mentioned (like A1 certificate and mileage logs) are valid based on the compliance rules, the fundamental assessment of the receipt's completeness is inaccurate.",
+    "Address issues in hallucination detection: 1. Falsely claims expense type description is missing when \"Ride Receipt\" and \"Comfort\" ride type are clearly indicated, 2. Falsely claims supplier business name is missing when \"Uber\" is clearly indicated as the supplier, 3. The validation result incorrectly states the receipt is missing several mandatory fields that are actually present in the extracted data"
+  ],
+  "timestamp": "2025-10-02T08:58:28.713Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 78955,
+    "timing": {
+      "validation_start_time": "2025-10-02T08:57:09.758Z",
+      "validation_end_time": "2025-10-02T08:58:28.713Z",
+      "total_validation_time_seconds": "79.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T08:57:09.758Z",
+          "end_time": "2025-10-02T08:58:28.713Z",
+          "duration_seconds": "79.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "79.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.38",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Expense type description is missing on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 10.44,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 20,
+        "compliance_accuracy": 0,
+        "issue_categorization": 30,
+        "recommendation_validity": 30,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Supplier business name is not clearly visible or missing.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 2.22,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 0,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "VAT amount is not listed on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 58,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 50,
+        "issue_categorization": 70,
+        "recommendation_validity": 70,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Detailed mileage log reports justifying business mileage are required.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "A1 certificate is required when travelling.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 99.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

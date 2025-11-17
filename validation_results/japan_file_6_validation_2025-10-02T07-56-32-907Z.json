@@ -1,0 +1,672 @@
+{
+  "overall_score": 0.7427777777777779,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7400000000000001,
+      "issues": [
+        "1. The AI incorrectly claims the receipt doesn't show dates when multiple dates are clearly present",
+        "2. The AI incorrectly claims this is not a receipt when the extracted data explicitly identifies it as a receipt",
+        "3. The AI assumes this is domestic travel when the data suggests international travel (Korean hotel",
+        "US customer)",
+        "4. The AI response doesn't acknowledge that the receipt is for a Korean hotel despite the country being specified as Japan in the input"
+      ],
+      "summary": "The AI response has significant factual grounding issues. It incorrectly claims dates are missing when they are clearly present, misidentifies the document type as not being a receipt when it is, and makes incorrect assumptions about domestic vs. international travel. While some issues identified (missing employer name and exchange rate) are factually grounded, the overall assessment contains too many factual errors to be considered reliable.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The receipt does not explicitly show the date when the expense occurred.\" However, the extracted data clearly shows dates for the accommodation charges (2025-05-12 through 2025-05-16) and includes arrival and departure dates. This issue is not factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI claims \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" field with \"[Small Korean text with registration/certification numbers]\" but it's unclear if this is a proper tax registration number. This issue is partially grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI claims \"The receipt is not issued in the name of the employer (GoGlobal).\" The extracted data shows the customer name as \"Ms. MARISSA CATHERINE FORD\" with no mention of GoGlobal. This issue is factually grounded.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI claims \"The receipt does not include the exchange rate of main banks on the day of purchase.\" The extracted data does not show any exchange rate information. This issue is factually grounded.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is not factually grounded as the document_type in the extracted data is clearly listed as \"Receipt\" and the receipt_type as \"Hotel Receipt.\" Additionally, the AI is making an assumption that this is a domestic travel expense when the receipt shows a Korean hotel for a US customer, indicating international travel.\n\nCONFIDENCE: 54\n\nISSUES:\n1. The AI incorrectly claims the receipt doesn't show dates when multiple dates are clearly present\n2. The AI incorrectly claims this is not a receipt when the extracted data explicitly identifies it as a receipt\n3. The AI assumes this is domestic travel when the data suggests international travel (Korean hotel, US customer)\n4. The AI response doesn't acknowledge that the receipt is for a Korean hotel despite the country being specified as Japan in the input\n\nSUMMARY: The AI response has significant factual grounding issues. It incorrectly claims dates are missing when they are clearly present, misidentifies the document type as not being a receipt when it is, and makes incorrect assumptions about domestic vs. international travel. While some issues identified (missing employer name and exchange rate) are factually grounded, the overall assessment contains too many factual errors to be considered reliable.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.54,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The receipt does not explicitly show the date when the expense occurred.\" However, the extracted data clearly shows dates for the accommodation charges (2025-05-12 through 2025-05-16) and includes arrival and departure dates. This issue is not factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI claims \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" field with \"[Small Korean text with registration/certification numbers]\" but it's unclear if this is a proper tax registration number. This issue is partially grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI claims \"The receipt is not issued in the name of the employer (GoGlobal).\" The extracted data shows the customer name as \"Ms. MARISSA CATHERINE FORD\" with no mention of GoGlobal. This issue is factually grounded.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI claims \"The receipt does not include the exchange rate of main banks on the day of purchase.\" The extracted data does not show any exchange rate information. This issue is factually grounded.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is not factually grounded as the document_type in the extracted data is clearly listed as \"Receipt\" and the receipt_type as \"Hotel Receipt.\" Additionally, the AI is making an assumption that this is a domestic travel expense when the receipt shows a Korean hotel for a US customer, indicating international travel.\n\nCONFIDENCE: 54\n\nISSUES:\n1. The AI incorrectly claims the receipt doesn't show dates when multiple dates are clearly present\n2. The AI incorrectly claims this is not a receipt when the extracted data explicitly identifies it as a receipt\n3. The AI assumes this is domestic travel when the data suggests international travel (Korean hotel, US customer)\n4. The AI response doesn't acknowledge that the receipt is for a Korean hotel despite the country being specified as Japan in the input\n\nSUMMARY: The AI response has significant factual grounding issues. It incorrectly claims dates are missing when they are clearly present, misidentifies the document type as not being a receipt when it is, and makes incorrect assumptions about domestic vs. international travel. While some issues identified (missing employer name and exchange rate) are factually grounded, the overall assessment contains too many factual errors to be considered reliable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response accurately represents the missing \"Date of the expense\" field from the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response accurately represents the missing \"T-Number (Tax Number)\" field from the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response accurately represents the issue that the \"Receipt issued in the name of the employer\" is not the case, as the extracted data shows the receipt is issued to \"Ms. MARISSA CATHERINE FORD\" rather than the employer \"GoGlobal\".\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response accurately represents the missing \"Exchange rate of main banks on the day of purchase\" field from the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response accurately represents the issue that the \"Receipt must be attached, not invoice\" requirement is not met, as the extracted data shows a \"Hotel Receipt\" rather than an attached receipt.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is completely factually grounded in the provided extracted data. All claims made in the response can be traced back to the extracted information, and no information is fabricated or assumed beyond what is provided. Numerical values, dates, and amounts match the extracted data, and entity names and details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.68,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The AI claims \"The receipt does not explicitly show the date when the expense occurred.\" However, the extracted data clearly shows dates for the accommodation charges (2025-05-12 through 2025-05-16), arrival date (2025-05-12), and departure date (2025-05-16). The receipt does contain dates of the expense.\n\nISSUE_2_VALIDATION_SCORE: 70 - The AI claims \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" described as \"[Small Korean text with registration/certification numbers]\" but it's unclear if this is a proper tax registration number. The AI's assessment is reasonable but could be more nuanced.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly states \"The receipt is not issued in the name of the employer (GoGlobal).\" The extracted data shows the customer name as \"Ms. MARISSA CATHERINE FORD\" with no mention of GoGlobal.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly notes \"The receipt does not include the exchange rate of main banks on the day of purchase.\" There is no exchange rate information in the extracted data.\n\nISSUE_5_VALIDATION_SCORE: 50 - The AI claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is partially accurate - we can see the document is labeled as \"Receipt\" in the extracted data, but the AI's concern may be about the format or completeness of the receipt rather than its existence. However, this assessment is somewhat ambiguous since we're evaluating a digital representation of the receipt.\n\nCONFIDENCE: 68\n\nISSUES:\n1. The AI incorrectly claims the receipt doesn't show dates when it clearly does\n2. The AI's assessment about the receipt vs. invoice distinction is ambiguous given the document is labeled as a \"Receipt\"\n3. The AI doesn't acknowledge that while the document is for accommodation, it appears to be from Korea (not Japan as specified in the country field)\n\nSUMMARY: The AI response is partially grounded in the extracted data. It correctly identifies issues regarding the receipt not being issued in the employer's name and missing exchange rate information. However, it incorrectly claims the receipt lacks dates when multiple dates are clearly present in the data. There's also a geographic discrepancy as the receipt appears to be from a Korean hotel (Shilla Stay in Seoul) despite the country being specified as Japan, which the AI doesn't address. The assessment about tax registration numbers and receipt vs. invoice distinction is reasonable but could be more precise."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"The receipt does not explicitly show the date when the expense occurred.\" However, the extracted data clearly shows dates for the accommodation charges (2025-05-12 through 2025-05-16) and includes arrival and departure dates. This issue is not factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI claims \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" field with \"[Small Korean text with registration/certification numbers]\" but it's unclear if this is a proper tax registration number. This issue is partially grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI claims \"The receipt is not issued in the name of the employer (GoGlobal).\" The extracted data shows the customer name as \"Ms. MARISSA CATHERINE FORD\" with no mention of GoGlobal. This issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI claims \"The receipt does not include the exchange rate of main banks on the day of purchase.\" The extracted data does not show any exchange rate information. This issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is not factually grounded as the document_type in the extracted data is clearly listed as \"Receipt\" and the receipt_type as \"Hotel Receipt.\" Additionally, the AI is making an assumption that this is a domestic travel expense when the receipt shows a Korean hotel for a US customer, indicating international travel.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8066666666666666,
+      "issues": [
+        "1. The AI incorrectly flagged missing date information when dates are clearly present on the receipt.",
+        "2. The AI incorrectly applied the domestic travel receipt requirement to an international accommodation.",
+        "3. The AI failed to note that this is a Korean hotel receipt being submitted in Japan",
+        "which creates specific cross-border compliance considerations."
+      ],
+      "summary": "The AI response correctly identified several compliance issues based on the knowledge base, including the missing tax registration number, receipt not being issued in the employer's name, and missing exchange rate information for an overseas expense. However, it incorrectly flagged missing date information when dates were present on the receipt and misapplied the domestic travel receipt requirement to an international accommodation. The response demonstrates good knowledge of compliance rules but needs improvement in accurately interpreting the receipt content and distinguishing between domestic and international expenses.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that a date is required per the knowledge base rule \"Receipt must show the date when the expense occurred.\" However, the receipt actually does contain dates for each line item (2025-05-12 through 2025-05-16) and shows the arrival and departure dates. The AI incorrectly flagged this as missing.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the tax registration number of the supplier is required according to the knowledge base rule. The receipt does mention a \"business registration number\" in Korean text, but it's not clearly identified as a tax number, so this is a reasonable compliance concern.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly identified that the receipt should be issued in the name of the employer (GoGlobal) according to the knowledge base. The receipt shows it was issued to \"Ms. MARISSA CATHERINE FORD\" rather than the company name.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that for overseas expenses, the exchange rate information is required according to the knowledge base rule. The receipt is from Korea (SHILLA STAY in Seoul) but the expense is being submitted in Japan, making it an overseas expense requiring exchange rate information.\n\nISSUE_5_VALIDATION_SCORE: 40 - The AI incorrectly applied this rule. The rule states \"For domestic travel and accommodation, receipt must be attached, not invoice.\" However, this is an international accommodation in Korea (not domestic Japanese travel), and the document appears to be a receipt (it's labeled as a \"Hotel Receipt\" and shows payment was made), not an invoice.\n\nCONFIDENCE: 74\n\nISSUES:\n1. The AI incorrectly flagged missing date information when dates are clearly present on the receipt.\n2. The AI incorrectly applied the domestic travel receipt requirement to an international accommodation.\n3. The AI failed to note that this is a Korean hotel receipt being submitted in Japan, which creates specific cross-border compliance considerations.\n\nSUMMARY: The AI response correctly identified several compliance issues based on the knowledge base, including the missing tax registration number, receipt not being issued in the employer's name, and missing exchange rate information for an overseas expense. However, it incorrectly flagged missing date information when dates were present on the receipt and misapplied the domestic travel receipt requirement to an international accommodation. The response demonstrates good knowledge of compliance rules but needs improvement in accurately interpreting the receipt content and distinguishing between domestic and international expenses.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.74,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that a date is required per the knowledge base rule \"Receipt must show the date when the expense occurred.\" However, the receipt actually does contain dates for each line item (2025-05-12 through 2025-05-16) and shows the arrival and departure dates. The AI incorrectly flagged this as missing.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the tax registration number of the supplier is required according to the knowledge base rule. The receipt does mention a \"business registration number\" in Korean text, but it's not clearly identified as a tax number, so this is a reasonable compliance concern.\n\nISSUE_3_VALIDATION_SCORE: 95 - The AI correctly identified that the receipt should be issued in the name of the employer (GoGlobal) according to the knowledge base. The receipt shows it was issued to \"Ms. MARISSA CATHERINE FORD\" rather than the company name.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI correctly identified that for overseas expenses, the exchange rate information is required according to the knowledge base rule. The receipt is from Korea (SHILLA STAY in Seoul) but the expense is being submitted in Japan, making it an overseas expense requiring exchange rate information.\n\nISSUE_5_VALIDATION_SCORE: 40 - The AI incorrectly applied this rule. The rule states \"For domestic travel and accommodation, receipt must be attached, not invoice.\" However, this is an international accommodation in Korea (not domestic Japanese travel), and the document appears to be a receipt (it's labeled as a \"Hotel Receipt\" and shows payment was made), not an invoice.\n\nCONFIDENCE: 74\n\nISSUES:\n1. The AI incorrectly flagged missing date information when dates are clearly present on the receipt.\n2. The AI incorrectly applied the domestic travel receipt requirement to an international accommodation.\n3. The AI failed to note that this is a Korean hotel receipt being submitted in Japan, which creates specific cross-border compliance considerations.\n\nSUMMARY: The AI response correctly identified several compliance issues based on the knowledge base, including the missing tax registration number, receipt not being issued in the employer's name, and missing exchange rate information for an overseas expense. However, it incorrectly flagged missing date information when dates were present on the receipt and misapplied the domestic travel receipt requirement to an international accommodation. The response demonstrates good knowledge of compliance rules but needs improvement in accurately interpreting the receipt content and distinguishing between domestic and international expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The receipt does not explicitly show the date when the expense occurred, which is a mandatory requirement as per the compliance knowledge base. This issue is correctly identified and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The receipt does not show the tax registration number of the supplier, which is a mandatory requirement as per the compliance knowledge base. This issue is correctly identified and the recommendation to address it with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 80 - The receipt is not issued in the name of the employer (GoGlobal), which is an optional requirement as per the compliance knowledge base. This issue is correctly identified, but the recommendation could be strengthened by emphasizing that the receipt should be issued in the name of the employer wherever possible.\n\nISSUE_4_VALIDATION_SCORE: 90 - The receipt does not include the exchange rate of main banks on the day of purchase, which is a mandatory requirement for travel expenses as per the compliance knowledge base. This issue is correctly identified, and the recommendation to provide the exchange rate information is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 90 - The receipt is not attached, as required for domestic travel and accommodation expenses, and an invoice is provided instead. This issue is correctly identified, and the recommendation to ensure that a receipt is attached is appropriate.\n\nCONFIDENCE: 88\nISSUES: The response accurately identifies and addresses the key compliance issues with the receipt, considering the country (Japan) and the receipt type (accommodation). The recommendations provided are generally in line with the compliance knowledge base, though the recommendation for Issue 3 could be slightly stronger.\n\nSUMMARY: The AI response demonstrates a strong understanding of the compliance knowledge base and its application to the given receipt from Japan. The identified issues are well-aligned with the mandatory and optional requirements, and the recommendations provided are appropriate. Overall, the response adheres well to the compliance knowledge base, with only minor room for improvement in the recommendation for Issue 3."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that the receipt should show the date when the expense occurred, which is a mandatory requirement according to the knowledge base. However, the receipt actually does show dates (May 12-16, 2025) for the accommodation charges. The AI may have been looking for a specific receipt/invoice date rather than the service dates, but the dates of the expense are clearly documented.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the receipt must show the tax registration number of the supplier, which is mandatory according to the knowledge base. The receipt mentions a \"business registration number\" in Korean text, but it's not clearly identified as a tax registration number, so this is a valid concern.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt should be issued in the name of the employer (GoGlobal) wherever possible, which is an optional requirement according to the knowledge base. The receipt is issued to \"Ms. MARISSA CATHERINE FORD\" instead of GoGlobal.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that for overseas expenses, the exchange rate of main banks on the day of purchase should be provided, which is a mandatory requirement according to the knowledge base. This information is indeed missing from the receipt.\n\nISSUE_5_VALIDATION_SCORE: 40 - The AI identified that a receipt must be attached, not an invoice, for domestic travel and accommodation. However, this is problematic for two reasons: 1) The document appears to be a hotel receipt, not an invoice (it's titled \"Receipt\" in the extracted data), and 2) This is for accommodation in Korea (Seoul) for a Japan-based employee, so it's an international expense, not domestic. The rule specifically states \"For domestic travel and accommodation.\"\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue #1 misidentifies a problem with dates when the receipt does show service dates.\n2. Issue #5 incorrectly applies a domestic travel rule to what appears to be international travel (Korea).\n3. The AI doesn't recognize that the document is already a receipt, not an invoice.\n4. The AI doesn't address the country mismatch - the receipt is from Korea but the country context is Japan.\n\nSUMMARY: The AI response correctly identifies several compliance issues based on the knowledge base, including the missing tax registration number, receipt not being issued in the employer's name, and missing exchange rate information. However, it incorrectly flags the date as missing when service dates are present, and misapplies a domestic travel rule to what appears to be international travel (receipt from Korea while the country context is Japan). The AI should have recognized that this appears to be a cross-border expense and adjusted its compliance evaluation accordingly."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly identified that a date is required per the knowledge base rule \"Receipt must show the date when the expense occurred.\" However, the receipt actually does contain dates for each line item (2025-05-12 through 2025-05-16) and shows the arrival and departure dates. The AI incorrectly flagged this as missing.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the tax registration number of the supplier is required according to the knowledge base rule. The receipt does mention a \"business registration number\" in Korean text, but it's not clearly identified as a tax number, so this is a reasonable compliance concern.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that the receipt should be issued in the name of the employer (GoGlobal) according to the knowledge base. The receipt shows it was issued to \"Ms. MARISSA CATHERINE FORD\" rather than the company name.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The AI correctly identified that for overseas expenses, the exchange rate information is required according to the knowledge base rule. The receipt is from Korea (SHILLA STAY in Seoul) but the expense is being submitted in Japan, making it an overseas expense requiring exchange rate information.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 40,
+          "judge_explanation": "The AI incorrectly applied this rule. The rule states \"For domestic travel and accommodation, receipt must be attached, not invoice.\" However, this is an international accommodation in Korea (not domestic Japanese travel), and the document appears to be a receipt (it's labeled as a \"Hotel Receipt\" and shows payment was made), not an invoice.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7000000000000001,
+      "issues": [
+        "1. Major error in date validation - dates are clearly present in the receipt",
+        "2. Confusion about whether the business registration number qualifies as a tax number",
+        "3. Incorrect assessment about receipt vs. invoice",
+        "4. Confusion about domestic vs. international travel (Korea vs. Japan)",
+        "5. The assessment doesn't address the mismatch between the receipt being from Korea while the country context is Japan"
+      ],
+      "summary": "The compliance assessment has significant accuracy issues. It correctly identifies problems with the employer name and exchange rate information, but makes critical errors regarding date validation and receipt attachment. There's also confusion about the international nature of the expense (Korean hotel receipt for Japanese expense reporting). The assessment needs substantial revision to accurately reflect the actual compliance issues with this receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - The compliance assessment incorrectly states that the receipt does not show the date of the expense. The extracted data clearly shows dates for each accommodation charge (May 12-15, 2025) and the receipt includes arrival date (2025-05-12) and departure date (2025-05-16). This is a significant error in the compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 70 - The assessment correctly identifies that the tax registration number of the supplier is not explicitly labeled as such. However, the extracted data mentions a \"business registration number\" with \"[Small Korean text with registration/certification numbers]\" which may actually be the tax number. Since this is a Korean hotel receipt being used in Japan, there's some ambiguity about whether the Korean business registration would satisfy Japanese tax number requirements.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt is not issued in the name of the employer (GoGlobal). It's issued to \"Ms. MARISSA CATHERINE FORD\" from the United States, not to the company.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment correctly identifies that the receipt does not include exchange rate information. Since this is a Korean hotel receipt (in KRW) being submitted for a Japanese expense report, the exchange rate information is required according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 30 - The assessment incorrectly states that \"the receipt is not attached.\" This is inaccurate since we're evaluating the receipt itself. The document is clearly labeled as a \"Receipt\" in the extracted data, not an invoice. Additionally, there's confusion about whether this is domestic travel - the receipt is from a Korean hotel (Shilla Stay in Seoul) but the country context is Japan, suggesting this is international travel.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Major error in date validation - dates are clearly present in the receipt\n2. Confusion about whether the business registration number qualifies as a tax number\n3. Incorrect assessment about receipt vs. invoice\n4. Confusion about domestic vs. international travel (Korea vs. Japan)\n5. The assessment doesn't address the mismatch between the receipt being from Korea while the country context is Japan\n\nSUMMARY: The compliance assessment has significant accuracy issues. It correctly identifies problems with the employer name and exchange rate information, but makes critical errors regarding date validation and receipt attachment. There's also confusion about the international nature of the expense (Korean hotel receipt for Japanese expense reporting). The assessment needs substantial revision to accurately reflect the actual compliance issues with this receipt.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The compliance assessment incorrectly states that the receipt does not show the date of the expense. The extracted data clearly shows dates for each accommodation charge (May 12-15, 2025) and the receipt includes arrival date (2025-05-12) and departure date (2025-05-16). This is a significant error in the compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 70 - The assessment correctly identifies that the tax registration number of the supplier is not explicitly labeled as such. However, the extracted data mentions a \"business registration number\" with \"[Small Korean text with registration/certification numbers]\" which may actually be the tax number. Since this is a Korean hotel receipt being used in Japan, there's some ambiguity about whether the Korean business registration would satisfy Japanese tax number requirements.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt is not issued in the name of the employer (GoGlobal). It's issued to \"Ms. MARISSA CATHERINE FORD\" from the United States, not to the company.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment correctly identifies that the receipt does not include exchange rate information. Since this is a Korean hotel receipt (in KRW) being submitted for a Japanese expense report, the exchange rate information is required according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 30 - The assessment incorrectly states that \"the receipt is not attached.\" This is inaccurate since we're evaluating the receipt itself. The document is clearly labeled as a \"Receipt\" in the extracted data, not an invoice. Additionally, there's confusion about whether this is domestic travel - the receipt is from a Korean hotel (Shilla Stay in Seoul) but the country context is Japan, suggesting this is international travel.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Major error in date validation - dates are clearly present in the receipt\n2. Confusion about whether the business registration number qualifies as a tax number\n3. Incorrect assessment about receipt vs. invoice\n4. Confusion about domestic vs. international travel (Korea vs. Japan)\n5. The assessment doesn't address the mismatch between the receipt being from Korea while the country context is Japan\n\nSUMMARY: The compliance assessment has significant accuracy issues. It correctly identifies problems with the employer name and exchange rate information, but makes critical errors regarding date validation and receipt attachment. There's also confusion about the international nature of the expense (Korean hotel receipt for Japanese expense reporting). The assessment needs substantial revision to accurately reflect the actual compliance issues with this receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The date of the expense is not explicitly shown on the receipt, which is a compliance requirement. The assessment correctly identified this as an issue that needs to be addressed.\n\nISSUE_2_VALIDATION_SCORE: 90 - The receipt does not show the tax registration number of the supplier, which is a compliance requirement. The assessment correctly identified this as an issue.\n\nISSUE_3_VALIDATION_SCORE: 80 - The receipt is not issued in the name of the employer (GoGlobal), which is recommended but not mandatory according to the compliance rules. The assessment correctly identified this as an issue, but the recommendation could be more nuanced.\n\nISSUE_4_VALIDATION_SCORE: 90 - The receipt does not include the exchange rate of main banks on the day of purchase, which is a compliance requirement for overseas expenses. The assessment correctly identified this as an issue and provided the appropriate recommendation.\n\nISSUE_5_VALIDATION_SCORE: 90 - The receipt is not attached, as required for domestic travel and accommodation expenses. The assessment correctly identified this as an issue and provided the appropriate recommendation.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is accurate overall, with the key issues correctly identified and appropriate recommendations provided. The assessment takes into account the relevant compliance rules and accurately determines the compliance status of the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The validation incorrectly states that the receipt does not show the date when the expense occurred. The extracted data clearly shows dates for each accommodation charge (May 12-16, 2025) and the receipt has detailed line items with dates. This is an inaccurate compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 50 - The validation correctly identifies that a tax registration number might be missing, but the extracted data mentions a \"business registration number\" with \"[Small Korean text with registration/certification numbers]\" which could potentially be the tax registration number. Without seeing the actual receipt, it's difficult to determine if this satisfies the requirement.\n\nISSUE_3_VALIDATION_SCORE: 100 - The validation correctly identifies that the receipt is not issued in the name of the employer (GoGlobal) but rather to \"Ms. MARISSA CATHERINE FORD\" from the United States.\n\nISSUE_4_VALIDATION_SCORE: 100 - The validation correctly identifies that the receipt does not include exchange rate information, which is required for overseas expenses. The receipt is from Korea (SHILLA STAY in Seoul) but the country context is Japan, making this an overseas expense.\n\nISSUE_5_VALIDATION_SCORE: 30 - The validation incorrectly states that a receipt is not attached. The document appears to be a hotel receipt (not an invoice) as indicated in the extracted data's \"document_type\": \"Receipt\" and \"receipt_type\": \"Hotel Receipt\". The system has confused the requirement for having a receipt vs. an invoice.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The system incorrectly flagged missing date information when dates are clearly present\n2. The system may have overlooked the business registration number that could satisfy the tax number requirement\n3. The system incorrectly claimed a receipt wasn't attached when the document is identified as a receipt\n4. The system didn't acknowledge the mismatch between the stated country (Japan) and the actual location of the hotel (Korea)\n\nSUMMARY: The compliance assessment has significant accuracy issues. While it correctly identified that the receipt is not in the employer's name and lacks exchange rate information, it incorrectly claimed dates were missing and that no receipt was attached. The assessment also failed to note the discrepancy between the stated country (Japan) and the actual hotel location (Korea). The tax number issue requires further verification of the Korean text in the original receipt."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The compliance assessment incorrectly states that the receipt does not show the date of the expense. The extracted data clearly shows dates for each accommodation charge (May 12-15, 2025) and the receipt includes arrival date (2025-05-12) and departure date (2025-05-16). This is a significant error in the compliance assessment.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The assessment correctly identifies that the tax registration number of the supplier is not explicitly labeled as such. However, the extracted data mentions a \"business registration number\" with \"[Small Korean text with registration/certification numbers]\" which may actually be the tax number. Since this is a Korean hotel receipt being used in Japan, there's some ambiguity about whether the Korean business registration would satisfy Japanese tax number requirements.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the receipt is not issued in the name of the employer (GoGlobal). It's issued to \"Ms. MARISSA CATHERINE FORD\" from the United States, not to the company.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The assessment correctly identifies that the receipt does not include exchange rate information. Since this is a Korean hotel receipt (in KRW) being submitted for a Japanese expense report, the exchange rate information is required according to the compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "The assessment incorrectly states that \"the receipt is not attached.\" This is inaccurate since we're evaluating the receipt itself. The document is clearly labeled as a \"Receipt\" in the extracted data, not an invoice. Additionally, there's confusion about whether this is domestic travel - the receipt is from a Korean hotel (Shilla Stay in Seoul) but the country context is Japan, suggesting this is international travel.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.7666666666666666,
+      "issues": [
+        "1. Issue 1 incorrectly identifies missing date information when dates are clearly present",
+        "2. Issue 5 incorrectly claims the document is an invoice when it's labeled as a receipt",
+        "3. Issue 5 applies a domestic travel rule to what appears to be international travel",
+        "4. The validation doesn't address the country mismatch (receipt from Korea but country listed as Japan)"
+      ],
+      "summary": "The issue categorization is partially accurate. Issues 2, 3, and 4 are appropriately categorized, but issues 1 and 5 contain factual errors that undermine their validity. There's also confusion about whether this represents domestic or international travel, as the receipt is from a Korean hotel but the country context is Japan. This suggests either a misclassification of the receipt's origin country or a misapplication of domestic travel rules to international travel.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing date is incorrectly categorized. The receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) and includes arrival/departure dates. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the issue itself is not valid.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue regarding missing tax registration number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt does mention a \"business registration number\" in Korean text, but it's unclear if this meets Japan's requirements for a tax registration number. The categorization is appropriate, though more context about Japanese requirements would help.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue about the receipt not being issued in the name of the employer (GoGlobal) is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows the customer name as \"Ms. MARISSA CATHERINE FORD\" rather than GoGlobal. This aligns with the compliance rule that receipts should be issued in the employer's name where possible.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue regarding missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" Since this is an overseas expense (Korean hotel receipt for a Japan-based company), the exchange rate information is required according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 30 - This issue is incorrectly categorized. The document is clearly labeled as a \"Hotel Receipt\" in the extracted data, not an invoice. Additionally, the rule applies to \"domestic travel and accommodation,\" but this appears to be international travel (Korean hotel for Japan-based company). The issue type may be correct, but the issue itself is not valid.\n\nCONFIDENCE: 68\n\nISSUES:\n1. Issue 1 incorrectly identifies missing date information when dates are clearly present\n2. Issue 5 incorrectly claims the document is an invoice when it's labeled as a receipt\n3. Issue 5 applies a domestic travel rule to what appears to be international travel\n4. The validation doesn't address the country mismatch (receipt from Korea but country listed as Japan)\n\nSUMMARY: The issue categorization is partially accurate. Issues 2, 3, and 4 are appropriately categorized, but issues 1 and 5 contain factual errors that undermine their validity. There's also confusion about whether this represents domestic or international travel, as the receipt is from a Korean hotel but the country context is Japan. This suggests either a misclassification of the receipt's origin country or a misapplication of domestic travel rules to international travel.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.68,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing date is incorrectly categorized. The receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) and includes arrival/departure dates. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the issue itself is not valid.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue regarding missing tax registration number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt does mention a \"business registration number\" in Korean text, but it's unclear if this meets Japan's requirements for a tax registration number. The categorization is appropriate, though more context about Japanese requirements would help.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue about the receipt not being issued in the name of the employer (GoGlobal) is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows the customer name as \"Ms. MARISSA CATHERINE FORD\" rather than GoGlobal. This aligns with the compliance rule that receipts should be issued in the employer's name where possible.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue regarding missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" Since this is an overseas expense (Korean hotel receipt for a Japan-based company), the exchange rate information is required according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 30 - This issue is incorrectly categorized. The document is clearly labeled as a \"Hotel Receipt\" in the extracted data, not an invoice. Additionally, the rule applies to \"domestic travel and accommodation,\" but this appears to be international travel (Korean hotel for Japan-based company). The issue type may be correct, but the issue itself is not valid.\n\nCONFIDENCE: 68\n\nISSUES:\n1. Issue 1 incorrectly identifies missing date information when dates are clearly present\n2. Issue 5 incorrectly claims the document is an invoice when it's labeled as a receipt\n3. Issue 5 applies a domestic travel rule to what appears to be international travel\n4. The validation doesn't address the country mismatch (receipt from Korea but country listed as Japan)\n\nSUMMARY: The issue categorization is partially accurate. Issues 2, 3, and 4 are appropriately categorized, but issues 1 and 5 contain factual errors that undermine their validity. There's also confusion about whether this represents domestic or international travel, as the receipt is from a Korean hotel but the country context is Japan. This suggests either a misclassification of the receipt's origin country or a misapplication of domestic travel rules to international travel."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue related to the missing date of the expense is accurately categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue related to the missing tax registration number of the supplier is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are suitable.\n\nISSUE_3_VALIDATION_SCORE: 80 - The issue regarding the receipt not being issued in the name of the employer is accurately categorized as a \"Standards & Compliance | Fix Identified\" issue. However, the description could be slightly more specific about the need to have the receipt issued in the name of the local GoGlobal entity.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue related to the missing exchange rate information is properly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and aligned with the compliance policy.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue about the requirement to attach a receipt instead of an invoice is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The issue categorization is accurate overall, with clear descriptions and appropriate recommendations provided for each issue. The issues are properly classified by type and severity, following the established taxonomy. No major issues were missed or incorrectly categorized."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.72,
+          "response": "ISSUE_1_VALIDATION_SCORE: 60 - The issue is correctly identified as \"Standards & Compliance | Fix Identified\" but the description is inaccurate. The receipt actually does show dates of the expense (May 12-16, 2025) with itemized accommodation charges for each day. The issue is incorrectly categorized as missing date information.\n\nISSUE_2_VALIDATION_SCORE: 80 - The issue about missing tax registration number is correctly identified as \"Standards & Compliance | Fix Identified\". The receipt mentions a \"business registration number\" in Korean text, but it's unclear if this satisfies Japan's tax number requirements. The categorization is appropriate, but could note that some form of registration number appears to be present.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue about the receipt not being issued in the name of the employer (GoGlobal) is correctly identified as \"Standards & Compliance | Fix Identified\". The receipt shows the customer name as \"Ms. MARISSA CATHERINE FORD\" rather than GoGlobal. The categorization and description are accurate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue about missing exchange rate information is correctly identified as \"Standards & Compliance | Follow-up Action Identified\". Since this is an overseas expense (Korean hotel receipt for a Japan-based company), the exchange rate information is required. The categorization is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 40 - This issue is incorrectly categorized. The document is clearly labeled as a \"Receipt\" not an invoice, and contains all elements of a receipt (itemized charges, payment confirmation, zero balance). The rule about attaching a receipt instead of an invoice is not violated here, as this is a receipt.\n\nCONFIDENCE: 72\n\nISSUES:\n1. Issue #1 incorrectly claims dates are missing when they are clearly present\n2. Issue #5 incorrectly identifies the document as not being a receipt when it is\n3. Issue #2 doesn't acknowledge that some form of business registration number appears to be present in Korean text\n4. There's a contextual error: the receipt is from a Korean hotel (SHILLA STAY in Seoul) but the country is listed as Japan, creating confusion about which country's compliance rules apply\n\nSUMMARY: The issue categorization is partially accurate but contains significant errors. Two of the five issues (missing dates and receipt vs. invoice) are incorrectly identified, as the receipt does contain dates and is clearly a receipt, not an invoice. The other three issues are correctly categorized, though the tax number issue could be more nuanced. There's also confusion about whether Japanese or Korean compliance rules should apply, as the receipt is from a Korean hotel but the country context is Japan."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue about missing date is incorrectly categorized. The receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) and includes arrival/departure dates. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the issue itself is not valid.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The issue regarding missing tax registration number is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt does mention a \"business registration number\" in Korean text, but it's unclear if this meets Japan's requirements for a tax registration number. The categorization is appropriate, though more context about Japanese requirements would help.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue about the receipt not being issued in the name of the employer (GoGlobal) is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows the customer name as \"Ms. MARISSA CATHERINE FORD\" rather than GoGlobal. This aligns with the compliance rule that receipts should be issued in the employer's name where possible.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" Since this is an overseas expense (Korean hotel receipt for a Japan-based company), the exchange rate information is required according to the compliance rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "This issue is incorrectly categorized. The document is clearly labeled as a \"Hotel Receipt\" in the extracted data, not an invoice. Additionally, the rule applies to \"domestic travel and accommodation,\" but this appears to be international travel (Korean hotel for Japan-based company). The issue type may be correct, but the issue itself is not valid.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8433333333333334,
+      "issues": [
+        "1. Issue 5 may be misidentified as the document appears to be a receipt showing payment was made",
+        "not an invoice.",
+        "2. For Issue 1",
+        "the recommendation could be more specific about what date format is required.",
+        "3. The recommendations generally suggest \"addressing issues with the supplier\" without providing specific language or templates to use."
+      ],
+      "summary": "Most recommendations are valid and actionable, particularly regarding the tax number, employer name, and exchange rate requirements. The recommendation about needing a receipt instead of an invoice may be unnecessary if the document is already a receipt. Overall, the recommendations address the compliance issues identified but could benefit from more specific guidance on how to resolve them rather than just directing the user to contact the supplier.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing date is somewhat actionable but could be more specific. While the receipt shows dates for each line item (2025-05-12 to 2025-05-16), it may be missing a clear issue date. The recommendation could have been more specific about requesting a dated receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax registration number with the supplier is valid and actionable. While the receipt mentions a \"business registration number\" in Korean, it may not be clearly identified as a tax number, so requesting a receipt with a clearly labeled tax number is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the receipt not being issued in the name of the employer (GoGlobal) is valid. The receipt is issued to \"Ms. MARISSA CATHERINE FORD\" instead of the company. The recommendation correctly identifies this as an issue that needs to be addressed with the supplier.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation regarding the missing exchange rate information is highly valid and specific. It clearly explains what is needed (exchange rate of main banks on the day of purchase) and provides specific guidance on how to determine this rate depending on the payment method (cash vs. credit card).\n\nISSUE_5_VALIDATION_SCORE: 70 - The recommendation about attaching a receipt rather than an invoice is somewhat confusing since the document appears to be a hotel receipt (labeled \"Hotel Receipt\" in the extracted data). The issue may be misidentified, as this appears to be a receipt showing payment was made (balance due: 0), not just an invoice. The recommendation is less valid if the document is already a receipt.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issue 5 may be misidentified as the document appears to be a receipt showing payment was made, not an invoice.\n2. For Issue 1, the recommendation could be more specific about what date format is required.\n3. The recommendations generally suggest \"addressing issues with the supplier\" without providing specific language or templates to use.\n\nSUMMARY: Most recommendations are valid and actionable, particularly regarding the tax number, employer name, and exchange rate requirements. The recommendation about needing a receipt instead of an invoice may be unnecessary if the document is already a receipt. Overall, the recommendations address the compliance issues identified but could benefit from more specific guidance on how to resolve them rather than just directing the user to contact the supplier.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing date is somewhat actionable but could be more specific. While the receipt shows dates for each line item (2025-05-12 to 2025-05-16), it may be missing a clear issue date. The recommendation could have been more specific about requesting a dated receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax registration number with the supplier is valid and actionable. While the receipt mentions a \"business registration number\" in Korean, it may not be clearly identified as a tax number, so requesting a receipt with a clearly labeled tax number is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the receipt not being issued in the name of the employer (GoGlobal) is valid. The receipt is issued to \"Ms. MARISSA CATHERINE FORD\" instead of the company. The recommendation correctly identifies this as an issue that needs to be addressed with the supplier.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation regarding the missing exchange rate information is highly valid and specific. It clearly explains what is needed (exchange rate of main banks on the day of purchase) and provides specific guidance on how to determine this rate depending on the payment method (cash vs. credit card).\n\nISSUE_5_VALIDATION_SCORE: 70 - The recommendation about attaching a receipt rather than an invoice is somewhat confusing since the document appears to be a hotel receipt (labeled \"Hotel Receipt\" in the extracted data). The issue may be misidentified, as this appears to be a receipt showing payment was made (balance due: 0), not just an invoice. The recommendation is less valid if the document is already a receipt.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issue 5 may be misidentified as the document appears to be a receipt showing payment was made, not an invoice.\n2. For Issue 1, the recommendation could be more specific about what date format is required.\n3. The recommendations generally suggest \"addressing issues with the supplier\" without providing specific language or templates to use.\n\nSUMMARY: Most recommendations are valid and actionable, particularly regarding the tax number, employer name, and exchange rate requirements. The recommendation about needing a receipt instead of an invoice may be unnecessary if the document is already a receipt. Overall, the recommendations address the compliance issues identified but could benefit from more specific guidance on how to resolve them rather than just directing the user to contact the supplier."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing date of expense with the supplier is actionable and specific. It directly addresses the identified issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax registration number with the supplier is actionable and specific. It directly addresses the identified issue.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation to address the issue of the receipt not being issued in the name of the employer is actionable, but could be more specific on the steps to take with the supplier.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide the exchange rate of main banks on the day of purchase is actionable and specific. It directly addresses the identified issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to ensure the receipt is attached, not an invoice, for domestic travel and accommodation expenses is actionable and specific. It directly addresses the identified issue.\n\nCONFIDENCE: 88\nISSUES: None\nSUMMARY: The recommendations provided are generally valid and helpful. They are actionable, specific, and address the identified compliance issues. The suggestions are feasible and practical. There are no contradictory or harmful recommendations. Overall, the recommendations are well-suited to address the compliance problems with the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing date is somewhat generic. While it correctly identifies that the date is missing, the recommendation could be more specific about how to obtain proper documentation with the date. The receipt actually shows dates for each accommodation charge (May 12-16, 2025), but may be missing a receipt issuance date.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax registration number with the supplier is valid and appropriate. The business registration number appears to be present in Korean text, but may need proper translation or clarification to meet compliance requirements.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation correctly identifies that the receipt is not issued in the name of the employer (GoGlobal) and suggests addressing this with the supplier. This is a valid recommendation as the receipt shows the customer name as \"Ms. MARISSA CATHERINE FORD\" instead of the employer.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation about providing the exchange rate is specific and actionable. It correctly explains the two options (cash payment or credit card payment) and what documentation is needed in each case. This is particularly relevant since the receipt is in KRW currency.\n\nISSUE_5_VALIDATION_SCORE: 60 - The recommendation states that \"receipt must be attached, not invoice\" but the document appears to be a hotel receipt, not an invoice. The document shows \"Hotel Receipt\" and includes payment confirmation with \"Master Card\". This recommendation may be misidentifying the document type.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue 5 appears to misidentify the document as an invoice when it seems to be a receipt\n2. Issue 1 could provide more specific guidance on how to document the receipt issuance date\n3. The recommendations don't address the fact that this is a Korean receipt being submitted for a Japanese expense claim\n\nSUMMARY: Most recommendations are valid and actionable, particularly regarding the tax registration number, employer name, and exchange rate requirements. However, there's confusion about whether this is a receipt or invoice, and the date issue recommendation could be more specific. The system also doesn't address the mismatch between the receipt's origin (Korea) and the country context (Japan), which may require additional clarification for proper compliance."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing date is somewhat actionable but could be more specific. While the receipt shows dates for each line item (2025-05-12 to 2025-05-16), it may be missing a clear issue date. The recommendation could have been more specific about requesting a dated receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing tax registration number with the supplier is valid and actionable. While the receipt mentions a \"business registration number\" in Korean, it may not be clearly identified as a tax number, so requesting a receipt with a clearly labeled tax number is appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the receipt not being issued in the name of the employer (GoGlobal) is valid. The receipt is issued to \"Ms. MARISSA CATHERINE FORD\" instead of the company. The recommendation correctly identifies this as an issue that needs to be addressed with the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding the missing exchange rate information is highly valid and specific. It clearly explains what is needed (exchange rate of main banks on the day of purchase) and provides specific guidance on how to determine this rate depending on the payment method (cash vs. credit card).",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation about attaching a receipt rather than an invoice is somewhat confusing since the document appears to be a hotel receipt (labeled \"Hotel Receipt\" in the extracted data). The issue may be misidentified, as this appears to be a receipt showing payment was made (balance due: 0), not just an invoice. The recommendation is less valid if the document is already a receipt.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.6,
+      "issues": [
+        "1. Hallucination about missing date information when dates are clearly present",
+        "2. Confusion about whether this is domestic or international travel",
+        "3. Misunderstanding about receipt attachment (the receipt is being reviewed",
+        "so it is attached)",
+        "4. The AI incorrectly applied Japanese compliance rules to a Korean receipt",
+        "5. The response fails to recognize that this is a hotel in Korea (Shilla Stay in Seoul)",
+        "not Japan",
+        "despite the country being specified as Japan"
+      ],
+      "summary": "The AI response contains significant hallucinations, particularly regarding missing dates and receipt attachment. It also incorrectly treats a Korean hotel receipt as a domestic Japanese expense, when it's clearly an international expense. While some issues identified are valid (receipt not in employer's name, missing exchange rate), the overall analysis is flawed due to these fundamental misunderstandings about the receipt's origin and content.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"The receipt does not explicitly show the date when the expense occurred.\" This is a hallucination because the receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) in the line items section.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue states \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" with \"[Korean text with registration/certification numbers]\" but it's unclear if this satisfies Japan's requirements for a tax registration number. This is partially accurate but lacks context.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the receipt is not issued in the name of the employer (GoGlobal) but rather to \"Ms. MARISSA CATHERINE FORD\" as shown in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly notes that the receipt does not include exchange rate information, which is required for overseas expenses according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 0 - This issue claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is a hallucination because: 1) The receipt IS attached (we're reviewing it), and 2) This appears to be an international receipt (Korean hotel for a US customer) being submitted in Japan, not domestic travel.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Hallucination about missing date information when dates are clearly present\n2. Confusion about whether this is domestic or international travel\n3. Misunderstanding about receipt attachment (the receipt is being reviewed, so it is attached)\n4. The AI incorrectly applied Japanese compliance rules to a Korean receipt\n5. The response fails to recognize that this is a hotel in Korea (Shilla Stay in Seoul), not Japan, despite the country being specified as Japan\n\nSUMMARY: The AI response contains significant hallucinations, particularly regarding missing dates and receipt attachment. It also incorrectly treats a Korean hotel receipt as a domestic Japanese expense, when it's clearly an international expense. While some issues identified are valid (receipt not in employer's name, missing exchange rate), the overall analysis is flawed due to these fundamental misunderstandings about the receipt's origin and content.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"The receipt does not explicitly show the date when the expense occurred.\" This is a hallucination because the receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) in the line items section.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue states \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" with \"[Korean text with registration/certification numbers]\" but it's unclear if this satisfies Japan's requirements for a tax registration number. This is partially accurate but lacks context.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the receipt is not issued in the name of the employer (GoGlobal) but rather to \"Ms. MARISSA CATHERINE FORD\" as shown in the extracted data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly notes that the receipt does not include exchange rate information, which is required for overseas expenses according to the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 0 - This issue claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is a hallucination because: 1) The receipt IS attached (we're reviewing it), and 2) This appears to be an international receipt (Korean hotel for a US customer) being submitted in Japan, not domestic travel.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Hallucination about missing date information when dates are clearly present\n2. Confusion about whether this is domestic or international travel\n3. Misunderstanding about receipt attachment (the receipt is being reviewed, so it is attached)\n4. The AI incorrectly applied Japanese compliance rules to a Korean receipt\n5. The response fails to recognize that this is a hotel in Korea (Shilla Stay in Seoul), not Japan, despite the country being specified as Japan\n\nSUMMARY: The AI response contains significant hallucinations, particularly regarding missing dates and receipt attachment. It also incorrectly treats a Korean hotel receipt as a domestic Japanese expense, when it's clearly an international expense. While some issues identified are valid (receipt not in employer's name, missing exchange rate), the overall analysis is flawed due to these fundamental misunderstandings about the receipt's origin and content."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the extracted data matches the source data and does not contain any hallucinated or fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements listed in the response are consistent with the standards and policies provided in the source data.\n\nISSUE_3_VALIDATION_SCORE: 100 - All the entity names, amounts, and dates provided in the extracted data are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The information presented in the response is based on the provided source data and does not contain any unsupported assumptions.\n\nISSUE_5_VALIDATION_SCORE: 100 - The response does not contain any additional issues related to hallucinations or fabricated information.\n\nCONFIDENCE: 100\nISSUES: None detected.\nSUMMARY: The AI response accurately extracts and presents the information from the provided source data without any hallucinations or fabricated elements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The receipt does not explicitly show the date when the expense occurred.\" This is a hallucination. The receipt clearly shows dates for each accommodation charge (May 12-16, 2025) and includes arrival/departure dates.\n\nISSUE_2_VALIDATION_SCORE: 50 - The issue about missing tax registration number is partially accurate. While the extracted data mentions a \"business registration number\" in Korean text, it's unclear if this satisfies Japan's specific tax number requirements.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about the receipt not being issued in the name of the employer (GoGlobal) is accurate. The receipt shows it was issued to \"Ms. MARISSA CATHERINE FORD\" from United States.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about missing exchange rate information is accurate. The receipt is in KRW (Korean Won) but doesn't include exchange rate information as required by the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 0 - The issue claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is a hallucination. The document is clearly a receipt (not an invoice), and the rule applies to domestic travel in Japan, but this is international travel to Korea.\n\nCONFIDENCE: 40\n\nISSUES:\n1. Hallucination claiming the receipt doesn't show dates when it clearly does\n2. Misapplication of \"domestic travel\" rule to an international receipt (Korea, not Japan)\n3. Confusion about receipt vs. invoice - the document is clearly labeled as a receipt\n4. Country confusion - the receipt is from Korea (SHILLA STAY in Seoul) but being evaluated against Japan's requirements\n\nSUMMARY: The AI response contains significant hallucinations regarding date information and misapplies domestic travel rules to an international receipt. It correctly identifies issues with the employer name and exchange rate information, but overall demonstrates poor understanding of the receipt's basic details, including confusing the location (Korea) with the compliance country (Japan)."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"The receipt does not explicitly show the date when the expense occurred.\" This is a hallucination because the receipt clearly shows dates for each accommodation charge (2025-05-12 through 2025-05-16) in the line items section.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not show the tax registration number of the supplier.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue states \"The receipt does not show the tax registration number of the supplier.\" The extracted data mentions a \"business_registration_number\" with \"[Korean text with registration/certification numbers]\" but it's unclear if this satisfies Japan's requirements for a tax registration number. This is partially accurate but lacks context.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the receipt is not issued in the name of the employer (GoGlobal) but rather to \"Ms. MARISSA CATHERINE FORD\" as shown in the extracted data.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly notes that the receipt does not include exchange rate information, which is required for overseas expenses according to the compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue claims \"The receipt is not attached, as required for domestic travel and accommodation.\" This is a hallucination because: 1) The receipt IS attached (we're reviewing it), and 2) This appears to be an international receipt (Korean hotel for a US customer) being submitted in Japan, not domestic travel.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI incorrectly claims the receipt doesn't show dates when multiple dates are clearly present, 2. The AI incorrectly claims this is not a receipt when the extracted data explicitly identifies it as a receipt, 3. The AI assumes this is domestic travel when the data suggests international travel (Korean hotel, US customer), 4. The AI response doesn't acknowledge that the receipt is for a Korean hotel despite the country being specified as Japan in the input",
+    "Address issues in knowledge base adherence: 1. The AI incorrectly flagged missing date information when dates are clearly present on the receipt., 2. The AI incorrectly applied the domestic travel receipt requirement to an international accommodation., 3. The AI failed to note that this is a Korean hotel receipt being submitted in Japan, which creates specific cross-border compliance considerations.",
+    "Address issues in compliance accuracy: 1. Major error in date validation - dates are clearly present in the receipt, 2. Confusion about whether the business registration number qualifies as a tax number, 3. Incorrect assessment about receipt vs. invoice, 4. Confusion about domestic vs. international travel (Korea vs. Japan), 5. The assessment doesn't address the mismatch between the receipt being from Korea while the country context is Japan",
+    "Address issues in issue categorization: 1. Issue 1 incorrectly identifies missing date information when dates are clearly present, 2. Issue 5 incorrectly claims the document is an invoice when it's labeled as a receipt, 3. Issue 5 applies a domestic travel rule to what appears to be international travel, 4. The validation doesn't address the country mismatch (receipt from Korea but country listed as Japan)",
+    "Address issues in recommendation validity: 1. Issue 5 may be misidentified as the document appears to be a receipt showing payment was made, not an invoice., 2. For Issue 1, the recommendation could be more specific about what date format is required., 3. The recommendations generally suggest \"addressing issues with the supplier\" without providing specific language or templates to use.",
+    "Improve hallucination detection: The AI response contains significant hallucinations, particularly regarding missing dates and receipt attachment. It also incorrectly treats a Korean hotel receipt as a domestic Japanese expense, when it's clearly an international expense. While some issues identified are valid (receipt not in employer's name, missing exchange rate), the overall analysis is flawed due to these fundamental misunderstandings about the receipt's origin and content.",
+    "Address issues in hallucination detection: 1. Hallucination about missing date information when dates are clearly present, 2. Confusion about whether this is domestic or international travel, 3. Misunderstanding about receipt attachment (the receipt is being reviewed, so it is attached), 4. The AI incorrectly applied Japanese compliance rules to a Korean receipt, 5. The response fails to recognize that this is a hotel in Korea (Shilla Stay in Seoul), not Japan, despite the country being specified as Japan"
+  ],
+  "timestamp": "2025-10-02T07:56:32.906Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 86687,
+    "timing": {
+      "validation_start_time": "2025-10-02T07:55:06.218Z",
+      "validation_end_time": "2025-10-02T07:56:32.905Z",
+      "total_validation_time_seconds": "86.7",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T07:55:06.218Z",
+          "end_time": "2025-10-02T07:56:32.905Z",
+          "duration_seconds": "86.7",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "86.7",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.35",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The receipt does not explicitly show the date when the expense occurred.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 27.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 20,
+        "issue_categorization": 50,
+        "recommendation_validity": 80,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The receipt does not show the tax registration number of the supplier.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 73.11,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 70,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 70,
+        "issue_categorization": 80,
+        "recommendation_validity": 90,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The receipt is not issued in the name of the employer (GoGlobal).",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 94,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "The receipt does not include the exchange rate of main banks on the day of purchase.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 96.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 95,
+        "compliance_accuracy": 95,
+        "issue_categorization": 90,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "The receipt is not attached, as required for domestic travel and accommodation.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 24.67,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 40,
+        "compliance_accuracy": 30,
+        "issue_categorization": 30,
+        "recommendation_validity": 70,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

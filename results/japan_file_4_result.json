@@ -1,0 +1,578 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759338953278_448067582_japan_file_4.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-02T07:51:50.483Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off or excluded from the image.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete content observed.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as objects, fingers, or shadows blocking content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Seoul",
+    "expected_location": "Japan",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location (Seoul) does not match the expected location (Japan).",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple expense-related fields such as transaction dates, expense types, payment types, and amounts. It is classified as a travel expense due to the presence of taxi expenses. The language is identified as English with high confidence. However, the location of the expenses (Seoul) does not match the expected location (Japan).",
+    "schema_field_analysis": {
+      "fields_found": [
+        "transactionDate",
+        "expenseType",
+        "vendor",
+        "paymentMethod",
+        "transactionAmount"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "itemDescriptionLineItems"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, indicating it is an expense document. The presence of transaction dates, expense types, vendors, payment methods, and transaction amounts confirms this classification."
+    }
+  },
+  "extraction": {
+    "report_name": "Summit Seoul Expenses",
+    "employee_name": "Mara Ford",
+    "employee_id": "02675",
+    "policy": "Kaltura - Non VAT Policy",
+    "report_id": "A14FCCB965C24E0C9E08",
+    "receipts_received": true,
+    "report_date": "2025-05-18",
+    "approval_status": "Submitted & Pending Approval",
+    "payment_status": "Not Paid",
+    "currency": "JPY",
+    "line_items": [
+      {
+        "transaction_date": "2025-05-12",
+        "expense_type": "Per diem",
+        "business_purpose": null,
+        "vendor": null,
+        "city_of_purchase": null,
+        "payment_type": "Cash",
+        "amount": 54699
+      },
+      {
+        "transaction_date": "2025-05-13",
+        "expense_type": "Taxi",
+        "business_purpose": null,
+        "vendor": null,
+        "city_of_purchase": "Seoul",
+        "payment_type": "Cash",
+        "amount": 2449
+      },
+      {
+        "transaction_date": "2025-05-13",
+        "expense_type": "Taxi",
+        "business_purpose": null,
+        "vendor": null,
+        "city_of_purchase": "Seoul",
+        "payment_type": "Cash",
+        "amount": 4197
+      },
+      {
+        "transaction_date": "2025-05-12",
+        "expense_type": "Taxi",
+        "business_purpose": null,
+        "vendor": null,
+        "city_of_purchase": "Seoul",
+        "payment_type": "Cash",
+        "amount": 2739
+      }
+    ],
+    "company_disbursements": {
+      "amount_due_employee": 64084,
+      "amount_due_company_card": 0,
+      "total_paid_by_company": 64084
+    },
+    "employee_disbursements": {
+      "amount_due_company_card_from_employee": 0,
+      "total_paid_by_employee": null
+    }
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 10,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "business_purpose",
+          "description": "Missing mandatory business purpose on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must clearly describe the type of expense or service purchased",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "vendor",
+          "description": "Missing mandatory vendor name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must display the business name of the supplier who provided goods or services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "city_of_purchase",
+          "description": "Missing mandatory city of purchase on the receipt for the first line item",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the location where the expense occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "T-Number",
+          "description": "Missing mandatory T-Number (Tax Number) on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt must show the tax registration number of the supplier",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "exchange_rate",
+          "description": "Missing mandatory exchange rate of main banks on the day of purchase for overseas expenses",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_type",
+          "description": "Receipt must be attached, not invoice for domestic travel and accommodation",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "For domestic travel and accommodation, receipt must be attached, not invoice",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Missing additional information required for mileage reimbursements",
+          "recommendation": "Please provide To and Fro locations, distance travelled and per diem rates",
+          "knowledge_base_reference": "For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Missing additional information required for foreign currency expenses",
+          "recommendation": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "knowledge_base_reference": "Convert amount in local currency and include currency & exchange rate used for foreign currency expenses",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Missing itemized report along with clear receipts",
+          "recommendation": "Expense submission must have an itemized report along with clear receipts",
+          "knowledge_base_reference": "Expense submission must have an itemized report along with clear receipts",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Missing details (date of expense, business purpose, and merchant name) in the expense submission",
+          "recommendation": "Include details (date of expense, business purpose, and merchant name) in the expense submission",
+          "knowledge_base_reference": "Include details (date of expense, business purpose, and merchant name) in the expense submission",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields such as business purpose, vendor name, city of purchase, T-Number, and exchange rate. Additionally, there are missing additional information requirements for mileage reimbursements, foreign currency expenses, and itemized reports. These issues need to be addressed to ensure compliance with GoGlobal's ICP requirements for Japan."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Japan",
+      "icp": "GoGlobal",
+      "receipt_type": "travel",
+      "issues_count": 10
+    }
+  },
+  "citations": {
+    "citations": {
+      "Employee Name": {
+        "field_citation": {
+          "source_text": "Employee Name :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Employee Name : Mara Ford",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Mara Ford",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Employee Name : Mara Ford",
+          "match_type": "exact"
+        }
+      },
+      "Employee ID": {
+        "field_citation": {
+          "source_text": "Employee ID :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Employee ID : 02675",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "02675",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Employee ID : 02675",
+          "match_type": "exact"
+        }
+      },
+      "Policy": {
+        "field_citation": {
+          "source_text": "Policy :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Policy : *Kaltura - Non VAT Policy",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "*Kaltura - Non VAT Policy",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Policy : *Kaltura - Non VAT Policy",
+          "match_type": "exact"
+        }
+      },
+      "Report Id": {
+        "field_citation": {
+          "source_text": "Report Id :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Report Id : A14FCCB965C24E0C9E08",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "A14FCCB965C24E0C9E08",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Report Id : A14FCCB965C24E0C9E08",
+          "match_type": "exact"
+        }
+      },
+      "Receipts Received": {
+        "field_citation": {
+          "source_text": "Receipts Received :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Receipts Received : Yes",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Yes",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Receipts Received : Yes",
+          "match_type": "exact"
+        }
+      },
+      "Report Date": {
+        "field_citation": {
+          "source_text": "Report Date :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Report Date : 05/18/2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05/18/2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Report Date : 05/18/2025",
+          "match_type": "exact"
+        }
+      },
+      "Approval Status": {
+        "field_citation": {
+          "source_text": "Approval Status :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Approval Status : Submitted & Pending Approval",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Submitted & Pending Approval",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Approval Status : Submitted & Pending Approval",
+          "match_type": "exact"
+        }
+      },
+      "Payment Status": {
+        "field_citation": {
+          "source_text": "Payment Status :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment Status : Not Paid",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Not Paid",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Payment Status : Not Paid",
+          "match_type": "exact"
+        }
+      },
+      "Currency": {
+        "field_citation": {
+          "source_text": "Currency :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Currency : Japan, Yen",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Japan, Yen",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Currency : Japan, Yen",
+          "match_type": "exact"
+        }
+      },
+      "Amount Due Employee": {
+        "field_citation": {
+          "source_text": "Amount Due Employee :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Employee : JPY 64,084",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JPY 64,084",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Employee : JPY 64,084",
+          "match_type": "exact"
+        }
+      },
+      "Amount Due Company Card": {
+        "field_citation": {
+          "source_text": "Amount Due Company Card :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Company Card : JPY 0",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JPY 0",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Company Card : JPY 0",
+          "match_type": "exact"
+        }
+      },
+      "Total Paid By Company": {
+        "field_citation": {
+          "source_text": "Total Paid By Company :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Paid By Company : JPY 64,084",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JPY 64,084",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Paid By Company : JPY 64,084",
+          "match_type": "exact"
+        }
+      },
+      "Amount Due Company Card From Employee": {
+        "field_citation": {
+          "source_text": "Amount Due Company Card From Employee :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Company Card From Employee : JPY 0",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JPY 0",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Amount Due Company Card From Employee : JPY 0",
+          "match_type": "exact"
+        }
+      },
+      "Total Paid By Employee": {
+        "field_citation": {
+          "source_text": "Total Paid By Employee :",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Paid By Employee : JPY",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "JPY",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Total Paid By Employee : JPY",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 32,
+      "fields_with_field_citations": 32,
+      "fields_with_value_citations": 32,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "23.9",
+      "data_extraction_seconds": "5.0",
+      "file_classification_seconds": "5.2",
+      "image_quality_assessment_seconds": "7.0",
+      "issue_detection_seconds": "9.7",
+      "citation_generation_seconds": "20.1",
+      "llm_validation_seconds": "101.9"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-02T07:51:19.613Z",
+        "end_time": "2025-10-02T07:51:43.483Z",
+        "duration_seconds": "23.9",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-02T07:51:43.488Z",
+        "end_time": "2025-10-02T07:51:48.517Z",
+        "duration_seconds": "5.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-10-02T07:51:43.487Z",
+        "end_time": "2025-10-02T07:51:48.711Z",
+        "duration_seconds": "5.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-02T07:51:43.484Z",
+        "end_time": "2025-10-02T07:51:50.483Z",
+        "duration_seconds": "7.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-02T07:51:50.485Z",
+        "end_time": "2025-10-02T07:52:00.222Z",
+        "duration_seconds": "9.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-02T07:51:50.489Z",
+        "end_time": "2025-10-02T07:52:10.556Z",
+        "duration_seconds": "20.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-02T07:52:10.557Z",
+        "end_time": "2025-10-02T07:53:52.476Z",
+        "duration_seconds": "101.9",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "152.9",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "7.0",
+      "parallel_group_2_seconds": "20.1",
+      "total_parallel_time_seconds": "27.1"
+    }
+  },
+  "metadata": {
+    "filename": "japan_file_4.pdf",
+    "processing_time": 152886,
+    "country": "Japan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-02T07:53:52.500Z"
+  }
+}

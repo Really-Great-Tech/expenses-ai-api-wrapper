@@ -1,0 +1,664 @@
+{
+  "overall_score": 0.786111111111111,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. The AI contradicts itself by saying the supplier business name is present but doesn't show the vendor/merchant name.",
+        "2. The AI incorrectly claims there's no unique invoice/receipt number when the transaction_id is clearly present.",
+        "3. The AI doesn't acknowledge that this appears to be an Uber receipt which is likely for transportation services",
+        "though the description is minimal."
+      ],
+      "summary": "The AI response contains significant factual errors regarding the presence of a transaction ID and is inconsistent about the supplier name. While it correctly identifies issues related to mileage documentation requirements and tax implications, the fundamental mischaracterization of basic receipt elements undermines the overall accuracy of the validation.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the supplier business name is present but doesn't show the name of the vendor/merchant. This is partially accurate as the extracted data shows \"Uber Payments BV\" as the supplier name, which is a business name, but the AI's claim that it \"does not show the name of the vendor/merchant\" is contradictory since Uber Payments BV is clearly identified as the merchant.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the receipt does not contain a unique invoice or receipt number, but the extracted data clearly shows \"transaction_id\": \"9DF90217PG1693019\", which serves as a unique identifier for this transaction.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is minimal but does indicate it's a payment to Uber (likely for transportation services). The AI's assessment is partially correct as the description could be more specific about the exact service.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that the receipt lacks required additional information for mileage expenses (date, starting point, end point, number of km, business purpose). The extracted data doesn't contain any of this information, and the recommendation aligns with the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that all expenses are subject to taxation review based on actual amounts, which aligns with the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 60\n\nISSUES:\n1. The AI contradicts itself by saying the supplier business name is present but doesn't show the vendor/merchant name.\n2. The AI incorrectly claims there's no unique invoice/receipt number when the transaction_id is clearly present.\n3. The AI doesn't acknowledge that this appears to be an Uber receipt which is likely for transportation services, though the description is minimal.\n\nSUMMARY: The AI response contains significant factual errors regarding the presence of a transaction ID and is inconsistent about the supplier name. While it correctly identifies issues related to mileage documentation requirements and tax implications, the fundamental mischaracterization of basic receipt elements undermines the overall accuracy of the validation.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the supplier business name is present but doesn't show the name of the vendor/merchant. This is partially accurate as the extracted data shows \"Uber Payments BV\" as the supplier name, which is a business name, but the AI's claim that it \"does not show the name of the vendor/merchant\" is contradictory since Uber Payments BV is clearly identified as the merchant.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI claims the receipt does not contain a unique invoice or receipt number, but the extracted data clearly shows \"transaction_id\": \"9DF90217PG1693019\", which serves as a unique identifier for this transaction.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI claims the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is minimal but does indicate it's a payment to Uber (likely for transportation services). The AI's assessment is partially correct as the description could be more specific about the exact service.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that the receipt lacks required additional information for mileage expenses (date, starting point, end point, number of km, business purpose). The extracted data doesn't contain any of this information, and the recommendation aligns with the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly notes that all expenses are subject to taxation review based on actual amounts, which aligns with the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 60\n\nISSUES:\n1. The AI contradicts itself by saying the supplier business name is present but doesn't show the vendor/merchant name.\n2. The AI incorrectly claims there's no unique invoice/receipt number when the transaction_id is clearly present.\n3. The AI doesn't acknowledge that this appears to be an Uber receipt which is likely for transportation services, though the description is minimal.\n\nSUMMARY: The AI response contains significant factual errors regarding the presence of a transaction ID and is inconsistent about the supplier name. While it correctly identifies issues related to mileage documentation requirements and tax implications, the fundamental mischaracterization of basic receipt elements undermines the overall accuracy of the validation."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI response mentions issues with the supplier business name, but the extracted data does contain the supplier name \"Uber Payments BV\". This information is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI response mentions the lack of an invoice number, but the extracted data does contain a transaction ID \"9DF90217PG1693019\" which serves a similar purpose. This information is factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 0 - The AI response mentions the lack of a clear item description, but the extracted data does contain a line item description \"Payment to Uber Payments BV\". This information is factually grounded.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies the need for additional documentation for mileage expenses, which is not present in the extracted data. This is a valid compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response accurately states that all expenses are subject to taxation review based on actual amounts, which is in line with the compliance policies extracted.\n\nCONFIDENCE: 90\nISSUES: The AI response is generally well-grounded in the provided data, with the exception of the issue around additional documentation for mileage expenses, which is a valid compliance requirement not met by the extracted data.\nSUMMARY: The AI response accurately identifies several compliance issues with the provided receipt, including missing mandatory fields and the need for additional documentation. The response is well-supported by the extracted data, with a few minor discrepancies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.7,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI claims the supplier business name is present but doesn't show the name of the vendor/merchant. This is partially accurate as the extracted data does include \"Uber Payments BV\" as the supplier name, which is a merchant name. However, the AI's claim that this doesn't qualify as a proper vendor name is not clearly justified based on the data provided.\n\nISSUE_2_VALIDATION_SCORE: 75 - The AI claims the receipt lacks a unique invoice/receipt number. While the extracted data shows \"9DF90217PG1693019\" as a transaction_id, it's not explicitly labeled as an invoice number. This distinction is reasonable as transaction IDs and invoice numbers serve different purposes, though the AI could have acknowledged the presence of a transaction ID.\n\nISSUE_3_VALIDATION_SCORE: 25 - The AI claims the receipt doesn't specify goods or services purchased with a clear description. However, the extracted data includes \"Payment to Uber Payments BV\" as a line item description. While this description is minimal, it does indicate a payment service, making the AI's claim only partially accurate.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identifies that the receipt lacks required additional information for mileage expenses (date, starting point, end point, number of km, business purpose). The extracted data contains none of these required elements for a travel receipt in Spain under GoGlobal policies.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly applies the GoGlobal policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This matches the compliance rules provided.\n\nCONFIDENCE: 70\n\nISSUES:\n1. The AI doesn't fully acknowledge that \"Uber Payments BV\" is present as a supplier name, though it may not meet some unstated standard.\n2. The AI doesn't acknowledge that a transaction ID exists, though it may not qualify as an invoice number.\n3. The AI doesn't recognize \"Payment to Uber Payments BV\" as at least a minimal service description.\n\nSUMMARY: The AI response is partially grounded in the extracted data, with strong accuracy on compliance policies but some questionable assessments regarding the presence of basic receipt elements. The AI correctly identifies missing mileage documentation requirements and tax implications but is overly strict in claiming the receipt lacks a supplier name, invoice number, and service description when the extracted data shows these elements are present, albeit potentially in a format that doesn't fully satisfy compliance requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims the supplier business name is present but doesn't show the name of the vendor/merchant. This is partially accurate as the extracted data shows \"Uber Payments BV\" as the supplier name, which is a business name, but the AI's claim that it \"does not show the name of the vendor/merchant\" is contradictory since Uber Payments BV is clearly identified as the merchant.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims the receipt does not contain a unique invoice or receipt number, but the extracted data clearly shows \"transaction_id\": \"9DF90217PG1693019\", which serves as a unique identifier for this transaction.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI claims the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is minimal but does indicate it's a payment to Uber (likely for transportation services). The AI's assessment is partially correct as the description could be more specific about the exact service.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that the receipt lacks required additional information for mileage expenses (date, starting point, end point, number of km, business purpose). The extracted data doesn't contain any of this information, and the recommendation aligns with the compliance rules.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly notes that all expenses are subject to taxation review based on actual amounts, which aligns with the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9233333333333333,
+      "issues": [
+        "1. Issue 1 incorrectly states the supplier name is missing when it is present in the extracted data.",
+        "2. The AI did not consider whether the transaction_id could serve as an invoice number equivalent.",
+        "3. The AI did not address whether this Uber receipt is for a taxi/ride service or some other service",
+        "which affects compliance requirements."
+      ],
+      "summary": "The AI response generally adheres well to the compliance knowledge base for Spain under GoGlobal's requirements. It correctly identified most mandatory fields that are missing and provided appropriate recommendations based on the knowledge base. The main issue is incorrectly stating that the supplier name is missing when it is present in the extracted data. The AI appropriately applied the specific requirements for travel expenses in Spain, particularly regarding mileage documentation and tax implications. The overall assessment that the receipt is not valid is correct based on the missing mandatory fields according to GoGlobal's compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that supplier business name is a mandatory field for GoGlobal in Spain. However, the issue description states \"the receipt does not show the name of the vendor/merchant\" when in fact the extracted data shows \"Uber Payments BV\" as the supplier name. The recommendation is appropriate, but the issue identification is incorrect since the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that an invoice number is mandatory for GoGlobal in Spain according to the compliance rules. The issue description accurately notes that the receipt lacks a unique invoice number. While the extracted data shows a \"transaction_id\" (9DF90217PG1693019), the AI appropriately flagged this as an issue since a formal invoice number is required per the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI correctly identified that item description is a mandatory field for GoGlobal in Spain. The issue description accurately notes that the receipt lacks a clear description of goods/services purchased. The extracted line item only shows \"Payment to Uber Payments BV\" which is insufficient to determine what specific service was provided (e.g., ride-sharing, food delivery).\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly applied the knowledge base rule for mileage expenses in Spain for GoGlobal. The recommendation accurately reflects the requirement that \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the tax implications based on GoGlobal's policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is directly from the knowledge base and accurately applied.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly states the supplier name is missing when it is present in the extracted data.\n2. The AI did not consider whether the transaction_id could serve as an invoice number equivalent.\n3. The AI did not address whether this Uber receipt is for a taxi/ride service or some other service, which affects compliance requirements.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base for Spain under GoGlobal's requirements. It correctly identified most mandatory fields that are missing and provided appropriate recommendations based on the knowledge base. The main issue is incorrectly stating that the supplier name is missing when it is present in the extracted data. The AI appropriately applied the specific requirements for travel expenses in Spain, particularly regarding mileage documentation and tax implications. The overall assessment that the receipt is not valid is correct based on the missing mandatory fields according to GoGlobal's compliance requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that supplier business name is a mandatory field for GoGlobal in Spain. However, the issue description states \"the receipt does not show the name of the vendor/merchant\" when in fact the extracted data shows \"Uber Payments BV\" as the supplier name. The recommendation is appropriate, but the issue identification is incorrect since the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that an invoice number is mandatory for GoGlobal in Spain according to the compliance rules. The issue description accurately notes that the receipt lacks a unique invoice number. While the extracted data shows a \"transaction_id\" (9DF90217PG1693019), the AI appropriately flagged this as an issue since a formal invoice number is required per the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI correctly identified that item description is a mandatory field for GoGlobal in Spain. The issue description accurately notes that the receipt lacks a clear description of goods/services purchased. The extracted line item only shows \"Payment to Uber Payments BV\" which is insufficient to determine what specific service was provided (e.g., ride-sharing, food delivery).\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly applied the knowledge base rule for mileage expenses in Spain for GoGlobal. The recommendation accurately reflects the requirement that \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the tax implications based on GoGlobal's policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is directly from the knowledge base and accurately applied.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 1 incorrectly states the supplier name is missing when it is present in the extracted data.\n2. The AI did not consider whether the transaction_id could serve as an invoice number equivalent.\n3. The AI did not address whether this Uber receipt is for a taxi/ride service or some other service, which affects compliance requirements.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base for Spain under GoGlobal's requirements. It correctly identified most mandatory fields that are missing and provided appropriate recommendations based on the knowledge base. The main issue is incorrectly stating that the supplier name is missing when it is present in the extracted data. The AI appropriately applied the specific requirements for travel expenses in Spain, particularly regarding mileage documentation and tax implications. The overall assessment that the receipt is not valid is correct based on the missing mandatory fields according to GoGlobal's compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The supplier business name is missing from the receipt, which is a mandatory requirement for Spain according to the knowledge base. The AI response correctly identified this issue and provided the appropriate recommendation to address it with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 95 - The receipt does not contain a unique invoice or receipt number, which is also a mandatory requirement for Spain. The AI response correctly identified this issue and provided the recommendation to address it with the supplier.\n\nISSUE_3_VALIDATION_SCORE: 95 - The receipt does not specify the goods or services purchased with a clear description, which is a mandatory requirement. The AI response correctly identified this issue and provided the recommendation to address it with the supplier.\n\nISSUE_4_VALIDATION_SCORE: 90 - The receipt does not include the required additional information for mileage expenses, such as the date, starting point, end point, number of km, and business purpose. The AI response correctly identified this issue and provided the appropriate recommendation for the employee to report the required information and provide supporting documentation.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI response correctly identified that all expenses are subject to taxation review based on actual amounts, which is in line with the knowledge base requirements for Spain.\n\nCONFIDENCE: 94\nISSUES: The receipt has several compliance issues, including missing mandatory fields such as the supplier business name, invoice number, and item description. Additionally, there are missing additional documentation requirements for mileage expenses.\n\nSUMMARY: The AI response accurately identifies the compliance issues with the receipt and provides appropriate recommendations to address them based on the knowledge base for Spain. The response demonstrates a strong understanding of the country-specific regulations and requirements for travel expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The AI correctly identified that supplier business name is a mandatory field for GoGlobal in Spain. However, the issue description states \"the supplier business name is present, but the receipt does not show the name of the vendor/merchant\" which is contradictory since the extracted data shows \"Uber Payments BV\" as the supplier name. The recommendation to address this with the supplier is appropriate, but the issue identification itself is questionable.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that an invoice number is mandatory for GoGlobal in Spain according to the compliance rules. The transaction_id \"9DF90217PG1693019\" is present in the extracted data, but this may not qualify as a proper invoice number. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI correctly identified that item description is mandatory for GoGlobal in Spain. While the extracted data shows \"Payment to Uber Payments BV\" as a line item description, this is likely too vague to meet the requirement for \"clear description (expense type/description)\" as specified in the knowledge base. The recommendation is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly applied the rule requiring additional documentation for mileage expenses in Spain for GoGlobal. The knowledge base reference matches exactly with the compliance policy for mileage expenses, requiring date, starting point, end point, number of km, business purpose, and screenshot/printout of travel route.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly referenced the gross-up rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts\" which is directly from the knowledge base for GoGlobal travel expenses.\n\nCONFIDENCE: 93\n\nISSUES:\n1. Issue 1 contains a contradiction - claiming the supplier name is present but not showing the vendor name, when the extracted data clearly shows \"Uber Payments BV\".\n2. The AI did not consider whether the transaction_id could qualify as an invoice number, though it's reasonable to flag this for follow-up.\n3. The AI did not evaluate whether this Uber receipt might qualify as a taxi/transportation expense, which would have specific compliance requirements.\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base for Spain and GoGlobal, correctly identifying most mandatory requirements and providing appropriate recommendations. The main discrepancy is with Issue 1, where the AI states the supplier name is present but claims it doesn't show the vendor name, which is contradictory. The other issues correctly reference the compliance rules for invoice numbers, item descriptions, mileage documentation requirements, and taxation policies. The AI appropriately identified the receipt as non-compliant based on the GoGlobal compliance rules for Spain."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The AI correctly identified that supplier business name is a mandatory field for GoGlobal in Spain. However, the issue description states \"the receipt does not show the name of the vendor/merchant\" when in fact the extracted data shows \"Uber Payments BV\" as the supplier name. The recommendation is appropriate, but the issue identification is incorrect since the supplier name is present.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that an invoice number is mandatory for GoGlobal in Spain according to the compliance rules. The issue description accurately notes that the receipt lacks a unique invoice number. While the extracted data shows a \"transaction_id\" (9DF90217PG1693019), the AI appropriately flagged this as an issue since a formal invoice number is required per the knowledge base.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified that item description is a mandatory field for GoGlobal in Spain. The issue description accurately notes that the receipt lacks a clear description of goods/services purchased. The extracted line item only shows \"Payment to Uber Payments BV\" which is insufficient to determine what specific service was provided (e.g., ride-sharing, food delivery).",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly applied the knowledge base rule for mileage expenses in Spain for GoGlobal. The recommendation accurately reflects the requirement that \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the tax implications based on GoGlobal's policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is directly from the knowledge base and accurately applied.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7799999999999999,
+      "issues": [
+        "1. The first issue incorrectly claims the supplier business name is missing when \"Uber Payments BV\" is clearly identified in the extracted data.",
+        "2. The assessment doesn't consider that the transaction ID might qualify as an invoice number.",
+        "3. The assessment doesn't acknowledge that while the description is vague",
+        "there is some description present.",
+        "4. The assessment doesn't recognize that this appears to be an Uber ride receipt (taxi/transportation service) rather than a mileage expense",
+        "which would have different documentation requirements."
+      ],
+      "summary": "The compliance assessment is partially accurate. It correctly identifies issues related to taxation and additional documentation requirements, but incorrectly claims the supplier name is missing when it's present. It also applies mileage documentation requirements to what appears to be a taxi/ride service receipt. The assessment would be more accurate if it recognized the receipt type correctly and acknowledged the presence of the supplier name.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue states that \"the supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.\" This is contradictory since the extracted data shows \"Uber Payments BV\" as the supplier name, which is a valid merchant name. The receipt appears to have a supplier name, so this issue is inaccurately identified.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue correctly identifies that a unique invoice number is required. While the receipt has a \"transaction_id\" (9DF90217PG1693019), it's not clear if this qualifies as an invoice number per Spanish requirements. However, this transaction ID might actually satisfy the requirement, so the assessment is somewhat accurate but could be more nuanced.\n\nISSUE_3_VALIDATION_SCORE: 60 - The issue states the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is indeed vague and doesn't specify what service was provided (likely a ride). This issue is somewhat accurate, though the receipt does have some description.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue correctly identifies that for travel/mileage expenses in Spain with GoGlobal as the ICP, additional documentation is required including date, starting point, end point, number of km, business purpose, and route verification. This Uber receipt lacks these details, so this issue is accurately identified.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly applies the GoGlobal rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is an accurate application of the compliance policy.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The first issue incorrectly claims the supplier business name is missing when \"Uber Payments BV\" is clearly identified in the extracted data.\n2. The assessment doesn't consider that the transaction ID might qualify as an invoice number.\n3. The assessment doesn't acknowledge that while the description is vague, there is some description present.\n4. The assessment doesn't recognize that this appears to be an Uber ride receipt (taxi/transportation service) rather than a mileage expense, which would have different documentation requirements.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies issues related to taxation and additional documentation requirements, but incorrectly claims the supplier name is missing when it's present. It also applies mileage documentation requirements to what appears to be a taxi/ride service receipt. The assessment would be more accurate if it recognized the receipt type correctly and acknowledged the presence of the supplier name.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue states that \"the supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.\" This is contradictory since the extracted data shows \"Uber Payments BV\" as the supplier name, which is a valid merchant name. The receipt appears to have a supplier name, so this issue is inaccurately identified.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue correctly identifies that a unique invoice number is required. While the receipt has a \"transaction_id\" (9DF90217PG1693019), it's not clear if this qualifies as an invoice number per Spanish requirements. However, this transaction ID might actually satisfy the requirement, so the assessment is somewhat accurate but could be more nuanced.\n\nISSUE_3_VALIDATION_SCORE: 60 - The issue states the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is indeed vague and doesn't specify what service was provided (likely a ride). This issue is somewhat accurate, though the receipt does have some description.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue correctly identifies that for travel/mileage expenses in Spain with GoGlobal as the ICP, additional documentation is required including date, starting point, end point, number of km, business purpose, and route verification. This Uber receipt lacks these details, so this issue is accurately identified.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly applies the GoGlobal rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is an accurate application of the compliance policy.\n\nCONFIDENCE: 75\n\nISSUES:\n1. The first issue incorrectly claims the supplier business name is missing when \"Uber Payments BV\" is clearly identified in the extracted data.\n2. The assessment doesn't consider that the transaction ID might qualify as an invoice number.\n3. The assessment doesn't acknowledge that while the description is vague, there is some description present.\n4. The assessment doesn't recognize that this appears to be an Uber ride receipt (taxi/transportation service) rather than a mileage expense, which would have different documentation requirements.\n\nSUMMARY: The compliance assessment is partially accurate. It correctly identifies issues related to taxation and additional documentation requirements, but incorrectly claims the supplier name is missing when it's present. It also applies mileage documentation requirements to what appears to be a taxi/ride service receipt. The assessment would be more accurate if it recognized the receipt type correctly and acknowledged the presence of the supplier name."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The assessment correctly identifies that the supplier business name is missing from the receipt, which is a mandatory requirement for compliance.\n\nISSUE_2_VALIDATION_SCORE: 95 - The assessment correctly identifies that the receipt does not contain a unique invoice or receipt number, which is also a mandatory requirement.\n\nISSUE_3_VALIDATION_SCORE: 95 - The assessment correctly identifies that the receipt does not specify the goods or services purchased with a clear description, which is a mandatory requirement.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt does not include the required additional information for mileage expenses, such as the date, starting point, end point, number of km, and business purpose. However, the recommendation could be more specific, such as providing a template for the employee to fill out.\n\nISSUE_5_VALIDATION_SCORE: 95 - The assessment correctly identifies that all expenses are subject to taxation review based on actual amounts, which is an important compliance requirement.\n\nCONFIDENCE: 94\nISSUES: None identified.\nSUMMARY: The compliance assessment is highly accurate, with the AI correctly identifying the key compliance issues with the receipt, including missing mandatory fields and additional documentation requirements. The recommendations provided are also appropriate and in line with the compliance rules. Overall, the compliance assessment is thorough and reliable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The system incorrectly flagged the supplier business name as an issue. The receipt clearly shows \"Uber Payments BV\" as the supplier name, which is a valid merchant name. This is a significant error in the compliance assessment.\n\nISSUE_2_VALIDATION_SCORE: 50 - The system correctly identified that a unique invoice number is required, but failed to recognize that the receipt does contain a transaction ID \"9DF90217PG1693019\" which could serve as a unique identifier. While it's debatable whether this transaction ID meets the formal invoice number requirement, the system should have acknowledged its presence.\n\nISSUE_3_VALIDATION_SCORE: 70 - The system correctly identified that the item description is insufficient. The line item \"Payment to Uber Payments BV\" doesn't clearly specify what service was purchased (likely a ride/taxi service), but this is a valid compliance concern.\n\nISSUE_4_VALIDATION_SCORE: 95 - The assessment is accurate regarding the missing documentation for mileage expenses. Since this is classified as a travel receipt, and appears to be for Uber (likely a taxi service), the mileage documentation requirements are relevant and correctly identified as missing.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly notes that all expenses are subject to taxation review based on actual amounts, which aligns with GoGlobal's policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices.\"\n\nCONFIDENCE: 65\n\nISSUES:\n1. The system incorrectly flagged the supplier business name as missing when it's clearly present\n2. The system failed to recognize the transaction ID as a potential invoice number\n3. The system correctly identified issues with item description, mileage documentation, and tax implications\n4. The system did not acknowledge that this appears to be a taxi/ride service receipt which would have specific compliance requirements\n\nSUMMARY: The compliance assessment contains mixed accuracy. While it correctly identified several legitimate compliance issues (insufficient item description, missing mileage documentation, and tax implications), it incorrectly flagged the supplier business name as missing when \"Uber Payments BV\" is clearly present. It also failed to recognize that the transaction ID could potentially serve as a unique identifier. The assessment would be more accurate if it recognized this as an Uber/taxi receipt and applied the appropriate specific requirements for that expense type."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue states that \"the supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.\" This is contradictory since the extracted data shows \"Uber Payments BV\" as the supplier name, which is a valid merchant name. The receipt appears to have a supplier name, so this issue is inaccurately identified.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue correctly identifies that a unique invoice number is required. While the receipt has a \"transaction_id\" (9DF90217PG1693019), it's not clear if this qualifies as an invoice number per Spanish requirements. However, this transaction ID might actually satisfy the requirement, so the assessment is somewhat accurate but could be more nuanced.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The issue states the receipt doesn't specify goods or services purchased with a clear description. The extracted data shows \"Payment to Uber Payments BV\" as the line item description, which is indeed vague and doesn't specify what service was provided (likely a ride). This issue is somewhat accurate, though the receipt does have some description.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue correctly identifies that for travel/mileage expenses in Spain with GoGlobal as the ICP, additional documentation is required including date, starting point, end point, number of km, business purpose, and route verification. This Uber receipt lacks these details, so this issue is accurately identified.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly applies the GoGlobal rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\" This is an accurate application of the compliance policy.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8766666666666666,
+      "issues": [
+        "1. Issue #1 incorrectly states the supplier name is missing when it's present in the extracted data",
+        "2. Issue #3 doesn't fully acknowledge that some description exists but lacks specificity",
+        "3. The system didn't identify the issue that the receipt appears to be just a payment notification rather than a complete receipt with all required details"
+      ],
+      "summary": "Most issues are correctly categorized with appropriate issue types and recommendations. However, the first issue incorrectly claims the supplier name is missing when it's present in the data. The third issue could be more nuanced in acknowledging that some description exists but lacks specificity. The system correctly identified the need for additional documentation for mileage expenses and the tax implications. An additional issue regarding the document being a payment notification rather than a complete receipt was not identified.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 60 - The issue is incorrectly categorized. The receipt actually does contain a supplier business name (Uber Payments BV) as shown in the extracted data. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the description is inaccurate since the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since the receipt lacks a unique invoice number. While the transaction_id \"9DF90217PG1693019\" is present in the extracted data, it may not qualify as a formal invoice number per Spanish requirements. The description and recommendation are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 70 - The issue is somewhat correctly categorized. While the line item description \"Payment to Uber Payments BV\" is generic, it does indicate a payment for transportation services. The issue type is appropriate, but the description could be more nuanced to acknowledge that some description exists but lacks specificity about the actual service provided (e.g., ride details).\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is for travel but lacks the required documentation for mileage expenses. The description and recommendation accurately reflect the compliance requirements for GoGlobal in Spain.\n\nISSUE_5_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately reflects the tax implications for travel expenses with GoGlobal in Spain. The description and recommendation align with the compliance rule that states per diems will not be used and all expenses are subject to taxation review.\n\nCONFIDENCE: 82\n\nISSUES:\n1. Issue #1 incorrectly states the supplier name is missing when it's present in the extracted data\n2. Issue #3 doesn't fully acknowledge that some description exists but lacks specificity\n3. The system didn't identify the issue that the receipt appears to be just a payment notification rather than a complete receipt with all required details\n\nSUMMARY: Most issues are correctly categorized with appropriate issue types and recommendations. However, the first issue incorrectly claims the supplier name is missing when it's present in the data. The third issue could be more nuanced in acknowledging that some description exists but lacks specificity. The system correctly identified the need for additional documentation for mileage expenses and the tax implications. An additional issue regarding the document being a payment notification rather than a complete receipt was not identified.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.82,
+          "response": "ISSUE_1_VALIDATION_SCORE: 60 - The issue is incorrectly categorized. The receipt actually does contain a supplier business name (Uber Payments BV) as shown in the extracted data. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the description is inaccurate since the supplier name is present.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since the receipt lacks a unique invoice number. While the transaction_id \"9DF90217PG1693019\" is present in the extracted data, it may not qualify as a formal invoice number per Spanish requirements. The description and recommendation are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 70 - The issue is somewhat correctly categorized. While the line item description \"Payment to Uber Payments BV\" is generic, it does indicate a payment for transportation services. The issue type is appropriate, but the description could be more nuanced to acknowledge that some description exists but lacks specificity about the actual service provided (e.g., ride details).\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is for travel but lacks the required documentation for mileage expenses. The description and recommendation accurately reflect the compliance requirements for GoGlobal in Spain.\n\nISSUE_5_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately reflects the tax implications for travel expenses with GoGlobal in Spain. The description and recommendation align with the compliance rule that states per diems will not be used and all expenses are subject to taxation review.\n\nCONFIDENCE: 82\n\nISSUES:\n1. Issue #1 incorrectly states the supplier name is missing when it's present in the extracted data\n2. Issue #3 doesn't fully acknowledge that some description exists but lacks specificity\n3. The system didn't identify the issue that the receipt appears to be just a payment notification rather than a complete receipt with all required details\n\nSUMMARY: Most issues are correctly categorized with appropriate issue types and recommendations. However, the first issue incorrectly claims the supplier name is missing when it's present in the data. The third issue could be more nuanced in acknowledging that some description exists but lacks specificity. The system correctly identified the need for additional documentation for mileage expenses and the tax implications. An additional issue regarding the document being a payment notification rather than a complete receipt was not identified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the supplier business name is missing from the receipt. The description and recommendation are clear and align with the established taxonomy.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the receipt does not contain a unique invoice or receipt number. The description and recommendation are clear and align with the established taxonomy.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Fix Identified\" issue, as the receipt does not specify the goods or services purchased with a clear description. The description and recommendation are clear and align with the established taxonomy.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue is correctly classified as a \"Standards & Compliance | Follow-up Action Identified\" issue, as the receipt does not include the required additional information for mileage expenses. The description and recommendation are clear and align with the established taxonomy.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue is correctly classified as a \"Standards & Compliance | Gross-up Identified\" issue, as all expenses are subject to taxation review based on actual amounts. The description and recommendation are clear and align with the established taxonomy.\n\nCONFIDENCE: 94\nISSUES: None\nSUMMARY: The identified issues are correctly categorized according to the established taxonomy. The issue descriptions are clear and provide actionable recommendations. No issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue is correctly identified as \"Standards & Compliance | Fix Identified\" and references the requirement for a supplier business name. However, there's a contradiction since the extracted data shows \"Uber Payments BV\" as the supplier name, which appears to be present on the receipt. The issue incorrectly states \"the receipt does not show the name of the vendor/merchant\" when it seems to be present.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding the missing invoice number. While the extracted data shows a \"transaction_id\" (9DF90217PG1693019), the system correctly identifies that a formal invoice number is required per GoGlobal compliance rules. The description and recommendation are clear and appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding item description. While the extracted data shows \"Payment to Uber Payments BV,\" this is insufficient as it doesn't clearly specify what service was provided (e.g., ride from location A to B). The description and recommendation are appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding additional documentation requirements for mileage expenses. Since this is an Uber receipt for travel, the recommendation to provide starting point, end point, number of km, etc. is appropriate and follows the compliance rules for GoGlobal mileage expenses.\n\nISSUE_5_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" regarding tax implications. The recommendation accurately reflects GoGlobal's policy that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 87\n\nISSUES:\n1. Issue #1 contains a contradiction - it states the supplier name is missing when the extracted data shows \"Uber Payments BV\" as the supplier name.\n2. The system doesn't flag that this appears to be a taxi/ride service receipt rather than a mileage expense, which would have different compliance requirements.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations that align with GoGlobal's compliance rules. The main concern is with Issue #1, which incorrectly states the supplier name is missing when it appears to be present in the extracted data. Additionally, the system may be confusing a taxi receipt with a mileage expense in Issue #4, though the additional documentation requirements would be similar. Overall, the categorization is generally accurate but contains some inconsistencies that should be addressed."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 60,
+          "judge_explanation": "The issue is incorrectly categorized. The receipt actually does contain a supplier business name (Uber Payments BV) as shown in the extracted data. The issue type \"Standards & Compliance | Fix Identified\" is appropriate, but the description is inaccurate since the supplier name is present.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Fix Identified\" since the receipt lacks a unique invoice number. While the transaction_id \"9DF90217PG1693019\" is present in the extracted data, it may not qualify as a formal invoice number per Spanish requirements. The description and recommendation are appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue is somewhat correctly categorized. While the line item description \"Payment to Uber Payments BV\" is generic, it does indicate a payment for transportation services. The issue type is appropriate, but the description could be more nuanced to acknowledge that some description exists but lacks specificity about the actual service provided (e.g., ride details).",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is for travel but lacks the required documentation for mileage expenses. The description and recommendation accurately reflect the compliance requirements for GoGlobal in Spain.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" and accurately reflects the tax implications for travel expenses with GoGlobal in Spain. The description and recommendation align with the compliance rule that states per diems will not be used and all expenses are subject to taxation review.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.87,
+      "issues": [
+        "- Issue 1's recommendation could be more specific about what additional merchant information is needed",
+        "- Some recommendations could provide more guidance on how to obtain the required documentation from Uber specifically"
+      ],
+      "summary": "Most recommendations are valid and aligned with GoGlobal's compliance requirements for Spain. The recommendations for issues 2-5 are specific, actionable, and directly address the compliance gaps. Issue 1's recommendation could be improved by acknowledging that a supplier name exists but may need additional details. Overall, the recommendations provide practical guidance for resolving the compliance issues with this travel receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation \"It is recommended to address this issue with the supplier or provider\" is somewhat valid but not specific enough. The receipt actually does show a supplier name (Uber Payments BV), but the issue correctly identifies that more detailed merchant information may be needed. A more actionable recommendation would specify what additional information is needed from Uber or how to obtain a more detailed receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and appropriate. The transaction ID (9DF90217PG1693019) is present but may not qualify as a formal invoice number. Contacting Uber to request a formal invoice with an invoice number is a practical solution.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the missing item description with the supplier is valid. The receipt only shows \"Payment to Uber Payments BV\" without specifying the actual service (likely a ride). Requesting a detailed receipt that specifies the exact service provided would resolve this issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation is highly valid and specific for mileage expenses. It correctly outlines all required documentation: date, starting point, endpoint, number of km, business purpose, route screenshot, and signatures. This is directly aligned with the compliance rules for GoGlobal mileage expenses in Spain.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation accurately reflects GoGlobal's policy that all expenses are processed via receipts and invoices rather than per diems, and are subject to taxation review. This aligns with the compliance rules and provides clear guidance.\n\nCONFIDENCE: 86\n\nISSUES: \n- Issue 1's recommendation could be more specific about what additional merchant information is needed\n- Some recommendations could provide more guidance on how to obtain the required documentation from Uber specifically\n\nSUMMARY: Most recommendations are valid and aligned with GoGlobal's compliance requirements for Spain. The recommendations for issues 2-5 are specific, actionable, and directly address the compliance gaps. Issue 1's recommendation could be improved by acknowledging that a supplier name exists but may need additional details. Overall, the recommendations provide practical guidance for resolving the compliance issues with this travel receipt.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.86,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation \"It is recommended to address this issue with the supplier or provider\" is somewhat valid but not specific enough. The receipt actually does show a supplier name (Uber Payments BV), but the issue correctly identifies that more detailed merchant information may be needed. A more actionable recommendation would specify what additional information is needed from Uber or how to obtain a more detailed receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier is valid and appropriate. The transaction ID (9DF90217PG1693019) is present but may not qualify as a formal invoice number. Contacting Uber to request a formal invoice with an invoice number is a practical solution.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the missing item description with the supplier is valid. The receipt only shows \"Payment to Uber Payments BV\" without specifying the actual service (likely a ride). Requesting a detailed receipt that specifies the exact service provided would resolve this issue.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation is highly valid and specific for mileage expenses. It correctly outlines all required documentation: date, starting point, endpoint, number of km, business purpose, route screenshot, and signatures. This is directly aligned with the compliance rules for GoGlobal mileage expenses in Spain.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation accurately reflects GoGlobal's policy that all expenses are processed via receipts and invoices rather than per diems, and are subject to taxation review. This aligns with the compliance rules and provides clear guidance.\n\nCONFIDENCE: 86\n\nISSUES: \n- Issue 1's recommendation could be more specific about what additional merchant information is needed\n- Some recommendations could provide more guidance on how to obtain the required documentation from Uber specifically\n\nSUMMARY: Most recommendations are valid and aligned with GoGlobal's compliance requirements for Spain. The recommendations for issues 2-5 are specific, actionable, and directly address the compliance gaps. Issue 1's recommendation could be improved by acknowledging that a supplier name exists but may need additional details. Overall, the recommendations provide practical guidance for resolving the compliance issues with this travel receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier business name with the supplier or provider is valid and actionable. This is a key compliance requirement that should be easily fixable.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number with the supplier or provider is valid and actionable. A unique invoice or receipt number is a mandatory compliance requirement.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing item description with the supplier or provider is valid and actionable. Clearly specifying the goods or services purchased is a compliance requirement.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide the additional documentation required for mileage expenses is valid and addresses the issue. However, the specific requirements around reporting date, starting/end point, number of km, and business purpose could be more detailed.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation that all expenses are subject to taxation review based on actual amounts is valid and in line with compliance requirements. The advice to not use per diems and instead process all expenses via receipts and invoices is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are generally valid, actionable, and address the identified compliance issues. They cover the key requirements around supplier information, invoice details, item descriptions, and additional documentation for mileage. The advice is feasible and practical for the employee to implement. Overall, the recommendations are very useful for ensuring the travel expense receipt meets the necessary compliance standards."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" is somewhat valid but not entirely accurate. The receipt does show \"Uber Payments BV\" as the supplier name, but the recommendation doesn't acknowledge this fact. A more helpful recommendation would specify that while a name is present, it needs to include the actual service provider (the specific Uber driver or service) rather than just the payment processor.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing invoice number is valid and actionable. The transaction ID \"9DF90217PG1693019\" is present but may not qualify as an invoice number per Spanish requirements. The recommendation correctly identifies the need to obtain a proper invoice number.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation correctly identifies that the receipt lacks a clear description of services purchased. \"Payment to Uber Payments BV\" is insufficient as it doesn't specify what transportation service was provided (route, distance, etc.). The recommendation to address this with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation is highly valid and specific, correctly identifying all required documentation for mileage expenses in Spain according to GoGlobal requirements. It clearly states what information needs to be included (date, starting point, endpoint, km, business purpose) and the need for documentation (GoogleMaps screenshot) and signatures.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation accurately reflects GoGlobal's policy that expenses are subject to taxation review based on actual amounts rather than per diems. This aligns with the compliance rules provided and gives clear guidance on how expenses will be processed.\n\nCONFIDENCE: 85\n\nISSUES: \n- Issue 1 recommendation doesn't acknowledge that a supplier name is present but insufficient\n- Some recommendations could be more specific about how to obtain the missing information\n- No guidance is provided on whether this specific receipt could be supplemented with additional documentation or if a completely new receipt is needed\n\nSUMMARY: Most recommendations are valid and align with the compliance rules provided. The recommendations for issues 2-5 are specific, actionable, and correctly identify the compliance requirements. The recommendation for issue 1 is somewhat misleading as it doesn't acknowledge that a supplier name exists but may be insufficient. Overall, the recommendations provide clear guidance on what information is missing and what actions are needed, though they could be more specific about the exact steps to take in some cases."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The recommendation \"It is recommended to address this issue with the supplier or provider\" is somewhat valid but not specific enough. The receipt actually does show a supplier name (Uber Payments BV), but the issue correctly identifies that more detailed merchant information may be needed. A more actionable recommendation would specify what additional information is needed from Uber or how to obtain a more detailed receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing invoice number with the supplier is valid and appropriate. The transaction ID (9DF90217PG1693019) is present but may not qualify as a formal invoice number. Contacting Uber to request a formal invoice with an invoice number is a practical solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to address the missing item description with the supplier is valid. The receipt only shows \"Payment to Uber Payments BV\" without specifying the actual service (likely a ride). Requesting a detailed receipt that specifies the exact service provided would resolve this issue.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation is highly valid and specific for mileage expenses. It correctly outlines all required documentation: date, starting point, endpoint, number of km, business purpose, route screenshot, and signatures. This is directly aligned with the compliance rules for GoGlobal mileage expenses in Spain.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation accurately reflects GoGlobal's policy that all expenses are processed via receipts and invoices rather than per diems, and are subject to taxation review. This aligns with the compliance rules and provides clear guidance.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.5333333333333333,
+      "issues": [
+        "1. Falsely claims supplier business name is missing when \"Uber Payments BV\" is clearly present",
+        "2. Falsely claims invoice number is missing when transaction_id \"9DF90217PG1693019\" is present",
+        "3. Overstates the issue with item description - while generic",
+        "it does indicate payment to Uber (likely for transportation)"
+      ],
+      "summary": "The AI response contains significant hallucinations in 2 of the 5 issues identified, with a third issue being partially hallucinated. It incorrectly claims the receipt is missing supplier name and invoice number when both are clearly present in the extracted data. The response correctly identifies issues related to mileage documentation requirements and taxation rules. Overall, the response demonstrates poor accuracy in validating the receipt against the compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims the supplier business name is not showing the name of the vendor/merchant, but the extracted data clearly shows \"Uber Payments BV\" as the supplier name. This is a complete hallucination as the receipt does contain the supplier name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims there is no invoice number, but the extracted data shows \"9DF90217PG1693019\" as the transaction_id, which serves as a unique identifier. This is a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 20 - The third issue claims there is no item description, and while the line item description is somewhat generic (\"Payment to Uber Payments BV\"), it does indicate this is a payment to Uber, which is likely a taxi/transportation service. The issue is partially valid but overstated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The fourth issue correctly identifies that for mileage expenses, additional documentation is required including starting point, end point, number of km, etc. This aligns with the compliance rules for GoGlobal and is not hallucinated.\n\nISSUE_5_VALIDATION_SCORE: 100 - The fifth issue correctly states that all expenses are subject to taxation review based on actual amounts, which matches the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims supplier business name is missing when \"Uber Payments BV\" is clearly present\n2. Falsely claims invoice number is missing when transaction_id \"9DF90217PG1693019\" is present\n3. Overstates the issue with item description - while generic, it does indicate payment to Uber (likely for transportation)\n\nSUMMARY: The AI response contains significant hallucinations in 2 of the 5 issues identified, with a third issue being partially hallucinated. It incorrectly claims the receipt is missing supplier name and invoice number when both are clearly present in the extracted data. The response correctly identifies issues related to mileage documentation requirements and taxation rules. Overall, the response demonstrates poor accuracy in validating the receipt against the compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.4,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims the supplier business name is not showing the name of the vendor/merchant, but the extracted data clearly shows \"Uber Payments BV\" as the supplier name. This is a complete hallucination as the receipt does contain the supplier name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The second issue claims there is no invoice number, but the extracted data shows \"9DF90217PG1693019\" as the transaction_id, which serves as a unique identifier. This is a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 20 - The third issue claims there is no item description, and while the line item description is somewhat generic (\"Payment to Uber Payments BV\"), it does indicate this is a payment to Uber, which is likely a taxi/transportation service. The issue is partially valid but overstated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The fourth issue correctly identifies that for mileage expenses, additional documentation is required including starting point, end point, number of km, etc. This aligns with the compliance rules for GoGlobal and is not hallucinated.\n\nISSUE_5_VALIDATION_SCORE: 100 - The fifth issue correctly states that all expenses are subject to taxation review based on actual amounts, which matches the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 40\n\nISSUES:\n1. Falsely claims supplier business name is missing when \"Uber Payments BV\" is clearly present\n2. Falsely claims invoice number is missing when transaction_id \"9DF90217PG1693019\" is present\n3. Overstates the issue with item description - while generic, it does indicate payment to Uber (likely for transportation)\n\nSUMMARY: The AI response contains significant hallucinations in 2 of the 5 issues identified, with a third issue being partially hallucinated. It incorrectly claims the receipt is missing supplier name and invoice number when both are clearly present in the extracted data. The response correctly identifies issues related to mileage documentation requirements and taxation rules. Overall, the response demonstrates poor accuracy in validating the receipt against the compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information about the supplier business name, invoice number, and item description being missing from the receipt is present in the source data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements described in the response appear to be accurate and consistent with the provided compliance policy information.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates mentioned in the response are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The response does not present any assumptions as facts. It accurately describes the issues and recommendations based on the information provided.\n\nISSUE_5_VALIDATION_SCORE: 100 - The response does not contain any additional fabricated information beyond what is present in the source data.\n\nCONFIDENCE: 100\nISSUES: None detected\nSUMMARY: The AI response appears to be free from hallucinations or fabricated information. All the details provided are consistent with the source data, and the compliance rules and requirements described are accurate based on the provided compliance policy information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.2,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue claims \"the supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.\" This is a hallucination because the extracted data clearly shows \"Uber Payments BV\" as the supplier name, which is the vendor that provided the service.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue claims \"The receipt does not contain a unique invoice or receipt number for identification.\" This is hallucinated because the extracted data shows a clear transaction ID: \"9DF90217PG1693019\" which serves as a unique identifier.\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue claims \"The receipt does not specify the goods or services purchased with a clear description.\" This is hallucinated because the extracted data includes \"Payment to Uber Payments BV\" as a line item description, which indicates a transportation service.\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue about mileage documentation requirements is mostly accurate according to the compliance rules for GoGlobal and mileage expenses. However, this receipt appears to be for an Uber ride, not a personal mileage claim, so applying mileage documentation requirements is incorrect.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue about tax implications is accurate and matches the compliance rules for GoGlobal which state \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"\n\nCONFIDENCE: 20\n\nISSUES:\n1. Falsely claims the supplier name is not shown when \"Uber Payments BV\" is clearly present\n2. Falsely claims no invoice/receipt number when \"9DF90217PG1693019\" is present\n3. Falsely claims no description of goods/services when \"Payment to Uber Payments BV\" is present\n4. Incorrectly applies mileage documentation requirements to what appears to be an Uber ride receipt\n\nSUMMARY: The AI response contains significant hallucinations in 3 of the 5 issues it identified. It incorrectly claims the receipt is missing supplier name, invoice number, and service description when all three elements are clearly present in the extracted data. It also inappropriately applies mileage documentation requirements to what appears to be an Uber ride receipt. Only the tax implications issue is accurately represented."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue claims the supplier business name is not showing the name of the vendor/merchant, but the extracted data clearly shows \"Uber Payments BV\" as the supplier name. This is a complete hallucination as the receipt does contain the supplier name.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The second issue claims there is no invoice number, but the extracted data shows \"9DF90217PG1693019\" as the transaction_id, which serves as a unique identifier. This is a hallucination.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The third issue claims there is no item description, and while the line item description is somewhat generic (\"Payment to Uber Payments BV\"), it does indicate this is a payment to Uber, which is likely a taxi/transportation service. The issue is partially valid but overstated.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The fourth issue correctly identifies that for mileage expenses, additional documentation is required including starting point, end point, number of km, etc. This aligns with the compliance rules for GoGlobal and is not hallucinated.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The fifth issue correctly states that all expenses are subject to taxation review based on actual amounts, which matches the GoGlobal compliance rule that \"Per diems will not be used, instead all expenses will be processed via receipts and invoices. All expenses are subject to taxation review based on actual amounts.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. The AI contradicts itself by saying the supplier business name is present but doesn't show the vendor/merchant name., 2. The AI incorrectly claims there's no unique invoice/receipt number when the transaction_id is clearly present., 3. The AI doesn't acknowledge that this appears to be an Uber receipt which is likely for transportation services, though the description is minimal.",
+    "Address issues in knowledge base adherence: 1. Issue 1 incorrectly states the supplier name is missing when it is present in the extracted data., 2. The AI did not consider whether the transaction_id could serve as an invoice number equivalent., 3. The AI did not address whether this Uber receipt is for a taxi/ride service or some other service, which affects compliance requirements.",
+    "Address issues in compliance accuracy: 1. The first issue incorrectly claims the supplier business name is missing when \"Uber Payments BV\" is clearly identified in the extracted data., 2. The assessment doesn't consider that the transaction ID might qualify as an invoice number., 3. The assessment doesn't acknowledge that while the description is vague, there is some description present., 4. The assessment doesn't recognize that this appears to be an Uber ride receipt (taxi/transportation service) rather than a mileage expense, which would have different documentation requirements.",
+    "Address issues in issue categorization: 1. Issue #1 incorrectly states the supplier name is missing when it's present in the extracted data, 2. Issue #3 doesn't fully acknowledge that some description exists but lacks specificity, 3. The system didn't identify the issue that the receipt appears to be just a payment notification rather than a complete receipt with all required details",
+    "Address issues in recommendation validity: - Issue 1's recommendation could be more specific about what additional merchant information is needed, - Some recommendations could provide more guidance on how to obtain the required documentation from Uber specifically",
+    "Improve hallucination detection: The AI response contains significant hallucinations in 2 of the 5 issues identified, with a third issue being partially hallucinated. It incorrectly claims the receipt is missing supplier name and invoice number when both are clearly present in the extracted data. The response correctly identifies issues related to mileage documentation requirements and taxation rules. Overall, the response demonstrates poor accuracy in validating the receipt against the compliance rules.",
+    "Address issues in hallucination detection: 1. Falsely claims supplier business name is missing when \"Uber Payments BV\" is clearly present, 2. Falsely claims invoice number is missing when transaction_id \"9DF90217PG1693019\" is present, 3. Overstates the issue with item description - while generic, it does indicate payment to Uber (likely for transportation)"
+  ],
+  "timestamp": "2025-10-02T11:40:48.859Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 82432,
+    "timing": {
+      "validation_start_time": "2025-10-02T11:39:26.427Z",
+      "validation_end_time": "2025-10-02T11:40:48.859Z",
+      "total_validation_time_seconds": "82.4",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T11:39:26.427Z",
+          "end_time": "2025-10-02T11:40:48.859Z",
+          "duration_seconds": "82.4",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "82.4",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.36",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The supplier business name is present, but the receipt does not show the name of the vendor/merchant that provided the goods or services as required.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 49.33,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 80,
+        "compliance_accuracy": 50,
+        "issue_categorization": 60,
+        "recommendation_validity": 70,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "The receipt does not contain a unique invoice or receipt number for identification.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 51.56,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 70,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The receipt does not specify the goods or services purchased with a clear description.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 58.89,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 50,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 60,
+        "issue_categorization": 70,
+        "recommendation_validity": 85,
+        "hallucination_detection": 20
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "The receipt does not include the required additional information such as the date, starting point, end point, number of km, and detail the business purpose for mileage expenses.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 97.67,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 95,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "All expenses are subject to taxation review based on actual amounts.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

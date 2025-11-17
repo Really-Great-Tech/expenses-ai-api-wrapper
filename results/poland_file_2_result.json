@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\poland_file_2.pdf_full_test_new_dataset_4_poland_file_2.pdf",
+    "image_path": "uploads/test_mvp_1/job_1759402229188_674967106_poland_file_2.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-09-10T11:25:48.591Z",
+    "timestamp": "2025-10-02T11:00:31.920Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
@@ -12,7 +12,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "The text and edges are sharp with no visible blur.",
+      "description": "The text is sharp and clearly defined with no visible blur.",
       "recommendation": "No action needed."
     },
     "contrast_assessment": {
@@ -28,7 +28,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots are present that obscure text or important areas.",
+      "description": "No glare or bright spots are present that obscure text or important document areas.",
       "recommendation": "No action needed."
     },
     "water_stains": {
@@ -36,7 +36,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations are detected.",
+      "description": "No water stains or discoloration affecting document readability.",
       "recommendation": "No action needed."
     },
     "tears_or_folds": {
@@ -44,7 +44,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No tears, creases, folds, or wrinkles are present.",
+      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
@@ -68,7 +68,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements obscure the document content.",
+      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
       "recommendation": "No action needed."
     },
     "overall_quality_score": 10
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, and item description. The presence of these fields, along with the payment confirmation, indicates that this is an expense document.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, and item description. The presence of these fields, along with the clear indication of payment completion, confirms it as an expense document.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -100,21 +100,21 @@
         "paymentMethod"
       ],
       "total_fields_found": 5,
-      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including supplier (GMINA MIEJSKA KRAKOW), transaction amount (34.00 PLN), transaction date (2025-05-09), invoice receipt number (00000706), and item description (parking for 6g48min). This meets the criteria for an expense document."
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including supplier (GMINA PIŁA-URZĄD KOMUNALNY), transaction amount (34.00 PLN), transaction date (2025-05-09), invoice/receipt number (UN6462M), and item description/line items (Biusar Płatnego Parkowania). This meets the criteria for an expense document."
     }
   },
   "extraction": {
-    "supplier_name": "GMINA MIEJSKA KRAKOW",
-    "supplier_address": null,
-    "supplier_vat_number": "676-101-37-17",
+    "supplier_name": "GMINA PIŁA-URZĄD KOMUNALNY",
+    "supplier_address": "KIPS 676-101 37-17",
+    "supplier_vat_number": null,
     "supplier_phone": null,
     "supplier_email": null,
     "supplier_website": null,
     "customer_name": null,
     "customer_address": null,
     "invoice_number": null,
-    "receipt_number": "00000706",
-    "transaction_reference": "WN6462M",
+    "receipt_number": "UN6462M",
+    "transaction_reference": null,
     "currency": "PLN",
     "total_amount": 34,
     "subtotal": null,
@@ -128,20 +128,25 @@
     "card_last_four": null,
     "line_items": [
       {
-        "description": "Parking Fee",
+        "description": "Biusar Płatnego Parkowania",
         "quantity": 1,
         "unit_price": 34,
         "total_price": 34,
         "category": "Parking"
       }
     ],
-    "receipt_type": "Parking Receipt",
+    "receipt_type": "Parking Ticket",
     "document_type": "BILET KONTROLNY",
-    "location_city": "Krakow",
-    "location_country": "Poland",
-    "special_notes": "WAZNY WYLACZNIE W PODSTREFIE B",
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": "WAŻNY WYŁĄCZNIE W PODSTREFIE B",
     "terms_conditions": null,
-    "business_registration_number": null
+    "business_registration_number": null,
+    "parking_machine_number": "00000706",
+    "parking_duration": "6g00min",
+    "valid_until": "2025-05-09 16:48"
   },
   "compliance": {
     "validation_result": {
@@ -150,47 +155,47 @@
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_address",
-          "description": "Required supplier address is missing or incomplete",
-          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "field": "supplier_vat_number",
+          "description": "The VAT number is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
           "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "customer_name",
-          "description": "Missing mandatory customer name on the receipt",
-          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "description": "The customer name is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
           "knowledge_base_reference": "The worker's name should generally be used on invoices and supporting documents",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "invoice_number",
-          "description": "Invoice number is not clearly visible or missing",
-          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "description": "The invoice number is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
           "knowledge_base_reference": "Receipt must show the date when the purchase/transaction occurred",
           "confidence_score": 0.9
         },
         {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "Receipts and invoices must be submitted with expenses. Online copies are sufficient. Documents must be actual tax receipts or invoices; booking confirmations will not suffice",
-          "recommendation": "Please submit the actual tax receipt or invoice for this expense",
-          "knowledge_base_reference": "Receipts and invoices must be submitted with expenses. Online copies are sufficient. Documents must be actual tax receipts or invoices; booking confirmations will not suffice",
-          "confidence_score": 0.9
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "payment_method",
+          "description": "The payment method is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must display the final cost including all taxes and fees",
+          "confidence_score": 0.85
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
           "field": "additional_documentation",
-          "description": "Expenses need to be submitted within 4 months",
-          "recommendation": "Please ensure that expenses are submitted within the required 4-month timeframe",
-          "knowledge_base_reference": "Expenses need to be submitted within 4 months",
-          "confidence_score": 0.9
+          "description": "Additional documentation is required for parking expenses.",
+          "recommendation": "Please provide a logbook with start/end (date and time), reason for travel, location, and approval.",
+          "knowledge_base_reference": "For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval. This has to be documented in the vehicle mileage log kept by the employee",
+          "confidence_score": 0.95
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is missing several mandatory fields and requires additional documentation to be compliant. Specifically, the supplier address, customer name, and invoice number are missing. Additionally, the receipt must be submitted along with the expense and within the 4-month timeframe as per GoGlobal's requirements."
+      "compliance_summary": "The receipt is missing several mandatory fields including the VAT number, customer name, invoice number, and payment method. Additionally, a logbook is required for parking expenses to be compliant."
     },
     "technical_details": {
       "content_type": "expense_receipt",
@@ -202,169 +207,73 @@
   },
   "citations": {
     "citations": {
-      "parkometer_number": {
+      "post_id": {
         "field_citation": {
-          "source_text": "Parkometr nr:",
-          "confidence": 0.95,
+          "source_text": "Parkomat nr:",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
+          "context": "Parkomat nr: 00000706",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "00000706",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
+          "context": "Parkomat nr: 00000706",
           "match_type": "exact"
         }
       },
-      "amount_paid": {
+      "valid_until": {
         "field_citation": {
-          "source_text": "OPEATA:",
+          "source_text": "POSTÓJ DO",
           "confidence": 0.9,
           "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
-          "match_type": "fuzzy"
+          "context": "POSTÓJ DO 16:48 2025-05-09",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "16:48 2025-05-09",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "POSTÓJ DO 16:48 2025-05-09",
+          "match_type": "exact"
+        }
+      },
+      "payment_amount": {
+        "field_citation": {
+          "source_text": "OPŁATA:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "OPŁATA: 34.00PLN",
+          "match_type": "exact"
         },
         "value_citation": {
           "source_text": "34.00PLN",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
+          "context": "OPŁATA: 34.00PLN",
           "match_type": "exact"
         }
       },
-      "duration_paid": {
+      "duration": {
         "field_citation": {
           "source_text": "Opłacono za:",
-          "confidence": 0.95,
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
+          "context": "Opłacono za: 6g00min",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "6g48min",
-          "confidence": 0.95,
+          "source_text": "6g00min",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
+          "context": "Opłacono za: 6g00min",
           "match_type": "exact"
         }
       },
       "purchase_date": {
         "field_citation": {
           "source_text": "Data zakupu:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Data zakupu: 2025-05-09 08:55",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2025-05-09 08:55",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Data zakupu: 2025-05-09 08:55",
-          "match_type": "exact"
-        }
-      },
-      "Parking Area": {
-        "field_citation": {
-          "source_text": "Obszar Platnego Parkowania",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "GMINA MIEJSKA KRAKOW - 20MK\nNIP: 676-101-37-17\nObszar Platnego Parkowania",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "B",
-          "confidence": 0.8,
-          "source_location": "markdown",
-          "context": "BILET KONTROLNY\nWAZNY WYLACZNIE W PODSTREFIE\nB",
-          "match_type": "exact"
-        }
-      },
-      "Vehicle Plate Number": {
-        "field_citation": {
-          "source_text": "WN6462M",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "WN6462M",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "WN6462M",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "WN6462M",
-          "match_type": "exact"
-        }
-      },
-      "Valid Until": {
-        "field_citation": {
-          "source_text": "POST6J DO",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "POST6J DO\n16:48 2025-05-09",
-          "match_type": "fuzzy"
-        },
-        "value_citation": {
-          "source_text": "16:48 2025-05-09",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "POST6J DO\n16:48 2025-05-09",
-          "match_type": "exact"
-        }
-      },
-      "Parkometer Number": {
-        "field_citation": {
-          "source_text": "Parkometr nr:",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "00000706",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
-          "match_type": "exact"
-        }
-      },
-      "Amount Paid": {
-        "field_citation": {
-          "source_text": "OPEATA:",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
-          "match_type": "fuzzy"
-        },
-        "value_citation": {
-          "source_text": "34.00PLN",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
-          "match_type": "exact"
-        }
-      },
-      "Paid For Duration": {
-        "field_citation": {
-          "source_text": "Opłacono za:",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "6g48min",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
-          "match_type": "exact"
-        }
-      },
-      "Purchase Date": {
-        "field_citation": {
-          "source_text": "Data zakupu:",
           "confidence": 0.9,
           "source_location": "markdown",
           "context": "Data zakupu: 2025-05-09 08:55",
@@ -372,112 +281,80 @@
         },
         "value_citation": {
           "source_text": "2025-05-09 08:55",
-          "confidence": 0.9,
+          "confidence": 1,
           "source_location": "markdown",
           "context": "Data zakupu: 2025-05-09 08:55",
           "match_type": "exact"
         }
       },
-      "Obszar Platnego Parkowania": {
+      "postój_do": {
         "field_citation": {
-          "source_text": "Obszar Platnego Parkowania",
+          "source_text": "POSTÓJ DO",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "GMINA MIEJSKA KRAKOW - 20MK\nNIP: 676-101-37-17\nObszar Platnego Parkowania",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "B",
-          "confidence": 0.85,
-          "source_location": "markdown",
-          "context": "BILET KONTROLNY\nWAZNY WYLACZNIE W PODSTREFIE\nB",
-          "match_type": "contextual"
-        }
-      },
-      "Bilet Kontrolny": {
-        "field_citation": {
-          "source_text": "BILET KONTROLNY",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "BILET KONTROLNY\nWAZNY WYLACZNIE W PODSTREFIE\nB",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "WN6462M",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "WN6462M\nPOST6J DO\n16:48 2025-05-09",
-          "match_type": "exact"
-        }
-      },
-      "Postoj Do": {
-        "field_citation": {
-          "source_text": "POST6J DO",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "WN6462M\nPOST6J DO\n16:48 2025-05-09",
+          "context": "POSTÓJ DO\n16:48 2025-05-09",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "16:48 2025-05-09",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "WN6462M\nPOST6J DO\n16:48 2025-05-09",
+          "context": "POSTÓJ DO\n16:48 2025-05-09",
           "match_type": "exact"
         }
       },
-      "Parkometr Nr": {
+      "parkomat_nr": {
         "field_citation": {
-          "source_text": "Parkometr nr:",
-          "confidence": 0.9,
+          "source_text": "Parkomat nr:",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
+          "context": "Parkomat nr: 00000706",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "00000706",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
+          "context": "Parkomat nr: 00000706",
           "match_type": "exact"
         }
       },
-      "Oplata": {
+      "opłata": {
         "field_citation": {
-          "source_text": "OPEATA:",
-          "confidence": 0.9,
+          "source_text": "OPŁATA:",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
+          "context": "OPŁATA: 34.00PLN",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "34.00PLN",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
+          "context": "OPŁATA: 34.00PLN",
           "match_type": "exact"
         }
       },
-      "Oplacono Za": {
+      "opłacono_za": {
         "field_citation": {
           "source_text": "Opłacono za:",
-          "confidence": 0.9,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
+          "context": "Opłacono za: 6g00min",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "6g48min",
+          "source_text": "6g00min",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
+          "context": "Opłacono za: 6g00min",
           "match_type": "exact"
         }
       },
-      "Data Zakupu": {
+      "data_zakupu": {
         "field_citation": {
           "source_text": "Data zakupu:",
-          "confidence": 0.9,
+          "confidence": 0.95,
           "source_location": "markdown",
           "context": "Data zakupu: 2025-05-09 08:55",
           "match_type": "exact"
@@ -485,70 +362,6 @@
         "value_citation": {
           "source_text": "2025-05-09 08:55",
           "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Data zakupu: 2025-05-09 08:55",
-          "match_type": "exact"
-        }
-      },
-      "Parkometr nr": {
-        "field_citation": {
-          "source_text": "Parkometr nr:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "00000706",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Parkometr nr:\n00000706",
-          "match_type": "exact"
-        }
-      },
-      "OPEATA": {
-        "field_citation": {
-          "source_text": "OPEATA:",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "34.00PLN",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "OPEATA:\n34.00PLN",
-          "match_type": "exact"
-        }
-      },
-      "Opłacono za": {
-        "field_citation": {
-          "source_text": "Opłacono za:",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "6g48min",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Opłacono za: 6g48min",
-          "match_type": "exact"
-        }
-      },
-      "Data zakupu": {
-        "field_citation": {
-          "source_text": "Data zakupu:",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Data zakupu: 2025-05-09 08:55",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2025-05-09 08:55",
-          "confidence": 0.9,
           "source_location": "markdown",
           "context": "Data zakupu: 2025-05-09 08:55",
           "match_type": "exact"
@@ -556,72 +369,72 @@
       }
     },
     "metadata": {
-      "total_fields_analyzed": 22,
-      "fields_with_field_citations": 22,
-      "fields_with_value_citations": 22,
-      "average_confidence": 0.9122727272727272
+      "total_fields_analyzed": 25,
+      "fields_with_field_citations": 25,
+      "fields_with_value_citations": 25,
+      "average_confidence": 0.948
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "8.5",
-      "data_extraction_seconds": "3.5",
-      "image_quality_assessment_seconds": "5.4",
-      "file_classification_seconds": "5.4",
-      "issue_detection_seconds": "8.7",
-      "citation_generation_seconds": "26.8",
-      "llm_validation_seconds": "64.8"
+      "markdown_extraction_seconds": "14.4",
+      "file_classification_seconds": "4.0",
+      "data_extraction_seconds": "4.9",
+      "image_quality_assessment_seconds": "5.5",
+      "issue_detection_seconds": "6.5",
+      "citation_generation_seconds": "22.5",
+      "llm_validation_seconds": "73.4"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-09-10T11:25:34.659Z",
-        "end_time": "2025-09-10T11:25:43.161Z",
-        "duration_seconds": "8.5",
-        "document_reader_used": "textract"
+        "start_time": "2025-10-02T11:00:12.039Z",
+        "end_time": "2025-10-02T11:00:26.402Z",
+        "duration_seconds": "14.4",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-02T11:00:26.406Z",
+        "end_time": "2025-10-02T11:00:30.395Z",
+        "duration_seconds": "4.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-09-10T11:25:43.165Z",
-        "end_time": "2025-09-10T11:25:46.623Z",
-        "duration_seconds": "3.5",
+        "start_time": "2025-10-02T11:00:26.408Z",
+        "end_time": "2025-10-02T11:00:31.297Z",
+        "duration_seconds": "4.9",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-09-10T11:25:43.162Z",
-        "end_time": "2025-09-10T11:25:48.591Z",
-        "duration_seconds": "5.4",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "file_classification": {
-        "start_time": "2025-09-10T11:25:43.164Z",
-        "end_time": "2025-09-10T11:25:48.597Z",
-        "duration_seconds": "5.4",
+        "start_time": "2025-10-02T11:00:26.404Z",
+        "end_time": "2025-10-02T11:00:31.920Z",
+        "duration_seconds": "5.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-09-10T11:25:48.598Z",
-        "end_time": "2025-09-10T11:25:57.259Z",
-        "duration_seconds": "8.7",
+        "start_time": "2025-10-02T11:00:31.922Z",
+        "end_time": "2025-10-02T11:00:38.426Z",
+        "duration_seconds": "6.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-09-10T11:25:48.601Z",
-        "end_time": "2025-09-10T11:26:15.361Z",
-        "duration_seconds": "26.8",
+        "start_time": "2025-10-02T11:00:31.924Z",
+        "end_time": "2025-10-02T11:00:54.404Z",
+        "duration_seconds": "22.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "llm_validation": {
-        "start_time": "2025-09-10T11:26:15.362Z",
-        "end_time": "2025-09-10T11:27:20.171Z",
-        "duration_seconds": "64.8",
+        "start_time": "2025-10-02T11:00:54.406Z",
+        "end_time": "2025-10-02T11:02:07.806Z",
+        "duration_seconds": "73.4",
         "judge_models_used": [
           "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
           "eu.anthropic.claude-3-haiku-20240307-v1:0",
-          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
         ],
         "execution_mode": "parallel",
         "parallel_metrics": {},
@@ -629,18 +442,18 @@
         "parallel_enabled": true
       }
     },
-    "total_processing_time_seconds": "105.5",
+    "total_processing_time_seconds": "115.8",
     "performance_metrics": {
-      "parallel_group_1_seconds": "5.4",
-      "parallel_group_2_seconds": "26.8",
-      "total_parallel_time_seconds": "32.2"
+      "parallel_group_1_seconds": "5.5",
+      "parallel_group_2_seconds": "22.5",
+      "total_parallel_time_seconds": "28.0"
     }
   },
   "metadata": {
     "filename": "poland_file_2.pdf",
-    "processing_time": 105519,
+    "processing_time": 115772,
     "country": "Poland",
     "icp": "GoGlobal",
-    "processed_at": "2025-09-10T11:27:20.178Z"
+    "processed_at": "2025-10-02T11:02:07.812Z"
   }
 }

@@ -1,0 +1,11 @@
+# Belgium Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on Belgian expense files and found excellent overall performance with comprehensive compliance rule application.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated exceptional factual accuracy in identifying missing mandatory fields, correctly spotting null values for invoice numbers, customer addresses, customer VAT numbers, and itemized descriptions. It properly applied Belgian invoice requirements, accurately citing rules like "Invoices must include the identity of the supplier/trade" and "Invoices must include the purchaser details." The agent also correctly identified procedural requirements, accurately referencing "Business purpose must be established and clearly documented for all expenses" and "Employee's line manager approval required before payroll cutoff date." The agent showed strong understanding of the distinction between supplier-fixable issues versus employee follow-up actions.
+
+**Weaknesses Found by Judges:** The primary weakness was minor gaps in contextual awareness - the agent didn't flag that the receipt appeared to be for a membership fee which might require additional business purpose scrutiny, and missed that the date of issue (2025-06-05) was in the future, potentially indicating data entry errors. Some judges noted the agent could provide more specific guidance about exact requirements and processes rather than generic "address with supplier" recommendations, particularly regarding the format for providing missing information.
+
+**Overall Assessment:** The Belgian expense validation agent achieved excellent performance with a 94% reliability score, demonstrating sophisticated understanding of Belgian invoice requirements and procedural compliance rules. Judges found minimal hallucinations, perfect knowledge base adherence, and highly accurate issue categorization, with only minor improvements needed in contextual awareness and recommendation specificity.

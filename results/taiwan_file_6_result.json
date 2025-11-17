@@ -1,0 +1,552 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1758890898540_960543246_taiwan_file_6.jpg",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-09-26T12:51:24.039Z",
+    "quality_score": 80,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are slightly blurred, indicating moderate camera shake or out-of-focus issues.",
+      "recommendation": "Retake the image ensuring the camera is steady and the document is in focus."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.95,
+      "description": "The contrast between text and background is excellent, with clear differentiation.",
+      "recommendation": "No action needed; contrast is sufficient for OCR."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions are detected in the image.",
+      "recommendation": "No action needed; glare is not an issue."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration are present in the image.",
+      "recommendation": "No action needed; document is free of water damage."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds are visible in the image.",
+      "recommendation": "No action needed; document is physically intact."
+    },
+    "cut_off_detection": {
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the document's bottom edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "All expected sections of the receipt are present in the image.",
+      "recommendation": "No action needed; all content is captured."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0,
+      "description": "No obstructions such as fingers, shadows, or objects are present.",
+      "recommendation": "No action needed; document is unobstructed."
+    },
+    "overall_quality_score": 8
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "Japanese",
+    "language_confidence": 95,
+    "document_location": "Japan",
+    "expected_location": "Taiwan",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location (Japan) does not match the expected location (Taiwan).",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. The fields found include 'supplier', 'transactionAmount', 'transactionDate', 'invoiceReceiptNumber', 'paymentMethod', and 'itemDescriptionLineItems'. The document is a credit card sales receipt from a coffee shop, indicating a meal expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "consumerRecipient",
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "Six out of eight schema fields were found, confirming this is an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "サルタヒコーヒーマルノウチオアゾユウバシア",
+    "supplier_phone": "03-6256-0717",
+    "terminal_number": "84029 620-18719",
+    "transaction_date": "2025-05-19",
+    "transaction_time": "09:49:12",
+    "customer_card_number": "415442******5666",
+    "card_company": "ビザ/マスター",
+    "authorization_code": "0515575",
+    "transaction_number": "0159671",
+    "transaction_details": {
+      "transaction_type": "売上",
+      "receipt_number": "05306",
+      "expiration_date": "XX/XX",
+      "payment_type": "一括",
+      "handling_code": "110",
+      "product_code": "310"
+    },
+    "amount": 1372,
+    "currency": "JPY",
+    "payment_method": "IC",
+    "arc": "00",
+    "atc": "00471",
+    "aid": "A0000000031010",
+    "card_brand": "VISA",
+    "application_label": "Visa Debit",
+    "sales_clerk": null,
+    "customer_name": null,
+    "customer_address": null,
+    "customer_phone": null,
+    "customer_email": null,
+    "line_items": [],
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "receipt_type": "クレジット売上票",
+    "document_type": "Receipt",
+    "special_notes": "ご利用ありがとうございました\nまたのご来店をお待ちしております",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Date of the expense",
+          "description": "The date of the expense is in the future (2025-05-19). It should be a past date.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must show the date when the expense was incurred",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Expense type/Description",
+          "description": "The receipt does not specify the type of expense or detailed description of goods/services purchased.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must specify the type of expense or detailed description of goods/services purchased",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "Total amount of the expense",
+          "description": "The total amount of the expense is listed in JPY, but the receipt should be in TWD for Taiwan.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt must display the total cost of the expense",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "Restaurant (meal allowance)",
+          "description": "The expense type is meals, and the amount is 1372 JPY. This needs to be converted to TWD and checked against the NT 3,000 monthly limit.",
+          "recommendation": "Convert the amount to TWD and ensure it does not exceed the NT 3,000 monthly limit. Amounts above this limit will be subject to tax.",
+          "knowledge_base_reference": "The upper tax exempted limit of monthly meal allowance per person (including Overtime meals) is NT 3,000. Amounts above this limit will be subject to tax",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "Additional documentation requirements",
+          "description": "The receipt does not include clear and legible copies, itemized reports, or properly labeled receipts as required.",
+          "recommendation": "Submit clear and legible copies of receipts, itemized reports, and properly labeled receipts to the Client line manager for approval.",
+          "knowledge_base_reference": "Submit expense claims with clear and legible copies of receipts to Client line manager for approval preferably within the same month of the expense",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including future date, missing expense description, incorrect currency, potential gross-up for meal allowance, and missing additional documentation. These need to be addressed to ensure compliance with Taiwan's regulations and GoGlobal's ICP requirements."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Taiwan",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "merchant_name": {
+        "field_citation": {
+          "source_text": "加盟店名",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "加盟店名 サルタヒコーヒーマルノウチオアゾユウバシア",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "サルタヒコーヒーマルノウチオアゾユウバシア",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "加盟店名 サルタヒコーヒーマルノウチオアゾユウバシア",
+          "match_type": "exact"
+        }
+      },
+      "merchant_phone": {
+        "field_citation": {
+          "source_text": "MERCHANT",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "MERCHANT 03-6256-0717",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "03-6256-0717",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "MERCHANT 03-6256-0717",
+          "match_type": "exact"
+        }
+      },
+      "terminal_number": {
+        "field_citation": {
+          "source_text": "端末番号",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "端末番号 TERM No 84029 620-18719",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "84029 620-18719",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "端末番号 TERM No 84029 620-18719",
+          "match_type": "exact"
+        }
+      },
+      "transaction_date": {
+        "field_citation": {
+          "source_text": "ご利用日",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ご利用日 DATE 2025/05/19 09:49:12",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "2025/05/19 09:49:12",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ご利用日 DATE 2025/05/19 09:49:12",
+          "match_type": "exact"
+        }
+      },
+      "card_number": {
+        "field_citation": {
+          "source_text": "会員番号",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "会員番号 415442******5666 IC",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "415442******5666",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "会員番号 415442******5666 IC",
+          "match_type": "exact"
+        }
+      },
+      "card_company": {
+        "field_citation": {
+          "source_text": "カード会社",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "カード会社 CARD COMPANY ビザ/マスター",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ビザ/マスター",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "カード会社 CARD COMPANY ビザ/マスター",
+          "match_type": "exact"
+        }
+      },
+      "approval_code": {
+        "field_citation": {
+          "source_text": "承認番号",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "承認番号 APP CODE 0515575",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0515575",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "承認番号 APP CODE 0515575",
+          "match_type": "exact"
+        }
+      },
+      "transaction_number": {
+        "field_citation": {
+          "source_text": "処理通番",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "処理通番 TRAN No 0159671",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0159671",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "処理通番 TRAN No 0159671",
+          "match_type": "exact"
+        }
+      },
+      "transaction_amount": {
+        "field_citation": {
+          "source_text": "金　額",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "金　額 ¥1,372",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1,372",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "金　額 ¥1,372",
+          "match_type": "exact"
+        }
+      },
+      "amount": {
+        "field_citation": {
+          "source_text": "金　額",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "金　額 ¥1,372",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "¥1,372",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "金　額 ¥1,372",
+          "match_type": "exact"
+        }
+      },
+      "transaction_type": {
+        "field_citation": {
+          "source_text": "取引内容",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "取引内容 売上",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "売上",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "取引内容 売上",
+          "match_type": "exact"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "伝票番号",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "伝票番号 05306",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "05306",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "伝票番号 05306",
+          "match_type": "exact"
+        }
+      },
+      "expiration_date": {
+        "field_citation": {
+          "source_text": "有効期限",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "有効期限 XX/XX",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "XX/XX",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "有効期限 XX/XX",
+          "match_type": "exact"
+        }
+      },
+      "payment_type": {
+        "field_citation": {
+          "source_text": "支払区分",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "支払区分 一括",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "一括",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "支払区分 一括",
+          "match_type": "exact"
+        }
+      },
+      "handling_type": {
+        "field_citation": {
+          "source_text": "取扱区分",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "取扱区分 110",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "110",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "取扱区分 110",
+          "match_type": "exact"
+        }
+      },
+      "product_type": {
+        "field_citation": {
+          "source_text": "商品区分",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "商品区分 310",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "310",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "商品区分 310",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 53,
+      "fields_with_field_citations": 53,
+      "fields_with_value_citations": 53,
+      "average_confidence": 0.9635849056603774
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "23.3",
+      "file_classification_seconds": "3.7",
+      "data_extraction_seconds": "4.5",
+      "image_quality_assessment_seconds": "6.6",
+      "issue_detection_seconds": "12.3",
+      "citation_generation_seconds": "54.2",
+      "llm_validation_seconds": "68.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-09-26T12:50:54.158Z",
+        "end_time": "2025-09-26T12:51:17.411Z",
+        "duration_seconds": "23.3",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-09-26T12:51:17.414Z",
+        "end_time": "2025-09-26T12:51:21.114Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-09-26T12:51:17.416Z",
+        "end_time": "2025-09-26T12:51:21.898Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-09-26T12:51:17.412Z",
+        "end_time": "2025-09-26T12:51:24.039Z",
+        "duration_seconds": "6.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-09-26T12:51:24.040Z",
+        "end_time": "2025-09-26T12:51:36.307Z",
+        "duration_seconds": "12.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-09-26T12:51:24.043Z",
+        "end_time": "2025-09-26T12:52:18.277Z",
+        "duration_seconds": "54.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-09-26T12:52:18.278Z",
+        "end_time": "2025-09-26T12:53:26.781Z",
+        "duration_seconds": "68.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "152.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "6.6",
+      "parallel_group_2_seconds": "54.2",
+      "total_parallel_time_seconds": "60.9"
+    }
+  },
+  "metadata": {
+    "filename": "taiwan_file_6.jpg",
+    "processing_time": 152628,
+    "country": "Taiwan",
+    "icp": "GoGlobal",
+    "processed_at": "2025-09-26T12:53:26.786Z"
+  }
+}

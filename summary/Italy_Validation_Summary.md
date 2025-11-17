@@ -1,0 +1,11 @@
+# Italy Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance on Italian expense files and found strong performance with excellent application of complex meal expense regulations.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated excellent knowledge of Italy's detailed meal expense tax thresholds, correctly applying rules like "Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided)" and "International: €77.46 per day (no provision), €51.65 per day (meals or hotels provided), €25.82 per day (both provided)." It accurately identified currency mismatches (GBP receipts for Italian expenses) and properly applied the rule "Receipts should be submitted with the same currency and clear exchange rate." The agent also correctly identified privacy compliance issues, accurately citing "Any personal information not required for reimbursement purposes should be removed before it is submitted."
+
+**Weaknesses Found by Judges:** The main weakness was potential over-strictness in applying mandatory field requirements to simple cafe receipts - judges noted the agent flagged missing customer names, addresses, and invoice numbers on basic Starbucks receipts where "such information might not be required under Italian regulations for small transactions." The agent also missed highlighting that receipts were from different countries (UK Starbucks receipt for Italian expenses), focusing on currency conversion rather than the broader geographic compliance implications.
+
+**Overall Assessment:** The Italian expense validation agent achieved strong performance with a 92% reliability score, demonstrating sophisticated understanding of Italy's complex meal expense regulations and privacy requirements. Judges found minimal hallucinations and accurate compliance rule application, while noting the agent needs refinement in contextual understanding of receipt types and better recognition of cross-border expense scenarios beyond just currency issues.

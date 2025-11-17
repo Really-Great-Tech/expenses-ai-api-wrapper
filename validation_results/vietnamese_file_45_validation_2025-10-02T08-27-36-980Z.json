@@ -1,0 +1,554 @@
+{
+  "overall_score": 0.6805555555555555,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.7166666666666667,
+      "issues": [
+        "1. Issue 1 completely misapplies a rule for expenses below 200",
+        "000 VND to an expense that is above that amount.",
+        "2. Issue 1 incorrectly claims vendor details are missing when they are clearly present in the extracted data.",
+        "3. Issue 3 states the receipt lacks clear item details",
+        "but the extracted data shows detailed line items for beverages",
+        "though food items may be missing."
+      ],
+      "summary": "The AI response contains a significant factual error in Issue 1, misapplying a rule for expenses below 200,000 VND to an expense that is clearly above that threshold, and incorrectly claiming vendor details are missing when they are present. Issues 2 and 3 are better grounded in the compliance rules, though Issue 3 somewhat overstates the lack of detail in the receipt, as specific beverage items are listed. Overall, the response has moderate factual grounding but contains a critical error that undermines its reliability.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is factually incorrect and contradictory. The rule applies to expenses below 200,000 VND, but the expense is above that amount (3,144,900 VND). Additionally, the receipt actually does include vendor details (CÔNG TY TNHH CANTYNA with address and tax number).\n\nISSUE_2_VALIDATION_SCORE: 90 - The statement about meal expenses requiring gross-up is factually grounded in the compliance rules which state \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" This applies to restaurant expenses under GoGlobal ICP.\n\nISSUE_3_VALIDATION_SCORE: 80 - The claim that \"The receipt does not have clear details of each item\" is somewhat supported by the compliance rule stating \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" However, the receipt actually does list specific beverage items with quantities and prices, though it doesn't appear to include food items, only alcoholic beverages.\n\nCONFIDENCE: 55\n\nISSUES:\n1. Issue 1 completely misapplies a rule for expenses below 200,000 VND to an expense that is above that amount.\n2. Issue 1 incorrectly claims vendor details are missing when they are clearly present in the extracted data.\n3. Issue 3 states the receipt lacks clear item details, but the extracted data shows detailed line items for beverages, though food items may be missing.\n\nSUMMARY: The AI response contains a significant factual error in Issue 1, misapplying a rule for expenses below 200,000 VND to an expense that is clearly above that threshold, and incorrectly claiming vendor details are missing when they are present. Issues 2 and 3 are better grounded in the compliance rules, though Issue 3 somewhat overstates the lack of detail in the receipt, as specific beverage items are listed. Overall, the response has moderate factual grounding but contains a critical error that undermines its reliability.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.55,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is factually incorrect and contradictory. The rule applies to expenses below 200,000 VND, but the expense is above that amount (3,144,900 VND). Additionally, the receipt actually does include vendor details (CÔNG TY TNHH CANTYNA with address and tax number).\n\nISSUE_2_VALIDATION_SCORE: 90 - The statement about meal expenses requiring gross-up is factually grounded in the compliance rules which state \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" This applies to restaurant expenses under GoGlobal ICP.\n\nISSUE_3_VALIDATION_SCORE: 80 - The claim that \"The receipt does not have clear details of each item\" is somewhat supported by the compliance rule stating \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" However, the receipt actually does list specific beverage items with quantities and prices, though it doesn't appear to include food items, only alcoholic beverages.\n\nCONFIDENCE: 55\n\nISSUES:\n1. Issue 1 completely misapplies a rule for expenses below 200,000 VND to an expense that is above that amount.\n2. Issue 1 incorrectly claims vendor details are missing when they are clearly present in the extracted data.\n3. Issue 3 states the receipt lacks clear item details, but the extracted data shows detailed line items for beverages, though food items may be missing.\n\nSUMMARY: The AI response contains a significant factual error in Issue 1, misapplying a rule for expenses below 200,000 VND to an expense that is clearly above that threshold, and incorrectly claiming vendor details are missing when they are present. Issues 2 and 3 are better grounded in the compliance rules, though Issue 3 somewhat overstates the lack of detail in the receipt, as specific beverage items are listed. Overall, the response has moderate factual grounding but contains a critical error that undermines its reliability."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - All claims in the AI response can be traced back to the provided extracted data. No information appears to be fabricated or assumed beyond what's provided.\n\nISSUE_2_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names and details are accurately represented in the AI response.\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims, numerical values, dates, amounts, and entity details are accurately represented and can be traced back to the extracted information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly states \"The receipt does not include the required vendor details for expenses below 200,000 VND.\" This is factually incorrect for two reasons: 1) The rule applies to expenses below 200,000 VND, but this receipt is for 3,144,900 VND, so this rule doesn't apply, and 2) The extracted data shows complete vendor details (CÔNG TY TNHH CANTYNA, address, VAT number, etc.), so even if the rule did apply, the receipt would comply.\n\nISSUE_2_VALIDATION_SCORE: 90 - The claim about meal expenses requiring gross-up is factually grounded in the compliance rules which state \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" However, the receipt appears to be primarily for alcoholic beverages rather than meals, though the AI correctly identifies the need for gross-up according to policy.\n\nISSUE_3_VALIDATION_SCORE: 85 - The claim that \"the receipt does not have clear details of each item\" is partially accurate. While the receipt does list specific items (various alcoholic beverages), the compliance rule requiring \"a detailed list of each item as supporting document\" for unclear receipts is applicable. The extracted data shows primarily alcohol purchases without food items, which may require additional documentation to justify as meal expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. The first issue completely misapplies a compliance rule for expenses below 200,000 VND to a receipt that is well above that amount (3,144,900 VND).\n2. The AI mischaracterizes the receipt as primarily for \"meal expenses\" when the line items show it's almost exclusively for alcoholic beverages.\n3. The AI fails to note that this receipt appears to be for alcohol only, which may have separate compliance implications beyond just needing item details.\n\nSUMMARY: The AI response contains a significant factual error in applying a rule for small expenses to a large receipt, and mischaracterizes alcoholic beverages as \"meal expenses.\" While the need for gross-up and additional documentation is generally supported by the compliance rules, the specific application is flawed due to misidentifying the nature of the expenses."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is factually incorrect and contradictory. The rule applies to expenses below 200,000 VND, but the expense is above that amount (3,144,900 VND). Additionally, the receipt actually does include vendor details (CÔNG TY TNHH CANTYNA with address and tax number).",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The statement about meal expenses requiring gross-up is factually grounded in the compliance rules which state \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" This applies to restaurant expenses under GoGlobal ICP.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 80,
+          "judge_explanation": "The claim that \"The receipt does not have clear details of each item\" is somewhat supported by the compliance rule stating \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" However, the receipt actually does list specific beverage items with quantities and prices, though it doesn't appear to include food items, only alcoholic beverages.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.7000000000000001,
+      "issues": [
+        "1. Misapplication of the \"vendor details for expenses below 200",
+        "000 VND\" rule to an expense that is well above this threshold",
+        "2. The receipt is primarily for alcoholic beverages rather than meals",
+        "which may have different compliance implications",
+        "3. The AI did not identify that this receipt appears to be a VAT/Red invoice above 200",
+        "000 VND",
+        "which should include the Local Employer details (GOGLOBAL VIETNAM COMPANY LIMITED) according to the compliance rules",
+        "4. The AI failed to note that the receipt does contain the required customer details for GoGlobal Vietnam"
+      ],
+      "summary": "The AI response contains a significant error in applying a rule for expenses below 200,000 VND to a receipt that is clearly above this threshold (3,144,900 VND). While it correctly identified the need for gross-up and additional documentation, it missed that this appears to be a VAT/Red invoice that should include specific employer details. The receipt actually does contain the required customer details for GoGlobal Vietnam, which the AI failed to acknowledge. The response would be more accurate if it focused on the alcoholic beverage nature of the expenses rather than treating it as a generic meal receipt.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly identified an issue with \"vendor details for expenses below 200,000 VND.\" This rule only applies to expenses below 200,000 VND, but the receipt shows a total amount of 3,144,900 VND, which is well above this threshold. The knowledge base reference cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies only to expenses below 200,000 VND, not above. This is a complete misapplication of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that meal expenses require gross-up according to the compliance policy. This aligns with the knowledge base rule: \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" However, this receipt appears to be primarily for alcoholic beverages rather than meals, so the categorization could be more precise.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified the need for additional documentation due to unclear item details, citing the appropriate knowledge base reference: \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" While the receipt does list specific alcoholic beverages, additional documentation may still be required to explain the business purpose.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Misapplication of the \"vendor details for expenses below 200,000 VND\" rule to an expense that is well above this threshold\n2. The receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications\n3. The AI did not identify that this receipt appears to be a VAT/Red invoice above 200,000 VND, which should include the Local Employer details (GOGLOBAL VIETNAM COMPANY LIMITED) according to the compliance rules\n4. The AI failed to note that the receipt does contain the required customer details for GoGlobal Vietnam\n\nSUMMARY: The AI response contains a significant error in applying a rule for expenses below 200,000 VND to a receipt that is clearly above this threshold (3,144,900 VND). While it correctly identified the need for gross-up and additional documentation, it missed that this appears to be a VAT/Red invoice that should include specific employer details. The receipt actually does contain the required customer details for GoGlobal Vietnam, which the AI failed to acknowledge. The response would be more accurate if it focused on the alcoholic beverage nature of the expenses rather than treating it as a generic meal receipt.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI incorrectly identified an issue with \"vendor details for expenses below 200,000 VND.\" This rule only applies to expenses below 200,000 VND, but the receipt shows a total amount of 3,144,900 VND, which is well above this threshold. The knowledge base reference cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies only to expenses below 200,000 VND, not above. This is a complete misapplication of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that meal expenses require gross-up according to the compliance policy. This aligns with the knowledge base rule: \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" However, this receipt appears to be primarily for alcoholic beverages rather than meals, so the categorization could be more precise.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified the need for additional documentation due to unclear item details, citing the appropriate knowledge base reference: \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" While the receipt does list specific alcoholic beverages, additional documentation may still be required to explain the business purpose.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Misapplication of the \"vendor details for expenses below 200,000 VND\" rule to an expense that is well above this threshold\n2. The receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications\n3. The AI did not identify that this receipt appears to be a VAT/Red invoice above 200,000 VND, which should include the Local Employer details (GOGLOBAL VIETNAM COMPANY LIMITED) according to the compliance rules\n4. The AI failed to note that the receipt does contain the required customer details for GoGlobal Vietnam\n\nSUMMARY: The AI response contains a significant error in applying a rule for expenses below 200,000 VND to a receipt that is clearly above this threshold (3,144,900 VND). While it correctly identified the need for gross-up and additional documentation, it missed that this appears to be a VAT/Red invoice that should include specific employer details. The receipt actually does contain the required customer details for GoGlobal Vietnam, which the AI failed to acknowledge. The response would be more accurate if it focused on the alcoholic beverage nature of the expenses rather than treating it as a generic meal receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies that the receipt is missing the required vendor details for expenses below 200,000 VND, which is a compliance requirement as per the knowledge base. The recommendation to address this issue with the supplier is also appropriate.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI response correctly recognizes that meal expenses are not tax-exempt and need to be grossed up according to the compliance policy. The recommendation to pay the approved expenses to the worker as NET and gross them up is in line with the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 85 - The AI response accurately identifies that the receipt does not have clear item details, which requires additional documentation as per the compliance rules. The recommendation to submit a detailed list of each item is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response demonstrates a strong understanding of the compliance rules and knowledge base for Vietnam. It correctly identifies the key issues with the receipt, such as missing vendor details, the need for gross-up, and requirement for additional documentation. The recommendations provided are in line with the established compliance guidelines. Overall, the response adheres well to the knowledge base and addresses the compliance requirements for the given receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue incorrectly applies the compliance rule about \"Vendor details for expenses below 200,000 VND.\" The rule states that vendor details are required for expenses BELOW 200,000 VND, but the AI has flagged this as an issue for a receipt that is ABOVE 200,000 VND (3,144,900 VND). The knowledge base reference cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies to expenses below 200,000 VND, not above. Additionally, the receipt already includes complete vendor details (CÔNG TY TNHH CANTYNA with full address and tax number).\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue correctly identifies that meal expenses are subject to gross-up according to the compliance policy. The knowledge base states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" This is accurately reflected in the issue description.\n\nISSUE_3_VALIDATION_SCORE: 95 - This issue correctly applies the rule that requires additional documentation when meal receipts lack clear details. The knowledge base states \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" While the receipt shows alcoholic beverages, it doesn't show food items, so additional documentation would be required to clarify the complete meal details.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 1 completely misapplies the rule about vendor details for expenses below 200,000 VND by applying it to an expense above that threshold.\n2. The AI response fails to identify that this receipt appears to be only for alcoholic beverages (wine, whiskey, gin, cocktails) with no food items listed, which may raise compliance concerns for a \"meals\" receipt.\n3. The AI doesn't address the fact that the receipt appears to be a proper VAT invoice (with tax code, customer details, etc.) which meets the requirements for expenses above 200,000 VND.\n\nSUMMARY: The AI response contains a significant error in applying the vendor details rule, incorrectly flagging an issue for a receipt above 200,000 VND. While it correctly identifies the need for gross-up for meal expenses and additional documentation for unclear meal details, it fails to note that the receipt appears to be for alcoholic beverages only with no food items listed, which may raise additional compliance concerns for a receipt categorized as \"meals.\" The response does correctly recognize the need for gross-up and additional documentation requirements."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly identified an issue with \"vendor details for expenses below 200,000 VND.\" This rule only applies to expenses below 200,000 VND, but the receipt shows a total amount of 3,144,900 VND, which is well above this threshold. The knowledge base reference cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies only to expenses below 200,000 VND, not above. This is a complete misapplication of the compliance rule.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The AI correctly identified that meal expenses require gross-up according to the compliance policy. This aligns with the knowledge base rule: \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" However, this receipt appears to be primarily for alcoholic beverages rather than meals, so the categorization could be more precise.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified the need for additional documentation due to unclear item details, citing the appropriate knowledge base reference: \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" While the receipt does list specific alcoholic beverages, additional documentation may still be required to explain the business purpose.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7166666666666667,
+      "issues": [
+        "1. Issue 1 is completely incorrect as it misapplies a rule for expenses below 200",
+        "000 VND to an expense that is above that threshold (3",
+        "144",
+        "900 VND).",
+        "2. The validation fails to identify that this receipt appears to be primarily for alcoholic beverages rather than meals",
+        "which may have additional compliance implications.",
+        "3. The receipt shows complete vendor details and appears to be a proper VAT invoice with all required information for an expense above 200",
+        "000 VND."
+      ],
+      "summary": "The compliance assessment is partially accurate. While it correctly identifies the need for gross-up on meal expenses and the requirement for additional documentation due to unclear item details, it incorrectly flags an issue regarding vendor details for expenses below 200,000 VND when the expense is actually above that threshold. The receipt appears to be a valid VAT invoice with complete vendor information. Additionally, the assessment should have noted that the receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is completely inaccurate. The rule states \"Vendor details for expenses below 200,000 VND\" must include vendor name, address, date of purchase, stamp of vendor. However, this rule only applies to expenses BELOW 200,000 VND. The receipt shows a total amount of 3,144,900 VND, which is well above the threshold. Additionally, the receipt already includes complete vendor details (name, address, tax code). This is a fundamental misapplication of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up as they are not tax-exempt. The rule specifically states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" This is accurately applied to the meal expenses on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The receipt primarily shows alcoholic beverages (wine, whiskey, gin) without clear details of actual meal items. According to the compliance rule, \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" The recommendation to provide additional documentation is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 1 is completely incorrect as it misapplies a rule for expenses below 200,000 VND to an expense that is above that threshold (3,144,900 VND).\n2. The validation fails to identify that this receipt appears to be primarily for alcoholic beverages rather than meals, which may have additional compliance implications.\n3. The receipt shows complete vendor details and appears to be a proper VAT invoice with all required information for an expense above 200,000 VND.\n\nSUMMARY: The compliance assessment is partially accurate. While it correctly identifies the need for gross-up on meal expenses and the requirement for additional documentation due to unclear item details, it incorrectly flags an issue regarding vendor details for expenses below 200,000 VND when the expense is actually above that threshold. The receipt appears to be a valid VAT invoice with complete vendor information. Additionally, the assessment should have noted that the receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is completely inaccurate. The rule states \"Vendor details for expenses below 200,000 VND\" must include vendor name, address, date of purchase, stamp of vendor. However, this rule only applies to expenses BELOW 200,000 VND. The receipt shows a total amount of 3,144,900 VND, which is well above the threshold. Additionally, the receipt already includes complete vendor details (name, address, tax code). This is a fundamental misapplication of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up as they are not tax-exempt. The rule specifically states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" This is accurately applied to the meal expenses on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is correctly identified. The receipt primarily shows alcoholic beverages (wine, whiskey, gin) without clear details of actual meal items. According to the compliance rule, \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" The recommendation to provide additional documentation is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 1 is completely incorrect as it misapplies a rule for expenses below 200,000 VND to an expense that is above that threshold (3,144,900 VND).\n2. The validation fails to identify that this receipt appears to be primarily for alcoholic beverages rather than meals, which may have additional compliance implications.\n3. The receipt shows complete vendor details and appears to be a proper VAT invoice with all required information for an expense above 200,000 VND.\n\nSUMMARY: The compliance assessment is partially accurate. While it correctly identifies the need for gross-up on meal expenses and the requirement for additional documentation due to unclear item details, it incorrectly flags an issue regarding vendor details for expenses below 200,000 VND when the expense is actually above that threshold. The receipt appears to be a valid VAT invoice with complete vendor information. Additionally, the assessment should have noted that the receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding the missing vendor details for expenses below 200,000 VND is accurately assessed. The receipt shows the total expense is 3,144,900 VND, which is above the 200,000 VND threshold, and the compliance rule requires vendor details to be included for expenses below this threshold.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue around the need to gross-up the meal expenses is correctly identified. Meal expenses are generally not tax-exempt and should be grossed up according to the compliance policy.\n\nISSUE_3_VALIDATION_SCORE: 85 - The need for additional documentation due to unclear item details on the receipt is appropriately flagged. The compliance policy requires a detailed list of each item to be submitted as supporting documentation when the invoice does not provide clear details.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is overall accurate and comprehensive. The key issues identified, including missing vendor details for low-value expenses, the need to gross-up meal expenses, and the requirement for additional documentation, are all correctly determined based on the provided compliance rules and the details extracted from the receipt. The validation scores indicate a high level of confidence in the compliance accuracy of the assessment."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is completely incorrect. The rule about \"Vendor details for expenses below 200,000 VND\" is misapplied. The rule specifically applies to expenses BELOW 200,000 VND, but the system incorrectly flagged this as an issue for a receipt that is 3,144,900 VND (well above the threshold). For expenses above 200,000 VND, different requirements apply, and the receipt actually contains all required vendor details (name, address, VAT number).\n\nISSUE_2_VALIDATION_SCORE: 95 - The assessment that meal expenses require gross-up is accurate according to the compliance policy. The rule \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free\" applies to restaurant expenses, and the receipt is clearly for alcoholic beverages at a restaurant establishment. This is correctly identified.\n\nISSUE_3_VALIDATION_SCORE: 90 - This issue is largely accurate. The receipt contains alcoholic beverages but doesn't have a clear breakdown of all meal items. According to the compliance rule \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" While the receipt does list specific alcoholic beverages, it doesn't show any food items that would typically be part of a meal expense, so additional documentation would be appropriate.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Major misapplication of the \"Vendor details for expenses below 200,000 VND\" rule to an expense that's actually above that threshold\n2. The system didn't identify that this receipt appears to be only for alcoholic beverages, which might require additional scrutiny under meal expense policies\n3. The system correctly identified the need for gross-up and additional documentation\n\nSUMMARY: The compliance assessment contains a significant error in applying a rule meant for small expenses (below 200,000 VND) to a large expense (over 3 million VND). The receipt actually contains proper vendor details as required for larger expenses. The other two issues identified (need for gross-up and additional documentation) are valid compliance concerns. Additionally, the system should have flagged that this \"meal\" expense appears to consist entirely of alcoholic beverages, which might require additional review under company expense policies."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue is completely inaccurate. The rule states \"Vendor details for expenses below 200,000 VND\" must include vendor name, address, date of purchase, stamp of vendor. However, this rule only applies to expenses BELOW 200,000 VND. The receipt shows a total amount of 3,144,900 VND, which is well above the threshold. Additionally, the receipt already includes complete vendor details (name, address, tax code). This is a fundamental misapplication of the compliance rule.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. According to the compliance rules, meal expenses are subject to gross-up as they are not tax-exempt. The rule specifically states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free. Tax exemptions will only be applied to purely business related elements.\" This is accurately applied to the meal expenses on the receipt.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is correctly identified. The receipt primarily shows alcoholic beverages (wine, whiskey, gin) without clear details of actual meal items. According to the compliance rule, \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" The recommendation to provide additional documentation is appropriate.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.6333333333333333,
+      "issues": [
+        "1. Issue 1 completely misapplies the rule about vendor details for expenses below 200",
+        "000 VND to an expense that's well above that threshold.",
+        "2. Issue 3 incorrectly claims the receipt lacks clear item details when the receipt contains specific line items with quantities and prices.",
+        "3. The system missed identifying that this receipt is primarily for alcoholic beverages",
+        "which may have separate compliance considerations."
+      ],
+      "summary": "The issue categorization has significant problems. Two of the three identified issues are incorrectly applied to this receipt. Issue 1 misapplies a rule for small expenses to a large one, and Issue 3 claims missing details that are actually present. Only Issue 2 regarding gross-up requirements is correctly identified and categorized. The system also fails to flag that this \"meal\" receipt contains only alcoholic beverages, which may have different compliance implications.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - This issue is incorrectly categorized. The rule cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies to expenses BELOW 200,000 VND, but the system incorrectly flags this for an expense ABOVE 200,000 VND (3,144,900 VND). The receipt actually contains complete vendor details (name, address, tax number), so this shouldn't be flagged as an issue at all.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as a gross-up requirement. The \"Standards & Compliance | Gross-up Identified\" classification is appropriate, and the description accurately reflects the compliance policy that meal expenses are not tax-exempt and will be grossed up. The recommendation matches the knowledge base reference.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is partially correctly categorized but misapplied. While the rule about needing detailed item lists for unclear meal receipts exists, this receipt actually contains very detailed line items (specific alcohol beverages with quantities and prices). The receipt has clear details of each item, contrary to what the issue claims, so this shouldn't be flagged as an issue.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Issue 1 completely misapplies the rule about vendor details for expenses below 200,000 VND to an expense that's well above that threshold.\n2. Issue 3 incorrectly claims the receipt lacks clear item details when the receipt contains specific line items with quantities and prices.\n3. The system missed identifying that this receipt is primarily for alcoholic beverages, which may have separate compliance considerations.\n\nSUMMARY: The issue categorization has significant problems. Two of the three identified issues are incorrectly applied to this receipt. Issue 1 misapplies a rule for small expenses to a large one, and Issue 3 claims missing details that are actually present. Only Issue 2 regarding gross-up requirements is correctly identified and categorized. The system also fails to flag that this \"meal\" receipt contains only alcoholic beverages, which may have different compliance implications.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - This issue is incorrectly categorized. The rule cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies to expenses BELOW 200,000 VND, but the system incorrectly flags this for an expense ABOVE 200,000 VND (3,144,900 VND). The receipt actually contains complete vendor details (name, address, tax number), so this shouldn't be flagged as an issue at all.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as a gross-up requirement. The \"Standards & Compliance | Gross-up Identified\" classification is appropriate, and the description accurately reflects the compliance policy that meal expenses are not tax-exempt and will be grossed up. The recommendation matches the knowledge base reference.\n\nISSUE_3_VALIDATION_SCORE: 40 - This issue is partially correctly categorized but misapplied. While the rule about needing detailed item lists for unclear meal receipts exists, this receipt actually contains very detailed line items (specific alcohol beverages with quantities and prices). The receipt has clear details of each item, contrary to what the issue claims, so this shouldn't be flagged as an issue.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Issue 1 completely misapplies the rule about vendor details for expenses below 200,000 VND to an expense that's well above that threshold.\n2. Issue 3 incorrectly claims the receipt lacks clear item details when the receipt contains specific line items with quantities and prices.\n3. The system missed identifying that this receipt is primarily for alcoholic beverages, which may have separate compliance considerations.\n\nSUMMARY: The issue categorization has significant problems. Two of the three identified issues are incorrectly applied to this receipt. Issue 1 misapplies a rule for small expenses to a large one, and Issue 3 claims missing details that are actually present. Only Issue 2 regarding gross-up requirements is correctly identified and categorized. The system also fails to flag that this \"meal\" receipt contains only alcoholic beverages, which may have different compliance implications."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing vendor details for expenses below 200,000 VND, which is a compliance requirement. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The \"Standards & Compliance | Gross-up Identified\" categorization is accurate. The description correctly identifies the need to gross up the meal expenses since they are not tax-exempt. The recommendation to pay the expenses as NET and gross up is in line with the compliance policy.\n\nISSUE_3_VALIDATION_SCORE: 90 - The \"Standards & Compliance | Follow-up Action Identified\" categorization is appropriate. The issue description accurately identifies the need for additional documentation due to unclear item details on the receipt. The recommendation to provide a detailed list of each item is a reasonable solution.\n\nCONFIDENCE: 90\nISSUES: No major issues with the issue categorization. The identified problems and recommendations are in line with the established compliance rules.\nSUMMARY: The issues are correctly categorized, with clear descriptions and appropriate recommendations. The categorization follows the established taxonomy and no major issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - This issue is incorrectly categorized. The rule about \"Vendor details for expenses below 200,000 VND\" only applies to expenses BELOW 200,000 VND, but the system flagged it for an expense that is 3,144,900 VND. The description contradicts itself by stating \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND.\" This is a fundamental misapplication of the compliance rule.\n\nISSUE_2_VALIDATION_SCORE: 90 - This issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" since meal expenses in Vietnam do require gross-up according to the compliance policy. The description accurately reflects that \"Meal expenses are not tax-exempt and will be grossed up according to the compliance policy,\" which aligns with the rule \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 40 - While the issue type \"Standards & Compliance | Follow-up Action Identified\" is appropriate, the description is questionable. The receipt actually contains detailed line items (various alcoholic beverages with quantities and prices) rather than just \"Meal and Drink cost.\" The receipt shows specific items like \"Rượu vang BOLA RETRO PINOT GRIGIO VALDADIGE\" and \"Rượu mạnh JACK DANIELS\" with quantities and prices. The issue is mischaracterizing the receipt's content.\n\nCONFIDENCE: 50\n\nISSUES:\n1. Issue 1 completely misapplies a rule meant for small expenses under 200,000 VND to a large expense over 3 million VND.\n2. Issue 3 incorrectly claims the receipt lacks clear item details when the extracted data shows detailed line items.\n3. The system fails to identify that this receipt is primarily for alcoholic beverages, which may have different compliance requirements than regular meals.\n4. No issue was raised about the receipt being for primarily alcohol purchases, which might require additional business justification.\n\nSUMMARY: The issue categorization shows significant problems. The first issue fundamentally misapplies a rule meant for small expenses to a large one. The third issue incorrectly claims the receipt lacks detailed items when the data shows specific beverage listings. While the gross-up identification is correct, the system missed raising concerns about the receipt being primarily for alcohol purchases, which typically requires additional business justification. The categorization needs substantial improvement to accurately reflect the actual compliance concerns with this receipt."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "This issue is incorrectly categorized. The rule cited (\"Sales invoice must include vendor name, address, date of purchase, stamp of vendor\") applies to expenses BELOW 200,000 VND, but the system incorrectly flags this for an expense ABOVE 200,000 VND (3,144,900 VND). The receipt actually contains complete vendor details (name, address, tax number), so this shouldn't be flagged as an issue at all.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue is correctly categorized as a gross-up requirement. The \"Standards & Compliance | Gross-up Identified\" classification is appropriate, and the description accurately reflects the compliance policy that meal expenses are not tax-exempt and will be grossed up. The recommendation matches the knowledge base reference.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 40,
+          "judge_explanation": "This issue is partially correctly categorized but misapplied. While the rule about needing detailed item lists for unclear meal receipts exists, this receipt actually contains very detailed line items (specific alcohol beverages with quantities and prices). The receipt has clear details of each item, contrary to what the issue claims, so this shouldn't be flagged as an issue.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.7333333333333334,
+      "issues": [
+        "1. Issue 1 incorrectly applies a rule for expenses below 200",
+        "000 VND to an expense that is above this threshold",
+        "2. The receipt actually contains complete vendor details",
+        "making issue 1 invalid",
+        "3. The system fails to identify that this receipt appears to be for alcoholic beverages only",
+        "which may raise additional compliance questions about expense type classification"
+      ],
+      "summary": "The recommendations are partially valid. Issue 1 is based on a misapplication of the compliance rule and should be disregarded as the receipt contains complete vendor information. Issues 2 and 3 provide accurate guidance regarding gross-up requirements and the need for additional documentation due to unclear item details. However, the system missed identifying that this appears to be an alcohol-only receipt with no food items, which might require additional scrutiny under meal expense policies.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation is inaccurate because it misapplies the compliance rule. The rule about vendor details is for expenses BELOW 200,000 VND, but the system incorrectly flags this as missing for an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, tax code), so this issue is invalid.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation about gross-up for meal expenses is valid and correctly identifies that meal expenses are not tax-exempt and will need to be grossed up according to the compliance policy. This aligns with the compliance rule that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation for additional documentation due to unclear item details is valid. The receipt shows alcoholic beverages but doesn't show actual meal items, which aligns with the compliance rule requiring detailed lists when invoices have unclear details. The recommendation to submit a detailed list of each item is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 1 incorrectly applies a rule for expenses below 200,000 VND to an expense that is above this threshold\n2. The receipt actually contains complete vendor details, making issue 1 invalid\n3. The system fails to identify that this receipt appears to be for alcoholic beverages only, which may raise additional compliance questions about expense type classification\n\nSUMMARY: The recommendations are partially valid. Issue 1 is based on a misapplication of the compliance rule and should be disregarded as the receipt contains complete vendor information. Issues 2 and 3 provide accurate guidance regarding gross-up requirements and the need for additional documentation due to unclear item details. However, the system missed identifying that this appears to be an alcohol-only receipt with no food items, which might require additional scrutiny under meal expense policies.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation is inaccurate because it misapplies the compliance rule. The rule about vendor details is for expenses BELOW 200,000 VND, but the system incorrectly flags this as missing for an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, tax code), so this issue is invalid.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation about gross-up for meal expenses is valid and correctly identifies that meal expenses are not tax-exempt and will need to be grossed up according to the compliance policy. This aligns with the compliance rule that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation for additional documentation due to unclear item details is valid. The receipt shows alcoholic beverages but doesn't show actual meal items, which aligns with the compliance rule requiring detailed lists when invoices have unclear details. The recommendation to submit a detailed list of each item is appropriate.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 1 incorrectly applies a rule for expenses below 200,000 VND to an expense that is above this threshold\n2. The receipt actually contains complete vendor details, making issue 1 invalid\n3. The system fails to identify that this receipt appears to be for alcoholic beverages only, which may raise additional compliance questions about expense type classification\n\nSUMMARY: The recommendations are partially valid. Issue 1 is based on a misapplication of the compliance rule and should be disregarded as the receipt contains complete vendor information. Issues 2 and 3 provide accurate guidance regarding gross-up requirements and the need for additional documentation due to unclear item details. However, the system missed identifying that this appears to be an alcohol-only receipt with no food items, which might require additional scrutiny under meal expense policies."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing vendor details for expenses below 200,000 VND is valid and actionable. It clearly identifies the issue and provides a specific suggestion to work with the supplier to address this compliance requirement.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to gross up the meal expenses is valid and in line with the compliance policy. It provides a clear explanation of the requirement and a practical solution to address it.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to provide additional documentation for the meal expenses with unclear item details is valid and helpful. It specifies the required supporting document and the reason for needing it, which is reasonable and practical.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are overall valid, actionable, and address the key compliance issues identified in the expense receipt. The suggestions are specific, feasible, and align with the stated compliance rules. No contradictory or harmful advice is given."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 20 - The recommendation for Issue 1 is invalid because it incorrectly states that vendor details are required for expenses below 200,000 VND. The receipt is for 3,144,900 VND, which is above 200,000 VND, and the receipt actually contains complete vendor details (CÔNG TY TNHH CANTYNA with address and tax code). The recommendation to \"address this issue with the supplier\" is unnecessary since the vendor details are already properly documented.\n\nISSUE_2_VALIDATION_SCORE: 85 - The recommendation for Issue 2 is valid as it correctly identifies that meal expenses are subject to gross-up according to the compliance policy. The recommendation accurately reflects the compliance rule that \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\"\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation for Issue 3 is valid and useful. The receipt shows primarily alcohol purchases (wine, whiskey, gin) without clear meal items, which aligns with the compliance rule requiring detailed itemization when receipts have unclear details. The recommendation to submit a detailed list of each item as supporting documentation is appropriate and follows the compliance policy.\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue 1 recommendation is based on a misinterpretation of the compliance rule and the receipt content.\n2. Issue 1 incorrectly applies a rule for expenses below 200,000 VND to an expense that is above that threshold.\n3. The validation incorrectly suggests vendor details are missing when they are clearly present in the receipt.\n\nSUMMARY: While recommendations for Issues 2 and 3 are valid and helpful, the recommendation for Issue 1 is based on a fundamental misunderstanding of both the compliance rule and the receipt content. The receipt already contains complete vendor details as required for expenses above 200,000 VND, making the recommendation to address this with the supplier unnecessary and confusing. The other recommendations correctly identify the need for gross-up for meal expenses and additional documentation for unclear item details."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 20,
+          "judge_explanation": "The recommendation is inaccurate because it misapplies the compliance rule. The rule about vendor details is for expenses BELOW 200,000 VND, but the system incorrectly flags this as missing for an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, tax code), so this issue is invalid.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation about gross-up for meal expenses is valid and correctly identifies that meal expenses are not tax-exempt and will need to be grossed up according to the compliance policy. This aligns with the compliance rule that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\"",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation for additional documentation due to unclear item details is valid. The receipt shows alcoholic beverages but doesn't show actual meal items, which aligns with the compliance rule requiring detailed lists when invoices have unclear details. The recommendation to submit a detailed list of each item is appropriate.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.5833333333333334,
+      "issues": [
+        "1. Misapplication of the vendor details rule for expenses below 200",
+        "000 VND to an expense above that threshold",
+        "2. Incorrect claim that the receipt lacks clear item details when the receipt has detailed line items",
+        "3. Categorizing the expense as \"meals\" when the receipt shows only alcoholic beverages",
+        "4. Recommending additional documentation when the receipt already contains detailed information"
+      ],
+      "summary": "The AI response contains significant hallucinations, particularly in claiming the receipt lacks required vendor details and clear item descriptions when both are actually present in the receipt data. The AI also incorrectly categorizes alcoholic beverages as \"meals\" and misapplies compliance rules meant for expenses below 200,000 VND to an expense that is clearly above that threshold.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is a hallucination because the rule about vendor details applies to expenses BELOW 200,000 VND, but the AI incorrectly applies it to an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, VAT number).\n\nISSUE_2_VALIDATION_SCORE: 70 - The second issue about gross-up for meal expenses is generally aligned with the compliance policy that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" However, the receipt shows this is primarily for alcoholic beverages, not meals, so the categorization is somewhat inaccurate.\n\nISSUE_3_VALIDATION_SCORE: 30 - The third issue claims \"The receipt does not have clear details of each item.\" This is a hallucination as the receipt clearly lists detailed line items for each beverage with quantities, unit prices, and descriptions (e.g., \"Rượu vang BOLA RETRO PINOT GRIGIO VALDADIGE\").\n\nCONFIDENCE: 30\n\nISSUES:\n1. Misapplication of the vendor details rule for expenses below 200,000 VND to an expense above that threshold\n2. Incorrect claim that the receipt lacks clear item details when the receipt has detailed line items\n3. Categorizing the expense as \"meals\" when the receipt shows only alcoholic beverages\n4. Recommending additional documentation when the receipt already contains detailed information\n\nSUMMARY: The AI response contains significant hallucinations, particularly in claiming the receipt lacks required vendor details and clear item descriptions when both are actually present in the receipt data. The AI also incorrectly categorizes alcoholic beverages as \"meals\" and misapplies compliance rules meant for expenses below 200,000 VND to an expense that is clearly above that threshold.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.3,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The first issue claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is a hallucination because the rule about vendor details applies to expenses BELOW 200,000 VND, but the AI incorrectly applies it to an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, VAT number).\n\nISSUE_2_VALIDATION_SCORE: 70 - The second issue about gross-up for meal expenses is generally aligned with the compliance policy that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" However, the receipt shows this is primarily for alcoholic beverages, not meals, so the categorization is somewhat inaccurate.\n\nISSUE_3_VALIDATION_SCORE: 30 - The third issue claims \"The receipt does not have clear details of each item.\" This is a hallucination as the receipt clearly lists detailed line items for each beverage with quantities, unit prices, and descriptions (e.g., \"Rượu vang BOLA RETRO PINOT GRIGIO VALDADIGE\").\n\nCONFIDENCE: 30\n\nISSUES:\n1. Misapplication of the vendor details rule for expenses below 200,000 VND to an expense above that threshold\n2. Incorrect claim that the receipt lacks clear item details when the receipt has detailed line items\n3. Categorizing the expense as \"meals\" when the receipt shows only alcoholic beverages\n4. Recommending additional documentation when the receipt already contains detailed information\n\nSUMMARY: The AI response contains significant hallucinations, particularly in claiming the receipt lacks required vendor details and clear item descriptions when both are actually present in the receipt data. The AI also incorrectly categorizes alcoholic beverages as \"meals\" and misapplies compliance rules meant for expenses below 200,000 VND to an expense that is clearly above that threshold."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The information about the vendor details for expenses below 200,000 VND is present in the compliance rules section of the response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance policy regarding gross-up for meal expenses is present in the compliance rules section of the response.\n\nISSUE_3_VALIDATION_SCORE: 90 - The requirement for additional documentation for meal expenses with unclear item details is present in the compliance rules section of the response.\n\nCONFIDENCE: 95\nISSUES: None detected.\n\nSUMMARY: The AI response appears to be well-grounded in the provided source data and compliance rules. There is no evidence of hallucinated or fabricated information. The response accurately captures the key compliance requirements and issues identified for the given expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.5,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - This issue is completely hallucinated. The rule states \"Vendor details for expenses below 200,000 VND\" must include vendor name, address, date of purchase, stamp of vendor. However, the AI incorrectly applies this rule to an expense that is 3,144,900 VND, which is well above 200,000 VND. The rule specifically applies only to expenses below 200,000 VND, not above.\n\nISSUE_2_VALIDATION_SCORE: 70 - This issue about gross-up for meal expenses is generally correct according to the compliance rules, which state \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" However, the AI presents this as specifically applicable to meal expenses without clarifying that this is a general rule for non-tax-exempt expenses.\n\nISSUE_3_VALIDATION_SCORE: 90 - This issue about needing additional documentation for unclear meal details is accurate and matches the compliance rule: \"Where invoices do not have clear details e.g. written as 'Meal and Drink cost', the worker must also submit a detailed list of each item as supporting document.\" The receipt does contain alcoholic beverages without clear meal items.\n\nCONFIDENCE: 50\n\nISSUES:\n1. The AI incorrectly applies the vendor details rule for expenses below 200,000 VND to an expense that is clearly above that threshold (3,144,900 VND).\n2. The AI presents the gross-up requirement as specifically for \"meal expenses\" when the rule is more general about non-tax-exempt expenses.\n3. The AI's validation result states the receipt is invalid, but the primary issue identified (vendor details for expenses below 200,000 VND) is completely inapplicable to this receipt.\n\nSUMMARY: The AI response contains significant hallucinations, particularly in issue #1 where it applies a rule for expenses below 200,000 VND to an expense of 3,144,900 VND. While issues #2 and #3 are generally aligned with compliance rules, the AI's overall validation result is compromised by the first major error. The receipt appears to be for alcoholic beverages rather than meals, though the AI correctly identifies the need for additional documentation for unclear details."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 0,
+          "judge_explanation": "The first issue claims \"The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.\" This is a hallucination because the rule about vendor details applies to expenses BELOW 200,000 VND, but the AI incorrectly applies it to an expense ABOVE 200,000 VND. The receipt actually contains complete vendor details (name, address, VAT number).",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 70,
+          "judge_explanation": "The second issue about gross-up for meal expenses is generally aligned with the compliance policy that states \"Approved expenses can be paid to worker as NET and grossed up if they are not tax-free.\" However, the receipt shows this is primarily for alcoholic beverages, not meals, so the categorization is somewhat inaccurate.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 30,
+          "judge_explanation": "The third issue claims \"The receipt does not have clear details of each item.\" This is a hallucination as the receipt clearly lists detailed line items for each beverage with quantities, unit prices, and descriptions (e.g., \"Rượu vang BOLA RETRO PINOT GRIGIO VALDADIGE\").",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: 1. Issue 1 completely misapplies a rule for expenses below 200, 000 VND to an expense that is above that amount., 2. Issue 1 incorrectly claims vendor details are missing when they are clearly present in the extracted data., 3. Issue 3 states the receipt lacks clear item details, but the extracted data shows detailed line items for beverages, though food items may be missing.",
+    "Address issues in knowledge base adherence: 1. Misapplication of the \"vendor details for expenses below 200, 000 VND\" rule to an expense that is well above this threshold, 2. The receipt is primarily for alcoholic beverages rather than meals, which may have different compliance implications, 3. The AI did not identify that this receipt appears to be a VAT/Red invoice above 200, 000 VND, which should include the Local Employer details (GOGLOBAL VIETNAM COMPANY LIMITED) according to the compliance rules, 4. The AI failed to note that the receipt does contain the required customer details for GoGlobal Vietnam",
+    "Address issues in compliance accuracy: 1. Issue 1 is completely incorrect as it misapplies a rule for expenses below 200, 000 VND to an expense that is above that threshold (3, 144, 900 VND)., 2. The validation fails to identify that this receipt appears to be primarily for alcoholic beverages rather than meals, which may have additional compliance implications., 3. The receipt shows complete vendor details and appears to be a proper VAT invoice with all required information for an expense above 200, 000 VND.",
+    "Improve issue categorization: The issue categorization has significant problems. Two of the three identified issues are incorrectly applied to this receipt. Issue 1 misapplies a rule for small expenses to a large one, and Issue 3 claims missing details that are actually present. Only Issue 2 regarding gross-up requirements is correctly identified and categorized. The system also fails to flag that this \"meal\" receipt contains only alcoholic beverages, which may have different compliance implications.",
+    "Address issues in issue categorization: 1. Issue 1 completely misapplies the rule about vendor details for expenses below 200, 000 VND to an expense that's well above that threshold., 2. Issue 3 incorrectly claims the receipt lacks clear item details when the receipt contains specific line items with quantities and prices., 3. The system missed identifying that this receipt is primarily for alcoholic beverages, which may have separate compliance considerations.",
+    "Address issues in recommendation validity: 1. Issue 1 incorrectly applies a rule for expenses below 200, 000 VND to an expense that is above this threshold, 2. The receipt actually contains complete vendor details, making issue 1 invalid, 3. The system fails to identify that this receipt appears to be for alcoholic beverages only, which may raise additional compliance questions about expense type classification",
+    "Improve hallucination detection: The AI response contains significant hallucinations, particularly in claiming the receipt lacks required vendor details and clear item descriptions when both are actually present in the receipt data. The AI also incorrectly categorizes alcoholic beverages as \"meals\" and misapplies compliance rules meant for expenses below 200,000 VND to an expense that is clearly above that threshold.",
+    "Address issues in hallucination detection: 1. Misapplication of the vendor details rule for expenses below 200, 000 VND to an expense above that threshold, 2. Incorrect claim that the receipt lacks clear item details when the receipt has detailed line items, 3. Categorizing the expense as \"meals\" when the receipt shows only alcoholic beverages, 4. Recommending additional documentation when the receipt already contains detailed information"
+  ],
+  "timestamp": "2025-10-02T08:27:36.980Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 94630,
+    "timing": {
+      "validation_start_time": "2025-10-02T08:26:02.349Z",
+      "validation_end_time": "2025-10-02T08:27:36.979Z",
+      "total_validation_time_seconds": "94.6",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T08:26:02.349Z",
+          "end_time": "2025-10-02T08:27:36.979Z",
+          "duration_seconds": "94.6",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "94.6",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.32",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 3
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "The total amount of the expense is 3,144,900 VND, which is above 200,000 VND. However, the receipt does not include the required vendor details for expenses below 200,000 VND as per the compliance requirement.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 4.89,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 0,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 0,
+        "issue_categorization": 20,
+        "recommendation_validity": 20,
+        "hallucination_detection": 0
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Meal expenses are not tax-exempt and will be grossed up according to the compliance policy.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 87.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 85,
+        "compliance_accuracy": 100,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 70
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "The receipt does not have clear details of each item, which requires additional documentation.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 72.33,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 100,
+        "issue_categorization": 40,
+        "recommendation_validity": 85,
+        "hallucination_detection": 30
+      }
+    }
+  ]
+}

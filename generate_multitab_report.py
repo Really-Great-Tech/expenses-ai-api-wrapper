@@ -1071,8 +1071,9 @@ def create_worksheet_for_file(wb, filename):
     quality_data = (load_json_file(f'quality_reports/{filename}_page1_quality.json') or
                    load_json_file(f'quality_reports/{filename}_quality.json'))
 
-    # Load markdown from new markdown_extractions directory with textract suffix
+    # Load markdown from new markdown_extractions directory with textract or zerox suffix
     markdown_content = (load_markdown_file(f'markdown_extractions/{filename}_textract.md') or
+                       load_markdown_file(f'markdown_extractions/{filename}_zerox.md') or
                        load_markdown_file(f'markdown_extractions/{filename}.md') or
                        load_markdown_file(f'llamaparse_output/{filename}.md'))  # fallback
 

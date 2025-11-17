@@ -1,0 +1,572 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759337241009_772052740_indonesian_file_4.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T16:54:50.031Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text and edges are sharp with no apparent blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.98,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots are present that obscure the text.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations are detected.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles are present.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all necessary portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All parts of the receipt/invoice appear to be present and complete.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements are obstructing the document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Honolulu, USA",
+    "expected_location": "Indonesia",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": "The document location is Honolulu, USA, which does not match the expected location of Indonesia.",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, paymentMethod, and itemDescriptionLineItems. The presence of these fields, along with the evidence of payment completed, confirms it as an expense document. The expense type is classified as 'meals' based on the item descriptions (TL CAPPUCCINO, TL ICD CARAML MCCH).",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "paymentMethod",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, including evidence of payment completed, actual amounts charged/paid, and payment confirmation, which meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "HMSHost",
+    "supplier_location": "STARBUCKS T1 A18 #75/99, DANIEL K INOUYE AIRPRT, 21800 HONOLULU",
+    "customer_name": null,
+    "invoice_number": null,
+    "receipt_number": "CHK 84136",
+    "transaction_reference": null,
+    "currency": "USD",
+    "total_amount": 7.5,
+    "subtotal": 6.85,
+    "tax_amount": 0.65,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2023-05-26",
+    "transaction_time": "09:50:00",
+    "payment_method": "MasterCard",
+    "card_last_four": "6639",
+    "line_items": [
+      {
+        "description": "TL CAPPUCCINO",
+        "quantity": 1,
+        "unit_price": 3.425,
+        "total_price": 3.425,
+        "category": "Food"
+      },
+      {
+        "description": "TL ICD CARAML MCCH",
+        "quantity": 1,
+        "unit_price": 3.425,
+        "total_price": 3.425,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Receipt",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Honolulu",
+    "location_country": "USA",
+    "special_notes": "We value your feedback! Scan the QR code to share your experience.",
+    "terms_conditions": null,
+    "business_registration_number": null,
+    "store_id": "HNLSTA04",
+    "website": "https://hmshsot.com/contact/"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show purchase date when transaction occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "currency",
+          "description": "Total amount is in USD, but should be in local currency (IDR)",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show amount and currency - total amount must match submitted expense amount",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Personal meals during business trip are taxable BIK - subject to gross-up",
+          "recommendation": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "knowledge_base_reference": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "recommendation": "Please provide the name of clients/vendor in the expense report for business meal with clients/vendor",
+          "knowledge_base_reference": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including missing mandatory fields (customer name, invoice number), incorrect currency, and tax implications for personal meals. Additionally, the name of clients/vendor for business meals must be provided."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "store_name": {
+        "field_citation": {
+          "source_text": "STARBUCKS T1 A18 #75/99",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the store name at the top of the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "STARBUCKS T1 A18 #75/99",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the store name at the top of the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "location": {
+        "field_citation": {
+          "source_text": "DANIEL K INOUYE AIRPRT 21800 HONOLULU",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as the location of the store on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "DANIEL K INOUYE AIRPRT 21800 HONOLULU",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as the location of the store on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "21800 HONOLULU",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the address of the store on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "21800 HONOLULU",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the address of the store on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "check_number": {
+        "field_citation": {
+          "source_text": "CHK 84136",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the check number on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "84136",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the check number on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "date_time": {
+        "field_citation": {
+          "source_text": "5/26/2023 9:50 AM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the date and time of the transaction on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "5/26/2023 9:50 AM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the date and time of the transaction on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "order_type": {
+        "field_citation": {
+          "source_text": "For Here",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Indicates the order type on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "For Here",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Indicates the order type on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "items": {
+        "field_citation": {
+          "source_text": "1 TL CAPPUCCINO\n1 TL ICD CARAML MCCH",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "List of items purchased appears on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1 TL CAPPUCCINO\n1 TL ICD CARAML MCCH",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "List of items purchased appears on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the subtotal amount on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "6.85",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the subtotal amount on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "tax": {
+        "field_citation": {
+          "source_text": "Tax",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the tax amount on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0.65",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the tax amount on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "payment": {
+        "field_citation": {
+          "source_text": "Payment",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the payment amount on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$7.50",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the payment amount on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "change_due": {
+        "field_citation": {
+          "source_text": "Change Due",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the change due amount on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$0.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the change due amount on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "card_type": {
+        "field_citation": {
+          "source_text": "MasterCard",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the card type used for payment on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "MasterCard",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the card type used for payment on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "card_number": {
+        "field_citation": {
+          "source_text": "XXXXXXXXXX6639",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the last four digits of the card number on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "XXXXXXXXXX6639",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the last four digits of the card number on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "check_closed": {
+        "field_citation": {
+          "source_text": "---Check Closed---",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Indicates that the check has been closed on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "---Check Closed---",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Indicates that the check has been closed on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "closing_date_time": {
+        "field_citation": {
+          "source_text": "5/26/2023 9:50 AM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the date and time when the check was closed on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "5/26/2023 9:50 AM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the date and time when the check was closed on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "store_id": {
+        "field_citation": {
+          "source_text": "STOREID: HNLSTA04",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the store ID on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "HNLSTA04",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the store ID on the receipt.",
+          "match_type": "exact"
+        }
+      },
+      "card_amount": {
+        "field_citation": {
+          "source_text": "MasterCard",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the amount charged to the card on the receipt.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "$7.50",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as the amount charged to the card on the receipt.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 48,
+      "fields_with_field_citations": 48,
+      "fields_with_value_citations": 48,
+      "average_confidence": 0.9454166666666667
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "12.9",
+      "data_extraction_seconds": "2.7",
+      "file_classification_seconds": "4.1",
+      "image_quality_assessment_seconds": "4.8",
+      "issue_detection_seconds": "7.8",
+      "citation_generation_seconds": "43.4",
+      "llm_validation_seconds": "70.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T16:54:32.317Z",
+        "end_time": "2025-10-01T16:54:45.266Z",
+        "duration_seconds": "12.9",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T16:54:45.271Z",
+        "end_time": "2025-10-01T16:54:47.959Z",
+        "duration_seconds": "2.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T16:54:45.269Z",
+        "end_time": "2025-10-01T16:54:49.349Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T16:54:45.267Z",
+        "end_time": "2025-10-01T16:54:50.031Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T16:54:50.032Z",
+        "end_time": "2025-10-01T16:54:57.855Z",
+        "duration_seconds": "7.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T16:54:50.035Z",
+        "end_time": "2025-10-01T16:55:33.403Z",
+        "duration_seconds": "43.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T16:55:33.404Z",
+        "end_time": "2025-10-01T16:56:43.949Z",
+        "duration_seconds": "70.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "131.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.8",
+      "parallel_group_2_seconds": "43.4",
+      "total_parallel_time_seconds": "48.1"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_4.png",
+    "processing_time": 131636,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-01T16:56:43.954Z"
+  }
+}

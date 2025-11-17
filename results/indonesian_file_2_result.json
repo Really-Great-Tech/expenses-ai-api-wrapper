@@ -1,0 +1,593 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759337220751_949838756_indonesian_file_2.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T16:50:09.243Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.98,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Indonesia",
+    "expected_location": "Indonesia",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that indicate it is an expense document. It includes the supplier, consumer, transaction amount, transaction date, item description line items, and total amount. These fields collectively confirm that this is an expense document related to a meal at a cafe.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "totalAmount"
+      ],
+      "fields_missing": [
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "paymentMethod"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, including supplier, consumer, transaction amount, transaction date, item description line items, and total amount. This meets the criteria for identifying it as an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": "Victoria Cafe PS",
+    "supplier_address": "Plaza Senayan LT Dasar",
+    "supplier_phone": "(021) 5725108 - 08111072733",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "S0037792",
+    "transaction_reference": null,
+    "currency": "IDR",
+    "total_amount": 444906,
+    "subtotal": 374500,
+    "tax_amount": 29960,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2025-05-06",
+    "transaction_time": "13:22:57",
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "BEEF RAMEN",
+        "quantity": 1,
+        "unit_price": 122500,
+        "total_price": 122500,
+        "category": "Food"
+      },
+      {
+        "description": "SPICY MISO",
+        "quantity": 1,
+        "unit_price": 119500,
+        "total_price": 119500,
+        "category": "Food"
+      },
+      {
+        "description": "EQUILIBRIUM NATURAL",
+        "quantity": 1,
+        "unit_price": 40500,
+        "total_price": 40500,
+        "category": "Beverage"
+      },
+      {
+        "description": "ICED TEA",
+        "quantity": 1,
+        "unit_price": 37500,
+        "total_price": 37500,
+        "category": "Beverage"
+      },
+      {
+        "description": "ICED LATTE",
+        "quantity": 1,
+        "unit_price": 54500,
+        "total_price": 54500,
+        "category": "Beverage"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Receipt",
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show vendor name or merchant name that provided goods/services",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show purchase date when transaction occurred",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "tax_rate",
+          "description": "Missing tax rate on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT amount should be listed clearly on the invoice if applicable",
+          "confidence_score": 0.8
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Personal meals during business trip are taxable BIK - subject to gross-up",
+          "recommendation": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "knowledge_base_reference": "Personal meals during business trip are taxable BIK - subject to gross-up. Business lunch/entertainment with client/prospect client/vendor is non-taxable",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_info",
+          "description": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "recommendation": "Please provide the name of clients/vendor in the expense report for business meal with clients/vendor",
+          "knowledge_base_reference": "Name of clients/vendor in the expense report for business meal with clients/vendor must be provided",
+          "confidence_score": 0.9
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has several compliance issues including missing mandatory fields such as customer name and invoice number, missing tax rate, and requires additional information for business meals. Personal meals during business trips are subject to gross-up. These issues need to be addressed to ensure compliance."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Indonesia",
+      "icp": "GoGlobal",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "store_name": {
+        "field_citation": {
+          "source_text": "Victoria Cafe PS",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Victoria Cafe PS",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        }
+      },
+      "location": {
+        "field_citation": {
+          "source_text": "Plaza Senayan LT Dasar",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Plaza Senayan LT Dasar",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        }
+      },
+      "contact_number": {
+        "field_citation": {
+          "source_text": "(021) 5725108 - 08111072733",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "(021) 5725108 - 08111072733",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        }
+      },
+      "transaction_id": {
+        "field_citation": {
+          "source_text": "S0037792",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\nDINE IN                           S0037792\n22",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "S0037792",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\nDINE IN                           S0037792\n22",
+          "match_type": "exact"
+        }
+      },
+      "total_items": {
+        "field_citation": {
+          "source_text": "Total Item",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Item                              5",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "5",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Item                              5",
+          "match_type": "exact"
+        }
+      },
+      "total_quantity": {
+        "field_citation": {
+          "source_text": "Total Qty",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Qty                               5",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "5",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total Qty                               5",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal                          374,500",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "374,500",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal                          374,500",
+          "match_type": "exact"
+        }
+      },
+      "service_charge": {
+        "field_citation": {
+          "source_text": "Service Charge",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Service Charge                     29,960",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "29,960",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Service Charge                     29,960",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total                             444,906",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "444,906",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total                             444,906",
+          "match_type": "exact"
+        }
+      },
+      "balance": {
+        "field_citation": {
+          "source_text": "Balance",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Balance                           444,906",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "444,906",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Balance                           444,906",
+          "match_type": "exact"
+        }
+      },
+      "transaction_date": {
+        "field_citation": {
+          "source_text": "06 May 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "POS2\n06 May 2025 13:22:57",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "06 May 2025",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "POS2\n06 May 2025 13:22:57",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "Plaza Senayan LT Dasar",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Plaza Senayan LT Dasar",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        }
+      },
+      "transaction_number": {
+        "field_citation": {
+          "source_text": "S0037792",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DINE IN                           S0037792",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "S0037792",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DINE IN                           S0037792",
+          "match_type": "exact"
+        }
+      },
+      "transaction_type": {
+        "field_citation": {
+          "source_text": "DINE IN",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\nDINE IN                           S0037792\n22",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "DINE IN",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\nDINE IN                           S0037792\n22",
+          "match_type": "exact"
+        }
+      },
+      "items": {
+        "field_citation": {
+          "source_text": "1 BEEF RAMEN",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n1 BEEF RAMEN                      122,500\n1 SPICY MISO                      119,500\n  RMEN\n1 EQUIL NATURAL                    40,500\n1 ICED TEA                         37,500\n1 ICED LATTE                       54,500",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1 BEEF RAMEN",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n1 BEEF RAMEN                      122,500\n1 SPICY MISO                      119,500\n  RMEN\n1 EQUIL NATURAL                    40,500\n1 ICED TEA                         37,500\n1 ICED LATTE                       54,500",
+          "match_type": "exact"
+        }
+      },
+      "phone_number": {
+        "field_citation": {
+          "source_text": "(021) 5725108 - 08111072733",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "(021) 5725108 - 08111072733",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "### Page 1\n\n# =CHECKING=\nVictoria Cafe PS\nPlaza Senayan LT Dasar\n(021) 5725108 - 08111072733",
+          "match_type": "exact"
+        }
+      },
+      "tax": {
+        "field_citation": {
+          "source_text": "Pb1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pb1                                40,446",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "40,446",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pb1                                40,446",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 45,
+      "fields_with_field_citations": 45,
+      "fields_with_value_citations": 45,
+      "average_confidence": 0.9744444444444444
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "19.2",
+      "file_classification_seconds": "3.8",
+      "image_quality_assessment_seconds": "5.0",
+      "data_extraction_seconds": "5.5",
+      "issue_detection_seconds": "7.1",
+      "citation_generation_seconds": "60.8",
+      "llm_validation_seconds": "77.5"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T16:49:45.020Z",
+        "end_time": "2025-10-01T16:50:04.239Z",
+        "duration_seconds": "19.2",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T16:50:04.242Z",
+        "end_time": "2025-10-01T16:50:08.015Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T16:50:04.240Z",
+        "end_time": "2025-10-01T16:50:09.243Z",
+        "duration_seconds": "5.0",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T16:50:04.245Z",
+        "end_time": "2025-10-01T16:50:09.791Z",
+        "duration_seconds": "5.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T16:50:09.793Z",
+        "end_time": "2025-10-01T16:50:16.866Z",
+        "duration_seconds": "7.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T16:50:09.797Z",
+        "end_time": "2025-10-01T16:51:10.556Z",
+        "duration_seconds": "60.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T16:51:10.557Z",
+        "end_time": "2025-10-01T16:52:28.031Z",
+        "duration_seconds": "77.5",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "163.0",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.6",
+      "parallel_group_2_seconds": "60.8",
+      "total_parallel_time_seconds": "66.3"
+    }
+  },
+  "metadata": {
+    "filename": "indonesian_file_2.png",
+    "processing_time": 163015,
+    "country": "Indonesia",
+    "icp": "GoGlobal",
+    "processed_at": "2025-10-01T16:52:28.036Z"
+  }
+}

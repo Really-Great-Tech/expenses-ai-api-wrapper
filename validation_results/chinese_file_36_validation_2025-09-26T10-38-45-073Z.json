@@ -1,0 +1,967 @@
+{
+  "overall_score": 0.9666666666666667,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.93,
+      "issues": [
+        "Minor uncertainty about the transaction date issue",
+        "as there is a transaction_time field",
+        "but it appears to be a bank transaction date rather than a receipt-issued date."
+      ],
+      "summary": "The AI response is extremely well-grounded in the provided data. All identified issues accurately reflect missing or problematic information in the extracted data when compared against the compliance requirements. The AI correctly identified that critical receipt information is missing (supplier details, item descriptions) and accurately applied the relevant compliance rules regarding submission requirements and tax implications for meal expenses in China.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier name is missing from the extracted data. The \"supplier_name\" field is explicitly null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the transaction date is missing from the proper field. While there is a \"transaction_time\" field showing \"2024-11-14\", this appears to be a bank transaction date rather than a receipt-issued date. The \"date_of_issue\" field is null, supporting the AI's claim.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing a properly formatted total amount. While there is a \"transaction_amount\" value of 1033, the extracted data doesn't show a properly formatted total cost with taxes and fees included.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that item descriptions are missing. The \"line_items\" array is empty in the extracted data, and there's no breakdown of what was purchased.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing. The \"supplier_address\" field is explicitly null in the extracted data.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier VAT number is missing. The \"supplier_vat_number\" field is explicitly null in the extracted data.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier phone number is missing. The \"supplier_phone\" field is explicitly null in the extracted data.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI correctly identified the transaction amount as 1033, which matches the \"transaction_amount\" field in the extracted data. The AI's assessment that this exceeds the tax-exempt limit for meals is based on the compliance rules provided.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI correctly cited the requirement to submit original invoice and deduction sheet to the Local Employer's Dalian Branch, which is directly stated in the compliance rules under \"additional_info_rule\".\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI correctly cited the requirement that business expenses must be submitted within 4 months from the date of issuance, which is directly stated in the compliance rules under \"additional_info_rule\".\n\nCONFIDENCE: 99\n\nISSUES: Minor uncertainty about the transaction date issue, as there is a transaction_time field, but it appears to be a bank transaction date rather than a receipt-issued date.\n\nSUMMARY: The AI response is extremely well-grounded in the provided data. All identified issues accurately reflect missing or problematic information in the extracted data when compared against the compliance requirements. The AI correctly identified that critical receipt information is missing (supplier details, item descriptions) and accurately applied the relevant compliance rules regarding submission requirements and tax implications for meal expenses in China.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.99,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier name is missing from the extracted data. The \"supplier_name\" field is explicitly null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the transaction date is missing from the proper field. While there is a \"transaction_time\" field showing \"2024-11-14\", this appears to be a bank transaction date rather than a receipt-issued date. The \"date_of_issue\" field is null, supporting the AI's claim.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing a properly formatted total amount. While there is a \"transaction_amount\" value of 1033, the extracted data doesn't show a properly formatted total cost with taxes and fees included.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that item descriptions are missing. The \"line_items\" array is empty in the extracted data, and there's no breakdown of what was purchased.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing. The \"supplier_address\" field is explicitly null in the extracted data.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier VAT number is missing. The \"supplier_vat_number\" field is explicitly null in the extracted data.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier phone number is missing. The \"supplier_phone\" field is explicitly null in the extracted data.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI correctly identified the transaction amount as 1033, which matches the \"transaction_amount\" field in the extracted data. The AI's assessment that this exceeds the tax-exempt limit for meals is based on the compliance rules provided.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI correctly cited the requirement to submit original invoice and deduction sheet to the Local Employer's Dalian Branch, which is directly stated in the compliance rules under \"additional_info_rule\".\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI correctly cited the requirement that business expenses must be submitted within 4 months from the date of issuance, which is directly stated in the compliance rules under \"additional_info_rule\".\n\nCONFIDENCE: 99\n\nISSUES: Minor uncertainty about the transaction date issue, as there is a transaction_time field, but it appears to be a bank transaction date rather than a receipt-issued date.\n\nSUMMARY: The AI response is extremely well-grounded in the provided data. All identified issues accurately reflect missing or problematic information in the extracted data when compared against the compliance requirements. The AI correctly identified that critical receipt information is missing (supplier details, item descriptions) and accurately applied the relevant compliance rules regarding submission requirements and tax implications for meal expenses in China."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The supplier name, transaction date, total amount, item description, supplier address, supplier VAT number, and supplier phone number are all identified as missing from the receipt, which matches the issues identified in the AI response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies that the meal expense exceeds the tax-exempt limit and requires gross-up, which is consistent with the compliance policies extracted from the data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response accurately describes the follow-up actions required to submit the original invoice and deduction sheet to the local employer's Dalian branch, which matches the additional documentation requirements extracted from the data.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly states that business expenses must be submitted within 4 months from the date of issuance and that invoices cannot be used across years, which aligns with the additional documentation requirements extracted from the data.\n\nISSUE_5_VALIDATION_SCORE: 100 - All the claims made in the AI response can be traced back to the extracted data, and no information is fabricated or assumed beyond what's provided.\n\nISSUE_6_VALIDATION_SCORE: 100 - The numerical values, dates, and amounts in the AI response match the extracted data.\n\nISSUE_7_VALIDATION_SCORE: 100 - The entity names and details, such as the ICP name \"上海炎焰企业管理有限公司, GoGlobal China\", are accurately represented in the AI response.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI response correctly identifies the receipt type as \"meals\" based on the provided information.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI response accurately determines the country as \"China\" based on the provided information.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI response correctly identifies the ICP context as \"GoGlobal\" based on the information extracted from the data.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response is fully factually grounded in the provided extracted data. All claims can be traced back to the data, and no information is fabricated or assumed beyond what's provided. The numerical values, dates, amounts, and entity details are accurately represented."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing supplier name is accurately identified based on the extracted data, which shows null for supplier_name.\n\nISSUE_2_VALIDATION_SCORE: 0 - The issue regarding missing transaction date is not factually grounded. The extracted data shows a transaction_time of \"2024-11-14\".\n\nISSUE_3_VALIDATION_SCORE: 0 - The issue regarding missing total amount is not factually grounded. The extracted data shows a total_amount of 1033.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue regarding missing item description is accurately identified based on the extracted data, which shows an empty line_items array.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding missing supplier address is accurately identified based on the extracted data, which shows null for supplier_address.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue regarding missing supplier VAT number is accurately identified based on the extracted data, which shows null for supplier_vat_number.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue regarding missing supplier phone number is accurately identified based on the extracted data, which shows null for supplier_phone.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue regarding meal expense exceeding tax-exempt limit is factually grounded based on the compliance rules provided and the total_amount of 1033 in the extracted data.\n\nISSUE_9_VALIDATION_SCORE: 100 - The follow-up action regarding submitting original invoice and deduction sheet is factually grounded based on the compliance rules provided.\n\nISSUE_10_VALIDATION_SCORE: 100 - The follow-up action regarding submitting expenses within 4 months is factually grounded based on the compliance rules provided.\n\nCONFIDENCE: 80\n\nISSUES:\n1. The AI response incorrectly identifies missing transaction date and total amount, which are actually present in the extracted data.\n2. The AI response does not mention the currency discrepancy between the transaction amount (1033) and the record amount (29.91 USD).\n\nSUMMARY: The AI response is largely factually grounded, accurately identifying most issues based on the extracted data and compliance rules. However, it incorrectly flags missing transaction date and total amount, which are present in the data. It also fails to address the currency discrepancy between the transaction and record amounts. Despite these issues, the majority of the response is accurate and well-grounded in the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier name is missing from the extracted data. The \"supplier_name\" field is explicitly null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the transaction date is missing from the proper field. While there is a \"transaction_time\" field showing \"2024-11-14\", this appears to be a bank transaction date rather than a receipt-issued date. The \"date_of_issue\" field is null, supporting the AI's claim.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt is missing a properly formatted total amount. While there is a \"transaction_amount\" value of 1033, the extracted data doesn't show a properly formatted total cost with taxes and fees included.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that item descriptions are missing. The \"line_items\" array is empty in the extracted data, and there's no breakdown of what was purchased.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing. The \"supplier_address\" field is explicitly null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier VAT number is missing. The \"supplier_vat_number\" field is explicitly null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier phone number is missing. The \"supplier_phone\" field is explicitly null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the transaction amount as 1033, which matches the \"transaction_amount\" field in the extracted data. The AI's assessment that this exceeds the tax-exempt limit for meals is based on the compliance rules provided.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly cited the requirement to submit original invoice and deduction sheet to the Local Employer's Dalian Branch, which is directly stated in the compliance rules under \"additional_info_rule\".",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly cited the requirement that business expenses must be submitted within 4 months from the date of issuance, which is directly stated in the compliance rules under \"additional_info_rule\".",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 1,
+      "issues": [
+        "None. The AI response correctly applies all relevant compliance rules from the knowledge base for a meal receipt in China."
+      ],
+      "summary": "The AI response demonstrates excellent adherence to the compliance knowledge base for China. It correctly identifies all mandatory fields missing from the receipt (supplier name, transaction date, total amount, item description, supplier address, VAT number, and phone number). It also accurately applies the gross-up rule for meals exceeding the tax-exempt limit and identifies the required follow-up actions regarding original invoice submission and the time limitation for expense submission. The response is comprehensive and fully aligned with the compliance rules provided in the knowledge base.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing the supplier name, which is a mandatory field according to the compliance rules: \"Receipt must show the business name of the supplier/vendor providing the goods or services\". This is a fundamental requirement for all expense types in China.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction date is missing, which is a mandatory field according to the compliance rules: \"Receipt must show the date when the expense was incurred\". This is accurately flagged as a compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the total amount including all taxes and fees is missing, which is a mandatory field according to the compliance rules: \"Receipt must display the total cost including all taxes and fees\". This is properly flagged as a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the item description is missing, which is a mandatory field according to the compliance rules: \"Receipt must specify the goods or services purchased with detailed breakdown\". This is accurately flagged as a compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier VAT number is missing, which is a mandatory field for proper documentation in China. This is accurately flagged as a compliance issue.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier phone number is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI correctly applied the gross-up rule for meals, citing the exact language from the compliance policies: \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax\".\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI correctly identified the additional documentation requirement from the compliance policies: \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement\". This is accurately flagged as a follow-up action.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI correctly identified the time limitation for expense submission from the compliance policies: \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\". This is accurately flagged as a follow-up action.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly applies all relevant compliance rules from the knowledge base for a meal receipt in China.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for China. It correctly identifies all mandatory fields missing from the receipt (supplier name, transaction date, total amount, item description, supplier address, VAT number, and phone number). It also accurately applies the gross-up rule for meals exceeding the tax-exempt limit and identifies the required follow-up actions regarding original invoice submission and the time limitation for expense submission. The response is comprehensive and fully aligned with the compliance rules provided in the knowledge base.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is missing the supplier name, which is a mandatory field according to the compliance rules: \"Receipt must show the business name of the supplier/vendor providing the goods or services\". This is a fundamental requirement for all expense types in China.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the transaction date is missing, which is a mandatory field according to the compliance rules: \"Receipt must show the date when the expense was incurred\". This is accurately flagged as a compliance issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the total amount including all taxes and fees is missing, which is a mandatory field according to the compliance rules: \"Receipt must display the total cost including all taxes and fees\". This is properly flagged as a compliance issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the item description is missing, which is a mandatory field according to the compliance rules: \"Receipt must specify the goods or services purchased with detailed breakdown\". This is accurately flagged as a compliance issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier VAT number is missing, which is a mandatory field for proper documentation in China. This is accurately flagged as a compliance issue.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier phone number is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI correctly applied the gross-up rule for meals, citing the exact language from the compliance policies: \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax\".\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI correctly identified the additional documentation requirement from the compliance policies: \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement\". This is accurately flagged as a follow-up action.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI correctly identified the time limitation for expense submission from the compliance policies: \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\". This is accurately flagged as a follow-up action.\n\nCONFIDENCE: 100\n\nISSUES: None. The AI response correctly applies all relevant compliance rules from the knowledge base for a meal receipt in China.\n\nSUMMARY: The AI response demonstrates excellent adherence to the compliance knowledge base for China. It correctly identifies all mandatory fields missing from the receipt (supplier name, transaction date, total amount, item description, supplier address, VAT number, and phone number). It also accurately applies the gross-up rule for meals exceeding the tax-exempt limit and identifies the required follow-up actions regarding original invoice submission and the time limitation for expense submission. The response is comprehensive and fully aligned with the compliance rules provided in the knowledge base."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing supplier name as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing transaction date as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing total amount as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing item description as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing supplier address as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing supplier VAT number as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI response correctly identifies the missing supplier phone number as a compliance issue and provides the appropriate recommendation to address it with the supplier.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI response correctly identifies the meal expense exceeding the tax-exempt limit and provides the appropriate recommendation to gross up the expense.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI response correctly identifies the need to submit the original invoice and deduction sheet to the local employer's Dalian branch and provides the appropriate recommendation.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI response correctly identifies the requirement to submit expenses within 4 months from the date of issuance and provides the appropriate recommendation.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response demonstrates a comprehensive understanding of the compliance rules and knowledge base for China. It correctly identifies all the compliance issues with the receipt and provides appropriate recommendations to address them. The response adheres closely to the established guidelines and regulations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier name is missing, which is a mandatory requirement according to the knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI accurately noted that the transaction date is missing, which is a mandatory requirement as per the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the total amount including all taxes and fees is missing, which is a mandatory requirement according to the knowledge base.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI accurately noted that the item description with detailed breakdown is missing, which is a mandatory requirement as per the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier address is missing, which is a mandatory requirement according to the knowledge base.\n\nISSUE_6_VALIDATION_SCORE: 100 - The AI accurately noted that the supplier VAT number is missing, which is a mandatory requirement as per the compliance rules.\n\nISSUE_7_VALIDATION_SCORE: 100 - The AI correctly identified that the supplier phone number is missing, which is a mandatory requirement according to the knowledge base.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI accurately applied the gross-up rule for meals during business trips, which is in line with the compliance policies.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation and provided the correct information about sending the original invoice and deduction sheet to the Local Employer's Dalian Branch.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI accurately noted the requirement to submit business expenses within 4 months from the date of issuance, which is in line with the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None identified. The AI response adheres closely to the provided knowledge base and compliance rules.\n\nSUMMARY: The AI response demonstrates a thorough understanding and application of the compliance rules and knowledge base for China. It correctly identifies all mandatory receipt requirements, applies the appropriate gross-up rule for meals, and provides accurate additional information requirements. The response is consistent with the established compliance guidelines and shows no contradictions with the provided knowledge base."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt is missing the supplier name, which is a mandatory field according to the compliance rules: \"Receipt must show the business name of the supplier/vendor providing the goods or services\". This is a fundamental requirement for all expense types in China.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the transaction date is missing, which is a mandatory field according to the compliance rules: \"Receipt must show the date when the expense was incurred\". This is accurately flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the total amount including all taxes and fees is missing, which is a mandatory field according to the compliance rules: \"Receipt must display the total cost including all taxes and fees\". This is properly flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the item description is missing, which is a mandatory field according to the compliance rules: \"Receipt must specify the goods or services purchased with detailed breakdown\". This is accurately flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier address is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier VAT number is missing, which is a mandatory field for proper documentation in China. This is accurately flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the supplier phone number is missing, which is a mandatory field for proper documentation. This is accurately flagged as a compliance issue.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly applied the gross-up rule for meals, citing the exact language from the compliance policies: \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax\".",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the additional documentation requirement from the compliance policies: \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement\". This is accurately flagged as a follow-up action.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the time limitation for expense submission from the compliance policies: \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\". This is accurately flagged as a follow-up action.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.9899999999999999,
+      "issues": [
+        "- The transaction date issue could be more nuanced since there appears to be some date information in the extracted data",
+        "though it may not be properly formatted on the receipt itself.",
+        "- The assessment doesn't address the fact that the transaction appears to have occurred in Thailand (transaction_country_code: \"THA\"",
+        "location_country: \"Thailand\") while the receipt is being processed under China's compliance rules. This may require additional clarification on how international expenses are handled."
+      ],
+      "summary": "The compliance assessment is highly accurate in identifying the missing mandatory fields and applying the appropriate compliance rules for a meal expense in China. It correctly identifies that the receipt lacks essential information such as supplier name, address, VAT number, phone number, item description, and potentially the transaction date and total amount. The assessment also correctly applies the gross-up rule for meals exceeding the daily limit and identifies the required follow-up actions. The only minor issue is that the transaction date might be available in the extracted data but not properly formatted on the receipt itself, and the international nature of the transaction (in Thailand) could warrant additional clarification.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier name is missing, which is a mandatory field according to the compliance rules. The receipt must show the business name of the supplier/vendor providing the goods or services.\n\nISSUE_2_VALIDATION_SCORE: 80 - The assessment correctly identifies that the transaction date is missing as a mandatory field. However, the extracted data shows \"transaction_time\": \"2024-11-14\", which could potentially be considered the transaction date, though it may not be properly formatted on the receipt itself.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the total amount including all taxes and fees is missing as a mandatory field. The extracted data shows a transaction amount of 1033, but it's unclear if this is properly displayed on the receipt with all required components.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that item description is missing, which is a mandatory field. The receipt must specify the goods or services purchased with a detailed breakdown.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier address is missing, which is a mandatory field according to the compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier VAT number is missing, which is a mandatory field for proper tax compliance in China.\n\nISSUE_7_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier phone number is missing, which is a mandatory field according to the compliance rules.\n\nISSUE_8_VALIDATION_SCORE: 100 - The assessment correctly applies the gross-up rule for meals in China. The transaction amount of 1033 RMB exceeds the tax-exempt limit of 150 RMB/day/person (or 200 RMB in first-tier cities), so it should be treated as entertaining customers or subject to personal income tax.\n\nISSUE_9_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch, which is a mandatory follow-up action according to the compliance rules.\n\nISSUE_10_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement that business expenses must be submitted within 4 months from the date of issuance, and that invoices cannot be used across years, which is an important compliance rule.\n\nCONFIDENCE: 97\n\nISSUES: \n- The transaction date issue could be more nuanced since there appears to be some date information in the extracted data, though it may not be properly formatted on the receipt itself.\n- The assessment doesn't address the fact that the transaction appears to have occurred in Thailand (transaction_country_code: \"THA\", location_country: \"Thailand\") while the receipt is being processed under China's compliance rules. This may require additional clarification on how international expenses are handled.\n\nSUMMARY: The compliance assessment is highly accurate in identifying the missing mandatory fields and applying the appropriate compliance rules for a meal expense in China. It correctly identifies that the receipt lacks essential information such as supplier name, address, VAT number, phone number, item description, and potentially the transaction date and total amount. The assessment also correctly applies the gross-up rule for meals exceeding the daily limit and identifies the required follow-up actions. The only minor issue is that the transaction date might be available in the extracted data but not properly formatted on the receipt itself, and the international nature of the transaction (in Thailand) could warrant additional clarification.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.97,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier name is missing, which is a mandatory field according to the compliance rules. The receipt must show the business name of the supplier/vendor providing the goods or services.\n\nISSUE_2_VALIDATION_SCORE: 80 - The assessment correctly identifies that the transaction date is missing as a mandatory field. However, the extracted data shows \"transaction_time\": \"2024-11-14\", which could potentially be considered the transaction date, though it may not be properly formatted on the receipt itself.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the total amount including all taxes and fees is missing as a mandatory field. The extracted data shows a transaction amount of 1033, but it's unclear if this is properly displayed on the receipt with all required components.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that item description is missing, which is a mandatory field. The receipt must specify the goods or services purchased with a detailed breakdown.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier address is missing, which is a mandatory field according to the compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier VAT number is missing, which is a mandatory field for proper tax compliance in China.\n\nISSUE_7_VALIDATION_SCORE: 100 - The assessment correctly identifies that the supplier phone number is missing, which is a mandatory field according to the compliance rules.\n\nISSUE_8_VALIDATION_SCORE: 100 - The assessment correctly applies the gross-up rule for meals in China. The transaction amount of 1033 RMB exceeds the tax-exempt limit of 150 RMB/day/person (or 200 RMB in first-tier cities), so it should be treated as entertaining customers or subject to personal income tax.\n\nISSUE_9_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch, which is a mandatory follow-up action according to the compliance rules.\n\nISSUE_10_VALIDATION_SCORE: 100 - The assessment correctly identifies the requirement that business expenses must be submitted within 4 months from the date of issuance, and that invoices cannot be used across years, which is an important compliance rule.\n\nCONFIDENCE: 97\n\nISSUES: \n- The transaction date issue could be more nuanced since there appears to be some date information in the extracted data, though it may not be properly formatted on the receipt itself.\n- The assessment doesn't address the fact that the transaction appears to have occurred in Thailand (transaction_country_code: \"THA\", location_country: \"Thailand\") while the receipt is being processed under China's compliance rules. This may require additional clarification on how international expenses are handled.\n\nSUMMARY: The compliance assessment is highly accurate in identifying the missing mandatory fields and applying the appropriate compliance rules for a meal expense in China. It correctly identifies that the receipt lacks essential information such as supplier name, address, VAT number, phone number, item description, and potentially the transaction date and total amount. The assessment also correctly applies the gross-up rule for meals exceeding the daily limit and identifies the required follow-up actions. The only minor issue is that the transaction date might be available in the extracted data but not properly formatted on the receipt itself, and the international nature of the transaction (in Thailand) could warrant additional clarification."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identified the missing supplier name as a compliance issue.\nISSUE_2_VALIDATION_SCORE: 100 - The assessment correctly identified the missing transaction date as a compliance issue.\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identified the missing total amount as a compliance issue.\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identified the missing item description as a compliance issue.\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identified the missing supplier address as a compliance issue.\nISSUE_6_VALIDATION_SCORE: 100 - The assessment correctly identified the missing supplier VAT number as a compliance issue.\nISSUE_7_VALIDATION_SCORE: 100 - The assessment correctly identified the missing supplier phone number as a compliance issue.\nISSUE_8_VALIDATION_SCORE: 100 - The assessment correctly identified the meal expense exceeding the tax-exempt limit and requiring gross-up.\nISSUE_9_VALIDATION_SCORE: 100 - The assessment correctly identified the requirement to submit the original invoice and deduction sheet to the local employer's Dalian branch.\nISSUE_10_VALIDATION_SCORE: 100 - The assessment correctly identified the requirement to submit expenses within 4 months from the date of issuance.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The compliance assessment is accurate and covers all the key compliance issues with the receipt, including missing mandatory fields, expense limits, and additional documentation requirements. The assessment provides clear recommendations to address each issue, demonstrating a thorough understanding of the applicable compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing supplier name as a compliance issue, which is a mandatory field according to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately flags the missing transaction date as a compliance issue, which is required according to the rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing total amount as a compliance issue, which is mandatory according to the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment accurately flags the missing item description as a compliance issue, which is required by the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing supplier address as a compliance issue, which is required according to the rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The assessment accurately flags the missing supplier VAT number as a compliance issue, which is required by the compliance rules.\n\nISSUE_7_VALIDATION_SCORE: 100 - The assessment correctly identifies the missing supplier phone number as a compliance issue, which is required according to the rules.\n\nISSUE_8_VALIDATION_SCORE: 100 - The assessment accurately applies the gross-up rule for meals exceeding the daily limit, which is in line with the compliance policies.\n\nISSUE_9_VALIDATION_SCORE: 100 - The assessment correctly identifies the need for additional documentation and follow-up action regarding the submission of original invoices, which is in line with the compliance policies.\n\nISSUE_10_VALIDATION_SCORE: 100 - The assessment accurately flags the requirement to submit business expenses within 4 months of issuance, which is in line with the compliance policies.\n\nCONFIDENCE: 100\n\nISSUES: None identified. The compliance assessment appears to be thorough and accurate, addressing all relevant issues based on the provided compliance rules and policies.\n\nSUMMARY: The compliance assessment is highly accurate and comprehensive. It correctly identifies all mandatory fields that are missing from the receipt, applies the appropriate gross-up rule for meals exceeding the daily limit, and includes the necessary follow-up actions for documentation submission. The assessment aligns perfectly with the provided compliance rules and policies for China and GoGlobal ICP."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the supplier name is missing, which is a mandatory field according to the compliance rules. The receipt must show the business name of the supplier/vendor providing the goods or services.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The assessment correctly identifies that the transaction date is missing as a mandatory field. However, the extracted data shows \"transaction_time\": \"2024-11-14\", which could potentially be considered the transaction date, though it may not be properly formatted on the receipt itself.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the total amount including all taxes and fees is missing as a mandatory field. The extracted data shows a transaction amount of 1033, but it's unclear if this is properly displayed on the receipt with all required components.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that item description is missing, which is a mandatory field. The receipt must specify the goods or services purchased with a detailed breakdown.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the supplier address is missing, which is a mandatory field according to the compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the supplier VAT number is missing, which is a mandatory field for proper tax compliance in China.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that the supplier phone number is missing, which is a mandatory field according to the compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly applies the gross-up rule for meals in China. The transaction amount of 1033 RMB exceeds the tax-exempt limit of 150 RMB/day/person (or 200 RMB in first-tier cities), so it should be treated as entertaining customers or subject to personal income tax.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch, which is a mandatory follow-up action according to the compliance rules.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies the requirement that business expenses must be submitted within 4 months from the date of issuance, and that invoices cannot be used across years, which is an important compliance rule.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.9666666666666667,
+      "issues": [
+        "None identified. All issues are correctly categorized according to the compliance rules provided."
+      ],
+      "summary": "All ten issues identified in the validation result are correctly categorized according to the compliance rules for China and GoGlobal ICP. The issues accurately reflect the missing mandatory information (supplier details, transaction date, total amount, item description), the need for gross-up due to exceeding meal expense limits, and required follow-up actions for proper submission of expense documentation. The categorizations follow the established taxonomy of \"Standards & Compliance\" with appropriate subcategories (Fix Identified, Gross-up Identified, Follow-up Action Identified) and include clear, actionable recommendations.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier name. This aligns with the compliance rule that states \"Receipt must show the business name of the supplier/vendor providing the goods or services\" which is mandatory for meal expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing transaction date. This aligns with the compliance rule that states \"Receipt must show the date when the expense was incurred\" which is mandatory for all expense types.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing total amount. This aligns with the compliance rule that states \"Receipt must display the total cost including all taxes and fees\" which is mandatory for meal expenses.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing item description. This aligns with the compliance rule that states \"Receipt must specify the goods or services purchased with detailed breakdown\" which is mandatory for meal expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier address. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier VAT number. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier phone number. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for the meal expense that exceeds the tax-exempt limit. This aligns with the compliance rule that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and details the specific rates for different city tiers.\n\nISSUE_9_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit original invoice and deduction sheet. This aligns with the compliance rule that states \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch\".\n\nISSUE_10_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit expenses within 4 months. This aligns with the compliance rule that states \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\".\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues are correctly categorized according to the compliance rules provided.\n\nSUMMARY: All ten issues identified in the validation result are correctly categorized according to the compliance rules for China and GoGlobal ICP. The issues accurately reflect the missing mandatory information (supplier details, transaction date, total amount, item description), the need for gross-up due to exceeding meal expense limits, and required follow-up actions for proper submission of expense documentation. The categorizations follow the established taxonomy of \"Standards & Compliance\" with appropriate subcategories (Fix Identified, Gross-up Identified, Follow-up Action Identified) and include clear, actionable recommendations.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier name. This aligns with the compliance rule that states \"Receipt must show the business name of the supplier/vendor providing the goods or services\" which is mandatory for meal expenses.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing transaction date. This aligns with the compliance rule that states \"Receipt must show the date when the expense was incurred\" which is mandatory for all expense types.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing total amount. This aligns with the compliance rule that states \"Receipt must display the total cost including all taxes and fees\" which is mandatory for meal expenses.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing item description. This aligns with the compliance rule that states \"Receipt must specify the goods or services purchased with detailed breakdown\" which is mandatory for meal expenses.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier address. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier VAT number. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier phone number. This is a standard requirement for proper receipt documentation in China.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for the meal expense that exceeds the tax-exempt limit. This aligns with the compliance rule that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and details the specific rates for different city tiers.\n\nISSUE_9_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit original invoice and deduction sheet. This aligns with the compliance rule that states \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch\".\n\nISSUE_10_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit expenses within 4 months. This aligns with the compliance rule that states \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\".\n\nCONFIDENCE: 100\n\nISSUES: None identified. All issues are correctly categorized according to the compliance rules provided.\n\nSUMMARY: All ten issues identified in the validation result are correctly categorized according to the compliance rules for China and GoGlobal ICP. The issues accurately reflect the missing mandatory information (supplier details, transaction date, total amount, item description), the need for gross-up due to exceeding meal expense limits, and required follow-up actions for proper submission of expense documentation. The categorizations follow the established taxonomy of \"Standards & Compliance\" with appropriate subcategories (Fix Identified, Gross-up Identified, Follow-up Action Identified) and include clear, actionable recommendations."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the missing supplier name as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing transaction date as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing total amount as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing item description as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing supplier address as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_6_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing supplier VAT number as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_7_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description accurately identifies the missing supplier phone number as a compliance requirement, and the recommendation to address it with the supplier is appropriate.\n\nISSUE_8_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description accurately identifies the meal expense as exceeding the tax-exempt limit and requiring gross-up, and the recommendation provided is appropriate.\n\nISSUE_9_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description accurately identifies the requirement to submit the original invoice and deduction sheet to the local employer's Dalian branch, and the recommendation provided is appropriate.\n\nISSUE_10_VALIDATION_SCORE: 90 - The issue is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description accurately identifies the requirement to submit expenses within 4 months from the date of issuance, and the recommendation provided is appropriate.\n\nCONFIDENCE: 90\nISSUES: None identified.\nSUMMARY: The issues are all correctly categorized, with clear descriptions and appropriate recommendations. The categorization follows the established taxonomy, and no issues appear to be missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier name. The description is clear and actionable, following the established taxonomy.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue is accurately categorized as \"Standards & Compliance | Fix Identified\" for the missing transaction date. The description is clear and follows the established rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is properly categorized as \"Standards & Compliance | Fix Identified\" for the missing total amount. The description is clear and aligns with the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing item description. The description is clear and actionable.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is accurately categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier address. The description is clear and follows the established taxonomy.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue is properly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier VAT number. The description is clear and aligns with the compliance rules.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier phone number. The description is clear and actionable.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue is accurately categorized as \"Standards & Compliance | Gross-up Identified\" for the meal expense exceeding the tax-exempt limit. The description is clear and follows the established rules.\n\nISSUE_9_VALIDATION_SCORE: 100 - The issue is properly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit original invoice and deduction sheet. The description is clear and actionable.\n\nISSUE_10_VALIDATION_SCORE: 100 - The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit expenses within 4 months. The description is clear and follows the established taxonomy.\n\nCONFIDENCE: 100\n\nISSUES: No issues with categorization were identified. All issues are correctly classified and described according to the established taxonomy and compliance rules.\n\nSUMMARY: The issue categorization is highly accurate and comprehensive. All ten issues are correctly identified, categorized, and described according to the established compliance rules and taxonomy. The issues cover various aspects of receipt standards, gross-up requirements, and follow-up actions, providing a thorough assessment of the receipt's compliance status."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier name. This aligns with the compliance rule that states \"Receipt must show the business name of the supplier/vendor providing the goods or services\" which is mandatory for meal expenses.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing transaction date. This aligns with the compliance rule that states \"Receipt must show the date when the expense was incurred\" which is mandatory for all expense types.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing total amount. This aligns with the compliance rule that states \"Receipt must display the total cost including all taxes and fees\" which is mandatory for meal expenses.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing item description. This aligns with the compliance rule that states \"Receipt must specify the goods or services purchased with detailed breakdown\" which is mandatory for meal expenses.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier address. This is a standard requirement for proper receipt documentation in China.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier VAT number. This is a standard requirement for proper receipt documentation in China.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" for the missing supplier phone number. This is a standard requirement for proper receipt documentation in China.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" for the meal expense that exceeds the tax-exempt limit. This aligns with the compliance rule that states \"Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt\" and details the specific rates for different city tiers.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit original invoice and deduction sheet. This aligns with the compliance rule that states \"Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch\".",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" for the requirement to submit expenses within 4 months. This aligns with the compliance rule that states \"Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years\".",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9466666666666667,
+      "issues": [
+        "The recommendations could be more specific about how to handle an international receipt from Thailand",
+        "as Chinese fapiao requirements may not apply directly. Additional guidance on acceptable alternative documentation for international expenses would be helpful."
+      ],
+      "summary": "The recommendations are generally valid, actionable, and aligned with the compliance rules provided. They clearly identify what information is missing and what actions need to be taken. The recommendations related to follow-up actions (sending original documentation and timely submission) are particularly strong with complete details. The recommendations could be improved by providing more specific guidance on handling international receipts and what alternative documentation might be acceptable when standard Chinese fapiao requirements cannot be met for foreign transactions.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier name is valid and actionable. It clearly identifies the problem (missing supplier name) and suggests a direct solution. However, it could be more specific about how to obtain proper documentation from Hai Di Lao restaurant in Thailand.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction date with the supplier is valid. The receipt shows \"2024-11-14\" as transaction time, but the system doesn't recognize this as a proper transaction date, so requesting a properly formatted receipt is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation regarding the missing total amount is valid. While the extracted data shows 1033 as the transaction amount, it appears this isn't properly formatted or recognized as the total cost including taxes and fees, so requesting proper documentation is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation about missing item description is valid. The receipt lacks a detailed breakdown of the meal purchased, which is required for compliance. Requesting an itemized receipt from the restaurant is an appropriate solution.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation regarding missing supplier address is valid and actionable. It clearly identifies what information is missing and suggests addressing this with the supplier.\n\nISSUE_6_VALIDATION_SCORE: 90 - The recommendation about the missing VAT number is valid. While this might be challenging for an international receipt, the recommendation correctly identifies what information is required for compliance.\n\nISSUE_7_VALIDATION_SCORE: 90 - The recommendation regarding the missing supplier phone number is valid and actionable, clearly identifying what information needs to be obtained from the supplier.\n\nISSUE_8_VALIDATION_SCORE: 95 - The recommendation about meal expenses exceeding the tax-exempt limit is highly valid and specific. It correctly references the relevant policy about personal meal limits during business trips and explains the tax implications when exceeding these limits.\n\nISSUE_9_VALIDATION_SCORE: 100 - The recommendation about sending original documentation to the Dalian Branch is extremely valid, actionable, and specific. It provides complete details including the recipient's name, address, telephone number, and shipping instructions.\n\nISSUE_10_VALIDATION_SCORE: 100 - The recommendation about submitting business expenses within 4 months is completely valid and straightforward. It clearly states the time limitation and the rule about not using invoices across years.\n\nCONFIDENCE: 94\n\nISSUES: The recommendations could be more specific about how to handle an international receipt from Thailand, as Chinese fapiao requirements may not apply directly. Additional guidance on acceptable alternative documentation for international expenses would be helpful.\n\nSUMMARY: The recommendations are generally valid, actionable, and aligned with the compliance rules provided. They clearly identify what information is missing and what actions need to be taken. The recommendations related to follow-up actions (sending original documentation and timely submission) are particularly strong with complete details. The recommendations could be improved by providing more specific guidance on handling international receipts and what alternative documentation might be acceptable when standard Chinese fapiao requirements cannot be met for foreign transactions.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier name is valid and actionable. It clearly identifies the problem (missing supplier name) and suggests a direct solution. However, it could be more specific about how to obtain proper documentation from Hai Di Lao restaurant in Thailand.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction date with the supplier is valid. The receipt shows \"2024-11-14\" as transaction time, but the system doesn't recognize this as a proper transaction date, so requesting a properly formatted receipt is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation regarding the missing total amount is valid. While the extracted data shows 1033 as the transaction amount, it appears this isn't properly formatted or recognized as the total cost including taxes and fees, so requesting proper documentation is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation about missing item description is valid. The receipt lacks a detailed breakdown of the meal purchased, which is required for compliance. Requesting an itemized receipt from the restaurant is an appropriate solution.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation regarding missing supplier address is valid and actionable. It clearly identifies what information is missing and suggests addressing this with the supplier.\n\nISSUE_6_VALIDATION_SCORE: 90 - The recommendation about the missing VAT number is valid. While this might be challenging for an international receipt, the recommendation correctly identifies what information is required for compliance.\n\nISSUE_7_VALIDATION_SCORE: 90 - The recommendation regarding the missing supplier phone number is valid and actionable, clearly identifying what information needs to be obtained from the supplier.\n\nISSUE_8_VALIDATION_SCORE: 95 - The recommendation about meal expenses exceeding the tax-exempt limit is highly valid and specific. It correctly references the relevant policy about personal meal limits during business trips and explains the tax implications when exceeding these limits.\n\nISSUE_9_VALIDATION_SCORE: 100 - The recommendation about sending original documentation to the Dalian Branch is extremely valid, actionable, and specific. It provides complete details including the recipient's name, address, telephone number, and shipping instructions.\n\nISSUE_10_VALIDATION_SCORE: 100 - The recommendation about submitting business expenses within 4 months is completely valid and straightforward. It clearly states the time limitation and the rule about not using invoices across years.\n\nCONFIDENCE: 94\n\nISSUES: The recommendations could be more specific about how to handle an international receipt from Thailand, as Chinese fapiao requirements may not apply directly. Additional guidance on acceptable alternative documentation for international expenses would be helpful.\n\nSUMMARY: The recommendations are generally valid, actionable, and aligned with the compliance rules provided. They clearly identify what information is missing and what actions need to be taken. The recommendations related to follow-up actions (sending original documentation and timely submission) are particularly strong with complete details. The recommendations could be improved by providing more specific guidance on handling international receipts and what alternative documentation might be acceptable when standard Chinese fapiao requirements cannot be met for foreign transactions."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier name on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure the business name is included on the receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing transaction date on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure the expense date is included on the receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation to address the missing total amount on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure the total cost including taxes and fees is displayed on the receipt.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to address the missing item description on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure the goods or services purchased are specified in detail on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier address on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure their address is included on the receipt.\n\nISSUE_6_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier VAT number on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure their VAT number is displayed on the receipt.\n\nISSUE_7_VALIDATION_SCORE: 90 - The recommendation to address the missing supplier phone number on the receipt is valid and actionable. It provides a clear directive to work with the supplier to ensure their phone number is included on the receipt.\n\nISSUE_8_VALIDATION_SCORE: 90 - The recommendation to address the meal expense exceeding the tax-exempt limit is valid and provides a clear explanation of the gross-up requirements. It offers a specific solution to handle the issue.\n\nISSUE_9_VALIDATION_SCORE: 90 - The recommendation to send the original invoice and deduction sheet to the local employer's Dalian branch is valid and actionable. It provides clear instructions on the required follow-up actions.\n\nISSUE_10_VALIDATION_SCORE: 90 - The recommendation to ensure business expenses are submitted within 4 months from the date of issuance and that invoices cannot be used across years is valid and actionable. It addresses an important compliance requirement.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The recommendations provided are highly valid and actionable. They address all the identified issues in a clear and specific manner, offering practical solutions to bring the receipt into compliance. The recommendations are feasible and do not contain any contradictory or harmful advice. Overall, the recommendations are well-suited to resolve the compliance problems with the given receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The recommendation to address the missing supplier name with the supplier is valid and directly addresses the identified issue.\n\nISSUE_2_VALIDATION_SCORE: 100 - The recommendation to address the missing transaction date with the supplier is valid and directly addresses the identified issue.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation to address the missing total amount with the supplier is valid and directly addresses the identified issue.\n\nISSUE_4_VALIDATION_SCORE: 100 - The recommendation to address the missing item description with the supplier is valid and directly addresses the identified issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation to address the missing supplier address with the supplier is valid and directly addresses the identified issue.\n\nISSUE_6_VALIDATION_SCORE: 100 - The recommendation to address the missing supplier VAT number with the supplier is valid and directly addresses the identified issue.\n\nISSUE_7_VALIDATION_SCORE: 100 - The recommendation to address the missing supplier phone number with the supplier is valid and directly addresses the identified issue.\n\nISSUE_8_VALIDATION_SCORE: 100 - The recommendation regarding meals exceeding the limit is valid and provides clear guidance on how to handle such expenses.\n\nISSUE_9_VALIDATION_SCORE: 100 - The recommendation to send original documents to the specified address is valid, specific, and actionable.\n\nISSUE_10_VALIDATION_SCORE: 100 - The recommendation to submit expenses within 4 months is valid and clearly states the policy requirement.\n\nCONFIDENCE: 100\n\nISSUES: None identified. All recommendations are valid, specific, and address the identified issues directly.\n\nSUMMARY: All recommendations provided are highly valid and useful. They directly address the identified issues, are actionable and specific, and align with the compliance rules provided. The recommendations offer clear guidance on how to correct the missing information on the receipt, handle expenses exceeding limits, and follow proper submission procedures. There are no contradictory or harmful pieces of advice given."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing supplier name is valid and actionable. It clearly identifies the problem (missing supplier name) and suggests a direct solution. However, it could be more specific about how to obtain proper documentation from Hai Di Lao restaurant in Thailand.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing transaction date with the supplier is valid. The receipt shows \"2024-11-14\" as transaction time, but the system doesn't recognize this as a proper transaction date, so requesting a properly formatted receipt is appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding the missing total amount is valid. While the extracted data shows 1033 as the transaction amount, it appears this isn't properly formatted or recognized as the total cost including taxes and fees, so requesting proper documentation is appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation about missing item description is valid. The receipt lacks a detailed breakdown of the meal purchased, which is required for compliance. Requesting an itemized receipt from the restaurant is an appropriate solution.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding missing supplier address is valid and actionable. It clearly identifies what information is missing and suggests addressing this with the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation about the missing VAT number is valid. While this might be challenging for an international receipt, the recommendation correctly identifies what information is required for compliance.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation regarding the missing supplier phone number is valid and actionable, clearly identifying what information needs to be obtained from the supplier.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation about meal expenses exceeding the tax-exempt limit is highly valid and specific. It correctly references the relevant policy about personal meal limits during business trips and explains the tax implications when exceeding these limits.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation about sending original documentation to the Dalian Branch is extremely valid, actionable, and specific. It provides complete details including the recipient's name, address, telephone number, and shipping instructions.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation about submitting business expenses within 4 months is completely valid and straightforward. It clearly states the time limitation and the rule about not using invoices across years.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9666666666666667,
+      "issues": [
+        "None detected"
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All issues mentioned are properly supported by the compliance rules provided in the context. There are no hallucinations or fabricated information in the response. The AI correctly identified missing required fields and applicable compliance policies for meals expenses in China.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier name is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the transaction date is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the total amount including all taxes and fees is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly identifies that the item description with detailed breakdown is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier address is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier VAT number is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier phone number is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue regarding meal expenses exceeding tax-exempt limits is correctly identified and matches the compliance rule about personal meals during business trips.\n\nISSUE_9_VALIDATION_SCORE: 100 - The issue regarding the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch matches the compliance policy provided.\n\nISSUE_10_VALIDATION_SCORE: 100 - The issue regarding the requirement to submit business expenses within 4 months from date of issuance matches the compliance policy provided.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All issues mentioned are properly supported by the compliance rules provided in the context. There are no hallucinations or fabricated information in the response. The AI correctly identified missing required fields and applicable compliance policies for meals expenses in China.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier name is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue correctly identifies that the transaction date is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue correctly identifies that the total amount including all taxes and fees is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue correctly identifies that the item description with detailed breakdown is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier address is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_6_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier VAT number is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_7_VALIDATION_SCORE: 100 - The issue correctly identifies that the supplier phone number is missing, which is a valid compliance requirement according to the provided compliance rules.\n\nISSUE_8_VALIDATION_SCORE: 100 - The issue regarding meal expenses exceeding tax-exempt limits is correctly identified and matches the compliance rule about personal meals during business trips.\n\nISSUE_9_VALIDATION_SCORE: 100 - The issue regarding the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch matches the compliance policy provided.\n\nISSUE_10_VALIDATION_SCORE: 100 - The issue regarding the requirement to submit business expenses within 4 months from date of issuance matches the compliance policy provided.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: The AI response accurately identifies compliance issues based on the provided receipt data and compliance rules. All issues mentioned are properly supported by the compliance rules provided in the context. There are no hallucinations or fabricated information in the response. The AI correctly identified missing required fields and applicable compliance policies for meals expenses in China."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The supplier name, transaction date, total amount, item description, supplier address, supplier VAT number, and supplier phone number are all missing from the extracted data, which matches the issues identified in the AI response.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements provided in the AI response appear to be accurate and consistent with the ICP context of \"GoGlobal\".\n\nISSUE_3_VALIDATION_SCORE: 0 - The extracted data does not contain any fabricated entity names, amounts, or dates. The information provided seems to match the source data.\n\nISSUE_4_VALIDATION_SCORE: 0 - The AI response does not appear to make any assumptions presented as facts. The issues and recommendations are based on the compliance rules and requirements.\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI response accurately identifies the missing information in the extracted data, which matches the issues.\n\nISSUE_6_VALIDATION_SCORE: 0 - The AI response accurately identifies the missing information in the extracted data, which matches the issues.\n\nISSUE_7_VALIDATION_SCORE: 0 - The AI response accurately identifies the missing information in the extracted data, which matches the issues.\n\nISSUE_8_VALIDATION_SCORE: 100 - The AI response correctly identifies the meal expense exceeding the tax-exempt limit and the need for gross-up, which is consistent with the compliance policies.\n\nISSUE_9_VALIDATION_SCORE: 100 - The AI response accurately identifies the need to submit the original invoice and deduction sheet to the local employer's Dalian branch, and the requirement to submit expenses within 4 months, which are consistent with the additional information requirements.\n\nISSUE_10_VALIDATION_SCORE: 100 - The AI response accurately identifies the need to submit the original invoice and deduction sheet to the local employer's Dalian branch, and the requirement to submit expenses within 4 months, which are consistent with the additional information requirements.\n\nCONFIDENCE: 90\nISSUES: None detected.\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. It accurately identifies the issues with the extracted data based on the compliance rules and requirements provided in the ICP context. The response is comprehensive and provides appropriate recommendations to address the identified issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-5-sonnet-20240620-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rule requiring supplier name on receipts.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly states the requirement for transaction date on receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue accurately reflects the need for total amount on receipts.\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly states the requirement for item description on receipts.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue accurately reflects the compliance rule requiring supplier address on receipts.\n\nISSUE_6_VALIDATION_SCORE: 100 - This issue correctly states the requirement for supplier VAT number on receipts.\n\nISSUE_7_VALIDATION_SCORE: 100 - This issue accurately reflects the need for supplier phone number on receipts.\n\nISSUE_8_VALIDATION_SCORE: 100 - This issue correctly states the gross-up rule for meals during business trips.\n\nISSUE_9_VALIDATION_SCORE: 100 - This issue accurately reflects the requirement to send original invoices to the Dalian branch.\n\nISSUE_10_VALIDATION_SCORE: 100 - This issue correctly states the rule about submitting expenses within 4 months.\n\nCONFIDENCE: 100\n\nISSUES: No hallucinations detected.\n\nSUMMARY: The AI response appears to be entirely based on the provided compliance rules and extracted data. All issues mentioned are directly traceable to the given information, and no fabricated or hallucinated content was identified. The response accurately reflects the compliance requirements and data extraction results without introducing any unsupported information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the supplier name is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Receipt must show the date when the expense was incurred",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the transaction date is missing from the receipt data, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Receipt must display the total cost including all taxes and fees",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the total amount including all taxes and fees is missing, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the item description with detailed breakdown is missing, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the supplier address is missing, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 5,
+          "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the supplier VAT number is missing, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 6,
+          "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that the supplier phone number is missing, which is a valid compliance requirement according to the provided compliance rules.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 7,
+          "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding meal expenses exceeding tax-exempt limits is correctly identified and matches the compliance rule about personal meals during business trips.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 8,
+          "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding the requirement to send original invoice and deduction sheet to the Local Employer's Dalian Branch matches the compliance policy provided.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 9,
+          "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding the requirement to submit business expenses within 4 months from date of issuance matches the compliance policy provided.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: Minor uncertainty about the transaction date issue, as there is a transaction_time field, but it appears to be a bank transaction date rather than a receipt-issued date.",
+    "Address issues in knowledge base adherence: None. The AI response correctly applies all relevant compliance rules from the knowledge base for a meal receipt in China.",
+    "Address issues in compliance accuracy: - The transaction date issue could be more nuanced since there appears to be some date information in the extracted data, though it may not be properly formatted on the receipt itself., - The assessment doesn't address the fact that the transaction appears to have occurred in Thailand (transaction_country_code: \"THA\", location_country: \"Thailand\") while the receipt is being processed under China's compliance rules. This may require additional clarification on how international expenses are handled.",
+    "Address issues in issue categorization: None identified. All issues are correctly categorized according to the compliance rules provided.",
+    "Address issues in recommendation validity: The recommendations could be more specific about how to handle an international receipt from Thailand, as Chinese fapiao requirements may not apply directly. Additional guidance on acceptable alternative documentation for international expenses would be helpful.",
+    "Address issues in hallucination detection: None detected"
+  ],
+  "timestamp": "2025-09-26T10:38:45.072Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 85176,
+    "timing": {
+      "validation_start_time": "2025-09-26T10:37:19.896Z",
+      "validation_end_time": "2025-09-26T10:38:45.072Z",
+      "total_validation_time_seconds": "85.2",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-09-26T10:37:19.896Z",
+          "end_time": "2025-09-26T10:38:45.072Z",
+          "duration_seconds": "85.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "85.2",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.35",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 10
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Receipt must show the business name of the supplier/vendor providing the goods or services",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Receipt must show the date when the expense was incurred",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 92.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 90,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 80,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Receipt must display the total cost including all taxes and fees",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 96.67,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 90,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Receipt must specify the goods or services purchased with detailed breakdown",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Receipt must show the address of the supplier/vendor providing the goods or services",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 5,
+      "issue_description": "Receipt must show the VAT number of the supplier/vendor providing the goods or services",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 6,
+      "issue_description": "Receipt must show the phone number of the supplier/vendor providing the goods or services",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.89,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 7,
+      "issue_description": "Personal Meal during Business Trips generally not exceeding 150 RMB/day/person is tax exempt. Set rates: 1st tier cities (Beijing, Shanghai, Guangzhou, Shenzhen) 200 yuan per day (80 yuan per meal lunch/dinner), new 1st tier and 2nd tier cities 150 yuan per day (60 yuan per meal), 3rd tier cities 100 yuan per day (40 yuan per meal). Meals exceeding limit treated as entertaining customers or reimbursed after withholding personal income tax",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 99.44,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 8,
+      "issue_description": "Original invoice and deduction sheet must be sent to Local Employer's Dalian Branch: Name: Sylvia Jiang, Office Address: 大连市高新园区高新街9号晟辉科技大厦703室, Tel.: +86 17615158127 or 0411-81760355 dial 808. Use S.F. Express paid by shipper and collect express fee invoice for reimbursement",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 9,
+      "issue_description": "Business expenses must be submitted within 4 months from date of issuance. Invoices cannot be used across years",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,589 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759336094346_168042627_swiss_file_11.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T16:28:36.294Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and edges are well-defined.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "All sections of the document are present.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No obstructions or blocked content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "travel",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Germany",
+    "expected_location": "Switzerland",
+    "location_match": false,
+    "error_type": "File location is not same as project's location",
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. The fields found include supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, and itemDescriptionLineItems. The document is a receipt for a ride service, classifying it under 'travel' expenses.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
+        "itemDescriptionLineItems"
+      ],
+      "fields_missing": [
+        "paymentMethod"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, clearly indicating it is an expense document."
+    }
+  },
+  "extraction": {
+    "country": "Germany",
+    "supplier_name": "ABY Cab GmbH",
+    "supplier_address": "Engeldamm 26, 10179, Berlin",
+    "supplier_vat_number": "DE367792025",
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "Joe Biondino",
+    "customer_address": null,
+    "invoice_number": "FGEIAFAJ-03-2024-0000167",
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 9.63,
+    "subtotal": 9,
+    "tax_amount": 0.63,
+    "tax_rate": 7,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2024-12-04",
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Fahrpreis für Personenbeförderung",
+        "quantity": 1,
+        "unit_price": 9,
+        "total_price": 9,
+        "category": "Transport"
+      }
+    ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Rechnung",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "Berlin",
+    "location_country": "Germany",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": "HRB 260743 B",
+    "tax_id_number": "30/201/54002",
+    "issuer_name": "Uber B.V.",
+    "issuer_address": "Burgerweeshulspad 301, 1076 HR Amsterdam",
+    "issuer_vat_number": "NL852071589B01",
+    "issuer_coc_number": "56317441"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "country",
+          "description": "The receipt is from Germany, but the compliance analysis is for Switzerland.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The receipt must be from Switzerland as per the compliance requirements for Global PPL CH GmbH.",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "The supplier name is missing the ICP company details as required for non-travel expenses.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice must show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918 - The Local Employer's name and details should appear on invoices.",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "The customer name should be the ICP company name for travel expenses.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The Local Employer's name and details should appear on invoices, except where this won't be possible e.g. flight bookings.",
+          "confidence_score": 0.9
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The total amount is in EUR, but it should be in CHF for Swiss receipts.",
+          "recommendation": "Convert the amount to CHF and ensure it is reported in the local currency.",
+          "knowledge_base_reference": "The receipts/invoices should be reported in the local currency the worker will need to add the FX rate they have used to calculate the expense.",
+          "confidence_score": 0.95
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for mileage expenses.",
+          "recommendation": "Please provide a logbook with complete route details and odometer readings, and a map with the relevant route (Google Maps is sufficient).",
+          "knowledge_base_reference": "A logbook is required for each used car. Worker will need to share a map with the relevant route (google maps is sufficient).",
+          "confidence_score": 0.95
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt has multiple compliance issues including country mismatch, missing ICP company details, incorrect customer name, currency mismatch, and missing additional documentation for mileage. These issues need to be addressed to ensure compliance with Swiss regulations for Global PPL CH GmbH."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Switzerland",
+      "icp": "Global People",
+      "receipt_type": "travel",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Joe Biondino",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Joe Biondino\n\n### Page 1\n\n# Rechnung\n\nJoe Biondino",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Joe Biondino",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Joe Biondino\n\n### Page 1\n\n# Rechnung\n\nJoe Biondino",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Rechnungsnummer:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer: FGEIAFAJ-03-2024-0000167",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "FGEIAFAJ-03-2024-0000167",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer: FGEIAFAJ-03-2024-0000167",
+          "match_type": "exact"
+        }
+      },
+      "invoice_date": {
+        "field_citation": {
+          "source_text": "Rechnungsdatum:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnungsdatum: 04.12.2024",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "04.12.2024",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnungsdatum: 04.12.2024",
+          "match_type": "exact"
+        }
+      },
+      "issuer_name": {
+        "field_citation": {
+          "source_text": "Rechnung ausgestellt von Uber B.V. im Namen von:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnung ausgestellt von Uber B.V. im Namen von:\nABY Cab GmbH",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ABY Cab GmbH",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Rechnung ausgestellt von Uber B.V. im Namen von:\nABY Cab GmbH",
+          "match_type": "exact"
+        }
+      },
+      "tax_id": {
+        "field_citation": {
+          "source_text": "USt-IdNr.:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "USt-IdNr.: DE367792025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "DE367792025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "USt-IdNr.: DE367792025",
+          "match_type": "exact"
+        }
+      },
+      "total_net_amount": {
+        "field_citation": {
+          "source_text": "Gesamtnettobetrag:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtnettobetrag: 9,00 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,00 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtnettobetrag: 9,00 €",
+          "match_type": "exact"
+        }
+      },
+      "total_tax_amount": {
+        "field_citation": {
+          "source_text": "Gesamtbetrag USt 7%:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtbetrag USt 7%: 0,63 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,63 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtbetrag USt 7%: 0,63 €",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Gesamtbetrag:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtbetrag: 9,63 €",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,63 €",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Gesamtbetrag: 9,63 €",
+          "match_type": "exact"
+        }
+      },
+      "issuer_address": {
+        "field_citation": {
+          "source_text": "Engeldamm 26, 10179, Berlin",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Engeldamm 26, 10179, Berlin\nGermany",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Engeldamm 26, 10179, Berlin",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Engeldamm 26, 10179, Berlin\nGermany",
+          "match_type": "exact"
+        }
+      },
+      "commercial_register_number": {
+        "field_citation": {
+          "source_text": "Handelsregisternummer:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Handelsregisternummer: HRB 260743 B",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "HRB 260743 B",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Handelsregisternummer: HRB 260743 B",
+          "match_type": "exact"
+        }
+      },
+      "tax_number": {
+        "field_citation": {
+          "source_text": "St-Nr.:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "St-Nr.: 30/201/54002",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "30/201/54002",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "St-Nr.: 30/201/54002",
+          "match_type": "exact"
+        }
+      },
+      "tax_date": {
+        "field_citation": {
+          "source_text": "Steuerdatum",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "04.12.2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'Steuerdatum' header.",
+          "match_type": "exact"
+        }
+      },
+      "description": {
+        "field_citation": {
+          "source_text": "Beschreibung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Fahrpreis für Personenbeförderung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'Beschreibung' header.",
+          "match_type": "exact"
+        }
+      },
+      "quantity": {
+        "field_citation": {
+          "source_text": "Menge",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'Menge' header.",
+          "match_type": "exact"
+        }
+      },
+      "vat_rate": {
+        "field_citation": {
+          "source_text": "USt",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "7%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'USt' header.",
+          "match_type": "exact"
+        }
+      },
+      "vat_amount": {
+        "field_citation": {
+          "source_text": "USt Betrag",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,63 €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'USt Betrag' header.",
+          "match_type": "exact"
+        }
+      },
+      "net_amount": {
+        "field_citation": {
+          "source_text": "Nettobetrag",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a table header.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,00 €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the table under the 'Nettobetrag' header.",
+          "match_type": "exact"
+        }
+      },
+      "total_vat_amount": {
+        "field_citation": {
+          "source_text": "Gesamtbetrag USt 7%:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears as a label before the total VAT amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,63 €",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears directly after the 'Gesamtbetrag USt 7%:' label.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 55,
+      "fields_with_field_citations": 55,
+      "fields_with_value_citations": 55,
+      "average_confidence": 0.9663636363636363
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "17.4",
+      "file_classification_seconds": "3.7",
+      "data_extraction_seconds": "4.1",
+      "image_quality_assessment_seconds": "4.5",
+      "issue_detection_seconds": "8.2",
+      "citation_generation_seconds": "56.2",
+      "llm_validation_seconds": "78.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T16:28:14.407Z",
+        "end_time": "2025-10-01T16:28:31.827Z",
+        "duration_seconds": "17.4",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T16:28:31.830Z",
+        "end_time": "2025-10-01T16:28:35.549Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T16:28:31.832Z",
+        "end_time": "2025-10-01T16:28:35.967Z",
+        "duration_seconds": "4.1",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T16:28:31.828Z",
+        "end_time": "2025-10-01T16:28:36.294Z",
+        "duration_seconds": "4.5",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T16:28:36.295Z",
+        "end_time": "2025-10-01T16:28:44.531Z",
+        "duration_seconds": "8.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T16:28:36.297Z",
+        "end_time": "2025-10-01T16:29:32.492Z",
+        "duration_seconds": "56.2",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T16:29:32.493Z",
+        "end_time": "2025-10-01T16:30:50.531Z",
+        "duration_seconds": "78.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "156.1",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.5",
+      "parallel_group_2_seconds": "56.2",
+      "total_parallel_time_seconds": "60.7"
+    }
+  },
+  "metadata": {
+    "filename": "swiss_file_11.pdf",
+    "processing_time": 156127,
+    "country": "Switzerland",
+    "icp": "Global People",
+    "processed_at": "2025-10-01T16:30:50.534Z"
+  }
+}

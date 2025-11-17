@@ -1,0 +1,669 @@
+{
+  "overall_score": 0.8566666666666666,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9700000000000001,
+      "issues": [
+        "The only minor issue is with Issue 2",
+        "where the AI doesn't acknowledge that some service details (taxi journey with distance and addresses) are present",
+        "though they may not meet the full compliance requirements for item descriptions."
+      ],
+      "summary": "The AI response is very well grounded in the extracted data and compliance rules. All five issues identified are supported by the data, with only a slight overstatement regarding the complete absence of item description. The receipt clearly lacks customer name and tax information, requires additional documentation for travel claims, and needs manager approval as per compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 80 - The AI claims there's no item description, which is partially accurate. While the receipt doesn't have traditional line items (line_items is empty), it does show this is a taxi receipt with distance traveled (8 km) and journey details. However, according to compliance rules, a clearer description of the service may be required.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation is required for mileage/travel claims. This aligns with the compliance rule that states \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly notes that tax information is missing. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\" which confirms this issue is factually grounded.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies that manager approval is required. This directly corresponds to the compliance rule stating \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 95\n\nISSUES: The only minor issue is with Issue 2, where the AI doesn't acknowledge that some service details (taxi journey with distance and addresses) are present, though they may not meet the full compliance requirements for item descriptions.\n\nSUMMARY: The AI response is very well grounded in the extracted data and compliance rules. All five issues identified are supported by the data, with only a slight overstatement regarding the complete absence of item description. The receipt clearly lacks customer name and tax information, requires additional documentation for travel claims, and needs manager approval as per compliance rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.95,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 80 - The AI claims there's no item description, which is partially accurate. While the receipt doesn't have traditional line items (line_items is empty), it does show this is a taxi receipt with distance traveled (8 km) and journey details. However, according to compliance rules, a clearer description of the service may be required.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identifies that additional documentation is required for mileage/travel claims. This aligns with the compliance rule that states \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly notes that tax information is missing. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\" which confirms this issue is factually grounded.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identifies that manager approval is required. This directly corresponds to the compliance rule stating \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 95\n\nISSUES: The only minor issue is with Issue 2, where the AI doesn't acknowledge that some service details (taxi journey with distance and addresses) are present, though they may not meet the full compliance requirements for item descriptions.\n\nSUMMARY: The AI response is very well grounded in the extracted data and compliance rules. All five issues identified are supported by the data, with only a slight overstatement regarding the complete absence of item description. The receipt clearly lacks customer name and tax information, requires additional documentation for travel claims, and needs manager approval as per compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The claim about the missing customer name on the receipt is accurately reflected in the extracted data, where the \"customer_name\" field is null.\n\nISSUE_2_VALIDATION_SCORE: 100 - The claim about the missing item description on the receipt is accurately reflected in the extracted data, where the \"line_items\" field is empty.\n\nISSUE_3_VALIDATION_SCORE: 100 - The claim about the requirement for additional documentation for mileage claims is accurately reflected in the compliance rules, which state that a screenshot/printout of the travel route and a signed report are required.\n\nISSUE_4_VALIDATION_SCORE: 90 - The claim about the missing tax amount and rate on the receipt is mostly accurate, as the extracted data does not contain the \"tax_amount\" and \"tax_rate\" fields. However, the extracted data does include the \"tax_included\" field, which indicates that tax is included in the total amount.\n\nISSUE_5_VALIDATION_SCORE: 100 - The claim about the requirement for manager approval before processing the expense is accurately reflected in the compliance rules, which state that the client line manager must review and approve the expenses before the payroll cutoff date.\n\nCONFIDENCE: 98\nISSUES: The only minor issue is the partial representation of the tax information on the receipt.\nSUMMARY: The AI response is highly factually grounded in the provided extracted data and compliance rules. All the key claims made in the response can be traced back to the information provided, with only a minor discrepancy regarding the tax information on the receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue. The knowledge base reference about worker's name and details appearing on invoices is relevant to the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified that the item description is missing from the receipt. While the receipt type is clearly a taxi receipt with distance traveled (8km), the extracted data shows \"line_items: []\" indicating no detailed item description is present. The compliance rule states \"Receipt must specify the goods or services purchased with clear description.\"\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage/travel claims. The compliance rules clearly state that for GoGlobal mileage claims, \"Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that tax information is missing. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\" which confirms this issue. The compliance rules state \"VAT amount should be clearly shown on the invoice if applicable.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that manager approval is required. This matches the compliance rule that states \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 98\n\nISSUES: No significant factual grounding issues. The AI has accurately identified compliance issues based on the extracted data and compliance rules.\n\nSUMMARY: The AI response is very well grounded in the provided data and compliance rules. All five issues identified are supported by the extracted data showing missing information (customer name, item description, tax details) and by the compliance requirements for additional documentation and manager approval for travel expenses. The recommendations provided are directly aligned with the compliance rules for GoGlobal in Spain."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The AI claims there's no item description, which is partially accurate. While the receipt doesn't have traditional line items (line_items is empty), it does show this is a taxi receipt with distance traveled (8 km) and journey details. However, according to compliance rules, a clearer description of the service may be required.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that additional documentation is required for mileage/travel claims. This aligns with the compliance rule that states \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly notes that tax information is missing. The extracted data shows \"tax_amount: null\" and \"tax_rate: null\" which confirms this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identifies that manager approval is required. This directly corresponds to the compliance rule stating \"Client line manager must review and approve expenses before payroll cutoff date.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8333333333333334,
+      "issues": [
+        "1. Issue 1 uses a knowledge base reference for Baldock/Parakar rather than GoGlobal",
+        "2. Issue 4 treats VAT information as mandatory when it's listed as \"Optional\" in the knowledge base for GoGlobal"
+      ],
+      "summary": "The AI response generally adheres well to the compliance knowledge base, correctly identifying most issues and providing appropriate recommendations based on the rules. The main discrepancies are using a reference for Baldock/Parakar instead of GoGlobal in Issue 1, and potentially overemphasizing the VAT requirement which is listed as optional. Overall, the validation is thorough and mostly accurate according to the provided compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the knowledge base reference used (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not the most relevant rule for GoGlobal. A more appropriate reference would be from the general receipt standards section stating that customer identification is required.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that item description is missing, which is mandatory according to the knowledge base rule: \"Receipt must specify the goods or services purchased with clear description (expense type/description)\". This is accurately referenced.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for mileage claims, citing the exact rule from the knowledge base: \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer. Electronic signature is allowed\".\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that tax information is missing, which aligns with the knowledge base rule: \"VAT amount should be clearly shown on the invoice if applicable\". The recommendation is appropriate, though it's worth noting this is listed as \"Optional\" in the knowledge base for GoGlobal, not mandatory.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for manager approval, citing the exact rule from the knowledge base: \"Client line manager must review and approve expenses before payroll cutoff date\".\n\nCONFIDENCE: 92\n\nISSUES:\n1. Issue 1 uses a knowledge base reference for Baldock/Parakar rather than GoGlobal\n2. Issue 4 treats VAT information as mandatory when it's listed as \"Optional\" in the knowledge base for GoGlobal\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, correctly identifying most issues and providing appropriate recommendations based on the rules. The main discrepancies are using a reference for Baldock/Parakar instead of GoGlobal in Issue 1, and potentially overemphasizing the VAT requirement which is listed as optional. Overall, the validation is thorough and mostly accurate according to the provided compliance rules.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the knowledge base reference used (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not the most relevant rule for GoGlobal. A more appropriate reference would be from the general receipt standards section stating that customer identification is required.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that item description is missing, which is mandatory according to the knowledge base rule: \"Receipt must specify the goods or services purchased with clear description (expense type/description)\". This is accurately referenced.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for mileage claims, citing the exact rule from the knowledge base: \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer. Electronic signature is allowed\".\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that tax information is missing, which aligns with the knowledge base rule: \"VAT amount should be clearly shown on the invoice if applicable\". The recommendation is appropriate, though it's worth noting this is listed as \"Optional\" in the knowledge base for GoGlobal, not mandatory.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified the need for manager approval, citing the exact rule from the knowledge base: \"Client line manager must review and approve expenses before payroll cutoff date\".\n\nCONFIDENCE: 92\n\nISSUES:\n1. Issue 1 uses a knowledge base reference for Baldock/Parakar rather than GoGlobal\n2. Issue 4 treats VAT information as mandatory when it's listed as \"Optional\" in the knowledge base for GoGlobal\n\nSUMMARY: The AI response generally adheres well to the compliance knowledge base, correctly identifying most issues and providing appropriate recommendations based on the rules. The main discrepancies are using a reference for Baldock/Parakar instead of GoGlobal in Issue 1, and potentially overemphasizing the VAT requirement which is listed as optional. Overall, the validation is thorough and mostly accurate according to the provided compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI correctly identified the missing mandatory customer name on the receipt, which aligns with the compliance rule that the \"Document must show the name of the vendor/merchant that provided the goods or services\". This is a well-established standard for expense receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI correctly identified the missing mandatory item description on the receipt, which is in line with the compliance rule that \"Receipt must specify the goods or services purchased with clear description (expense type/description)\". This is a common requirement for valid expense documentation.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified the need for additional documentation for the mileage claim, such as a screenshot/printout of the travel route and a signed report. This aligns with the compliance rule that \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer.\"\n\nISSUE_4_VALIDATION_SCORE: 85 - The AI correctly identified the missing tax amount and rate on the receipt, which is in line with the compliance rule that \"VAT amount should be clearly shown on the invoice if applicable\". However, the recommendation could be more specific in requiring the tax details to be clearly listed on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI correctly identified the need for manager approval before processing the expense, which aligns with the compliance rule that \"Client line manager must review and approve expenses before payroll cutoff date\".\n\nCONFIDENCE: 90\nISSUES: None\n\nSUMMARY: The AI response demonstrates a strong understanding and application of the compliance rules and knowledge base for Spain. It correctly identifies the key issues with the expense receipt, such as missing mandatory fields, the need for additional documentation, and the requirement for manager approval. The recommendations provided are also in line with the established compliance guidelines. Overall, the response adheres very well to the knowledge base and can be considered reliable for processing the expense claim."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.68,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue correctly identifies that customer name is missing, but the knowledge base reference is not entirely accurate. For GoGlobal (the ICP context), there's no specific requirement stating that worker's name must appear on taxi receipts. The referenced rule about \"worker's name and details\" applies specifically to Baldock or Parakar for hotel and flight expenses, not for taxi receipts with GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that item description is missing, which is mandatory according to the knowledge base: \"Receipt must specify the goods or services purchased with clear description (expense type/description)\". The recommendation and knowledge base reference are accurate.\n\nISSUE_3_VALIDATION_SCORE: 0 - This is a major misapplication of the knowledge base. The receipt is for a taxi, not for mileage claims. The additional documentation requirement for mileage (Google Maps screenshot, signed report) does not apply to taxi receipts. The receipt already shows the route, distance, and other details required for a taxi expense.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue correctly identifies that tax information is missing. According to the knowledge base, \"VAT amount should be clearly shown on the invoice if applicable.\" However, this is listed as \"Optional\" for GoGlobal in the knowledge base, not mandatory, so the severity of the issue may be overstated.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly cites the knowledge base requirement that \"Client line manager must review and approve expenses before payroll cutoff date.\" The recommendation is appropriate and aligns with the knowledge base.\n\nCONFIDENCE: 68\n\nISSUES:\n1. Misapplication of worker name requirement - applying Baldock/Parakar rules to GoGlobal\n2. Confusion between taxi receipt and mileage claim - incorrectly requiring mileage documentation for a taxi receipt\n3. Treating an optional VAT disclosure requirement as a mandatory issue\n4. Not acknowledging that this is a valid taxi receipt that includes route information, distance, and other required details\n\nSUMMARY: The AI response correctly identifies some compliance issues but makes significant errors in applying the knowledge base. It incorrectly applies mileage documentation requirements to a taxi receipt and misapplies worker name requirements from other ICPs. While it correctly identifies the need for item description and manager approval, the overall application of the compliance rules shows inconsistencies with the knowledge base, particularly in distinguishing between taxi receipts and mileage claims."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The AI correctly identified that customer name is missing, which is a mandatory field according to the knowledge base. However, the knowledge base reference used (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not the most relevant rule for GoGlobal. A more appropriate reference would be from the general receipt standards section stating that customer identification is required.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that item description is missing, which is mandatory according to the knowledge base rule: \"Receipt must specify the goods or services purchased with clear description (expense type/description)\". This is accurately referenced.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for additional documentation for mileage claims, citing the exact rule from the knowledge base: \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer. Electronic signature is allowed\".",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that tax information is missing, which aligns with the knowledge base rule: \"VAT amount should be clearly shown on the invoice if applicable\". The recommendation is appropriate, though it's worth noting this is listed as \"Optional\" in the knowledge base for GoGlobal, not mandatory.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified the need for manager approval, citing the exact rule from the knowledge base: \"Client line manager must review and approve expenses before payroll cutoff date\".",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.7399999999999999,
+      "issues": [
+        "1. Issue 3 is completely incorrect - confusing a taxi receipt with a mileage claim",
+        "2. Issue 1 uses an incorrect knowledge base reference not applicable to this receipt type",
+        "3. The validation fails to recognize that this is a valid taxi receipt with journey details that could satisfy the description requirement",
+        "4. The assessment doesn't acknowledge that the receipt contains the supplier name",
+        "date",
+        "receipt number",
+        "and total amount",
+        "which are mandatory fields that are present",
+        "5. The assessment doesn't consider that for taxi receipts under €100",
+        "GoGlobal entity name is not strictly required"
+      ],
+      "summary": "The compliance assessment has significant accuracy issues. It correctly identifies the missing tax information and need for manager approval, but incorrectly applies mileage documentation requirements to a taxi receipt. It also uses inappropriate knowledge base references and fails to recognize that the receipt contains several required elements for a valid taxi receipt. The assessment should focus on the specific requirements for taxi receipts under GoGlobal rather than applying unrelated compliance rules.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue correctly identifies that customer name is missing, but the knowledge base reference is incorrect. For taxi receipts under GoGlobal, there's no specific requirement that the worker's name must appear on the receipt. The reference used is for Baldock or Parakar specifically for hotel/flight expenses, not for taxi receipts with GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue correctly identifies that item description is missing according to GoGlobal requirements. However, this is a taxi receipt that does show the journey details (origin/destination addresses, distance traveled, etc.), which could be considered sufficient description for this receipt type.\n\nISSUE_3_VALIDATION_SCORE: 0 - This is completely incorrect. The document is a taxi receipt, not a mileage claim. The additional documentation requirements for mileage claims don't apply to taxi receipts. This is a fundamental misclassification of the receipt type.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue correctly identifies that tax information (VAT amount and rate) is not specified on the receipt. According to the compliance rules, VAT should be clearly shown if applicable, though it's listed as \"Optional\" for GoGlobal.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that manager approval is required before processing the expense, which aligns with GoGlobal's requirement that \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 is completely incorrect - confusing a taxi receipt with a mileage claim\n2. Issue 1 uses an incorrect knowledge base reference not applicable to this receipt type\n3. The validation fails to recognize that this is a valid taxi receipt with journey details that could satisfy the description requirement\n4. The assessment doesn't acknowledge that the receipt contains the supplier name, date, receipt number, and total amount, which are mandatory fields that are present\n5. The assessment doesn't consider that for taxi receipts under €100, GoGlobal entity name is not strictly required\n\nSUMMARY: The compliance assessment has significant accuracy issues. It correctly identifies the missing tax information and need for manager approval, but incorrectly applies mileage documentation requirements to a taxi receipt. It also uses inappropriate knowledge base references and fails to recognize that the receipt contains several required elements for a valid taxi receipt. The assessment should focus on the specific requirements for taxi receipts under GoGlobal rather than applying unrelated compliance rules.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue correctly identifies that customer name is missing, but the knowledge base reference is incorrect. For taxi receipts under GoGlobal, there's no specific requirement that the worker's name must appear on the receipt. The reference used is for Baldock or Parakar specifically for hotel/flight expenses, not for taxi receipts with GoGlobal.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue correctly identifies that item description is missing according to GoGlobal requirements. However, this is a taxi receipt that does show the journey details (origin/destination addresses, distance traveled, etc.), which could be considered sufficient description for this receipt type.\n\nISSUE_3_VALIDATION_SCORE: 0 - This is completely incorrect. The document is a taxi receipt, not a mileage claim. The additional documentation requirements for mileage claims don't apply to taxi receipts. This is a fundamental misclassification of the receipt type.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue correctly identifies that tax information (VAT amount and rate) is not specified on the receipt. According to the compliance rules, VAT should be clearly shown if applicable, though it's listed as \"Optional\" for GoGlobal.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue correctly identifies that manager approval is required before processing the expense, which aligns with GoGlobal's requirement that \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 60\n\nISSUES:\n1. Issue 3 is completely incorrect - confusing a taxi receipt with a mileage claim\n2. Issue 1 uses an incorrect knowledge base reference not applicable to this receipt type\n3. The validation fails to recognize that this is a valid taxi receipt with journey details that could satisfy the description requirement\n4. The assessment doesn't acknowledge that the receipt contains the supplier name, date, receipt number, and total amount, which are mandatory fields that are present\n5. The assessment doesn't consider that for taxi receipts under €100, GoGlobal entity name is not strictly required\n\nSUMMARY: The compliance assessment has significant accuracy issues. It correctly identifies the missing tax information and need for manager approval, but incorrectly applies mileage documentation requirements to a taxi receipt. It also uses inappropriate knowledge base references and fails to recognize that the receipt contains several required elements for a valid taxi receipt. The assessment should focus on the specific requirements for taxi receipts under GoGlobal rather than applying unrelated compliance rules."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing customer name as a compliance issue, which is a mandatory field for expense receipts. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing item description as a compliance issue, which is another mandatory field for expense receipts. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identified the need for additional documentation for the mileage claim, which is a standard requirement. The recommendation to provide a travel route screenshot and signed report is appropriate.\n\nISSUE_4_VALIDATION_SCORE: 85 - The assessment correctly identified the lack of tax information as a compliance issue, but the recommendation could be more specific. It would be better to state that the tax amount and rate should be clearly listed on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identified the need for manager approval before processing the expense, which is a standard requirement.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate, with minor room for improvement in the tax information recommendation. The assessment correctly identifies the key compliance issues with the receipt and provides appropriate recommendations to address them."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.72,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The issue correctly identifies that customer name is missing, but the knowledge base reference is incorrect. For GoGlobal (the specified ICP), the rule about \"worker's name and details should appear on invoices, not the Local Employer\" applies to Baldock or Parakar, not GoGlobal. For GoGlobal, customer name is indeed required, but the reference should be to the general requirement for item details.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue correctly identifies that item description is missing from the receipt. This is a mandatory field according to GoGlobal's compliance rules, and the knowledge base reference is accurate. The taxi receipt shows the journey details but lacks a clear service description.\n\nISSUE_3_VALIDATION_SCORE: 20 - This issue is incorrectly flagged. The document is a taxi receipt, not a mileage claim. The rule about requiring screenshots/printouts of travel routes using Google Maps applies specifically to mileage claims where employees use their own vehicles, not to taxi services. The receipt already contains journey details including distance traveled (8km).\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue correctly identifies that tax information is missing. According to GoGlobal's rules, \"VAT amount should be clearly shown on the invoice if applicable.\" While the receipt indicates \"tax included,\" it doesn't specify the tax amount or rate, which is required for proper VAT accounting.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue correctly identifies that manager approval is required. According to GoGlobal's rules, \"Client line manager must review and approve expenses before payroll cutoff date.\" This is an accurate compliance requirement for all expense types.\n\nCONFIDENCE: 72\n\nISSUES:\n1. Issue 3 is completely misapplied - this is a taxi receipt, not a mileage claim\n2. Issue 1 uses an incorrect knowledge base reference\n3. The validation doesn't acknowledge that the receipt contains some required information like supplier name, date, receipt number, and total amount\n4. The validation doesn't address the future date issue (2025-06-17) which would make this receipt invalid\n\nSUMMARY: The compliance assessment is partially accurate but contains significant errors. While it correctly identifies issues with missing customer name, item description, tax information, and manager approval requirements, it incorrectly applies mileage documentation requirements to a taxi receipt. Additionally, it fails to flag the future date (2025-06-17) as an issue, which would render this receipt invalid for current expense processing. The knowledge base reference for the customer name issue is also incorrectly cited."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue correctly identifies that customer name is missing, but the knowledge base reference is incorrect. For taxi receipts under GoGlobal, there's no specific requirement that the worker's name must appear on the receipt. The reference used is for Baldock or Parakar specifically for hotel/flight expenses, not for taxi receipts with GoGlobal.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue correctly identifies that item description is missing according to GoGlobal requirements. However, this is a taxi receipt that does show the journey details (origin/destination addresses, distance traveled, etc.), which could be considered sufficient description for this receipt type.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This is completely incorrect. The document is a taxi receipt, not a mileage claim. The additional documentation requirements for mileage claims don't apply to taxi receipts. This is a fundamental misclassification of the receipt type.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue correctly identifies that tax information (VAT amount and rate) is not specified on the receipt. According to the compliance rules, VAT should be clearly shown if applicable, though it's listed as \"Optional\" for GoGlobal.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue correctly identifies that manager approval is required before processing the expense, which aligns with GoGlobal's requirement that \"Client line manager must review and approve expenses before payroll cutoff date.\"",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8866666666666666,
+      "issues": [
+        "The categorization is generally accurate",
+        "but there are minor considerations: (1) For taxis in Spain",
+        "customer names aren't always required on receipts",
+        "so Issue 1 might be slightly overstated",
+        "(2) Issue 2 doesn't acknowledge that some description elements are present (taxi service",
+        "distance)",
+        "(3) The system doesn't distinguish between a taxi receipt and a mileage claim - they have different documentation requirements."
+      ],
+      "summary": "The issue categorization is highly accurate overall, with appropriate classifications and references to relevant compliance rules. The system correctly identifies missing mandatory fields, required documentation, and approval processes. Minor improvements could be made in recognizing the difference between taxi receipts and mileage claims, and acknowledging partial compliance where some information is present but incomplete.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing customer name as a mandatory field. The knowledge base reference correctly cites that worker's name should appear on invoices. However, this is a taxi receipt where customer name might not always be required, which creates a slight misalignment.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and identifies the missing item description. While technically correct according to the compliance rules, the receipt does show it's a taxi service with distance traveled (8km), which could be considered a partial description. The categorization is appropriate but could acknowledge the partial information already present.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding additional documentation for mileage claims. The recommendation accurately reflects the compliance rule requiring a screenshot/printout of the travel route and signatures from both employee and employer.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" regarding missing tax information. The knowledge base reference is accurate, noting that VAT amounts should be clearly shown. The categorization is appropriate as tax information impacts gross-up calculations.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding manager approval. The recommendation directly aligns with the compliance rule stating that the client line manager must review and approve expenses before the payroll cutoff date.\n\nCONFIDENCE: 94\n\nISSUES: The categorization is generally accurate, but there are minor considerations: (1) For taxis in Spain, customer names aren't always required on receipts, so Issue 1 might be slightly overstated; (2) Issue 2 doesn't acknowledge that some description elements are present (taxi service, distance); (3) The system doesn't distinguish between a taxi receipt and a mileage claim - they have different documentation requirements.\n\nSUMMARY: The issue categorization is highly accurate overall, with appropriate classifications and references to relevant compliance rules. The system correctly identifies missing mandatory fields, required documentation, and approval processes. Minor improvements could be made in recognizing the difference between taxi receipts and mileage claims, and acknowledging partial compliance where some information is present but incomplete.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing customer name as a mandatory field. The knowledge base reference correctly cites that worker's name should appear on invoices. However, this is a taxi receipt where customer name might not always be required, which creates a slight misalignment.\n\nISSUE_2_VALIDATION_SCORE: 85 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and identifies the missing item description. While technically correct according to the compliance rules, the receipt does show it's a taxi service with distance traveled (8km), which could be considered a partial description. The categorization is appropriate but could acknowledge the partial information already present.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding additional documentation for mileage claims. The recommendation accurately reflects the compliance rule requiring a screenshot/printout of the travel route and signatures from both employee and employer.\n\nISSUE_4_VALIDATION_SCORE: 95 - The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" regarding missing tax information. The knowledge base reference is accurate, noting that VAT amounts should be clearly shown. The categorization is appropriate as tax information impacts gross-up calculations.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding manager approval. The recommendation directly aligns with the compliance rule stating that the client line manager must review and approve expenses before the payroll cutoff date.\n\nCONFIDENCE: 94\n\nISSUES: The categorization is generally accurate, but there are minor considerations: (1) For taxis in Spain, customer names aren't always required on receipts, so Issue 1 might be slightly overstated; (2) Issue 2 doesn't acknowledge that some description elements are present (taxi service, distance); (3) The system doesn't distinguish between a taxi receipt and a mileage claim - they have different documentation requirements.\n\nSUMMARY: The issue categorization is highly accurate overall, with appropriate classifications and references to relevant compliance rules. The system correctly identifies missing mandatory fields, required documentation, and approval processes. Minor improvements could be made in recognizing the difference between taxi receipts and mileage claims, and acknowledging partial compliance where some information is present but incomplete."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue \"Missing mandatory customer name on the receipt\" is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and actionable, and the recommendation to address it with the supplier or provider is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue \"Missing mandatory item description on the receipt\" is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and in line with the established taxonomy.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue \"Additional documentation is required for mileage claims\" is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation to provide a travel route screenshot and signed report are appropriate.\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue \"Tax amount and rate are not specified on the receipt\" is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The recommendation to ensure the tax information is clearly listed is appropriate, but the description could be slightly more specific.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue \"Manager approval is required before processing this expense\" is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation to obtain manager approval before the payroll cutoff date are clear and actionable.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The identified issues are accurately categorized according to the established taxonomy. The descriptions and recommendations are clear and actionable, providing the necessary guidance to address the compliance concerns. Overall, the issue categorization is well-executed."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.82,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The issue is correctly identified as \"Standards & Compliance | Fix Identified\" since the customer name is indeed missing from the receipt, which is a mandatory field according to the compliance rules. However, the knowledge base reference about \"worker's name and details should appear on invoices, not the Local Employer\" is not fully applicable to this taxi receipt context, as this rule appears to be specifically for hotel and flight expenses with Baldock or Parakar (not GoGlobal).\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" regarding missing item description. The receipt does show it's a taxi ride but lacks specific service description details. The knowledge base reference is accurate and applicable to this case, as item descriptions are mandatory for all expense types with GoGlobal.\n\nISSUE_3_VALIDATION_SCORE: 60 - This issue is incorrectly categorized. While the knowledge base reference is accurate, this is a taxi receipt, not a mileage claim. The receipt already includes distance traveled (8 km), route details, and other taxi-specific information. The additional documentation requirements cited are specifically for mileage claims where an employee uses their own vehicle, not for taxi services.\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue regarding missing tax information is correctly identified as \"Standards & Compliance | Gross-up Identified.\" The receipt doesn't specify the tax amount or rate, though it does indicate \"tax included.\" The categorization is appropriate since tax information impacts potential gross-up calculations, but the VAT display is listed as \"Optional\" in the compliance rules, not mandatory.\n\nISSUE_5_VALIDATION_SCORE: 95 - This issue is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding manager approval. The knowledge base reference accurately reflects the requirement that \"Client line manager must review and approve expenses before payroll cutoff date\" for all expense types with GoGlobal.\n\nCONFIDENCE: 82\n\nISSUES:\n1. Issue 3 is incorrectly applying mileage claim documentation requirements to a taxi receipt\n2. Issue 1 references knowledge base information for Baldock/Parakar that isn't fully applicable to GoGlobal\n3. Issue 4 treats VAT display as mandatory when compliance rules list it as optional\n\nSUMMARY: Most issues are correctly categorized with appropriate issue types and recommendations. The main problem is with Issue 3, which incorrectly applies mileage claim requirements to a taxi receipt. Issue 1 references knowledge base information not fully applicable to this ICP context, and Issue 4 treats an optional requirement as mandatory. The remaining issues are well-categorized with appropriate references to the compliance rules."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and accurately identifies the missing customer name as a mandatory field. The knowledge base reference correctly cites that worker's name should appear on invoices. However, this is a taxi receipt where customer name might not always be required, which creates a slight misalignment.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Fix Identified\" and identifies the missing item description. While technically correct according to the compliance rules, the receipt does show it's a taxi service with distance traveled (8km), which could be considered a partial description. The categorization is appropriate but could acknowledge the partial information already present.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding additional documentation for mileage claims. The recommendation accurately reflects the compliance rule requiring a screenshot/printout of the travel route and signatures from both employee and employer.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The issue is correctly categorized as \"Standards & Compliance | Gross-up Identified\" regarding missing tax information. The knowledge base reference is accurate, noting that VAT amounts should be clearly shown. The categorization is appropriate as tax information impacts gross-up calculations.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue is perfectly categorized as \"Standards & Compliance | Follow-up Action Identified\" regarding manager approval. The recommendation directly aligns with the compliance rule stating that the client line manager must review and approve expenses before the payroll cutoff date.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9166666666666666,
+      "issues": [
+        "The tax information recommendation (Issue 4) could note that this is an optional requirement according to the compliance rules",
+        "though still good practice."
+      ],
+      "summary": "The recommendations are highly valid and directly aligned with GoGlobal's compliance policies for travel expenses in Spain. They provide specific, actionable guidance that addresses the identified issues. The recommendations for additional documentation for mileage claims and manager approval are particularly strong as they match exactly with compliance requirements. The tax information recommendation is valid but could acknowledge its optional status.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, customer name is mandatory for GoGlobal receipts, especially for proper identification and tax purposes. The recommendation correctly references the knowledge base rule about worker's name details.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding the missing item description is highly valid. The compliance rules explicitly state that receipts must specify goods or services purchased with clear descriptions. While the receipt shows it's a taxi ride with distance traveled, a formal item description (e.g., \"Business transportation\") is missing. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - This recommendation is perfectly aligned with GoGlobal's compliance policy for mileage claims. The suggestion to provide a screenshot/printout of the travel route using Google Maps and ensure both employee and employer signatures is directly from the compliance rules and is specific, actionable, and necessary.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation about tax information is valid but could be more specific. While the compliance rules state that VAT should be clearly shown if applicable, the rule also notes this is \"Optional\" for GoGlobal. The recommendation correctly identifies the issue but doesn't acknowledge the optional nature of this requirement.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation regarding manager approval is directly from the compliance rules and is completely valid. The suggestion to ensure client line manager review and approval before the payroll cutoff date is specific, actionable, and matches exactly with GoGlobal's requirements.\n\nCONFIDENCE: 94\n\nISSUES: The tax information recommendation (Issue 4) could note that this is an optional requirement according to the compliance rules, though still good practice.\n\nSUMMARY: The recommendations are highly valid and directly aligned with GoGlobal's compliance policies for travel expenses in Spain. They provide specific, actionable guidance that addresses the identified issues. The recommendations for additional documentation for mileage claims and manager approval are particularly strong as they match exactly with compliance requirements. The tax information recommendation is valid but could acknowledge its optional status.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, customer name is mandatory for GoGlobal receipts, especially for proper identification and tax purposes. The recommendation correctly references the knowledge base rule about worker's name details.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding the missing item description is highly valid. The compliance rules explicitly state that receipts must specify goods or services purchased with clear descriptions. While the receipt shows it's a taxi ride with distance traveled, a formal item description (e.g., \"Business transportation\") is missing. The recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 100 - This recommendation is perfectly aligned with GoGlobal's compliance policy for mileage claims. The suggestion to provide a screenshot/printout of the travel route using Google Maps and ensure both employee and employer signatures is directly from the compliance rules and is specific, actionable, and necessary.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation about tax information is valid but could be more specific. While the compliance rules state that VAT should be clearly shown if applicable, the rule also notes this is \"Optional\" for GoGlobal. The recommendation correctly identifies the issue but doesn't acknowledge the optional nature of this requirement.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation regarding manager approval is directly from the compliance rules and is completely valid. The suggestion to ensure client line manager review and approval before the payroll cutoff date is specific, actionable, and matches exactly with GoGlobal's requirements.\n\nCONFIDENCE: 94\n\nISSUES: The tax information recommendation (Issue 4) could note that this is an optional requirement according to the compliance rules, though still good practice.\n\nSUMMARY: The recommendations are highly valid and directly aligned with GoGlobal's compliance policies for travel expenses in Spain. They provide specific, actionable guidance that addresses the identified issues. The recommendations for additional documentation for mileage claims and manager approval are particularly strong as they match exactly with compliance requirements. The tax information recommendation is valid but could acknowledge its optional status."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name is specific and actionable. It is a common compliance requirement, and the suggested approach to work with the supplier is feasible.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing item description is also specific and actionable. It is a standard compliance requirement, and the suggested approach to work with the supplier is practical.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation for the additional documentation required for mileage claims is valid and addresses the identified issue. However, the details provided, such as the requirement for a signed report and a screenshot of the travel route, may be overly prescriptive. A more flexible approach that allows for alternative forms of documentation could be more useful.\n\nISSUE_4_VALIDATION_SCORE: 80 - The recommendation to ensure the tax amount and rate are clearly listed on the receipt is valid. However, the recommendation does not provide specific guidance on how to address this issue, such as contacting the supplier or requesting a revised receipt.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to obtain manager approval before processing the expense is specific and addresses a common compliance requirement. The suggested approach of ensuring the client line manager reviews and approves the expenses is practical.\n\nCONFIDENCE: 87\nISSUES: The recommendation for the mileage claim documentation could be more flexible, and the recommendation for the tax information could provide more specific guidance.\nSUMMARY: Overall, the recommendations provided are valid and address the key compliance issues identified. The suggestions are actionable, specific, and feasible, with a few minor areas for improvement. The recommendations are likely to be useful in addressing the compliance concerns raised."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.94,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, customer identification is mandatory for GoGlobal receipts. The knowledge base reference correctly notes that worker's name should appear on invoices when working with certain ICPs.\n\nISSUE_2_VALIDATION_SCORE: 95 - The recommendation regarding missing item description is highly valid. The compliance rules clearly state that receipts must specify goods or services purchased with clear descriptions, and this is marked as mandatory for GoGlobal. The recommendation to address this with the supplier is practical and actionable.\n\nISSUE_3_VALIDATION_SCORE: 100 - The recommendation for additional documentation for mileage claims is completely valid and directly references the exact compliance rule. It correctly specifies the need for a screenshot/printout of the travel route using Google Maps or similar site, and that the report must be signed by both employee and employer, which matches the compliance policy exactly.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation about missing tax information is valid, as the compliance rules state that \"VAT amount should be clearly shown on the invoice if applicable.\" However, this is marked as \"Optional\" in the compliance rules, not mandatory, which slightly reduces the validation score. The recommendation is still helpful but could note that this is an optional requirement.\n\nISSUE_5_VALIDATION_SCORE: 100 - The recommendation regarding manager approval is completely valid and directly references the compliance rule that \"Client line manager must review and approve expenses before payroll cutoff date.\" This is an actionable recommendation that correctly addresses a mandatory requirement.\n\nCONFIDENCE: 94\n\nISSUES: The recommendation for Issue 4 (tax information) identifies it as a compliance issue requiring follow-up, but the compliance rules indicate this is optional for GoGlobal, not mandatory.\n\nSUMMARY: Overall, the recommendations are highly valid, actionable, and align well with the compliance rules. They provide clear guidance on what actions are needed to address the identified issues. Four of the five recommendations directly address mandatory requirements according to the compliance rules, while one addresses an optional requirement but presents it as necessary. The recommendations are specific, practical, and would help ensure compliance with GoGlobal's policies for expense receipts in Spain."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid and actionable. According to the compliance rules, customer name is mandatory for GoGlobal receipts, especially for proper identification and tax purposes. The recommendation correctly references the knowledge base rule about worker's name details.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation regarding the missing item description is highly valid. The compliance rules explicitly state that receipts must specify goods or services purchased with clear descriptions. While the receipt shows it's a taxi ride with distance traveled, a formal item description (e.g., \"Business transportation\") is missing. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This recommendation is perfectly aligned with GoGlobal's compliance policy for mileage claims. The suggestion to provide a screenshot/printout of the travel route using Google Maps and ensure both employee and employer signatures is directly from the compliance rules and is specific, actionable, and necessary.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation about tax information is valid but could be more specific. While the compliance rules state that VAT should be clearly shown if applicable, the rule also notes this is \"Optional\" for GoGlobal. The recommendation correctly identifies the issue but doesn't acknowledge the optional nature of this requirement.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The recommendation regarding manager approval is directly from the compliance rules and is completely valid. The suggestion to ensure client line manager review and approval before the payroll cutoff date is specific, actionable, and matches exactly with GoGlobal's requirements.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.7933333333333333,
+      "issues": [
+        "1. Issue 1 references an incorrect knowledge base rule for the wrong ICP (Baldock/Parakar instead of GoGlobal).",
+        "2. Issue 2 fails to recognize that for a taxi receipt",
+        "the service nature is inherently described by the document type and included details like distance",
+        "origin",
+        "and destination."
+      ],
+      "summary": "The AI response contains mostly accurate information based on the compliance rules, but there are two issues with partial hallucinations. The first issue cites an incorrect knowledge base reference for the wrong ICP. The second issue fails to recognize that a taxi receipt inherently describes the service through its document type and included details. The remaining three issues are accurately identified based on the compliance rules provided.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing customer name is partially valid. While the extracted data shows customer_name as null, the compliance rule cited (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not applicable here since this is for GoGlobal, not Baldock or Parakar. The requirement itself is valid, but the knowledge base reference is incorrect.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue about missing item description is valid as the extracted data shows no line items. However, this is a taxi receipt which inherently describes the service (transportation), and the receipt includes distance traveled, origin and destination addresses. The AI is technically correct that a formal item description is missing, but fails to recognize that the nature of the service is clear from the document type.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is accurate and not hallucinated. The compliance rules clearly state that for mileage claims with GoGlobal, \"Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue about missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and the compliance rules state \"VAT amount should be clearly shown on the invoice if applicable.\" The AI correctly identified this issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is accurate and not hallucinated. The compliance rules explicitly state \"Client line manager must review and approve expenses before payroll cutoff date\" for GoGlobal.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue 1 references an incorrect knowledge base rule for the wrong ICP (Baldock/Parakar instead of GoGlobal).\n2. Issue 2 fails to recognize that for a taxi receipt, the service nature is inherently described by the document type and included details like distance, origin, and destination.\n\nSUMMARY: The AI response contains mostly accurate information based on the compliance rules, but there are two issues with partial hallucinations. The first issue cites an incorrect knowledge base reference for the wrong ICP. The second issue fails to recognize that a taxi receipt inherently describes the service through its document type and included details. The remaining three issues are accurately identified based on the compliance rules provided.",
+      "reliability_level": "medium",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing customer name is partially valid. While the extracted data shows customer_name as null, the compliance rule cited (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not applicable here since this is for GoGlobal, not Baldock or Parakar. The requirement itself is valid, but the knowledge base reference is incorrect.\n\nISSUE_2_VALIDATION_SCORE: 70 - The issue about missing item description is valid as the extracted data shows no line items. However, this is a taxi receipt which inherently describes the service (transportation), and the receipt includes distance traveled, origin and destination addresses. The AI is technically correct that a formal item description is missing, but fails to recognize that the nature of the service is clear from the document type.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue is accurate and not hallucinated. The compliance rules clearly state that for mileage claims with GoGlobal, \"Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - This issue about missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and the compliance rules state \"VAT amount should be clearly shown on the invoice if applicable.\" The AI correctly identified this issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is accurate and not hallucinated. The compliance rules explicitly state \"Client line manager must review and approve expenses before payroll cutoff date\" for GoGlobal.\n\nCONFIDENCE: 80\n\nISSUES:\n1. Issue 1 references an incorrect knowledge base rule for the wrong ICP (Baldock/Parakar instead of GoGlobal).\n2. Issue 2 fails to recognize that for a taxi receipt, the service nature is inherently described by the document type and included details like distance, origin, and destination.\n\nSUMMARY: The AI response contains mostly accurate information based on the compliance rules, but there are two issues with partial hallucinations. The first issue cites an incorrect knowledge base reference for the wrong ICP. The second issue fails to recognize that a taxi receipt inherently describes the service through its document type and included details. The remaining three issues are accurately identified based on the compliance rules provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response does not contain any information that is not present in the source data. All the extracted data fields match the information provided in the receipt.\n\nISSUE_2_VALIDATION_SCORE: 90 - The compliance rules and requirements listed in the AI response appear to be accurate and in line with the ICP context of \"GoGlobal\". There is no evidence of fabricated compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 95 - The entity names, amounts, and dates mentioned in the AI response are consistent with the information provided in the source data. There is no indication of any made-up information.\n\nISSUE_4_VALIDATION_SCORE: 95 - The AI response does not present any assumptions as facts. It clearly identifies the issues and recommendations based on the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 95 - The AI response accurately summarizes the compliance issues and provides appropriate recommendations. There is no evidence of fabricated information.\n\nCONFIDENCE: 93\nISSUES: None detected.\nSUMMARY: The AI response appears to be free from hallucinations and fabricated information. The extracted data, compliance rules, and recommendations are consistent with the source data and the ICP context. The response provides a thorough and accurate assessment of the receipt's compliance with the relevant standards."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.65,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The issue about missing customer name is partially valid. While the extracted data shows customer_name as null, the compliance rules do state that worker's name should appear on invoices for Baldock or Parakar, but this is a GoGlobal context and specifically for a taxi receipt, not hotel or flight. The rule cited doesn't perfectly match this scenario.\n\nISSUE_2_VALIDATION_SCORE: 30 - The issue about missing item description is questionable. This is a taxi receipt with clear information about the journey including distance traveled (8km), start/end locations, and times. The receipt type is clearly \"travel\" and specifically a taxi service. The compliance rule is being applied too strictly here.\n\nISSUE_3_VALIDATION_SCORE: 90 - This issue is valid and matches the compliance rules. The rule \"Employee must report date, starting point, end point, number of km and detail the business purpose. Screenshot/printout of the travel route using GoogleMaps or similar site required\" is accurately cited from the compliance policies.\n\nISSUE_4_VALIDATION_SCORE: 70 - The issue about missing tax information is generally valid. The extracted data shows tax_amount and tax_rate as null, and the compliance rules do mention \"VAT amount should be clearly shown on the invoice if applicable,\" though it's listed as \"Optional\" not \"Mandatory\" in the rules.\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue is completely valid and accurately reflects the compliance rule: \"Client line manager must review and approve expenses before payroll cutoff date.\"\n\nCONFIDENCE: 65\n\nISSUES:\n1. Issue #1 overstates the requirement for customer name on a taxi receipt for GoGlobal (vs. hotel/flight receipts for Baldock/Parakar)\n2. Issue #2 fails to recognize that the taxi receipt already contains sufficient description of the service provided\n3. Issue #4 presents an optional requirement (VAT display) as if it were mandatory\n\nSUMMARY: The AI response contains some hallucinations, particularly in how it applies compliance rules to this specific receipt type. While issues #3 and #5 are valid and accurately reflect the compliance rules, issues #1 and #2 misapply rules from different contexts or overstate requirements. Issue #4 correctly identifies missing tax information but presents an optional requirement as mandatory. The response is partially reliable but overstates compliance issues in several areas."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The issue about missing customer name is partially valid. While the extracted data shows customer_name as null, the compliance rule cited (\"When working with Baldock or Parakar, the worker's name and details should appear on invoices, not the Local Employer\") is not applicable here since this is for GoGlobal, not Baldock or Parakar. The requirement itself is valid, but the knowledge base reference is incorrect.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory item description on the receipt.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 70,
+          "judge_explanation": "The issue about missing item description is valid as the extracted data shows no line items. However, this is a taxi receipt which inherently describes the service (transportation), and the receipt includes distance traveled, origin and destination addresses. The AI is technically correct that a formal item description is missing, but fails to recognize that the nature of the service is clear from the document type.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Additional documentation is required for mileage claims.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is accurate and not hallucinated. The compliance rules clearly state that for mileage claims with GoGlobal, \"Screenshot/printout of the travel route using GoogleMaps or similar site required. Report must be signed both by employee and employer.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Tax amount and rate are not specified on the receipt.",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "This issue about missing tax information is valid. The extracted data shows tax_amount and tax_rate as null, and the compliance rules state \"VAT amount should be clearly shown on the invoice if applicable.\" The AI correctly identified this issue.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Manager approval is required before processing this expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue is accurate and not hallucinated. The compliance rules explicitly state \"Client line manager must review and approve expenses before payroll cutoff date\" for GoGlobal.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "medium",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: The only minor issue is with Issue 2, where the AI doesn't acknowledge that some service details (taxi journey with distance and addresses) are present, though they may not meet the full compliance requirements for item descriptions.",
+    "Address issues in knowledge base adherence: 1. Issue 1 uses a knowledge base reference for Baldock/Parakar rather than GoGlobal, 2. Issue 4 treats VAT information as mandatory when it's listed as \"Optional\" in the knowledge base for GoGlobal",
+    "Address issues in compliance accuracy: 1. Issue 3 is completely incorrect - confusing a taxi receipt with a mileage claim, 2. Issue 1 uses an incorrect knowledge base reference not applicable to this receipt type, 3. The validation fails to recognize that this is a valid taxi receipt with journey details that could satisfy the description requirement, 4. The assessment doesn't acknowledge that the receipt contains the supplier name, date, receipt number, and total amount, which are mandatory fields that are present, 5. The assessment doesn't consider that for taxi receipts under €100, GoGlobal entity name is not strictly required",
+    "Address issues in issue categorization: The categorization is generally accurate, but there are minor considerations: (1) For taxis in Spain, customer names aren't always required on receipts, so Issue 1 might be slightly overstated, (2) Issue 2 doesn't acknowledge that some description elements are present (taxi service, distance), (3) The system doesn't distinguish between a taxi receipt and a mileage claim - they have different documentation requirements.",
+    "Address issues in recommendation validity: The tax information recommendation (Issue 4) could note that this is an optional requirement according to the compliance rules, though still good practice.",
+    "Address issues in hallucination detection: 1. Issue 1 references an incorrect knowledge base rule for the wrong ICP (Baldock/Parakar instead of GoGlobal)., 2. Issue 2 fails to recognize that for a taxi receipt, the service nature is inherently described by the document type and included details like distance, origin, and destination."
+  ],
+  "timestamp": "2025-10-02T11:50:54.118Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 80018,
+    "timing": {
+      "validation_start_time": "2025-10-02T11:49:34.099Z",
+      "validation_end_time": "2025-10-02T11:50:54.117Z",
+      "total_validation_time_seconds": "80.0",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-02T11:49:34.099Z",
+          "end_time": "2025-10-02T11:50:54.117Z",
+          "duration_seconds": "80.0",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "80.0",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.37",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 72.89,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 70,
+        "compliance_accuracy": 50,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 50
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory item description on the receipt.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 81.44,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 70,
+        "issue_categorization": 85,
+        "recommendation_validity": 95,
+        "hallucination_detection": 70
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Additional documentation is required for mileage claims.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 77.78,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 0,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Tax amount and rate are not specified on the receipt.",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 92.11,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 95,
+        "recommendation_validity": 85,
+        "hallucination_detection": 90
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Manager approval is required before processing this expense.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 100,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 100,
+        "recommendation_validity": 100,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}

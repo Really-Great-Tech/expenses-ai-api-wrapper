@@ -1,0 +1,11 @@
+# Philippines Expense Validation Agent Analysis
+
+## Judge Assessment of Issue Detection Agent Performance
+
+The LLM judges evaluated the expense validation agent's performance across Philippine expense files and identified significant patterns in both strengths and critical weaknesses.
+
+**Strengths Found by Judges:** The expense validation agent demonstrated strong factual accuracy in identifying missing fields from extracted data, correctly spotting null values for customer information, vendor details, and tax breakdowns. It consistently applied Philippine-specific regulations like BIR registration requirements, VAT breakdown mandates (VAT Sales, Zero-Rated Sales, VAT-Exempt Sales, and 12% VAT), and foreign currency conversion rules. The agent also showed good understanding of GoGlobal ICP-specific requirements when correctly applied, particularly for additional documentation needs and currency conversion policies.
+
+**Weaknesses Found by Judges:** The most critical weakness was the agent's fundamental confusion between different ICP (International Compliance Partner) contexts - specifically applying Procloz rules to GoGlobal receipts. Judges found the agent incorrectly flagged worker name, address, and TIN as mandatory for GoGlobal receipts when the actual requirement was for "GOGLOBAL PHILIPPINES, INC." company information to appear on receipts. The agent also showed poor contextual understanding, claiming present information (like merchant names and dates) was missing, and failed to distinguish between different receipt types and their specific requirements. Additionally, it missed critical compliance issues like future-dated receipts while focusing on non-applicable requirements.
+
+**Overall Assessment:** While achieving factual accuracy in data extraction, the expense validation agent showed severe knowledge base adherence problems with an average reliability score ranging from medium to low on several files. The judges emphasized that the agent needs fundamental improvement in ICP context recognition, proper application of company-specific vs. worker-specific requirements, and better alignment between identified issues and actual compliance rules for the correct organizational context.

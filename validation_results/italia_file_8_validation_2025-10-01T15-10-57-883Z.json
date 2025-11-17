@@ -1,0 +1,656 @@
+{
+  "overall_score": 0.8672222222222222,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.9366666666666666,
+      "issues": [],
+      "summary": "The AI response is fully factually grounded in the provided data. All five issues identified by the AI are supported by the extracted receipt data and compliance rules. The receipt lacks customer name and invoice number, is in a different currency (GBP) than the country context (Italy), involves meal expenses that have specific tax implications according to Italian regulations, and would require 3rd party details if classified as an entertainment expense. The AI has accurately applied the compliance rules to the receipt data.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing from the receipt. The extracted data shows \"invoice_number: null\" which confirms this issue is factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are not tax exempt and will be grossed up according to the compliance rules. This matches the provided compliance policy that states \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided). Trips within municipal area: 75% tax exemption on per diem rate.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that receipts should be submitted with the same currency and clear exchange rate. This is factually grounded as the receipt is in GBP (British Pounds) while the country context is Italy, and the compliance rules state \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that for entertainment expenses, the worker needs to mention the 3rd party detail. This matches the compliance rule that states \"For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail.\"\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided data. All five issues identified by the AI are supported by the extracted receipt data and compliance rules. The receipt lacks customer name and invoice number, is in a different currency (GBP) than the country context (Italy), involves meal expenses that have specific tax implications according to Italian regulations, and would require 3rd party details if classified as an entertainment expense. The AI has accurately applied the compliance rules to the receipt data.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing from the receipt. The extracted data shows \"invoice_number: null\" which confirms this issue is factually grounded.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are not tax exempt and will be grossed up according to the compliance rules. This matches the provided compliance policy that states \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided). Trips within municipal area: 75% tax exemption on per diem rate.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that receipts should be submitted with the same currency and clear exchange rate. This is factually grounded as the receipt is in GBP (British Pounds) while the country context is Italy, and the compliance rules state \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that for entertainment expenses, the worker needs to mention the 3rd party detail. This matches the compliance rule that states \"For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail.\"\n\nCONFIDENCE: 100\n\nISSUES: None\n\nSUMMARY: The AI response is fully factually grounded in the provided data. All five issues identified by the AI are supported by the extracted receipt data and compliance rules. The receipt lacks customer name and invoice number, is in a different currency (GBP) than the country context (Italy), involves meal expenses that have specific tax implications according to Italian regulations, and would require 3rd party details if classified as an entertainment expense. The AI has accurately applied the compliance rules to the receipt data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response accurately identifies the missing customer name on the receipt, which is supported by the extracted data.\nISSUE_2_VALIDATION_SCORE: 90 - The AI response accurately identifies the missing invoice number on the receipt, which is supported by the extracted data.\nISSUE_3_VALIDATION_SCORE: 90 - The AI response accurately identifies the tax implications for meal expenses, which is supported by the compliance rules provided.\nISSUE_4_VALIDATION_SCORE: 80 - The AI response accurately identifies the need for the receipt to be submitted with the same currency and clear exchange rate, which is supported by the compliance rules. However, the extracted data does not contain information about the currency or exchange rate.\nISSUE_5_VALIDATION_SCORE: 80 - The AI response accurately identifies the need to provide the 3rd party detail for entertainment expenses, which is supported by the compliance rules. However, the extracted data does not contain information about any entertainment expenses.\n\nCONFIDENCE: 85\nISSUES: The extracted data does not contain information about the currency, exchange rate, or entertainment expenses, which are referenced in the AI response.\nSUMMARY: The AI response is generally well-grounded in the provided data and compliance rules, with a few minor gaps in the information available in the extracted data."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.96,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name\": null, confirming this is a valid issue according to the compliance rules that state supplier business name is mandatory.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that the invoice number is missing. The extracted data shows \"invoice_number\": null, while there is a receipt number present. According to the compliance rules, proper documentation is required.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses in Italy are subject to specific tax exemption rules and will be grossed up. This aligns with the compliance policy that states \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided). Trips within municipal area: 75% tax exemption on per diem rate.\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that receipts should be submitted with the same currency and clear exchange rate. The receipt is in GBP (British Pounds) while the country context is Italy, which uses EUR. This matches the compliance rule stating \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 80 - The AI identified that for entertainment expenses, 3rd party details are required. While this is a valid rule in the compliance policies, it's not entirely clear from the receipt data whether this is specifically an entertainment expense. The receipt shows a single beverage (Beavertown Neck Oil IPA) purchased at Camden Bar & Kitchen, which could be a personal meal rather than entertainment. However, since the receipt type is specified as \"meals\" and the line item is a beverage, this could potentially fall under entertainment expenses.\n\nCONFIDENCE: 96\n\nISSUES: The only minor issue is with Issue 5, where the AI assumes this is an entertainment expense requiring 3rd party details, when the receipt might be for personal consumption rather than entertainment of others.\n\nSUMMARY: The AI response is very well grounded in the extracted data and compliance rules. It correctly identifies missing mandatory fields (customer name and invoice number), recognizes the currency mismatch issue, and correctly applies the Italian tax rules for meal expenses. The only slight uncertainty is whether the beverage purchase qualifies as an entertainment expense requiring 3rd party details, but given the context of a bar receipt being submitted as a business expense, this is a reasonable compliance concern to raise."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the customer name is missing from the receipt. The extracted data shows \"customer_name: null\" which confirms this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the invoice number is missing from the receipt. The extracted data shows \"invoice_number: null\" which confirms this issue is factually grounded.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that meal expenses are not tax exempt and will be grossed up according to the compliance rules. This matches the provided compliance policy that states \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided). Trips within municipal area: 75% tax exemption on per diem rate.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that receipts should be submitted with the same currency and clear exchange rate. This is factually grounded as the receipt is in GBP (British Pounds) while the country context is Italy, and the compliance rules state \"Receipts should be submitted with the same currency and clear exchange rate.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that for entertainment expenses, the worker needs to mention the 3rd party detail. This matches the compliance rule that states \"For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail.\"",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.8066666666666666,
+      "issues": [
+        "1. Overapplication of rules for customer name and invoice number to meal receipts without specific knowledge base support",
+        "2. Misapplication of entertainment expense rules to a regular meal receipt",
+        "3. The receipt appears to be from the UK (London) but is being submitted in Italy without proper currency conversion information"
+      ],
+      "summary": "The AI response correctly identified currency discrepancy and tax implications for meal expenses in Italy. However, it overapplied some documentation requirements (customer name and invoice number) without specific knowledge base support for meal receipts, and incorrectly applied entertainment expense rules to what appears to be a personal meal (beer). The response also didn't address the fact that this is a UK receipt being submitted in Italy, which raises questions about whether this is a legitimate business expense for an Italian entity.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that customer name is missing, which is required according to the compliance rules. However, the knowledge base specifically mentions this requirement for non-travel expenses and for travel expenses like hotels and flights, but not explicitly for restaurant/meals receipts. The cited rule \"Clear and readable receipts and invoices must be submitted with expenses\" is too general and doesn't specifically mandate customer names on meal receipts.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to Issue 1, the AI correctly identified that an invoice number is missing, but the knowledge base doesn't explicitly state that invoice numbers are mandatory for meal receipts. The cited rule is again too general and doesn't specifically mandate invoice numbers for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are subject to tax implications and will be grossed up according to Italian regulations. The referenced rule about domestic per diem rates (€46.48, €30.99, or €15.49 depending on circumstances) is directly from the knowledge base and accurately applied.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. This aligns with the knowledge base rule that \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI incorrectly applied the rule about entertainment expenses requiring 3rd party details. The receipt is for a meal (specifically a beer), not an entertainment expense for a client/supplier. The knowledge base specifies this requirement only for \"spese di rappresentanza\" (entertainment expenses), not for regular meal expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Overapplication of rules for customer name and invoice number to meal receipts without specific knowledge base support\n2. Misapplication of entertainment expense rules to a regular meal receipt\n3. The receipt appears to be from the UK (London) but is being submitted in Italy without proper currency conversion information\n\nSUMMARY: The AI response correctly identified currency discrepancy and tax implications for meal expenses in Italy. However, it overapplied some documentation requirements (customer name and invoice number) without specific knowledge base support for meal receipts, and incorrectly applied entertainment expense rules to what appears to be a personal meal (beer). The response also didn't address the fact that this is a UK receipt being submitted in Italy, which raises questions about whether this is a legitimate business expense for an Italian entity.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that customer name is missing, which is required according to the compliance rules. However, the knowledge base specifically mentions this requirement for non-travel expenses and for travel expenses like hotels and flights, but not explicitly for restaurant/meals receipts. The cited rule \"Clear and readable receipts and invoices must be submitted with expenses\" is too general and doesn't specifically mandate customer names on meal receipts.\n\nISSUE_2_VALIDATION_SCORE: 50 - Similar to Issue 1, the AI correctly identified that an invoice number is missing, but the knowledge base doesn't explicitly state that invoice numbers are mandatory for meal receipts. The cited rule is again too general and doesn't specifically mandate invoice numbers for meal receipts.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that meal expenses are subject to tax implications and will be grossed up according to Italian regulations. The referenced rule about domestic per diem rates (€46.48, €30.99, or €15.49 depending on circumstances) is directly from the knowledge base and accurately applied.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. This aligns with the knowledge base rule that \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 0 - The AI incorrectly applied the rule about entertainment expenses requiring 3rd party details. The receipt is for a meal (specifically a beer), not an entertainment expense for a client/supplier. The knowledge base specifies this requirement only for \"spese di rappresentanza\" (entertainment expenses), not for regular meal expenses.\n\nCONFIDENCE: 60\n\nISSUES:\n1. Overapplication of rules for customer name and invoice number to meal receipts without specific knowledge base support\n2. Misapplication of entertainment expense rules to a regular meal receipt\n3. The receipt appears to be from the UK (London) but is being submitted in Italy without proper currency conversion information\n\nSUMMARY: The AI response correctly identified currency discrepancy and tax implications for meal expenses in Italy. However, it overapplied some documentation requirements (customer name and invoice number) without specific knowledge base support for meal receipts, and incorrectly applied entertainment expense rules to what appears to be a personal meal (beer). The response also didn't address the fact that this is a UK receipt being submitted in Italy, which raises questions about whether this is a legitimate business expense for an Italian entity."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing customer name as a compliance issue, which is a mandatory requirement for receipts in Italy according to the knowledge base.\n\nISSUE_2_VALIDATION_SCORE: 90 - The AI response correctly identifies the missing invoice number as a compliance issue, which is a mandatory requirement for receipts in Italy according to the knowledge base.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI response correctly identifies that meal expenses are not tax-exempt in Italy and will need to be grossed up, in line with the knowledge base guidelines.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies the need for the receipt to be submitted with the same currency and clear exchange rate, as per the knowledge base requirements.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies the need to provide the 3rd party detail for entertainment expenses (spese di rappresentanza), as per the knowledge base requirements.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Italy. It correctly identifies the key issues with the receipt, including missing mandatory fields, tax implications for meal expenses, and additional documentation requirements. The response demonstrates a strong understanding of the country-specific regulations and receipt type requirements in Italy."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 85 - The AI correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. The recommendation to address this with the supplier is appropriate. However, the knowledge base reference could have been more specific to the exact rule requiring customer name for meal receipts in Italy.\n\nISSUE_2_VALIDATION_SCORE: 85 - The AI correctly identified that invoice number is missing, which is a mandatory field according to the compliance rules for proper documentation. The recommendation is appropriate, but similar to issue 1, the knowledge base reference could have been more specific to the exact rule requiring invoice numbers.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly applied the specific Italian meal expense tax rules from the knowledge base, noting that meal expenses are not tax exempt and will be grossed up. The recommendation accurately cites the exact per diem rates from the knowledge base: \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided).\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the requirement that \"Receipts should be submitted with the same currency and clear exchange rate\" which is directly from the knowledge base. This is particularly relevant as the receipt is in GBP (British Pounds) but is being submitted for an Italian ICP.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI correctly identified that for entertainment expenses, the worker needs to mention 3rd party details, which is directly from the knowledge base. However, it's not entirely clear if this receipt is specifically for entertainment or just a regular meal, as it shows only a beverage purchase.\n\nCONFIDENCE: 92\n\nISSUES:\n1. The AI might have incorrectly categorized a simple beverage purchase as an entertainment expense, though this is debatable as meals/drinks could be considered entertainment depending on context.\n2. The AI didn't specifically address the payment method compliance (though Apple Pay is listed on the receipt and would comply with the traceable payment method requirement).\n3. The AI didn't mention that the receipt is from the UK while being submitted for an Italian ICP, which raises additional cross-border compliance considerations.\n\nSUMMARY: The AI response demonstrates strong adherence to the Italian compliance knowledge base, correctly identifying issues related to missing mandatory fields, tax implications for meal expenses, and documentation requirements. The citations from the knowledge base are accurate and relevant. There are minor opportunities for improvement in distinguishing between meal and entertainment expenses and addressing cross-border receipt submission considerations, but overall the compliance evaluation is thorough and well-aligned with the provided knowledge base."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly identified that customer name is missing, which is required according to the compliance rules. However, the knowledge base specifically mentions this requirement for non-travel expenses and for travel expenses like hotels and flights, but not explicitly for restaurant/meals receipts. The cited rule \"Clear and readable receipts and invoices must be submitted with expenses\" is too general and doesn't specifically mandate customer names on meal receipts.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "Similar to Issue 1, the AI correctly identified that an invoice number is missing, but the knowledge base doesn't explicitly state that invoice numbers are mandatory for meal receipts. The cited rule is again too general and doesn't specifically mandate invoice numbers for meal receipts.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that meal expenses are subject to tax implications and will be grossed up according to Italian regulations. The referenced rule about domestic per diem rates (€46.48, €30.99, or €15.49 depending on circumstances) is directly from the knowledge base and accurately applied.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. This aligns with the knowledge base rule that \"Receipts should be submitted with the same currency and clear exchange rate.\"",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "The AI incorrectly applied the rule about entertainment expenses requiring 3rd party details. The receipt is for a meal (specifically a beer), not an entertainment expense for a client/supplier. The knowledge base specifies this requirement only for \"spese di rappresentanza\" (entertainment expenses), not for regular meal expenses.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.8266666666666667,
+      "issues": [
+        "1. Issue #5 appears to be incorrectly applied as the receipt is for a personal meal/beverage",
+        "not an entertainment expense with third parties.",
+        "2. The system didn't flag that this receipt is from the UK (London) while being submitted for an Italian entity",
+        "which raises questions about whether this is a legitimate business expense for the Italian ICP.",
+        "3. The system didn't flag that the receipt shows an alcoholic beverage purchase",
+        "which may have specific compliance implications."
+      ],
+      "summary": "The compliance assessment is mostly accurate, correctly identifying issues with missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a personal meal receipt as an entertainment expense requiring third party details. Additionally, it missed potential issues regarding the foreign location of the expense and the alcoholic nature of the purchase, which might have additional compliance implications for an Italian entity.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The system correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, for meal receipts during travel, the rule specifically mentions that employee name should be present as guest/traveler, but this applies primarily to hotels and flights, not necessarily restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The system correctly identified the missing invoice number, which is required according to the compliance rules that state \"Clear and readable receipts and invoices must be submitted with expenses.\" The receipt does have a receipt number, but lacks a formal invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The system correctly identified that meal expenses are subject to specific tax rules in Italy and will need to be grossed up according to the rule: \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided).\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The system correctly flagged that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. According to the rules, \"Receipts should be submitted with the same currency and clear exchange rate,\" which is missing here.\n\nISSUE_5_VALIDATION_SCORE: 50 - The system flagged this as an entertainment expense requiring 3rd party details, but the receipt appears to be for a personal beverage (Beavertown Neck Oil IPA) rather than an entertainment expense with clients/suppliers. The receipt type is \"meals\" not \"entertainment,\" so this issue seems incorrectly applied.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issue #5 appears to be incorrectly applied as the receipt is for a personal meal/beverage, not an entertainment expense with third parties.\n2. The system didn't flag that this receipt is from the UK (London) while being submitted for an Italian entity, which raises questions about whether this is a legitimate business expense for the Italian ICP.\n3. The system didn't flag that the receipt shows an alcoholic beverage purchase, which may have specific compliance implications.\n\nSUMMARY: The compliance assessment is mostly accurate, correctly identifying issues with missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a personal meal receipt as an entertainment expense requiring third party details. Additionally, it missed potential issues regarding the foreign location of the expense and the alcoholic nature of the purchase, which might have additional compliance implications for an Italian entity.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The system correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, for meal receipts during travel, the rule specifically mentions that employee name should be present as guest/traveler, but this applies primarily to hotels and flights, not necessarily restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The system correctly identified the missing invoice number, which is required according to the compliance rules that state \"Clear and readable receipts and invoices must be submitted with expenses.\" The receipt does have a receipt number, but lacks a formal invoice number.\n\nISSUE_3_VALIDATION_SCORE: 100 - The system correctly identified that meal expenses are subject to specific tax rules in Italy and will need to be grossed up according to the rule: \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided).\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The system correctly flagged that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. According to the rules, \"Receipts should be submitted with the same currency and clear exchange rate,\" which is missing here.\n\nISSUE_5_VALIDATION_SCORE: 50 - The system flagged this as an entertainment expense requiring 3rd party details, but the receipt appears to be for a personal beverage (Beavertown Neck Oil IPA) rather than an entertainment expense with clients/suppliers. The receipt type is \"meals\" not \"entertainment,\" so this issue seems incorrectly applied.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issue #5 appears to be incorrectly applied as the receipt is for a personal meal/beverage, not an entertainment expense with third parties.\n2. The system didn't flag that this receipt is from the UK (London) while being submitted for an Italian entity, which raises questions about whether this is a legitimate business expense for the Italian ICP.\n3. The system didn't flag that the receipt shows an alcoholic beverage purchase, which may have specific compliance implications.\n\nSUMMARY: The compliance assessment is mostly accurate, correctly identifying issues with missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a personal meal receipt as an entertainment expense requiring third party details. Additionally, it missed potential issues regarding the foreign location of the expense and the alcoholic nature of the purchase, which might have additional compliance implications for an Italian entity."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory customer name on the receipt as a compliance issue. This is an important requirement for clear and readable receipts.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing mandatory invoice number on the receipt as a compliance issue. This is another important requirement for clear and readable receipts.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identified the tax implications for meal expenses, noting that they are not tax exempt and will need to be grossed up. The provided recommendation on the applicable per diem rates is also accurate.\n\nISSUE_4_VALIDATION_SCORE: 80 - The assessment correctly identified the need for the receipt to be submitted with the same currency and clear exchange rate. However, the recommendation could be more specific on the acceptable formats for providing this information.\n\nISSUE_5_VALIDATION_SCORE: 80 - The assessment correctly identified the requirement to provide the 3rd party detail for entertainment expenses (spese di rappresentanza). However, the recommendation could be more detailed on the specific information that needs to be provided.\n\nCONFIDENCE: 88\nISSUES: None\nSUMMARY: The compliance assessment is generally accurate, correctly identifying the key issues with the receipt and providing appropriate recommendations to address them. The assessment covers the major compliance requirements for the given expense type and ICP. Some minor improvements could be made to the recommendations for certain issues, but overall the compliance validation is thorough and reliable."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The assessment correctly identifies that the customer name is missing, which is a mandatory field according to the compliance rules. However, the issue might be overstated for this specific receipt type. For restaurant receipts during travel, the employee name requirement is specifically mentioned for hotels and flights, not necessarily for restaurant receipts.\n\nISSUE_2_VALIDATION_SCORE: 80 - The assessment correctly identifies that the invoice number is missing. While there is a receipt number present (38553405-298), Italian regulations typically require a formal invoice number for business expenses, especially for tax purposes.\n\nISSUE_3_VALIDATION_SCORE: 100 - The assessment correctly identifies that meal expenses are subject to specific tax exemption rules in Italy with potential gross-up implications. The rule cited is accurate according to the provided compliance rules: \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided).\"\n\nISSUE_4_VALIDATION_SCORE: 100 - The assessment correctly identifies that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. According to the compliance rules, \"Receipts should be submitted with the same currency and clear exchange rate.\" There is no exchange rate information provided on the receipt.\n\nISSUE_5_VALIDATION_SCORE: 20 - This issue appears to be incorrectly flagged. The receipt is for a beer at Camden Bar & Kitchen, which appears to be a regular meal/drink expense, not an entertainment expense (spese di rappresentanza). Entertainment expenses typically involve hosting clients or third parties, and there's no indication this is the case. The line item shows \"Beavertown Neck Oil IPA\" which suggests a personal consumption rather than entertainment.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue #5 appears to be incorrectly flagged as an entertainment expense when it's a regular meal/beverage expense.\n2. The system may be overly strict on customer name requirements for restaurant receipts during travel.\n3. The assessment doesn't address that this receipt is from the UK (London) but is being submitted for an Italian ICP, which raises questions about whether this is a travel expense that should be evaluated under travel rules.\n\nSUMMARY: The compliance assessment is generally accurate in identifying most issues, particularly regarding currency discrepancy and tax implications for meal expenses. However, it incorrectly categorizes a regular beverage purchase as an entertainment expense requiring third-party details. Additionally, the assessment should clarify whether this is a travel expense (given it's from London but submitted for an Italian entity), which would affect how certain requirements are applied. The missing invoice number and customer name are valid concerns, though the customer name requirement may vary depending on whether this is classified as a travel or non-travel expense."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The system correctly identified that customer name is missing, which is a mandatory field according to the compliance rules. However, for meal receipts during travel, the rule specifically mentions that employee name should be present as guest/traveler, but this applies primarily to hotels and flights, not necessarily restaurant receipts.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The system correctly identified the missing invoice number, which is required according to the compliance rules that state \"Clear and readable receipts and invoices must be submitted with expenses.\" The receipt does have a receipt number, but lacks a formal invoice number.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The system correctly identified that meal expenses are subject to specific tax rules in Italy and will need to be grossed up according to the rule: \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided).\"",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The system correctly flagged that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. According to the rules, \"Receipts should be submitted with the same currency and clear exchange rate,\" which is missing here.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 50,
+          "judge_explanation": "The system flagged this as an entertainment expense requiring 3rd party details, but the receipt appears to be for a personal beverage (Beavertown Neck Oil IPA) rather than an entertainment expense with clients/suppliers. The receipt type is \"meals\" not \"entertainment,\" so this issue seems incorrectly applied.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8833333333333333,
+      "issues": [
+        "The fifth issue about entertainment expenses may be incorrectly applied as the receipt appears to be for a personal beverage (beer) rather than an entertainment expense with third parties. Additionally",
+        "the system should have flagged that this is a UK receipt being submitted for an Italian entity",
+        "which creates a fundamental compliance issue."
+      ],
+      "summary": "Most issues are correctly categorized with appropriate descriptions and recommendations aligned with Italian compliance rules. However, the entertainment expense issue appears to be incorrectly applied to what seems to be a personal meal receipt. The system also missed highlighting that this is a foreign receipt (UK) being submitted for an Italian entity, which is a fundamental compliance concern beyond just the currency issue.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue about missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Italian receipt standards. The description clearly identifies the problem and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing invoice number issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate description and recommendation. This aligns with the compliance rules requiring clear and readable receipts with all mandatory fields.\n\nISSUE_3_VALIDATION_SCORE: 95 - The \"Standards & Compliance | Gross-up Identified\" categorization for meal expenses is highly accurate. The description correctly identifies that meal expenses are not tax exempt and will be grossed up, with a precise reference to the relevant tax exemption rates for Italy.\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue regarding currency is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is in GBP but being submitted for an Italian entity. The recommendation to provide receipts with the same currency and clear exchange rate aligns with the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 70 - While the categorization as \"Standards & Compliance | Follow-up Action Identified\" is appropriate, there's insufficient evidence in the receipt data to confirm this is an entertainment expense (\"spese di rappresentanza\"). The receipt shows a single beer purchase, which may be a personal meal rather than entertainment. This issue may be incorrectly applied.\n\nCONFIDENCE: 85\n\nISSUES: The fifth issue about entertainment expenses may be incorrectly applied as the receipt appears to be for a personal beverage (beer) rather than an entertainment expense with third parties. Additionally, the system should have flagged that this is a UK receipt being submitted for an Italian entity, which creates a fundamental compliance issue.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations aligned with Italian compliance rules. However, the entertainment expense issue appears to be incorrectly applied to what seems to be a personal meal receipt. The system also missed highlighting that this is a foreign receipt (UK) being submitted for an Italian entity, which is a fundamental compliance concern beyond just the currency issue.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue about missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Italian receipt standards. The description clearly identifies the problem and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The missing invoice number issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate description and recommendation. This aligns with the compliance rules requiring clear and readable receipts with all mandatory fields.\n\nISSUE_3_VALIDATION_SCORE: 95 - The \"Standards & Compliance | Gross-up Identified\" categorization for meal expenses is highly accurate. The description correctly identifies that meal expenses are not tax exempt and will be grossed up, with a precise reference to the relevant tax exemption rates for Italy.\n\nISSUE_4_VALIDATION_SCORE: 85 - The issue regarding currency is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is in GBP but being submitted for an Italian entity. The recommendation to provide receipts with the same currency and clear exchange rate aligns with the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 70 - While the categorization as \"Standards & Compliance | Follow-up Action Identified\" is appropriate, there's insufficient evidence in the receipt data to confirm this is an entertainment expense (\"spese di rappresentanza\"). The receipt shows a single beer purchase, which may be a personal meal rather than entertainment. This issue may be incorrectly applied.\n\nCONFIDENCE: 85\n\nISSUES: The fifth issue about entertainment expenses may be incorrectly applied as the receipt appears to be for a personal beverage (beer) rather than an entertainment expense with third parties. Additionally, the system should have flagged that this is a UK receipt being submitted for an Italian entity, which creates a fundamental compliance issue.\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations aligned with Italian compliance rules. However, the entertainment expense issue appears to be incorrectly applied to what seems to be a personal meal receipt. The system also missed highlighting that this is a foreign receipt (UK) being submitted for an Italian entity, which is a fundamental compliance concern beyond just the currency issue."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of missing mandatory customer name on the receipt is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description is clear and actionable, and the recommendation to address it with the supplier or provider is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue of missing mandatory invoice number on the receipt is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description and recommendation are clear and relevant.\n\nISSUE_3_VALIDATION_SCORE: 90 - The issue of meal expenses not being tax exempt and needing to be grossed up is correctly categorized as a \"Standards & Compliance | Gross-up Identified\" issue. The description and recommendation provide the relevant tax exemption details for domestic and international meal expenses.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue of needing to provide the receipt in the same currency with a clear exchange rate is correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and in line with the compliance requirements.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue of needing to provide the 3rd party detail for entertainment expenses is also correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are appropriate.\n\nCONFIDENCE: 90\nISSUES: None identified.\n\nSUMMARY: The issue categorization is accurate and follows the established taxonomy. The descriptions are clear and provide actionable recommendations to address the compliance issues. No issues were missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" as it relates to a mandatory field according to the compliance rules. The description clearly identifies the missing field and the recommendation is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue regarding missing invoice number is correctly categorized as \"Standards & Compliance | Fix Identified\" as it relates to a mandatory field according to the compliance rules. The description clearly identifies the missing field and the recommendation is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 95 - The issue regarding meal expenses and tax implications is correctly categorized as \"Standards & Compliance | Gross-up Identified\". The description accurately references the specific tax rules for meal expenses in Italy, and the recommendation includes the exact per diem rates from the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue regarding currency is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". The receipt is in GBP while the expense is being submitted in Italy, so the recommendation to provide clear exchange rate information is appropriate and aligns with the compliance rules.\n\nISSUE_5_VALIDATION_SCORE: 85 - The issue regarding entertainment expenses is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\". However, it's not entirely clear if this receipt is specifically for entertainment (spese di rappresentanza) or just a regular meal. The receipt shows a beer purchase which could be either personal consumption or entertainment, so this categorization may be slightly presumptive.\n\nCONFIDENCE: 90\n\nISSUES: \n- Issue 5 may be slightly presumptive in categorizing the receipt as an entertainment expense when it could be a regular meal expense.\n- There's no issue raised about the receipt being from the UK (London) while the expense is being submitted in Italy, which could require additional documentation or explanation.\n\nSUMMARY: Overall, the issues are well-categorized with appropriate descriptions and recommendations that align with the compliance rules. The system correctly identifies the missing mandatory fields, tax implications for meal expenses, and additional documentation requirements. The only minor concern is with Issue 5, which assumes the expense is for entertainment purposes when this may not be clearly established from the receipt details. The system demonstrates strong understanding of Italian expense compliance requirements and provides actionable recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue about missing customer name is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by Italian receipt standards. The description clearly identifies the problem and the recommendation is appropriate.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The missing invoice number issue is also correctly categorized as \"Standards & Compliance | Fix Identified\" with appropriate description and recommendation. This aligns with the compliance rules requiring clear and readable receipts with all mandatory fields.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 95,
+          "judge_explanation": "The \"Standards & Compliance | Gross-up Identified\" categorization for meal expenses is highly accurate. The description correctly identifies that meal expenses are not tax exempt and will be grossed up, with a precise reference to the relevant tax exemption rates for Italy.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The issue regarding currency is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since the receipt is in GBP but being submitted for an Italian entity. The recommendation to provide receipts with the same currency and clear exchange rate aligns with the compliance rules.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 70,
+          "judge_explanation": "While the categorization as \"Standards & Compliance | Follow-up Action Identified\" is appropriate, there's insufficient evidence in the receipt data to confirm this is an entertainment expense (\"spese di rappresentanza\"). The receipt shows a single beer purchase, which may be a personal meal rather than entertainment. This issue may be incorrectly applied.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.8166666666666665,
+      "issues": [
+        "1. Issue 5 recommendation may be misapplied - the receipt appears to be for a personal meal/drink",
+        "not an entertainment expense with third parties",
+        "2. Recommendations for issues 1 and 2 could be more specific about how to obtain corrected documentation",
+        "3. No recommendation addresses the fact that this appears to be a UK receipt being submitted for an Italian expense claim"
+      ],
+      "summary": "Most recommendations are valid and helpful, particularly regarding the need for proper documentation and tax implications. However, the entertainment expense recommendation appears misapplied to what seems to be a personal meal/drink. Additionally, the recommendations could better address the cross-border nature of the expense (UK receipt for Italian claim) and provide more specific guidance on obtaining proper documentation with the required information.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier is valid. However, it could be more specific about what information needs to be included (full name of the employee) and how to obtain a corrected receipt.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on how to obtain a proper invoice with the required information.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation correctly identifies that meal expenses will be grossed up and provides specific tax exemption thresholds for different scenarios in Italy. This is highly relevant and actionable information based on the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation correctly identifies that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. The recommendation to provide the receipt with the same currency and clear exchange rate is valid and necessary for proper expense processing.\n\nISSUE_5_VALIDATION_SCORE: 60 - This recommendation assumes the expense is for entertainment (spese di rappresentanza), but the receipt appears to be for a personal meal/drink (a single pint of beer). The compliance rule about providing 3rd party details applies to entertainment expenses, not personal meals during travel. This recommendation may be misapplied in this context.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue 5 recommendation may be misapplied - the receipt appears to be for a personal meal/drink, not an entertainment expense with third parties\n2. Recommendations for issues 1 and 2 could be more specific about how to obtain corrected documentation\n3. No recommendation addresses the fact that this appears to be a UK receipt being submitted for an Italian expense claim\n\nSUMMARY: Most recommendations are valid and helpful, particularly regarding the need for proper documentation and tax implications. However, the entertainment expense recommendation appears misapplied to what seems to be a personal meal/drink. Additionally, the recommendations could better address the cross-border nature of the expense (UK receipt for Italian claim) and provide more specific guidance on obtaining proper documentation with the required information.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.75,
+          "response": "ISSUE_1_VALIDATION_SCORE: 80 - The recommendation to address the missing customer name with the supplier is valid. However, it could be more specific about what information needs to be included (full name of the employee) and how to obtain a corrected receipt.\n\nISSUE_2_VALIDATION_SCORE: 80 - Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on how to obtain a proper invoice with the required information.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation correctly identifies that meal expenses will be grossed up and provides specific tax exemption thresholds for different scenarios in Italy. This is highly relevant and actionable information based on the compliance rules.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation correctly identifies that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. The recommendation to provide the receipt with the same currency and clear exchange rate is valid and necessary for proper expense processing.\n\nISSUE_5_VALIDATION_SCORE: 60 - This recommendation assumes the expense is for entertainment (spese di rappresentanza), but the receipt appears to be for a personal meal/drink (a single pint of beer). The compliance rule about providing 3rd party details applies to entertainment expenses, not personal meals during travel. This recommendation may be misapplied in this context.\n\nCONFIDENCE: 75\n\nISSUES:\n1. Issue 5 recommendation may be misapplied - the receipt appears to be for a personal meal/drink, not an entertainment expense with third parties\n2. Recommendations for issues 1 and 2 could be more specific about how to obtain corrected documentation\n3. No recommendation addresses the fact that this appears to be a UK receipt being submitted for an Italian expense claim\n\nSUMMARY: Most recommendations are valid and helpful, particularly regarding the need for proper documentation and tax implications. However, the entertainment expense recommendation appears misapplied to what seems to be a personal meal/drink. Additionally, the recommendations could better address the cross-border nature of the expense (UK receipt for Italian claim) and provide more specific guidance on obtaining proper documentation with the required information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing customer name on the receipt with the supplier or provider is actionable and specific. It directly addresses the identified issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing invoice number on the receipt with the supplier or provider is actionable and specific. It directly addresses the identified issue.\n\nISSUE_3_VALIDATION_SCORE: 80 - The recommendation provides useful information about the tax implications for meal expenses in Italy, including the applicable per diem rates. However, it does not provide a specific recommendation on how to address this issue with the receipt.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation to provide the receipt with the same currency and clear exchange rate is actionable and addresses the identified issue. However, it could be more specific on the required documentation.\n\nISSUE_5_VALIDATION_SCORE: 85 - The recommendation to provide the 3rd party detail for the entertainment expense is actionable and addresses the identified issue. However, it could be more specific on the required documentation.\n\nCONFIDENCE: 88\n\nISSUES: The recommendations for issues 3, 4, and 5 could be more specific on the required documentation and how to address the issues with the supplier or provider.\n\nSUMMARY: Overall, the recommendations provided are valid and useful, addressing the key compliance issues identified. The recommendations are actionable and specific for most of the issues, with only minor improvements needed to provide more detailed guidance on addressing the remaining issues."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.82,
+          "response": "ISSUE_1_VALIDATION_SCORE: 70 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing customer name is somewhat valid but not entirely helpful. While it correctly identifies the compliance requirement, it doesn't offer specific guidance on how to resolve this for an already issued receipt. A more actionable recommendation would suggest obtaining additional documentation or an amended receipt with the customer name included.\n\nISSUE_2_VALIDATION_SCORE: 70 - Similar to Issue 1, the recommendation to address the missing invoice number with the supplier is valid but lacks specific actionable steps. The recommendation should provide alternatives if the supplier cannot reissue the receipt, such as documenting the attempt to obtain a compliant receipt.\n\nISSUE_3_VALIDATION_SCORE: 90 - The recommendation regarding meal expenses being subject to gross-up is valid and includes specific information about the applicable tax exemption rates for different scenarios. This is helpful and actionable as it clearly outlines the tax implications and relevant thresholds.\n\nISSUE_4_VALIDATION_SCORE: 85 - The recommendation about currency and exchange rate is valid and directly addresses the issue that the receipt is in GBP (British Pounds) while being submitted for an Italian entity. This is an actionable recommendation as it clearly states what additional documentation is needed.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation regarding entertainment expenses is highly valid and specific. It correctly identifies that for \"spese di rappresentanza\" (entertainment expenses), 3rd party details must be provided. This is directly actionable and addresses a specific Italian tax requirement.\n\nCONFIDENCE: 82\n\nISSUES:\n- Recommendations for Issues 1 and 2 could be more specific about alternative solutions when original receipts cannot be modified\n- No guidance is provided on how to handle the fact that this appears to be a UK receipt being submitted for an Italian entity\n- The system doesn't address the potential issue that this appears to be an alcoholic beverage purchase, which may have different compliance implications than regular meals\n\nSUMMARY: The recommendations are generally valid and address the identified compliance issues, particularly regarding tax implications and documentation requirements specific to Italy. However, the recommendations for missing mandatory fields (customer name and invoice number) could be more actionable with specific alternative solutions. The system correctly identifies the currency mismatch and entertainment expense documentation requirements, which are particularly relevant for Italian tax compliance. Overall, the recommendations provide good guidance but could be enhanced with more specific remediation steps for some issues."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "The recommendation to address the missing customer name with the supplier is valid. However, it could be more specific about what information needs to be included (full name of the employee) and how to obtain a corrected receipt.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 80,
+          "judge_explanation": "Similar to issue 1, the recommendation to address the missing invoice number with the supplier is valid but could provide more specific guidance on how to obtain a proper invoice with the required information.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation correctly identifies that meal expenses will be grossed up and provides specific tax exemption thresholds for different scenarios in Italy. This is highly relevant and actionable information based on the compliance rules.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation correctly identifies that the receipt is in GBP (British Pounds) while the expense is being submitted in Italy. The recommendation to provide the receipt with the same currency and clear exchange rate is valid and necessary for proper expense processing.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 60,
+          "judge_explanation": "This recommendation assumes the expense is for entertainment (spese di rappresentanza), but the receipt appears to be for a personal meal/drink (a single pint of beer). The compliance rule about providing 3rd party details applies to entertainment expenses, not personal meals during travel. This recommendation may be misapplied in this context.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9333333333333332,
+      "issues": [
+        "Issue 5 incorrectly categorizes a simple beverage purchase as an entertainment expense requiring 3rd party details",
+        "when the receipt clearly shows this is just a personal beverage purchase."
+      ],
+      "summary": "The AI response is mostly accurate in identifying compliance issues with the receipt, correctly noting the missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a simple beverage purchase as an entertainment expense requiring 3rd party details, which is a significant hallucination that could lead to unnecessary follow-up actions.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing customer name is valid. The extracted data shows \"customer_name\": null, and the compliance rules state that clear and readable receipts with complete information are required.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows \"invoice_number\": null, while showing a receipt number instead. The compliance rules require proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about meal expenses being subject to gross-up is accurate. The compliance rules specifically state that restaurant expenses during travel are subject to specific tax exemption limits, with the exact rule cited correctly in the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about currency is valid. The receipt is in GBP (British Pounds) while the expense is being submitted in Italy, and the compliance rules explicitly state \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 0 - This issue contains a hallucination. The AI incorrectly flagged this as an entertainment expense requiring 3rd party details. The receipt clearly shows this is for a beverage (Beavertown Neck Oil IPA) at a bar, not an entertainment expense with a 3rd party. The line item is categorized as \"Beverage\" not \"Entertainment.\"\n\nCONFIDENCE: 80\n\nISSUES: Issue 5 incorrectly categorizes a simple beverage purchase as an entertainment expense requiring 3rd party details, when the receipt clearly shows this is just a personal beverage purchase.\n\nSUMMARY: The AI response is mostly accurate in identifying compliance issues with the receipt, correctly noting the missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a simple beverage purchase as an entertainment expense requiring 3rd party details, which is a significant hallucination that could lead to unnecessary follow-up actions.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.8,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing customer name is valid. The extracted data shows \"customer_name\": null, and the compliance rules state that clear and readable receipts with complete information are required.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows \"invoice_number\": null, while showing a receipt number instead. The compliance rules require proper documentation.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about meal expenses being subject to gross-up is accurate. The compliance rules specifically state that restaurant expenses during travel are subject to specific tax exemption limits, with the exact rule cited correctly in the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about currency is valid. The receipt is in GBP (British Pounds) while the expense is being submitted in Italy, and the compliance rules explicitly state \"Receipts should be submitted with the same currency and clear exchange rate.\"\n\nISSUE_5_VALIDATION_SCORE: 0 - This issue contains a hallucination. The AI incorrectly flagged this as an entertainment expense requiring 3rd party details. The receipt clearly shows this is for a beverage (Beavertown Neck Oil IPA) at a bar, not an entertainment expense with a 3rd party. The line item is categorized as \"Beverage\" not \"Entertainment.\"\n\nCONFIDENCE: 80\n\nISSUES: Issue 5 incorrectly categorizes a simple beverage purchase as an entertainment expense requiring 3rd party details, when the receipt clearly shows this is just a personal beverage purchase.\n\nSUMMARY: The AI response is mostly accurate in identifying compliance issues with the receipt, correctly noting the missing customer name, missing invoice number, tax implications for meal expenses, and currency discrepancy. However, it incorrectly categorized a simple beverage purchase as an entertainment expense requiring 3rd party details, which is a significant hallucination that could lead to unnecessary follow-up actions."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The information about the customer name being missing is present in the source data, so this is not a hallucination.\n\nISSUE_2_VALIDATION_SCORE: 0 - The information about the invoice number being missing is present in the source data, so this is not a hallucination.\n\nISSUE_3_VALIDATION_SCORE: 0 - The information about meal expenses not being tax-exempt and needing to be grossed up is present in the source data, so this is not a hallucination.\n\nISSUE_4_VALIDATION_SCORE: 0 - The requirement to provide the receipt with the same currency and clear exchange rate is present in the source data, so this is not a hallucination.\n\nISSUE_5_VALIDATION_SCORE: 0 - The requirement to provide the 3rd party detail for entertainment expenses is present in the source data, so this is not a hallucination.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the issues identified are present in the source data provided."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue regarding missing customer name is valid. The extracted data shows \"customer_name\": null, confirming this field is missing from the receipt, which violates the mandatory requirement in the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue regarding missing invoice number is valid. The extracted data shows \"invoice_number\": null, confirming this field is missing from the receipt, which violates the mandatory requirement in the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about meal expenses being subject to gross-up is accurate. The compliance rules clearly state \"Domestic: €46.48 per day tax-free (no hotel/meal provision), €30.99 per day (meals or hotels provided), €15.49 per day (both provided). Trips within municipal area: 75% tax exemption on per diem rate.\" This matches exactly with the recommendation provided in the AI response.\n\nISSUE_4_VALIDATION_SCORE: 100 - The issue about currency is valid. The receipt is in GBP (British Pounds) while the country context is Italy. The compliance rules state \"Receipts should be submitted with the same currency and clear exchange rate,\" which is being violated here.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue regarding entertainment expenses requiring 3rd party details is accurate. The compliance rules explicitly state \"For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail.\" Since this appears to be a meal/drink at a bar that could be classified as entertainment, this requirement applies.\n\nCONFIDENCE: 100\n\nISSUES: None detected\n\nSUMMARY: All five issues identified in the AI response are accurately based on the provided receipt data and compliance rules. The response correctly identifies missing mandatory fields (customer name and invoice number), accurately cites the tax implications for meal expenses using the exact wording from the compliance rules, correctly notes the currency discrepancy between the receipt (GBP) and the country context (Italy), and appropriately flags the need for 3rd party details for what could be classified as an entertainment expense. No hallucinations or fabricated information were detected."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Missing mandatory customer name on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing customer name is valid. The extracted data shows \"customer_name\": null, and the compliance rules state that clear and readable receipts with complete information are required.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Missing mandatory invoice number on the receipt",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue regarding missing invoice number is valid. The extracted data shows \"invoice_number\": null, while showing a receipt number instead. The compliance rules require proper documentation.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about meal expenses being subject to gross-up is accurate. The compliance rules specifically state that restaurant expenses during travel are subject to specific tax exemption limits, with the exact rule cited correctly in the AI response.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The issue about currency is valid. The receipt is in GBP (British Pounds) while the expense is being submitted in Italy, and the compliance rules explicitly state \"Receipts should be submitted with the same currency and clear exchange rate.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 0,
+          "judge_explanation": "This issue contains a hallucination. The AI incorrectly flagged this as an entertainment expense requiring 3rd party details. The receipt clearly shows this is for a beverage (Beavertown Neck Oil IPA) at a bar, not an entertainment expense with a 3rd party. The line item is categorized as \"Beverage\" not \"Entertainment.\"",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in knowledge base adherence: 1. Overapplication of rules for customer name and invoice number to meal receipts without specific knowledge base support, 2. Misapplication of entertainment expense rules to a regular meal receipt, 3. The receipt appears to be from the UK (London) but is being submitted in Italy without proper currency conversion information",
+    "Address issues in compliance accuracy: 1. Issue #5 appears to be incorrectly applied as the receipt is for a personal meal/beverage, not an entertainment expense with third parties., 2. The system didn't flag that this receipt is from the UK (London) while being submitted for an Italian entity, which raises questions about whether this is a legitimate business expense for the Italian ICP., 3. The system didn't flag that the receipt shows an alcoholic beverage purchase, which may have specific compliance implications.",
+    "Address issues in issue categorization: The fifth issue about entertainment expenses may be incorrectly applied as the receipt appears to be for a personal beverage (beer) rather than an entertainment expense with third parties. Additionally, the system should have flagged that this is a UK receipt being submitted for an Italian entity, which creates a fundamental compliance issue.",
+    "Address issues in recommendation validity: 1. Issue 5 recommendation may be misapplied - the receipt appears to be for a personal meal/drink, not an entertainment expense with third parties, 2. Recommendations for issues 1 and 2 could be more specific about how to obtain corrected documentation, 3. No recommendation addresses the fact that this appears to be a UK receipt being submitted for an Italian expense claim",
+    "Address issues in hallucination detection: Issue 5 incorrectly categorizes a simple beverage purchase as an entertainment expense requiring 3rd party details, when the receipt clearly shows this is just a personal beverage purchase."
+  ],
+  "timestamp": "2025-10-01T15:10:57.882Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 79907,
+    "timing": {
+      "validation_start_time": "2025-10-01T15:09:37.974Z",
+      "validation_end_time": "2025-10-01T15:10:57.881Z",
+      "total_validation_time_seconds": "79.9",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T15:09:37.974Z",
+          "end_time": "2025-10-01T15:10:57.881Z",
+          "duration_seconds": "79.9",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "79.9",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.38",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Missing mandatory customer name on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 84.22,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 80,
+        "issue_categorization": 90,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Missing mandatory invoice number on the receipt",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 86.44,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 80,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Meal expenses are not tax exempt and will be grossed up",
+      "issue_type": "Standards & Compliance | Gross-up Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Receipts should be submitted with the same currency and clear exchange rate",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 96.33,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 85,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "For entertainment expenses (spese di rappresentanza) the worker will always need to mention the 3rd party detail",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 47.11,
+      "reliability_level": "low",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 0,
+        "compliance_accuracy": 50,
+        "issue_categorization": 70,
+        "recommendation_validity": 60,
+        "hallucination_detection": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,525 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759332441103_331763245_swiss_file_5.pdf",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T16:04:36.158Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The text is sharp and clearly defined with no visible blur.",
+      "recommendation": "No action required."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action required."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action required."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting document readability.",
+      "recommendation": "No action required."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
+      "recommendation": "No action required."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action required."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing or incomplete sections identified in the receipt/invoice.",
+      "recommendation": "No action required."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements blocking or obscuring document content.",
+      "recommendation": "No action required."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "office_supplies",
+    "language": "English",
+    "language_confidence": 95,
+    "document_location": "Switzerland",
+    "expected_location": "Switzerland",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, and item description. It also includes payment confirmation and is consistent with the expected location.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "supplier",
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 5,
+      "expense_identification_reasoning": "The document contains 5 out of 8 required fields, including consumer details, transaction amount, transaction date, item description, and implicit payment method (as indicated by the payment amount and currency). This meets the criteria for an expense document."
+    }
+  },
+  "extraction": {
+    "supplier_name": null,
+    "supplier_address": null,
+    "supplier_vat_number": null,
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": null,
+    "customer_name": "Katia Roll",
+    "customer_department": "RMIR",
+    "customer_manager": "Rachel Grant",
+    "invoice_number": null,
+    "receipt_number": "1",
+    "transaction_reference": null,
+    "currency": "CHF",
+    "total_amount": 62.9,
+    "subtotal": null,
+    "tax_amount": null,
+    "tax_rate": null,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2024-11-04",
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Headset Jabra",
+        "quantity": 1,
+        "unit_price": 62.9,
+        "total_price": 62.9,
+        "category": "Electronics"
+      }
+    ],
+    "receipt_type": "Expense Claim Form",
+    "document_type": "Expense Claim",
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": "NB by submitting expense claim you are confirming that the expense items include are valid and legitimate to the best of your knowledge.",
+    "terms_conditions": null,
+    "business_registration_number": null,
+    "manager_name": "Rachel Grant",
+    "manager_signature": "Signed by: Rachel Grant",
+    "date_signed": "2025-01-09",
+    "sensitivity": "CEPI Internal"
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_name",
+          "description": "Missing mandatory supplier name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipts and invoices must be submitted alongside expense items",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_address",
+          "description": "Required supplier address is missing or incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipts and invoices must be submitted alongside expense items",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Invoice number is not clearly visible or missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices; booking confirmations will not be sufficient",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "icp_company_details",
+          "description": "ICP company details on invoice are missing",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice must show Global PPL CH GmbH, Freigutstrasse 2 8002 Zürich, Switzerland CHE-295.369.918 - The Local Employer's name and details should appear on invoices",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Office supplies expense exceeds the maximum of CHF 20",
+          "recommendation": "Smaller business expenses tax-free can be reimbursed against receipts of a maximum of CHF 20 - amounts above this limit may be subject to tax",
+          "knowledge_base_reference": "Smaller business expenses tax-free can be reimbursed against receipts (e.g. expenses that occur during a business trip) of a maximum of CHF 20 - amounts above this limit may be subject to tax",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is non-compliant due to missing mandatory fields such as supplier name, supplier address, and invoice number. Additionally, the ICP company details are missing. The total amount of CHF 62.9 exceeds the tax-free limit for office supplies, which is CHF 20."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Switzerland",
+      "icp": "Global People",
+      "receipt_type": "office_supplies",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "Your Name": {
+        "field_citation": {
+          "source_text": "Your Name:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Your Name: Katia Roll",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Katia Roll",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Your Name: Katia Roll",
+          "match_type": "exact"
+        }
+      },
+      "Date": {
+        "field_citation": {
+          "source_text": "Date",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Date</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "4.11.2024",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>4.11.2024</td>",
+          "match_type": "exact"
+        }
+      },
+      "Department": {
+        "field_citation": {
+          "source_text": "Department:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Department: RMIR",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "RMIR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Department: RMIR",
+          "match_type": "exact"
+        }
+      },
+      "Manager": {
+        "field_citation": {
+          "source_text": "Manager:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Manager: Rachel Grant",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rachel Grant",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Manager: Rachel Grant",
+          "match_type": "exact"
+        }
+      },
+      "General Purpose of Travel / Expense": {
+        "field_citation": {
+          "source_text": "General Purpose of Travel / Expense (specify the meeting, location, timing etc.)",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "General Purpose of Travel / Expense (specify the meeting, location, timing etc.) Purchase of a headset",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Purchase of a headset",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "General Purpose of Travel / Expense (specify the meeting, location, timing etc.) Purchase of a headset",
+          "match_type": "exact"
+        }
+      },
+      "Item": {
+        "field_citation": {
+          "source_text": "Item",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Item</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>1</td>",
+          "match_type": "exact"
+        }
+      },
+      "Description": {
+        "field_citation": {
+          "source_text": "Description",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Description</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Headset Jabra",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>Headset Jabra</td>",
+          "match_type": "exact"
+        }
+      },
+      "Rcpt Ref.": {
+        "field_citation": {
+          "source_text": "Rcpt Ref.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Rcpt Ref.</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>1</td>",
+          "match_type": "exact"
+        }
+      },
+      "Expense Currency": {
+        "field_citation": {
+          "source_text": "Expense Currency",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Expense Currency</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHF",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>CHF</td>",
+          "match_type": "exact"
+        }
+      },
+      "Expense Amount": {
+        "field_citation": {
+          "source_text": "Expense Amount",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Expense Amount</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "62.90",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>62.90</td>",
+          "match_type": "exact"
+        }
+      },
+      "Payment Currency": {
+        "field_citation": {
+          "source_text": "Payment Currency",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Payment Currency</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CHF",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>CHF</td>",
+          "match_type": "exact"
+        }
+      },
+      "Payment Amount": {
+        "field_citation": {
+          "source_text": "Payment Amount",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<th>Payment Amount</th>",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "62.90",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "<td>62.90</td>",
+          "match_type": "exact"
+        }
+      },
+      "Manager's Signature": {
+        "field_citation": {
+          "source_text": "Manager's Signature:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Manager's Signature: Signed by: Rachel Grant",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Signed by: Rachel Grant",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Manager's Signature: Signed by: Rachel Grant",
+          "match_type": "exact"
+        }
+      },
+      "Date Signed": {
+        "field_citation": {
+          "source_text": "Date Signed:",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Date Signed: January 9, 2025",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "January 9, 2025",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Date Signed: January 9, 2025",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 70,
+      "fields_with_field_citations": 70,
+      "fields_with_value_citations": 70,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "14.4",
+      "data_extraction_seconds": "3.3",
+      "file_classification_seconds": "3.8",
+      "image_quality_assessment_seconds": "5.6",
+      "issue_detection_seconds": "7.6",
+      "citation_generation_seconds": "89.6",
+      "llm_validation_seconds": "66.1"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T16:04:16.088Z",
+        "end_time": "2025-10-01T16:04:30.533Z",
+        "duration_seconds": "14.4",
+        "document_reader_used": "zerox"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T16:04:30.543Z",
+        "end_time": "2025-10-01T16:04:33.836Z",
+        "duration_seconds": "3.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T16:04:30.538Z",
+        "end_time": "2025-10-01T16:04:34.312Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T16:04:30.535Z",
+        "end_time": "2025-10-01T16:04:36.158Z",
+        "duration_seconds": "5.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T16:04:36.159Z",
+        "end_time": "2025-10-01T16:04:43.723Z",
+        "duration_seconds": "7.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T16:04:36.161Z",
+        "end_time": "2025-10-01T16:06:05.800Z",
+        "duration_seconds": "89.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T16:06:05.801Z",
+        "end_time": "2025-10-01T16:07:11.950Z",
+        "duration_seconds": "66.1",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "175.9",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "5.6",
+      "parallel_group_2_seconds": "89.6",
+      "total_parallel_time_seconds": "95.3"
+    }
+  },
+  "metadata": {
+    "filename": "swiss_file_5.pdf",
+    "processing_time": 175903,
+    "country": "Switzerland",
+    "icp": "Global People",
+    "processed_at": "2025-10-01T16:07:11.991Z"
+  }
+}

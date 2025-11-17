@@ -1,430 +1,354 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\poland_file_10.jpg_full_test_new_dataset_4_poland_file_10.jpg",
+    "image_path": "uploads/test_mvp_1/job_1759403428287_525327498_poland_file_10.jpg",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-09-10T11:36:20.853Z",
-    "quality_score": 70,
-    "quality_level": "good",
+    "timestamp": "2025-10-02T11:14:41.391Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": true,
-      "severity_level": "medium",
-      "confidence_score": 0.85,
-      "quantitative_measure": 0.4,
-      "description": "The text has moderate blur, making some characters less distinct.",
-      "recommendation": "Enhance image sharpness before OCR processing."
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The image is sharp with clear text and edges.",
+      "recommendation": "No action needed."
     },
     "contrast_assessment": {
-      "detected": true,
-      "severity_level": "low",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0.8,
-      "description": "The contrast between text and background is adequate but could be slightly improved.",
-      "recommendation": "Adjust contrast levels to ensure better text recognition."
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background.",
+      "recommendation": "No action needed."
     },
     "glare_identification": {
-      "detected": true,
-      "severity_level": "low",
-      "confidence_score": 0.75,
-      "quantitative_measure": 0.1,
-      "description": "Minor glare is present in the top-right corner, slightly affecting readability.",
-      "recommendation": "Reduce glare by adjusting lighting or image processing techniques."
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or overexposed regions detected.",
+      "recommendation": "No action needed."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No water stains are detected on the document.",
-      "recommendation": "No action required."
+      "description": "No water stains or discoloration observed.",
+      "recommendation": "No action needed."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No tears or folds are detected on the document.",
-      "recommendation": "No action required."
+      "description": "No tears, creases, or folds detected.",
+      "recommendation": "No action needed."
     },
     "cut_off_detection": {
-      "detected": true,
-      "severity_level": "low",
-      "confidence_score": 0.8,
-      "quantitative_measure": 0.1,
-      "description": "A small portion of the bottom edge is slightly cut off.",
-      "recommendation": "Ensure the entire document is captured in future images."
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No cut-off edges or excluded document portions.",
+      "recommendation": "No action needed."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No missing sections are detected on the document.",
-      "recommendation": "No action required."
+      "description": "No missing sections or incomplete content.",
+      "recommendation": "No action needed."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No obstructions are detected on the document.",
-      "recommendation": "No action required."
+      "description": "No obstructions or elements blocking content.",
+      "recommendation": "No action needed."
     },
-    "overall_quality_score": 7
+    "overall_quality_score": 10
   },
   "classification": {
     "is_expense": true,
     "expense_type": "travel",
     "language": "German",
-    "language_confidence": 90,
+    "language_confidence": 95,
     "document_location": "Berlin, Germany",
     "expected_location": "Poland",
     "location_match": false,
     "error_type": "File location is not same as project's location",
-    "error_message": null,
-    "classification_confidence": 95,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description. It is classified as a travel expense due to the nature of the service (taxi ride). However, the location of the document (Berlin, Germany) does not match the expected location (Poland).",
+    "error_message": "The document location (Berlin, Germany) does not match the expected location (Poland).",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, item description, and payment method. It is classified as a travel expense due to the nature of the service (taxi ride). However, the location does not match the expected location.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
         "consumerRecipient",
         "transactionAmount",
         "transactionDate",
-        "invoiceReceiptNumber",
-        "taxInformation",
-        "paymentMethod",
-        "itemDescriptionLineItems"
+        "itemDescriptionLineItems",
+        "paymentMethod"
       ],
-      "fields_missing": [],
-      "total_fields_found": 8,
-      "expense_identification_reasoning": "All required fields for expense identification are present, and the document clearly represents a completed transaction with payment confirmation."
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, indicating it is an expense document. The presence of fields like 'supplier', 'transactionAmount', 'transactionDate', and 'itemDescriptionLineItems' confirms this."
     }
   },
   "extraction": {
     "supplier_name": "WürfelFunk",
-    "supplier_address": "Resenthaler Straße 20",
-    "supplier_phone": "030 21 01 01",
-    "supplier_international_phone": "+49 30 21 01 01",
-    "customer_name": "taxi.eu",
+    "supplier_phone": "+49 30 21 01 01",
+    "supplier_address": null,
+    "supplier_vat_number": "30/557/51859",
+    "customer_name": null,
     "customer_address": null,
-    "invoice_number": "h",
+    "invoice_number": null,
     "receipt_number": null,
     "transaction_reference": null,
-    "currency": null,
-    "total_amount": null,
+    "currency": "EUR",
+    "total_amount": 70,
     "subtotal": null,
     "tax_amount": null,
-    "tax_rate": 19,
+    "tax_rate": 7,
     "discount_amount": null,
     "tip_amount": null,
-    "date_of_issue": "2025-01-01",
+    "date_of_issue": "2023-04-10",
     "transaction_time": null,
-    "payment_method": "PayPal",
+    "payment_method": null,
     "card_last_four": null,
-    "line_items": [],
+    "line_items": [
+      {
+        "description": "Fahrpreis inkl. / Amount of Fare incl.",
+        "quantity": 1,
+        "unit_price": 70,
+        "total_price": 70,
+        "category": "Transport"
+      }
+    ],
     "receipt_type": "Taxi Receipt",
-    "document_type": "Quittung",
-    "pickup_location": "Berlin",
-    "destination": "BANERS",
-    "fare_amount": null,
-    "tip": null,
-    "tax_id": "St-Nr.: 30/557/51859",
-    "driver_signature": null,
-    "passenger_signature": null,
+    "document_type": "Quittung / Receipt",
+    "pickup_location": null,
+    "destination_location": null,
+    "cab_number": "4939",
     "special_notes": "Bei Rechnungsbeträgen von über 250,- Euro ist dem Leistungsempfänger auf Wunsch eine ordentliche Rechnung gemäß § 14 Abs. 4 UStG mit allen relevanten Angaben durch den leistungsbringenden Betrieb zu erstellen und zu übermitteln.",
     "terms_conditions": null,
-    "business_registration_number": "Konzessions-Nr. 4939",
-    "company_address": "Lübarser Str. 25, 3435 Berlin",
-    "company_name": "The Blue Shuttle GmbH"
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 7,
+      "issues_count": 5,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "supplier_name",
-          "description": "The supplier name is not compliant with the required format. It should be the name of the vendor/merchant that provided the goods or services.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The worker's name should generally be used on invoices and supporting documents",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name",
-          "description": "The customer name is not compliant with the required format. It should be the name of the employee or the company name as per ICP requirements.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "GOGLOBAL GEO POLAND Sp. z o.o. Kamila Macierzyńska ul. Towarowa 28 00-839 Warszawa",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The worker's name should generally be used on invoices and supporting documents",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "invoice_number",
-          "description": "The invoice number is not compliant with the required format. It should be a clear and unique identifier.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Receipt must show the date when the purchase/transaction occurred",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "total_amount",
-          "description": "The total amount is missing from the receipt.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Receipt must display the final cost including all taxes and fees",
+          "field": "receipt_number",
+          "description": "Missing mandatory receipt number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
           "confidence_score": 0.9
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "line_items",
-          "description": "The line items are missing from the receipt.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Receipt must specify the goods or services purchased with clear description",
-          "confidence_score": 0.9
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "Additional documentation is required for mileage claims.",
-          "recommendation": "Please submit a log book with start/end (date and time), reason for travel, location, and approval.",
-          "knowledge_base_reference": "For mileage, a log book will need to be submitted. Must include: start/end (date and time), reason from travel, location and approval. This has to be documented in the vehicle mileage log kept by the employee",
-          "confidence_score": 0.9
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "Expenses need to be submitted within 4 months.",
-          "recommendation": "Please ensure that all expenses are submitted within the required timeframe.",
-          "knowledge_base_reference": "Expenses need to be submitted within 4 months",
+          "field": "supplier_address",
+          "description": "Missing mandatory supplier address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Document must show the name of the vendor/merchant that provided the goods or services",
           "confidence_score": 0.9
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields, incorrect formats, and missing additional documentation. These issues need to be addressed to ensure compliance with the specified standards and policies."
+      "compliance_summary": "The receipt is missing several mandatory fields including customer name, customer address, invoice number, receipt number, and supplier address. These issues need to be addressed with the supplier or provider to ensure compliance with the receipt standards."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Poland",
       "icp": "GoGlobal",
       "receipt_type": "travel",
-      "issues_count": 7
+      "issues_count": 5
     }
   },
   "citations": {
     "citations": {
-      "supplier_name": {
+      "date": {
         "field_citation": {
-          "source_text": "Kunde / Customer",
-          "confidence": 0.8,
+          "source_text": "10.04.2023",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The field 'supplier_name' is semantically matched to 'Kunde / Customer' in the document.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "taxi.eu",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "The value 'taxi.eu' appears under the 'Kunde / Customer' section.",
-          "match_type": "exact"
-        }
-      },
-      "pickup_location": {
-        "field_citation": {
-          "source_text": "Fahrt von / Pickup",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Fahrt von / Pickup\nDie gratis",
+          "context": "10.04.2023 : \n\n☐ Rechnungsfahrt / Invoice Ride",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Die gratis",
-          "confidence": 0.7,
+          "source_text": "10.04.2023",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Fahrt von / Pickup\nDie gratis",
-          "match_type": "fuzzy"
-        }
-      },
-      "destination": {
-        "field_citation": {
-          "source_text": "Fahrt nach / Destination",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Fahrt nach / Destination\nDENL",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "DENL",
-          "confidence": 0.8,
-          "source_location": "markdown",
-          "context": "Fahrt nach / Destination\nDENL",
+          "context": "10.04.2023 : \n\n☐ Rechnungsfahrt / Invoice Ride",
           "match_type": "exact"
         }
       },
       "fare_amount": {
         "field_citation": {
-          "source_text": "Fahrpreis inkl. 7% USt./VAT",
-          "confidence": 0.95,
+          "source_text": "Fahrpreis inkl. / Amount of Fare incl.:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Fahrpreis inkl. 7% USt./VAT\nX7000",
+          "context": "Fahrpreis inkl. / Amount of Fare incl.:\n☑ 7% USt./VAT\n☐ 19% USt./VAT",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "X7000",
-          "confidence": 0.85,
+          "source_text": "70,00",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Fahrpreis inkl. 7% USt./VAT\nX7000",
+          "context": "70,00\n\nKonzessions-Nr. / Cab no.: 4939",
           "match_type": "exact"
         }
       },
-      "tip_amount": {
+      "cab_number": {
         "field_citation": {
-          "source_text": "Trinkgeld / Tip",
-          "confidence": 0.8,
+          "source_text": "Konzessions-Nr. / Cab no.:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "The field 'tip_amount' is semantically matched to 'Trinkgeld / Tip' in the document.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "3435 Berlin",
-          "confidence": 0.7,
-          "source_location": "markdown",
-          "context": "The value '3435 Berlin' appears under the 'Trinkgeld / Tip' section.",
-          "match_type": "fuzzy"
-        }
-      },
-      "invoice_number": {
-        "field_citation": {
-          "source_text": "Gen.-Nr.: Inkasso Rechnungsfahrt / Invoice no.",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Gen.-Nr.: Inkasso Rechnungsfahrt / Invoice no.\nh\n:\nmm\n/\n2",
+          "context": "Konzessions-Nr. / Cab no.: 4939",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "h\n:\nmm\n/\n2",
-          "confidence": 0.85,
+          "source_text": "4939",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Gen.-Nr.: Inkasso Rechnungsfahrt / Invoice no.\nh\n:\nmm\n/\n2",
-          "match_type": "fuzzy"
-        }
-      },
-      "customer": {
-        "field_citation": {
-          "source_text": "Kunde / Customer",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Kunde / Customer\ntaxi.eu",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "taxi.eu",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Kunde / Customer\ntaxi.eu",
+          "context": "Konzessions-Nr. / Cab no.: 4939",
           "match_type": "exact"
         }
       },
-      "tip": {
+      "tax_rate": {
         "field_citation": {
-          "source_text": "Trinkgeld / Tip",
-          "confidence": 0.95,
+          "source_text": "Fahrpreis inkl. / Amount of Fare incl.:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Trinkgeld / Tip\n3435 Berlin",
+          "context": "Fahrpreis inkl. / Amount of Fare incl.:\n☑ 7% USt./VAT\n☐ 19% USt./VAT",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "3435 Berlin",
-          "confidence": 0.85,
+          "source_text": "7% USt./VAT",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Trinkgeld / Tip\n3435 Berlin",
+          "context": "Fahrpreis inkl. / Amount of Fare incl.:\n☑ 7% USt./VAT\n☐ 19% USt./VAT",
           "match_type": "exact"
         }
       },
-      "customer_name": {
+      "company_name": {
         "field_citation": {
-          "source_text": "Kunde / Customer",
-          "confidence": 0.95,
+          "source_text": "Stempel & Steuernummer Taxibetrieb / Stamp & Tax ID:",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Kunde / Customer\ntaxi.eu",
+          "context": "Stempel & Steuernummer Taxibetrieb / Stamp & Tax ID:\nThe Blue Shuttle GmbH\nLübärser Str. 25\n13435 Berlin\nSt.Nr.: 30/557/51859",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "taxi.eu",
-          "confidence": 0.9,
+          "source_text": "The Blue Shuttle GmbH",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Kunde / Customer\ntaxi.eu",
+          "context": "Stempel & Steuernummer Taxibetrieb / Stamp & Tax ID:\nThe Blue Shuttle GmbH\nLübärser Str. 25\n13435 Berlin\nSt.Nr.: 30/557/51859",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 27,
-      "fields_with_field_citations": 27,
-      "fields_with_value_citations": 27,
-      "average_confidence": 0.8148148148148148
+      "total_fields_analyzed": 18,
+      "fields_with_field_citations": 18,
+      "fields_with_value_citations": 18,
+      "average_confidence": 1
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "24.3",
-      "file_classification_seconds": "5.0",
-      "data_extraction_seconds": "6.2",
-      "image_quality_assessment_seconds": "7.0",
-      "issue_detection_seconds": "10.2",
-      "citation_generation_seconds": "35.2",
-      "llm_validation_seconds": "84.6"
+      "markdown_extraction_seconds": "22.5",
+      "file_classification_seconds": "3.5",
+      "data_extraction_seconds": "4.3",
+      "image_quality_assessment_seconds": "4.7",
+      "issue_detection_seconds": "6.5",
+      "citation_generation_seconds": "21.4",
+      "llm_validation_seconds": "65.5"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-09-10T11:35:49.614Z",
-        "end_time": "2025-09-10T11:36:13.903Z",
-        "duration_seconds": "24.3",
-        "document_reader_used": "textract"
+        "start_time": "2025-10-02T11:14:14.231Z",
+        "end_time": "2025-10-02T11:14:36.704Z",
+        "duration_seconds": "22.5",
+        "document_reader_used": "zerox"
       },
       "file_classification": {
-        "start_time": "2025-09-10T11:36:13.906Z",
-        "end_time": "2025-09-10T11:36:18.940Z",
-        "duration_seconds": "5.0",
+        "start_time": "2025-10-02T11:14:36.707Z",
+        "end_time": "2025-10-02T11:14:40.246Z",
+        "duration_seconds": "3.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-09-10T11:36:13.908Z",
-        "end_time": "2025-09-10T11:36:20.138Z",
-        "duration_seconds": "6.2",
+        "start_time": "2025-10-02T11:14:36.709Z",
+        "end_time": "2025-10-02T11:14:40.975Z",
+        "duration_seconds": "4.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-09-10T11:36:13.904Z",
-        "end_time": "2025-09-10T11:36:20.854Z",
-        "duration_seconds": "7.0",
+        "start_time": "2025-10-02T11:14:36.705Z",
+        "end_time": "2025-10-02T11:14:41.391Z",
+        "duration_seconds": "4.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-09-10T11:36:20.855Z",
-        "end_time": "2025-09-10T11:36:31.057Z",
-        "duration_seconds": "10.2",
+        "start_time": "2025-10-02T11:14:41.392Z",
+        "end_time": "2025-10-02T11:14:47.866Z",
+        "duration_seconds": "6.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-09-10T11:36:20.857Z",
-        "end_time": "2025-09-10T11:36:56.013Z",
-        "duration_seconds": "35.2",
+        "start_time": "2025-10-02T11:14:41.396Z",
+        "end_time": "2025-10-02T11:15:02.837Z",
+        "duration_seconds": "21.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "llm_validation": {
-        "start_time": "2025-09-10T11:36:56.014Z",
-        "end_time": "2025-09-10T11:38:20.611Z",
-        "duration_seconds": "84.6",
+        "start_time": "2025-10-02T11:15:02.838Z",
+        "end_time": "2025-10-02T11:16:08.291Z",
+        "duration_seconds": "65.5",
         "judge_models_used": [
           "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
           "eu.anthropic.claude-3-haiku-20240307-v1:0",
-          "eu.anthropic.claude-3-5-sonnet-20240620-v1:0"
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
         ],
         "execution_mode": "parallel",
         "parallel_metrics": {},
@@ -432,18 +356,18 @@
         "parallel_enabled": true
       }
     },
-    "total_processing_time_seconds": "151.0",
+    "total_processing_time_seconds": "114.1",
     "performance_metrics": {
-      "parallel_group_1_seconds": "7.0",
-      "parallel_group_2_seconds": "35.2",
-      "total_parallel_time_seconds": "42.1"
+      "parallel_group_1_seconds": "4.7",
+      "parallel_group_2_seconds": "21.4",
+      "total_parallel_time_seconds": "26.1"
     }
   },
   "metadata": {
     "filename": "poland_file_10.jpg",
-    "processing_time": 151004,
+    "processing_time": 114065,
     "country": "Poland",
     "icp": "GoGlobal",
-    "processed_at": "2025-09-10T11:38:20.619Z"
+    "processed_at": "2025-10-02T11:16:08.296Z"
   }
 }

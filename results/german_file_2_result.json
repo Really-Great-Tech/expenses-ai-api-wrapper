@@ -1,0 +1,525 @@
+{
+  "image_quality_assessment": {
+    "image_path": "uploads/test_mvp_1/job_1759324126654_515548981_german_file_2.png",
+    "assessment_method": "LLM",
+    "model_used": "eu.amazon.nova-pro-v1:0",
+    "timestamp": "2025-10-01T13:12:31.838Z",
+    "quality_score": 100,
+    "quality_level": "excellent",
+    "suitable_for_extraction": true,
+    "blur_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "The image is sharp with clear text and well-defined edges.",
+      "recommendation": "No action needed."
+    },
+    "contrast_assessment": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 1,
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
+      "recommendation": "No action needed."
+    },
+    "glare_identification": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "recommendation": "No action needed."
+    },
+    "water_stains": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No water stains or discolorations affecting the document readability.",
+      "recommendation": "No action needed."
+    },
+    "tears_or_folds": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
+      "recommendation": "No action needed."
+    },
+    "cut_off_detection": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No document edges are cut off, and the image frame includes all important portions.",
+      "recommendation": "No action needed."
+    },
+    "missing_sections": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
+      "recommendation": "No action needed."
+    },
+    "obstructions": {
+      "detected": false,
+      "severity_level": "none",
+      "confidence_score": 0.95,
+      "quantitative_measure": 0,
+      "description": "No objects, fingers, shadows, or other elements that block or obscure document content.",
+      "recommendation": "No action needed."
+    },
+    "overall_quality_score": 10
+  },
+  "classification": {
+    "is_expense": true,
+    "expense_type": "meals",
+    "language": "German",
+    "language_confidence": 95,
+    "document_location": "Berlin, Germany",
+    "expected_location": "Germany",
+    "location_match": true,
+    "error_type": null,
+    "error_message": null,
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. The fields found include supplier, consumerRecipient, transactionAmount, transactionDate, itemDescriptionLineItems, and paymentMethod. The document is a receipt from a restaurant, indicating a meal expense.",
+    "schema_field_analysis": {
+      "fields_found": [
+        "supplier",
+        "consumerRecipient",
+        "transactionAmount",
+        "transactionDate",
+        "itemDescriptionLineItems",
+        "paymentMethod"
+      ],
+      "fields_missing": [
+        "icpRequirements",
+        "invoiceReceiptNumber",
+        "taxInformation"
+      ],
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, confirming it as an expense document."
+    }
+  },
+  "extraction": {
+    "country": "Germany",
+    "supplier_name": "Pizzeria Pisa",
+    "supplier_address": "Cora-Berliner Str. 2, 10117 Berlin",
+    "supplier_vat_number": "34/476/00588",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 9.5,
+    "subtotal": 7.98,
+    "tax_amount": 1.52,
+    "tax_rate": 19,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2014-10-20",
+    "transaction_time": "13:45",
+    "payment_method": "Bar",
+    "card_last_four": null,
+    "line_items": [
+      {
+        "description": "Cola Light",
+        "quantity": 0.4,
+        "unit_price": 9,
+        "total_price": 3.6,
+        "category": "Beverage"
+      },
+      {
+        "description": "Currywurst Pommes",
+        "quantity": 1,
+        "unit_price": 5.9,
+        "total_price": 5.9,
+        "category": "Food"
+      }
+    ],
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Rechnung",
+    "table_number": "120",
+    "server_name": "Bediener 3",
+    "location_city": "Berlin",
+    "location_country": "Germany",
+    "special_notes": "Tip is not included",
+    "terms_conditions": null,
+    "business_registration_number": null
+  },
+  "compliance": {
+    "validation_result": {
+      "is_valid": false,
+      "issues_count": 5,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The receipt must include the customer name as per the receiptStandards for meals",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The receipt must include the customer address as per the receiptStandards for meals",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The receipt must include the invoice number as per the receiptStandards for meals",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "receipt_number",
+          "description": "Missing mandatory receipt number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The receipt must include the receipt number as per the receiptStandards for meals",
+          "confidence_score": 1
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "Meals (outside of business travel report) are not tax exempt and employees should be compensated",
+          "knowledge_base_reference": "Meals (outside of business travel report), Fuel, Phone Bill, Transportation to workplace, Office groceries, Other items which are not essential to carry out work activity are not tax exempt and employees should be compensated",
+          "confidence_score": 1
+        }
+      ],
+      "corrected_receipt": null,
+      "compliance_summary": "The receipt is not compliant due to missing mandatory fields (customer name, customer address, invoice number, receipt number) and the meal expenses are not tax exempt and will be grossed up."
+    },
+    "technical_details": {
+      "content_type": "expense_receipt",
+      "country": "Germany",
+      "icp": "Global People",
+      "receipt_type": "meals",
+      "issues_count": 5
+    }
+  },
+  "citations": {
+    "citations": {
+      "restaurant_name": {
+        "field_citation": {
+          "source_text": "# Pizzeria Pisa",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The restaurant name appears as a header at the top of the document.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Pizzeria Pisa",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The restaurant name appears as a header at the top of the document.",
+          "match_type": "exact"
+        }
+      },
+      "address": {
+        "field_citation": {
+          "source_text": "Cora-Berliner Str.2",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The address appears right below the restaurant name.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Cora-Berliner Str.2",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The address appears right below the restaurant name.",
+          "match_type": "exact"
+        }
+      },
+      "city": {
+        "field_citation": {
+          "source_text": "10117 Berlin",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The city name appears below the address.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Berlin",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The city name appears below the address.",
+          "match_type": "exact"
+        }
+      },
+      "postal_code": {
+        "field_citation": {
+          "source_text": "10117",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The postal code is listed below the city name.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10117",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The postal code is listed below the city name.",
+          "match_type": "exact"
+        }
+      },
+      "tax_number": {
+        "field_citation": {
+          "source_text": "St.Nr.:34/476/00588",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The tax number appears below the city name.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "34/476/00588",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The tax number appears below the city name.",
+          "match_type": "exact"
+        }
+      },
+      "table_number": {
+        "field_citation": {
+          "source_text": "Tisch #120",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The table number appears under the 'Rechnung' section.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "120",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The table number appears under the 'Rechnung' section.",
+          "match_type": "exact"
+        }
+      },
+      "items": {
+        "field_citation": {
+          "source_text": "0,4 Cola Light          3,60 EUR\nCurrywurst Pommes      5,90 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The items appear in a list under the table number.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "0,4 Cola Light          3,60 EUR\nCurrywurst Pommes      5,90 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The items appear in a list under the table number.",
+          "match_type": "exact"
+        }
+      },
+      "total": {
+        "field_citation": {
+          "source_text": "Saldo               9,50 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The total amount is labeled as 'Saldo' followed by the amount.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,50 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The total amount is labeled as 'Saldo' followed by the amount.",
+          "match_type": "exact"
+        }
+      },
+      "net_sales": {
+        "field_citation": {
+          "source_text": "Nettoumsatz         7,98 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The net sales appear below the saldo.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "7,98 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The net sales appear below the saldo.",
+          "match_type": "exact"
+        }
+      },
+      "vat": {
+        "field_citation": {
+          "source_text": "MWST 19%            1,52 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The VAT appears below the net sales.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "1,52 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The VAT appears below the net sales.",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Bar                 9,50 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The payment method appears below the VAT.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Bar",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The payment method appears below the VAT.",
+          "match_type": "exact"
+        }
+      },
+      "timestamp": {
+        "field_citation": {
+          "source_text": "13:45 20.10.2014 Bediener 3",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The timestamp appears at the bottom of the document.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13:45 20.10.2014",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The timestamp appears at the bottom of the document.",
+          "match_type": "exact"
+        }
+      },
+      "server": {
+        "field_citation": {
+          "source_text": "Es bediente Sie Bediener 3.",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The server name appears at the bottom of the document.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Bediener 3",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The server name appears at the bottom of the document.",
+          "match_type": "exact"
+        }
+      },
+      "saldo": {
+        "field_citation": {
+          "source_text": "Saldo               9,50 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The saldo appears below the list of items.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "9,50 EUR",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "The saldo appears below the list of items.",
+          "match_type": "exact"
+        }
+      }
+    },
+    "metadata": {
+      "total_fields_analyzed": 41,
+      "fields_with_field_citations": 41,
+      "fields_with_value_citations": 41,
+      "average_confidence": 1
+    }
+  },
+  "timing": {
+    "phase_timings": {
+      "markdown_extraction_seconds": "16.2",
+      "file_classification_seconds": "3.4",
+      "data_extraction_seconds": "3.7",
+      "image_quality_assessment_seconds": "4.8",
+      "issue_detection_seconds": "10.4",
+      "citation_generation_seconds": "42.6",
+      "llm_validation_seconds": "64.0"
+    },
+    "agent_performance": {
+      "markdown_extraction": {
+        "start_time": "2025-10-01T13:12:10.886Z",
+        "end_time": "2025-10-01T13:12:27.065Z",
+        "duration_seconds": "16.2",
+        "document_reader_used": "zerox"
+      },
+      "file_classification": {
+        "start_time": "2025-10-01T13:12:27.069Z",
+        "end_time": "2025-10-01T13:12:30.436Z",
+        "duration_seconds": "3.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "data_extraction": {
+        "start_time": "2025-10-01T13:12:27.071Z",
+        "end_time": "2025-10-01T13:12:30.746Z",
+        "duration_seconds": "3.7",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-10-01T13:12:27.067Z",
+        "end_time": "2025-10-01T13:12:31.838Z",
+        "duration_seconds": "4.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-10-01T13:12:31.840Z",
+        "end_time": "2025-10-01T13:12:42.194Z",
+        "duration_seconds": "10.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-10-01T13:12:31.842Z",
+        "end_time": "2025-10-01T13:13:14.446Z",
+        "duration_seconds": "42.6",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "llm_validation": {
+        "start_time": "2025-10-01T13:13:14.447Z",
+        "end_time": "2025-10-01T13:14:18.427Z",
+        "duration_seconds": "64.0",
+        "judge_models_used": [
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+        ],
+        "execution_mode": "parallel",
+        "parallel_metrics": {},
+        "validator_type": "parallel",
+        "parallel_enabled": true
+      }
+    },
+    "total_processing_time_seconds": "127.6",
+    "performance_metrics": {
+      "parallel_group_1_seconds": "4.8",
+      "parallel_group_2_seconds": "42.6",
+      "total_parallel_time_seconds": "47.4"
+    }
+  },
+  "metadata": {
+    "filename": "german_file_2.png",
+    "processing_time": 127584,
+    "country": "Germany",
+    "icp": "Global People",
+    "processed_at": "2025-10-01T13:14:18.470Z"
+  }
+}

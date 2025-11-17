@@ -1,0 +1,654 @@
+{
+  "overall_score": 0.9038888888888889,
+  "dimensions_count": 6,
+  "dimension_results": [
+    {
+      "dimension": "factual_grounding",
+      "confidence_score": 0.8466666666666667,
+      "issues": [
+        "The only minor issue is with Issue 4",
+        "where the AI correctly identified the need for additional documentation for mileage",
+        "but the receipt does contain some location information (pickup and dropoff locations)",
+        "though not necessarily in the format required by the compliance rules."
+      ],
+      "summary": "The AI response is very well grounded in the extracted data and compliance rules. It correctly identified all five issues with the receipt: missing receipt number, missing tax information, improper customer name format, incomplete mileage documentation, and missing exchange rate information for an overseas expense. All these issues are directly supported by comparing the extracted data against the compliance requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing in the extracted data. The \"receipt_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. According to the compliance rules, \"Receipt must show the tax registration number of the supplier\" is mandatory, and this information is not present in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly noted that the customer name \"서수빈\" is not in the required format for ICP requirements. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\"\n\nISSUE_4_VALIDATION_SCORE: 80 - The AI correctly identified that additional documentation is required for mileage reimbursements based on the compliance rules. While the extracted data does show distance traveled (16.48), it doesn't explicitly show \"To and Fro locations\" in the format required by the compliance rules, and there's no mention of per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) while the country is Japan, making this an overseas expense. The compliance rules clearly state that exchange rate information is required for overseas expenses.\n\nCONFIDENCE: 96\n\nISSUES: The only minor issue is with Issue 4, where the AI correctly identified the need for additional documentation for mileage, but the receipt does contain some location information (pickup and dropoff locations), though not necessarily in the format required by the compliance rules.\n\nSUMMARY: The AI response is very well grounded in the extracted data and compliance rules. It correctly identified all five issues with the receipt: missing receipt number, missing tax information, improper customer name format, incomplete mileage documentation, and missing exchange rate information for an overseas expense. All these issues are directly supported by comparing the extracted data against the compliance requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.96,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing in the extracted data. The \"receipt_number\" field is explicitly shown as null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. According to the compliance rules, \"Receipt must show the tax registration number of the supplier\" is mandatory, and this information is not present in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly noted that the customer name \"서수빈\" is not in the required format for ICP requirements. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\"\n\nISSUE_4_VALIDATION_SCORE: 80 - The AI correctly identified that additional documentation is required for mileage reimbursements based on the compliance rules. While the extracted data does show distance traveled (16.48), it doesn't explicitly show \"To and Fro locations\" in the format required by the compliance rules, and there's no mention of per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) while the country is Japan, making this an overseas expense. The compliance rules clearly state that exchange rate information is required for overseas expenses.\n\nCONFIDENCE: 96\n\nISSUES: The only minor issue is with Issue 4, where the AI correctly identified the need for additional documentation for mileage, but the receipt does contain some location information (pickup and dropoff locations), though not necessarily in the format required by the compliance rules.\n\nSUMMARY: The AI response is very well grounded in the extracted data and compliance rules. It correctly identified all five issues with the receipt: missing receipt number, missing tax information, improper customer name format, incomplete mileage documentation, and missing exchange rate information for an overseas expense. All these issues are directly supported by comparing the extracted data against the compliance requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.6,
+          "response": "ISSUE_1_VALIDATION_SCORE: 0 - The AI response mentions that the \"receipt number is missing\", but there is no receipt number provided in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 0 - The AI response states that \"tax information including the tax registration number is missing\", but the extracted data does not contain any tax information.\n\nISSUE_3_VALIDATION_SCORE: 50 - The AI response indicates that the \"customer name is not in the required format for ICP requirements\", but the extracted data does provide a customer name (\"서수빈\"). However, the response does not explain why this format is not compliant.\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI response correctly identifies the need for additional documentation for mileage reimbursements, including \"To and Fro locations, distance travelled and per diem rates\". The extracted data does provide the distance travelled (16.48) and the vehicle information, which is relevant for mileage reimbursement.\n\nISSUE_5_VALIDATION_SCORE: 90 - The AI response correctly identifies the need for exchange rate information for the overseas expense, and the recommendation to provide \"the exchange rate of main banks on the day of purchase\" is appropriate. The extracted data does not contain this information.\n\nCONFIDENCE: 60\nISSUES: The AI response is missing factual grounding for the receipt number, tax information, and the specific reason why the customer name format is non-compliant.\nSUMMARY: The AI response is partially factually grounded, as it accurately identifies several compliance issues with the provided receipt data, such as the need for additional documentation and exchange rate information. However, it lacks factual grounding for some of the specific compliance issues it raises, such as the missing receipt number and tax information."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The AI correctly identified that the receipt number is missing in the extracted data. The \"receipt_number\" field is explicitly set to null in the extracted data.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. According to the compliance rules, \"Receipt must show the tax registration number of the supplier\" is mandatory, and this information is not present in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The AI correctly identified that the customer name is not in the required format. The extracted data shows the customer name as \"서수빈\" which does not match the compliance rule stating \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\"\n\nISSUE_4_VALIDATION_SCORE: 90 - The AI correctly identified that additional documentation is required for mileage reimbursements based on the compliance rules. While the extracted data does include distance traveled (16.48), it doesn't explicitly mention \"To and Fro locations\" in the required format, and per diem rates are missing. However, pickup and dropoff locations are actually included in the data, so this is slightly overstated as an issue.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for the overseas expense. The receipt is from Korea (KRW currency) but the country is Japan, making this an overseas expense. According to the compliance rules, exchange rate information is mandatory for overseas expenses.\n\nCONFIDENCE: 98\n\nISSUES: The AI response is very well grounded in the extracted data and compliance rules. The only minor issue is that the receipt does include pickup and dropoff locations, though they may not be formatted exactly as required by the compliance rules.\n\nSUMMARY: The AI response accurately identified compliance issues based on the extracted data and compliance rules. It correctly noted the missing receipt number, tax information, improper customer name format, and missing exchange rate information. The issue about mileage documentation is slightly overstated since pickup and dropoff locations are included, but the overall assessment is factually sound and well-grounded in the provided information."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that the receipt number is missing in the extracted data. The \"receipt_number\" field is explicitly shown as null in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that tax information including the tax registration number is missing. According to the compliance rules, \"Receipt must show the tax registration number of the supplier\" is mandatory, and this information is not present in the extracted data.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly noted that the customer name \"서수빈\" is not in the required format for ICP requirements. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\"",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 80,
+          "judge_explanation": "The AI correctly identified that additional documentation is required for mileage reimbursements based on the compliance rules. While the extracted data does show distance traveled (16.48), it doesn't explicitly show \"To and Fro locations\" in the format required by the compliance rules, and there's no mention of per diem rates.",
+          "dimension": "factual_grounding"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) while the country is Japan, making this an overseas expense. The compliance rules clearly state that exchange rate information is required for overseas expenses.",
+          "dimension": "factual_grounding"
+        }
+      ]
+    },
+    {
+      "dimension": "knowledge_base_adherence",
+      "confidence_score": 0.9033333333333333,
+      "issues": [
+        "1. Issue 1 references a requirement for a receipt number/unique identifier that isn't explicitly stated in the provided compliance rules.",
+        "2. Issue 3 correctly identifies the customer name issue but doesn't acknowledge that this requirement is marked as \"Optional\" in the compliance rules."
+      ],
+      "summary": "The AI response demonstrates strong adherence to the compliance knowledge base for most issues. It correctly identifies missing tax information, improper customer name format, missing documentation for mileage reimbursement, and missing exchange rate information for overseas expenses. The main discrepancy is regarding the receipt number requirement, which isn't explicitly stated in the provided compliance rules. Additionally, while the customer name issue is valid, the AI could have noted that this requirement is optional according to the compliance rules. Overall, the response shows good application of the compliance rules with minor areas for improvement.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that a receipt number is missing, which is a standard requirement for receipts. However, this specific requirement is not explicitly listed in the provided compliance rules for GoGlobal in Japan. The knowledge base reference states \"Receipt must show a unique identifier for the transaction\" but this exact wording doesn't appear in the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. This directly aligns with the compliance rule that states \"Receipt must show the tax registration number of the supplier\" which is listed as mandatory for both travel and non-travel expenses.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the customer name is not in the required format for ICP requirements. The compliance rule states \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows a personal name (서수빈) rather than the employer's name. However, this rule is marked as \"Optional\" in the compliance rules, so the confidence score of 0.85 is appropriate but could be slightly higher.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursements. This aligns perfectly with the compliance rule that states \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt does include pickup and dropoff locations and distance traveled, it doesn't include per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for the overseas expense. This aligns with the compliance rule that states \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is in Korean Won (KRW) but the country is Japan, making this an overseas expense.\n\nCONFIDENCE: 88\n\nISSUES:\n1. Issue 1 references a requirement for a receipt number/unique identifier that isn't explicitly stated in the provided compliance rules.\n2. Issue 3 correctly identifies the customer name issue but doesn't acknowledge that this requirement is marked as \"Optional\" in the compliance rules.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for most issues. It correctly identifies missing tax information, improper customer name format, missing documentation for mileage reimbursement, and missing exchange rate information for overseas expenses. The main discrepancy is regarding the receipt number requirement, which isn't explicitly stated in the provided compliance rules. Additionally, while the customer name issue is valid, the AI could have noted that this requirement is optional according to the compliance rules. Overall, the response shows good application of the compliance rules with minor areas for improvement.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.88,
+          "response": "ISSUE_1_VALIDATION_SCORE: 50 - The AI correctly identified that a receipt number is missing, which is a standard requirement for receipts. However, this specific requirement is not explicitly listed in the provided compliance rules for GoGlobal in Japan. The knowledge base reference states \"Receipt must show a unique identifier for the transaction\" but this exact wording doesn't appear in the provided compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. This directly aligns with the compliance rule that states \"Receipt must show the tax registration number of the supplier\" which is listed as mandatory for both travel and non-travel expenses.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the customer name is not in the required format for ICP requirements. The compliance rule states \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows a personal name (서수빈) rather than the employer's name. However, this rule is marked as \"Optional\" in the compliance rules, so the confidence score of 0.85 is appropriate but could be slightly higher.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified that additional documentation is required for mileage reimbursements. This aligns perfectly with the compliance rule that states \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt does include pickup and dropoff locations and distance traveled, it doesn't include per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for the overseas expense. This aligns with the compliance rule that states \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is in Korean Won (KRW) but the country is Japan, making this an overseas expense.\n\nCONFIDENCE: 88\n\nISSUES:\n1. Issue 1 references a requirement for a receipt number/unique identifier that isn't explicitly stated in the provided compliance rules.\n2. Issue 3 correctly identifies the customer name issue but doesn't acknowledge that this requirement is marked as \"Optional\" in the compliance rules.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base for most issues. It correctly identifies missing tax information, improper customer name format, missing documentation for mileage reimbursement, and missing exchange rate information for overseas expenses. The main discrepancy is regarding the receipt number requirement, which isn't explicitly stated in the provided compliance rules. Additionally, while the customer name issue is valid, the AI could have noted that this requirement is optional according to the compliance rules. Overall, the response shows good application of the compliance rules with minor areas for improvement."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue of the missing receipt number is correctly identified as a compliance violation. The knowledge base reference provided is accurate, as receipts must have a unique identifier.\n\nISSUE_2_VALIDATION_SCORE: 90 - The lack of tax information, including the tax registration number, is properly flagged as a compliance issue. This aligns with the knowledge base requirement that receipts must display the supplier's tax registration number.\n\nISSUE_3_VALIDATION_SCORE: 85 - The concern about the customer name not being in the required format for ICP requirements is valid. The knowledge base reference suggests that receipts should be issued in the name of the employer, which is not the case here.\n\nISSUE_4_VALIDATION_SCORE: 90 - The need for additional documentation for mileage reimbursements, including details on the to and fro locations, distance traveled, and per diem rates, is correctly identified. This is in line with the compliance knowledge base.\n\nISSUE_5_VALIDATION_SCORE: 90 - The absence of exchange rate information for the overseas expense is properly flagged as a compliance issue. The knowledge base reference provides clear guidance on the required information for overseas expenses.\n\nCONFIDENCE: 90\nISSUES: None identified.\nSUMMARY: The AI response accurately applies the compliance rules and knowledge base for Japan. It correctly identifies the key issues with the receipt, such as missing mandatory information, and provides relevant recommendations to address them. The response demonstrates a strong understanding of the country-specific regulations and the ICP requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.93,
+          "response": "ISSUE_1_VALIDATION_SCORE: 75 - The AI correctly identified that the receipt number is missing, which violates the compliance requirement for a unique transaction identifier. However, while this is a good practice, the specific knowledge base doesn't explicitly list \"receipt number\" as a mandatory field for Japan, so the confidence should be moderated.\n\nISSUE_2_VALIDATION_SCORE: 100 - The AI correctly identified that tax information including the tax registration number is missing. This directly aligns with the knowledge base rule: \"Receipt must show the tax registration number of the supplier\" which is listed as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 90 - The AI correctly identified that the customer name format doesn't meet ICP requirements. The knowledge base states \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows \"서수빈\" as the customer name instead of the GoGlobal entity.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI correctly identified the need for additional documentation for mileage reimbursements. This directly matches the knowledge base rule: \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - The AI correctly identified that exchange rate information is missing for overseas expenses. The knowledge base explicitly states: \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\"\n\nCONFIDENCE: 93\n\nISSUES:\n1. The receipt number requirement may not be explicitly stated in the knowledge base for Japan, though it's a good compliance practice.\n2. The AI didn't mention the requirement to submit original receipts pasted/stapled onto A4-sized sheets and mailed to GoGlobal K.K. in Tokyo by the 8th of the month, which is in the knowledge base.\n\nSUMMARY: The AI response demonstrates strong adherence to the compliance knowledge base, correctly identifying key issues related to tax information, customer name format, mileage documentation requirements, and exchange rate information. The receipt number issue, while valid from a general compliance perspective, may not be explicitly required in the knowledge base. One notable omission is the physical submission requirement for original receipts to the Tokyo office. Overall, the response shows excellent application of the compliance rules with minor areas for improvement."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 50,
+          "judge_explanation": "The AI correctly identified that a receipt number is missing, which is a standard requirement for receipts. However, this specific requirement is not explicitly listed in the provided compliance rules for GoGlobal in Japan. The knowledge base reference states \"Receipt must show a unique identifier for the transaction\" but this exact wording doesn't appear in the provided compliance rules.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that tax information including the tax registration number is missing. This directly aligns with the compliance rule that states \"Receipt must show the tax registration number of the supplier\" which is listed as mandatory for both travel and non-travel expenses.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The AI correctly identified that the customer name is not in the required format for ICP requirements. The compliance rule states \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows a personal name (서수빈) rather than the employer's name. However, this rule is marked as \"Optional\" in the compliance rules, so the confidence score of 0.85 is appropriate but could be slightly higher.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that additional documentation is required for mileage reimbursements. This aligns perfectly with the compliance rule that states \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates.\" While the receipt does include pickup and dropoff locations and distance traveled, it doesn't include per diem rates.",
+          "dimension": "knowledge_base_adherence"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The AI correctly identified that exchange rate information is missing for the overseas expense. This aligns with the compliance rule that states \"For overseas expenses, exchange rate of main banks on the day of purchase. If paid with cash in local currency, follow the rate printed on currency exchange transaction receipt. If paid with credit card, follow the rate printed on card statement.\" The receipt is in Korean Won (KRW) but the country is Japan, making this an overseas expense.",
+          "dimension": "knowledge_base_adherence"
+        }
+      ]
+    },
+    {
+      "dimension": "compliance_accuracy",
+      "confidence_score": 0.8833333333333333,
+      "issues": [
+        "1. Issue 4 appears to misclassify a commercial transportation receipt as a personal mileage reimbursement claim.",
+        "2. The receipt appears to be from Korea (KRW currency",
+        "Korean locations) but is being processed in Japan",
+        "which creates some complexity in the compliance assessment."
+      ],
+      "summary": "The compliance assessment is largely accurate, correctly identifying missing receipt number, tax information, improper customer name format, and missing exchange rate information for this foreign currency transaction. However, issue 4 appears to misapply mileage reimbursement requirements to what is clearly a commercial transportation receipt (TADA ride service) that already includes the required location and distance information. The overall assessment that the receipt is non-compliant is correct, as multiple mandatory fields are indeed missing.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt number is missing, which is a valid compliance issue. According to standard receipt requirements, a unique identifier for the transaction should be present. While the receipt does have an approval number (123014), this is specifically for the card payment and not a receipt number. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identifies that tax information including the tax registration number is missing. This is explicitly required in the compliance rules: \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field for GoGlobal, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the customer name (서수빈) is not in the required format for ICP requirements. According to the rules, \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows an individual's name rather than the company name.\n\nISSUE_4_VALIDATION_SCORE: 70 - While the compliance rules do state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates,\" this receipt appears to be for a taxi/ride service (TADA) rather than a personal mileage reimbursement. The receipt already includes pickup location, dropoff location, and distance traveled (16.48). This issue seems to be misapplied to a commercial transportation service rather than personal vehicle mileage reimbursement.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) but the country is Japan, making this a foreign currency transaction. The compliance rules clearly state: \"For overseas expenses, exchange rate of main banks on the day of purchase\" is required, and the recommendation to provide this information is appropriate.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 4 appears to misclassify a commercial transportation receipt as a personal mileage reimbursement claim.\n2. The receipt appears to be from Korea (KRW currency, Korean locations) but is being processed in Japan, which creates some complexity in the compliance assessment.\n\nSUMMARY: The compliance assessment is largely accurate, correctly identifying missing receipt number, tax information, improper customer name format, and missing exchange rate information for this foreign currency transaction. However, issue 4 appears to misapply mileage reimbursement requirements to what is clearly a commercial transportation receipt (TADA ride service) that already includes the required location and distance information. The overall assessment that the receipt is non-compliant is correct, as multiple mandatory fields are indeed missing.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt number is missing, which is a valid compliance issue. According to standard receipt requirements, a unique identifier for the transaction should be present. While the receipt does have an approval number (123014), this is specifically for the card payment and not a receipt number. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identifies that tax information including the tax registration number is missing. This is explicitly required in the compliance rules: \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field for GoGlobal, and the recommendation to address this with the supplier is appropriate.\n\nISSUE_3_VALIDATION_SCORE: 90 - The assessment correctly identifies that the customer name (서수빈) is not in the required format for ICP requirements. According to the rules, \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows an individual's name rather than the company name.\n\nISSUE_4_VALIDATION_SCORE: 70 - While the compliance rules do state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates,\" this receipt appears to be for a taxi/ride service (TADA) rather than a personal mileage reimbursement. The receipt already includes pickup location, dropoff location, and distance traveled (16.48). This issue seems to be misapplied to a commercial transportation service rather than personal vehicle mileage reimbursement.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) but the country is Japan, making this a foreign currency transaction. The compliance rules clearly state: \"For overseas expenses, exchange rate of main banks on the day of purchase\" is required, and the recommendation to provide this information is appropriate.\n\nCONFIDENCE: 90\n\nISSUES:\n1. Issue 4 appears to misclassify a commercial transportation receipt as a personal mileage reimbursement claim.\n2. The receipt appears to be from Korea (KRW currency, Korean locations) but is being processed in Japan, which creates some complexity in the compliance assessment.\n\nSUMMARY: The compliance assessment is largely accurate, correctly identifying missing receipt number, tax information, improper customer name format, and missing exchange rate information for this foreign currency transaction. However, issue 4 appears to misapply mileage reimbursement requirements to what is clearly a commercial transportation receipt (TADA ride service) that already includes the required location and distance information. The overall assessment that the receipt is non-compliant is correct, as multiple mandatory fields are indeed missing."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identified the missing receipt number as a compliance issue, as the receipt number is a mandatory field required by the compliance rules.\n\nISSUE_2_VALIDATION_SCORE: 90 - The assessment correctly identified the missing tax information, including the tax registration number, as a compliance issue, as this is a mandatory field required by the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly identified the customer name format as not being in the required format for ICP requirements. However, the recommendation could be more specific in terms of the expected format for the customer name.\n\nISSUE_4_VALIDATION_SCORE: 90 - The assessment correctly identified the need for additional documentation for mileage reimbursements, including the required information on to and fro locations, distance travelled, and per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 90 - The assessment correctly identified the missing exchange rate information for the overseas expense, and the recommendation to provide the exchange rate of main banks on the day of purchase is appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The compliance assessment is accurate overall, with the key compliance issues correctly identified and appropriate recommendations provided. The assessment demonstrates a strong understanding of the ICP requirements and the necessary documentation for travel-related expenses."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.85,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The assessment correctly identifies that the receipt number is missing, which is a valid compliance issue. According to standard receipt requirements, a unique identifier is needed for proper record-keeping. The recommendation to address this with the supplier is appropriate.\n\nISSUE_2_VALIDATION_SCORE: 100 - The assessment accurately identifies that tax information including the tax registration number is missing. This directly aligns with the compliance rule stating \"Receipt must show the tax registration number of the supplier\" which is listed as mandatory.\n\nISSUE_3_VALIDATION_SCORE: 85 - The assessment correctly notes that the customer name (서수빈) is not in the required format for ICP requirements. The rule states that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" However, this rule is marked as \"Optional\" in the compliance rules, so while the issue identification is accurate, the severity might be overstated.\n\nISSUE_4_VALIDATION_SCORE: 70 - While the assessment correctly identifies that additional documentation is required for mileage reimbursements, this is a TADA ride-sharing receipt that already includes pickup/dropoff locations and distance traveled (16.48km). The receipt type is \"travel\" but specifically a transport receipt, not a mileage reimbursement. The rule about mileage documentation may not fully apply to this third-party transport service.\n\nISSUE_5_VALIDATION_SCORE: 100 - The assessment correctly identifies that exchange rate information is missing. Since this is a Korean receipt (KRW currency) for a Japan-based ICP, the rule \"For overseas expenses, exchange rate of main banks on the day of purchase\" applies and this information is indeed missing.\n\nCONFIDENCE: 85\n\nISSUES:\n1. Issue #4 may be misapplied as this appears to be a ride-sharing receipt rather than a personal mileage reimbursement claim.\n2. Issue #3 identifies a valid problem but overstates its importance since the customer name requirement is marked as \"Optional\" in the compliance rules.\n\nSUMMARY: The compliance assessment is generally accurate in identifying key missing elements required by GoGlobal's policies for Japan. The receipt lacks a receipt number, tax registration information, proper customer name format, and exchange rate information for a foreign currency transaction. However, the assessment slightly mischaracterizes the ride-sharing receipt as requiring mileage reimbursement documentation, and overstates the importance of the customer name issue which is marked as optional in the compliance rules. Overall, the non-compliant determination is correct, but some nuance in the specific issues could be improved."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the receipt number is missing, which is a valid compliance issue. According to standard receipt requirements, a unique identifier for the transaction should be present. While the receipt does have an approval number (123014), this is specifically for the card payment and not a receipt number. The recommendation to address this with the supplier is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment accurately identifies that tax information including the tax registration number is missing. This is explicitly required in the compliance rules: \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field for GoGlobal, and the recommendation to address this with the supplier is appropriate.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The assessment correctly identifies that the customer name (서수빈) is not in the required format for ICP requirements. According to the rules, \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The receipt shows an individual's name rather than the company name.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 70,
+          "judge_explanation": "While the compliance rules do state \"For mileage reimbursements, include To and Fro locations, distance travelled and per diem rates,\" this receipt appears to be for a taxi/ride service (TADA) rather than a personal mileage reimbursement. The receipt already includes pickup location, dropoff location, and distance traveled (16.48). This issue seems to be misapplied to a commercial transportation service rather than personal vehicle mileage reimbursement.",
+          "dimension": "compliance_accuracy"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "The assessment correctly identifies that exchange rate information is missing for this overseas expense. The receipt is in KRW (Korean Won) but the country is Japan, making this a foreign currency transaction. The compliance rules clearly state: \"For overseas expenses, exchange rate of main banks on the day of purchase\" is required, and the recommendation to provide this information is appropriate.",
+          "dimension": "compliance_accuracy"
+        }
+      ]
+    },
+    {
+      "dimension": "issue_categorization",
+      "confidence_score": 0.8966666666666666,
+      "issues": [
+        "1. Issue #4 appears to misidentify a taxi/ride-sharing receipt as a mileage reimbursement claim",
+        "2. Issue #3 cites a rule that is marked as \"Optional\" in the compliance documentation but treats it as a mandatory requirement"
+      ],
+      "summary": "Most issues are correctly categorized with appropriate descriptions and recommendations. The validation system accurately identifies missing receipt number, tax information, and exchange rate details as compliance issues. However, there's some confusion regarding the nature of the receipt (taxi vs. mileage reimbursement), and one optional requirement is treated with the same severity as mandatory ones. Overall, the categorization is mostly accurate but could benefit from better distinguishing between transportation receipt types and properly weighting optional versus mandatory requirements.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing receipt number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by compliance standards. The description clearly identifies the problem, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the requirement for a unique transaction identifier.\n\nISSUE_2_VALIDATION_SCORE: 95 - The missing tax information issue is accurately categorized as \"Standards & Compliance | Fix Identified.\" This aligns perfectly with the compliance rules stating \"Receipt must show the tax registration number of the supplier\" as a mandatory requirement. The description, recommendation, and knowledge base reference are all clear and consistent.\n\nISSUE_3_VALIDATION_SCORE: 85 - The customer name issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows a customer name in Korean characters (\"서수빈\") rather than the employer name (GoGlobal entity). However, the compliance rule indicates this is \"Optional\" rather than \"Mandatory,\" so while the issue is valid, its severity might be slightly overstated.\n\nISSUE_4_VALIDATION_SCORE: 70 - This issue about additional documentation for mileage reimbursements is categorized as \"Standards & Compliance | Follow-up Action Identified,\" which is appropriate for the type of issue. However, while the receipt does show a distance traveled (16.48), this appears to be a taxi/ride-sharing receipt (TADA service) rather than a mileage reimbursement claim. The issue may be misapplied to this specific receipt type.\n\nISSUE_5_VALIDATION_SCORE: 95 - The missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" This aligns with the compliance rule requiring exchange rate information for overseas expenses. Since this is a Korean receipt (KRW currency) being submitted in Japan, the exchange rate information is indeed required.\n\nCONFIDENCE: 87\n\nISSUES:\n1. Issue #4 appears to misidentify a taxi/ride-sharing receipt as a mileage reimbursement claim\n2. Issue #3 cites a rule that is marked as \"Optional\" in the compliance documentation but treats it as a mandatory requirement\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations. The validation system accurately identifies missing receipt number, tax information, and exchange rate details as compliance issues. However, there's some confusion regarding the nature of the receipt (taxi vs. mileage reimbursement), and one optional requirement is treated with the same severity as mandatory ones. Overall, the categorization is mostly accurate but could benefit from better distinguishing between transportation receipt types and properly weighting optional versus mandatory requirements.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.87,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue regarding missing receipt number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by compliance standards. The description clearly identifies the problem, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the requirement for a unique transaction identifier.\n\nISSUE_2_VALIDATION_SCORE: 95 - The missing tax information issue is accurately categorized as \"Standards & Compliance | Fix Identified.\" This aligns perfectly with the compliance rules stating \"Receipt must show the tax registration number of the supplier\" as a mandatory requirement. The description, recommendation, and knowledge base reference are all clear and consistent.\n\nISSUE_3_VALIDATION_SCORE: 85 - The customer name issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows a customer name in Korean characters (\"서수빈\") rather than the employer name (GoGlobal entity). However, the compliance rule indicates this is \"Optional\" rather than \"Mandatory,\" so while the issue is valid, its severity might be slightly overstated.\n\nISSUE_4_VALIDATION_SCORE: 70 - This issue about additional documentation for mileage reimbursements is categorized as \"Standards & Compliance | Follow-up Action Identified,\" which is appropriate for the type of issue. However, while the receipt does show a distance traveled (16.48), this appears to be a taxi/ride-sharing receipt (TADA service) rather than a mileage reimbursement claim. The issue may be misapplied to this specific receipt type.\n\nISSUE_5_VALIDATION_SCORE: 95 - The missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" This aligns with the compliance rule requiring exchange rate information for overseas expenses. Since this is a Korean receipt (KRW currency) being submitted in Japan, the exchange rate information is indeed required.\n\nCONFIDENCE: 87\n\nISSUES:\n1. Issue #4 appears to misidentify a taxi/ride-sharing receipt as a mileage reimbursement claim\n2. Issue #3 cites a rule that is marked as \"Optional\" in the compliance documentation but treats it as a mandatory requirement\n\nSUMMARY: Most issues are correctly categorized with appropriate descriptions and recommendations. The validation system accurately identifies missing receipt number, tax information, and exchange rate details as compliance issues. However, there's some confusion regarding the nature of the receipt (taxi vs. mileage reimbursement), and one optional requirement is treated with the same severity as mandatory ones. Overall, the categorization is mostly accurate but could benefit from better distinguishing between transportation receipt types and properly weighting optional versus mandatory requirements."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The issue related to the missing receipt number is correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description clearly identifies the problem, provides a relevant recommendation, and cites the appropriate knowledge base reference.\n\nISSUE_2_VALIDATION_SCORE: 90 - The issue related to the missing tax information is also correctly categorized as a \"Standards & Compliance | Fix Identified\" issue. The description, recommendation, and knowledge base reference are appropriate.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue regarding the customer name format not meeting ICP requirements is correctly identified as a \"Standards & Compliance | Fix Identified\" issue. However, the description could be more specific in explaining the exact format required.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue about the missing mileage reimbursement documentation is properly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description and recommendation are clear and aligned with the knowledge base reference.\n\nISSUE_5_VALIDATION_SCORE: 90 - The issue related to the missing exchange rate information is also correctly categorized as a \"Standards & Compliance | Follow-up Action Identified\" issue. The description, recommendation, and knowledge base reference are appropriate.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The identified issues are generally well-categorized, with clear descriptions, relevant recommendations, and appropriate knowledge base references. The categorization follows the established taxonomy, and no major issues are missed or incorrectly classified."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.92,
+          "response": "ISSUE_1_VALIDATION_SCORE: 95 - The issue regarding missing receipt number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory compliance requirement. The description clearly states the problem (receipt number missing), provides appropriate recommendation, and references the relevant knowledge base rule about unique transaction identifiers.\n\nISSUE_2_VALIDATION_SCORE: 95 - The issue about missing tax information is accurately categorized as \"Standards & Compliance | Fix Identified.\" The compliance rules explicitly state \"Receipt must show the tax registration number of the supplier\" as mandatory, and the issue correctly identifies this missing element with appropriate recommendations.\n\nISSUE_3_VALIDATION_SCORE: 85 - The issue about customer name format is correctly categorized as \"Standards & Compliance | Fix Identified\" and references the appropriate rule. However, the confidence score of 0.85 is appropriate since the rule states this is \"Optional\" in the compliance rules, not mandatory as implied by the issue description.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue about additional documentation for mileage is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" since it requires the user to provide additional information. The description matches the compliance rule about mileage reimbursements needing to include To and Fro locations, distance traveled, and per diem rates.\n\nISSUE_5_VALIDATION_SCORE: 95 - The issue about missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified\" and accurately references the compliance rule for overseas expenses requiring exchange rate information. The recommendation properly aligns with the knowledge base reference.\n\nCONFIDENCE: 92\n\nISSUES: The categorization of Issue 3 regarding customer name format slightly overstates the severity since the compliance rules list this requirement as \"Optional\" rather than \"Mandatory.\" Additionally, the system doesn't address whether the receipt is actually from Japan (as specified in the country field) when the currency appears to be KRW (Korean Won) and locations are in Seoul, which might warrant an additional issue about geographical inconsistency.\n\nSUMMARY: The issue categorization is generally accurate and follows the established taxonomy. All five identified issues correspond to actual compliance requirements in the provided rules, with appropriate issue types and actionable recommendations. The minor discrepancy in Issue 3's severity (treating an optional requirement as mandatory) and the lack of flagging the geographical inconsistency between stated country (Japan) and actual receipt data (Korean locations/currency) are the only notable concerns in an otherwise strong categorization."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The issue regarding missing receipt number is correctly categorized as \"Standards & Compliance | Fix Identified\" since it relates to a mandatory field required by compliance standards. The description clearly identifies the problem, and the recommendation appropriately suggests addressing this with the supplier. The knowledge base reference accurately cites the requirement for a unique transaction identifier.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 95,
+          "judge_explanation": "The missing tax information issue is accurately categorized as \"Standards & Compliance | Fix Identified.\" This aligns perfectly with the compliance rules stating \"Receipt must show the tax registration number of the supplier\" as a mandatory requirement. The description, recommendation, and knowledge base reference are all clear and consistent.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The customer name issue is correctly categorized as \"Standards & Compliance | Fix Identified.\" The receipt shows a customer name in Korean characters (\"서수빈\") rather than the employer name (GoGlobal entity). However, the compliance rule indicates this is \"Optional\" rather than \"Mandatory,\" so while the issue is valid, its severity might be slightly overstated.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 70,
+          "judge_explanation": "This issue about additional documentation for mileage reimbursements is categorized as \"Standards & Compliance | Follow-up Action Identified,\" which is appropriate for the type of issue. However, while the receipt does show a distance traveled (16.48), this appears to be a taxi/ride-sharing receipt (TADA service) rather than a mileage reimbursement claim. The issue may be misapplied to this specific receipt type.",
+          "dimension": "issue_categorization"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The missing exchange rate information is correctly categorized as \"Standards & Compliance | Follow-up Action Identified.\" This aligns with the compliance rule requiring exchange rate information for overseas expenses. Since this is a Korean receipt (KRW currency) being submitted in Japan, the exchange rate information is indeed required.",
+          "dimension": "issue_categorization"
+        }
+      ]
+    },
+    {
+      "dimension": "recommendation_validity",
+      "confidence_score": 0.9,
+      "issues": [
+        "None significant. All recommendations are aligned with the compliance rules and provide actionable guidance."
+      ],
+      "summary": "The recommendations provided for all five issues are valid, specific, and directly address the compliance requirements for GoGlobal in Japan. The recommendations appropriately instruct the user to either address issues with the supplier or provide additional documentation as required by the compliance rules. The guidance is practical and feasible, focusing on obtaining the necessary information to meet compliance standards for travel receipts in Japan.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user needs to obtain a proper receipt with a unique identifier, which aligns with the compliance rule that \"Receipt must show a unique identifier for the transaction.\"\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding missing tax information is valid and directly addresses the compliance requirement that \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to \"address this issue with the supplier or provider\" regarding the customer name format is valid. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The current receipt shows a personal name (서수빈) rather than the employer's name.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to \"provide To and Fro locations, distance travelled and per diem rates\" for mileage reimbursements is highly valid and specific. It directly references the compliance rule and provides clear guidance on what additional documentation is needed.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to \"provide the exchange rate of main banks on the day of purchase\" for overseas expenses is highly valid. It directly addresses the compliance requirement for travel expenses and provides specific guidance on what information is needed.\n\nCONFIDENCE: 90\n\nISSUES: None significant. All recommendations are aligned with the compliance rules and provide actionable guidance.\n\nSUMMARY: The recommendations provided for all five issues are valid, specific, and directly address the compliance requirements for GoGlobal in Japan. The recommendations appropriately instruct the user to either address issues with the supplier or provide additional documentation as required by the compliance rules. The guidance is practical and feasible, focusing on obtaining the necessary information to meet compliance standards for travel receipts in Japan.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user needs to obtain a proper receipt with a unique identifier, which aligns with the compliance rule that \"Receipt must show a unique identifier for the transaction.\"\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to \"address this issue with the supplier or provider\" regarding missing tax information is valid and directly addresses the compliance requirement that \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field according to the compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to \"address this issue with the supplier or provider\" regarding the customer name format is valid. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The current receipt shows a personal name (서수빈) rather than the employer's name.\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation to \"provide To and Fro locations, distance travelled and per diem rates\" for mileage reimbursements is highly valid and specific. It directly references the compliance rule and provides clear guidance on what additional documentation is needed.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation to \"provide the exchange rate of main banks on the day of purchase\" for overseas expenses is highly valid. It directly addresses the compliance requirement for travel expenses and provides specific guidance on what information is needed.\n\nCONFIDENCE: 90\n\nISSUES: None significant. All recommendations are aligned with the compliance rules and provide actionable guidance.\n\nSUMMARY: The recommendations provided for all five issues are valid, specific, and directly address the compliance requirements for GoGlobal in Japan. The recommendations appropriately instruct the user to either address issues with the supplier or provide additional documentation as required by the compliance rules. The guidance is practical and feasible, focusing on obtaining the necessary information to meet compliance standards for travel receipts in Japan."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation to address the missing receipt number with the supplier or provider is valid and actionable. Having a unique receipt identifier is a standard requirement, so this issue should be resolved.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax information, including the tax registration number, with the supplier or provider is valid and practical. Tax information is a mandatory requirement, so this should be addressed.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation to address the customer name not being in the required format for ICP requirements is valid. However, the guidance could be more specific on the exact format needed for the customer name.\n\nISSUE_4_VALIDATION_SCORE: 90 - The recommendation to provide the additional documentation required for mileage reimbursements, including the to and fro locations, distance travelled, and per diem rates, is valid and addresses the identified issue.\n\nISSUE_5_VALIDATION_SCORE: 90 - The recommendation to provide the exchange rate information from main banks on the day of purchase for the overseas expense is valid and necessary to meet the compliance requirements.\n\nCONFIDENCE: 90\nISSUES: None\nSUMMARY: The provided recommendations are generally valid, actionable, and address the identified compliance issues. The recommendations are feasible and practical for the employee to follow. The only minor improvement could be to provide more specific guidance on the required customer name format. Overall, the recommendations are strong and should help resolve the compliance problems with the expense receipt."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.9,
+          "response": "ISSUE_1_VALIDATION_SCORE: 90 - The recommendation \"It is recommended to address this issue with the supplier or provider\" for the missing receipt number is valid and actionable. The user needs to contact TADA to obtain a proper receipt with a receipt number, which is a mandatory field according to the compliance rules. The recommendation correctly identifies that this is a supplier-side issue.\n\nISSUE_2_VALIDATION_SCORE: 90 - The recommendation to address the missing tax information with the supplier is valid and specific. The compliance rules clearly state that \"Receipt must show the tax registration number of the supplier\" as a mandatory requirement, and the recommendation correctly identifies this as something that needs to be obtained from the supplier.\n\nISSUE_3_VALIDATION_SCORE: 85 - The recommendation regarding the customer name format is valid but could be more specific. The compliance rule states that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker).\" The recommendation correctly identifies this issue but could have specified exactly what name format is required (the local GoGlobal entity name instead of the individual's name).\n\nISSUE_4_VALIDATION_SCORE: 95 - The recommendation for the mileage reimbursement documentation is highly specific and directly addresses the compliance requirement. It clearly states what additional information is needed: \"To and Fro locations, distance travelled and per diem rates,\" which aligns perfectly with the compliance rule for mileage reimbursements.\n\nISSUE_5_VALIDATION_SCORE: 95 - The recommendation regarding the missing exchange rate information is specific, actionable, and directly addresses the compliance requirement. It clearly states the need to provide \"the exchange rate of main banks on the day of purchase,\" which aligns with the compliance rule for overseas expenses.\n\nCONFIDENCE: 90\n\nISSUES: The recommendation for issue #3 could be more specific by stating exactly what format the customer name should be in (the local GoGlobal entity name).\n\nSUMMARY: The recommendations are generally valid, specific, and actionable. They correctly identify the compliance issues and provide clear guidance on how to address them. The recommendations align well with the compliance rules provided in the context. The only minor improvement would be to provide more specific guidance on the exact customer name format required for issue #3. Overall, the recommendations effectively guide the user toward compliance with GoGlobal's receipt requirements for Japan."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the missing receipt number is valid and actionable. The user needs to obtain a proper receipt with a unique identifier, which aligns with the compliance rule that \"Receipt must show a unique identifier for the transaction.\"",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 90,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding missing tax information is valid and directly addresses the compliance requirement that \"Receipt must show the tax registration number of the supplier.\" This is a mandatory field according to the compliance rules.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 85,
+          "judge_explanation": "The recommendation to \"address this issue with the supplier or provider\" regarding the customer name format is valid. The compliance rules state that \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker) wherever possible.\" The current receipt shows a personal name (서수빈) rather than the employer's name.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to \"provide To and Fro locations, distance travelled and per diem rates\" for mileage reimbursements is highly valid and specific. It directly references the compliance rule and provides clear guidance on what additional documentation is needed.",
+          "dimension": "recommendation_validity"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 95,
+          "judge_explanation": "The recommendation to \"provide the exchange rate of main banks on the day of purchase\" for overseas expenses is highly valid. It directly addresses the compliance requirement for travel expenses and provides specific guidance on what information is needed.",
+          "dimension": "recommendation_validity"
+        }
+      ]
+    },
+    {
+      "dimension": "hallucination_detection",
+      "confidence_score": 0.9933333333333333,
+      "issues": [
+        "None detected. All issues identified in the AI response are supported by the provided data and compliance rules."
+      ],
+      "summary": "The AI response accurately identifies compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the identified issues. Each issue directly corresponds to either missing information in the receipt data or non-compliance with the specific rules provided for GoGlobal.",
+      "raw_response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt number is missing from the extracted data. The extracted data explicitly shows \"receipt_number\": null.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that tax information including tax registration number is missing. This is a mandatory requirement according to the compliance rules provided, and the extracted data does not contain any tax information.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies that the customer name format doesn't meet ICP requirements. The extracted data shows \"customer_name\": \"서수빈\" which doesn't match the rule that receipts should be issued in the employer's name (GoGlobal).\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that additional documentation is required for mileage reimbursements based on the compliance rules. While the receipt does show distance (16.48), the compliance rules require specific documentation of \"To and Fro locations, distance travelled and per diem rates.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that exchange rate information is missing. The compliance rules clearly state that for overseas expenses, exchange rate information is required, and the receipt is from Korea (KRW currency) while the country context is Japan.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the provided data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the identified issues. Each issue directly corresponds to either missing information in the receipt data or non-compliance with the specific rules provided for GoGlobal.",
+      "reliability_level": "high",
+      "judge_models": [
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+        "eu.anthropic.claude-3-haiku-20240307-v1:0",
+        "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+      ],
+      "judge_details": [
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - This issue correctly identifies that the receipt number is missing from the extracted data. The extracted data explicitly shows \"receipt_number\": null.\n\nISSUE_2_VALIDATION_SCORE: 100 - This issue correctly identifies that tax information including tax registration number is missing. This is a mandatory requirement according to the compliance rules provided, and the extracted data does not contain any tax information.\n\nISSUE_3_VALIDATION_SCORE: 100 - This issue correctly identifies that the customer name format doesn't meet ICP requirements. The extracted data shows \"customer_name\": \"서수빈\" which doesn't match the rule that receipts should be issued in the employer's name (GoGlobal).\n\nISSUE_4_VALIDATION_SCORE: 100 - This issue correctly identifies that additional documentation is required for mileage reimbursements based on the compliance rules. While the receipt does show distance (16.48), the compliance rules require specific documentation of \"To and Fro locations, distance travelled and per diem rates.\"\n\nISSUE_5_VALIDATION_SCORE: 100 - This issue correctly identifies that exchange rate information is missing. The compliance rules clearly state that for overseas expenses, exchange rate information is required, and the receipt is from Korea (KRW currency) while the country context is Japan.\n\nCONFIDENCE: 100\n\nISSUES: None detected. All issues identified in the AI response are supported by the provided data and compliance rules.\n\nSUMMARY: The AI response accurately identifies compliance issues based on the extracted receipt data and the provided compliance rules. There are no hallucinations or fabricated information in the identified issues. Each issue directly corresponds to either missing information in the receipt data or non-compliance with the specific rules provided for GoGlobal."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-haiku-20240307-v1:0",
+          "confidence_score": 1,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The information provided in the \"Extracted Data\" section matches the source data, and there are no signs of fabricated information.\n\nISSUE_2_VALIDATION_SCORE: 100 - The compliance rules and requirements listed in the \"Compliance Rules\" section appear to be valid and consistent with the ICP context of \"GoGlobal\". There is no evidence of fabricated compliance rules.\n\nISSUE_3_VALIDATION_SCORE: 100 - The entity names, amounts, and dates provided in the \"Extracted Data\" section are present in the source data and do not appear to be fabricated.\n\nISSUE_4_VALIDATION_SCORE: 100 - The AI response does not present any assumptions as facts. All the information provided is directly derived from the source data.\n\nISSUE_5_VALIDATION_SCORE: 100 - There are no other issues detected in the AI response.\n\nCONFIDENCE: 100\nISSUES: None\nSUMMARY: The AI response does not contain any hallucinated or fabricated information. All the data and compliance rules presented are consistent with the source data and the ICP context of \"GoGlobal\"."
+        },
+        {
+          "model_name": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+          "confidence_score": 0.98,
+          "response": "ISSUE_1_VALIDATION_SCORE: 100 - The issue about missing receipt number is accurate. The extracted data explicitly shows \"receipt_number\": null, confirming this information is indeed missing.\n\nISSUE_2_VALIDATION_SCORE: 100 - The issue about missing tax information is accurate. The compliance rules clearly state \"Receipt must show the tax registration number of the supplier\" as mandatory, and this information is not present in the extracted data.\n\nISSUE_3_VALIDATION_SCORE: 100 - The issue about customer name format is accurate. The compliance rules state \"Receipt should be issued in the name of the employer (the local entity of GoGlobal that employs the worker)\" but the receipt shows \"서수빈\" as the customer name, not the employer.\n\nISSUE_4_VALIDATION_SCORE: 90 - The issue about additional documentation for mileage is mostly accurate. While the receipt does include pickup and dropoff locations and distance traveled (16.48), the compliance rules do state that mileage reimbursements require \"To and Fro locations, distance travelled and per diem rates.\" The per diem rates are indeed missing.\n\nISSUE_5_VALIDATION_SCORE: 100 - The issue about missing exchange rate information is accurate. The compliance rules clearly state \"For overseas expenses, exchange rate of main banks on the day of purchase\" is required, and this is a travel receipt from Japan with expenses in KRW (Korean Won), indicating it's an overseas expense.\n\nCONFIDENCE: 98\n\nISSUES: None detected. All issues identified in the AI response are supported by the provided data and compliance rules.\n\nSUMMARY: The AI response accurately identified compliance issues based on the provided data and rules. The receipt is missing several required elements including receipt number, tax information, proper customer name format, and exchange rate information for an overseas expense. The response correctly references the applicable compliance rules for each issue and provides appropriate recommendations."
+        }
+      ],
+      "issue_validation_scores": [
+        {
+          "issue_index": 0,
+          "issue_description": "Receipt number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the receipt number is missing from the extracted data. The extracted data explicitly shows \"receipt_number\": null.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 1,
+          "issue_description": "Tax information including the tax registration number is missing.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that tax information including tax registration number is missing. This is a mandatory requirement according to the compliance rules provided, and the extracted data does not contain any tax information.",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 2,
+          "issue_description": "Customer name is not in the required format for ICP requirements.",
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that the customer name format doesn't meet ICP requirements. The extracted data shows \"customer_name\": \"서수빈\" which doesn't match the rule that receipts should be issued in the employer's name (GoGlobal).",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 3,
+          "issue_description": "Additional documentation is required for mileage reimbursements.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that additional documentation is required for mileage reimbursements based on the compliance rules. While the receipt does show distance (16.48), the compliance rules require specific documentation of \"To and Fro locations, distance travelled and per diem rates.\"",
+          "dimension": "hallucination_detection"
+        },
+        {
+          "issue_index": 4,
+          "issue_description": "Exchange rate information is missing for the overseas expense.",
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "validation_score": 100,
+          "judge_explanation": "This issue correctly identifies that exchange rate information is missing. The compliance rules clearly state that for overseas expenses, exchange rate information is required, and the receipt is from Korea (KRW currency) while the country context is Japan.",
+          "dimension": "hallucination_detection"
+        }
+      ]
+    }
+  ],
+  "overall_reliability": "high",
+  "critical_issues": [],
+  "recommendations": [
+    "Multiple validation issues detected - prioritize critical fixes",
+    "Address issues in factual grounding: The only minor issue is with Issue 4, where the AI correctly identified the need for additional documentation for mileage, but the receipt does contain some location information (pickup and dropoff locations), though not necessarily in the format required by the compliance rules.",
+    "Address issues in knowledge base adherence: 1. Issue 1 references a requirement for a receipt number/unique identifier that isn't explicitly stated in the provided compliance rules., 2. Issue 3 correctly identifies the customer name issue but doesn't acknowledge that this requirement is marked as \"Optional\" in the compliance rules.",
+    "Address issues in compliance accuracy: 1. Issue 4 appears to misclassify a commercial transportation receipt as a personal mileage reimbursement claim., 2. The receipt appears to be from Korea (KRW currency, Korean locations) but is being processed in Japan, which creates some complexity in the compliance assessment.",
+    "Address issues in issue categorization: 1. Issue #4 appears to misidentify a taxi/ride-sharing receipt as a mileage reimbursement claim, 2. Issue #3 cites a rule that is marked as \"Optional\" in the compliance documentation but treats it as a mandatory requirement",
+    "Address issues in recommendation validity: None significant. All recommendations are aligned with the compliance rules and provide actionable guidance.",
+    "Address issues in hallucination detection: None detected. All issues identified in the AI response are supported by the provided data and compliance rules."
+  ],
+  "timestamp": "2025-10-01T17:19:57.886Z",
+  "metadata": {
+    "validation_version": "2.0.0-parallel",
+    "judge_models": [
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+      "eu.anthropic.claude-3-haiku-20240307-v1:0",
+      "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+    ],
+    "judge_model": "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "processing_time_ms": 66160,
+    "timing": {
+      "validation_start_time": "2025-10-01T17:18:51.725Z",
+      "validation_end_time": "2025-10-01T17:19:57.885Z",
+      "total_validation_time_seconds": "66.2",
+      "dimension_timings": {
+        "factual_grounding": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "knowledge_base_adherence": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "compliance_accuracy": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "issue_categorization": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "recommendation_validity": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        },
+        "hallucination_detection": {
+          "start_time": "2025-10-01T17:18:51.725Z",
+          "end_time": "2025-10-01T17:19:57.885Z",
+          "duration_seconds": "66.2",
+          "judge_models_used": [
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0",
+            "eu.anthropic.claude-3-haiku-20240307-v1:0",
+            "eu.anthropic.claude-3-7-sonnet-20250219-v1:0"
+          ],
+          "execution_mode": "parallel"
+        }
+      }
+    },
+    "context": {
+      "dimensions_validated": 6,
+      "judge_panel_size": 3,
+      "execution_mode": "parallel",
+      "parallel_config": {
+        "dimension_concurrency": 6,
+        "judge_concurrency": 3,
+        "rate_limit_per_second": 10
+      },
+      "performance_metrics": {
+        "total_validation_time_seconds": "66.2",
+        "sequential_equivalent_time_seconds": "30.0",
+        "time_saved_seconds": "0.0",
+        "speedup_factor": "0.45",
+        "dimensions_processed_in_parallel": 6,
+        "judges_processed_in_parallel": 3,
+        "successful_dimensions": 6,
+        "failed_dimensions": 0,
+        "fallback_used": false,
+        "execution_mode": "parallel"
+      },
+      "issue_level_scoring_enabled": true,
+      "aggregated_issues_count": 5
+    }
+  },
+  "issue_validation_scores": [
+    {
+      "issue_index": 0,
+      "issue_description": "Receipt number is missing.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 87.56,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 50,
+        "compliance_accuracy": 90,
+        "issue_categorization": 90,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 1,
+      "issue_description": "Tax information including the tax registration number is missing.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 98.22,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 90,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 2,
+      "issue_description": "Customer name is not in the required format for ICP requirements.",
+      "issue_type": "Standards & Compliance | Fix Identified",
+      "overall_validation_score": 92.56,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 90,
+        "compliance_accuracy": 90,
+        "issue_categorization": 85,
+        "recommendation_validity": 85,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 3,
+      "issue_description": "Additional documentation is required for mileage reimbursements.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 84.78,
+      "reliability_level": "medium",
+      "dimension_breakdown": {
+        "factual_grounding": 80,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 70,
+        "issue_categorization": 70,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    },
+    {
+      "issue_index": 4,
+      "issue_description": "Exchange rate information is missing for the overseas expense.",
+      "issue_type": "Standards & Compliance | Follow-up Action Identified",
+      "overall_validation_score": 98.78,
+      "reliability_level": "high",
+      "dimension_breakdown": {
+        "factual_grounding": 100,
+        "knowledge_base_adherence": 100,
+        "compliance_accuracy": 100,
+        "issue_categorization": 95,
+        "recommendation_validity": 95,
+        "hallucination_detection": 100
+      }
+    }
+  ]
+}
